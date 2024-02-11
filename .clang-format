@@ -1,0 +1,15 @@
+# Format Style Options - Created with Clang Power Tools
+---
+BasedOnStyle: WebKit
+AlignTrailingComments: true
+AllowShortIfStatementsOnASingleLine: Always
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+ColumnLimit: 120
+Cpp11BracedListStyle: true
+MaxEmptyLinesToKeep: 2
+ReflowComments: false
+SortIncludes: false
+SpaceAfterTemplateKeyword: false
+SpacesBeforeTrailingComments: 3
+...

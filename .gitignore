@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Personalized
+.vs
+/bin/*.exe
+/bin/*.pdb
+/bin/*.lib
+/bin/*.idb
+temp
