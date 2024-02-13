@@ -1,5 +1,9 @@
 #include "MiProyecto.h"
 
+#include <iostream>
+#include <fstream>
+#include "MiBiblioteca.h"
+
 int main() {
 
     saluda("mundo");
