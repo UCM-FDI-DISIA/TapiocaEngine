@@ -1,0 +1,123 @@
+vertex_program glow_vs_glsl glsl glsles
+{
+	source vs_glow.glsl
+}
+fragment_program glow_ps_glsl glsl glsles
+{
+	source ps_glow.glsl
+}
+
+vertex_program glow_vs_cg hlsl
+{
+	source vs_glow.cg
+	target vs_2_0
+}
+
+fragment_program glow_ps_cg hlsl
+{
+	source ps_glow.cg
+	target ps_2_0
+}
+
+vertex_program glow_vs unified
+{
+	delegate glow_vs_glsl
+	delegate glow_vs_cg
+
+    default_params
+	{
+        param_named_auto worldViewProjMatrix worldviewproj_matrix
+        param_named size_value float 1.1
+        param_named_auto time time_0_x 100
+	}
+}
+
+fragment_program glow_ps unified
+{
+	delegate glow_ps_glsl
+	delegate glow_ps_cg
+}
+
+material glow
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_check on
+			lighting off
+			
+			fragment_program_ref glow_ps
+			{
+				param_named_auto time time_0_x 100
+				param_named alpha_value float 0.4
+			}
+			vertex_program_ref glow_vs
+			{
+			}
+		}
+		
+	}
+}
+
+material alpha_glow
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_check on
+			lighting off
+
+			fragment_program_ref glow_ps
+			{
+				param_named_auto time time_0_x 100
+				param_named alpha_value float 0.0
+			}
+			vertex_program_ref glow_vs
+			{
+			}
+		}
+
+		pass
+		{
+			scene_blend alpha_blend
+			depth_check on
+			lighting off
+
+			vertex_program_ref Ogre/BasicVertexPrograms/AmbientOneTextureUnified
+			{
+			}
+
+			fragment_program_ref glow_ps
+			{
+				param_named_auto time time_0_x 100
+				param_named alpha_value float 0.0
+			}
+		}
+	}
+}
+
+material no_depth_check_glow
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_check off
+			lighting off
+			
+			fragment_program_ref glow_ps
+			{
+				param_named_auto time time_0_x 100
+				param_named alpha_value float 0.4
+			}
+			vertex_program_ref glow_vs
+			{
+			}
+		}
+	}
+}

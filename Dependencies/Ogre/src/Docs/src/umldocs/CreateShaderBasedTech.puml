@@ -1,0 +1,13 @@
+@startuml
+hide footbox
+
+Application -> ShaderGenerator: createShaderBasedTechnique
+activate ShaderGenerator
+ShaderGenerator -> SGMaterial: << new >>
+ShaderGenerator -> SGTechnique: << new >>
+ShaderGenerator -> SGMaterial: addTechnique(tech)
+
+ShaderGenerator -> SGScheme: << new >>
+ShaderGenerator -> SGScheme: addTechniqueEntry(tech)
+deactivate ShaderGenerator
+@enduml

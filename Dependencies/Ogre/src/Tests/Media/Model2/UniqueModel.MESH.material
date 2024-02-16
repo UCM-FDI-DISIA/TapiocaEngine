@@ -1,0 +1,18 @@
+
+material UniqueMaterial
+{
+	technique Default
+	{
+		pass Main
+		{
+			specular 0.25098 0.25098 0.25098 1 20
+
+			texture_unit
+			{
+				texture UniqueTexture.dds -1
+			}
+		}
+
+	}
+
+}

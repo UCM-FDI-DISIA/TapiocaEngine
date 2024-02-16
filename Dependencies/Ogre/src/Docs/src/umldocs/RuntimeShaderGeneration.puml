@@ -1,0 +1,25 @@
+@startuml
+hide footbox
+
+ShaderGenerator -> SGScheme: validate
+activate SGScheme
+SGScheme -> SGScheme: syncWithScene
+SGScheme -> SGTechniqe: buildRenderState
+SGTechniqe -> SGPass: buildRenderState
+deactivate SGScheme
+activate SGPass
+SGPass -> TargetRenderState: << new >>
+loop globalRenderState
+SGPass -> TargetRenderState: addSubRenderState
+end
+SGPass -> TargetRenderState: acquirePrograms(Pass)
+deactivate SGPass
+activate TargetRenderState
+TargetRenderState -> TargetRenderState: createCpuPrograms
+TargetRenderState -> ProgramManager: createGpuPrograms
+activate ProgramManager
+ProgramManager -> ProgramManager: hash(source)
+ProgramManager --> TargetRenderState: GpuProgramPtr
+deactivate ProgramManager
+TargetRenderState -> TargetRenderState : bindUniformParameters
+@enduml

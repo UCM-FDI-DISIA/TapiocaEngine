@@ -1,7 +1,10 @@
 .vs
 *.exe
 *.pdb
-*.idb
 *.lib
+*.idb
+*.dll
+*.log
 temp
 lib
+Dependencies/Ogre/build

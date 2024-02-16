@@ -1,21 +1,13 @@
 #include "MiProyecto.h"
 
 #include <iostream>
-#include <fstream>
+#include <iostream>
+#include <OgreRoot.h>
 #include "MiBiblioteca.h"
 
 int main() {
 
-    saluda("mundo");
+    Ogre::Root* root = new Ogre::Root();
 
-    //std::ifstream f("fichero.txt");
-
-    //// COMPROBAR
-    //if (f.is_open()) {
-    //    std::cout << "El fichero ha sido abierto\n";
-    //    f.close(); // MUY IMPORTANTE CERRAR
-    //}
-    //else {
-    //    std::cerr << "El fichero NO HA SIDO ABIERTO\n"; // USAR CERR
-    //}
+    return 0;
 }
