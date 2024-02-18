@@ -1,11 +1,18 @@
-.vs
+# Ignora todos los archivos con los siguientes formatos
 *.exe
 *.pdb
 *.lib
 *.idb
 *.dll
 *.log
+
+# Ignora los siguientes directorios
+.vs
 temp
 lib
-Dependencies/Ogre/build
-Dependencies/Bullet/build
+
+# Ignora todas los directorios que se llamen 'build'
+build/
+
+# No ignora
+!cmake.exe
