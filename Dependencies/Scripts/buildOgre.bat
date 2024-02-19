@@ -36,12 +36,15 @@ cmake ^
     -D OGRE_INSTALL_SAMPLES:BOOL=FALSE ^
     -D OGRE_INSTALL_TOOLS:BOOL=FALSE ^
     -D OGRE_INSTALL_VSPROPS:BOOL=TRUE ^
+    -D OGRE_BUILD_PLUGIN_ASSIMP:BOOL=FALSE ^
 -S %OGRE_SRC% -B %OGRE_BUILD%
 
 rem Compilacion de la solucion en Debug y en Release
-rem sbuild %OGRE_SLN% /p:configuration=Debug /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
-rem msbuild %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
+msbuild %OGRE_SLN% /p:configuration=Debug /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
+msbuild %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
 
+XCOPY .\bin\release ..\..\..\..\bin
+XCOPY .\bin\debug ..\..\..\..\bin
 echo Terminada la build de Ogre
 
 :end

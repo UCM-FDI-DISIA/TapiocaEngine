@@ -1,3 +1,4 @@
+if(OGRE_BUILD_COMPONENT_BULLET)
 set(HEADER_FILES
   include/OgreBullet.h
   ${PROJECT_BINARY_DIR}/include/OgreBulletExports.h)
@@ -9,7 +10,7 @@ target_include_directories(OgreBullet PUBLIC
   $<INSTALL_INTERFACE:include/OGRE/Bullet>)
 target_include_directories(OgreBullet SYSTEM PUBLIC "$<BUILD_INTERFACE:${BULLET_INCLUDE_DIRS}>")
 
-if(OGRE_BUILD_DEPENDENCIES)
+if(OGRE_BUILD_DEPENDENCIES AND OGRE_BUILD_COMPONENT_BULLET)
   target_include_directories(OgreBullet PUBLIC "$<INSTALL_INTERFACE:include/bullet>")
   target_link_libraries(OgreBullet PUBLIC "$<BUILD_INTERFACE:${BULLET_LIBRARIES}>")
 else()
@@ -24,3 +25,4 @@ ogre_config_framework(OgreBullet)
 ogre_config_component(OgreBullet)
 
 install(FILES ${HEADER_FILES} DESTINATION include/OGRE/Bullet)
+endif()

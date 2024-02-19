@@ -108,7 +108,7 @@ if (OGRE_INSTALL_DEPENDENCIES)
   endif ()
 
   if(OGRE_BUILD_DEPENDENCIES AND OGRE_BUILD_COMPONENT_BULLET)
-    install(DIRECTORY ${OGRE_DEP_DIR}/include/bullet DESTINATION include)
+    # install(DIRECTORY ${OGRE_DEP_DIR}/include/bullet DESTINATION include)
   endif()
 
   if(WIN32)
