@@ -5,6 +5,7 @@
 *.idb
 *.dll
 *.log
+*.vcxproj.user
 
 # Ignora los siguientes directorios
 .vs
