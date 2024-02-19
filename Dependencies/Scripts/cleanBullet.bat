@@ -9,7 +9,8 @@ echo Borrando build de Bullet
 if exist %BULLET_BUILD_DIR% (
     rmdir /s /q %BULLET_BUILD_DIR%
     echo Borrada build de Bullet.
-)
-else (
+) else (
     echo No se ha encontrado directorio build en Bullet\build. No se realiza nada.
 )
+
+pause
