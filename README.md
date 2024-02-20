@@ -30,11 +30,11 @@ El motor de videojuegos <strong>Tapioca Engine</strong> es un proyecto de softwa
 
 El motor se divide en varios módulos que se encargan de diferentes aspectos del desarrollo de videojuegos. Estos módulos son:
 
-- <strong>Core</strong>: Módulo encargado de la gestión de la memoria, la creación de entidades y la gestión de eventos.
-- <strong>Graphics</strong>: Módulo encargado del renderizado de los gráficos.
-- <strong>Physics</strong>: Módulo encargado de la simulación física.
-- <strong>Audio</strong>: Módulo encargado de la gestión del audio.
-- <strong>TapiocaEnginer</strong>: Módulo encargado de la gestión de los módulos anteriores.
+- <strong>Core</strong>: Módulo encargado de la gestión de la memoria, la creación de entidades y la gestión de eventos
+- <strong>Graphics</strong>: Módulo encargado del renderizado de los gráficos
+- <strong>Physics</strong>: Módulo encargado de la simulación física
+- <strong>Audio</strong>: Módulo encargado de la gestión del audio
+- <strong>TapiocaEngine</strong>: Módulo encargado de la gestión de los módulos anteriores
 
 Los motores de tecnología hacen uso de diferentes bibliotecas para su funcionamiento. <strong>Tapioca Engine</strong> se hace uso de las siguientes:
 
