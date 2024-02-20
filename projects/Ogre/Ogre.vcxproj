@@ -11,7 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Ogre\InputHandler.cpp" />
     <ClCompile Include="..\..\src\Ogre\Ogre.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Ogre\InputHandler.h" />
+    <ClInclude Include="..\..\src\Ogre\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
