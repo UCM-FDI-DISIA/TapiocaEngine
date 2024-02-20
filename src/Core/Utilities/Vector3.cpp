@@ -9,7 +9,7 @@ Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) { }
 
 Vector3::Vector3(const Vector3& other) : x(other.x), y(other.y), z(other.z) { }
 
-Vector3::Vector3(const Vector2& other) : x(other.getX()), y(other.getY()), z(0) { }
+Vector3::Vector3(const Vector2& other, float z) : x(other.x), y(other.y), z(z) { }
 
 float Vector3::magnitudeSquared() const { return x * x + y * y + z * z; }
 
