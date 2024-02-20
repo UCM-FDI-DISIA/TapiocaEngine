@@ -66,7 +66,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
