@@ -12,3 +12,5 @@ if exist %OGRE_BUILD_DIR% (
 ) else (
     echo No se ha encontrado directorio build en Ogre\build\. No se realiza nada.
 )
+
+pause

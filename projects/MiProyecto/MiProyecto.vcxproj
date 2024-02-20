@@ -85,8 +85,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>"$(SolutionDir)Dependencies\Scripts\buildAll.bat" "$(CurrentVsInstallRoot)" "$(MSBuildBinPath)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -108,8 +107,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>"$(SolutionDir)Dependencies\Scripts\buildAll.bat" "$(CurrentVsInstallRoot)" "$(MSBuildBinPath)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
