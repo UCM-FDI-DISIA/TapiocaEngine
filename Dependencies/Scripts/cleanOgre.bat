@@ -1,7 +1,5 @@
 @echo off
 
-rem Este .bat se encuentra en el directorio Dependencies/Scripts
-
 rem Variable de directorio
 set OGRE_BUILD_DIR=..\Ogre\build\
 
@@ -12,5 +10,3 @@ if exist %OGRE_BUILD_DIR% (
 ) else (
     echo No se ha encontrado directorio build en Ogre\build\. No se realiza nada.
 )
-
-pause

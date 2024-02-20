@@ -1,7 +1,5 @@
 @echo off
 
-rem Este .bat se encuentra en el directorio Dependencies/Scripts
-
 rem Variable de directorio
 set BULLET_BUILD_DIR=..\Bullet\build\
 
@@ -12,5 +10,3 @@ if exist %BULLET_BUILD_DIR% (
 ) else (
     echo No se ha encontrado directorio build en Bullet\build. No se realiza nada.
 )
-
-pause
