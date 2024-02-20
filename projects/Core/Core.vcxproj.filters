@@ -1,45 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de origen">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Structure">
+      <UniqueIdentifier>{809a02c9-b573-4f67-bcfe-8324bdc70c4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{ea27c386-fe88-4054-b1ef-34d6391cddb7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Core\Component.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\GameObject.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Scene.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Game.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\Component.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\Game.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\Scene.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Core\GameObject.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Scene.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Component.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Game.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
+    <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\Vector3.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\Component.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\Game.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\GameObject.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\Scene.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Core.h" />
   </ItemGroup>
 </Project>

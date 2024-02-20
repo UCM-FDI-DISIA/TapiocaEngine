@@ -85,16 +85,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Core\Component.h" />
-    <ClInclude Include="..\..\src\Core\Game.h" />
-    <ClInclude Include="..\..\src\Core\GameObject.h" />
-    <ClInclude Include="..\..\src\Core\Scene.h" />
+    <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
+    <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
+    <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Core\Component.cpp" />
-    <ClCompile Include="..\..\src\Core\Game.cpp" />
-    <ClCompile Include="..\..\src\Core\GameObject.cpp" />
-    <ClCompile Include="..\..\src\Core\Scene.cpp" />
+    <ClInclude Include="..\..\src\Core\Core.h" />
+    <ClInclude Include="..\..\src\Core\Structure\Component.h" />
+    <ClInclude Include="..\..\src\Core\Structure\Game.h" />
+    <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
+    <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
