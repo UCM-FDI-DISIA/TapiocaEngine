@@ -5,13 +5,15 @@ set BAT_DIR=%~dp0
 set OGRE_SRC=%BAT_DIR%..\Ogre\src
 set OGRE_BUILD=%BAT_DIR%..\Ogre\build\x64
 set OGRE_SLN=%BAT_DIR%..\Ogre\build\x64\OGRE.sln
+set CMAKE_PATH=%1
+set MS_BUILD_PATH=%2
 
 rem Se crea el directorio si no está ya creado
 if not exist %OGRE_BUILD% (
     mkdir %OGRE_BUILD%
 
     echo Comenzando la ejecucion de cmake
-    cmake ^
+    %CMAKE_PATH%\cmake.exe ^
         -D CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release ^
         -D OGRE_BUILD_COMPONENT_BULLET:BOOL=FALSE ^
         -D OGRE_BUILD_COMPONENT_BITES:BOOL=FALSE ^
@@ -38,12 +40,13 @@ if not exist %OGRE_BUILD% (
 )
 if exist %OGRE_SLN% (
     rem Compilacion de la solucion en Debug y en Release
-    msbuild %OGRE_SLN% /p:configuration=Debug /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
-    msbuild %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
+    %MS_BUILD_PATH%\msbuild.exe %OGRE_SLN% /p:configuration=Debug /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
+    %MS_BUILD_PATH%\msbuild.exe %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
     cd ..
-    XCOPY Ogre\build\x64\bin\release\*.dll ..\bin /Y
-    XCOPY Ogre\build\x64\bin\debug\*.dll ..\bin /Y
+    XCOPY .\Ogre\build\x64\bin\release\*.dll ..\bin /Y
+    XCOPY .\Ogre\build\x64\bin\debug\*.dll ..\bin /Y
     cd Scripts
     echo Terminada la build de Ogre
 ) else echo No se ha encontrado el archivo %OGRE_SLN%
 
+pause

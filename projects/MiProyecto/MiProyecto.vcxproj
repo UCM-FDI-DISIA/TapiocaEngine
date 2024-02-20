@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\MiProyecto\MiProyecto.cpp" />
+    <ClCompile Include="..\..\src\Ogre\InputHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bullet\Bullet.vcxproj">
@@ -26,6 +27,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\MiProyecto\MiProyecto.h" />
+    <ClInclude Include="..\..\src\Ogre\InputHandler.h" />
+    <ClInclude Include="..\..\src\Ogre\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -85,8 +88,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>"$(SolutionDir)Dependencies\Scripts\buildAll.bat" "$(CurrentVsInstallRoot)" "$(MSBuildBinPath)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -108,8 +110,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>"$(SolutionDir)Dependencies\Scripts\buildAll.bat" "$(CurrentVsInstallRoot)" "$(MSBuildBinPath)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
