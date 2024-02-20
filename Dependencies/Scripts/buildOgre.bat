@@ -41,9 +41,9 @@ if exist %OGRE_SLN% (
     msbuild %OGRE_SLN% /p:configuration=Debug /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
     msbuild %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
     cd ..
-    XCOPY Ogre\build\x64\bin\release\*.dll ..\bin
-    XCOPY Ogre\build\x64\bin\debug\*.dll ..\bin
+    XCOPY Ogre\build\x64\bin\release\*.dll ..\bin /Y
+    XCOPY Ogre\build\x64\bin\debug\*.dll ..\bin /Y
+    cd Scripts
     echo Terminada la build de Ogre
 ) else echo No se ha encontrado el archivo %OGRE_SLN%
 
-pause

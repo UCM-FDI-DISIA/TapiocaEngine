@@ -32,5 +32,3 @@ if exist %BULLET_SLN% (
 	msbuild %BULLET_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
 	echo Terminada la build de Bullet
 ) else echo No se ha encontrado el archivo %BULLET_SLN%
-
-pause

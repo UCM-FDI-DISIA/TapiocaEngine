@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 #ifndef _MI_BIBLIOTECA_H
 #define _MI_BIBLIOTECA_H

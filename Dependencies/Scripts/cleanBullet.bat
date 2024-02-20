@@ -12,5 +12,3 @@ if exist %BULLET_BUILD_DIR% (
 ) else (
     echo No se ha encontrado directorio build en Bullet\build. No se realiza nada.
 )
-
-pause
