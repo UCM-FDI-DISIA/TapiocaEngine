@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\MiProyecto\MiProyecto.cpp" />
+    <ClCompile Include="..\..\src\Ogre\InputHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bullet\Bullet.vcxproj">
@@ -26,6 +27,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\MiProyecto\MiProyecto.h" />
+    <ClInclude Include="..\..\src\Ogre\InputHandler.h" />
+    <ClInclude Include="..\..\src\Ogre\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
