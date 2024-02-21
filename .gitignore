@@ -4,6 +4,7 @@
 *.lib
 *.idb
 *.dll
+*.exp
 *.log
 *.vcxproj.user
 

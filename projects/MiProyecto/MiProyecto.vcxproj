@@ -11,11 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\MiProyecto\MiProyecto.cpp" />
+    <ClCompile Include="..\..\src\MiProyecto\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bullet\Bullet.vcxproj">
       <Project>{4d51ad06-e3f2-480d-92f8-d0a63c2b60e6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\MiBiblioteca\MiBiblioteca.vcxproj">
       <Project>{e0d58efb-f43b-4380-8513-ed54e97a96fb}</Project>
@@ -25,7 +28,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\MiProyecto\MiProyecto.h" />
+    <ClInclude Include="..\..\src\MiProyecto\checkML.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -76,7 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -97,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

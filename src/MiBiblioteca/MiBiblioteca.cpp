@@ -1,5 +1,5 @@
 #include "MiBiblioteca.h"
 
-void saluda(const char* nombre) {
+JUEGO_API void saluda(const char* nombre) {
 	std::cout << "Hola, " << nombre << '\n';
 }
