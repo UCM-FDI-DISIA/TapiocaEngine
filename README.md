@@ -90,7 +90,9 @@ Los materiales en .material de acuerdo con los estándares .glTF (glTF 2.0 — B
 </li>
 <li>
 <p align="justify">
-<strong>Assets sonoros</strong>: existe multitud de formatos de audio y uno de los más usados sin pérdida de calidad es el .wav que además es un formato que se usa de forma muy extendida. En el caso de encontrar assets en otros formatos como mp3 será sencillo usar programas como [Audacity](https://www.audacityteam.org/) o [VLC Media](https://www.videolan.org/vlc/download-windows.html) para convertirlos a .wav.
+<strong>Assets sonoros</strong>: existe multitud de formatos de audio y uno de los más usados sin pérdida de calidad es el .wav que además es un formato que se usa de forma muy extendida.
+
+En el caso de encontrar assets en otros formatos como mp3 será sencillo usar programas como [Audacity](https://www.audacityteam.org/) o [VLC Media](https://www.videolan.org/vlc/download-windows.html) para convertirlos a .wav.
 </p>
 </li>
 </ul>
