@@ -111,6 +111,6 @@ En el caso de encontrar assets en otros formatos como mp3 será sencillo usar pr
 
 <h3>¡Contáctanos por correo!</h3>
 <a href="mailto:contactbubblestudios@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/CONTACTO-green&style=plastic" alt="Contact Badge"/>
+    <img src="https://img.shields.io/badge/CONTACTO-green?style=plastic" alt="Contact Badge"/>
 </a>
 </div>
