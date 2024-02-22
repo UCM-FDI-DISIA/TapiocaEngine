@@ -8,6 +8,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiBiblioteca", "projects\MiBiblioteca\MiBiblioteca.vcxproj", "{E0D58EFB-F43B-4380-8513-ED54E97A96FB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bullet", "projects\Bullet\Bullet.vcxproj", "{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5E0AF72D-8466-4A76-B633-4D6198F021B1} = {5E0AF72D-8466-4A76-B633-4D6198F021B1}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ogre", "projects\Ogre\Ogre.vcxproj", "{41B70F84-8525-46CB-B0AE-A461780AEC77}"
 EndProject
