@@ -16,12 +16,13 @@ public:
     Component(GameObject* parent, std::string id, bool active = true);
     virtual ~Component() { }
 
-    inline bool isAlive() const { return alive; }     //para comprobar su existencia, en caso contrario se borra
-    inline bool isActive() const { return active; }   //para comprobar si esta activo, en caso contrario no se actualiza
-    virtual void setActive(bool b);   //activar/desactivar componente
+    inline bool isAlive() const { return alive; }    //para comprobar su existencia, en caso contrario se borra
+    inline bool isActive() const { return active; }  //para comprobar si esta activo, en caso contrario no se actualiza
+    virtual void setActive(bool b) { active = b; }   //activar/desactivar componente
 
     virtual void update() { }
     virtual void handleEvents() { }
     virtual void initComponent() { }
+    virtual void fixedUpdate() { }
 };
 }

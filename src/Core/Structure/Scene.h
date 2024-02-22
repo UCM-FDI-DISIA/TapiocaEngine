@@ -23,6 +23,7 @@ public:
     void initComponent();
     void update();
     void handleEvents();
-    // Pasar por mensaje --> void transitionEnded() { };
+    void fixedUpdate();
+    // TODO Pasar por mensaje --> void transitionEnded() { };
 };
 }

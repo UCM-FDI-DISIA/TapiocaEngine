@@ -74,4 +74,9 @@ void Scene::handleEvents() {
     for (auto obj : objects)
         obj->handleEvents();
 }
+
+void Scene::fixedUpdate() {
+    for (auto obj : objects)
+        obj->fixedUpdate();
+}
 }

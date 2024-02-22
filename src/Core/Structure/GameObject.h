@@ -16,7 +16,7 @@ private:
 
     void deleteCompVector(Component* comp);
     std::unordered_map<std::string, Component*> components;
-    std::vector<Component*> cmpOrder; // Hace falta??????
+    std::vector<Component*> cmpOrder; // TODO Hace falta??????
 public:
     GameObject(Scene* scene, std::string handler = "");
     ~GameObject();
@@ -31,6 +31,7 @@ public:
     void update();
     void handleEvents();
     void initComponent();
+    void fixedUpdate();
     
     template<typename Comp> inline Comp* getComponent() {
         auto it = components.find(Comp::id);

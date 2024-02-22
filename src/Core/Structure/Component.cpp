@@ -8,6 +8,4 @@ Component::Component(GameObject* parent, std::string id, bool active) : parent(p
     deltaTime(Game::get()->getDeltaTime()), fixedDeltaTime(Game::get()->getFixedDeltaTime()) {
     parent->addComponent(this, id);
 }
-
-void Component::setActive(bool b) { active = b; }
 }

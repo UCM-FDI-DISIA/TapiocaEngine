@@ -63,4 +63,8 @@ namespace Tapioca {
         for (auto comp : cmpOrder)
             comp->initComponent();
     }
+    void GameObject::fixedUpdate() {
+        for (auto comp : cmpOrder)
+            if (comp->isActive()) comp->fixedUpdate();
+    }
 }
