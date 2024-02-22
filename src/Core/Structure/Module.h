@@ -5,7 +5,7 @@ class Module {
 private:
 
 public:
-    Module() { }
+    Module();
     virtual ~Module() { }
 
     virtual void init() { }

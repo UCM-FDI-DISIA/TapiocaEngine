@@ -88,6 +88,7 @@
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\Module.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
     <ClInclude Include="..\..\src\Core\Structure\Game.h" />
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
+    <ClInclude Include="..\..\src\Core\Structure\Module.h" />
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector3.h" />

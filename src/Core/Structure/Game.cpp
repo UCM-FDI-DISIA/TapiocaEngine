@@ -96,5 +96,9 @@ void Game::render() {
         mod->render();
 }
 
+void Game::addScene(Scene* sc) {
+    scenes.push(sc);
+}
+
 Game* Game::instance = nullptr;
 }

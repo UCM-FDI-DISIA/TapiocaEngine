@@ -28,6 +28,11 @@ private:
     uint32_t fixedOffset;
     bool cont;
 
+    friend class Scene;
+    void addScene(Scene*);
+    friend class Module;
+    void addModule(Module*);
+
 public:
     Game(std::string const& gameName);
     ~Game();

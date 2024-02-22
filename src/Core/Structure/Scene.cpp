@@ -4,7 +4,9 @@
 #include "Game.h"
 
 namespace Tapioca {
-Scene::Scene() { }
+Scene::Scene() {
+    Game::get()->addScene(this);
+}
 
 Scene::~Scene() {
     for (auto obj : objects)

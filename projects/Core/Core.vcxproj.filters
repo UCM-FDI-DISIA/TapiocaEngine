@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\Module.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
@@ -48,5 +51,8 @@
       <Filter>Structure</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Core.h" />
+    <ClInclude Include="..\..\src\Core\Structure\Module.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
