@@ -100,6 +100,7 @@
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
     <ClInclude Include="..\..\src\Core\Structure\Module.h" />
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\Singleton.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector3.h" />
   </ItemGroup>

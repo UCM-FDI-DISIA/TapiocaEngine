@@ -1,26 +1,54 @@
 #include "InputManager.h"
 
+
 #include <SDL_events.h>
 #include "Utilities/Vector2.h"
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
 #include <iostream>
-//#endif
+#endif
 
-InputManager::InputManager() : inputText("") {
+Tapioca::InputManager::InputManager() : inputText("") {
     kbState = SDL_GetKeyboardState(0);
     
     resetText();
     initJoysticks();
     clearInput();
+
+    mapInput();
 }
 
-InputManager::~InputManager() {
+Tapioca::InputManager::~InputManager() {
     for (auto joy : joysticks) removeJoystick(joy.first);
 }
 
+void Tapioca::InputManager::mapInput() {
+    kbMapping.insert({ev_ACCEPT, SDL_SCANCODE_A});
+    kbMapping.insert({ev_ACCEPT, SDL_SCANCODE_W});
+
+    jMapping.insert({ev_ACCEPT, SDL_CONTROLLER_BUTTON_DPAD_UP});
+}
+
+bool Tapioca::InputManager::eventHappened(EVENTS ev) {
+    bool kb = false, joy = false;
+
+    for (auto k : kbMapping) {
+        if (k.first == ev) kb |= kbState[k.second] == 1;
+    }
+    kb &= inputEventTriggered[ie_keyDown];
+
+    for (int i = 0; i < joysticks.size(); i++) {
+        for (auto b : jMapping)
+            if (b.first == ev) joy |= jbState[i][b.second];
+    }
+    joy &= inputEventTriggered[ie_joyButtonDown];
+    //return (inputEventTriggered[ie_keyDown] && sol)
+
+    return kb || joy;
+}
+
 // Comprueba si hay algún joystick conectado y los inicializa todos
-void InputManager::initJoysticks() {
+void Tapioca::InputManager::initJoysticks() {
     int initialJoysticks = SDL_NumJoysticks();
 
     // No hay joysticks conectados
@@ -42,7 +70,7 @@ void InputManager::initJoysticks() {
     }
 }
 
-void InputManager::addJoystick(int i) { 
+void Tapioca::InputManager::addJoystick(int i) { 
     SDL_Joystick* joy = SDL_JoystickOpen(i);
     if (joy != nullptr) {
         // Añade el joystick al vector de joysticks
@@ -65,7 +93,7 @@ void InputManager::addJoystick(int i) {
 #endif
 }
 
-void InputManager::removeJoystick(int i) { 
+void Tapioca::InputManager::removeJoystick(int i) { 
     SDL_Joystick* joy = joysticks.at(i);
     if (joy != nullptr) { 
         joysticks.erase(i);
@@ -85,18 +113,18 @@ void InputManager::removeJoystick(int i) {
 
 
 // Limpia el input
-void InputManager::clearInput() {
+void Tapioca::InputManager::clearInput() {
     for (auto& e : inputEventTriggered) e = false;
     for (auto& m : mbState) m = false;
 }
 
-void InputManager::onMouseMotion(const SDL_Event& event) {
+void Tapioca::InputManager::onMouseMotion(const SDL_Event& event) {
     inputEventTriggered[ie_mouseMoving] = true;
     mousePos.first = event.motion.x;
     mousePos.second = event.motion.y;
 }
 
-void InputManager::onMouseButtonChange(const SDL_Event& event, bool isDown) {
+void Tapioca::InputManager::onMouseButtonChange(const SDL_Event& event, bool isDown) {
     inputEventTriggered[ie_mousebuttonDown] = true;
 
     switch (event.button.button) {
@@ -114,7 +142,7 @@ void InputManager::onMouseButtonChange(const SDL_Event& event, bool isDown) {
     }
 }
 
-void InputManager::joyAxisMotionEvent(const SDL_Event& event) {
+void Tapioca::InputManager::joyAxisMotionEvent(const SDL_Event& event) {
     int joystick = event.jaxis.which;
     int value = event.jaxis.value;
 
@@ -144,14 +172,14 @@ void InputManager::joyAxisMotionEvent(const SDL_Event& event) {
     }
 }
 
-void InputManager::joyButtonDown(const SDL_Event& event) {
+void Tapioca::InputManager::joyButtonDown(const SDL_Event& event) {
     inputEventTriggered[ie_joyButtonDown] = true;
 
     int joystick = event.jaxis.which;
     jbState[joystick][event.jbutton.button] = true;
 }
 
-void InputManager::joyButtonUp(const SDL_Event& event) {
+void Tapioca::InputManager::joyButtonUp(const SDL_Event& event) {
     inputEventTriggered[ie_joyButtonUp] = true;
 
     int joystick = event.jaxis.which;
@@ -160,7 +188,7 @@ void InputManager::joyButtonUp(const SDL_Event& event) {
 
 
 
-void InputManager::update(const SDL_Event& event) {
+void Tapioca::InputManager::update(const SDL_Event& event) {
     // Eventos de ventana
     switch (event.window.event) {
     case SDL_WINDOWEVENT_CLOSE:
@@ -240,7 +268,7 @@ void InputManager::update(const SDL_Event& event) {
     }
 }
 
-void InputManager::refresh() {
+void Tapioca::InputManager::refresh() {
     SDL_Event event;
     clearInput();
     while (SDL_PollEvent(&event)) update(event);

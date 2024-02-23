@@ -12,9 +12,6 @@
     <ClInclude Include="..\..\src\Graphics\InputManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Singleton.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Archivos de recursos">

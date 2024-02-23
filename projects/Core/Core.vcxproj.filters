@@ -54,5 +54,8 @@
     <ClInclude Include="..\..\src\Core\Structure\Module.h">
       <Filter>Structure</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\Singleton.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\InputManager.h" />
-    <ClInclude Include="..\..\src\Graphics\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
