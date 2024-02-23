@@ -1,6 +1,6 @@
 #include <iostream>
 #include "PhysicsManager.h"
-#include "../Graphics/Singleton.h" 
+#include "Utilities/Singleton.h"
 
 int main() {
 

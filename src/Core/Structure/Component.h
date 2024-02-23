@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <variant>
 
 namespace Tapioca {
 class GameObject;
@@ -8,6 +10,8 @@ class GameObject;
 class Component {
 private:
     std::string id;
+    std::unordered_map<std::string, std::variant<int, std::string, float, bool>> attributes; //lista de atributos que tiene el componente
+
 protected:
     GameObject* parent;
     bool alive;
