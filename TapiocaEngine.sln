@@ -7,16 +7,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiProyecto", "projects\MiPr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiBiblioteca", "projects\MiBiblioteca\MiBiblioteca.vcxproj", "{E0D58EFB-F43B-4380-8513-ED54E97A96FB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bullet", "projects\Bullet\Bullet.vcxproj", "{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5E0AF72D-8466-4A76-B633-4D6198F021B1} = {5E0AF72D-8466-4A76-B633-4D6198F021B1}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ogre", "projects\Ogre\Ogre.vcxproj", "{41B70F84-8525-46CB-B0AE-A461780AEC77}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "projects\Core\Core.vcxproj", "{5E0AF72D-8466-4A76-B633-4D6198F021B1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "projects\ImGui\ImGui.vcxproj", "{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics", "projects\Graphics\Graphics.vcxproj", "{41B70F84-8525-46CB-B0AE-A461780AEC77}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physics", "projects\Physics\Physics.vcxproj", "{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI", "projects\UI\UI.vcxproj", "{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,18 +29,18 @@ Global
 		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Debug|x64.Build.0 = Release|x64
 		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Release|x64.ActiveCfg = Release|x64
 		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Release|x64.Build.0 = Release|x64
-		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Debug|x64.ActiveCfg = Release|x64
-		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Debug|x64.Build.0 = Release|x64
-		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Release|x64.ActiveCfg = Release|x64
-		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Release|x64.Build.0 = Release|x64
-		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Debug|x64.ActiveCfg = Release|x64
-		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Debug|x64.Build.0 = Release|x64
-		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Release|x64.ActiveCfg = Release|x64
-		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Release|x64.Build.0 = Release|x64
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Debug|x64.ActiveCfg = Debug|x64
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Debug|x64.Build.0 = Debug|x64
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Release|x64.ActiveCfg = Release|x64
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Release|x64.Build.0 = Release|x64
+		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Debug|x64.ActiveCfg = Debug|x64
+		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Debug|x64.Build.0 = Debug|x64
+		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Release|x64.ActiveCfg = Release|x64
+		{41B70F84-8525-46CB-B0AE-A461780AEC77}.Release|x64.Build.0 = Release|x64
+		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Debug|x64.ActiveCfg = Debug|x64
+		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Debug|x64.Build.0 = Debug|x64
+		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Release|x64.ActiveCfg = Release|x64
+		{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}.Release|x64.Build.0 = Release|x64
 		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Debug|x64.ActiveCfg = Debug|x64
 		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Debug|x64.Build.0 = Debug|x64
 		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Release|x64.ActiveCfg = Release|x64

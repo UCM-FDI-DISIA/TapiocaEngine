@@ -1,6 +1,7 @@
 #include <iostream>
 #include "PhysicsManager.h"
-#include "../Ogre/Singleton.h" 
+#include "../Graphics/Singleton.h" 
+
 int main() {
 
     std::cout << "Bullet\n";

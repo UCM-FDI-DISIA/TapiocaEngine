@@ -11,18 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Ogre\InputManager.cpp" />
-    <ClCompile Include="..\..\src\Ogre\Ogre.cpp" />
+    <ClCompile Include="..\..\src\Graphics\InputManager.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Ogre.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Ogre\InputManager.h" />
-    <ClInclude Include="..\..\src\Ogre\Singleton.h" />
+    <ClInclude Include="..\..\src\Graphics\InputManager.h" />
+    <ClInclude Include="..\..\src\Graphics\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{41b70f84-8525-46cb-b0ae-a461780aec77}</ProjectGuid>
-    <RootNamespace>Ogre</RootNamespace>
+    <RootNamespace>Graphics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
