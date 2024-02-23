@@ -18,15 +18,15 @@
     <ClCompile Include="..\..\src\Ogre\Ogre.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Ogre\InputHandler.cpp">
+    <ClCompile Include="..\..\src\Ogre\InputManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Ogre\InputHandler.h">
+    <ClInclude Include="..\..\src\Ogre\Singleton.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Ogre\Singleton.h">
+    <ClInclude Include="..\..\src\Ogre\InputManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

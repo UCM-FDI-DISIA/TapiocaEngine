@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Ogre\InputHandler.cpp" />
+    <ClCompile Include="..\..\src\Ogre\InputManager.cpp" />
     <ClCompile Include="..\..\src\Ogre\Ogre.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Ogre\InputHandler.h" />
+    <ClInclude Include="..\..\src\Ogre\InputManager.h" />
     <ClInclude Include="..\..\src\Ogre\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -27,13 +27,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -66,13 +66,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)src\Core\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies/Ogre/build/$(Platform)/lib/$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;Core_d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies/Ogre/build/$(Platform)/lib/$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -87,15 +87,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)src\Core\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies/Ogre/build/$(Platform)/lib/$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;Core.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies/Ogre/build/$(Platform)/lib/$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>
