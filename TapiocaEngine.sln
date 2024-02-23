@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ogre", "projects\Ogre\Ogre.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "projects\Core\Core.vcxproj", "{5E0AF72D-8466-4A76-B633-4D6198F021B1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "projects\ImGui\ImGui.vcxproj", "{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -42,6 +44,10 @@ Global
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Debug|x64.Build.0 = Debug|x64
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Release|x64.ActiveCfg = Release|x64
 		{5E0AF72D-8466-4A76-B633-4D6198F021B1}.Release|x64.Build.0 = Release|x64
+		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Debug|x64.ActiveCfg = Debug|x64
+		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Debug|x64.Build.0 = Debug|x64
+		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Release|x64.ActiveCfg = Release|x64
+		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
