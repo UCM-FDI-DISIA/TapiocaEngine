@@ -4,8 +4,8 @@
 #include <string>
 
 namespace Tapioca {
-Component::Component(GameObject* parent, std::string id, bool active) : parent(parent), alive(true), active(active),
+Component::Component() : parent(nullptr), alive(true), active(true), id(""),
     deltaTime(Game::get()->getDeltaTime()), fixedDeltaTime(Game::get()->getFixedDeltaTime()) {
-    parent->addComponent(this, id);
+    
 }
 }

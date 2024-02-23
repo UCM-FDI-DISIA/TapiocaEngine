@@ -23,12 +23,13 @@ void GameStateMachine::pushState(GameState* state) {
 
 // Changes the state on top of the stack and adds the new one on top
 void GameStateMachine::changeState(GameState* state) {
+	// If the states are the same
+    if (state == gameStates_.top()) return;
+
 	// If the stack isn't empty
 	if (!gameStates_.empty()) {
-		// If the current state isn't the same "type" 
-		// as the new one, it gets deleted from the stack
-		if (gameStates_.top()->getStateID() != state->getStateID()) popState();
-	}	
+		popState();
+	}
 
 	// Then, the new state is added to the top of the stack
 	pushState(state);
@@ -38,7 +39,7 @@ void GameStateMachine::changeState(GameState* state) {
 void GameStateMachine::popState() {
 	// If the stack isn't empty
 	if (!gameStates_.empty()) {
-		// If the sate could be exited, it gets removed 
+		// If the satte could be exited, it gets removed 
 		// from the stack and deleted (in the next loop)
 		if (gameStates_.top()->onExit()) {
 			deleting_ = gameStates_.top();

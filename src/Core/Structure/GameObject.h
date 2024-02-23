@@ -9,8 +9,13 @@ class Scene;
 
 class GameObject {
 private:
-    friend class Component;
-    void addComponent(Component* comp, std::string id);
+    friend class Scene;
+    void refresh();
+    void update();
+    void handleEvents();
+    void initComponent();
+    void fixedUpdate();
+
     Scene* scene;
     bool alive;
 
@@ -22,16 +27,8 @@ public:
     ~GameObject();
 
     inline bool isAlive() const { return alive; }
-
     inline void setAlive(bool alive) { this->alive = alive; }
-
     inline virtual Scene* getScene() const { return scene; }
-
-    void refresh();
-    void update();
-    void handleEvents();
-    void initComponent();
-    void fixedUpdate();
     
     template<typename Comp> inline Comp* getComponent() {
         auto it = components.find(Comp::id);
@@ -40,5 +37,8 @@ public:
         }
         return static_cast<Comp*>(it->second);
     }
+
+    // No tocar :3
+    void addComponent(Component* comp, std::string id);
 };
 }

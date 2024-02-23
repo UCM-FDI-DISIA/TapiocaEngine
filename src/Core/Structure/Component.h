@@ -6,6 +6,8 @@ namespace Tapioca {
 class GameObject;
 
 class Component {
+private:
+    std::string id;
 protected:
     GameObject* parent;
     bool alive;
@@ -13,7 +15,7 @@ protected:
     const uint32_t& deltaTime;
     const uint32_t& fixedDeltaTime;
 public:
-    Component(GameObject* parent, std::string id, bool active = true);
+    Component();
     virtual ~Component() { }
 
     inline bool isAlive() const { return alive; }    //para comprobar su existencia, en caso contrario se borra

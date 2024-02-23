@@ -100,5 +100,9 @@ void Game::addScene(Scene* sc) {
     scenes.push(sc);
 }
 
+void Game::addModule(Module* mod) {
+    modules.push_back(mod);
+}
+
 Game* Game::instance = nullptr;
 }

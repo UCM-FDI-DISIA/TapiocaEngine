@@ -33,6 +33,12 @@ private:
     friend class Module;
     void addModule(Module*);
 
+    void initComponents();
+    void update();
+    void handleEvents();
+    void fixedUpdate();
+    void render();
+
 public:
     Game(std::string const& gameName);
     ~Game();
@@ -44,10 +50,5 @@ public:
     bool setup();
     void init();
     void run();
-    void initComponents();
-    void update();
-    void handleEvents();
-    void fixedUpdate();
-    void render();
 };
 }
