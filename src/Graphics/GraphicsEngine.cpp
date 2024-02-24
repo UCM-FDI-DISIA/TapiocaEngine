@@ -1,5 +1,6 @@
 #include "GraphicsEngine.h"
-//#include "checkML.h"
+// Includes Utilities
+#include "Utilities/checkML.h"
 //Includes de Ogre
 #include <Ogre.h>
 #include <OgreFileSystem.h>
@@ -16,23 +17,29 @@
 // usings
 using namespace Tapioca;
 
+// COSAS QUE BORRAR
+#include "Structure/Game.h"
+
 // Si se quiere probar hay que llamar main a este metodo y el "main" de Ogre.cpp ponerle otro nombre
 int main() {
 
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);   // esto genera el informe al acabar el proceso
                                                                     //  Ogre::Root* raiz = new Ogre::Root();
-    GraphicsEngine* g = new GraphicsEngine();
-    g->init();
+
+    Tapioca::Game* game = new Game("Billiards_adrift");
+    GraphicsEngine* g = GraphicsEngine::create();
+    game->init();
     g->testScene();
-    g->shutDown();
-    delete g;
+    //g->shutDown();
+    //delete g;
     //_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     //_CrtDumpMemoryLeaks(); //no reportara esto memoria qeu usan las dlls de normal por que escribe ntes de que se desvinculen
     //si hacemos wel informe aqui el main todavia  no ha terminado y sale la memoria ocupada por la DLL que todavia no se ha desenlazado
+    delete game;
     return 0;
 }
 
-GraphicsEngine::GraphicsEngine()
+GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr)
     , mShaderGenerator(nullptr)
     , cfgPath()
@@ -41,24 +48,26 @@ GraphicsEngine::GraphicsEngine()
     , renderSys(nullptr)
     , mMaterialMgrListener(nullptr)
     , ogreWindow(nullptr)
-    , windowWidth()
-    , windowHeight()
-    , sdlWindow(nullptr) { }
+    , sdlWindow(nullptr)
+    , mwindowName(windowName)
+    , windowWidth(w)
+    , windowHeight(h) { }
 
-void GraphicsEngine::init(std::string windowName, uint32_t w, uint32_t h) {
-    mwindowName = windowName;
-    windowWidth = w;
-    windowHeight = h;
+GraphicsEngine::~GraphicsEngine() { shutDown(); }
 
-    //hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
-    fsLayer = new Ogre::FileSystemLayer("Directorio");
+void GraphicsEngine::init() {
+    // hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
+    fsLayer = new Ogre::FileSystemLayer("Directorio");  // se podria personalizar el nombre (aunque no afecta para nada)
     Ogre::String pluginsPath;
+    // importante: la ruta donde esta plugins.cfg no puede tener caracteres especiales (solo alfabeto en ingles)
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
+
     // tratamiento de errores
     if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
         //enviar mensaje al main para liberar toda la memoria y cerrar el programa
-        //main->handelError(errormsg)
+        //main->handleError(errormsg)
     }
+
     cfgPath = pluginsPath;
     cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
     fsLayer->setHomePath(cfgPath);
@@ -69,61 +78,73 @@ void GraphicsEngine::init(std::string windowName, uint32_t w, uint32_t h) {
     // getWritablePath parte del homePath (asignado arriba)
     mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
 
-    //loadPlugIns();
+    // Otra forma: cargar los plugins desde codigo
+    // loadPlugIns();   // cargar codec, que sirve para poder usar png, jpg... (para las texturas)
+    // mRoot->loadPlugin("RenderSystem_GL3PLUS");   // cargar sistema de render por nombre
 
-    //El sistema de render debe cargarse no podemos crearlo
-    //Se especifica que se cargue este sistema de render en el archivo "plugins.cfg" que esta actualmente en TapiocaEngine/bin
-    //mRoot->loadPlugin("RenderSystem_GL3PLUS");
+    // El sistema de render debe cargarse no podemos crearlo
+    // Se especifica que se cargue este sistema de render en el archivo "plugins.cfg" que esta actualmente en TapiocaEngine/bin
     const Ogre::RenderSystemList renderSystems = mRoot->getAvailableRenderers();
-
-    Ogre::NameValuePairList miscParams;
-    Ogre::RenderSystemList::iterator r_it;
     renderSys = renderSystems.front();
     mRoot->setRenderSystem(renderSys);
-    // inicializa ogre sin crea la ventana, siempre se hace despues de asignar el rendersystem
+    // Inicializa ogre sin crear la ventana, siempre se hace despues de asignar el sistema de render
     mRoot->initialise(false);
-    //informacion de la ventana que vamos a construir
-    Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
+
+    // Iniciar SDL
+    SDL_Init(SDL_INIT_EVERYTHING);
+
+    // informacion de la ventana
+    Ogre::NameValuePairList miscParams;
+    // se coge la informacion del sistema de render
+    Ogre::ConfigOptionMap ropts = renderSys->getConfigOptions();
     std::istringstream mode(ropts["Video Mode"].currentValue);
     Ogre::String token;
-    mode >> w;       // width
-    mode >> token;   // 'x' as seperator between width and height
-    mode >> h;       // height
+    mode >> windowWidth;    // width
+    mode >> token;          // 'x' as seperator between width and height
+    mode >> windowHeight;   // height
+    // se agrega informacion del sistema de render y demas
     miscParams["FSAA"] = ropts["FSAA"].currentValue;
     miscParams["vsync"] = ropts["VSync"].currentValue;
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
-    ////Iniciar SDL
-    SDL_Init(SDL_INIT_EVERYTHING);
-    ////iniciar ventana SDL2
+    // Iniciar ventana SDL2
     Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
     if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI;
-    //else  flags = SDL_WINDOW_RESIZABLE;
-    sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
+    // else flags = SDL_WINDOW_RESIZABLE;
+
+    // Crear ventana SDL2
+    sdlWindow = SDL_CreateWindow(
+        mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+
     SDL_SysWMinfo wmInfo;
     SDL_VERSION(&wmInfo.version);
     SDL_GetWindowWMInfo(sdlWindow, &wmInfo);
-    miscParams["externalWindowHandle"] =
-        Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));   //esta instruccion vincula Ogre y SDL
+    // vincular ventana de SDL con Ogre
+    miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
-    //le pasamos la info de la ventana a ogre y lo asignamos como renderer
-    ogreWindow = mRoot->createRenderWindow(windowName, w, h, false, &miscParams);
+    // crear ventana de Ogre (solo para render)
+    // ya antes se le ha indicado en los parametros que existe la ventana de SDL
+    ogreWindow = mRoot->createRenderWindow(mwindowName, windowWidth, windowHeight, false, &miscParams);
+
     scnMgr = mRoot->createSceneManager();
     loadShaders();
-    mRoot->getRenderSystem()->_initRenderTargets();
+
+    // si da problemas usar el renderSys cogerlo directamente desde root
+    renderSys->_initRenderTargets();
     loadResources();
 }
 
 void GraphicsEngine::loadPlugIns() {
 #ifdef _DEBUG
-    mRoot->loadPlugin("Codec_STBI_d.dll");   //Necesario para tener codec de archivos png jpg ...
+    mRoot->loadPlugin("Codec_STBI_d.dll");   // Necesario para tener codec de archivos png jpg ...
 #else
-    mRoot->loadPlugin("Codec_STBI.dll");   //Necesario para tener codec de archivos png jpg ...
+    mRoot->loadPlugin("Codec_STBI.dll");   // Necesario para tener codec de archivos png jpg ...
 #endif
 }
 
 void GraphicsEngine::loadResources() {
-    //Todos los assets estaran en la carpeta de assets verdad?
+    // todos los assets deben estar en la carpeta assets (no pueden estar en subcarpetas)
+    // sino, habria que poner mas rutas
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(cfgPath + "/assets", "FileSystem");
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
@@ -132,22 +153,25 @@ void GraphicsEngine::loadShaders() {
     if (Ogre::RTShader::ShaderGenerator::initialize()) {
         mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
         mShaderGenerator->addSceneManager(scnMgr);
-        //CREAR LOS SHADERS PARA MATERIALES QUE VENGAN SIN ELLOS
+        // CREAR LOS SHADERS PARA MATERIALES QUE VENGAN SIN ELLOS
         mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
         Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
     }
 }
 
-void GraphicsEngine::renderFrame() { mRoot->renderOneFrame(); }
+void GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
 void GraphicsEngine::shutDown() {
-
-
-    // eliminar el scene manager
+    // ELIMINAR EL SCENE MANAGER
     mShaderGenerator->removeSceneManager(scnMgr);
     mRoot->destroySceneManager(scnMgr);
 
-    // eliminar el sistema de shaders
+    // ELIMINAR EL SISTEMA DE SHADERS
+    
+    // (Un material puede tener varias Techniques
+    // Se puede crear varia schemes, que selecciones una technique concreta de un material
+    // El usuario podria elegir que scheme usar y ajustar el juego al rendimiento de su maquina
+    // Se vuelve a la scheme por defecto por precaucion)
     Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
     // se desregistra el listener que crea shaders para objetos que vengan sin ellos ya definidos
@@ -158,12 +182,13 @@ void GraphicsEngine::shutDown() {
         mMaterialMgrListener = nullptr;   // recomendable siempre hacer que apunte a nullptr cualquier cosa borrada
     }
 
-    // destruir el shader generator (para los objetos que vienen sin shaders)
+    // destruir el shader generator
     if (mShaderGenerator != nullptr) {
         Ogre::RTShader::ShaderGenerator::destroy();
         mShaderGenerator = nullptr;
     }
 
+    // ELIMINAR VENTANAS
     // eliminar la ventana de "renderizado de ogre" (que se linkeo con la de sdl)
     if (ogreWindow != nullptr) {
         mRoot->destroyRenderTarget(ogreWindow);
@@ -176,20 +201,16 @@ void GraphicsEngine::shutDown() {
         SDL_Quit();
         sdlWindow = nullptr;
     }
-    // eliminar el root
-    try {
 
-        delete mRoot;
-    } catch (std::exception& e) {
-        std::cout << e.what();
-    }
-
+    // ELIMINAR EL ROOT
+    delete mRoot;
     mRoot = nullptr;
 
-    // eliminar el sistema de busqueda de ficheros de configuracion
+    // ELIMINAR EL SISTEMA DE BUSQUEDA DE FICHEROS DE CONFIGURACION
     delete fsLayer;
     fsLayer = nullptr;
 }
+
 void GraphicsEngine::testScene() {
     Ogre::Light* light = scnMgr->createLight("MainLight");
     Ogre::SceneNode* lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
@@ -233,7 +254,7 @@ void GraphicsEngine::testScene() {
                     done = true;
             }
             node->yaw(Ogre::Degree(2));
-            renderFrame();
+            render();
         } catch (Ogre::Exception& e) {
 
             // std::cout << e.getFullDescription() << '\n';
