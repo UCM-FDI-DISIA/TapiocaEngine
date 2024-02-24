@@ -7,6 +7,9 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{ea27c386-fe88-4054-b1ef-34d6391cddb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{e5f869a6-69fd-4963-90f3-9c6260f5cf70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp">
@@ -35,6 +38,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Structure\ComponentFactory.cpp">
       <Filter>Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Components\Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Components\Collider.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +80,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\checkML.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Components\Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Components\Collider.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

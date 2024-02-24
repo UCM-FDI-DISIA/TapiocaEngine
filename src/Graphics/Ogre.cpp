@@ -14,7 +14,7 @@ int main() {
     SDL_Window* native = SDL_CreateWindow("Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 720, 480, flags);
     
     
-    Tapioca::InputManager* ih = Tapioca::InputManager::init();
+    Tapioca::InputManager* ih = Tapioca::InputManager::create();
 
     bool done = false;
     while (!done && !ih->windowClosed()) {
