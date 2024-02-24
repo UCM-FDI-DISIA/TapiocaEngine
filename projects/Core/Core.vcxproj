@@ -87,8 +87,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Core\Components\Collider.cpp" />
-    <ClCompile Include="..\..\src\Core\Components\Transform.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\ComponentFactory.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Factory.cpp" />
@@ -100,8 +98,6 @@
     <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Core\Components\Collider.h" />
-    <ClInclude Include="..\..\src\Core\Components\Transform.h" />
     <ClInclude Include="..\..\src\Core\Core.h" />
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
     <ClInclude Include="..\..\src\Core\Structure\ComponentFactory.h" />
