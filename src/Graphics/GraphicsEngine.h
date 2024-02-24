@@ -14,13 +14,15 @@ class RenderSystem;
 
 class RenderWindow;
 
-namespace RTShader { 
-class ShaderGenerator;
+namespace RTShader {
+    class ShaderGenerator;
 }
 
 
 }
-class GraphicsEngine { 
+
+namespace Tapioca {
+class GraphicsEngine {
 
 private:
     //Ogre
@@ -29,7 +31,7 @@ private:
     std::string cfgPath;
     Ogre::Root* mRoot;
     Ogre::SceneManager* scnMgr;
-   // Ogre::GL3PlusRenderSystem* renderSys;
+    // Ogre::GL3PlusRenderSystem* renderSys;
     Ogre::RenderSystem* renderSys;
     SGTechniqueResolverListener* mMaterialMgrListener;
     std::string mwindowName;
@@ -41,7 +43,7 @@ private:
     /*
     /// @brief carga plugIns especificados desde codigo
     */
-	void loadPlugIns();
+    void loadPlugIns();
 
     /*
     * @brief cargar las rutas donde se ubican los assets para que ogre pueda encontrarlos y usarlos
@@ -54,10 +56,8 @@ private:
     */
     void loadShaders();
 
- 
 
 public:
- 
     GraphicsEngine();
     /*
     /// @brief creat el root de Ogre y prepara los recursos para empezar a renderizar
@@ -73,6 +73,7 @@ public:
     */
     void shutDown();
 
-    void testScene(); //escena basica para hacer pruebas luego borramos este metodo entero
+    void testScene();   //escena basica para hacer pruebas luego borramos este metodo entero
     void clearTestScene();
 };
+}

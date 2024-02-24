@@ -13,10 +13,11 @@
 #undef main   //sdl lo define aparentemente
 #include <iostream>
 #include <Windows.h>
+// usings
+using namespace Tapioca;
 
-#include <exception>
-
-int main() {
+// Si se quiere probar hay que llamar main a este metodo y el "main" de Ogre.cpp ponerle otro nombre
+int main2() {
 
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);   // esto genera el informe al acabar el proceso
                                                                     //  Ogre::Root* raiz = new Ogre::Root();

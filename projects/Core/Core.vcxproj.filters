@@ -69,5 +69,8 @@
     <ClInclude Include="..\..\src\Core\Structure\ComponentFactory.h">
       <Filter>Structure</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\checkML.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
