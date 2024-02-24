@@ -17,7 +17,7 @@
 using namespace Tapioca;
 
 // Si se quiere probar hay que llamar main a este metodo y el "main" de Ogre.cpp ponerle otro nombre
-int main2() {
+int main() {
 
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);   // esto genera el informe al acabar el proceso
                                                                     //  Ogre::Root* raiz = new Ogre::Root();
@@ -50,12 +50,30 @@ void GraphicsEngine::init(std::string windowName, uint32_t w, uint32_t h) {
     windowWidth = w;
     windowHeight = h;
 
-    //Iniciar Ogre
-    mRoot = new Ogre::Root();
+    //hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
+    fsLayer = new Ogre::FileSystemLayer("Directorio");
+    Ogre::String pluginsPath;
+    pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
+    // tratamiento de errores
+    if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
+        //enviar mensaje al main para liberar toda la memoria y cerrar el programa
+        //main->handelError(errormsg)
+    }
+    cfgPath = pluginsPath;
+    cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
+    fsLayer->setHomePath(cfgPath);
+
+    // (ruta plugins.cfg, ruta ogre.cfg, ruta ogre.log)
+    // ogre.cfg sirve para guardar y restaurar la configuracion de render
+    // ogre.log guarda un mensaje de depuracion
+    // getWritablePath parte del homePath (asignado arriba)
+    mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
+
     //loadPlugIns();
 
     //El sistema de render debe cargarse no podemos crearlo
-   //mRoot->loadPlugin("RenderSystem_GL3PLUS");Se especifica qeu se cargue este sistema de render en el archivo "plugins.cfg" que esta actualmente en TapiocaEngine/bin
+    //Se especifica que se cargue este sistema de render en el archivo "plugins.cfg" que esta actualmente en TapiocaEngine/bin
+    //mRoot->loadPlugin("RenderSystem_GL3PLUS");
     const Ogre::RenderSystemList renderSystems = mRoot->getAvailableRenderers();
 
     Ogre::NameValuePairList miscParams;
@@ -63,7 +81,7 @@ void GraphicsEngine::init(std::string windowName, uint32_t w, uint32_t h) {
     renderSys = renderSystems.front();
     mRoot->setRenderSystem(renderSys);
     // inicializa ogre sin crea la ventana, siempre se hace despues de asignar el rendersystem
-    mRoot->initialise(false);  
+    mRoot->initialise(false);
     //informacion de la ventana que vamos a construir
     Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
     std::istringstream mode(ropts["Video Mode"].currentValue);
@@ -95,24 +113,16 @@ void GraphicsEngine::init(std::string windowName, uint32_t w, uint32_t h) {
     mRoot->getRenderSystem()->_initRenderTargets();
     loadResources();
 }
+
 void GraphicsEngine::loadPlugIns() {
 #ifdef _DEBUG
-   // mRoot->loadPlugin("Codec_STBI_d.dll");   //Necesario para tener codec de archivos png jpg ...
+    mRoot->loadPlugin("Codec_STBI_d.dll");   //Necesario para tener codec de archivos png jpg ...
 #else
-   // mRoot->loadPlugin("Codec_STBI.dll");   //Necesario para tener codec de archivos png jpg ...
+    mRoot->loadPlugin("Codec_STBI.dll");   //Necesario para tener codec de archivos png jpg ...
 #endif
 }
 
 void GraphicsEngine::loadResources() {
-    //hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
-    fsLayer = new Ogre::FileSystemLayer("Directorio");
-    cfgPath = fsLayer->getConfigFilePath("plugins.cfg");
-    // tratamiento de errores
-    if (!Ogre::FileSystemLayer::fileExists(cfgPath)) {
-        //enviar mensaje al main para liberar toda la memoria y cerrar el programa
-        //main->handelError(errormsg)
-    }
-    cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
     //Todos los assets estaran en la carpeta de assets verdad?
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(cfgPath + "/assets", "FileSystem");
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
@@ -154,7 +164,6 @@ void GraphicsEngine::shutDown() {
         mShaderGenerator = nullptr;
     }
 
-
     // eliminar la ventana de "renderizado de ogre" (que se linkeo con la de sdl)
     if (ogreWindow != nullptr) {
         mRoot->destroyRenderTarget(ogreWindow);
@@ -171,8 +180,8 @@ void GraphicsEngine::shutDown() {
     try {
 
         delete mRoot;
-    } catch (std::exception& e) { 
-    std::cout << e.what(); 
+    } catch (std::exception& e) {
+        std::cout << e.what();
     }
 
     mRoot = nullptr;
@@ -199,7 +208,7 @@ void GraphicsEngine::testScene() {
     Ogre::Viewport* vp = ogreWindow->addViewport(cam);
     vp->setBackgroundColour(Ogre::ColourValue(0.83, 0.5, 0.9));
     Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
-    // ent->setMaterialName("Material");//si el material tiene vertex program y fragment program no da ningun problema
+    //ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
     Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
     // node->yaw(Ogre::Degree(90));
     node->attachObject(ent);

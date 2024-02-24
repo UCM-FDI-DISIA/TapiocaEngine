@@ -7,7 +7,7 @@
 
 #include "InputManager.h"
 
-int main() {
+int main2() {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);   // Check Memory Leaks
     SDL_Init(SDL_INIT_EVERYTHING);
     Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
