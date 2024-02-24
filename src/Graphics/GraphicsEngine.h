@@ -74,6 +74,7 @@ public:
     void shutDown();
 
     void testScene();   //escena basica para hacer pruebas luego borramos este metodo entero
-    void clearTestScene();
+
+    inline Ogre::SceneManager* getSceneManager() { return scnMgr; }
 };
 }
