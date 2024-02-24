@@ -1,9 +1,9 @@
 #include "PhysicsDebugDrawer.h"
-#include <Ogre.h>
+//#include <Ogre.h>
 #include "../Graphics/GraphicsEngine.h"
 
 void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) { 
-	Ogre::ManualObject* line;
+	//Ogre::ManualObject* line;
 }
 
 void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, 

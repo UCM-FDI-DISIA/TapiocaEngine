@@ -2,8 +2,9 @@
 
 #pragma region includes
 #include <unordered_set>
-#include "Utilities/Singleton.h"
+#include "../Core/Utilities/Singleton.h"
 #include "../Core/Structure/Module.h"
+#include "Physics_def.h"
 
 class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
@@ -17,6 +18,7 @@ class btVector3;
 class btCollisionShape;
 class btDiscreteDynamicsWorld;
 class btRigidBody;
+class Collider;
 #pragma endregion
 
 using namespace std;
@@ -32,29 +34,28 @@ private:
     PhysicsManager();
 
     //inicialización del mundo
-    void setup();
+    void init() /*override*/;
 
 #pragma endregion
 
 #pragma region parámetros
     //configuración predeterminada para la detección de colisiones
     btDefaultCollisionConfiguration* colConfig;
-    //detectar pares de objetos de la misma región 
+    //detectar pares de objetos de la misma región
     btBroadphaseInterface* broadphase;
     //confirmar la colisión, notificar a los objetos que se colisionan y callbacks
     btCollisionDispatcher* colDispatch;
     //resolver la interacción de colisiones y cálculos de fuerzas resultantes
     btSequentialImpulseConstraintSolver* constraintSolver;
     //el mundo
-    btDiscreteDynamicsWorld* dynamicsWorld;  
+    btDiscreteDynamicsWorld* dynamicsWorld;
     //almacenado todos los rigidbodies del mundo
-    unordered_set<btRigidBody*> rigidBodies;  
+    unordered_set<btRigidBody*> rigidBodies;
 
 #pragma endregion
 
 public:
-    enum ColliderShape { Box, Sphere, Plane, Capsule };
-
+    
 #pragma region métodos
 
     ~PhysicsManager();
@@ -69,9 +70,7 @@ public:
 
     void fixedUpdate(float deltaTime);
 
-    //conversiones de vectores
-    btVector3 toBtVector3(Vector3 v);
-    Vector3 toVector3(btVector3 v) ;
+  
 
     /*
     /// @brief  crear un rigidbody
@@ -82,7 +81,11 @@ public:
     /// @params mass masa del rb
     /// @return puntero al rb creado
     */
-    btRigidBody* createRigidBody( Vector3 position, Vector3 rotation, Vector3 shapeScale, ColliderShape colliderShape = Box, float mass = 0);
+    btRigidBody* createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
+        ColliderShape colliderShape = BOX_SHAPE, MovementType type = STATIC_OBJECT, float mass = 0, float friction = 0,
+        bool isTrigger = false,
+        int group = 0,
+        int mask = 0);
 
     /*
     /// @brief  destruir rigidBody

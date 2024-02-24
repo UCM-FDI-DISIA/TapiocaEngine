@@ -97,12 +97,10 @@ void Game::render() {
 }
 
 void Game::addScene(Scene* sc) {
-    scenes.push(sc);
-}
+    scenes.push(sc); }
 
-void Game::addModule(Module* mod) {
-    modules.push_back(mod);
-}
+void Game::addModule(Module* m) { 
+    modules.push_back(m); }
 
 Game* Game::instance = nullptr;
 }

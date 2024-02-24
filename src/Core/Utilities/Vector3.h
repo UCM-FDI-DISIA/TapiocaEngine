@@ -34,6 +34,12 @@ public:
     // Normaliza este vector y devuelve la magnitud que tenia anteriormente.
     // Si este vector tenia magnitud cero, no cambia.
     float normalize();
+    //rotar sobre el eje x
+    Vector3 rotateX(float degrees);
+    //rotar sobre el eje y
+    Vector3 rotateY(float degrees);
+    //rotar sobre el eje z
+    Vector3 rotateZ(float degrees);
 
     inline Vector3 operator+(const Vector3& other) const { return Vector3(x + other.x, y + other.y, z + other.z); }
     inline Vector3 operator-() const { return Vector3(-x, -y, -z); }

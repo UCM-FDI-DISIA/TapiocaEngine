@@ -16,6 +16,7 @@ private:
     void initComponent();
     void fixedUpdate();
 
+
     Scene* scene;
     bool alive;
 
@@ -37,6 +38,10 @@ public:
         }
         return static_cast<Comp*>(it->second);
     }
+
+    void onCollisionEnter(GameObject* other);
+    void onCollisionExit(GameObject* other);
+    void onCollisionStay(GameObject* other);
 
     // No tocar :3
     void addComponent(Component* comp, std::string id);

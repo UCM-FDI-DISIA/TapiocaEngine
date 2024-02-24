@@ -13,4 +13,6 @@ namespace Tapioca {
     void Component::addListener(Component* component) { listeners.insert(component); }
     void Component::removeListener(Component* component) { listeners.erase(component); }
     void Component::sendEvent(Component* component, messageType m) { for (auto l : listeners) l->receiveEvent(component, m); }
-}
+    void Component::setParent(GameObject* obj) { parent = obj; }
+    GameObject* Component::getParent() { return parent; }
+    }
