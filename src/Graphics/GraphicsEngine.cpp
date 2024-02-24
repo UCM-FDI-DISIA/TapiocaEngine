@@ -30,11 +30,10 @@ int main() {
     GraphicsEngine* g = GraphicsEngine::create();
     game->init();
     g->testScene();
-    //g->shutDown();
-    //delete g;
+    // no reportara esto memoria que usan las dlls de normal porque escribe antes de que se desvinculen
+    // si hacemos el informe aqui el main todavia no ha terminado y sale la memoria ocupada por la DLL que todavia no se ha desenlazado
     //_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
-    //_CrtDumpMemoryLeaks(); //no reportara esto memoria qeu usan las dlls de normal por que escribe ntes de que se desvinculen
-    //si hacemos wel informe aqui el main todavia  no ha terminado y sale la memoria ocupada por la DLL que todavia no se ha desenlazado
+    //_CrtDumpMemoryLeaks(); 
     delete game;
     return 0;
 }
