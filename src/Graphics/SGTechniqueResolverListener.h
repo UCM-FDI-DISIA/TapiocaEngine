@@ -1,4 +1,9 @@
 #pragma once
+
+
+
+
+
 #include <OgreRTShaderSystem.h>
 #include <OgreMaterialManager.h>
 
@@ -6,7 +11,7 @@
 /*
 // @brief  Clase encargada de generar Shaders para los materiales que no tengan
 */
-class SGTechniqueResolverListener : public Ogre::MaterialManager::Listener {
+class SGTechniqueResolverListener: public Ogre::MaterialManager::Listener {
 public:
     explicit SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* pShaderGenerator);
 

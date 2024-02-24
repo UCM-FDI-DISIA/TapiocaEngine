@@ -1,7 +1,5 @@
 #pragma once
 #include <string>
-#include "Utilities/Singleton.h"
-#include "Structure/Module.h"
 
 class SGTechniqueResolverListener;
 class SDL_Window;
@@ -24,28 +22,27 @@ namespace RTShader {
 }
 
 namespace Tapioca {
-class GraphicsEngine : public Tapioca::Singleton<GraphicsEngine>, Module {
-public:
-    friend Singleton<GraphicsEngine>;
+class GraphicsEngine {
 
 private:
-    // Ogre
-    Ogre::FileSystemLayer* fsLayer;                      // sistema de busqueda de archivos de configuracion
-    Ogre::RTShader::ShaderGenerator* mShaderGenerator;   // generador de shaders
-    std::string cfgPath;                                 // ruta donde se guardar los archivos de config (bin)
-    Ogre::Root* mRoot;                                   // root de Ogre
-    Ogre::SceneManager* scnMgr;                          // gestor de escenas
-    Ogre::RenderSystem* renderSys;                       // sistema de render usado
-    SGTechniqueResolverListener*
-        mMaterialMgrListener;         // listener para crear shaders para los materiales que vienen sin ellos
-    std::string mwindowName;          // nombre de la ventana
-    Ogre::RenderWindow* ogreWindow;   // ventan de ogre (solo para render)
-    // Ventana
+    //Ogre
+    Ogre::FileSystemLayer* fsLayer;
+    Ogre::RTShader::ShaderGenerator* mShaderGenerator;
+    std::string cfgPath;
+    Ogre::Root* mRoot;
+    Ogre::SceneManager* scnMgr;
+    // Ogre::GL3PlusRenderSystem* renderSys;
+    Ogre::RenderSystem* renderSys;
+    SGTechniqueResolverListener* mMaterialMgrListener;
+    std::string mwindowName;
+    Ogre::RenderWindow* ogreWindow;
+    //Ventana
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
 
-    // carga plugIns especificados desde codigo
-    // BORRAR
+    /*
+    /// @brief carga plugIns especificados desde codigo
+    */
     void loadPlugIns();
 
     /*
@@ -55,35 +52,29 @@ private:
 
     /*
     /// @brief crea el constructor de shaders y añade el listerner al gestor de materiales para que a aquellos assets que vengan sin shaders 
-    /// se les asignen shaders pass through generados automaticamente.Debe invocarse trase crear el RenderSys
+   /// se les asignen shaders pass through generados automaticamente.Debe invocarse trase crear el RenderSys
     */
     void loadShaders();
 
-    GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
 
 public:
-    virtual ~GraphicsEngine();
-
+    GraphicsEngine();
     /*
     /// @brief creat el root de Ogre y prepara los recursos para empezar a renderizar
     */
-    void init() override;
-
+    void init(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
     /*
     /// @brief renderiza 1 frame
     */
-    void render() override;
+    void renderFrame();
 
     /*
     /// @brief  libera la memoria que usa GraphicsEngine
     */
     void shutDown();
 
-    // escena basica para hacer pruebas luego borramos este metodo entero
-    // BORRAR
-    void testScene();
+    void testScene();   //escena basica para hacer pruebas luego borramos este metodo entero
 
-    // BORRAR cuando se haya creado el wrapper
     inline Ogre::SceneManager* getSceneManager() { return scnMgr; }
 };
 }

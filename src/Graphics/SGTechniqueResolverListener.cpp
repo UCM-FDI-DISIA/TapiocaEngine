@@ -22,10 +22,10 @@ Ogre::Technique* SGTechniqueResolverListener::handleSchemeNotFound(unsigned shor
     // Case technique registration succeeded.
 
     // Force creating the shaders for the generated technique.
-    mShaderGenerator->validateMaterial(schemeName, *originalMaterial);
+     mShaderGenerator->validateMaterial(schemeName, *originalMaterial);
 
     // Grab the generated technique.
-    for (auto* t : originalMaterial->getTechniques()) {
+     for (auto* t : originalMaterial->getTechniques()) {
         if (t->getSchemeName() == schemeName) {
             return t;
         }

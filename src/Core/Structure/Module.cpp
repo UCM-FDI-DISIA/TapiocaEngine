@@ -3,7 +3,6 @@
 
 namespace Tapioca {
 Module::Module() {
-	Game* game = Game::get();
-    game->addModule(this);
+	Game::get()->addModule(this);
 }
 }
