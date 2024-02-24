@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiProyecto", "projects\MiProyecto\MiProyecto.vcxproj", "{1BCA0A68-D110-4540-A078-65D3FA5D73E3}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiBiblioteca", "projects\MiBiblioteca\MiBiblioteca.vcxproj", "{E0D58EFB-F43B-4380-8513-ED54E97A96FB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "projects\Core\Core.vcxproj", "{5E0AF72D-8466-4A76-B633-4D6198F021B1}"
@@ -15,16 +13,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physics", "projects\Physics
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI", "projects\UI\UI.vcxproj", "{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "projects\Main\Main.vcxproj", "{1BCA0A68-D110-4540-A078-65D3FA5D73E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Debug|x64.ActiveCfg = Debug|x64
-		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Debug|x64.Build.0 = Debug|x64
-		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Release|x64.ActiveCfg = Release|x64
-		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Release|x64.Build.0 = Release|x64
 		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Debug|x64.ActiveCfg = Debug|x64
 		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Debug|x64.Build.0 = Debug|x64
 		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Release|x64.ActiveCfg = Release|x64
@@ -45,6 +41,10 @@ Global
 		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Debug|x64.Build.0 = Debug|x64
 		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Release|x64.ActiveCfg = Release|x64
 		{5864A0D2-29E9-4BD7-9DB3-F51B12C19737}.Release|x64.Build.0 = Release|x64
+		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Debug|x64.ActiveCfg = Debug|x64
+		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Debug|x64.Build.0 = Debug|x64
+		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Release|x64.ActiveCfg = Release|x64
+		{1BCA0A68-D110-4540-A078-65D3FA5D73E3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
