@@ -15,5 +15,19 @@
     <ClCompile Include="..\..\src\UI\ImGui.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.cpp">
+      <Filter>Archivos de recursos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.cpp">
+      <Filter>Archivos de recursos</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h">
+      <Filter>Archivos de recursos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.h">
+      <Filter>Archivos de recursos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

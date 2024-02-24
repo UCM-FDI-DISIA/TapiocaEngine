@@ -100,7 +100,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;Core.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>

@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     if (!game->setup()) {
         std::cerr << "Error al hacer setup de la biblioteca.\n";
         delete game;
-        return 1;
+        return -1;
     }
 
     // Otras cosas
