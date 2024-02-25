@@ -11,6 +11,7 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
 
+    cout << "Entro\n";
     if (obj1 != nullptr && obj2 != nullptr) {
         Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
         Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
@@ -25,7 +26,7 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
 
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-
+    cout << "Salgo\n";
     if (obj1 != nullptr && obj2 != nullptr) {
         Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
         Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
@@ -41,7 +42,7 @@ bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrap
 
     void* obj1 = colObj0Wrap->getCollisionObject()->getUserPointer();
     void* obj2 = colObj1Wrap->getCollisionObject()->getUserPointer();
-
+    cout << "A\n";
     if (obj1 != nullptr && obj2 != nullptr) {
         Collider* col1 = static_cast<Collider*>(obj1);
         Collider* col2 = static_cast<Collider*>(obj2);
@@ -77,14 +78,16 @@ void PhysicsManager::init() {
 
     dynamicsWorld = new btDiscreteDynamicsWorld(colDispatch, broadphase, constraintSolver, colConfig);
 
-    dynamicsWorld->setGravity(btVector3(0, -10, 0));
+    dynamicsWorld->setGravity(btVector3(0, 0, 0));
 
-    createRigidBody(Vector3(0), Vector3(0), Vector3(1.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 8);   //PRUEBA
-    createRigidBody(Vector3(-1), Vector3(0), Vector3(4.f), BOX_SHAPE, DYNAMIC_OBJECT, 6);     //PRUEBA
 
     gContactStartedCallback = onCollisionEnter;
     gContactAddedCallback = onCollisionStay;
     gContactEndedCallback = onCollisionExit;
+
+    createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 8, 0, 0, 0, 1,
+        (1 << 4) | (1 << 1) | (1 << 2));                                                                        //PRUEBA
+    createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(4.f), BOX_SHAPE, DYNAMIC_OBJECT, 6, 0, 0, 0, 4, 1);   //PRUEBA
 }
 
 void PhysicsManager::update(float frameRate) {
@@ -101,8 +104,8 @@ void PhysicsManager::update(float frameRate) {
         } else
             tr = obj->getWorldTransform();
 
-        std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
-                  << tr.getOrigin().getZ() << "\n";
+        //std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
+        //          << tr.getOrigin().getZ() << "\n";
     }
     //...........................................
 }
@@ -111,7 +114,8 @@ void PhysicsManager::fixedUpdate(float deltaTime) { dynamicsWorld->stepSimulatio
 
 
 btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
-    ColliderShape colliderShape, MovementType type, float mass, float friction, bool isTrigger, int group, int mask) {
+    ColliderShape colliderShape, MovementType type, float mass, float friction, float bounciness, bool isTrigger,
+    int group, int mask) {
 
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
@@ -162,13 +166,15 @@ btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation,
     btRigidBody* rb = new btRigidBody(mass, motionState, shape, inertia);
     rigidBodies.insert(rb);
 
-    //DUDA: no sé para qué es, pero creo q serán útiles
-    //rb->forceActivationState(DISABLE_DEACTIVATION);
+    //si es un cuerpo dinámico, tiene que estar siempre activo para actualizar su movimiento y detectar colisión
+    if (type == DYNAMIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
 
-    if (isTrigger) rb->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    rb->setCollisionFlags(rb->getCollisionFlags() | type);
+
+    if (isTrigger) rb->setCollisionFlags(rb->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 
     rb->setFriction(friction);
-    rb->setCollisionFlags(type);
+    rb->setRestitution(bounciness);
     dynamicsWorld->addRigidBody(rb, group, mask);
 
     return rb;

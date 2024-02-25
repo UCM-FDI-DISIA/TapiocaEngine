@@ -55,7 +55,6 @@ private:
 #pragma endregion
 
 public:
-    
 #pragma region métodos
 
     ~PhysicsManager();
@@ -70,7 +69,6 @@ public:
 
     void fixedUpdate(float deltaTime);
 
-  
 
     /*
     /// @brief  crear un rigidbody
@@ -83,9 +81,7 @@ public:
     */
     btRigidBody* createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
         ColliderShape colliderShape = BOX_SHAPE, MovementType type = STATIC_OBJECT, float mass = 0, float friction = 0,
-        bool isTrigger = false,
-        int group = 0,
-        int mask = 0);
+        float bounciness = 0, bool isTrigger = false, int group = 1, int mask = -1);
 
     /*
     /// @brief  destruir rigidBody

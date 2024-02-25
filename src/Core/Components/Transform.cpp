@@ -3,12 +3,12 @@
 namespace Tapioca {
 
 Transform::Transform()
-    : Component() { }   //PRUEBA
+    : Component()
+    , position(Vector3(0))
+    , rotation(Vector3(0))
+    , scale(Vector3(1)) { }   //PRUEBA
 
 void Transform::initComponent() {   //PRUEBA
-    position = Vector3(0);
-    rotation = Vector3(0);
-    scale = Vector3(1);
 }
 
 Vector3 Transform::getPosition() { return position; }

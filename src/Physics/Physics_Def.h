@@ -22,6 +22,6 @@ static Vector3 toEuler(btQuaternion q) {
     double yaw = atan2(
         2.0 * (q.getZ() * q.getW() + q.getX() * q.getY()), 1.0 - 2.0 * (q.getZ() * q.getZ() + q.getX() * q.getX()));
 
-    return Vector3(roll * 180.0 / PI,yaw * 180.0 / PI , pitch * 180.0 / PI);
+    return Vector3(float(roll * 180.0 / PI),float(yaw * 180.0 / PI) , float(pitch * 180.0 / PI));
 };
 }

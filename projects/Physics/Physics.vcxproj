@@ -21,6 +21,7 @@
     <ClInclude Include="..\..\src\Physics\Components\Collider.h" />
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h" />
     <ClInclude Include="..\..\src\Physics\PhysicsManager.h" />
+    <ClInclude Include="..\..\src\Physics\Physics_Def.h" />
     <ClInclude Include="PhysicsDebugDrawer.h" />
   </ItemGroup>
   <ItemGroup>

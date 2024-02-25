@@ -12,7 +12,15 @@ namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr)
     , collider(nullptr)
-    , rigidBody(nullptr) { }
+    , rigidBody(nullptr)
+    , mass(0)
+    , isTrigger(false)
+    , mask(-1)
+    , group(1)
+    , friction(0)
+    , colShape(BOX_SHAPE)
+    , movementType(STATIC_OBJECT)
+    , bounciness(0) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -26,7 +34,7 @@ void RigidBody::initComponent() {
     //transform = parent->getComponent<Transform>();// DESCOMENTAR
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
-        transform->getScale(), colShape, movementType, mass, friction, isTrigger, group, mask);
+        transform->getScale(), colShape, movementType, mass, friction, bounciness, isTrigger, group, mask);
 
     //collider = parent->getComponent<Collider>();//DESCOMENTAR
 
@@ -52,7 +60,7 @@ void RigidBody::update() {
 }
 
 void RigidBody::setActive(bool b) {
-    RigidBody::setActive(b);
+    Component::setActive(b);
     rigidBody->activate(b);
 }
 
@@ -73,7 +81,11 @@ void RigidBody::setTrigger(bool t) {
 
 void RigidBody::setColliderShape(ColliderShape s) { colShape = s; }
 
-void RigidBody::setColliderScale(Vector3 s) { colliderScale = s; }
+void RigidBody::setColliderScale(Vector3 s) {
+    colliderScale = s;
+    if (rigidBody == nullptr) return;
+    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s));
+}
 
 
 void RigidBody::setMass(float m) { mass = m; }
@@ -101,6 +113,15 @@ void RigidBody::setGravity(Vector3 g) {
     rigidBody->setGravity(toBtVector3(g));
 }
 
+void RigidBody::addForce(Vector3 f) {
+    if (rigidBody == nullptr) return;
+    rigidBody->applyCentralForce(toBtVector3(f));
+}
+
+void RigidBody::addImpulse(Vector3 f) {
+    if (rigidBody == nullptr) return;
+    rigidBody->applyCentralImpulse(toBtVector3(f));
+}
 
 void RigidBody::setMask(int m) {
     mask = m;

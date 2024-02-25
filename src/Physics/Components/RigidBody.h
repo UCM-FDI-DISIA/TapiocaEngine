@@ -56,6 +56,11 @@ public:
     void setVelocity(Vector3 v);
     void setGravity(Vector3 g);
 
+    //fuerza gradual
+    void addForce(Vector3 f);
+    //aplica solo una fuerza instantánea (golpes,explosiones)
+    void addImpulse(Vector3 f);
+
 
     bool getTrigger()const;
     int getColliderShape() const;

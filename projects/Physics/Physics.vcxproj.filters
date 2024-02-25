@@ -44,5 +44,8 @@
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Physics\Physics_Def.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
