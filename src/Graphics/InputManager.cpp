@@ -1,6 +1,5 @@
 #include "InputManager.h"
 
-
 #include <SDL_events.h>
 #include "Utilities/Vector2.h"
 
@@ -9,100 +8,97 @@
 #endif
 
 Tapioca::InputManager::InputManager() : inputText("") {
-    kbState = SDL_GetKeyboardState(0);
-    
     resetText();
-    initJoysticks();
+    initControllers();
     clearInput();
 
     mapInput();
 }
 
 Tapioca::InputManager::~InputManager() {
-    for (auto joy : joysticks) removeJoystick(joy.first);
+    clearInput();
+    for (auto ctrl : controllers) removeController(ctrl.first);
+    controllers.clear();
 }
 
+
+// Para mapear el input a diferentes eventos
 void Tapioca::InputManager::mapInput() {
-    kbMapping.insert({ev_ACCEPT, SDL_SCANCODE_A});
-    kbMapping.insert({ev_ACCEPT, SDL_SCANCODE_W});
+    inputMap[ev_ACCEPT].push_back({ie_keyDown, SDLK_a});
+    inputMap[ev_ACCEPT].push_back({ie_keyUp, SDLK_w});
 
-    jMapping.insert({ev_ACCEPT, SDL_CONTROLLER_BUTTON_DPAD_UP});
+    inputMap[ev_ACCEPT].push_back({ie_ctrlButtonDown, SDL_CONTROLLER_BUTTON_A});
+    inputMap[ev_ACCEPT].push_back({ie_ctrlButtonUp, SDL_CONTROLLER_BUTTON_B});
 }
 
-bool Tapioca::InputManager::eventHappened(EVENTS ev) {
-    bool kb = false, joy = false;
+// Devuelve si se ha producido el evento indicado
+bool Tapioca::InputManager::eventHappened(EVENTS event) {
+    bool happened = false;
 
-    for (auto k : kbMapping) {
-        if (k.first == ev) kb |= kbState[k.second] == 1;
-    }
-    kb &= inputEventTriggered[ie_keyDown];
+    // Recorre todos los controles mapeados a event
+    for (auto elem : inputMap[event]) {
+        // Si ya se ha encontrado que el evento se ha 
+        // producido, devuelve true y deja de buscar
+        if (happened) return true;
 
-    for (int i = 0; i < joysticks.size(); i++) {
-        for (auto b : jMapping)
-            if (b.first == ev) joy |= jbState[i][b.second];
-    }
-    joy &= inputEventTriggered[ie_joyButtonDown];
-    //return (inputEventTriggered[ie_keyDown] && sol)
+        // Recorre todos los eventos del tipo inputEvent que se hayan producido
+        for (auto& evt : inputEventTriggered[elem.first]) {
+            switch (elem.first) { 
+                // Si son eventos de tecla, comprueba si la tecla coincide con la mapeada
+                case ie_keyDown: case ie_keyUp:
+                    happened |= evt.key.keysym.sym == elem.second;
+                    break;
 
-    return kb || joy;
-}
+                // Si son eventos de botón de mando, comprueba si el botón coincide con el mapeado 
+                // y si el botón que coincide ha sido pulsado en el mando que ha enviado el evento
+                case ie_ctrlButtonUp: case ie_ctrlButtonDown:
+                    bool sameBttn = evt.cbutton.button == (SDL_GameControllerButton)elem.second;
+                    bool sameCtrl = 
+                        SDL_GameControllerGetButton(controllers[evt.cdevice.which], (SDL_GameControllerButton)elem.second) == evt.cbutton.state;
+                    happened |= sameBttn && sameCtrl;
+                    break;
 
-// Comprueba si hay algún joystick conectado y los inicializa todos
-void Tapioca::InputManager::initJoysticks() {
-    int initialJoysticks = SDL_NumJoysticks();
-
-    // No hay joysticks conectados
-    if (initialJoysticks < 1) {
-#ifdef _DEBUG
-        std::cout << "No joysticks connected\n";
-#endif
-        joystickConnected = false;
-    }
-    // Al menos hay un joystick conectado
-    else {
-        for (int i = 0; i < initialJoysticks; i++) {
-            addJoystick(i);
+                //case :
+                //    break;
+            }
         }
-
-        // Empieza a escuchar eventos de joystick
-        SDL_JoystickEventState(SDL_ENABLE);
-        joystickConnected = true;
     }
+    if (happened) return true;
+    else return false;
 }
 
-void Tapioca::InputManager::addJoystick(int i) { 
-    SDL_Joystick* joy = SDL_JoystickOpen(i);
-    if (joy != nullptr) {
-        // Añade el joystick al vector de joysticks
-        joysticks.insert({i, SDL_JoystickOpen(i)});
 
-        // Añade un set de valores de ejes al joystick
-        joysticksValues.insert({i, {{0, 0}, {0, 0}}});
-
-        // Añaade un set de botones al joystick
-        std::vector<bool> tempButtons(SDL_JoystickNumButtons(joy), false);
-        joystickDeadZones.insert({i, DEFAULT_DEADZONE});
-        jbState.insert({i, tempButtons});
-
+// Comprueba si hay algún joystick conectado y si hay al menos uno, empieza a escuchar eventos de joystick
+void Tapioca::InputManager::initControllers() {
+    if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
 #ifdef _DEBUG
-        std::cout << "Jotstick added\n";
-#endif
-    }
-#ifdef _DEBUG
-    else std::cout << "Unable to open game joystick, " << SDL_GetError() << "\n";
+    else std::cout << "No joysticks connected\n";
 #endif
 }
 
-void Tapioca::InputManager::removeJoystick(int i) { 
-    SDL_Joystick* joy = joysticks.at(i);
-    if (joy != nullptr) { 
-        joysticks.erase(i);
-        joysticksValues.erase(i);
-        joystickDeadZones.erase(i);
-        jbState.erase(i);
+// Añade el mando con su deadzone por defecto al mapa de mandos 
+void Tapioca::InputManager::addController(int i) {
+    SDL_GameController* ctrl = SDL_GameControllerOpen(i);
+    if (ctrl != nullptr) {
+        controllers.insert({i, ctrl});
+        deadZones.insert({i, DEFAULT_DEADZONE});
 
-        SDL_JoystickClose(joy);
-        joy = nullptr;
+#ifdef _DEBUG
+        std::cout << "Controller added (" << SDL_GameControllerName(ctrl) << ")\n";
+    } 
+    else std::cout << "Unable to open game controller, " << SDL_GetError() << "\n";
+#else
+    }
+#endif
+}
+
+// Elimina el mando y su deadzone del mapa de mandos
+void Tapioca::InputManager::removeController(int i) { 
+    SDL_GameController* ctrl = controllers.at(i);
+    if (ctrl != nullptr) { 
+        deadZones.erase(i);
+        SDL_GameControllerClose(ctrl);
+        ctrl = nullptr;
 
 #ifdef _DEBUG
         std::cout << "Jotstick removed\n";
@@ -114,85 +110,50 @@ void Tapioca::InputManager::removeJoystick(int i) {
 
 // Limpia el input
 void Tapioca::InputManager::clearInput() {
-    for (auto& e : inputEventTriggered) e = false;
-    for (auto& m : mbState) m = false;
+    for (auto& e : inputEventTriggered) e.clear();
 }
 
-void Tapioca::InputManager::onMouseMotion(const SDL_Event& event) {
-    inputEventTriggered[ie_mouseMoving] = true;
-    mousePos.first = event.motion.x;
-    mousePos.second = event.motion.y;
-}
-
-void Tapioca::InputManager::onMouseButtonChange(const SDL_Event& event, bool isDown) {
-    inputEventTriggered[ie_mousebuttonDown] = true;
-
-    switch (event.button.button) {
-    case SDL_BUTTON_LEFT:
-        mbState[m_left] = isDown;
-        break;
-    case SDL_BUTTON_MIDDLE:
-        mbState[m_middle] = isDown;
-        break;
-    case SDL_BUTTON_RIGHT:
-        mbState[m_right] = isDown;
-        break;
-    default:
-        break;
-    }
-}
-
+/*
 void Tapioca::InputManager::joyAxisMotionEvent(const SDL_Event& event) {
     int joystick = event.jaxis.which;
     int value = event.jaxis.value;
 
     // Stick izquierdo X
     if (event.jaxis.axis == 0) {
-        if (value > joystickDeadZones[joystick]) joysticksValues[joystick].first.x = 1;
-        else if (value < -joystickDeadZones[joystick]) joysticksValues[joystick].first.x = -1;
+        if (value > deadZones[joystick]) joysticksValues[joystick].first.x = 1;
+        else if (value < -deadZones[joystick]) joysticksValues[joystick].first.x = -1;
         else joysticksValues[joystick].first.x = 0;
     }
     // Stick izquierdo Y
     if (event.jaxis.axis == 1) {
-        if (value > joystickDeadZones[joystick]) joysticksValues[joystick].first.y = 1;
-        else if (value < -joystickDeadZones[joystick]) joysticksValues[joystick].first.y = -1;
+        if (value > deadZones[joystick]) joysticksValues[joystick].first.y = 1;
+        else if (value < -deadZones[joystick]) joysticksValues[joystick].first.y = -1;
         else joysticksValues[joystick].first.y = 0;
     }
     // Stick derecho X
     if (event.jaxis.axis == 2) {
-        if (value > joystickDeadZones[joystick]) joysticksValues[joystick].second.x = 1;
-        else if (value < -joystickDeadZones[joystick]) joysticksValues[joystick].second.x = -1;
+        if (value > deadZones[joystick]) joysticksValues[joystick].second.x = 1;
+        else if (value < -deadZones[joystick]) joysticksValues[joystick].second.x = -1;
         else joysticksValues[joystick].second.x = 0;
     }
     // Stick derecho Y
     if (event.jaxis.axis == 3) {
-        if (value > joystickDeadZones[joystick]) joysticksValues[joystick].second.y = 1;
-        else if (value < -joystickDeadZones[joystick]) joysticksValues[joystick].second.y = -1;
+        if (value > deadZones[joystick]) joysticksValues[joystick].second.y = 1;
+        else if (value < -deadZones[joystick]) joysticksValues[joystick].second.y = -1;
         else joysticksValues[joystick].second.y = 0;
     }
 }
-
-void Tapioca::InputManager::joyButtonDown(const SDL_Event& event) {
-    inputEventTriggered[ie_joyButtonDown] = true;
-
-    int joystick = event.jaxis.which;
-    jbState[joystick][event.jbutton.button] = true;
-}
-
-void Tapioca::InputManager::joyButtonUp(const SDL_Event& event) {
-    inputEventTriggered[ie_joyButtonUp] = true;
-
-    int joystick = event.jaxis.which;
-    jbState[joystick][event.jbutton.button] = false;
-}
+*/
 
 
+// Devuelve si se ha cerrado la ventana (si no está vacío el vector, significa que no se ha llamado el evento
+bool Tapioca::InputManager::windowClosed() { return !inputEventTriggered[ie_closeWindow].empty(); }
 
-void Tapioca::InputManager::update(const SDL_Event& event) {
+void Tapioca::InputManager::updateState(const SDL_Event& event) {
     // Eventos de ventana
     switch (event.window.event) {
     case SDL_WINDOWEVENT_CLOSE:
-        inputEventTriggered[ie_closeWindow] = true;
+        inputEventTriggered[ie_closeWindow].push_back(event);
         break;
     default:
         break;
@@ -201,50 +162,47 @@ void Tapioca::InputManager::update(const SDL_Event& event) {
     // Eventos de input
     switch (event.type) {
     case SDL_KEYDOWN:
-        onKeyDown();
+        inputEventTriggered[ie_keyDown].push_back(event);
         break;
     case SDL_KEYUP:
-        onKeyUp();
+        inputEventTriggered[ie_keyUp].push_back(event);
         break;
     case SDL_MOUSEMOTION:
-        onMouseMotion(event);
+        inputEventTriggered[ie_mouseMoving].push_back(event);
+        mousePos.first = event.motion.x;
+        mousePos.second = event.motion.y;
         break;
     case SDL_MOUSEBUTTONDOWN:
-        onMouseButtonChange(event, true);
+        inputEventTriggered[ie_mouseButtonDown].push_back(event);
         break;
     case SDL_MOUSEBUTTONUP:
-        onMouseButtonChange(event, false);
+        inputEventTriggered[ie_mouseButtonUp].push_back(event);
         break;
     case SDL_TEXTINPUT:
         inputText += event.text.text;
         break;
+    
+    // Mando
+    case SDL_JOYAXISMOTION:
+        //joyAxisMotionEvent(event);
+        break;
+    case SDL_JOYBUTTONDOWN:
+        inputEventTriggered[ie_ctrlButtonDown].push_back(event);
+        break;
+    case SDL_JOYBUTTONUP:
+        inputEventTriggered[ie_ctrlButtonUp].push_back(event);
+        break;
+    case SDL_JOYDEVICEADDED:
+        addController(event.cdevice.which);
+        break;
+    case SDL_JOYDEVICEREMOVED:
+        removeController(event.cdevice.which);
+        break;
+
     case SDL_TEXTEDITING:
         compositionText = event.edit.text;
         cursor = event.edit.start;
         selectionLen = event.edit.length;
-        break;
-    case SDL_JOYAXISMOTION:
-        joyAxisMotionEvent(event);
-        break;
-    case SDL_JOYBUTTONDOWN:
-        joyButtonDown(event);
-        break;
-    case SDL_JOYBUTTONUP:
-        joyButtonUp(event);
-        break;
-
-    default:
-        break;
-    }
-
-
-    // Eventos de conectar/desconectar mando
-    switch (event.type) {
-    case SDL_JOYDEVICEADDED:
-        addJoystick(event.cdevice.which);
-        break;
-    case SDL_JOYDEVICEREMOVED:
-        removeJoystick(event.cdevice.which);
         break;
     default:
         break;
@@ -253,23 +211,23 @@ void Tapioca::InputManager::update(const SDL_Event& event) {
 
     // Si está activa la entrada de texto
     if (SDL_IsTextInputActive()) {
-//        // Borra el último char
-//        if (isKeyDown(SDLK_BACKSPACE)) removeLastChar();
-//
-//        // Desactiva la entrada de texto y limpia el texto introducido
-//        else if (isKeyDown(SDLK_RETURN)) {
-//            SDL_StopTextInput();
-//            resetText();
-//            refresh();
-//#ifdef _DEBUG
-//            std::cout << "Ended text input\n";
-//#endif
-//        }
+        // Borra el último char
+        if (eventHappened(ev_TOGGLE_TEXT_INPUT)) removeLastChar();
+
+        // Desactiva la entrada de texto y limpia el texto introducido
+        else if (eventHappened(ev_TOGGLE_TEXT_INPUT)) {
+            SDL_StopTextInput();
+            resetText();
+            update();
+#ifdef _DEBUG
+            std::cout << "Ended text input\n";
+#endif
+        }
     }
 }
 
-void Tapioca::InputManager::refresh() {
+void Tapioca::InputManager::update() {
     SDL_Event event;
     clearInput();
-    while (SDL_PollEvent(&event)) update(event);
+    while (SDL_PollEvent(&event)) updateState(event);
 }

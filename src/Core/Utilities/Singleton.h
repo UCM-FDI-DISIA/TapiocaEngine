@@ -1,7 +1,10 @@
 #pragma once
 
 #include <memory>
-#include <cassert>
+
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
 namespace Tapioca {
 // Clase singleton para hacer que las clases hijas sean singleton
@@ -22,9 +25,11 @@ public:
 
     // Inicializa la instancia con los parámetros deseados (... args)
     template<typename... T_args> inline static T* create(T_args&&... args) {
-        assert(instance_.get() == nullptr, "Instance already exists");
-        instance_.reset(new T(std::forward<T_args>(args)...));
-
+        //assert(instance_.get() == nullptr, "Instance already exists");
+        if (instance_.get() == nullptr) instance_.reset(new T(std::forward<T_args>(args)...));
+#ifdef _DEBUG
+        else std::cout << "Instance already exists\n";
+#endif
         return instance_.get();
     }
 
