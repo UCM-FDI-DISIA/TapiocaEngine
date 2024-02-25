@@ -49,13 +49,13 @@ private:
     void loadPlugIns();
 
     /*
-    * @brief cargar las rutas donde se ubican los assets para que ogre pueda encontrarlos y usarlos
+    *   @brief cargar las rutas donde se ubican los assets para que ogre pueda encontrarlos y usarlos
     */
     void loadResources();
 
     /*
-    /// @brief crea el constructor de shaders y añade el listerner al gestor de materiales para que a aquellos assets que vengan sin shaders 
-    /// se les asignen shaders pass through generados automaticamente.Debe invocarse trase crear el RenderSys
+    *   @brief crea el constructor de shaders y añade el listerner al gestor de materiales para que a aquellos assets que vengan sin shaders 
+    *   se les asignen shaders pass through generados automaticamente.Debe invocarse trase crear el RenderSys
     */
     void loadShaders();
 
@@ -65,17 +65,17 @@ public:
     virtual ~GraphicsEngine();
 
     /*
-    /// @brief creat el root de Ogre y prepara los recursos para empezar a renderizar
+    *   @brief creat el root de Ogre y prepara los recursos para empezar a renderizar
     */
     void init() override;
 
     /*
-    /// @brief renderiza 1 frame
+    *   @brief renderiza 1 frame
     */
     void render() override;
 
     /*
-    /// @brief  libera la memoria que usa GraphicsEngine
+    *   @brief  libera la memoria que usa GraphicsEngine
     */
     void shutDown();
 

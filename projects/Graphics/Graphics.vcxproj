@@ -30,13 +30,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -55,12 +55,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\</OutDir>
+    <OutDir>$(SolutionDir)lib\$(ProjectName)\$(Platform)\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\</OutDir>
+    <OutDir>$(SolutionDir)lib\$(ProjectName)\$(Platform)\$(Configuration)</OutDir>
     <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -69,13 +69,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)src\Core\;$(SolutionDir)src\MiBiblioteca\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;Core_d.lib</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)src\Core\;$(SolutionDir)src\MiBiblioteca\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -99,7 +99,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;Core.lib</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration);$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>

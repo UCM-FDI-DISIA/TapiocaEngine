@@ -1,42 +1,19 @@
-#include "GraphicsEngine.h"
-// Includes Utilities
-#include "Utilities/checkML.h"
-//Includes de Ogre
+// OGRE
 #include <Ogre.h>
 #include <OgreFileSystem.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreGL3PlusRenderSystem.h>
-//Includes de SDL
+// SDL
 #include <SDL.h>
 #include <SDL_syswm.h>
-#undef main   //sdl lo define aparentemente
+#undef main
+// C++
 #include <iostream>
 #include <Windows.h>
-// usings
+#include "GraphicsEngine.h"
 using namespace Tapioca;
-
-// COSAS QUE BORRAR
-#include "Structure/Game.h"
-
-// Si se quiere probar hay que llamar main a este metodo y el "main" de Ogre.cpp ponerle otro nombre
-int main() {
-
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);   // esto genera el informe al acabar el proceso
-                                                                    //  Ogre::Root* raiz = new Ogre::Root();
-
-    Tapioca::Game* game = new Game("Billiards_adrift");
-    GraphicsEngine* g = GraphicsEngine::create();
-    game->init();
-    g->testScene();
-    // no reportara esto memoria que usan las dlls de normal porque escribe antes de que se desvinculen
-    // si hacemos el informe aqui el main todavia no ha terminado y sale la memoria ocupada por la DLL que todavia no se ha desenlazado
-    //_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
-    //_CrtDumpMemoryLeaks(); 
-    delete game;
-    return 0;
-}
 
 GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr)

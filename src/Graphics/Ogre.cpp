@@ -19,7 +19,7 @@ int main2() {
     bool done = false;
     while (!done && !ih->windowClosed()) {
         if (ih->eventHappened(Tapioca::EVENTS::ev_ACCEPT)) std::cout << "event accept happened\n";
-        ih->refresh();
+        //ih->refresh();
     }
 
     SDL_Quit();

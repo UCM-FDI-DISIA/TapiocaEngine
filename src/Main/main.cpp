@@ -2,57 +2,52 @@
 #include <iostream>
 #include <string>
 #include "checkML.h"
+#include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
+#include "GraphicsEngine.h"
+// #include "PhysicsManager.h"
+// #include "InputManager.h"
+// #include "AudioManager.h" Añadir cuando se implemente
+// #include "UIManager.h" Añadir cuando se implemente
+
 using namespace std;
 using namespace Tapioca;
 
-static string UI();
+static void initModules();
+GraphicsEngine* graphics;
+//PhysicsManager* physics;
+//InputManager* input;
+//AudioManager* audio;
+//UIManager* ui;
 
 int main(int argc, char** argv) {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);   // Check Memory Leaks
+    DynamicLibraryLoader* loader = new DynamicLibraryLoader();
 
-    cout << "Tapioca Engine\n";
-
-    string gameName = UI();
-
-    Game* game = new Game(gameName);
-
-    if (!game->setup()) {
-        std::cerr << "Error al hacer setup de la biblioteca.\n";
+    if (loader->setup()) {
+		Game* game = new Game();
+        initModules();
+		game->init();
+        // game->run();
+        graphics->testScene();
         delete game;
-        return -1;
-    }
+	}
+	else {
+		cout << "Error al cargar la librería dinámica\n";
+	}
 
-    // Otras cosas
+    delete loader;
 
-    delete game;
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+    _CrtDumpMemoryLeaks(); 
     return 0;
 }
 
-static string UI() {
-
-    cout << "Elige el juego a cargar: \n\t1. Billiards adrift\n\t2. Mar.io\n\t3. Otro [INPUT]\n> ";
-
-    char opt = ' ';
-    cin >> opt;
-
-    string gameName = "";
-    switch (opt) {
-    case '1':
-        gameName = "Billiards_adrift";
-        break;
-    case '2':
-        gameName = "Mar_io";
-        break;
-    case '3':
-        cout << "Introduce el nombre: \n> ";
-        cin >> gameName;
-        break;
-    default:
-        cout << "Por favor, elige un juego.\n";
-        return UI();
-    }
-
-    return gameName;
+static void initModules() {
+	graphics = GraphicsEngine::create();
+	// physics = PhysicsManager::create();
+	// input = InputManager::create();
+	// audio = AudioManager::create();
+	// ui = UIManager::create();
 }

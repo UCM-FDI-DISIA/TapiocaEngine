@@ -4,11 +4,10 @@
 #include <iostream>
 
 namespace Tapioca {
-Game::Game(std::string const& gameName) : gameName(gameName), module(nullptr), entryPoint(nullptr),
-    cont(true), deltaTime(0), fixedOffset(0), startTime(0) {
+Game::Game() : cont(true), deltaTime(0), fixedOffset(0), startTime(0) {
 
     // No debería haber más de un objeto Game
-    if(instance != nullptr) {
+    if (instance != nullptr) {
         std::cerr << "Se ha intentado crear un segundo objeto Game.\n";
         return;
     }
@@ -16,31 +15,6 @@ Game::Game(std::string const& gameName) : gameName(gameName), module(nullptr), e
 }
 
 Game::~Game() { instance = nullptr; }
-
-bool Game::setup() {
-#ifdef _DEBUG
-    gamePath = "./" + gameName + "_d.dll";
-#else
-    gamePath = "./" + gameName + ".dll";
-#endif
-
-    std::cout << "Cargando " << gamePath << "...\n";
-
-    if ((module = LoadLibraryA(gamePath.c_str())) == nullptr) {
-        std::cerr << "Error al cargar la DLL.\n";
-        return false;
-    }
-
-    if ((entryPoint = (EntryPoint)(GetProcAddress(module, "saluda"))) == nullptr) {
-        std::cerr << "No se pudo obtener la dirección de la función.\n";
-        FreeLibrary(module);
-        return false;
-    }
-
-    entryPoint("mundo");   // Hola, mundo
-
-    return true;
-}
 
 void Game::init() {
     for (auto mod : modules)
@@ -52,12 +26,12 @@ void Game::run() {
     fixedOffset = 0;
     cont = true;
 
-    while(cont) {
+    while (cont) {
         deltaTime = 0; // TODO Conseguir tiempo
         fixedOffset += deltaTime;
         
         handleEvents();
-        while(fixedOffset >= FIXED_DELTA_TIME) {
+        while (fixedOffset >= FIXED_DELTA_TIME) {
             fixedUpdate();
             fixedOffset -= FIXED_DELTA_TIME;
         }

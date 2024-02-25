@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
 #include <stack>
-#include <string>
-#include <Windows.h>
-
-typedef void(__cdecl* EntryPoint)(const char*);
 
 namespace Tapioca {
 class Scene;
@@ -13,12 +9,6 @@ class Module;
 class Game {
 private:
     static Game* instance;
-
-    // TODO Carga de dll, debería moverse a otro lugar
-    std::string gameName;
-    std::string gamePath;
-    HMODULE module;
-    EntryPoint entryPoint;
 
     std::stack<Scene*> scenes;   // TODO manejo de escenas temporal
     std::vector<Module*> modules;
@@ -40,14 +30,13 @@ private:
     void render();
 
 public:
-    Game(std::string const& gameName);
+    Game();
     ~Game();
     inline static Game* get() { return instance; }
 
     inline const uint32_t& getDeltaTime() const { return deltaTime; }
     inline const uint32_t& getFixedDeltaTime() const { return FIXED_DELTA_TIME; }
 
-    bool setup();
     void init();
     void run();
 };
