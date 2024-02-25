@@ -85,5 +85,7 @@ public:
 
     // BORRAR cuando se haya creado el wrapper
     inline Ogre::SceneManager* getSceneManager() { return scnMgr; }
+
+    //inline Ogre::Root* getRootNode() { return mRoot; }
 };
 }

@@ -3,6 +3,7 @@
 #include <btBulletDynamicsCommon.h>
 #include "Utilities/Vector3.h"
 #include "Components/Collider.h"
+#include "PhysicsDebugDrawer.h"
 
 #include <iostream>   //PRUEBA
 namespace Tapioca {
@@ -59,7 +60,8 @@ PhysicsManager::PhysicsManager()
     , colDispatch(nullptr)
     , broadphase(nullptr)
     , constraintSolver(nullptr)
-    , dynamicsWorld(nullptr) {
+    , dynamicsWorld(nullptr)
+    , pdd(nullptr) {
     init();   //DEBUG
 }
 
@@ -88,11 +90,16 @@ void PhysicsManager::init() {
     createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 8, 0, 0, 0, 1,
         (1 << 2) | (0 << 1) | (1 << 0));                                                                        //PRUEBA
     createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(4.f), BOX_SHAPE, DYNAMIC_OBJECT, 6, 0, 0, 0, 4, 1);   //PRUEBA
+
+    pdd = new PhysicsDebugDrawer();
+    dynamicsWorld->setDebugDrawer(pdd);
 }
 
 void PhysicsManager::update(float frameRate) {
     //simulación física y detección de colisión
     dynamicsWorld->stepSimulation(frameRate, 10);
+    dynamicsWorld->debugDrawWorld();
+    //pdd->drawLine(btVector3(5, 0, 0), btVector3(0, 0, 0), btVector3(1, 0, 0));
 
     //PRUEBA: printear las pos de los rb
     for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {

@@ -14,20 +14,16 @@
     <ClCompile Include="..\..\src\Physics\Bullet.cpp" />
     <ClCompile Include="..\..\src\Physics\Components\Collider.cpp" />
     <ClCompile Include="..\..\src\Physics\Components\RigidBody.cpp" />
+    <ClCompile Include="..\..\src\Physics\PhysicsDebugDrawer.cpp" />
     <ClCompile Include="..\..\src\Physics\PhysicsManager.cpp" />
-    <ClCompile Include="PhysicsDebugDrawer.cpp" />
+    <ClCompile Include="..\..\src\Physics\Physics_Def.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Physics\Components\Collider.h" />
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h" />
+    <ClInclude Include="..\..\src\Physics\PhysicsDebugDrawer.h" />
     <ClInclude Include="..\..\src\Physics\PhysicsManager.h" />
     <ClInclude Include="..\..\src\Physics\Physics_Def.h" />
-    <ClInclude Include="PhysicsDebugDrawer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.vcxproj">
-      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -77,7 +73,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -103,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

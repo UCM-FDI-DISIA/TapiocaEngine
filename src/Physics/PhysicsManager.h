@@ -24,6 +24,7 @@ class Collider;
 using namespace std;
 namespace Tapioca {
 class Vector3;
+class PhysicsDebugDrawer;
 class PhysicsManager : public Singleton<PhysicsManager> /*, public Module*/ {
 
     friend Singleton<PhysicsManager>;
@@ -51,7 +52,8 @@ private:
     btDiscreteDynamicsWorld* dynamicsWorld;
     //almacenado todos los rigidbodies del mundo
     unordered_set<btRigidBody*> rigidBodies;
-
+    //para dibujar las fisicas
+    PhysicsDebugDrawer* pdd;
 #pragma endregion
 
 public:
