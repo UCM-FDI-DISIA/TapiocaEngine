@@ -1,10 +1,10 @@
 #include "RigidBody.h"
-#include "../../../dependencies/Bullet/src/src/btBulletCollisionCommon.h"
-#include "../../../dependencies/Bullet/src/src/btBulletDynamicsCommon.h"
+#include <btBulletCollisionCommon.h>
+#include <btBulletDynamicsCommon.h>
 
 #include "../../Physics/PhysicsManager.h"
-#include "../../Core/Structure/GameObject.h"
-#include "../../Core/Components/Transform.h"
+#include "Structure/GameObject.h"
+#include "Components/Transform.h"
 #include "Collider.h"
 
 

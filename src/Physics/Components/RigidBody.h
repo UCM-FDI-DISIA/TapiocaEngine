@@ -1,8 +1,8 @@
 #pragma once
 
 #pragma region includes
-#include "../../Core/Structure/Component.h"
-#include "../Core/Utilities/Vector3.h"
+#include "Structure/Component.h"
+#include "Utilities/Vector3.h"
 #include "../Physics_def.h"
 class btRigidBody;
 #pragma endregion

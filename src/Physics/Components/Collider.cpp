@@ -1,6 +1,6 @@
 #include "Collider.h"
 #include <iostream>
-#include "../../Core/Structure/GameObject.h"
+#include "Structure/GameObject.h"
 namespace Tapioca {
 
 Collider::Collider()

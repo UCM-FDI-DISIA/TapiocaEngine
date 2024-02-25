@@ -1,7 +1,7 @@
 #include "PhysicsManager.h"
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
-#include "../Core/Utilities/Vector3.h"
+#include "Utilities/Vector3.h"
 #include "Components/Collider.h"
 
 #include <iostream>   //PRUEBA
@@ -86,7 +86,7 @@ void PhysicsManager::init() {
     gContactEndedCallback = onCollisionExit;
 
     createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 8, 0, 0, 0, 1,
-        (1 << 4) | (1 << 1) | (1 << 2));                                                                        //PRUEBA
+        (1 << 2) | (0 << 1) | (1 << 0));                                                                        //PRUEBA
     createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(4.f), BOX_SHAPE, DYNAMIC_OBJECT, 6, 0, 0, 0, 4, 1);   //PRUEBA
 }
 
@@ -116,68 +116,68 @@ void PhysicsManager::fixedUpdate(float deltaTime) { dynamicsWorld->stepSimulatio
 btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
     ColliderShape colliderShape, MovementType type, float mass, float friction, float bounciness, bool isTrigger,
     int group, int mask) {
-
-    btVector3 scale = toBtVector3(shapeScale);
-    btVector3 pos = toBtVector3(position);
-    btVector3 rot = toBtVector3(rotation);
+    return nullptr;
+   // btVector3 scale = toBtVector3(shapeScale);
+    //btVector3 pos = toBtVector3(position);
+   // btVector3 rot = toBtVector3(rotation);
 
     //collider shape
-    btCollisionShape* shape;
+    //btCollisionShape* shape;
 
-    switch (colliderShape) {
-    case BOX_SHAPE:
-        shape = new btBoxShape(scale);
-        break;
-    case SPHERE_SHAPE:
-        shape = new btSphereShape(scale.getX());
-        break;
-    case PLANE_SHAPE:
-        shape = new btStaticPlaneShape(scale, 0);
-        break;
-    case CAPSULE_SHAPE:
-        shape = new btCapsuleShape(scale.getX(), scale.getY());
-        break;
-    default:
-        shape = new btBoxShape(scale);
-        break;
-    }
+    //switch (colliderShape) {
+    //case BOX_SHAPE:
+    //    shape = new btBoxShape(scale);
+    //    break;
+    //case SPHERE_SHAPE:
+    //    shape = new btSphereShape(scale.getX());
+    //    break;
+    //case PLANE_SHAPE:
+    //    shape = new btStaticPlaneShape(scale, 0);
+    //    break;
+    //case CAPSULE_SHAPE:
+    //    shape = new btCapsuleShape(scale.getX(), scale.getY());
+    //    break;
+    //default:
+    //    shape = new btBoxShape(scale);
+    //    break;
+    //}
 
-    btVector3 inertia;
-    inertia.setZero();
+    //btVector3 inertia;
+    //inertia.setZero();
 
-    // El rigidbody es dinámico si la masa !=0, de lo contrario es estático
-    if (type == DYNAMIC_OBJECT) shape->calculateLocalInertia(mass, inertia);
-    else if (type == STATIC_OBJECT)
-        mass = 0;
+    //// El rigidbody es dinámico si la masa !=0, de lo contrario es estático
+    //if (type == DYNAMIC_OBJECT) shape->calculateLocalInertia(mass, inertia);
+    //else if (type == STATIC_OBJECT)
+    //    mass = 0;
 
 
-    //settear Transform (posición y rotación)
-    btTransform transform;
-    transform.setIdentity();
-    transform.setOrigin(pos);
+    ////settear Transform (posición y rotación)
+    //btTransform transform;
+    //transform.setIdentity();
+    //transform.setOrigin(pos);
 
-    btQuaternion quaternion;
-    quaternion.setEuler(rot.getY(), rot.getX(), rot.getZ());
-    transform.setRotation(quaternion);
+    //btQuaternion quaternion;
+    //quaternion.setEuler(rot.getY(), rot.getX(), rot.getZ());
+    //transform.setRotation(quaternion);
 
-    //para sincronizar el transform con el gráfico
-    btMotionState* motionState = new btDefaultMotionState(transform);
+    ////para sincronizar el transform con el gráfico
+    //btMotionState* motionState = new btDefaultMotionState(transform);
 
-    btRigidBody* rb = new btRigidBody(mass, motionState, shape, inertia);
-    rigidBodies.insert(rb);
+    //btRigidBody* rb = new btRigidBody(mass, motionState, shape, inertia);
+    //rigidBodies.insert(rb);
 
-    //si es un cuerpo dinámico, tiene que estar siempre activo para actualizar su movimiento y detectar colisión
-    if (type == DYNAMIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
+    ////si es un cuerpo dinámico, tiene que estar siempre activo para actualizar su movimiento y detectar colisión
+    //if (type == DYNAMIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
 
-    rb->setCollisionFlags(rb->getCollisionFlags() | type);
+    //rb->setCollisionFlags(rb->getCollisionFlags() | type);
 
-    if (isTrigger) rb->setCollisionFlags(rb->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    //if (isTrigger) rb->setCollisionFlags(rb->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 
-    rb->setFriction(friction);
-    rb->setRestitution(bounciness);
-    dynamicsWorld->addRigidBody(rb, group, mask);
+    //rb->setFriction(friction);
+    //rb->setRestitution(bounciness);
+    //dynamicsWorld->addRigidBody(rb, group, mask);
 
-    return rb;
+    //return rb;
 }
 void PhysicsManager::destroy() {
 

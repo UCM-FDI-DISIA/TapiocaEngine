@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Core/Structure/Component.h"
-#include "../Core/Utilities/Vector3.h"
+#include "Structure/Component.h"
+#include "Utilities/Vector3.h"
 namespace Tapioca {
 class Vector3;
 class GameObject;

@@ -2,8 +2,8 @@
 
 #pragma region includes
 #include <unordered_set>
-#include "../Core/Utilities/Singleton.h"
-#include "../Core/Structure/Module.h"
+#include "Utilities/Singleton.h"
+#include "Structure/Module.h"
 #include "Physics_def.h"
 
 class btDefaultCollisionConfiguration;
