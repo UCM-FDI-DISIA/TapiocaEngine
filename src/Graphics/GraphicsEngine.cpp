@@ -12,7 +12,10 @@
 // C++
 #include <iostream>
 #include <Windows.h>
+// Propios
 #include "GraphicsEngine.h"
+#include "Node.h"
+#include "Utilities/checkML.h"
 using namespace Tapioca;
 
 GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
@@ -29,11 +32,17 @@ GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     , windowWidth(w)
     , windowHeight(h) { }
 
-GraphicsEngine::~GraphicsEngine() { shutDown(); }
+GraphicsEngine::~GraphicsEngine() {
+    for (auto& node : nodes) {
+        delete node;
+    }
+    shutDown();
+}
 
 void GraphicsEngine::init() {
     // hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
-    fsLayer = new Ogre::FileSystemLayer("Directorio");  // se podria personalizar el nombre (aunque no afecta para nada)
+    fsLayer =
+        new Ogre::FileSystemLayer("Directorio");   // se podria personalizar el nombre (aunque no afecta para nada)
     Ogre::String pluginsPath;
     // importante: la ruta donde esta plugins.cfg no puede tener caracteres especiales (solo alfabeto en ingles)
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
@@ -143,7 +152,7 @@ void GraphicsEngine::shutDown() {
     mRoot->destroySceneManager(scnMgr);
 
     // ELIMINAR EL SISTEMA DE SHADERS
-    
+
     // (Un material puede tener varias Techniques
     // Se puede crear varia schemes, que selecciones una technique concreta de un material
     // El usuario podria elegir que scheme usar y ajustar el juego al rendimiento de su maquina
@@ -235,5 +244,25 @@ void GraphicsEngine::testScene() {
 
             // std::cout << e.getFullDescription() << '\n';
         };
+    }
+}
+
+Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
+    Node* node = new Node(scnMgr, pos, scale);
+    nodes.insert(node);
+    return node;
+}
+
+Node* GraphicsEngine::createChildNode(Node* parent, Vector3 pos, Vector3 scale) {
+    Node* node = new Node(scnMgr, pos, scale, parent);
+    nodes.insert(node);
+    return node;
+}
+
+void GraphicsEngine::removeNode(Node* node) {
+    if (nodes.contains(node)) {
+        nodes.erase(node);
+        node->removeFromTree(&nodes);
+        delete node;
     }
 }

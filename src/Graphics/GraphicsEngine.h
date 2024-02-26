@@ -1,26 +1,31 @@
 #pragma once
 #include <string>
+#include <unordered_set>
+// Includes de Core
+// Herencia
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
+// Para parametros con valores por defecto
+#include "Utilities/Vector3.h"
 
 class SGTechniqueResolverListener;
 class SDL_Window;
+
 namespace Ogre {
-
-
 class FileSystemLayer;
 class Root;
 class SceneManager;
 class GL3PlusRenderSystem;
 class RenderSystem;
-
 class RenderWindow;
 
 namespace RTShader {
     class ShaderGenerator;
 }
+}
 
-
+namespace Tapioca {
+class Node;
 }
 
 namespace Tapioca {
@@ -43,6 +48,9 @@ private:
     // Ventana
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
+
+    // Administrar los nodos propios
+    std::unordered_set<Node*> nodes;
 
     // carga plugIns especificados desde codigo
     // BORRAR
@@ -83,9 +91,14 @@ public:
     // BORRAR
     void testScene();
 
+    Node* createNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+
+    Node* createChildNode(
+        Node* parent, Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+
+    void removeNode(Node* node);
+
     // BORRAR cuando se haya creado el wrapper
     inline Ogre::SceneManager* getSceneManager() { return scnMgr; }
-
-    //inline Ogre::Root* getRootNode() { return mRoot; }
 };
 }

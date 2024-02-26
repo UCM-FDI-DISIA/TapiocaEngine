@@ -23,9 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Main\checkML.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

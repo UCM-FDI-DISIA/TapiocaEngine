@@ -32,7 +32,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Main\checkML.h" />
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -78,5 +78,8 @@
     <ClInclude Include="..\..\src\Core\Components\Transform.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\checkML.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
