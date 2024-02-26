@@ -10,6 +10,8 @@ private:
     Vector3 scale;
 
 public:
+    COMPONENT_ID("Transform")
+
     Transform();
     ~Transform() { }
     void initComponent() override;

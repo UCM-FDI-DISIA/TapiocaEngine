@@ -15,13 +15,9 @@ GameObject::~GameObject() {
 }
 
 void GameObject::addComponent(Component* comp, std::string id) {
-    auto it = components.find(id);
-    if (it != components.end()) {
-        deleteCompVector(it->second);
-        delete it->second;
-    }
-    components[id] = comp;
+    components.insert(std::pair<std::string, Component*>(id, comp));
     cmpOrder.push_back(comp);
+    comp->setParent(this);
 }
 
 void GameObject::deleteCompVector(Component* comp) {

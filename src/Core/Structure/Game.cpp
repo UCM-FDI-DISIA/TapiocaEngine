@@ -14,7 +14,15 @@ Game::Game() : cont(true), deltaTime(0), fixedOffset(0), startTime(0) {
     instance = this;
 }
 
-Game::~Game() { instance = nullptr; }
+Game::~Game() {
+    instance = nullptr;
+    while(!scenes.empty()) {
+        delete scenes.top();
+        scenes.pop();
+    }
+
+    for(Module* mod : modules) delete mod;
+}
 
 void Game::init() {
     for (auto mod : modules)

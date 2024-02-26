@@ -14,6 +14,8 @@ private:
     std::unordered_map<std::string, std::variant<int, std::string, float, bool>>
         attributes;   //lista de atributos que tiene el componente
 
+    friend class GameObject;
+    void setParent(GameObject* obj);
 protected:
     enum messageType { MESSAGE_A, MESSAGE_B, MESSAGE_C, MESSAGE_D };
     GameObject* parent;
@@ -27,7 +29,6 @@ public:
     Component();
     virtual ~Component() { }
 
-    void setParent(GameObject* obj);
     GameObject* getParent();
 
     inline bool isAlive() const { return alive; }     //para comprobar su existencia, en caso contrario se borra
@@ -48,4 +49,6 @@ public:
     void sendEvent(Component* component, messageType m);                 //Funcion para enviar mensajes
     virtual void receiveEvent(Component* component, messageType m) {};   //Funcion para recibir mensajes
 };
+
+#define COMPONENT_ID(_id) inline static const std::string id = _id;
 }
