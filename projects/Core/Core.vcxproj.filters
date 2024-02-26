@@ -42,6 +42,9 @@
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
@@ -79,6 +82,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\checkML.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\Vector4.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>

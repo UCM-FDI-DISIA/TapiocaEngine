@@ -95,6 +95,7 @@
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
+    <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Components\Transform.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="..\..\src\Core\Utilities\Singleton.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector3.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\Vector4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
