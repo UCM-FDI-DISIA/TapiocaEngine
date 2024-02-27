@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
     <ClInclude Include="..\..\src\Graphics\Entity.h" />
+    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\Node.h" />

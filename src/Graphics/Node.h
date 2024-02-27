@@ -10,12 +10,16 @@ class SceneNode;
 namespace Tapioca {
 class Vector3;
 class GraphicsEngine;
+class Light;
+class Camera;
 }
 
 namespace Tapioca {
 class Node {
 public:
     friend GraphicsEngine;
+    friend Light;
+    friend Camera;
 
 private:
     Ogre::SceneManager* sceneManager;
@@ -34,6 +38,7 @@ private:
     void removeChild(Node* child);
 
     void getAllChildrenAux(std::vector<Node*>& allChildren);
+    Ogre::SceneNode* getSceneNode() { return node; }
 
     Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent = nullptr);
 

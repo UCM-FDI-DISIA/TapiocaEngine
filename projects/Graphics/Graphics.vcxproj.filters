@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\src\Graphics\Light.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Archivos de recursos">

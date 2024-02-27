@@ -30,6 +30,7 @@ class Camera;
 class Enity;
 class Light;
 class Vector4;   //para colores
+enum LightType;
 }
 
 namespace Tapioca {
@@ -74,7 +75,7 @@ private:
     GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
 
 public:
-    enum LightType { POINT, SPOTLIGHT, DIRECTIONAL };
+    //enum LightType { POINT, SPOTLIGHT, DIRECTIONAL };
 
     virtual ~GraphicsEngine();
 

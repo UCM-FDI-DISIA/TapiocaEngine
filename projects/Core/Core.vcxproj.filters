@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
@@ -85,6 +88,9 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\Vector4.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>

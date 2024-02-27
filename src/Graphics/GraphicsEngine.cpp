@@ -15,11 +15,19 @@
 // Propios
 #include "GraphicsEngine.h"
 #include "Node.h"
+#include "Light.h"
+#include "Camera.h"
+#include "Graphicsdef.h"
 #include "Utilities/checkML.h"
 using namespace Tapioca;
 
 // BORRAR
 Ogre::SceneNode* node;
+//para que la escena de prueba no deje leaks
+Tapioca::Node* luzNode;
+Tapioca::Light* mainLight;
+Tapioca::Node* camaraNode;
+Tapioca::Camera* maincam;
 
 GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr)
@@ -216,6 +224,12 @@ void GraphicsEngine::shutDown() {
     // ELIMINAR EL SISTEMA DE BUSQUEDA DE FICHEROS DE CONFIGURACION
     delete fsLayer;
     fsLayer = nullptr;
+
+    //par aqeu la escena de test no deje leaks
+    delete luzNode;
+    delete mainLight;
+    delete maincam;
+    delete camaraNode;
 }
 
 void GraphicsEngine::testScene() {
@@ -226,26 +240,32 @@ void GraphicsEngine::testScene() {
     lightNode->attachObject(light);
 
     // Camara
-    Ogre::SceneNode* camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
+    camaraNode = new Node(scnMgr, Vector3(0, 0, 20), Vector3(1, 1, 1));
+    maincam = new Camera(scnMgr, camaraNode, "maincamera",Vector3(0,0,-1),5,true);
+    /* Ogre::SceneNode* camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
     camNode->setPosition(0, 0, 15);
     camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
     Ogre::Camera* cam = scnMgr->createCamera("myCam");
     cam->setNearClipDistance(5);
     cam->setAutoAspectRatio(true);
-    camNode->attachObject(cam);
+    camNode->attachObject(cam);*/
+
     // Puerto de vista de Ogre
-    Ogre::Viewport* vp = ogreWindow->addViewport(cam);
+    Ogre::Viewport* vp = ogreWindow->addViewport(maincam->getCamera());
 
     // fondo
     vp->setBackgroundColour(Ogre::ColourValue(0.83f, 0.5f, 0.9f));
 
-    //// objeto
-    //Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
-    ////ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
-    //node = scnMgr->getRootSceneNode()->createChildSceneNode();
-    //// node->yaw(Ogre::Degree(90));
-    //node->attachObject(ent);
-
+    // objeto
+    Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
+    //ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
+    node = scnMgr->getRootSceneNode()->createChildSceneNode();
+    // node->yaw(Ogre::Degree(90));
+    node->attachObject(ent);
+    //luz 
+     luzNode = new Node(scnMgr, Vector3(1, 1, 10), Vector3(1, 1, 1));
+     mainLight = new Tapioca::Light( scnMgr, luzNode, LightType::POINT, Vector4(0, 0, 2, 1),Vector3(1,1,1));
+ 
     //try {
     //    // mroot->startRendering();// FALTAN ARCHIVOS .H Y . HLSL QUE ESTAN EN SRC MEDIA MAIN Y TIENEN QEU ESTAR EN LA CARPETA DE RECURSOS
     //    //la carpeta rtShader lib parece que tambien hara falta
