@@ -5,7 +5,7 @@
 Tapioca::PhysicsDebugDrawer::PhysicsDebugDrawer()
     : mode(DBG_DrawWireframe) { }
 
-Tapioca::PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
+Tapioca::PhysicsDebugDrawer::~PhysicsDebugDrawer() { clearLines(); }
 
 void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) { 
 	Ogre::ManualObject* line = GraphicsEngine::instance()->getSceneManager()->createManualObject();
@@ -15,6 +15,7 @@ void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector
     line->colour(color.x(), color.y(), color.z());
     line->end();
     GraphicsEngine::instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode()->attachObject(line);
+    lines.push_back(line);
 }
 
 void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, 
@@ -28,3 +29,11 @@ void Tapioca::PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, co
 void Tapioca::PhysicsDebugDrawer::draw3dText(const btVector3& location, const char* textString) { }
 
 void Tapioca::PhysicsDebugDrawer::drawTransform(const btTransform& transform, btScalar orthoLen) { }
+
+void Tapioca::PhysicsDebugDrawer::clearLines() {
+    for (std::list<Ogre::ManualObject*>::iterator it = lines.begin(); it != lines.end();) {
+        GraphicsEngine::instance()->getSceneManager()->destroyManualObject(*it);
+        it = lines.erase(it);
+    }
+    
+}

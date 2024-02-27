@@ -1,10 +1,16 @@
 #pragma once
 #include <LinearMath/btIDebugDraw.h>
+#include <list>
+
+namespace Ogre {
+class ManualObject;
+}
 
 namespace Tapioca {
 
 class PhysicsDebugDrawer : public btIDebugDraw {
     int mode;
+    std::list<Ogre::ManualObject*> lines;
 
 public:
     PhysicsDebugDrawer();
@@ -16,6 +22,7 @@ public:
     void reportErrorWarning(const char* warningString) override;
     void draw3dText(const btVector3& location, const char* textString) override;
     void drawTransform(const btTransform& transform, btScalar orthoLen) override;
+    void clearLines() override;
     inline void setDebugMode(int debugMode) override { mode = DebugDrawModes(debugMode); }
     inline int getDebugMode() const override { return mode; }
 };

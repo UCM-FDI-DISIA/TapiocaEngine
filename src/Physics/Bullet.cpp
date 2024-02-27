@@ -9,7 +9,7 @@ int main() {
     Tapioca::PhysicsManager* physMng= Tapioca::PhysicsManager::create();
     int i = 1;
     while (true) {
-        physMng->update(1.0f / 60.0f);
+        physMng->update(1/60.f);
     }
     return 0;
 }

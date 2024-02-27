@@ -158,7 +158,9 @@ void GraphicsEngine::handleEvents() {
     //}
 }
 
-void GraphicsEngine::fixedUpdate() { node->yaw(Ogre::Degree(2)); }
+void GraphicsEngine::fixedUpdate() {
+    //node->yaw(Ogre::Degree(2)); 
+}
 
 void GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
@@ -233,12 +235,12 @@ void GraphicsEngine::testScene() {
     // fondo
     vp->setBackgroundColour(Ogre::ColourValue(0.83f, 0.5f, 0.9f));
 
-    // objeto
-    Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
-    //ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
-    node = scnMgr->getRootSceneNode()->createChildSceneNode();
-    // node->yaw(Ogre::Degree(90));
-    node->attachObject(ent);
+    //// objeto
+    //Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
+    ////ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
+    //node = scnMgr->getRootSceneNode()->createChildSceneNode();
+    //// node->yaw(Ogre::Degree(90));
+    //node->attachObject(ent);
 
     //try {
     //    // mroot->startRendering();// FALTAN ARCHIVOS .H Y . HLSL QUE ESTAN EN SRC MEDIA MAIN Y TIENEN QEU ESTAR EN LA CARPETA DE RECURSOS

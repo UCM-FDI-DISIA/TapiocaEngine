@@ -25,7 +25,7 @@ using namespace std;
 namespace Tapioca {
 class Vector3;
 class PhysicsDebugDrawer;
-class PhysicsManager : public Singleton<PhysicsManager> /*, public Module*/ {
+class PhysicsManager : public Singleton<PhysicsManager> , public Module {
 
     friend Singleton<PhysicsManager>;
 
@@ -35,7 +35,7 @@ private:
     PhysicsManager();
 
     //inicialización del mundo
-    void init() /*override*/;
+    void init()override;
 
 #pragma endregion
 
@@ -52,8 +52,11 @@ private:
     btDiscreteDynamicsWorld* dynamicsWorld;
     //almacenado todos los rigidbodies del mundo
     unordered_set<btRigidBody*> rigidBodies;
-    //para dibujar las fisicas
+#ifdef _DEBUG
     PhysicsDebugDrawer* pdd;
+#endif   // _DEBUG
+
+    //para dibujar las fisicas
 #pragma endregion
 
 public:
@@ -67,9 +70,9 @@ public:
     PhysicsManager& operator=(PhysicsManager&) = delete;
     PhysicsManager& operator=(PhysicsManager&&) = delete;
 
-    void update(float frameRate);
+    void update(const uint64_t deltaTime) override;
 
-    void fixedUpdate(float deltaTime);
+    void fixedUpdate(float deltaTime) ;
 
 
     /*
