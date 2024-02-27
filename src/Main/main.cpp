@@ -38,7 +38,6 @@ int main(int argc, char** argv) {
         // Cargar desde JSON (LUA) la escena desde el SceneManager y que cree
         // los objetos con sus respectivos componentes y los añada a la escena
 
-        graphics->testScene(); // SOLO PARA PRUEBA
         auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
