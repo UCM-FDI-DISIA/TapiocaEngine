@@ -61,7 +61,7 @@ bool SceneManager::init() {
 
 void SceneManager::addScene(Scene* scene) { scenes.push(scene); }
 
-void SceneManager::initComponents() { scenes.top()->initComponents(); }
+void SceneManager::initComponents(const CompMap& variables) { scenes.top()->initComponents(variables); }
 
 void SceneManager::update(const uint64_t deltaTime) { 
     if (!scenes.empty()) scenes.top()->update(deltaTime);

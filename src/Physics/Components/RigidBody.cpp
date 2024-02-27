@@ -29,7 +29,7 @@ RigidBody::~RigidBody() {
     }
 }
 
-void RigidBody::initComponent() {
+void RigidBody::initComponent(const CompMap& variables) {
 
     //transform = parent->getComponent<Transform>();// DESCOMENTAR
 

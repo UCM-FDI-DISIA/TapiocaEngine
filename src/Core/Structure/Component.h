@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <cstdint>
 #include <string>
 #include <unordered_map>
@@ -25,6 +26,10 @@ protected:
     static std::unordered_set<Component*> listeners;
 
 public:
+    using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
+    // Para convertir el nombre de la variable en un string
+    #define VAR_NAME_TO_STRING(var) #var
+
     Component();
     virtual ~Component() { }
 
@@ -34,9 +39,24 @@ public:
     inline bool isActive() const { return active; }   //para comprobar si esta activo, en caso contrario no se actualiza
     virtual void setActive(bool b) { active = b; }    //activar/desactivar componente
 
+    template<typename T> 
+    inline void setValueFromMap(T& var, const CompMap& map) {
+        auto v = map.find(VAR_NAME_TO_STRING(var));
+        if (v != map.end()) {
+            try {
+                var = std::get<T>(v->second);
+            } catch (const std::bad_variant_access&) {
+                std::cerr << "Error al obtener el valor para la variable: " << VAR_NAME_TO_STRING(var)
+                          << " - Incompatibilidad de tipo.\n";
+            }
+        } else {
+            std::cerr << "Nombre de variable no encontrado en el mapa: " << VAR_NAME_TO_STRING(var) << std::endl;
+        }
+    }
+
     virtual void update(const uint64_t deltaTime) { }
     virtual void handleEvents() { }
-    virtual void initComponent() = 0;
+    virtual void initComponent(const CompMap& variables) = 0;
     virtual void fixedUpdate() { }
 
     virtual void onCollisionEnter(GameObject* other) {};

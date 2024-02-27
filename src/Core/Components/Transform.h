@@ -14,7 +14,7 @@ public:
 
     Transform();
     ~Transform() { }
-    void initComponent() override;
+    void initComponent(const CompMap& variables) override;
     // void update() override;
     // void fixedUpdate() override;
 

@@ -2,6 +2,8 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <variant>
+using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
 
 namespace Tapioca {
 class Component;
@@ -10,10 +12,11 @@ class Scene;
 class GameObject {
 private:
     friend class Scene;
+
     void refresh();
     void update(const uint64_t deltaTime);
     void handleEvents();
-    void initComponents();
+    void initComponents(const CompMap& variables);
     void fixedUpdate();
 
     Scene* scene;

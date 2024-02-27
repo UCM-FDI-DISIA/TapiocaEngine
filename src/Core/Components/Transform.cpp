@@ -8,7 +8,7 @@ Transform::Transform()
     , rotation(Vector3(0))
     , scale(Vector3(1)) { }   //PRUEBA
 
-void Transform::initComponent() {   //PRUEBA
+void Transform::initComponent(const CompMap& variables) {   //PRUEBA
 }
 
 Vector3 Transform::getPosition() { return position; }

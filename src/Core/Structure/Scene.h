@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <variant>
+using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
 
 namespace Tapioca {
 class GameObject;
@@ -20,7 +22,7 @@ public:
 
     void addObject(GameObject* object, std::string handler);
     void refresh();
-    void initComponents();
+    void initComponents(const CompMap& variables);
     void update(const uint64_t deltaTime);
     void handleEvents();
     void fixedUpdate();
