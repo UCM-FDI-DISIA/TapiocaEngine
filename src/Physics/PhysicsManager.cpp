@@ -4,6 +4,7 @@
 #include "Utilities/Vector3.h"
 #include "Components/Collider.h"
 #include "Utilities/checkML.h"
+#undef new DBG_NEW
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif   // _DEBUG
