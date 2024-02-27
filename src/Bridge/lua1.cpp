@@ -23,7 +23,6 @@
 //}
 
 int Tapioca::lua1::Prueba() {
-
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
     if (luaL_dofile(L, "archivo.json") != 0) {

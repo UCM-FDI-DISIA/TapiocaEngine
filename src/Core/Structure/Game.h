@@ -10,8 +10,6 @@ class Game {
 private:
     static Game* instance;
 
-    std::stack<Scene*> scenes;
-    std::vector<Scene*> toDelete;
     std::vector<Module*> modules;
     uint64_t deltaTime;
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;
@@ -20,7 +18,7 @@ private:
     friend class Module;
     void addModule(Module*);
 
-    void initComponents();
+    //void initComponents();
     void update();
     void handleEvents();
     void fixedUpdate();
@@ -38,9 +36,5 @@ public:
 
     void init();
     void run();
-
-    void pushScene(Scene*);
-    void popScene();
-    void changeScene(Scene*);
 };
 }

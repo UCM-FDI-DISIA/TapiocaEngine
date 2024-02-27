@@ -9,7 +9,7 @@ Game::Game()
     : finish(false)
     , deltaTime(0) {
 
-    // No debería haber más de un objeto Game
+    // No deberï¿½a haber mï¿½s de un objeto Game
     if (instance != nullptr) {
         std::cerr << "Se ha intentado crear un segundo objeto Game.\n";
         return;
@@ -19,12 +19,9 @@ Game::Game()
 
 Game::~Game() {
     instance = nullptr;
-    while (!scenes.empty()) {
-        delete scenes.top();
-        scenes.pop();
-    }
 
-    for(Module* mod : modules) delete mod;
+    for (Module* mod : modules)
+        delete mod;
 }
 
 void Game::init() {
@@ -71,27 +68,19 @@ void Game::run() {
     }
 }
 
-void Game::initComponents() { scenes.top()->initComponent(); }
-
 void Game::update() {
     for (auto mod : modules)
         mod->update(deltaTime);
-
-    scenes.top()->update(deltaTime);
 }
 
 void Game::handleEvents() {
     for (auto mod : modules)
         mod->handleEvents();
-
-    scenes.top()->handleEvents();
 }
 
 void Game::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
-
-    scenes.top()->fixedUpdate();
 }
 
 void Game::render() {
@@ -100,26 +89,8 @@ void Game::render() {
 }
 
 void Game::refresh() {
-    for (Scene* sc : toDelete)
-        delete sc;
-    toDelete.clear();
-
-    scenes.top()->refresh();
-}
-
-void Game::pushScene(Scene* sc) { scenes.push(sc); }
-
-void Game::popScene() {
-    toDelete.push_back(scenes.top());
-    scenes.pop();
-
-    if (scenes.empty()) finish = true;
-}
-
-void Game::changeScene(Scene* sc) {
-    toDelete.push_back(scenes.top());
-    scenes.pop();
-    scenes.push(sc);
+	for (auto mod : modules)
+		mod->refresh();
 }
 
 void Game::addModule(Module* m) { modules.push_back(m); }

@@ -19,6 +19,8 @@ public:
     DynamicLibraryLoader(const std::string& gameName = "JuegoPrueba");
     ~DynamicLibraryLoader();
 
-    bool setup();
+    inline HMODULE getModule() const { return module; }
+
+    bool load();
 };
 }

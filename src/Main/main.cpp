@@ -4,12 +4,12 @@
 #include "Utilities/checkML.h"
 #include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
+#include "InputManager.h"
+#include "SceneManager.h"
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
-#include "InputManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
-// #include "SceneManager.h"
 
 #include "Node.h" // SOLO PARA PRUEBA
 #include "Structure/Scene.h"
@@ -17,27 +17,23 @@
 using namespace std;
 using namespace Tapioca;
 
-static void initModules();
+static void createModules(HMODULE module);
 GraphicsEngine* graphics;
 PhysicsManager* physics;
 InputManager* input;
 //AudioManager* audio;
 //UIManager* ui;
-//SceneManager* scenes;
+SceneManager* scenes;
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
     DynamicLibraryLoader* loader = new DynamicLibraryLoader();
 
-    if (loader->setup()) {
+    if (loader->load()) {
         Game* game = new Game();
-        initModules();
+        createModules(loader->getModule());
         game->init();
-        new Scene(); // Para que no de problemas ahora mismo
-        // Cargar desde JSON (LUA) la escena desde el SceneManager y que cree
-        // los objetos con sus respectivos componentes y los añada a la escena
-
         auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
@@ -56,11 +52,11 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-static void initModules() {
+static void createModules(HMODULE module) {
+    input = InputManager::create();
+    scenes = SceneManager::create(module);
     graphics = GraphicsEngine::create();
     physics = PhysicsManager::create();
-    input = InputManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
-    // scenes = SceneManager::create();
 }

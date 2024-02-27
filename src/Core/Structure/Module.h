@@ -14,5 +14,6 @@ public:
     virtual void handleEvents() { }
     virtual void fixedUpdate() { }
     virtual void render() { }
+    virtual void refresh() { }
 };
 }

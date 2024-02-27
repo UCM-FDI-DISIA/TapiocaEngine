@@ -35,7 +35,7 @@ private:
     PhysicsManager();
 
     //inicialización del mundo
-    void init()override;
+    void init() override;
 
 #pragma endregion
 

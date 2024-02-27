@@ -6,7 +6,7 @@ DynamicLibraryLoader::DynamicLibraryLoader(const std::string& gameName) :
 
 DynamicLibraryLoader::~DynamicLibraryLoader() { free(); }
 
-bool DynamicLibraryLoader::setup() {
+bool DynamicLibraryLoader::load() {
 #ifdef _DEBUG
     gamePath = "./" + gameName + "_d.dll";
 #else
@@ -20,13 +20,13 @@ bool DynamicLibraryLoader::setup() {
         return false;
     }
 
-    if ((entryPoint = (EntryPoint)(GetProcAddress(module, "saluda"))) == nullptr) {
-        std::cerr << "No se pudo obtener la dirección de la función.\n";
-        free();
-        return false;
-    }
+    //if ((entryPoint = (EntryPoint)(GetProcAddress(module, "saluda"))) == nullptr) {
+    //    std::cerr << "No se pudo obtener la dirección de la función.\n";
+    //    free();
+    //    return false;
+    //}
 
-    entryPoint("mundo");   // Hola, mundo
+    //entryPoint("mundo");   // Hola, mundo
 
     return true;
 }

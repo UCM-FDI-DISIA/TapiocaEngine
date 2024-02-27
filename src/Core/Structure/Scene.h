@@ -9,7 +9,6 @@ class GameObject;
 class Scene {
 private:
     friend class GameObject;
-    void addObject(GameObject* object, std::string handler);
     std::vector<GameObject*> objects;
     std::unordered_map<std::string, GameObject*> handlers;
 
@@ -19,6 +18,7 @@ public:
 
     GameObject* getHandler(const std::string& handler) const;
 
+    void addObject(GameObject* object, std::string handler);
     void refresh();
     void initComponent();
     void update(const uint64_t deltaTime);
