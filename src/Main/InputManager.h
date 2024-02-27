@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utilities/Singleton.h>
+#include <Structure/Module.h>
 
 #include <vector>
 #include <string>
@@ -13,11 +14,12 @@ typedef _SDL_GameController SDL_GameController;
 namespace Tapioca { 
 	enum EVENTS : uint8_t { 
         ev_ACCEPT = 0, 
+        ev_CLOSE,
         ev_TOGGLE_TEXT_INPUT,
         ev_REMOVE_CHAR_INPUT,
     };
 
-    class InputManager : public Singleton<InputManager> {
+    class InputManager : public Singleton<InputManager>, public Module {
             friend Singleton<InputManager>;
 
         private:
@@ -78,9 +80,9 @@ namespace Tapioca {
             virtual ~InputManager();
 
             void updateState(const SDL_Event& event);
-            void update();
+            void handleEvents();
 
-            bool windowClosed();
+            
             bool eventHappened(EVENTS ev);
 
             // Devuelve la posición del ratón

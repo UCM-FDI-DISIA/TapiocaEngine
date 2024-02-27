@@ -6,7 +6,7 @@
 #include "Structure/Game.h"
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
-// #include "InputManager.h"
+#include "InputManager.h"
 // #include "AudioManager.h" Añadir cuando se implemente
 // #include "UIManager.h" Añadir cuando se implemente
 
@@ -19,7 +19,7 @@ using namespace Tapioca;
 static void initModules();
 GraphicsEngine* graphics;
 PhysicsManager* physics;
-//InputManager* input;
+InputManager* input;
 //AudioManager* audio;
 //UIManager* ui;
 
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 static void initModules() {
     graphics = GraphicsEngine::create();
     physics = PhysicsManager::create();
-    // input = InputManager::create();
+    input = InputManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
 }

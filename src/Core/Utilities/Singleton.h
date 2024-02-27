@@ -11,7 +11,7 @@ namespace Tapioca {
 template<typename T> class Singleton {
 private:
     // Instancia única
-    static std::unique_ptr<T> instance_;
+    static T* instance_;
 
 protected:
     Singleton() {};
@@ -26,28 +26,24 @@ public:
     // Inicializa la instancia con los parámetros deseados (... args)
     template<typename... T_args> inline static T* create(T_args&&... args) {
         //assert(instance_.get() == nullptr, "Instance already exists");
-        if (instance_.get() == nullptr) instance_.reset(new T(std::forward<T_args>(args)...));
+        if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
 #ifdef _DEBUG
         else std::cout << "Instance already exists\n";
 #endif
-        return instance_.get();
+        return instance_;
     }
-
-    // Para cerrar singletons en un orden específico
-    inline static void close() { instance_.reset(); }
-
 
     // Obtener el puntero a la instancia
     inline static T* instance() {
         // Si no existe, se crea
-        if (instance_.get() == nullptr) create();
+        if (instance_ == nullptr) create();
 
         // Entonces, devuelve el puntero
-        return instance_.get();
+        return instance_;
     }
 };
 
-template<typename T> std::unique_ptr<T> Singleton<T>::instance_;
+template<typename T> T* Singleton<T>::instance_ = nullptr;
 }
 
 
