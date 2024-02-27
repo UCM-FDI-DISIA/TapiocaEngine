@@ -8,7 +8,6 @@
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif   // _DEBUG
-#undef new DBG_NEW
 
 #include <iostream>   //PRUEBA
 namespace Tapioca {
@@ -127,8 +126,8 @@ void PhysicsManager::update(const uint64_t deltaTime) {
             body->getMotionState()->getWorldTransform(tr);
         } else
             tr = obj->getWorldTransform();
-        std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
-                  << tr.getOrigin().getZ() << "\n";
+      /*  std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
+                  << tr.getOrigin().getZ() << "\n";*/
     }
 #endif   // _DEBUG
     //...........................................
