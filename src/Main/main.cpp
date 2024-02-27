@@ -11,6 +11,7 @@
 // #include "UIManager.h" Añadir cuando se implemente
 
 //#include "Node.h" // SOLO PARA PRUEBA
+#include "Structure/Scene.h"
 
 using namespace std;
 using namespace Tapioca;
@@ -31,6 +32,7 @@ int main(int argc, char** argv) {
         Game* game = new Game();
         initModules();
         game->init();
+        new Scene(); // Para que no de problemas ahora mismo
         /*auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
