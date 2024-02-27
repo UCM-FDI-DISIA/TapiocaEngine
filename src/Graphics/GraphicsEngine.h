@@ -26,6 +26,10 @@ namespace RTShader {
 
 namespace Tapioca {
 class Node;
+class Camera;
+class Enity;
+class Light;
+class Vector4;//para colores
 }
 
 namespace Tapioca {
@@ -70,6 +74,8 @@ private:
     GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
 
 public:
+    enum LightType { POINT,SPOTLIGHT,DIRECTIONAL};
+
     virtual ~GraphicsEngine();
 
     /*
@@ -97,11 +103,36 @@ public:
     void testScene();
 
     Node* createNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+    Node* CreateNode(Node* n);
 
-    Node* createChildNode(
-        Node* parent, Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+    Node* createChildNode(Node* parent, Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+    /*
+    * @brief devuelve una rferencia al nodo hijo creado
+    */
+    Node* createChilNode(Node* n);
 
     void removeNode(Node* node);
+
+    /*
+    * @brief devuelve a una luz que se podra manipular
+    */
+    Light* createLight(Node* n, LightType T,Vector4 color, Vector3 direction);
+    /*
+    * @brief crea una luz qque no se modificara (ej un sol)
+    */
+    void createLight(Vector3 pos ,LightType T,Vector4 color,Vector3 direction);
+
+    /*
+    * @brief devuelve a una camara que se podra manipular
+    */
+    Camera* createCamera(Vector3 pos);
+    /*
+    * @brief crea una camara que no se modificara (la del juego de billar?)
+    */
+    void createCamera();
+
+
+    void setSkyplane();
 
     // BORRAR cuando se haya creado el wrapper
     inline Ogre::SceneManager* getSceneManager() { return scnMgr; }
