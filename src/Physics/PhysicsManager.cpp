@@ -7,7 +7,7 @@
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif   // _DEBUG
-
+#undef new DBG_NEW
 
 #include <iostream>   //PRUEBA
 namespace Tapioca {
@@ -75,7 +75,7 @@ PhysicsManager::PhysicsManager()
     , pdd(nullptr)
 #endif   // _DEBUG
 {
-   // init();
+    // init();
 }
 
 PhysicsManager::~PhysicsManager() { destroy(); }
@@ -101,14 +101,14 @@ void PhysicsManager::init() {
     gContactAddedCallback = onCollisionStay;
     gContactEndedCallback = onCollisionExit;
 
-    createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT,1, 1, 10, 0, 1,
-        (1 << 2) | (0 << 1) | (1 << 0));                                                                        //PRUEBA
-    createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
+    createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 1,
+        (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
+    createRigidBody(
+        Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
 #ifdef _DEBUG
     pdd = new PhysicsDebugDrawer();
     dynamicsWorld->setDebugDrawer(pdd);
 #endif   // _DEBUG
-
 }
 
 void PhysicsManager::update(const uint64_t deltaTime) {
@@ -233,6 +233,6 @@ void PhysicsManager::destroyRigidBody(btRigidBody* rb) {
     if (rb && rb->getMotionState()) delete rb->getMotionState();
     delete rb->getCollisionShape();
     dynamicsWorld->removeCollisionObject(rb);
-   // delete rb;
+    delete rb;
 }
 }
