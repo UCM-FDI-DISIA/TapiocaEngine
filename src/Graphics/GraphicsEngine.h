@@ -29,7 +29,7 @@ class Node;
 class Camera;
 class Enity;
 class Light;
-class Vector4;//para colores
+class Vector4;   //para colores
 }
 
 namespace Tapioca {
@@ -74,7 +74,7 @@ private:
     GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
 
 public:
-    enum LightType { POINT,SPOTLIGHT,DIRECTIONAL};
+    enum LightType { POINT, SPOTLIGHT, DIRECTIONAL };
 
     virtual ~GraphicsEngine();
 
@@ -103,24 +103,22 @@ public:
     void testScene();
 
     Node* createNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
-    Node* CreateNode(Node* n);
 
-    Node* createChildNode(Node* parent, Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
-    /*
-    * @brief devuelve una rferencia al nodo hijo creado
-    */
-    Node* createChilNode(Node* n);
+    Node* createChildNode(
+        Node* parent, Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
+    // eliminar un nodo por completo
+    // esto quiere decir: delete del nodo y sus hijos, quitar objetos y nodos del propio nodo y de sus hijos del grafo de la escena
     void removeNode(Node* node);
 
     /*
     * @brief devuelve a una luz que se podra manipular
     */
-    Light* createLight(Node* n, LightType T,Vector4 color, Vector3 direction);
+    Light* createLight(Node* n, LightType T, Vector4 color, Vector3 direction);
     /*
     * @brief crea una luz qque no se modificara (ej un sol)
     */
-    void createLight(Vector3 pos ,LightType T,Vector4 color,Vector3 direction);
+    void createLight(Vector3 pos, LightType T, Vector4 color, Vector3 direction);
 
     /*
     * @brief devuelve a una camara que se podra manipular

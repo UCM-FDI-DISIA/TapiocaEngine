@@ -10,7 +10,7 @@
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
 
-//#include "Node.h" // SOLO PARA PRUEBA
+#include "Node.h" // SOLO PARA PRUEBA
 #include "Structure/Scene.h"
 
 using namespace std;
@@ -33,12 +33,11 @@ int main(int argc, char** argv) {
         initModules();
         game->init();
         new Scene(); // Para que no de problemas ahora mismo
-        /*auto node = graphics->createNode();
+        auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
         graphics->createChildNode(node);
-        graphics->removeNode(childNode);
-        node->getAllChildren();*/
+        graphics->removeNode(node);
         graphics->testScene();
         game->run();
         delete game;
