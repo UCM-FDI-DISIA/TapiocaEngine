@@ -1,13 +1,18 @@
 #include "InputManager.h"
 
-#include <SDL_events.h>
+#include <SDL.h>
 #include "Utilities/Vector2.h"
+#include "Structure/Game.h"
+
+#include "Utilities/checkML.h"
 
 #ifdef _DEBUG
 #include <iostream>
 #endif
 
 Tapioca::InputManager::InputManager() : inputText("") {
+    if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
+
     resetText();
     initControllers();
     clearInput();
@@ -147,13 +152,14 @@ void Tapioca::InputManager::joyAxisMotionEvent(const SDL_Event& event) {
 
 
 // Devuelve si se ha cerrado la ventana (si no está vacío el vector, significa que no se ha llamado el evento
-bool Tapioca::InputManager::windowClosed() { return !inputEventTriggered[ie_closeWindow].empty(); }
+//bool Tapioca::InputManager::windowClosed() { return !inputEventTriggered[ie_closeWindow].empty(); }
 
 void Tapioca::InputManager::updateState(const SDL_Event& event) {
     // Eventos de ventana
     switch (event.window.event) {
     case SDL_WINDOWEVENT_CLOSE:
-        inputEventTriggered[ie_closeWindow].push_back(event);
+        Game::get()->exit();
+        //inputEventTriggered[ie_closeWindow].push_back(event);
         break;
     default:
         break;
@@ -218,7 +224,7 @@ void Tapioca::InputManager::updateState(const SDL_Event& event) {
         else if (eventHappened(ev_TOGGLE_TEXT_INPUT)) {
             SDL_StopTextInput();
             resetText();
-            update();
+            handleEvents();
 #ifdef _DEBUG
             std::cout << "Ended text input\n";
 #endif
@@ -226,7 +232,7 @@ void Tapioca::InputManager::updateState(const SDL_Event& event) {
     }
 }
 
-void Tapioca::InputManager::update() {
+void Tapioca::InputManager::handleEvents() {
     SDL_Event event;
     clearInput();
     while (SDL_PollEvent(&event)) updateState(event);

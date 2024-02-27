@@ -12,14 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Graphics\GraphicsEngine.cpp" />
-    <ClCompile Include="..\..\src\Graphics\InputManager.cpp" />
     <ClCompile Include="..\..\src\Graphics\Node.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Ogre.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />
-    <ClInclude Include="..\..\src\Graphics\InputManager.h" />
     <ClInclude Include="..\..\src\Graphics\Node.h" />
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
   </ItemGroup>

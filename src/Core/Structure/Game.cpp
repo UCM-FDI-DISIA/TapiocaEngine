@@ -24,7 +24,7 @@ Game::~Game() {
         scenes.pop();
     }
 
-    /*for(Module* mod : modules) delete mod;*/
+    for(Module* mod : modules) delete mod;
 }
 
 void Game::init() {

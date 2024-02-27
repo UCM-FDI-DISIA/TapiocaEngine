@@ -34,6 +34,8 @@ public:
 
     static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps   // uint32_t
 
+    void exit() { finish = true; }
+
     void init();
     void run();
 };

@@ -79,7 +79,7 @@ void GraphicsEngine::init() {
     mRoot->initialise(false);
 
     // Iniciar SDL
-    SDL_Init(SDL_INIT_EVERYTHING);
+    if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
 
     // informacion de la ventana
     Ogre::NameValuePairList miscParams;

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\DynamicLibraryLoader.cpp" />
+    <ClCompile Include="..\..\src\Main\InputManager.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -24,18 +25,14 @@
     <ProjectReference Include="..\Lua\Lua.vcxproj">
       <Project>{e0adcffa-eb53-44dd-b200-55fc3989ef12}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\MiBiblioteca\MiBiblioteca.vcxproj">
-      <Project>{e0d58efb-f43b-4380-8513-ed54e97a96fb}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Physics\Physics.vcxproj">
-      <Project>{4d51ad06-e3f2-480d-92f8-d0a63c2b60e6}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\UI\UI.vcxproj">
       <Project>{5864a0d2-29e9-4bd7-9db3-f51b12c19737}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h" />
+    <ClInclude Include="..\..\src\Main\InputManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
