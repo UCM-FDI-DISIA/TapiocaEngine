@@ -11,7 +11,7 @@ class GameObject {
 private:
     friend class Scene;
     void refresh();
-    void update();
+    void update(const uint64_t deltaTime);
     void handleEvents();
     void initComponent();
     void fixedUpdate();

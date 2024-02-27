@@ -41,9 +41,9 @@ void GameObject::refresh() {
     }
 }
 
-void GameObject::update() {
+void GameObject::update(const uint64_t deltaTime) {
     for (auto comp : cmpOrder)
-        if (comp->isActive()) comp->update();
+        if (comp->isActive()) comp->update(deltaTime);
 }
 
 void GameObject::handleEvents() {

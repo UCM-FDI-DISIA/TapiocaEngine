@@ -39,7 +39,7 @@ public:
     ~RigidBody();
 
     void initComponent() override;
-    void update() override;
+    void update(const uint64_t deltaTime) override;
 
     void setActive(bool b) override;
 

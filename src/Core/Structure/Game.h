@@ -13,7 +13,6 @@ private:
     std::stack<Scene*> scenes;   // TODO manejo de escenas temporal
     std::vector<Module*> modules;
     uint64_t deltaTime;                                   // uint32_t
-    static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps   // uint32_t
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;
     bool finish;
 
@@ -33,8 +32,9 @@ public:
     ~Game();
     inline static Game* get() { return instance; }
 
-    inline const uint64_t& getDeltaTime() const { return deltaTime; }
-    inline const uint64_t& getFixedDeltaTime() const { return FIXED_DELTA_TIME; }
+    static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps   // uint32_t
+
+    void exit() { finish = true; }
 
     void init();
     void run();

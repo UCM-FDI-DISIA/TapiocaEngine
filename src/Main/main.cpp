@@ -6,11 +6,12 @@
 #include "Structure/Game.h"
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
-// #include "InputManager.h"
-// #include "AudioManager.h" Añadir cuando se implemente
-// #include "UIManager.h" Añadir cuando se implemente
+#include "InputManager.h"
+// #include "AudioManager.h" Aï¿½adir cuando se implemente
+// #include "UIManager.h" Aï¿½adir cuando se implemente
 
 //#include "Node.h" // SOLO PARA PRUEBA
+#include "Structure/Scene.h"
 
 using namespace std;
 using namespace Tapioca;
@@ -18,7 +19,7 @@ using namespace Tapioca;
 static void initModules();
 GraphicsEngine* graphics;
 PhysicsManager* physics;
-//InputManager* input;
+InputManager* input;
 //AudioManager* audio;
 //UIManager* ui;
 
@@ -31,6 +32,7 @@ int main(int argc, char** argv) {
         Game* game = new Game();
         initModules();
         game->init();
+        new Scene(); // Para que no de problemas ahora mismo
         /*auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
@@ -41,7 +43,7 @@ int main(int argc, char** argv) {
         game->run();
         delete game;
     } else {
-        cout << "Error al cargar la librería dinámica\n";
+        cout << "Error al cargar la librerï¿½a dinï¿½mica\n";
     }
 
     delete loader;
@@ -54,7 +56,7 @@ int main(int argc, char** argv) {
 static void initModules() {
     graphics = GraphicsEngine::create();
     physics = PhysicsManager::create();
-    // input = InputManager::create();
+    input = InputManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
 }

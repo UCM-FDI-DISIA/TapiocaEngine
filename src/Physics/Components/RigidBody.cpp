@@ -41,7 +41,7 @@ void RigidBody::initComponent() {
     rigidBody->setUserPointer(collider);
 }
 
-void RigidBody::update() {
+void RigidBody::update(const uint64_t deltaTime) {
 
     if (movementType == KINEMATIC_OBJECT) {
 

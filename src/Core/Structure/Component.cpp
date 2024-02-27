@@ -6,8 +6,7 @@
 namespace Tapioca {
     std::unordered_set<Component*> Component::listeners = std::unordered_set<Component*>();
 
-    Component::Component() : parent(nullptr), alive(true), active(true), id(""),
-        deltaTime(Game::get()->getDeltaTime()), fixedDeltaTime(Game::get()->getFixedDeltaTime()) {
+    Component::Component() : parent(nullptr), alive(true), active(true), id("") {
     
     }
     void Component::addListener(Component* component) { listeners.insert(component); }

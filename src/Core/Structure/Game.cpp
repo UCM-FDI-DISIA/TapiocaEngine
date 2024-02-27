@@ -24,7 +24,7 @@ Game::~Game() {
         scenes.pop();
     }
 
-    /*for(Module* mod : modules) delete mod;*/
+    for(Module* mod : modules) delete mod;
 }
 
 void Game::init() {
@@ -64,7 +64,7 @@ void Game::run() {
             }
         }
 
-        update();   // podemos pasarle el deltaTime porfa???
+        update();
 
         render();
     }
@@ -74,23 +74,23 @@ void Game::initComponents() { scenes.top()->initComponent(); }
 
 void Game::update() {
     for (auto mod : modules)
-        mod->update();
+        mod->update(deltaTime);
 
-    /*scenes.top()->update();*/
+    scenes.top()->update(deltaTime);
 }
 
 void Game::handleEvents() {
     for (auto mod : modules)
         mod->handleEvents();
 
-    /*scenes.top()->handleEvents();*/
+    scenes.top()->handleEvents();
 }
 
 void Game::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
 
-    /*scenes.top()->fixedUpdate();*/
+    scenes.top()->fixedUpdate();
 }
 
 void Game::render() {

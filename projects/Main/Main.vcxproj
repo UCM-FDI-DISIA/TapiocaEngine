@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\DynamicLibraryLoader.cpp" />
+    <ClCompile Include="..\..\src\Main\InputManager.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -21,8 +22,8 @@
     <ProjectReference Include="..\Graphics\Graphics.vcxproj">
       <Project>{41b70f84-8525-46cb-b0ae-a461780aec77}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\MiBiblioteca\MiBiblioteca.vcxproj">
-      <Project>{e0d58efb-f43b-4380-8513-ed54e97a96fb}</Project>
+    <ProjectReference Include="..\Lua\Lua.vcxproj">
+      <Project>{e0adcffa-eb53-44dd-b200-55fc3989ef12}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Physics\Physics.vcxproj">
       <Project>{4d51ad06-e3f2-480d-92f8-d0a63c2b60e6}</Project>
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h" />
+    <ClInclude Include="..\..\src\Main\InputManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -83,14 +85,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\MiBiblioteca\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)src\Lua\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;Bullet2FileLoader_Debug.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletFileLoader_Debug.lib;BulletInverseDynamicsUtils_Debug.lib;BulletInverseDynamics_Debug.lib;BulletSoftBody_Debug.lib;BulletWorldImporter_Debug.lib;BulletXmlWorldImporter_Debug.lib;ConvexDecomposition_Debug.lib;GIMPACTUtils_Debug.lib;HACD_Debug.lib;LinearMath_Debug.lib;Core_d.lib;Graphics_d.lib;UI_d.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Graphics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\UI\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Physics\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;Bullet2FileLoader_Debug.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletFileLoader_Debug.lib;BulletInverseDynamicsUtils_Debug.lib;BulletInverseDynamics_Debug.lib;BulletSoftBody_Debug.lib;BulletWorldImporter_Debug.lib;BulletXmlWorldImporter_Debug.lib;ConvexDecomposition_Debug.lib;GIMPACTUtils_Debug.lib;HACD_Debug.lib;LinearMath_Debug.lib;Core_d.lib;Graphics_d.lib;UI_d.lib;SDL2.lib;SDL2main.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Graphics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\UI\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Physics\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Lua\build\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -105,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\MiBiblioteca\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\MiBiblioteca\;$(SolutionDir)src\Lua\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -113,8 +115,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;Bullet2FileLoader.lib;Bullet3Collision.lib;Bullet3Common.lib;Bullet3Dynamics.lib;Bullet3Geometry.lib;Bullet3OpenCL_clew.lib;BulletCollision.lib;BulletDynamics.lib;BulletFileLoader.lib;BulletInverseDynamics.lib;BulletInverseDynamicsUtils.lib;BulletSoftBody.lib;BulletWorldImporter.lib;BulletXmlWorldImporter.lib;ConvexDecomposition.lib;GIMPACTUtils.lib;HACD.lib;LinearMath.lib;Core.lib;Graphics.lib;UI.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Graphics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\UI\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Physics\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;Bullet2FileLoader.lib;Bullet3Collision.lib;Bullet3Common.lib;Bullet3Dynamics.lib;Bullet3Geometry.lib;Bullet3OpenCL_clew.lib;BulletCollision.lib;BulletDynamics.lib;BulletFileLoader.lib;BulletInverseDynamics.lib;BulletInverseDynamicsUtils.lib;BulletSoftBody.lib;BulletWorldImporter.lib;BulletXmlWorldImporter.lib;ConvexDecomposition.lib;GIMPACTUtils.lib;HACD.lib;LinearMath.lib;Core.lib;Graphics.lib;UI.lib;SDL2.lib;SDL2main.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Graphics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\UI\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Physics\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Lua\build\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>

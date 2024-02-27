@@ -67,9 +67,9 @@ void Scene::initComponent() {
         obj->initComponent();
 }
 
-void Scene::update() {
+void Scene::update(const uint64_t deltaTime) {
     for (auto obj : objects)
-        obj->update();
+        obj->update(deltaTime);
 }
 
 void Scene::handleEvents() {
