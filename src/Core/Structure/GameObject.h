@@ -16,7 +16,6 @@ private:
     void initComponent();
     void fixedUpdate();
 
-
     Scene* scene;
     bool alive;
 
@@ -24,7 +23,6 @@ private:
     std::unordered_multimap<std::string, Component*> components;
     std::vector<Component*> cmpOrder; // TODO Hace falta??????
 
-    void addComponent(Component* comp, std::string id);
 public:
     GameObject(Scene* scene, std::string handler = "");
     ~GameObject();
@@ -32,6 +30,8 @@ public:
     inline bool isAlive() const { return alive; }
     inline void setAlive(bool alive) { this->alive = alive; }
     inline virtual Scene* getScene() const { return scene; }
+
+    void addComponent(Component* comp, std::string id);
 
     template<typename Comp>
     Comp* addComponent() {
