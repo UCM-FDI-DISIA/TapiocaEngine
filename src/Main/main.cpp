@@ -11,7 +11,7 @@
 // #include "UIManager.h" A�adir cuando se implemente
 // #include "SceneManager.h"
 
-//#include "Node.h" // SOLO PARA PRUEBA
+#include "Node.h" // SOLO PARA PRUEBA
 #include "Structure/Scene.h"
 
 using namespace std;
@@ -38,13 +38,13 @@ int main(int argc, char** argv) {
         // Cargar desde JSON (LUA) la escena desde el SceneManager y que cree
         // los objetos con sus respectivos componentes y los añada a la escena
 
-        /*auto node = graphics->createNode();
+        graphics->testScene(); // SOLO PARA PRUEBA
+        auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
         graphics->createChildNode(node);
-        graphics->removeNode(childNode);
-        node->getAllChildren();*/
-        graphics->testScene(); // SOLO PARA PRUEBA
+        graphics->removeNode(node);
+        graphics->testScene();
         game->run();
         delete game;
     } else {
