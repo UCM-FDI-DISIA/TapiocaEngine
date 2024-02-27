@@ -3,6 +3,7 @@
 #include <btBulletDynamicsCommon.h>
 #include "Utilities/Vector3.h"
 #include "Components/Collider.h"
+#include "Utilities/checkML.h"
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif   // _DEBUG
@@ -104,8 +105,8 @@ void PhysicsManager::init() {
         (1 << 2) | (0 << 1) | (1 << 0));                                                                        //PRUEBA
     createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
 #ifdef _DEBUG
-    dynamicsWorld->setDebugDrawer(pdd);
     pdd = new PhysicsDebugDrawer();
+    dynamicsWorld->setDebugDrawer(pdd);
 #endif   // _DEBUG
 
 }
