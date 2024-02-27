@@ -29,18 +29,11 @@ Tapioca::InputManager::~InputManager() {
 
 // Para mapear el input a diferentes eventos
 void Tapioca::InputManager::mapInput() {
-    inputMap[ev_CLOSE].push_back({ie_keyDown, SDLK_ESCAPE});
-    
     inputMap[ev_ACCEPT].push_back({ie_keyDown, SDLK_a});
     inputMap[ev_ACCEPT].push_back({ie_keyUp, SDLK_w});
 
     inputMap[ev_ACCEPT].push_back({ie_ctrlButtonDown, SDL_CONTROLLER_BUTTON_A});
     inputMap[ev_ACCEPT].push_back({ie_ctrlButtonUp, SDL_CONTROLLER_BUTTON_B});
-
-    inputMap[ev_ACCEPT].push_back({ie_mouseButtonDown, SDL_BUTTON_LEFT });
-    inputMap[ev_ACCEPT].push_back({ ie_mouseButtonDown, SDL_BUTTON_MIDDLE });
-    inputMap[ev_ACCEPT].push_back({ ie_mouseButtonUp, SDL_BUTTON_RIGHT });
-
 }
 
 // Devuelve si se ha producido el evento indicado
@@ -58,31 +51,20 @@ bool Tapioca::InputManager::eventHappened(EVENTS event) {
             switch (elem.first) { 
                 // Si son eventos de tecla, comprueba si la tecla coincide con la mapeada
                 case ie_keyDown: case ie_keyUp:
-                    happened = evt.key.keysym.sym == elem.second;
-                    break;
-
-                // Si son eventos de movimiento de ratón, lo pone en true 
-                case ie_mouseMoving:
-                    happened = true;
-                    break;
-
-                // Si son eventos de botones de ratón, comprueba si el bótón coincide con el mapeado
-                case ie_mouseButtonUp: case ie_mouseButtonDown:
-                    happened = evt.button.button == elem.second;
-                    break;
-
-                case ie_ctrlAxisMotion:
-                    happened =  SDL_GameControllerGetButton(controllers[evt.cdevice.which], (SDL_GameControllerButton)elem.second) == evt.cbutton.state;
+                    happened |= evt.key.keysym.sym == elem.second;
                     break;
 
                 // Si son eventos de botón de mando, comprueba si el botón coincide con el mapeado 
                 // y si el botón que coincide ha sido pulsado en el mando que ha enviado el evento
                 case ie_ctrlButtonUp: case ie_ctrlButtonDown:
-                    happened = evt.cbutton.button == (SDL_GameControllerButton)elem.second 
-                        && SDL_GameControllerGetButton(controllers[evt.cdevice.which], (SDL_GameControllerButton)elem.second) == evt.cbutton.state;
+                    bool sameBttn = evt.cbutton.button == (SDL_GameControllerButton)elem.second;
+                    bool sameCtrl = 
+                        SDL_GameControllerGetButton(controllers[evt.cdevice.which], (SDL_GameControllerButton)elem.second) == evt.cbutton.state;
+                    happened |= sameBttn && sameCtrl;
                     break;
 
-                default: break;
+                //case :
+                //    break;
             }
         }
     }
@@ -254,9 +236,4 @@ void Tapioca::InputManager::handleEvents() {
     SDL_Event event;
     clearInput();
     while (SDL_PollEvent(&event)) updateState(event);
-
-    if (eventHappened(ev_CLOSE)) Game::get()->exit();
-#ifdef _DEBUG
-    if (eventHappened(ev_ACCEPT)) std::cout << "Accept event\n";
-#endif
 }
