@@ -24,9 +24,14 @@ Game::~Game() {
         delete mod;
 }
 
-void Game::init() {
-    for (auto mod : modules)
-        mod->init();
+bool Game::init() {
+    bool initialized = true;
+    auto mod = modules.begin();
+    while (initialized && mod != modules.end()) {
+        initialized = (*mod)->init();
+        ++mod;
+    }
+    return initialized;
 }
 
 void Game::run() {

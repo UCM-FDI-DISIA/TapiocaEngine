@@ -3,20 +3,18 @@
 #include <string>
 #include <Windows.h>
 using namespace std;
-typedef void(__cdecl* EntryPoint)(const char*);
 
 namespace Tapioca {
 class DynamicLibraryLoader {
 private:
-    std::string gameName;
-    std::string gamePath;
+    string gameName;
+    string gamePath;
     HMODULE module;
-    EntryPoint entryPoint;
 
     void free();
 
 public:
-    DynamicLibraryLoader(const std::string& gameName = "JuegoPrueba");
+    DynamicLibraryLoader(const string& gameName = "JuegoPrueba");
     ~DynamicLibraryLoader();
 
     inline HMODULE getModule() const { return module; }

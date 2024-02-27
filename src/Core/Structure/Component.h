@@ -36,7 +36,7 @@ public:
 
     virtual void update(const uint64_t deltaTime) { }
     virtual void handleEvents() { }
-    virtual void initComponent() { }
+    virtual void initComponent() = 0;
     virtual void fixedUpdate() { }
 
     virtual void onCollisionEnter(GameObject* other) {};

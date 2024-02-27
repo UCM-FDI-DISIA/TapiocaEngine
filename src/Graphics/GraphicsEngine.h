@@ -81,7 +81,7 @@ public:
     /*
     *   @brief creat el root de Ogre y prepara los recursos para empezar a renderizar
     */
-    void init() override;
+    bool init() override;
 
     // BORRAR
     void handleEvents() override;

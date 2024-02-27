@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <string>
 #include "Utilities/checkML.h"
 #include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
@@ -10,20 +9,16 @@
 #include "PhysicsManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
-
-#include "Node.h" // SOLO PARA PRUEBA
-#include "Structure/Scene.h"
-
 using namespace std;
 using namespace Tapioca;
 
 static void createModules(HMODULE module);
+InputManager* input;
+SceneManager* scenes;
 GraphicsEngine* graphics;
 PhysicsManager* physics;
-InputManager* input;
 //AudioManager* audio;
 //UIManager* ui;
-SceneManager* scenes;
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -33,19 +28,21 @@ int main(int argc, char** argv) {
     if (loader->load()) {
         Game* game = new Game();
         createModules(loader->getModule());
-        game->init();
-        auto node = graphics->createNode();
-        auto childNode = graphics->createChildNode(node);
-        graphics->createChildNode(childNode);
-        graphics->createChildNode(node);
-        graphics->removeNode(node);
-        graphics->testScene();
-        game->run();
+        if (game->init()) {
+            auto node = graphics->createNode();
+            auto childNode = graphics->createChildNode(node);
+            graphics->createChildNode(childNode);
+            graphics->createChildNode(node);
+            graphics->removeNode(node);
+            graphics->testScene();
+            game->run();
+        } else {
+            cerr << "Error al inicializar un módulo\n";
+        }
         delete game;
     } else {
-        cout << "Error al cargar la librer�a din�mica\n";
+        cerr << "Error al cargar la librer�a din�mica\n";
     }
-
     delete loader;
 
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);

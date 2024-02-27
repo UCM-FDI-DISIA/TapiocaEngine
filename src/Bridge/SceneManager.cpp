@@ -1,14 +1,9 @@
-#include <fstream>
-#include <iostream>
 #include <lua.hpp>
 #include <LuaBridge.h>
-#include "Utilities/checkML.h"
 #include "SceneManager.h"
-#include "Structure/Scene.h"
-#include "Structure/GameObject.h"
 using namespace Tapioca;
 
-SceneManager::SceneManager(HMODULE module) : module(module) { }
+SceneManager::SceneManager(HMODULE module) : module(module), entryPoint(nullptr) { }
 
 SceneManager::~SceneManager() {
     while (!scenes.empty()) {
@@ -17,37 +12,83 @@ SceneManager::~SceneManager() {
     }
 }
 
-void SceneManager::init() {
+bool SceneManager::init() {
+    // Obtiene la ruta del ejecutable
+    char buffer[MAX_PATH];
+    GetModuleFileNameA(NULL, buffer, MAX_PATH);
+    string::size_type pos = string(buffer).find_last_of("\\/");
+    string directorio = string(buffer).substr(0, pos);
+
+    // Construye la ruta completa al archivo LUA
+    string ruta = directorio + "\\assets\\scenes\\archivo.lua";
+
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
-    if (luaL_dofile(L, "archivo.lua") != 0) {
+    if (luaL_dofile(L, ruta.c_str()) != 0) {
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(L, -1) << std::endl;
         lua_close(L);
-    } else {
-        std::cout << "Archivo LUA cargado correctamente" << std::endl;
+        return false;
     }
 
-    // REALIZAR LA CREACIÓN DE LAS ESCENAS Y LOS OBJETOS CON SUS COMPONENTES
-    // A PARTIR DE LA INFORMACIÓN DEL ARCHIVO LUA
-    
-    Scene* newScene = new Scene();
-    
-    GameObject* obj = new GameObject(newScene);
-    //obj->addComponent();
+#ifdef _DEBUG
+    std::cout << "Archivo LUA cargado correctamente" << std::endl;
+#endif
+
+    //// REALIZAR LA CREACIÓN DE LAS ESCENAS Y LOS OBJETOS CON SUS COMPONENTES
+    //// A PARTIR DE LA INFORMACIÓN DEL ARCHIVO LUA
+    //for (cada escena) {
+    //    Scene* newScene = new Scene();
+    //    for (cada objeto) {
+    //        GameObject* obj = new GameObject(newScene);
+    //        for (cada componente) {
+    //            // comprobar si es un componente que existe en el motor
+    //            // (hay que cachear la string del componente)
+    //            // si esta en el motor, crearlo
+    //            // HAY QUE USAR FACTORIAS
+    //            Transform* comp = obj->addComponent<Transform>();   // por ejemplo
+    //            comp->setPosition(Vector3(...));
+    //            comp->setRotation(Vector3(...));
+    //            comp->setScale(Vector3(...));
+    //            // si no esta en el motor, crearlo en el juego
+    //            // HAY QUE USAR FACTORIAS EN EL JUEGO
+    //        }
+    //    }
+    //    addScene(newScene);
+    //}
+
+    return true;
 }
 
 void SceneManager::addScene(Scene* scene) { scenes.push(scene); }
 
-void SceneManager::initComponents() { scenes.top()->initComponent(); }
+void SceneManager::initComponents() { scenes.top()->initComponents(); }
 
+void SceneManager::update(const uint64_t deltaTime) { 
+    if (!scenes.empty()) scenes.top()->update(deltaTime);
+}
+
+void SceneManager::handleEvents() {
+    if (!scenes.empty()) scenes.top()->handleEvents();
+}
+
+void SceneManager::fixedUpdate() {
+    if (!scenes.empty()) scenes.top()->fixedUpdate();
+}
+
+void SceneManager::refresh() {
+    for (Scene* sc : toDelete)
+        delete sc;
+    toDelete.clear();
+
+    if (!scenes.empty()) scenes.top()->refresh();
+}
 
 void SceneManager::pushScene(Scene* sc) { scenes.push(sc); }
 
 void SceneManager::popScene() {
     toDelete.push_back(scenes.top());
-    scenes.pop();
-
-    //if (scenes.empty()) finish = true;
+    if (!scenes.empty()) scenes.pop();
+    // else /*if (scenes.empty())*/ finish = true; // TODO
 }
 
 void SceneManager::changeScene(Scene* sc) {
@@ -55,19 +96,3 @@ void SceneManager::changeScene(Scene* sc) {
     scenes.pop();
     scenes.push(sc);
 }
-
-//void Game::addScene(Scene* sc) { scenes.push(sc); }
-//
-//void SceneManager::update() { scenes.top()->update(); }
-//
-//void SceneManager::handleEvents() { scenes.top()->handleEvents(); }
-//
-//void SceneManager::fixedUpdate() { scenes.top()->fixedUpdate(); }
-//
-//void SceneManager::refresh() {
-//    for (Scene* sc : toDelete)
-//        delete sc;
-//    toDelete.clear();
-//
-//    scenes.top()->refresh();
-//}

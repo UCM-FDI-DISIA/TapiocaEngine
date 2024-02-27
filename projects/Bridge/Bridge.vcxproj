@@ -90,11 +90,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Bridge\lua1.cpp" />
     <ClCompile Include="..\..\src\Bridge\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Bridge\lua1.h" />
     <ClInclude Include="..\..\src\Bridge\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

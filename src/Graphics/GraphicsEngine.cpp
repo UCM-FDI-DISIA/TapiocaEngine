@@ -42,7 +42,9 @@ GraphicsEngine::~GraphicsEngine() {
     shutDown();
 }
 
-void GraphicsEngine::init() {
+bool GraphicsEngine::init() {
+    // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
+    
     // hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
     // el nombre es para crear un directorio dentro del home del usuario para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
@@ -120,6 +122,8 @@ void GraphicsEngine::init() {
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
     loadResources();
+
+    return true;
 }
 
 void GraphicsEngine::loadPlugIns() {

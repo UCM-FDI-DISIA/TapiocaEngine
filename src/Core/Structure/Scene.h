@@ -20,7 +20,7 @@ public:
 
     void addObject(GameObject* object, std::string handler);
     void refresh();
-    void initComponent();
+    void initComponents();
     void update(const uint64_t deltaTime);
     void handleEvents();
     void fixedUpdate();

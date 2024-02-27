@@ -51,7 +51,7 @@ void GameObject::handleEvents() {
         if (comp->isActive()) comp->handleEvents();
 }
 
-void GameObject::initComponent() {
+void GameObject::initComponents() {
     for (auto comp : cmpOrder)
         comp->initComponent();
 }

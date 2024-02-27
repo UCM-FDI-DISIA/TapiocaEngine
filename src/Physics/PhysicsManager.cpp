@@ -81,7 +81,8 @@ PhysicsManager::PhysicsManager()
 PhysicsManager::~PhysicsManager() { destroy(); }
 
 
-void PhysicsManager::init() {
+bool PhysicsManager::init() {
+    // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
 
     std::cout << "Object: ";
     colConfig = new btDefaultCollisionConfiguration();
@@ -109,6 +110,8 @@ void PhysicsManager::init() {
     pdd = new PhysicsDebugDrawer();
     dynamicsWorld->setDebugDrawer(pdd);
 #endif   // _DEBUG
+
+    return true;
 }
 
 void PhysicsManager::update(const uint64_t deltaTime) {

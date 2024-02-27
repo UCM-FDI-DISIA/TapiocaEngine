@@ -18,7 +18,6 @@ private:
     friend class Module;
     void addModule(Module*);
 
-    //void initComponents();
     void update();
     void handleEvents();
     void fixedUpdate();
@@ -32,9 +31,9 @@ public:
 
     static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps (62.5)
 
-    void exit() { finish = true; }
+    inline void exit() { finish = true; }
 
-    void init();
+    bool init();
     void run();
 };
 }

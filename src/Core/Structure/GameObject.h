@@ -13,7 +13,7 @@ private:
     void refresh();
     void update(const uint64_t deltaTime);
     void handleEvents();
-    void initComponent();
+    void initComponents();
     void fixedUpdate();
 
     Scene* scene;

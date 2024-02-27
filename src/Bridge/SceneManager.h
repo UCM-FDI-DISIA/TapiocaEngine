@@ -1,9 +1,18 @@
+#include <fstream>
+#include <iostream>
+#include <string>
 #include <stack>
+#include <map>
 #include <Windows.h>
+#include "Utilities/checkML.h"
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 #include "Structure/Scene.h"
+#include "Structure/Game.h"
+#include "Structure/GameObject.h"
+#include "Components/Transform.h"
 using namespace std;
+typedef void(__cdecl* EntryPoint)(const char*);
 
 namespace Tapioca {
 class SceneManager : public Tapioca::Singleton<SceneManager>, public Module {
@@ -14,12 +23,13 @@ private:
     void addScene(Scene*);
 
     HMODULE module;
-    std::stack<Scene*> scenes;
-    std::vector<Scene*> toDelete;
+    EntryPoint entryPoint;
+    stack<Scene*> scenes;
+    vector<Scene*> toDelete;
 
     SceneManager(HMODULE module);
 
-    void init() override;
+    bool init() override;
 
 public:
     ~SceneManager();
@@ -30,10 +40,10 @@ public:
     SceneManager& operator=(SceneManager&&) = delete;
 
     void initComponents();
-    /*void update();
-    void handleEvents();
-    void fixedUpdate();
-    void refresh();*/
+    void update(const uint64_t deltaTime) override;
+    void handleEvents() override;
+    void fixedUpdate() override;
+    void refresh() override;
     void pushScene(Scene*);
     void popScene();
     void changeScene(Scene*);
