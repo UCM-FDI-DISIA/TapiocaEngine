@@ -37,8 +37,8 @@ int main(int argc, char** argv) {
         graphics->createChildNode(node);
         graphics->removeNode(childNode);
         node->getAllChildren();*/
-        // game->run();
         graphics->testScene();
+        game->run();
         delete game;
     } else {
         cout << "Error al cargar la librería dinámica\n";

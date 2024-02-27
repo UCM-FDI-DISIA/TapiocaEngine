@@ -16,13 +16,14 @@ private:
 
     friend class GameObject;
     void setParent(GameObject* obj);
+
 protected:
     enum messageType { MESSAGE_A, MESSAGE_B, MESSAGE_C, MESSAGE_D };
     GameObject* parent;
     bool alive;
     bool active;   //indica si el componente esta activo (si se actualizan update,handleEvents,...)
-    const uint32_t& deltaTime;
-    const uint32_t& fixedDeltaTime;
+    const uint64_t& deltaTime;
+    const uint64_t& fixedDeltaTime;
     static std::unordered_set<Component*> listeners;
 
 public:

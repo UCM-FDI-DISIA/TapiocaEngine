@@ -18,6 +18,9 @@
 #include "Utilities/checkML.h"
 using namespace Tapioca;
 
+// BORRAR
+Ogre::SceneNode* node;
+
 GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr)
     , mShaderGenerator(nullptr)
@@ -41,8 +44,8 @@ GraphicsEngine::~GraphicsEngine() {
 
 void GraphicsEngine::init() {
     // hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
-    fsLayer =
-        new Ogre::FileSystemLayer("Directorio");   // se podria personalizar el nombre (aunque no afecta para nada)
+    // el nombre es para crear un directorio dentro del home del usuario para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
+    fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
     Ogre::String pluginsPath;
     // importante: la ruta donde esta plugins.cfg no puede tener caracteres especiales (solo alfabeto en ingles)
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
@@ -144,6 +147,19 @@ void GraphicsEngine::loadShaders() {
     }
 }
 
+void GraphicsEngine::handleEvents() {
+    //SDL_Event event;
+    //while (SDL_PollEvent(&event)) {
+    //    //ImGui_ImplSDL2_ProcessEvent(&event);
+    //    if (event.type == SDL_QUIT) done = true;
+    //    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
+    //        event.window.windowID == SDL_GetWindowID(sdlWindow))
+    //        done = true;
+    //}
+}
+
+void GraphicsEngine::fixedUpdate() { node->yaw(Ogre::Degree(2)); }
+
 void GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
 void GraphicsEngine::shutDown() {
@@ -197,12 +213,13 @@ void GraphicsEngine::shutDown() {
 }
 
 void GraphicsEngine::testScene() {
+    // Luz
     Ogre::Light* light = scnMgr->createLight("MainLight");
     Ogre::SceneNode* lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
     lightNode->setPosition(0, 10, 15);
     lightNode->attachObject(light);
 
-    // Ogre Camera
+    // Camara
     Ogre::SceneNode* camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
     camNode->setPosition(0, 0, 15);
     camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
@@ -210,41 +227,46 @@ void GraphicsEngine::testScene() {
     cam->setNearClipDistance(5);
     cam->setAutoAspectRatio(true);
     camNode->attachObject(cam);
-    //puerto de vista de Ogre
+    // Puerto de vista de Ogre
     Ogre::Viewport* vp = ogreWindow->addViewport(cam);
-    vp->setBackgroundColour(Ogre::ColourValue(0.83, 0.5, 0.9));
+
+    // fondo
+    vp->setBackgroundColour(Ogre::ColourValue(0.83f, 0.5f, 0.9f));
+
+    // objeto
     Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
     //ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
-    Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
+    node = scnMgr->getRootSceneNode()->createChildSceneNode();
     // node->yaw(Ogre::Degree(90));
     node->attachObject(ent);
-    try {
-        // mroot->startRendering();// FALTAN ARCHIVOS .H Y . HLSL QUE ESTAN EN SRC MEDIA MAIN Y TIENEN QEU ESTAR EN LA CARPETA DE RECURSOS
-        //la carpeta rtShader lib parece que tambien hara falta
-    } catch (Ogre::Exception& e) {
 
-        std::cout << e.getFullDescription() << '\n';
-    }
-    bool done = false;
-    while (!done) {
-        try {
+    //try {
+    //    // mroot->startRendering();// FALTAN ARCHIVOS .H Y . HLSL QUE ESTAN EN SRC MEDIA MAIN Y TIENEN QEU ESTAR EN LA CARPETA DE RECURSOS
+    //    //la carpeta rtShader lib parece que tambien hara falta
+    //} catch (Ogre::Exception& e) {
+
+    //    std::cout << e.getFullDescription() << '\n';
+    //}
+    //bool done = false;
+    //while (!done) {
+    //    try {
 
 
-            SDL_Event event;
-            while (SDL_PollEvent(&event)) {
-                //ImGui_ImplSDL2_ProcessEvent(&event);
-                if (event.type == SDL_QUIT) done = true;
-                if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
-                    event.window.windowID == SDL_GetWindowID(sdlWindow))
-                    done = true;
-            }
-            node->yaw(Ogre::Degree(2));
-            render();
-        } catch (Ogre::Exception& e) {
+    //        SDL_Event event;
+    //        while (SDL_PollEvent(&event)) {
+    //            //ImGui_ImplSDL2_ProcessEvent(&event);
+    //            if (event.type == SDL_QUIT) done = true;
+    //            if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
+    //                event.window.windowID == SDL_GetWindowID(sdlWindow))
+    //                done = true;
+    //        }
+    //        node->yaw(Ogre::Degree(2));
+    //        render();
+    //    } catch (Ogre::Exception& e) {
 
-            // std::cout << e.getFullDescription() << '\n';
-        };
-    }
+    //        // std::cout << e.getFullDescription() << '\n';
+    //    };
+    //}
 }
 
 Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {

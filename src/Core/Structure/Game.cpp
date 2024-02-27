@@ -2,9 +2,12 @@
 #include "Scene.h"
 #include "Module.h"
 #include <iostream>
+#include <chrono>
 
 namespace Tapioca {
-Game::Game() : cont(true), deltaTime(0), fixedOffset(0), startTime(0) {
+Game::Game()
+    : finish(false)
+    , deltaTime(0) {
 
     // No debería haber más de un objeto Game
     if (instance != nullptr) {
@@ -16,7 +19,7 @@ Game::Game() : cont(true), deltaTime(0), fixedOffset(0), startTime(0) {
 
 Game::~Game() {
     instance = nullptr;
-    while(!scenes.empty()) {
+    while (!scenes.empty()) {
         delete scenes.top();
         scenes.pop();
     }
@@ -30,47 +33,64 @@ void Game::init() {
 }
 
 void Game::run() {
-    deltaTime = startTime = 0; // TODO Conseguir tiempo
-    fixedOffset = 0;
-    cont = true;
+    // se vuelven a inicializar por si acaso
+    finish = false;
+    deltaTime = 0;
 
-    while (cont) {
-        deltaTime = 0; // TODO Conseguir tiempo
-        fixedOffset += deltaTime;
-        
+    auto currentTime = std::chrono::high_resolution_clock::now();
+    uint64_t lag = 0;
+
+    while (!finish) {
+        auto newTime = std::chrono::high_resolution_clock::now();
+        deltaTime = (std::chrono::duration_cast<std::chrono::milliseconds>(newTime - currentTime)).count();
+        currentTime = newTime;
+
+        lag += deltaTime;
+
         handleEvents();
-        while (fixedOffset >= FIXED_DELTA_TIME) {
+
+        uint64_t numFixedUpdates = 0;
+        // se realiza el update cada cierto tiempo determinado
+        // se va acumulando el tiempo sobrante (lag) --> varios updates en el mismo frame
+        while (lag >= FIXED_DELTA_TIME) {
             fixedUpdate();
-            fixedOffset -= FIXED_DELTA_TIME;
+            lag -= FIXED_DELTA_TIME;
+
+            // evitar el problema de Spiral of Death
+            ++numFixedUpdates;
+            if (numFixedUpdates > MAX_NUM_FIXED_UDPATES) {
+                lag = 0;
+                break;
+            }
         }
-        update();
+
+        update();   // podemos pasarle el deltaTime porfa???
+
         render();
     }
 }
 
-void Game::initComponents() {
-    scenes.top()->initComponent();
-}
+void Game::initComponents() { scenes.top()->initComponent(); }
 
 void Game::update() {
     for (auto mod : modules)
         mod->update();
 
-    scenes.top()->update();
+    /*scenes.top()->update();*/
 }
 
 void Game::handleEvents() {
     for (auto mod : modules)
         mod->handleEvents();
 
-    scenes.top()->handleEvents();
+    /*scenes.top()->handleEvents();*/
 }
 
 void Game::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
 
-    scenes.top()->fixedUpdate();
+    /*scenes.top()->fixedUpdate();*/
 }
 
 void Game::render() {
@@ -78,11 +98,9 @@ void Game::render() {
         mod->render();
 }
 
-void Game::addScene(Scene* sc) {
-    scenes.push(sc); }
+void Game::addScene(Scene* sc) { scenes.push(sc); }
 
-void Game::addModule(Module* m) { 
-    modules.push_back(m); }
+void Game::addModule(Module* m) { modules.push_back(m); }
 
 Game* Game::instance = nullptr;
 }

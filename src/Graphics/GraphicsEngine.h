@@ -77,6 +77,11 @@ public:
     */
     void init() override;
 
+    // BORRAR
+    void handleEvents() override;
+
+    void fixedUpdate() override;
+
     /*
     *   @brief renderiza 1 frame
     */
