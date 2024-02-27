@@ -1,7 +1,7 @@
 
-//namespace Tapioca {
-//class lua1 {
-//public:
-//    int Prueba();
-//};
-//}
+namespace Tapioca {
+class lua1 {
+public:
+    int Prueba();
+};
+}
