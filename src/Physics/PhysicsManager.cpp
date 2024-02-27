@@ -3,11 +3,10 @@
 #include <btBulletDynamicsCommon.h>
 #include "Utilities/Vector3.h"
 #include "Components/Collider.h"
-//#include "Utilities/checkML.h"
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif   // _DEBUG
-//#undef new DBG_NEW
+
 
 #include <iostream>   //PRUEBA
 namespace Tapioca {
@@ -83,6 +82,7 @@ PhysicsManager::~PhysicsManager() { destroy(); }
 
 void PhysicsManager::init() {
 
+    std::cout << "Object: ";
     colConfig = new btDefaultCollisionConfiguration();
 
     colDispatch = new btCollisionDispatcher(colConfig);
@@ -104,8 +104,8 @@ void PhysicsManager::init() {
         (1 << 2) | (0 << 1) | (1 << 0));                                                                        //PRUEBA
     createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
 #ifdef _DEBUG
-    pdd = new PhysicsDebugDrawer();
     dynamicsWorld->setDebugDrawer(pdd);
+    pdd = new PhysicsDebugDrawer();
 #endif   // _DEBUG
 
 }
@@ -125,8 +125,8 @@ void PhysicsManager::update(const uint64_t deltaTime) {
             body->getMotionState()->getWorldTransform(tr);
         } else
             tr = obj->getWorldTransform();
-       /* std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
-                  << tr.getOrigin().getZ() << "\n";*/
+        std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
+                  << tr.getOrigin().getZ() << "\n";
     }
 #endif   // _DEBUG
     //...........................................
@@ -232,6 +232,6 @@ void PhysicsManager::destroyRigidBody(btRigidBody* rb) {
     if (rb && rb->getMotionState()) delete rb->getMotionState();
     delete rb->getCollisionShape();
     dynamicsWorld->removeCollisionObject(rb);
-    delete rb;
+   // delete rb;
 }
 }
