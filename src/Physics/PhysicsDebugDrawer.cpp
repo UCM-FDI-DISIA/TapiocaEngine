@@ -1,11 +1,14 @@
 #include "PhysicsDebugDrawer.h"
 #include <Ogre.h>
 #include "../Graphics/GraphicsEngine.h"
+#include "Utilities/checkML.h"
 
 Tapioca::PhysicsDebugDrawer::PhysicsDebugDrawer()
     : mode(DBG_DrawWireframe) { }
 
-Tapioca::PhysicsDebugDrawer::~PhysicsDebugDrawer() { clearLines(); }
+Tapioca::PhysicsDebugDrawer::~PhysicsDebugDrawer() { 
+    //clearLines(); 
+}
 
 void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) { 
 	Ogre::ManualObject* line = GraphicsEngine::instance()->getSceneManager()->createManualObject();
