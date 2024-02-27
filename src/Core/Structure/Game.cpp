@@ -65,6 +65,7 @@ void Game::run() {
         }
 
         update();
+        refresh();
 
         render();
     }
@@ -98,7 +99,28 @@ void Game::render() {
         mod->render();
 }
 
-void Game::addScene(Scene* sc) { scenes.push(sc); }
+void Game::refresh() {
+    for (Scene* sc : toDelete)
+        delete sc;
+    toDelete.clear();
+
+    scenes.top()->refresh();
+}
+
+void Game::pushScene(Scene* sc) { scenes.push(sc); }
+
+void Game::popScene() {
+    toDelete.push_back(scenes.top());
+    scenes.pop();
+
+    if (scenes.empty()) finish = true;
+}
+
+void Game::changeScene(Scene* sc) {
+    toDelete.push_back(scenes.top());
+    scenes.pop();
+    scenes.push(sc);
+}
 
 void Game::addModule(Module* m) { modules.push_back(m); }
 

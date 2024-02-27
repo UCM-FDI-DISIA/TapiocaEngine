@@ -5,7 +5,7 @@
 
 namespace Tapioca {
 Scene::Scene() {
-    Game::get()->addScene(this);
+    
 }
 
 Scene::~Scene() {

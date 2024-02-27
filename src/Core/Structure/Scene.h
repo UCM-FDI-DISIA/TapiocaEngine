@@ -24,6 +24,5 @@ public:
     void update(const uint64_t deltaTime);
     void handleEvents();
     void fixedUpdate();
-    // TODO Pasar por mensaje --> void transitionEnded() { };
 };
 }
