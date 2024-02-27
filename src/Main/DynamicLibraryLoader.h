@@ -13,11 +13,10 @@ private:
     HMODULE module;
     EntryPoint entryPoint;
 
-    static string UI();
     void free();
 
 public:
-    DynamicLibraryLoader();
+    DynamicLibraryLoader(const std::string& gameName = "JuegoPrueba");
     ~DynamicLibraryLoader();
 
     bool setup();

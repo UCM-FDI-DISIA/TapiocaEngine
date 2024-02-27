@@ -9,8 +9,9 @@
 #include "InputManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
+// #include "SceneManager.h"
 
-//#include "Node.h" // SOLO PARA PRUEBA
+#include "Node.h" // SOLO PARA PRUEBA
 #include "Structure/Scene.h"
 
 using namespace std;
@@ -22,6 +23,7 @@ PhysicsManager* physics;
 InputManager* input;
 //AudioManager* audio;
 //UIManager* ui;
+//SceneManager* scenes;
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -33,12 +35,14 @@ int main(int argc, char** argv) {
         initModules();
         game->init();
         new Scene(); // Para que no de problemas ahora mismo
-        /*auto node = graphics->createNode();
+        // Cargar desde JSON (LUA) la escena desde el SceneManager y que cree
+        // los objetos con sus respectivos componentes y los añada a la escena
+
+        auto node = graphics->createNode();
         auto childNode = graphics->createChildNode(node);
         graphics->createChildNode(childNode);
         graphics->createChildNode(node);
-        graphics->removeNode(childNode);
-        node->getAllChildren();*/
+        graphics->removeNode(node);
         graphics->testScene();
         game->run();
         delete game;
@@ -48,8 +52,7 @@ int main(int argc, char** argv) {
 
     delete loader;
 
-    //_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
-    //_CrtDumpMemoryLeaks();
+    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     return 0;
 }
 
@@ -59,4 +62,5 @@ static void initModules() {
     input = InputManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
+    // scenes = SceneManager::create();
 }

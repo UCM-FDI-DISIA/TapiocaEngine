@@ -13,7 +13,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI", "projects\UI\UI.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "projects\Main\Main.vcxproj", "{1BCA0A68-D110-4540-A078-65D3FA5D73E3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua", "projects\Lua\Lua.vcxproj", "{E0ADCFFA-EB53-44DD-B200-55FC3989EF12}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bridge", "projects\Bridge\Bridge.vcxproj", "{E0ADCFFA-EB53-44DD-B200-55FC3989EF12}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JuegoPrueba", "projects\JuegoPrueba\JuegoPrueba.vcxproj", "{E0D58EFB-F43B-4380-8513-ED54E97A96FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E0ADCFFA-EB53-44DD-B200-55FC3989EF12}.Debug|x64.Build.0 = Debug|x64
 		{E0ADCFFA-EB53-44DD-B200-55FC3989EF12}.Release|x64.ActiveCfg = Release|x64
 		{E0ADCFFA-EB53-44DD-B200-55FC3989EF12}.Release|x64.Build.0 = Release|x64
+		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Debug|x64.ActiveCfg = Debug|x64
+		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Debug|x64.Build.0 = Debug|x64
+		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Release|x64.ActiveCfg = Release|x64
+		{E0D58EFB-F43B-4380-8513-ED54E97A96FB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

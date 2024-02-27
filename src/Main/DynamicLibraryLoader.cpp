@@ -1,38 +1,10 @@
 #include "DynamicLibraryLoader.h"
 
 namespace Tapioca {
-DynamicLibraryLoader::DynamicLibraryLoader() : module(nullptr), entryPoint(nullptr) {
-    //gameName = UI();
-    gameName = "MiBiblioteca";
-}
+DynamicLibraryLoader::DynamicLibraryLoader(const std::string& gameName) : 
+    gameName(gameName), module(nullptr), entryPoint(nullptr) { }
 
 DynamicLibraryLoader::~DynamicLibraryLoader() { free(); }
-
-string DynamicLibraryLoader::UI() {
-    cout << "Elige el juego a cargar: \n\t1. Billiards adrift\n\t2. Mar.io\n\t3. Otro [INPUT]\n> ";
-
-    char opt = ' ';
-    cin >> opt;
-
-    string gameName = "";
-    switch (opt) {
-    case '1':
-        gameName = "Billiards_adrift";
-        break;
-    case '2':
-        gameName = "Mar_io";
-        break;
-    case '3':
-        cout << "Introduce el nombre: \n> ";
-        cin >> gameName;
-        break;
-    default:
-        cout << "Por favor, elige un juego.\n";
-        return UI();
-    }
-
-    return gameName;
-}
 
 bool DynamicLibraryLoader::setup() {
 #ifdef _DEBUG
