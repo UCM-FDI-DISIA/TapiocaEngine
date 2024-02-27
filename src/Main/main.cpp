@@ -6,6 +6,7 @@
 #include "Structure/Game.h"
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
+#include "lua1.h"
 // #include "InputManager.h"
 // #include "AudioManager.h" Añadir cuando se implemente
 // #include "UIManager.h" Añadir cuando se implemente
