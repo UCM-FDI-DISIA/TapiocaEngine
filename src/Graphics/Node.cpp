@@ -53,7 +53,7 @@ void Tapioca::Node::removeFromTree(std::unordered_set<Node*>* nodes) {
     if (parent != nullptr) {
         parent->removeChild(this);
     }
-    // this->removeFromHierarchy
+    //this->removeFromHierarchy();
     this->deleteChildren(nodes);
 }
 
