@@ -13,9 +13,10 @@
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 using namespace std;
-using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
+using CompValue=std::variant<char, int, float, bool, std::string>;
+using CompMap = std::unordered_map<std::string, CompValue>;
 typedef void(__cdecl* EntryPoint)(const char*);
-
+class lua_State;
 namespace Tapioca {
 class SceneManager : public Tapioca::Singleton<SceneManager>, public Module {
 private:
@@ -29,9 +30,23 @@ private:
     stack<Scene*> scenes;
     vector<Scene*> toDelete;
 
+    //TODO: esta aqui para guardar demomento escenas de prueba
+    vector<Scene*> scenes_debug;
+
+    lua_State* L;
+
     SceneManager(HMODULE module);
 
     bool init() override;
+
+    bool loadScenes();
+    Scene* loadScene();
+
+    bool loadGameObjects(Scene* scene);
+    GameObject* loadGameObject(Scene* scene);
+
+    bool loadComponents(GameObject* gameObject);
+    Component* loadComponent();
 
 public:
     ~SceneManager();

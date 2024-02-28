@@ -22,4 +22,3 @@ if exist %LUA_SLN% (
     echo Terminada la build de Lua
 ) else echo No se ha encontrado el archivo %LUA_SLN%
 
-pause
