@@ -16,7 +16,7 @@ using namespace std;
 using CompValue=std::variant<char, int, float, bool, std::string>;
 using CompMap = std::unordered_map<std::string, CompValue>;
 typedef void(__cdecl* EntryPoint)(const char*);
-class lua_State;
+struct lua_State;
 namespace Tapioca {
 class SceneManager : public Tapioca::Singleton<SceneManager>, public Module {
 private:

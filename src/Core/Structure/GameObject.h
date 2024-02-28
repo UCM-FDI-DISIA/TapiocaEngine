@@ -12,6 +12,7 @@ class Scene;
 class GameObject {
 private:
     friend class Scene;
+    void setScene(Scene*);
 
     void refresh();
     void update(const uint64_t deltaTime);
@@ -27,7 +28,7 @@ private:
     std::vector<Component*> cmpOrder; // TODO Hace falta??????
 
 public:
-    GameObject(Scene* scene, std::string handler = "");
+    GameObject();
     ~GameObject();
 
     inline bool isAlive() const { return alive; }

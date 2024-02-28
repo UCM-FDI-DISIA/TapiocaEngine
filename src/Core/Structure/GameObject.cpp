@@ -3,10 +3,8 @@
 #include "Component.h"
 
 namespace Tapioca {
-GameObject::GameObject(Scene* scene, std::string handler)
-    : scene(scene)
-    , alive(true) {
-    scene->addObject(this, handler);
+GameObject::GameObject() : scene(nullptr), alive(true) {
+    
 }
 
 GameObject::~GameObject() {
@@ -28,6 +26,8 @@ void GameObject::deleteCompVector(Component* comp) {
         }
     }
 }
+
+void GameObject::setScene(Scene* sc) { scene = sc; }
 
 void GameObject::refresh() {
     auto it = components.begin();

@@ -62,7 +62,7 @@ bool SceneManager::init() {
     //    addScene(newScene);
     //}
     
-    //loadScenes();
+    loadScenes();
 
     lua_close(L);
     return true;

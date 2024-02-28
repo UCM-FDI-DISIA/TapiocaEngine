@@ -16,6 +16,7 @@ Scene::~Scene() {
 void Scene::addObject(GameObject* object, std::string handler) {
     objects.push_back(object);
     if (handler != "") handlers[handler] = object;
+    object->setScene(this);
 }
 
 void Scene::refresh() {
