@@ -1,5 +1,4 @@
 #pragma once
-
 #include <Utilities/Singleton.h>
 #include <Structure/Module.h>
 
@@ -10,101 +9,93 @@
 union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
+struct lua_State;
 
-namespace Tapioca { 
-	enum EVENTS : uint8_t { 
-        ev_ACCEPT = 0, 
-        ev_CLOSE,
-        ev_TOGGLE_TEXT_INPUT,
-        ev_REMOVE_CHAR_INPUT,
-    };
+namespace Tapioca {
+class InputManager : public Singleton<InputManager>, public Module {
+    friend Singleton<InputManager>;
 
-    class InputManager : public Singleton<InputManager>, public Module {
-            friend Singleton<InputManager>;
+private:
+    enum MOUSE_BUTTONS : uint8_t { m_left = 0, m_middle, m_right };
+    enum STICKS : uint8_t { s_leftX = 0, s_leftY, s_rightX, s_rightY };
 
-        private:
-            enum MOUSE_BUTTONS : uint8_t { m_left = 0, m_middle, m_right };
-            enum STICKS : uint8_t { s_leftX = 0, s_leftY, s_rightX, s_rightY };
+    // Tipos de eventos (de input, no los mapeados)
+    std::unordered_map<std::string, std::vector<SDL_Event>> inputEventTriggered;
 
-            // Tipos de eventos (de input, no los mapeados)
-            enum INPUT_EVENTS : uint8_t {
-                ie_closeWindow = 0,
+    // Posición del ratón
+    std::pair<int32_t, int32_t> mousePos;
 
-                ie_keyUp,
-                ie_keyDown,
+    // Mandos
+    const int DEFAULT_DEADZONE = 1000;
+    std::unordered_map<int, int> deadZones;
+    std::unordered_map<int, SDL_GameController*> controllers;
 
-                ie_mouseMoving,
-                ie_mouseButtonUp,
-                ie_mouseButtonDown,
+    // Input de texo
+    std::string inputText;
+    const char* compositionText;
+    int32_t cursor;
+    int32_t selectionLen;
 
-                ie_ctrlAxisMotion,
-                ie_ctrlButtonUp,
-                ie_ctrlButtonDown,
-
-                ie_lastEventType
-            };
-            std::vector<SDL_Event> inputEventTriggered[ie_lastEventType];
-
-            // Estados del ratón y teclado
-            std::pair<int32_t, int32_t> mousePos;
-
-            // Mandos
-            const int DEFAULT_DEADZONE = 8000;
-            std::unordered_map<int, int> deadZones;
-            std::unordered_map<int, SDL_GameController*> controllers;
-
-            // Input de texo
-            std::string inputText;
-            const char* compositionText;
-            int32_t cursor;
-            int32_t selectionLen;
-
-            // Mapeo de los controles
-            std::unordered_map<EVENTS, std::vector<std::pair<INPUT_EVENTS, int>>> inputMap;
-            // faltan eventos de mouse y sticks de mando
-
-            
-            InputManager();
-
-            void initControllers();
-            void addController(int i);
-            void removeController(int i);
-            void clearInput();
-
-            //void joyAxisMotionEvent(const SDL_Event& event);
-            
-            void mapInput();
+    // Mapeo de los controles
+    std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> inputMap;
+    const std::string MAP_FILE_PATH = "\\assets\\controlsMapping.lua";
+    lua_State* luaState;
 
 
-        public:
-            virtual ~InputManager();
+    InputManager();
+    
+    void mapInput();
 
-            void updateState(const SDL_Event& event);
-            void handleEvents();
+    void initControllers();
+    void addController(int i);
+    void removeController(int i);
 
-            
-            bool eventHappened(EVENTS ev);
+    void clearInput();
+    
 
-            // Devuelve la posición del ratón
-            inline const std::pair<int32_t, int32_t>& getMousePos() { return mousePos; }
+public:
+    virtual ~InputManager();
 
-            // Devuelve true si hay al menos 1 mando conectado
-            inline bool isControllerConnected() { return !controllers.empty(); }
-
-            // Devuelve el texto introducido
-            inline std::string getInputText() { return inputText; }
-            // Limpia el texto introducido
-            inline void resetText() { inputText.clear(); }
-            // Borra el último char del texto introducido
-            inline void removeLastChar() { if (!inputText.empty()) inputText.pop_back(); }
-
-            
-
-    };
-        
-    // Para acortar el método InputManager::instance()->method() a inputManager().method()
-    inline InputManager& inputManager() { return *InputManager::instance(); }
+    void updateState(const SDL_Event& event);
+    void handleEvents();
 
 
+    /*
+    * @brief Comprueba si se ha producido el evento indicado
+    * @param ev Identificador del evento
+    */
+    bool eventHappened(std::string ev);
+
+    /*
+    * @brief Devuelve la posición del ratón
+    */
+    inline const std::pair<int32_t, int32_t>& getMousePos() { return mousePos; }
+
+    /*
+    * @brief Devuelve true si hay al menos 1 mando conectado
+    */ 
+    inline bool isControllerConnected() { return !controllers.empty(); }
+
+    /*
+    * @brief Devuelve el texto introducido
+    */
+    inline std::string getInputText() { return inputText; }
+  
+    
+    /*
+    * @brief Limpia el texto introducido
+    */
+    inline void resetText() { inputText.clear(); }
+
+    /*
+    * @brief Borra el último char del texto introducido
+    */ 
+    inline void removeLastChar() { if (!inputText.empty()) inputText.pop_back(); }
+
+};
+
+/*
+* @brief Para acortar el método InputManager::instance()->method() a inputManager().method()
+*/ 
+inline InputManager& inputManager() { return *InputManager::instance(); }
 }
-

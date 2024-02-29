@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 #pragma region ESTO ES PARTE DEL GRAPHICS
     // Inicializar la biblioteca SDL
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        std::cerr << "Error al inicializar SDL: " << SDL_GetError() << std::endl;
+        std::cerr << "Error al inicializar SDL: " << SDL_GetError() << '\n';
         return -1;
     }
 

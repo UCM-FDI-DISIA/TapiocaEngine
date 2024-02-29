@@ -1,37 +1,38 @@
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <stack>
-#include <map>
-#include <variant>
-#include <Windows.h>
-#include "Utilities/checkML.h"
+#pragma once
+
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 #include "Structure/Scene.h"
-#include "Structure/Game.h"
-#include "Structure/GameObject.h"
-#include "Components/Transform.h"
-using namespace std;
-using CompValue=std::variant<char, int, float, bool, std::string>;
+
+#include <string>
+#include <stack>
+#include <Windows.h>
+
+using CompValue = std::variant<char, int, float, bool, std::string>;
 using CompMap = std::unordered_map<std::string, CompValue>;
 typedef void(__cdecl* EntryPoint)(const char*);
 struct lua_State;
+
 namespace Tapioca {
-class SceneManager : public Tapioca::Singleton<SceneManager>, public Module {
+    class Scene;
+    class Game;
+    class Component;
+    class GameObject;
+    class Transform;
+
+class SceneManager : public Singleton<SceneManager>, public Module {
 private:
     friend Singleton<SceneManager>;
-
     friend class Scene;
     void addScene(Scene*);
 
     HMODULE module;
     EntryPoint entryPoint;
-    stack<Scene*> scenes;
-    vector<Scene*> toDelete;
+    std::stack<Scene*> scenes;
+    std::vector<Scene*> toDelete;
 
     //TODO: esta aqui para guardar demomento escenas de prueba
-    vector<Scene*> scenes_debug;
+    std::vector<Scene*> scenes_debug;
 
     lua_State* L;
 

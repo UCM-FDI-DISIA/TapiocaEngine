@@ -1,13 +1,20 @@
+#include "SceneManager.h"
+
 #include <lua.hpp>
 #include <LuaBridge.h>
-#include "SceneManager.h"
-using namespace Tapioca;
+#include <fstream>
+#include <iostream>
+#include <variant>
+#include <map>
+#include "Structure/Game.h"
+#include "Structure/GameObject.h"
+#include "Components/Transform.h"
 
-SceneManager::SceneManager(HMODULE module)
-    : module(module)
-    , entryPoint(nullptr) { }
+#include "Utilities/checkML.h"
 
-SceneManager::~SceneManager() {
+Tapioca::SceneManager::SceneManager(HMODULE module) : module(module), entryPoint(nullptr), L(nullptr) { }
+
+Tapioca::SceneManager::~SceneManager() {
     while (!scenes.empty()) {
         delete scenes.top();
         scenes.pop();
@@ -18,26 +25,26 @@ SceneManager::~SceneManager() {
     scenes_debug.clear();
 }
 
-bool SceneManager::init() {
+bool Tapioca::SceneManager::init() {
     // Obtiene la ruta del ejecutable
     char buffer[MAX_PATH];
     GetModuleFileNameA(NULL, buffer, MAX_PATH);
-    string::size_type pos = string(buffer).find_last_of("\\/");
-    string directorio = string(buffer).substr(0, pos);
+    std::string::size_type pos = std::string(buffer).find_last_of("\\/");
+    std::string dir = std::string(buffer).substr(0, pos);
 
     // Construye la ruta completa al archivo LUA
-    string ruta = directorio + "\\assets\\scenes\\archivo.lua";
+    std::string path = dir + "\\assets\\scenes\\archivo.lua";
 
     L = luaL_newstate();
     luaL_openlibs(L);
-    if (luaL_dofile(L, ruta.c_str()) != 0) {
-        std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(L, -1) << std::endl;
+    if (luaL_dofile(L, path.c_str()) != 0) {
+        std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(L, -1) << '\n';
         lua_close(L);
         return false;
     }
 
 #ifdef _DEBUG
-    std::cout << "Archivo LUA cargado correctamente" << std::endl;
+    std::cout << "Archivo LUA cargado correctamente\n";
 #endif
 
     //// REALIZAR LA CREACIÓN DE LAS ESCENAS Y LOS OBJETOS CON SUS COMPONENTES
@@ -74,7 +81,7 @@ bool Tapioca::SceneManager::loadScenes() {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
         Scene* scene;
-        string sceneName = "";
+        std::string sceneName = "";
         while (lua_next(L, -2) != 0) {
             //scene = new Scene();
             sceneName = lua_tostring(L, -2);
@@ -88,7 +95,8 @@ bool Tapioca::SceneManager::loadScenes() {
     }
     return false;
 }
-Scene* Tapioca::SceneManager::loadScene() {
+
+Tapioca::Scene* Tapioca::SceneManager::loadScene() {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
         Scene* scene = new Scene();
@@ -100,7 +108,7 @@ Scene* Tapioca::SceneManager::loadScene() {
 
 bool Tapioca::SceneManager::loadGameObjects(Scene* scene) {
     GameObject* gameObject;
-    string gameObjectName = "";
+    std::string gameObjectName = "";
     while (lua_next(L, -2) != 0) {
         //scene = new Scene();
         gameObjectName = lua_tostring(L, -2);
@@ -115,19 +123,19 @@ bool Tapioca::SceneManager::loadGameObjects(Scene* scene) {
     return true;
 }
 
-GameObject* Tapioca::SceneManager::loadGameObject(Scene* scene) {
+Tapioca::GameObject* Tapioca::SceneManager::loadGameObject(Scene* scene) {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
-        GameObject* gameObject = new GameObject(scene);
+        GameObject* gameObject = new GameObject();
         loadComponents(gameObject);
         return gameObject;
     }
     return nullptr;
 }
 
-bool Tapioca::SceneManager::loadComponents(GameObject* gameObject) {
+bool Tapioca::SceneManager::loadComponents(Tapioca::GameObject* gameObject) {
     Component* component;
-    string componentName = "";
+    std::string componentName = "";
     while (lua_next(L, -2) != 0) {
         //scene = new Scene();
         componentName = lua_tostring(L, -2);
@@ -144,12 +152,12 @@ bool Tapioca::SceneManager::loadComponents(GameObject* gameObject) {
     return true;
 }
 
-Component* Tapioca::SceneManager::loadComponent() {
+Tapioca::Component* Tapioca::SceneManager::loadComponent() {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
         CompMap map;
 
-        string key = "";
+        std::string key = "";
         CompValue value;
         while (lua_next(L, -2) != 0) {
             if (lua_istable(L, -1)) {
@@ -168,7 +176,7 @@ Component* Tapioca::SceneManager::loadComponent() {
                 //value = *(float*)lua_touserdata(L, -1);
             }
 
-            string valor_debug = lua_tostring(L, -1);
+            std::string valor_debug = lua_tostring(L, -1);
             std::cout << "          key: " << key << " valor: " << valor_debug << "\n";
 
             map[key] = value;
@@ -181,23 +189,23 @@ Component* Tapioca::SceneManager::loadComponent() {
     return nullptr;
 }
 
-void SceneManager::addScene(Scene* scene) { scenes.push(scene); }
+void Tapioca::SceneManager::addScene(Scene* scene) { scenes.push(scene); }
 
-void SceneManager::initComponents(const CompMap& variables) { scenes.top()->initComponents(variables); }
+void Tapioca::SceneManager::initComponents(const CompMap& variables) { scenes.top()->initComponents(variables); }
 
-void SceneManager::update(const uint64_t deltaTime) {
+void Tapioca::SceneManager::update(const uint64_t deltaTime) {
     if (!scenes.empty()) scenes.top()->update(deltaTime);
 }
 
-void SceneManager::handleEvents() {
+void Tapioca::SceneManager::handleEvents() {
     if (!scenes.empty()) scenes.top()->handleEvents();
 }
 
-void SceneManager::fixedUpdate() {
+void Tapioca::SceneManager::fixedUpdate() {
     if (!scenes.empty()) scenes.top()->fixedUpdate();
 }
 
-void SceneManager::refresh() {
+void Tapioca::SceneManager::refresh() {
     for (Scene* sc : toDelete)
         delete sc;
     toDelete.clear();
@@ -205,15 +213,15 @@ void SceneManager::refresh() {
     if (!scenes.empty()) scenes.top()->refresh();
 }
 
-void SceneManager::pushScene(Scene* sc) { scenes.push(sc); }
+void Tapioca::SceneManager::pushScene(Scene* sc) { scenes.push(sc); }
 
-void SceneManager::popScene() {
+void Tapioca::SceneManager::popScene() {
     toDelete.push_back(scenes.top());
     if (!scenes.empty()) scenes.pop();
     // else /*if (scenes.empty())*/ finish = true; // TODO
 }
 
-void SceneManager::changeScene(Scene* sc) {
+void Tapioca::SceneManager::changeScene(Scene* sc) {
     toDelete.push_back(scenes.top());
     scenes.pop();
     scenes.push(sc);

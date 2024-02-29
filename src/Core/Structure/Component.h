@@ -50,7 +50,7 @@ public:
                           << " - Incompatibilidad de tipo.\n";
             }
         } else {
-            std::cerr << "Nombre de variable no encontrado en el mapa: " << VAR_NAME_TO_STRING(var) << std::endl;
+            std::cerr << "Nombre de variable no encontrado en el mapa: " << VAR_NAME_TO_STRING(var) << '\n';
         }
     }
 
