@@ -20,6 +20,11 @@ Game::Game()
 Game::~Game() {
     instance = nullptr;
 
+    while (!scenes.empty()) {
+        delete scenes.top();
+        scenes.pop();
+    }
+
     for (Module* mod : modules)
         delete mod;
 }
@@ -76,16 +81,22 @@ void Game::run() {
 void Game::update() {
     for (auto mod : modules)
         mod->update(deltaTime);
+
+    if (!scenes.empty()) scenes.top()->update(deltaTime);
 }
 
 void Game::handleEvents() {
     for (auto mod : modules)
         mod->handleEvents();
+
+    if (!scenes.empty()) scenes.top()->handleEvents();
 }
 
 void Game::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
+
+    if (!scenes.empty()) scenes.top()->fixedUpdate();
 }
 
 void Game::render() {
@@ -96,9 +107,32 @@ void Game::render() {
 void Game::refresh() {
 	for (auto mod : modules)
 		mod->refresh();
+
+    for (Scene* sc : toDelete)
+        delete sc;
+    toDelete.clear();
+
+    if (!scenes.empty()) scenes.top()->refresh();
 }
 
 void Game::addModule(Module* m) { modules.push_back(m); }
+
+void Game::initComponents(const CompMap& variables) { scenes.top()->initComponents(variables); }
+
+void Game::pushScene(Scene* sc) { scenes.push(sc); }
+
+void Game::popScene() {
+    toDelete.push_back(scenes.top());
+    if (!scenes.empty()) scenes.pop();
+    else
+        finish = true;
+}
+
+void Game::changeScene(Scene* sc) {
+    toDelete.push_back(scenes.top());
+    scenes.pop();
+    scenes.push(sc);
+}
 
 Game* Game::instance = nullptr;
 }

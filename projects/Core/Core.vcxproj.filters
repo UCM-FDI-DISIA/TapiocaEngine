@@ -93,5 +93,8 @@
     <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\defs.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

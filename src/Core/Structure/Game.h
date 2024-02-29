@@ -1,4 +1,5 @@
 #pragma once
+#include "Utilities/defs.h"
 #include <vector>
 #include <stack>
 
@@ -11,6 +12,8 @@ private:
     static Game* instance;
 
     std::vector<Module*> modules;
+    std::stack<Scene*> scenes;
+    std::vector<Scene*> toDelete;
     uint64_t deltaTime;
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;
     bool finish;
@@ -35,5 +38,10 @@ public:
 
     bool init();
     void run();
+
+    void initComponents(const CompMap& variables);
+    void pushScene(Scene*);
+    void popScene();
+    void changeScene(Scene*);
 };
 }

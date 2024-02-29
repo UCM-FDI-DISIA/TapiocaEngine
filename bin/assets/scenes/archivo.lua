@@ -12,7 +12,6 @@ scenes = {
                     -- + componentes 
             },
             Entity2={
-                
                     transform = {
                         PositionX = 0,
                         PositionY = 200,
