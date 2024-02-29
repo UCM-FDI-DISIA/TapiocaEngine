@@ -4,8 +4,8 @@
 #include <LuaBridge.h>
 #include <fstream>
 #include <iostream>
-#include <variant>
-#include <map>
+//#include <variant>
+//#include <map>
 
 #include "Utilities/checkML.h"
 #include "Structure/Game.h"
@@ -14,7 +14,10 @@
 using namespace std;
 using namespace Tapioca;
 
-SceneManager::SceneManager(HMODULE module) : module(module), entryPoint(nullptr), L(nullptr) { }
+SceneManager::SceneManager(HMODULE module)
+    : module(module)
+    , entryPoint(nullptr)
+    , L(nullptr) { }
 
 SceneManager::~SceneManager() {
     for (Scene* s : scenes_debug) {
@@ -44,7 +47,7 @@ bool SceneManager::init() {
 #ifdef _DEBUG
     cout << "Archivo LUA cargado correctamente\n";
 #endif
-    
+
     loadScenes();
     lua_close(L);
     return true;
@@ -59,11 +62,11 @@ bool SceneManager::loadScenes() {
         while (lua_next(L, -2) != 0) {
             //scene = new Scene();
             sceneName = lua_tostring(L, -2);
-            cout << "Scene: "<< sceneName << "\n";
+            cout << "Scene: " << sceneName << "\n";
             scene = loadScene();
             lua_pop(L, 1);
 
-            //TODO: esta aqui para no dejar memoria de momento 
+            //TODO: esta aqui para no dejar memoria de momento
             scenes_debug.push_back(scene);
         }
     }
@@ -81,16 +84,18 @@ Scene* SceneManager::loadScene() {
 }
 
 bool SceneManager::loadGameObjects(Scene* scene) {
-    GameObject* gameObject;
-    string gameObjectName = "";
     while (lua_next(L, -2) != 0) {
         //scene = new Scene();
-        gameObjectName = lua_tostring(L, -2);
+        GameObject* gameObject;
+        string gameObjectName = "";
+        if (!lua_isinteger(L, -2)) gameObjectName = lua_tostring(L, -2);
 
-        cout << "\tGameObject: "<< gameObjectName << "\n";
+#ifdef _DEBUG
+        cout << "\tGameObject: " << gameObjectName << "\n";
+#endif
 
         gameObject = loadGameObject(scene);
-        scene->addObject(gameObject, "");
+        scene->addObject(gameObject, gameObjectName);
         lua_pop(L, 1);
     }
 
@@ -114,10 +119,12 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
         //scene = new Scene();
         componentName = lua_tostring(L, -2);
 
-        cout << "\t\tComponent: "<< componentName << "\n";
+#ifdef _DEBUG
+        cout << "\t\tComponent: " << componentName << "\n";
+#endif
 
         component = loadComponent();
-        //este if es porque no tengo creado componente 
+        //este if es porque no tengo creado componente
         if (component != nullptr) {
             gameObject->addComponent(component, componentName);
         }
@@ -134,6 +141,7 @@ Component* SceneManager::loadComponent() {
         string key = "";
         CompValue value;
         while (lua_next(L, -2) != 0) {
+            //TODO: no deberia pasar
             if (lua_istable(L, -1)) {
                 lua_pop(L, 1);
                 continue;
@@ -142,22 +150,28 @@ Component* SceneManager::loadComponent() {
             if (lua_isstring(L, -1)) {
                 value = lua_tostring(L, -1);
             } else if (lua_isinteger(L, -1)) {
-                value =(int) lua_tointeger(L, -1);
+                value = (int)lua_tointeger(L, -1);
             } else if (lua_isboolean(L, -1)) {
-                value = lua_toboolean(L, -1);
-            } else {
-                value = lua_tostring(L, -1);
-                //value = *(float*)lua_touserdata(L, -1);
+                value = lua_toboolean(L, -1)==1;
+            } else if (lua_isnumber(L, -1)) {
+                value = (float)lua_tonumber(L, -1);
             }
 
-            string valor_debug = lua_tostring(L, -1);
-            cout << "\t\t\tkey: " << key << " valor: " << valor_debug << "\n";
-
+#ifdef _DEBUG
+            if (lua_isstring(L, -1)) {
+                cout << "\t\t\tkey: " << key << " valor: " << get<string>(value) << "\n";
+            } else if (lua_isinteger(L, -1)) {
+                cout << "\t\t\tkey: " << key << " valor: " << get<int>(value) << "\n";
+            } else if (lua_isboolean(L, -1)) {
+                cout << "\t\t\tkey: " << key << " valor: " << (get<bool>(value) ? "true": "false")<< "\n";
+            } else if (lua_isnumber(L, -1)) {
+                cout << "\t\t\tkey: " << key << " valor: " << get<float>(value) << "\n";
+            }
+#endif
             map[key] = value;
             lua_pop(L, 1);
         }
-
-        //TODO: usando map , crea mediante factoria un componente 
+        //TODO: usando map , crea mediante factoria un componente
         return nullptr;
     }
     return nullptr;

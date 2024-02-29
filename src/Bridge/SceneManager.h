@@ -21,7 +21,7 @@ private:
     EntryPoint entryPoint;
 
     //TODO: esta aqui para guardar de momento escenas de prueba
-    vector<Scene*> scenes_debug;
+    std::vector<Scene*> scenes_debug;
 
     lua_State* L;
 
