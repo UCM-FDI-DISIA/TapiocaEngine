@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
@@ -95,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\defs.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h">
+      <Filter>Structure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

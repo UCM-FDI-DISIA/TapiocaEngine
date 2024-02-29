@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
+#include "Structure/FactoryManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
 using namespace std;
@@ -17,6 +18,7 @@ InputManager* input;
 SceneManager* scenes;
 GraphicsEngine* graphics;
 PhysicsManager* physics;
+FactoryManager* factories;
 //AudioManager* audio;
 //UIManager* ui;
 
@@ -50,6 +52,7 @@ int main(int argc, char** argv) {
 
 static void createModules(HMODULE module) {
     input = InputManager::create();
+    factories = FactoryManager::create(module);
     scenes = SceneManager::create(module);
     graphics = GraphicsEngine::create();
     physics = PhysicsManager::create();

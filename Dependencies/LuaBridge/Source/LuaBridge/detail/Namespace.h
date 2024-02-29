@@ -63,7 +63,7 @@ protected:
 
     Registrar& operator=(const Registrar& rhs) = delete;
 
-    Registrar& operator=(Registrar&& rhs)
+    Registrar& operator=(Registrar&& rhs) noexcept
     {
         m_stackSize = std::exchange(rhs.m_stackSize, 0);
         m_skipStackPops = std::exchange(rhs.m_skipStackPops, 0);
@@ -1156,7 +1156,11 @@ class Namespace : public detail::Registrar
                     if constexpr (detail::is_any_cfunction_pointer_v<Functions>)
                         lua_pushinteger(L, -1);
                     else
-                        lua_pushinteger(L, static_cast<int>(detail::function_arity_excluding_v<Functions, lua_State*>) - 1); // 1: for void* ptr
+                        lua_pushinteger(
+                            L,
+                            static_cast<lua_Integer>(static_cast<int>(
+                                detail::function_arity_excluding_v<Functions, lua_State*>)) -
+                                1); // 1: for void* ptr
                     lua_settable(L, -3);
                     lua_pushinteger(L, 2);
                     lua_newuserdata_aligned<F>(L, F(std::move(functions)));

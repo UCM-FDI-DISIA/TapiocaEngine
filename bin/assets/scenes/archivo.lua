@@ -2,22 +2,28 @@ scenes = {
     Escena1={
             {
                 transform = {
-                    PositionX = 22,
-                    PositionY = 12,
-                    PositionZ = -56,
-                    ScaleX = 25,
-                    ScaleY = 25,
-                    ScaleZ = 25
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
                 }
             },
             Entity1={
                     transform = {
-                        PositionX = 0,
-                        PositionY = 200,
-                        PositionZ = -100,
-                        ScaleX = 25,
-                        ScaleY = 25,
-                        ScaleZ = 25
+                        positionX = 22.0,
+                        positionY = 12.0,
+                        positionZ = -56.0,
+                        scaleX = 25.0,
+                        scaleY = 25.0,
+                        scaleZ = 25.0,
+                        rotationX = 25.0,
+                        rotationY = 25.0,
+                        rotationZ = 25.0
                     },
                     hola={
                         aaa = "bbb",
@@ -30,57 +36,72 @@ scenes = {
             },
             {
                 transform = {
-                    PositionX = 0,
-                    PositionY = 200,
-                    PositionZ = -100,
-                    ScaleX = 25,
-                    ScaleY = 25,
-                    ScaleZ = 25
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
                 }
             },
             Entity2={
-                    transform = {
-                        PositionX = 0,
-                        PositionY = 200,
-                        PositionZ = -100,
-                        ScaleX = 25,
-                        ScaleY = 25,
-                        ScaleZ = 25
-                    }
+                transform = {
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
+                }
                     -- + componentes
             },
             {
                 transform = {
-                    PositionX = 0,
-                    PositionY = 200,
-                    PositionZ = -100,
-                    ScaleX = 25,
-                    ScaleY = 25,
-                    ScaleZ = 25
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
                 }
             },
             {
                 transform = {
-                    PositionX = 0,
-                    PositionY = 200,
-                    PositionZ = -100,
-                    ScaleX = 25,
-                    ScaleY = 25,
-                    ScaleZ = 25
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
                 }
             }
             -- + entidades
     },
     Escena2={
             Entity3={
-                    transform = {
-                        PositionX = 0,
-                        PositionY = 200,
-                        PositionZ = -100,
-                        ScaleX = 25,
-                        ScaleY = 25,
-                        ScaleZ = 25
-                    }
+                transform = {
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
+                }
                     -- + componentes
             -- + entidades
         }

@@ -8,6 +8,7 @@ class Collider : public Component {
 public:
     Collider();
     ~Collider() {};
+    void initComponent(const CompMap& variables) override {};
 
     void onCollisionEnter(GameObject* other);
     void onCollisionExit(GameObject* other);

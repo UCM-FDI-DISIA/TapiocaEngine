@@ -8,9 +8,9 @@
 //#include <map>
 
 #include "Utilities/checkML.h"
-#include "Structure/Game.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
+#include "Structure/FactoryManager.h"
 using namespace std;
 using namespace Tapioca;
 
@@ -123,7 +123,7 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
         cout << "\t\tComponent: " << componentName << "\n";
 #endif
 
-        component = loadComponent();
+        component = loadComponent(componentName);
         //este if es porque no tengo creado componente
         if (component != nullptr) {
             gameObject->addComponent(component, componentName);
@@ -133,7 +133,7 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
     return true;
 }
 
-Component* SceneManager::loadComponent() {
+Component* SceneManager::loadComponent(std::string name) {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
         CompMap map;
@@ -147,32 +147,40 @@ Component* SceneManager::loadComponent() {
                 continue;
             }
             key = lua_tostring(L, -2);
-            if (lua_isstring(L, -1)) {
-                value = lua_tostring(L, -1);
+            if (lua_isboolean(L, -1)) {
+                value = lua_toboolean(L, -1) == 1;
             } else if (lua_isinteger(L, -1)) {
                 value = (int)lua_tointeger(L, -1);
-            } else if (lua_isboolean(L, -1)) {
-                value = lua_toboolean(L, -1)==1;
             } else if (lua_isnumber(L, -1)) {
                 value = (float)lua_tonumber(L, -1);
+            } else if (lua_isstring(L, -1)) {
+                value = lua_tostring(L, -1);
             }
 
 #ifdef _DEBUG
-            if (lua_isstring(L, -1)) {
-                cout << "\t\t\tkey: " << key << " valor: " << get<string>(value) << "\n";
+            if (lua_isboolean(L, -1)) {
+                cout << "\t\t\tkey: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
             } else if (lua_isinteger(L, -1)) {
                 cout << "\t\t\tkey: " << key << " valor: " << get<int>(value) << "\n";
-            } else if (lua_isboolean(L, -1)) {
-                cout << "\t\t\tkey: " << key << " valor: " << (get<bool>(value) ? "true": "false")<< "\n";
-            } else if (lua_isnumber(L, -1)) {
+            }
+            else if (lua_isnumber(L, -1)) {
                 cout << "\t\t\tkey: " << key << " valor: " << get<float>(value) << "\n";
+            } else if (lua_isstring(L, -1)) {
+                cout << "\t\t\tkey: " << key << " valor: " << get<string>(value) << "\n";
             }
 #endif
             map[key] = value;
             lua_pop(L, 1);
         }
+        Component* comp = FactoryManager::instance()->createComponent(name);
+        if (comp == nullptr) {
+            cerr << "No existe el componente: " << name << "\n";
+            return nullptr;
+        }
+        comp->initComponent(map);
+        return comp;
         //TODO: usando map , crea mediante factoria un componente
-        return nullptr;
+        //return nullptr;
     }
     return nullptr;
 }

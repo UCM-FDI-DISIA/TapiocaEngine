@@ -9,6 +9,15 @@ Transform::Transform()
     , scale(Vector3(1)) { }   //PRUEBA
 
 void Transform::initComponent(const CompMap& variables) {   //PRUEBA
+    setValueFromMap(position.x, "positionX", variables);
+    setValueFromMap(position.y, "positionY", variables);
+    setValueFromMap(position.z, "positionZ", variables);
+    setValueFromMap(scale.x, "scaleX", variables);
+    setValueFromMap(scale.y, "scaleY", variables);
+    setValueFromMap(scale.z, "scaleZ", variables);
+    setValueFromMap(rotation.x,"rotationX", variables);
+    setValueFromMap(rotation.y,"rotationY", variables);
+    setValueFromMap(rotation.z,"rotationZ", variables);
 }
 
 Vector3 Transform::getPosition() { return position; }

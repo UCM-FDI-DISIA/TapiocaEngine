@@ -1,19 +1,29 @@
 #pragma once
-#include "../Structure/Factory.h"
 #include "../Structure/Component.h"
 #include <Windows.h>
-typedef void(__cdecl* EntryPoint)(const char*);
+//typedef void(__cdecl* EntryPoint)(const char*);
 
 namespace Tapioca {
-class ComponentFactory : public Factory {
-private:
-    HMODULE module;
-    EntryPoint entryPoint;
 
-    ComponentFactory();
+class ComponentFactory {
 
 public:
-    ~ComponentFactory();
-    virtual Component* getComponent(const std::string& s) = 0;
+    virtual Component* createComponent() = 0;
+
+   // Component* createComponent2() override{ return createComponent(); }
+};
+
+class TransformComponentFactory : public ComponentFactory {
+public:
+    Component* createComponent() override;
+};
+class ColliderComponentFactory : public ComponentFactory {
+public:
+    Component* createComponent() override;
+};
+class RigidBodyComponentFactory : public ComponentFactory {
+public:
+    Component* createComponent() override;
 };
 }
+

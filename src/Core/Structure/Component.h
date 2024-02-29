@@ -54,6 +54,20 @@ public:
         }
     }
 
+     template<typename T> inline void setValueFromMap(T& var,std::string varName, const CompMap& map) {
+        auto v = map.find(varName);
+        if (v != map.end()) {
+            try {
+                var = std::get<T>(v->second);
+            } catch (const std::bad_variant_access&) {
+                std::cerr << "Error al obtener el valor para la variable: " << varName
+                          << " - Incompatibilidad de tipo.\n";
+            }
+        } else {
+            std::cerr << "Nombre de variable no encontrado en el mapa: " << varName << '\n';
+        }
+    }
+
     virtual void update(const uint64_t deltaTime) { }
     virtual void handleEvents() { }
     virtual void initComponent(const CompMap& variables) = 0;

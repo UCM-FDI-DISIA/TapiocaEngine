@@ -36,14 +36,14 @@ private:
     GameObject* loadGameObject(Scene* scene);
 
     bool loadComponents(GameObject* gameObject);
-    Component* loadComponent();
+    Component* loadComponent(std::string name);
 
 public:
-    ~SceneManager();
-
     SceneManager(SceneManager&) = delete;
     SceneManager(SceneManager&&) = delete;
     SceneManager& operator=(SceneManager&) = delete;
     SceneManager& operator=(SceneManager&&) = delete;
+
+    ~SceneManager();
 };
 }

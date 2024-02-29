@@ -1,9 +1,9 @@
 #pragma once
-#include "../Utilities/Singleton.h"
+#include "../Structure/Component.h"
 
 namespace Tapioca {
-class Factory : public Singleton<Factory> {
-    friend Singleton<Factory>;
-
+class Factory {
+public:
+    virtual Component* createComponent() = 0;
 };
 }

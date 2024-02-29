@@ -89,6 +89,7 @@
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\ComponentFactory.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Factory.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Module.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
     <ClInclude Include="..\..\src\Core\Structure\ComponentFactory.h" />
     <ClInclude Include="..\..\src\Core\Structure\Factory.h" />
+    <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h" />
     <ClInclude Include="..\..\src\Core\Structure\Game.h" />
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
     <ClInclude Include="..\..\src\Core\Structure\Module.h" />

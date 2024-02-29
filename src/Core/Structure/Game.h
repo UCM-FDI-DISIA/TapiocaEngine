@@ -2,7 +2,7 @@
 #include "Utilities/defs.h"
 #include <vector>
 #include <stack>
-
+#include "ComponentFactory.h"
 namespace Tapioca {
 class Scene;
 class Module;
@@ -14,6 +14,7 @@ private:
     std::vector<Module*> modules;
     std::stack<Scene*> scenes;
     std::vector<Scene*> toDelete;
+
     uint64_t deltaTime;
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;
     bool finish;
@@ -26,6 +27,7 @@ private:
     void fixedUpdate();
     void render();
     void refresh();
+
 
 public:
     Game();
@@ -43,5 +45,7 @@ public:
     void pushScene(Scene*);
     void popScene();
     void changeScene(Scene*);
+
+ 
 };
 }
