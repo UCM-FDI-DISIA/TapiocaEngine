@@ -4,22 +4,30 @@
 #include "Utilities/Vector4.h"
 #include "Node.h"
 
+Tapioca::Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook, float nearDist,
+    float farDist, bool autoAspectRatio, float aspectRatio)
+    : RenderObject(node)
+    , mCam(scnMgr->createCamera(name)) {
 
-Tapioca::Camera::Camera(Ogre::SceneManager* scnMgr, Node* n, std::string name, Vector3 look, int clipdst, bool autoAR) {
-    mCam = scnMgr->createCamera(name);
-    mNode = n;
-    mNode->getSceneNode()->lookAt(Ogre::Vector3(look.x, look.y, look.z),Ogre::Node::TS_PARENT);
-    mCam->setNearClipDistance(clipdst);
-    mCam->setAspectRatio(autoAR);
-    mNode->getSceneNode()->attachObject(mCam);
+    init(mCam);
 
+    lookAt(targetToLook);
+    setNearClipDistance(nearDist);
+    if (autoAspectRatio) {
+        mCam->setAutoAspectRatio(true);
+    } else {
+        mCam->setAspectRatio(aspectRatio);
+    }
 }
 
-void Tapioca::Camera::setLookAt(Vector3 look) { 
-     mNode->getSceneNode()->lookAt(Ogre::Vector3(look.x, look.y, look.z), Ogre::Node::TS_PARENT);
-}
+void Tapioca::Camera::lookAt(Vector3 targetToLook) { node->lookAt(targetToLook); }
 
-void Tapioca::Camera::setNearClipDistance(float dst) { 
-     mCam->setNearClipDistance(dst); }
+void Tapioca::Camera::setDirection(Vector3 dir) { node->setDirection(dir); }
 
+void Tapioca::Camera::setNearClipDistance(float dist) { mCam->setNearClipDistance(dist); }
 
+//void Tapioca::Camera::setFOVY(float radians) { mCam->setFOVy(Ogre::Radian(radians)); }
+
+void Tapioca::Camera::setFOVY(float degrees) { mCam->setFOVy(Ogre::Radian(Ogre::Degree(degrees))); }
+
+void Tapioca::Camera::setFarClipDistance(float dist) { mCam->setFarClipDistance(dist); }

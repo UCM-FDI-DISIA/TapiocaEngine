@@ -12,22 +12,17 @@
 // C++
 #include <iostream>
 #include <Windows.h>
+// Utilidades
+#include "Utilities/checkML.h"
 // Propios
 #include "GraphicsEngine.h"
-#include "Node.h"
-#include "Light.h"
+#include "LightPoint.h"
+#include "LightDirectional.h"
 #include "Camera.h"
-#include "Graphicsdef.h"
-#include "Utilities/checkML.h"
-using namespace Tapioca;
+#include "Node.h"
+#include "Mesh.h"
 
-// BORRAR
-Ogre::SceneNode* node;
-//para que la escena de prueba no deje leaks
-Tapioca::Node* luzNode;
-Tapioca::Light* mainLight;
-Tapioca::Node* camaraNode;
-Tapioca::Camera* maincam;
+using namespace Tapioca;
 
 GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr)
@@ -41,18 +36,25 @@ GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     , sdlWindow(nullptr)
     , mwindowName(windowName)
     , windowWidth(w)
-    , windowHeight(h) { }
+    , windowHeight(h)
+    , nodes()
+    , objects()
+    , mainCamera()
+    , viewport(nullptr) { }
 
 GraphicsEngine::~GraphicsEngine() {
     for (auto& node : nodes) {
         delete node;
+    }
+    for (auto& object : objects) {
+        delete object.first;
     }
     shutDown();
 }
 
 bool GraphicsEngine::init() {
     // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
-    
+
     // hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
     // el nombre es para crear un directorio dentro del home del usuario para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
@@ -159,21 +161,6 @@ void GraphicsEngine::loadShaders() {
     }
 }
 
-void GraphicsEngine::handleEvents() {
-    //SDL_Event event;
-    //while (SDL_PollEvent(&event)) {
-    //    //ImGui_ImplSDL2_ProcessEvent(&event);
-    //    if (event.type == SDL_QUIT) done = true;
-    //    if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
-    //        event.window.windowID == SDL_GetWindowID(sdlWindow))
-    //        done = true;
-    //}
-}
-
-void GraphicsEngine::fixedUpdate() {
-    //node->yaw(Ogre::Degree(2)); 
-}
-
 void GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
 void GraphicsEngine::shutDown() {
@@ -224,75 +211,6 @@ void GraphicsEngine::shutDown() {
     // ELIMINAR EL SISTEMA DE BUSQUEDA DE FICHEROS DE CONFIGURACION
     delete fsLayer;
     fsLayer = nullptr;
-
-    //par aqeu la escena de test no deje leaks
-    delete luzNode;
-    delete mainLight;
-    delete maincam;
-    delete camaraNode;
-}
-
-void GraphicsEngine::testScene() {
-    // Luz
-    Ogre::Light* light = scnMgr->createLight("MainLight");
-    Ogre::SceneNode* lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    lightNode->setPosition(0, 10, 15);
-    lightNode->attachObject(light);
-
-    // Camara
-    camaraNode = new Node(scnMgr, Vector3(0, 0, 20), Vector3(1, 1, 1));
-    maincam = new Camera(scnMgr, camaraNode, "maincamera",Vector3(0,0,-1),5,true);
-    /* Ogre::SceneNode* camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    camNode->setPosition(0, 0, 15);
-    camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
-    Ogre::Camera* cam = scnMgr->createCamera("myCam");
-    cam->setNearClipDistance(5);
-    cam->setAutoAspectRatio(true);
-    camNode->attachObject(cam);*/
-
-    // Puerto de vista de Ogre
-    Ogre::Viewport* vp = ogreWindow->addViewport(maincam->getCamera());
-
-    // fondo
-    vp->setBackgroundColour(Ogre::ColourValue(0.83f, 0.5f, 0.9f));
-
-    // objeto
-    Ogre::Entity* ent = scnMgr->createEntity("mapache.mesh");
-    //ent->setMaterialName("white");//si el material tiene vertex program y fragment program no da ningun problema
-    node = scnMgr->getRootSceneNode()->createChildSceneNode();
-    // node->yaw(Ogre::Degree(90));
-    node->attachObject(ent);
-    //luz 
-     luzNode = new Node(scnMgr, Vector3(1, 1, 10), Vector3(1, 1, 1));
-     mainLight = new Tapioca::Light( scnMgr, luzNode, LightType::POINT, Vector4(0, 0, 2, 1),Vector3(1,1,1));
- 
-    //try {
-    //    // mroot->startRendering();// FALTAN ARCHIVOS .H Y . HLSL QUE ESTAN EN SRC MEDIA MAIN Y TIENEN QEU ESTAR EN LA CARPETA DE RECURSOS
-    //    //la carpeta rtShader lib parece que tambien hara falta
-    //} catch (Ogre::Exception& e) {
-
-    //    std::cout << e.getFullDescription() << '\n';
-    //}
-    //bool done = false;
-    //while (!done) {
-    //    try {
-
-
-    //        SDL_Event event;
-    //        while (SDL_PollEvent(&event)) {
-    //            //ImGui_ImplSDL2_ProcessEvent(&event);
-    //            if (event.type == SDL_QUIT) done = true;
-    //            if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
-    //                event.window.windowID == SDL_GetWindowID(sdlWindow))
-    //                done = true;
-    //        }
-    //        node->yaw(Ogre::Degree(2));
-    //        render();
-    //    } catch (Ogre::Exception& e) {
-
-    //        // std::cout << e.getFullDescription() << '\n';
-    //    };
-    //}
 }
 
 Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
@@ -301,8 +219,8 @@ Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
     return node;
 }
 
-Node* GraphicsEngine::createChildNode(Node* parent, Vector3 pos, Vector3 scale) {
-    Node* node = new Node(scnMgr, pos, scale, parent);
+Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
+    Node* node = new Node(scnMgr, relativePos, scale, parent);
     nodes.insert(node);
     return node;
 }
@@ -314,3 +232,38 @@ void GraphicsEngine::removeNode(Node* node) {
         delete node;
     }
 }
+
+void GraphicsEngine::createMainCamera() {
+    std::pair<Camera*, Node*> aux;
+    Node* node = createNode(Vector3(0, 0, 20));
+    Camera* mainCamera = new Camera(scnMgr, node, "MainCamera");
+    objects[mainCamera] = node;
+    viewport = ogreWindow->addViewport(mainCamera->getCamera());
+}
+
+void GraphicsEngine::setBackgroundColor(Vector3 color) {
+    if (viewport != nullptr) {
+        viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z));
+    }
+}
+
+LightDirectional* GraphicsEngine::createLightDirectional(Vector3 direction, Vector4 color) {
+    Node* node = createNode();
+    LightDirectional* light = new LightDirectional(scnMgr, node, color, direction);
+    objects[light] = node;
+    return light;
+}
+
+Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) {
+    Mesh* mesh = new Mesh(scnMgr, node, meshName);
+    objects[mesh] = node;
+    return mesh;
+}
+
+Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {
+    Ogre::ManualObject* manualObject = scnMgr->createManualObject();
+    node->attachObject(manualObject);
+    return manualObject;
+}
+
+void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }

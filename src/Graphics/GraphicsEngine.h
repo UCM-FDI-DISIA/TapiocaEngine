@@ -7,6 +7,7 @@
 #include "Structure/Module.h"
 // Para parametros con valores por defecto
 #include "Utilities/Vector3.h"
+#include "Utilities/Vector4.h"
 
 class SGTechniqueResolverListener;
 class SDL_Window;
@@ -18,6 +19,8 @@ class SceneManager;
 class GL3PlusRenderSystem;
 class RenderSystem;
 class RenderWindow;
+class ManualObject;
+class Viewport;
 
 namespace RTShader {
     class ShaderGenerator;
@@ -27,10 +30,10 @@ namespace RTShader {
 namespace Tapioca {
 class Node;
 class Camera;
-class Enity;
-class Light;
-class Vector4;   //para colores
-enum LightType;
+class LightDirectional;
+class RenderObject;
+class Mesh;
+class Vector3;
 }
 
 namespace Tapioca {
@@ -54,8 +57,11 @@ private:
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
 
-    // Administrar los nodos propios
+    // Administriar objetos
     std::unordered_set<Node*> nodes;
+    std::unordered_map<RenderObject*, Node*> objects;
+    std::pair<Camera*, Node*> mainCamera;
+    Ogre::Viewport* viewport;
 
     // carga plugIns especificados desde codigo
     // BORRAR
@@ -75,19 +81,12 @@ private:
     GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
 
 public:
-    //enum LightType { POINT, SPOTLIGHT, DIRECTIONAL };
-
     virtual ~GraphicsEngine();
 
     /*
     *   @brief creat el root de Ogre y prepara los recursos para empezar a renderizar
     */
     bool init() override;
-
-    // BORRAR
-    void handleEvents() override;
-
-    void fixedUpdate() override;
 
     /*
     *   @brief renderiza 1 frame
@@ -99,27 +98,15 @@ public:
     */
     void shutDown();
 
-    // escena basica para hacer pruebas luego borramos este metodo entero
-    // BORRAR
-    void testScene();
-
+    // CREAR OBJETOS
     Node* createNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     Node* createChildNode(
-        Node* parent, Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+        Node* parent, Vector3 relativePos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     // eliminar un nodo por completo
     // esto quiere decir: delete del nodo y sus hijos, quitar objetos y nodos del propio nodo y de sus hijos del grafo de la escena
     void removeNode(Node* node);
-
-    /*
-    * @brief devuelve a una luz que se podra manipular
-    */
-    Light* createLight(Node* n, LightType T, Vector4 color, Vector3 direction);
-    /*
-    * @brief crea una luz qque no se modificara (ej un sol)
-    */
-    void createLight(Vector3 pos, LightType T, Vector4 color, Vector3 direction);
 
     /*
     * @brief devuelve a una camara que se podra manipular
@@ -128,12 +115,18 @@ public:
     /*
     * @brief crea una camara que no se modificara (la del juego de billar?)
     */
-    void createCamera();
+    // METODO
 
+    void createMainCamera();
+    void setBackgroundColor(Vector3 color);
+    inline std::pair<Camera*, Node*> getMainCamera() { return mainCamera; }
 
-    void setSkyplane();
+    LightDirectional* createLightDirectional(Vector3 direction, Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    // BORRAR cuando se haya creado el wrapper
-    inline Ogre::SceneManager* getSceneManager() { return scnMgr; }
+    Mesh* createMesh(Node* node, std::string meshName);
+
+    Ogre::ManualObject* createManualObject(Node* node);
+
+    void destroyManualObject(Ogre::ManualObject* object);
 };
 }

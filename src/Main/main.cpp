@@ -29,12 +29,11 @@ int main(int argc, char** argv) {
         Game* game = new Game();
         createModules(loader->getModule());
         if (game->init()) {
-            auto node = graphics->createNode();
-            auto childNode = graphics->createChildNode(node);
-            graphics->createChildNode(childNode);
-            graphics->createChildNode(node);
-            graphics->removeNode(node);
-            graphics->testScene();
+            graphics->createMainCamera();
+            graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
+            graphics->createLightDirectional(Vector3(0.0f, -1.0f, -1.0f));
+            Node* node = graphics->createNode();
+            graphics->createMesh(node, "mapache.mesh");
             game->run();
         } else {
             cerr << "Error al inicializar un módulo\n";
