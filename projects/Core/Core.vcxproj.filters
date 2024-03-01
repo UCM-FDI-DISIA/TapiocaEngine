@@ -102,5 +102,8 @@
     <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h">
       <Filter>Structure</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\INode.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

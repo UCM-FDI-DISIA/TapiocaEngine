@@ -14,6 +14,7 @@
     <ClCompile Include="..\..\src\Main\DynamicLibraryLoader.cpp" />
     <ClCompile Include="..\..\src\Main\InputManager.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
+    <ClCompile Include="..\..\src\Main\TransformBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bridge\Bridge.vcxproj">
@@ -38,6 +39,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h" />
     <ClInclude Include="..\..\src\Main\InputManager.h" />
+    <ClInclude Include="..\..\src\Main\TransformBuilder.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

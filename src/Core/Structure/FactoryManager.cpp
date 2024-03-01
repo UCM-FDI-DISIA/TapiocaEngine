@@ -17,7 +17,7 @@ Tapioca::FactoryManager::~FactoryManager() {
     factories.clear();
 }
 bool Tapioca::FactoryManager::init() {
-    addFactory("transform", new TransformComponentFactory());
+    // TODO: Esto deberia estar en Main
     addFactory("rigidBody", new RigidBodyComponentFactory());
     addFactory("collider", new ColliderComponentFactory());
 

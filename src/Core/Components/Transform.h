@@ -2,12 +2,16 @@
 #include "../Structure/Component.h"
 #include "../Utilities/Vector3.h"
 namespace Tapioca {
+class INode;
+class TransformBuilder;
 
 class Transform : public Component {
+    friend TransformBuilder;
 private:
     Vector3 position;
     Vector3 rotation;
     Vector3 scale;
+    INode* node;
 
 public:
     COMPONENT_ID("Transform")

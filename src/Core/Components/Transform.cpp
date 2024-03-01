@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "Utilities/INode.h"
 
 namespace Tapioca {
 
@@ -12,24 +13,42 @@ void Transform::initComponent(const CompMap& variables) {   //PRUEBA
     setValueFromMap(position.x, "positionX", variables);
     setValueFromMap(position.y, "positionY", variables);
     setValueFromMap(position.z, "positionZ", variables);
+    node->setPosition(position);
     setValueFromMap(scale.x, "scaleX", variables);
     setValueFromMap(scale.y, "scaleY", variables);
     setValueFromMap(scale.z, "scaleZ", variables);
+    node->setScale(scale);
     setValueFromMap(rotation.x,"rotationX", variables);
     setValueFromMap(rotation.y,"rotationY", variables);
     setValueFromMap(rotation.z,"rotationZ", variables);
+    node->setRotation(rotation);
 }
 
 Vector3 Transform::getPosition() { return position; }
 Vector3 Transform::getRotation() { return rotation; }
 Vector3 Transform::getScale() { return scale; }
 
-void Transform::setPosition(Vector3 p) { position = p; }
-void Transform::setRotation(Vector3 r) { rotation = r; }
-void Transform::setScale(Vector3 s) { scale = s; }
+void Transform::setPosition(Vector3 p) {
+    position = p;
+    node->setPosition(p);
+}
+void Transform::setRotation(Vector3 r) {
+    rotation = r;
+    node->setRotation(r);
+}
+void Transform::setScale(Vector3 s) {
+    scale = s;
+    node->setScale(s);
+}
 
-void Transform::translate(Vector3 p) { position += p; }
-void Transform::rotate(Vector3 r) { rotation += r; }
+void Transform::translate(Vector3 p) {
+    position += p;
+    node->translate(p);
+}
+void Transform::rotate(Vector3 r) {
+    rotation += r;
+    node->setRotation(rotation);
+}
 
 Vector3 Transform::right() {
 

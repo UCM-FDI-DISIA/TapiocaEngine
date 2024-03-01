@@ -112,6 +112,7 @@
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
     <ClInclude Include="..\..\src\Core\Utilities\checkML.h" />
     <ClInclude Include="..\..\src\Core\Utilities\defs.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\INode.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Singleton.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />

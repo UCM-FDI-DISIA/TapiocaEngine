@@ -10,6 +10,7 @@
 #include "Structure/FactoryManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
+#include "TransformBuilder.h"
 using namespace std;
 using namespace Tapioca;
 
@@ -21,6 +22,7 @@ PhysicsManager* physics;
 FactoryManager* factories;
 //AudioManager* audio;
 //UIManager* ui;
+static void createEngineBuilders();
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -30,6 +32,7 @@ int main(int argc, char** argv) {
     if (loader->load()) {
         Game* game = new Game();
         createModules(loader->getModule());
+        createEngineBuilders();
         if (game->init()) {
             graphics->createMainCamera();
             graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
@@ -51,11 +54,16 @@ int main(int argc, char** argv) {
 }
 
 static void createModules(HMODULE module) {
+    graphics = GraphicsEngine::create();
     input = InputManager::create();
     factories = FactoryManager::create(module);
     scenes = SceneManager::create(module);
-    graphics = GraphicsEngine::create();
     physics = PhysicsManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
+}
+
+static void createEngineBuilders() {
+    FactoryManager* manager = FactoryManager::instance();
+    manager->addFactory("transform", new TransformBuilder());
 }
