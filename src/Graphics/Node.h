@@ -66,9 +66,11 @@ public:
     void rotate(Vector3 r);
     void scale(Vector3 s);
 
+    // TODO: Quitar
     // coger hijo por indice
     Node* getChild(int index);
 
+    // TODO: Cambiar a que solo sean los hijos
     // vector con todos los hijos y los subhijos
     std::vector<Node*> getAllChildren();
 };

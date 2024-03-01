@@ -12,7 +12,7 @@ Ogre::SceneNode* Tapioca::Node::addChild(Node* child) {
 
 void Tapioca::Node::destroyAllAttachedObjects(Ogre::SceneNode* node) {
     // por precaucion
-    if (!node) {
+    if (node != nullptr) {
         return;
     } else {
         // se recorren todos los objetos que cuelgan del nodo y se eliminan
