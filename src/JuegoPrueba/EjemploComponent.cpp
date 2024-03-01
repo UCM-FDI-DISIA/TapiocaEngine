@@ -1,23 +1,21 @@
 #include "EjemploComponent.h"
+using namespace Tapioca;
+using namespace TapiocaGame;
 
-Tapioca::EjemploComponent::EjemploComponent()
-    : Tapioca::Component()
+EjemploComponent::EjemploComponent()
+    : Component()
     , a(0)
     , b(0)
     , c(0)
-    , d(0)
-    , name("") { }
+    , d("") { }
 
-void Tapioca::EjemploComponent::initComponent(const CompMap& map) {
-    
-    setValueFromMap(a, map);
-    setValueFromMap(b, map);
-    setValueFromMap(c, map);
-    setValueFromMap(d, map);
-    setValueFromMap(name, map);
-    
+void EjemploComponent::initComponent(const CompMap& map) {
+    setValueFromMap(a, "a", map);
+    setValueFromMap(b, "b", map);
+    setValueFromMap(c, "c", map);
+    setValueFromMap(d, "d", map);
 }
 
-// void Tapioca::EjemploComponent::update(const uint64_t deltaTime) { }
-// void Tapioca::EjemploComponent::handleEvents() { }
-// void Tapioca::EjemploComponent::fixedUpdate() { }
+// void EjemploComponent::update(const uint64_t deltaTime) { }
+// void EjemploComponent::handleEvents() { }
+// void EjemploComponent::fixedUpdate() { }
