@@ -128,5 +128,7 @@ public:
     Ogre::ManualObject* createManualObject(Node* node);
 
     void destroyManualObject(Ogre::ManualObject* object);
+    
+    SDL_Window* getSDLWindow() { return sdlWindow; };
 };
 }

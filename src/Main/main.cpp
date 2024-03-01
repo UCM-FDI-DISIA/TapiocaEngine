@@ -9,8 +9,9 @@
 #include "PhysicsManager.h"
 #include "Structure/FactoryManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
-// #include "UIManager.h" A�adir cuando se implemente
+
 #include "TransformBuilder.h"
+#include "UIManager.h"
 using namespace std;
 using namespace Tapioca;
 
@@ -21,14 +22,14 @@ GraphicsEngine* graphics;
 PhysicsManager* physics;
 FactoryManager* factories;
 //AudioManager* audio;
-//UIManager* ui;
+UIManager* ui;
 static void createEngineBuilders();
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
     DynamicLibraryLoader* loader = new DynamicLibraryLoader();
-
+   
     if (loader->load()) {
         Game* game = new Game();
         createModules(loader->getModule());
@@ -60,7 +61,7 @@ static void createModules(HMODULE module) {
     scenes = SceneManager::create(module);
     physics = PhysicsManager::create();
     // audio = AudioManager::create();
-    // ui = UIManager::create();
+    ui = UIManager::create(graphics->getSDLWindow());
 }
 
 static void createEngineBuilders() {
