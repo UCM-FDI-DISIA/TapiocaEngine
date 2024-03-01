@@ -1,16 +1,17 @@
 #pragma once
 #include <vector>
-#include "Structure/ComponentFactory.h"
 #include <string>
 #include <unordered_map>
 #include <variant>
 #include <Windows.h>
+#include "Structure/ComponentFactory.h"
+using namespace std;
 
 struct FactoryInfo {
     const char* name;
     Tapioca::ComponentFactory* factory;
 };
 
-using CompValue = std::variant<char, int, float, bool, std::string>;
-using CompMap = std::unordered_map<std::string, CompValue>;
+using CompValue = variant<char, int, float, bool, string>;
+using CompMap = unordered_map<string, CompValue>;
 typedef FactoryInfo**(__cdecl* EntryPoint)(int&);

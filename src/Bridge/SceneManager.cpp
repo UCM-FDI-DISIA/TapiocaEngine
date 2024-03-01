@@ -4,8 +4,6 @@
 #include <LuaBridge.h>
 #include <fstream>
 #include <iostream>
-//#include <variant>
-//#include <map>
 
 #include "Utilities/checkML.h"
 #include "Structure/GameObject.h"
@@ -14,9 +12,9 @@
 using namespace std;
 using namespace Tapioca;
 
-SceneManager::SceneManager(HMODULE module)
+SceneManager::SceneManager(HMODULE module, string scenesPath)
     : module(module)
-    , entryPoint(nullptr)
+    , scenesPath(scenesPath)
     , L(nullptr) { }
 
 SceneManager::~SceneManager() {
@@ -34,7 +32,7 @@ bool SceneManager::init() {
     string dir = string(buffer).substr(0, pos);
 
     // Construye la ruta completa al archivo LUA
-    string path = dir + "\\assets\\scenes\\archivo.lua";
+    string path = dir + "\\assets\\scenes\\" + scenesPath;
 
     L = luaL_newstate();
     luaL_openlibs(L);
@@ -44,11 +42,15 @@ bool SceneManager::init() {
         return false;
     }
 
+    if (!loadScenes()) {
+        cerr << "Error al cargar las escenas, gameobjects y componentes\n";
+        lua_close(L);
+        return false;
+    }
+
 #ifdef _DEBUG
     cout << "Archivo LUA cargado correctamente\n";
 #endif
-
-    loadScenes();
     lua_close(L);
     return true;
 }
@@ -57,72 +59,67 @@ bool SceneManager::loadScenes() {
     lua_getglobal(L, "scenes");
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
-        Scene* scene;
-        string sceneName = "";
+        bool loaded = false;
         while (lua_next(L, -2) != 0) {
-            //scene = new Scene();
-            sceneName = lua_tostring(L, -2);
+            Scene* scene = new Scene();
+            string sceneName = lua_tostring(L, -2);
+
+#ifdef _DEBUG
             cout << "Scene: " << sceneName << "\n";
-            scene = loadScene();
+#endif
+            loaded = loadScene(scene);
             lua_pop(L, 1);
 
             //TODO: esta aqui para no dejar memoria de momento
             scenes_debug.push_back(scene);
         }
+        return loaded;
     }
     return false;
 }
 
-Scene* SceneManager::loadScene() {
+bool SceneManager::loadScene(Scene* scene) {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
-        Scene* scene = new Scene();
-        loadGameObjects(scene);
-        return scene;
+        return loadGameObjects(scene);
     }
-    return nullptr;
+    return false;
 }
 
 bool SceneManager::loadGameObjects(Scene* scene) {
+    bool loaded = false;
     while (lua_next(L, -2) != 0) {
-        //scene = new Scene();
-        GameObject* gameObject;
+        GameObject* gameObject = new GameObject();
         string gameObjectName = "";
         if (!lua_isinteger(L, -2)) gameObjectName = lua_tostring(L, -2);
 
 #ifdef _DEBUG
         cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-
-        gameObject = loadGameObject(scene);
+        loaded = loadGameObject(gameObject);
         scene->addObject(gameObject, gameObjectName);
         lua_pop(L, 1);
     }
-
-    return true;
+    return loaded;
 }
 
-GameObject* SceneManager::loadGameObject(Scene* scene) {
+bool SceneManager::loadGameObject(GameObject* gameObject) {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
-        GameObject* gameObject = new GameObject();
-        loadComponents(gameObject);
-        return gameObject;
+        return loadComponents(gameObject);
     }
-    return nullptr;
+    return false;
 }
 
 bool SceneManager::loadComponents(GameObject* gameObject) {
-    Component* component;
+    Component* component = nullptr;
     string componentName = "";
     while (lua_next(L, -2) != 0) {
-        //scene = new Scene();
         componentName = lua_tostring(L, -2);
 
 #ifdef _DEBUG
         cout << "\t\tComponent: " << componentName << "\n";
 #endif
-
         component = loadComponent(componentName);
         //este if es porque no tengo creado componente
         if (component != nullptr) {
@@ -130,10 +127,10 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
         }
         lua_pop(L, 1);
     }
-    return true;
+    return component != nullptr;
 }
 
-Component* SceneManager::loadComponent(std::string name) {
+Component* SceneManager::loadComponent(string name) {
     if (lua_istable(L, -1)) {
         lua_pushnil(L);
         CompMap map;
@@ -172,6 +169,7 @@ Component* SceneManager::loadComponent(std::string name) {
             map[key] = value;
             lua_pop(L, 1);
         }
+
         Component* comp = FactoryManager::instance()->createComponent(name);
         if (comp == nullptr) {
             cerr << "No existe el componente: " << name << "\n";
@@ -179,8 +177,6 @@ Component* SceneManager::loadComponent(std::string name) {
         }
         comp->initComponent(map);
         return comp;
-        //TODO: usando map , crea mediante factoria un componente
-        //return nullptr;
     }
     return nullptr;
 }
