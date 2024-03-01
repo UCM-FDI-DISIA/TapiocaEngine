@@ -19,6 +19,7 @@
     <ClCompile Include="..\..\src\Graphics\LightPoint.cpp" />
     <ClCompile Include="..\..\src\Graphics\Mesh.cpp" />
     <ClCompile Include="..\..\src\Graphics\Node.cpp" />
+    <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="..\..\src\Graphics\LightPoint.h" />
     <ClInclude Include="..\..\src\Graphics\Mesh.h" />
     <ClInclude Include="..\..\src\Graphics\Node.h" />
+    <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\src\Graphics\RenderObject.h" />
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
   </ItemGroup>

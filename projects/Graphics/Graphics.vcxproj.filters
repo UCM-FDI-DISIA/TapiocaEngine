@@ -31,6 +31,7 @@
     <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h">
@@ -63,6 +64,7 @@
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Archivos de recursos">
