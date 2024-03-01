@@ -13,32 +13,17 @@ FactoryManager::FactoryManager(HMODULE module)
     : module(module) { }
 
 FactoryManager::~FactoryManager() {
-    for (auto& f : factories) {
+    for (auto& f : builders) {
         delete f.second;
     }
-    factories.clear();
-}
-bool FactoryManager::init() {
-    // TODO: Esto deberia estar en Main
-    addFactory("rigidBody", new RigidBodyComponentFactory());
-    addFactory("collider", new ColliderComponentFactory());
-
-    EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
-
-    int numFactories;
-    FactoryInfo** fI = eP(numFactories);
-
-    for (int i = 0; i < numFactories; ++i) {
-        addFactory(fI[i]->name, fI[i]->factory);
-    }
-    return true;
+    builders.clear();
 }
 
 Component* FactoryManager::createComponent(std::string name) {
-    if (factories.find(name) != factories.end()) {
-        return factories[name]->createComponent();
+    if (builders.find(name) != builders.end()) {
+        return builders[name]->createComponent();
     }
     return nullptr;
 }
 
-void FactoryManager::addFactory(string name, ComponentFactory* factory) { factories[name] = factory; }
+void FactoryManager::addFactory(string name, ComponentBuilder* builder) { builders[name] = builder; }

@@ -1,7 +1,7 @@
 #pragma once
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
-#include "Structure/ComponentFactory.h"
+#include "Structure/ComponentBuilder.h"
 #include "Utilities/defs.h"
 using namespace std;
 
@@ -13,7 +13,7 @@ class FactoryManager : public Singleton<FactoryManager>, public Module {
 private:
     friend Singleton<FactoryManager>;
 
-    unordered_map<string, ComponentFactory*> factories; // Mapa de factorías de componentes
+    unordered_map<string, ComponentBuilder*> builders;   // Mapa de factorías de componentes
     HMODULE module; // Módulo cargado en la memoria del proceso
 
     /**
@@ -34,12 +34,6 @@ public:
     ~FactoryManager();
 
     /**
-    * @brief Inicializa el módulo
-    * @return Devuelve true si se ha inicializado correctamente
-    */
-    bool init() override;
-
-    /**
     * @brief Crea un componente a partir de su nombre
     */
     Component* createComponent(string name);
@@ -47,6 +41,6 @@ public:
     /**
     * @brief Añade una factoría al mapa de factorías
     */
-    void addFactory(string name, ComponentFactory* factory);
+    void addFactory(string name, ComponentBuilder* builder);
 };
 }

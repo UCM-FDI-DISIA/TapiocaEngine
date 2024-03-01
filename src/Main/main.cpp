@@ -11,6 +11,7 @@
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
 #include "TransformBuilder.h"
+//#include "Utilities/defs.h"
 using namespace std;
 using namespace Tapioca;
 
@@ -22,7 +23,7 @@ PhysicsManager* physics;
 FactoryManager* factories;
 //AudioManager* audio;
 //UIManager* ui;
-static void createEngineBuilders();
+static void createEngineBuilders(HMODULE module);
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -32,7 +33,7 @@ int main(int argc, char** argv) {
     if (loader->load()) {
         Game* game = new Game();
         createModules(loader->getModule());
-        createEngineBuilders();
+        createEngineBuilders(loader->getModule());
         if (game->init()) {
             graphics->createMainCamera();
             graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
@@ -56,14 +57,24 @@ int main(int argc, char** argv) {
 static void createModules(HMODULE module) {
     graphics = GraphicsEngine::create();
     input = InputManager::create();
-    factories = FactoryManager::create(module);
+    factories = FactoryManager::create();
     scenes = SceneManager::create(module);
     physics = PhysicsManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
 }
 
-static void createEngineBuilders() {
+static void createEngineBuilders(HMODULE module) {
     FactoryManager* manager = FactoryManager::instance();
     manager->addFactory("transform", new TransformBuilder());
+
+    EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
+
+    int numFactories;
+    FactoryInfo** fI = eP(numFactories);
+    for (int i = 0; i < numFactories; ++i) {
+        manager->addFactory(fI[i]->name, fI[i]->builder);
+        delete fI[i];
+    }
+    delete[] fI;
 }

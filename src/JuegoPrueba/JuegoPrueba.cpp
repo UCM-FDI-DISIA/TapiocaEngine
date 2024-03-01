@@ -11,7 +11,7 @@ JUEGO_API FactoryInfo** getComponentFactories(int& count) {
     FactoryInfo** factories = new FactoryInfo*[NUM_FACTORIES];
     factories[0] = new FactoryInfo();
     factories[0]->name = "ejemploComponent";
-    factories[0]->factory = new EjemploComponentFactory();
+    factories[0]->builder = new EjemploComponentFactory();
 
     return factories;
 }

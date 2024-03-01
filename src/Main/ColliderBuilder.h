@@ -2,7 +2,7 @@
 #include "Structure/ComponentBuilder.h"
 
 namespace Tapioca {
-class TransformBuilder : public ComponentBuilder {
+class ColliderBuilder : public ComponentBuilder {
 public:
     Component* createComponent() override;
 };
