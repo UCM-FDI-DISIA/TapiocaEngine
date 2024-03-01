@@ -11,6 +11,12 @@ scenes = {
                     rotationX = 25.0,
                     rotationY = 25.0,
                     rotationZ = 25.0
+                },
+                ejemploComponent = {
+                    a = 1,
+                    b = 0.1,
+                    c = true,
+                    d = "ejemplo"
                 }
             },
             Entity1={

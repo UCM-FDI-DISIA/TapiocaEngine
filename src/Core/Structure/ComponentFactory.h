@@ -1,5 +1,6 @@
 #pragma once
 #include "../Structure/Component.h"
+#include <Windows.h>
 
 namespace Tapioca {
 class ComponentFactory {

@@ -39,22 +39,7 @@ public:
     inline bool isActive() const { return active; }   //para comprobar si esta activo, en caso contrario no se actualiza
     virtual void setActive(bool b) { active = b; }    //activar/desactivar componente
 
-    template<typename T> 
-    inline void setValueFromMap(T& var, const CompMap& map) {
-        auto v = map.find(VAR_NAME_TO_STRING(var));
-        if (v != map.end()) {
-            try {
-                var = std::get<T>(v->second);
-            } catch (const std::bad_variant_access&) {
-                std::cerr << "Error al obtener el valor para la variable: " << VAR_NAME_TO_STRING(var)
-                          << " - Incompatibilidad de tipo.\n";
-            }
-        } else {
-            std::cerr << "Nombre de variable no encontrado en el mapa: " << VAR_NAME_TO_STRING(var) << '\n';
-        }
-    }
-
-     template<typename T> inline void setValueFromMap(T& var,std::string varName, const CompMap& map) {
+    template<typename T> inline void setValueFromMap(T& var, std::string varName, const CompMap& map) {
         auto v = map.find(varName);
         if (v != map.end()) {
             try {

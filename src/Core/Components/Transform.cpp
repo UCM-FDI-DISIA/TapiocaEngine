@@ -9,7 +9,7 @@ Transform::Transform()
     , rotation(Vector3(0))
     , scale(Vector3(1)) { }   //PRUEBA
 
-void Transform::initComponent(const CompMap& variables) {   //PRUEBA
+void Transform::initComponent(const CompMap& variables) {
     setValueFromMap(position.x, "positionX", variables);
     setValueFromMap(position.y, "positionY", variables);
     setValueFromMap(position.z, "positionZ", variables);
