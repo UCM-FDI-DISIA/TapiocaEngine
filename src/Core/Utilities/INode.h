@@ -1,19 +1,14 @@
 #pragma once
-
-namespace std {
-	template<class _Ty>
-	class allocator;
-	template<class _Ty, class _Alloc = allocator<_Ty>>
-	class vector;
-}
+#include <vector>
 
 namespace Tapioca {
 class Vector3;
 class Transform;
+class TransformBuilder;
 
 class INode {
 private:
-	friend Transform;
+	friend TransformBuilder;
 	Transform* transform;
 public:
 	virtual void setPosition(Vector3 position) = 0;

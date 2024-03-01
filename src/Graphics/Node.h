@@ -2,6 +2,8 @@
 #include <unordered_set>
 #include <vector>
 
+#include "Utilities/INode.h"
+
 namespace Ogre {
 class SceneManager;
 class SceneNode;
@@ -17,7 +19,7 @@ class LightDirectional;
 }
 
 namespace Tapioca {
-class Node {
+class Node : public INode {
 public:
     friend GraphicsEngine;
     friend RenderObject;
@@ -45,7 +47,7 @@ private:
     // eliminar nodos y objetos del grafo de la escena y hacer delete de los nodos hijos
     void removeFromTree(std::unordered_set<Node*>* nodes);
 
-    void getAllChildrenAux(std::vector<Node*>& allChildren);
+    void getAllChildrenAux(std::vector<INode*>& allChildren);
 
     // PARA DIFERENTES OBJETOS
     void attachObject(Ogre::MovableObject* object);
@@ -59,12 +61,12 @@ public:
     virtual ~Node();
 
     // mover, rotar y escalar
-    void setPosition(Vector3 pos);
-    void setRotation(Vector3 rot);
-    void setScale(Vector3 sc);
-    void translate(Vector3 t);
+    void setPosition(Vector3 pos) override;
+    void setRotation(Vector3 rot) override;
+    void setScale(Vector3 sc) override;
+    void translate(Vector3 t) override;
     void rotate(Vector3 r);
-    void scale(Vector3 s);
+    void scale(Vector3 s) override;
 
     // TODO: Quitar
     // coger hijo por indice
@@ -72,6 +74,8 @@ public:
 
     // TODO: Cambiar a que solo sean los hijos
     // vector con todos los hijos y los subhijos
-    std::vector<Node*> getAllChildren();
+    std::vector<INode*> getAllChildren() override;
+
+    void setParent(INode* parent) override;
 };
 }

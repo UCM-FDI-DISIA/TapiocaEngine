@@ -64,7 +64,7 @@ void Tapioca::Node::removeFromTree(std::unordered_set<Node*>* nodes) {
     this->deleteChildren(nodes);
 }
 
-void Tapioca::Node::getAllChildrenAux(std::vector<Node*>& allChildren) {
+void Tapioca::Node::getAllChildrenAux(std::vector<INode*>& allChildren) {
     for (auto child : children) {
         allChildren.push_back(child);
         child->getAllChildrenAux(allChildren);
@@ -108,8 +108,22 @@ Tapioca::Node::~Node() {
     children.clear();
 }
 
-std::vector<Tapioca::Node*> Tapioca::Node::getAllChildren() {
-    std::vector<Tapioca::Node*> allChildren;
+void Tapioca::Node::setPosition(Vector3 pos) { }
+
+void Tapioca::Node::setRotation(Vector3 rot) { }
+
+void Tapioca::Node::setScale(Vector3 sc) { }
+
+void Tapioca::Node::translate(Vector3 t) { }
+
+void Tapioca::Node::rotate(Vector3 r) { }
+
+void Tapioca::Node::scale(Vector3 s) { }
+
+std::vector<Tapioca::INode*> Tapioca::Node::getAllChildren() {
+    std::vector<Tapioca::INode*> allChildren;
     getAllChildrenAux(allChildren);
     return allChildren;
 }
+
+void Tapioca::Node::setParent(INode* parent) { }
