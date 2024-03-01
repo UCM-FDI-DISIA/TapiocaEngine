@@ -20,6 +20,15 @@ bool Tapioca::FactoryManager::init() {
     addFactory("transform", new TransformComponentFactory());
     addFactory("rigidBody", new RigidBodyComponentFactory());
     addFactory("collider", new ColliderComponentFactory());
+
+    EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
+
+    int numFactories;
+    FactoryInfo** fI = eP(numFactories);
+
+    for (int i = 0; i < numFactories; ++i) {
+        addFactory(fI[i]->name, fI[i]->factory);
+	}
     return true;
 }
 

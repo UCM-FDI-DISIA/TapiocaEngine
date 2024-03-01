@@ -149,26 +149,26 @@ Component* SceneManager::loadComponent(std::string name) {
             key = lua_tostring(L, -2);
             if (lua_isboolean(L, -1)) {
                 value = lua_toboolean(L, -1) == 1;
+#ifdef _DEBUG
+                cout << "\t\t\tkey: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
+#endif
             } else if (lua_isinteger(L, -1)) {
                 value = (int)lua_tointeger(L, -1);
+#ifdef _DEBUG
+                cout << "\t\t\tkey: " << key << " valor: " << get<int>(value) << "\n";
+#endif
             } else if (lua_isnumber(L, -1)) {
                 value = (float)lua_tonumber(L, -1);
+#ifdef _DEBUG
+                cout << "\t\t\tkey: " << key << " valor: " << get<float>(value) << "\n";
+#endif
             } else if (lua_isstring(L, -1)) {
                 value = lua_tostring(L, -1);
+#ifdef _DEBUG
+                cout << "\t\t\tkey: " << key << " valor: " << get<string>(value) << "\n";
+#endif
             }
 
-#ifdef _DEBUG
-            if (lua_isboolean(L, -1)) {
-                cout << "\t\t\tkey: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
-            } else if (lua_isinteger(L, -1)) {
-                cout << "\t\t\tkey: " << key << " valor: " << get<int>(value) << "\n";
-            }
-            else if (lua_isnumber(L, -1)) {
-                cout << "\t\t\tkey: " << key << " valor: " << get<float>(value) << "\n";
-            } else if (lua_isstring(L, -1)) {
-                cout << "\t\t\tkey: " << key << " valor: " << get<string>(value) << "\n";
-            }
-#endif
             map[key] = value;
             lua_pop(L, 1);
         }

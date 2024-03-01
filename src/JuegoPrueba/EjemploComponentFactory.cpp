@@ -1,4 +1,4 @@
-//#include "EjemploComponentFactory.h"
-//using namespace Tapioca;
-//
-//Component* Tapioca::EjemploComponentFactory::getComponent(const std::string& s) { return new EjemploComponent(); }
+#include "EjemploComponentFactory.h"
+using namespace Tapioca;
+
+Tapioca::Component* Tapioca::EjemploComponentFactory::createComponent() { return new Tapioca::EjemploComponent(); }

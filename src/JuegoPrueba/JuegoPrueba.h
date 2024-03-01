@@ -1,12 +1,13 @@
 #pragma once
+#include <vector>
 #include <iostream>
 #include "Structure/ComponentFactory.h"
 #include "EjemploComponentFactory.h"
+#include "Utilities/defs.h"
+#include "defs.h"
 using namespace std;
 using namespace Tapioca;
 #define JUEGO_API __declspec(dllexport)
-
-
 
 extern "C" {
 /*
@@ -16,5 +17,6 @@ extern "C" {
 JUEGO_API void saluda(const char* nombre);
 
 //
+JUEGO_API FactoryInfo** getComponentFactories(int& count);
 }
     

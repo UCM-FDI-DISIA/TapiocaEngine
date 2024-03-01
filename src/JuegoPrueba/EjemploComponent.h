@@ -14,7 +14,7 @@ private:
 public:
     COMPONENT_ID("EjemploComponent")
 
-    EjemploComponent() { }
+    EjemploComponent();
     ~EjemploComponent() { }
     void initComponent(const CompMap& map) override;
     // void update(const uint64_t deltaTime) override;

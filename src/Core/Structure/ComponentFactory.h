@@ -1,7 +1,6 @@
 #pragma once
 #include "../Structure/Component.h"
 #include <Windows.h>
-//typedef void(__cdecl* EntryPoint)(const char*);
 
 namespace Tapioca {
 
