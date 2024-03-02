@@ -10,7 +10,7 @@
 #include "Structure/FactoryManager.h"
 // #include "AudioManager.h" A�adir cuando se implemente
 // #include "UIManager.h" A�adir cuando se implemente
-#include "TransformBuilder.h"
+#include "CreateBuilders.h"
 //#include "Utilities/defs.h"
 using namespace std;
 using namespace Tapioca;
@@ -23,30 +23,34 @@ PhysicsManager* physics;
 FactoryManager* factories;
 //AudioManager* audio;
 //UIManager* ui;
-static void createEngineBuilders(HMODULE module);
+static void createBuilders(HMODULE module);
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 
     DynamicLibraryLoader* loader = new DynamicLibraryLoader();
 
     if (loader->load()) {
         Game* game = new Game();
         createModules(loader->getModule());
-        createEngineBuilders(loader->getModule());
+        createEngineBuilders();
+        createBuilders(loader->getModule());
         if (game->init()) {
+            //* Prueba
             graphics->createMainCamera();
             graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
             graphics->createLightDirectional(Vector3(0.0f, -1.0f, -1.0f));
             Node* node = graphics->createNode();
             graphics->createMesh(node, "mapache.mesh");
+            //*/
             game->run();
         } else {
             cerr << "Error al inicializar un módulo\n";
         }
         delete game;
     } else {
-        cerr << "Error al cargar la librer�a din�mica\n";
+        cerr << "Error al cargar la libreria dinamica\n";
     }
     delete loader;
 
@@ -63,10 +67,9 @@ static void createModules(HMODULE module) {
     // audio = AudioManager::create();
     // ui = UIManager::create();
 }
-
-static void createEngineBuilders(HMODULE module) {
+static void createBuilders(HMODULE module) {
+    // TODO: Pasar esto a Bridge
     FactoryManager* manager = FactoryManager::instance();
-    manager->addFactory("transform", new TransformBuilder());
 
     EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
 

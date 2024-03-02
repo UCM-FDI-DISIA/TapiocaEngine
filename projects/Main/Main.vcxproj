@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\ColliderBuilder.cpp" />
+    <ClCompile Include="..\..\src\Main\CreateBuilders.cpp" />
     <ClCompile Include="..\..\src\Main\DynamicLibraryLoader.cpp" />
     <ClCompile Include="..\..\src\Main\InputManager.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
@@ -40,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\ColliderBuilder.h" />
+    <ClInclude Include="..\..\src\Main\CreateBuilders.h" />
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h" />
     <ClInclude Include="..\..\src\Main\InputManager.h" />
     <ClInclude Include="..\..\src\Main\RigidBodyBuilder.h" />

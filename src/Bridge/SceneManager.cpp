@@ -32,10 +32,9 @@ bool SceneManager::init() {
     string dir = string(buffer).substr(0, pos);
 
     // Construye la ruta completa al archivo LUA
-    string path = dir + "\\assets\\scenes\\" + scenesPath;
+    string path = "assets\\scenes\\" + scenesPath;
 
     L = luaL_newstate();
-    luaL_openlibs(L);
     if (luaL_dofile(L, path.c_str()) != 0) {
         cerr << "Error al cargar el archivo LUA: " << lua_tostring(L, -1) << '\n';
         lua_close(L);

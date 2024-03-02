@@ -33,6 +33,9 @@
     <ClCompile Include="..\..\src\Main\RigidBodyBuilder.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Main\CreateBuilders.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\DynamicLibraryLoader.h">
@@ -48,6 +51,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Main\RigidBodyBuilder.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Main\CreateBuilders.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
