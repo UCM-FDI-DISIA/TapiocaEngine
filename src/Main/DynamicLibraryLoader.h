@@ -24,7 +24,7 @@ public:
     * @brief Constructor: Inicializa el nombre del juego y el modúlo
     * @param gameName: Nombre del juego
     */
-    DynamicLibraryLoader(const string& gameName = "JuegoPrueba");
+    DynamicLibraryLoader(const string& gameName = "game");
     /**
     * @brief Libera la memoria usada del módulo si el módulo está cargado
     */
