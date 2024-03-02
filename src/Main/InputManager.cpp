@@ -14,7 +14,9 @@
 #include <iostream>
 #endif
 
-Tapioca::InputManager::InputManager() : inputText(""), luaState(nullptr) {
+namespace Tapioca {
+	
+InputManager::InputManager() : inputText(""), luaState(nullptr) {
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
 	
     inputEventTriggered = {
@@ -40,18 +42,16 @@ Tapioca::InputManager::InputManager() : inputText(""), luaState(nullptr) {
 
 }
 
-Tapioca::InputManager::~InputManager() {
+InputManager::~InputManager() {
     clearInput();
     for (auto ctrl : controllers) removeController(ctrl.first);
     controllers.clear();
 }
 
 
-// Para mapear el input a diferentes eventos
-void Tapioca::InputManager::mapInput() {
+void InputManager::mapInput() {
     // Crea una instancia de LUA
     luaState = luaL_newstate();
-    luaL_openlibs(luaState);
 
     // Ruta del ejecutable
     char buffer[MAX_PATH];
@@ -146,8 +146,7 @@ void Tapioca::InputManager::mapInput() {
     lua_close(luaState);
 }
 
-// Devuelve si se ha producido el evento indicado
-bool Tapioca::InputManager::eventHappened(std::string event) {
+bool InputManager::eventHappened(std::string event) {
     if (inputMap.find(event) == inputMap.end()) return false;
 
     bool happened = false;
@@ -189,16 +188,14 @@ bool Tapioca::InputManager::eventHappened(std::string event) {
 }
 
 
-// Comprueba si hay algún joystick conectado y si hay al menos uno, empieza a escuchar eventos de joystick
-void Tapioca::InputManager::initControllers() {
+void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
 #ifdef _DEBUG
     else std::cout << "No joysticks connected\n";
 #endif
 }
 
-// Añade el mando con su deadzone por defecto al mapa de mandos 
-void Tapioca::InputManager::addController(int i) {
+void InputManager::addController(int i) {
     SDL_GameController* ctrl = SDL_GameControllerOpen(i);
     if (ctrl != nullptr) {
         controllers.insert({i, ctrl});
@@ -213,8 +210,7 @@ void Tapioca::InputManager::addController(int i) {
 #endif
 }
 
-// Elimina el mando y su deadzone del mapa de mandos
-void Tapioca::InputManager::removeController(int i) { 
+void InputManager::removeController(int i) { 
     SDL_GameController* ctrl = controllers.at(i);
     if (ctrl != nullptr) { 
         deadZones.erase(i);
@@ -229,16 +225,11 @@ void Tapioca::InputManager::removeController(int i) {
 }
 
 
-// Limpia el input
-void Tapioca::InputManager::clearInput() {
+void InputManager::clearInput() {
     for (auto& e : inputEventTriggered) e.second.clear();
 }
 
-
-// Devuelve si se ha cerrado la ventana (si no está vacío el vector, significa que no se ha llamado el evento
-//bool Tapioca::InputManager::windowClosed() { return !inputEventTriggered[ie_closeWindow].empty(); }
-
-void Tapioca::InputManager::updateState(const SDL_Event& event) {
+void InputManager::updateState(const SDL_Event& event) {
     // Eventos de input
     switch (event.type) {
     // Ventana
@@ -273,7 +264,6 @@ void Tapioca::InputManager::updateState(const SDL_Event& event) {
     // Mando
     case SDL_CONTROLLERAXISMOTION:
         inputEventTriggered["ie_ctrlAxisMotion"].push_back(event);
-        //joyAxisMotionEvent(event);
         break;
     case SDL_CONTROLLERBUTTONDOWN:
         inputEventTriggered["ie_ctrlButtonDown"].push_back(event);
@@ -320,7 +310,7 @@ void Tapioca::InputManager::updateState(const SDL_Event& event) {
     }
 }
 
-void Tapioca::InputManager::handleEvents() {
+void InputManager::handleEvents() {
     SDL_Event event;
     clearInput();
     while (SDL_PollEvent(&event)) updateState(event);
@@ -330,4 +320,7 @@ void Tapioca::InputManager::handleEvents() {
 #ifdef _DEBUG
     if (eventHappened("ev_ACCEPT")) std::cout << "Accept event\n";
 #endif
+}
+
+
 }
