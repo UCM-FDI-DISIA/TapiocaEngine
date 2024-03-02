@@ -70,11 +70,6 @@ bool GraphicsEngine::init() {
 
     cfgPath = pluginsPath;
     cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
-#ifdef _WORKING_DIR
-    fsLayer->setHomePath("./");
-#else
-    fsLayer->setHomePath(cfgPath);
-#endif
 
     // (ruta plugins.cfg, ruta ogre.cfg, ruta ogre.log)
     // ogre.cfg sirve para guardar y restaurar la configuracion de render
@@ -151,7 +146,7 @@ void GraphicsEngine::loadPlugIns() {
 void GraphicsEngine::loadResources() {
     // todos los assets deben estar en la carpeta assets (no pueden estar en subcarpetas)
     // sino, habria que poner mas rutas
-#ifdef _WORKING_DIR
+#ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation("./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 #else
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(cfgPath + "/assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
