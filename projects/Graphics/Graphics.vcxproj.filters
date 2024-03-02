@@ -34,6 +34,9 @@
     <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h">
@@ -69,6 +72,9 @@
     <ClInclude Include="..\..\src\Graphics\ParticleSystem.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Archivos de recursos">
@@ -79,6 +85,9 @@
     </Filter>
     <Filter Include="Archivos de origen">
       <UniqueIdentifier>{d8a44626-b451-49ab-bb36-21fc9b4ec91f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{efe1a018-04a3-42af-b7c8-2d64a202bb9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

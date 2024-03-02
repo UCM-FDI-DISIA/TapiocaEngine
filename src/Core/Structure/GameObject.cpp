@@ -18,6 +18,31 @@ void GameObject::addComponent(Component* comp, std::string id) {
     comp->setParent(this);
 }
 
+Component* GameObject::getComponent(std::string id) {
+    auto it = components.find(id);
+    if(it == components.end()) {
+        return nullptr;
+    }
+    return it->second;
+}
+
+std::vector<Component*> GameObject::getComponents(std::string id) {
+    std::vector<Component*> out;
+
+    for(auto& comp : components) {
+        if(comp.first == id) out.push_back(comp.second);
+    }
+
+    return out;
+}
+
+void GameObject::deleteComponent(std::string id) {
+    auto it = components.find(id);
+    if(it != components.end()) {
+        it->second->alive = false;
+    }
+}
+
 void GameObject::deleteCompVector(Component* comp) {
     for (auto it = cmpOrder.cbegin(); it != cmpOrder.cend(); ++it) {
         if (*it == comp) {
@@ -58,6 +83,11 @@ void GameObject::initComponents(const CompMap& variables) {
 void GameObject::fixedUpdate() {
     for (auto comp : cmpOrder)
         if (comp->isActive()) comp->fixedUpdate();
+}
+
+void GameObject::start() {
+    for(auto comp : cmpOrder)
+        comp->start();
 }
 
 void GameObject::onCollisionEnter(GameObject* other) {

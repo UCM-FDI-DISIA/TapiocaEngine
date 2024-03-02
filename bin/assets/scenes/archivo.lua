@@ -1,26 +1,29 @@
 scenes = {
     Escena1={
             {
-                transform = {
-                    positionX = 22.0,
-                    positionY = 12.0,
-                    positionZ = -56.0,
-                    scaleX = 25.0,
-                    scaleY = 25.0,
-                    scaleZ = 25.0,
-                    rotationX = 25.0,
-                    rotationY = 25.0,
-                    rotationZ = 25.0
+                Transform = {
+                    positionX = 0.0,
+                    positionY = 0.0,
+                    positionZ = 0.0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0,
+                    rotationX = 90.0,
+                    rotationY = 0.0,
+                    rotationZ = 0.0
                 },
                 ejemploComponent = {
                     a = 1,
                     b = 0.1,
                     c = true,
                     d = "ejemplo"
-                }
+                },
+                MeshRenderer = {
+                    meshName = "mapache.mesh"
+                }--]]--
             },
             Entity1={
-                transform = {
+                Transform = {
                     positionX = 22.0,
                     positionY = 12.0,
                     positionZ = -56.0,
@@ -34,7 +37,7 @@ scenes = {
                 -- + componentes 
             },
             {
-                transform = {
+                Transform = {
                     positionX = 22.0,
                     positionY = 12.0,
                     positionZ = -56.0,
@@ -47,7 +50,7 @@ scenes = {
                 }
             },
             Entity2={
-                transform = {
+                Transform = {
                     positionX = 22.0,
                     positionY = 12.0,
                     positionZ = -56.0,
@@ -61,7 +64,7 @@ scenes = {
                     -- + componentes
             },
             {
-                transform = {
+                Transform = {
                     positionX = 22.0,
                     positionY = 12.0,
                     positionZ = -56.0,
@@ -74,7 +77,7 @@ scenes = {
                 }
             },
             {
-                transform = {
+                Transform = {
                     positionX = 22.0,
                     positionY = 12.0,
                     positionZ = -56.0,
@@ -87,10 +90,10 @@ scenes = {
                 }
             }
             -- + entidades
-    },
+    }--[[,
     Escena2={
             Entity3={
-                transform = {
+                Transform = {
                     positionX = 22.0,
                     positionY = 12.0,
                     positionZ = -56.0,
@@ -106,5 +109,5 @@ scenes = {
         }
     
     -- + escenas
-    }
+    }]]--
 }

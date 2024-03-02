@@ -88,7 +88,6 @@
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\Factory.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
@@ -102,15 +101,16 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Components\Transform.h" />
     <ClInclude Include="..\..\src\Core\Core.h" />
+    <ClInclude Include="..\..\src\Core\Structure\BasicBuilder.h" />
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
     <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h" />
-    <ClInclude Include="..\..\src\Core\Structure\Factory.h" />
     <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h" />
     <ClInclude Include="..\..\src\Core\Structure\Game.h" />
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
     <ClInclude Include="..\..\src\Core\Structure\Module.h" />
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
     <ClInclude Include="..\..\src\Core\Utilities\checkML.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\Concepts.h" />
     <ClInclude Include="..\..\src\Core\Utilities\defs.h" />
     <ClInclude Include="..\..\src\Core\Utilities\INode.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h" />

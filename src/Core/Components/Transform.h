@@ -39,6 +39,8 @@ public:
     Vector3 up();
     //Eje Z
     Vector3 forward();
+
+    INode* getNode() { return node; }
 };
 
 

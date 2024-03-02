@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <variant>
+#include "Utilities/Concepts.h"
 using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
 
 namespace Tapioca {
@@ -19,6 +20,7 @@ private:
     void handleEvents();
     void initComponents(const CompMap& variables);
     void fixedUpdate();
+    void start();
 
     Scene* scene;
     bool alive;
@@ -36,32 +38,38 @@ public:
     inline virtual Scene* getScene() const { return scene; }
 
     void addComponent(Component* comp, std::string id);
-
-    template<typename Comp>
-    Comp* addComponent() {
-        Comp* comp = new Comp();
-        addComponent(comp, Comp::id);
+    template<IsComponent TComp>
+    TComp* addComponent() {
+        TComp* comp = new TComp();
+        addComponent(comp, TComp::id);
         return comp;
     }
-    template<typename Comp>
-    Comp* getComponent() {
-        auto it = components.find(Comp::id);
+    Component* getComponent(std::string id);
+    template<IsComponent TComp>
+    TComp* getComponent() {
+        auto it = components.find(TComp::id);
         if (it == components.end()) {
             return nullptr;
         }
-        return static_cast<Comp*>(it->second);
+        return static_cast<TComp*>(it->second);
     }
-    template<typename Comp>
-    std::vector<Comp*> getComponents() {
-        std::vector<Comp*> out;
+    std::vector<Component*> getComponents(std::string id);
+    template<IsComponent TComp>
+    std::vector<TComp*> getComponents() {
+        std::vector<TComp*> out;
 
-        auto end = components.cend();
-        for(auto it = components.cbegin(); it != end; ++it) {
-            if(it->first == Comp::id) out.push_back(static_cast<Comp*>(it->second));
+        for(auto& comp : components) {
+            if(comp.first == TComp::id) out.push_back(static_cast<TComp*>(comp.second));
         }
 
         return out;
     }
+    void deleteComponent(std::string id);
+    template<IsComponent TComp>
+    void deleteComponent() {
+
+    }
+
 
     void onCollisionEnter(GameObject* other);
     void onCollisionExit(GameObject* other);

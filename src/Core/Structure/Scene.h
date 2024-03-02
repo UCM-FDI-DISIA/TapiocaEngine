@@ -22,9 +22,9 @@ public:
 
     void addObject(GameObject* object, std::string handler);
     void refresh();
-    void initComponents(const CompMap& variables);
     void update(const uint64_t deltaTime);
     void handleEvents();
     void fixedUpdate();
+    void start();
 };
 }

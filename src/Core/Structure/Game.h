@@ -41,7 +41,6 @@ public:
     bool init();
     void run();
 
-    void initComponents(const CompMap& variables);
     void pushScene(Scene*);
     void popScene();
     void changeScene(Scene*);
