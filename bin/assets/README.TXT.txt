@@ -1,7 +1,7 @@
 - controls --> archivos del mapeo de controles
 - materials --> materiales comunes
 - racoon --> archivos del mesh del mapache (también usa white.material, que está en materials)
-- scenes --> archivos .lua con la información de las escenas, gameobjects y componetnes
+- scenes --> archivo .lua con la información de las escenas, gameobjects y componentes
 - El resto de archivos son de configuración y tienen que estar en assets
 
 INFORMACIÓN RUTAS
