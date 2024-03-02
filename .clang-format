@@ -1,13 +1,37 @@
 # Format Style Options - Created with Clang Power Tools
 ---
-BasedOnStyle: WebKit
 AlignTrailingComments: true
 AllowShortIfStatementsOnASingleLine: Always
+BasedOnStyle: WebKit
+BraceWrapping: 
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: true
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
 BreakBeforeBinaryOperators: None
-BreakBeforeBraces: Attach
+BreakBeforeBraces: Custom
+BreakConstructorInitializers: BeforeColon
 ColumnLimit: 120
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth : 4
 Cpp11BracedListStyle: true
 MaxEmptyLinesToKeep: 2
+PenaltyBreakBeforeFirstCallParameter: 1
+PenaltyBreakComment: 1000
 ReflowComments: false
 SortIncludes: false
 SpaceAfterTemplateKeyword: false
