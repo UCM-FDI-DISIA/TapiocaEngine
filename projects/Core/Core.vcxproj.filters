@@ -33,9 +33,6 @@
     <ClCompile Include="..\..\src\Core\Structure\Module.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Structure\Factory.cpp">
-      <Filter>Structure</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -78,9 +75,6 @@
     <ClInclude Include="..\..\src\Core\Utilities\Singleton.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Structure\Factory.h">
-      <Filter>Structure</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Components\Transform.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -104,6 +98,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h">
       <Filter>Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\BasicBuilder.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\Concepts.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

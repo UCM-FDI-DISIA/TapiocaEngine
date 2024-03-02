@@ -57,6 +57,7 @@ public:
     virtual void handleEvents() { }
     virtual void initComponent(const CompMap& variables) = 0;
     virtual void fixedUpdate() { }
+    virtual void start() { }
 
     virtual void onCollisionEnter(GameObject* other) {};
     virtual void onCollisionExit(GameObject* other) {};

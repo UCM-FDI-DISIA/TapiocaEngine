@@ -41,8 +41,8 @@ int main(int argc, char** argv) {
             graphics->createMainCamera();
             graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
             graphics->createLightDirectional(Vector3(0.0f, -1.0f, -1.0f));
-            Node* node = graphics->createNode();
-            graphics->createMesh(node, "mapache.mesh");
+            //Node* node = graphics->createNode();
+            //graphics->createMesh(node, "mapache.mesh");
             //*/
             game->run();
         } else {

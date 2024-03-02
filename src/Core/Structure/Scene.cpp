@@ -63,11 +63,6 @@ GameObject* Scene::getHandler(const std::string& handler) const {
     }
 }
 
-void Scene::initComponents(const CompMap& variables) {
-    for (auto obj : objects)
-        obj->initComponents(variables);
-}
-
 void Scene::update(const uint64_t deltaTime) {
     for (auto obj : objects)
         obj->update(deltaTime);
@@ -81,5 +76,9 @@ void Scene::handleEvents() {
 void Scene::fixedUpdate() {
     for (auto obj : objects)
         obj->fixedUpdate();
+}
+void Scene::start() {
+    for(auto obj : objects)
+        obj->start();
 }
 }

@@ -9,6 +9,9 @@
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "Structure/FactoryManager.h"
+
+#include "Structure/Game.h"
+
 using namespace std;
 using namespace Tapioca;
 
@@ -46,6 +49,9 @@ bool SceneManager::init() {
         lua_close(L);
         return false;
     }
+    // TODO: Anadir la escena preferida primero
+    Game::get()->pushScene(scenes_debug.back());
+    scenes_debug.pop_back();
 
 #ifdef _DEBUG
     cout << "Archivo LUA cargado correctamente\n";

@@ -117,9 +117,10 @@ void Game::refresh() {
 
 void Game::addModule(Module* m) { modules.push_back(m); }
 
-void Game::initComponents(const CompMap& variables) { scenes.top()->initComponents(variables); }
-
-void Game::pushScene(Scene* sc) { scenes.push(sc); }
+void Game::pushScene(Scene* sc) {
+    scenes.push(sc);
+    sc->start();
+}
 
 void Game::popScene() {
     toDelete.push_back(scenes.top());
@@ -132,6 +133,7 @@ void Game::changeScene(Scene* sc) {
     toDelete.push_back(scenes.top());
     scenes.pop();
     scenes.push(sc);
+    sc->start();
 }
 
 Game* Game::instance = nullptr;
