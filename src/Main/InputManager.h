@@ -35,7 +35,7 @@ private:
 
     // Mapeo de los controles
     std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> inputMap;
-    const std::string MAP_FILE_PATH = "\\assets\\controlsMapping.lua";
+    const std::string MAP_FILE_PATH = "assets\\controlsMapping.lua";
     lua_State* luaState;
 
 

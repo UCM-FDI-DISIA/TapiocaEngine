@@ -26,10 +26,10 @@ SceneManager::~SceneManager() {
 
 bool SceneManager::init() {
     // Obtiene la ruta del ejecutable
-    char buffer[MAX_PATH];
+    /*char buffer[MAX_PATH];
     GetModuleFileNameA(NULL, buffer, MAX_PATH);
     string::size_type pos = string(buffer).find_last_of("\\/");
-    string dir = string(buffer).substr(0, pos);
+    string dir = string(buffer).substr(0, pos);*/
 
     // Construye la ruta completa al archivo LUA
     string path = "assets\\scenes\\" + scenesPath;
