@@ -39,6 +39,16 @@ bool Tapioca::UIManager::init() {
     return true;
 }
 
+//void Tapioca::UIManager::update(const uint64_t deltaTime) { }
+
+void Tapioca::UIManager::handleEvents() { 
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+        ImGui_ImplSDL2_ProcessEvent(&event);
+}
+
+//void Tapioca::UIManager::fixedUpdate() { }
+
 void Tapioca::UIManager::render() {
     // Nuevos frames de ImGui
     ImGui_ImplOpenGL3_NewFrame();
@@ -55,3 +65,5 @@ void Tapioca::UIManager::render() {
     // Intercambiar buffers
     SDL_GL_SwapWindow(myWindow);
 }
+
+//void Tapioca::UIManager::refresh() { }

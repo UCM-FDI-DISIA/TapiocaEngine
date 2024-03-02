@@ -24,7 +24,10 @@ public:
     UIManager& operator=(UIManager&&) = delete;
 
     bool init() override;
-
-    void render() override;
+    //void update(const uint64_t deltaTime) { }
+    void handleEvents() override { }
+    //void fixedUpdate() override { }
+    void render() override { }
+    //void refresh() override { }
 };
 }
