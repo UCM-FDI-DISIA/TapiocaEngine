@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 // Includes de Core
 // Herencia
 #include "Utilities/Singleton.h"
@@ -81,6 +82,11 @@ private:
     GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
 
 public:
+    GraphicsEngine(GraphicsEngine&) = delete;
+    GraphicsEngine(GraphicsEngine&&) = delete;
+    GraphicsEngine& operator=(GraphicsEngine&) = delete;
+    GraphicsEngine& operator=(GraphicsEngine&&) = delete;
+
     virtual ~GraphicsEngine();
 
     /*
@@ -111,7 +117,7 @@ public:
     /*
     * @brief devuelve a una camara que se podra manipular
     */
-    Camera* createCamera(Vector3 pos);
+    //Camera* createCamera(Vector3 pos);
     /*
     * @brief crea una camara que no se modificara (la del juego de billar?)
     */

@@ -8,10 +8,10 @@
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
 #include "Structure/FactoryManager.h"
-// #include "AudioManager.h" A�adir cuando se implemente
 #include "TransformBuilder.h"
-#include "UIManager.h"
 #include "CreateBuilders.h"
+#include "UIManager.h"
+// #include "AudioManager.h" A�adir cuando se implemente
 //#include "Utilities/defs.h"
 using namespace std;
 using namespace Tapioca;
@@ -22,8 +22,8 @@ SceneManager* scenes;
 GraphicsEngine* graphics;
 PhysicsManager* physics;
 FactoryManager* factories;
-//AudioManager* audio;
 UIManager* ui;
+//AudioManager* audio;
 static void createBuilders(HMODULE module);
 
 int main(int argc, char** argv) {
@@ -65,8 +65,8 @@ static void createModules(HMODULE module) {
     factories = FactoryManager::create();
     scenes = SceneManager::create(module);
     physics = PhysicsManager::create();
+    ui = UIManager::create();
     // audio = AudioManager::create();
-    ui = UIManager::create(graphics->getSDLWindow());
 }
 static void createBuilders(HMODULE module) {
     // TODO: Pasar esto a Bridge
