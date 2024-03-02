@@ -19,7 +19,7 @@ scenes = {
                     d = "ejemplo"
                 },
                 MeshRenderer = {
-                    meshName = "mapache.mesh"
+                    meshName = "racoon/mapache.mesh"
                 }--]]--
             },
             Entity1={

@@ -3,11 +3,7 @@
 
 namespace Tapioca {
 
-Transform::Transform()
-    : Component()
-    , position(Vector3(0))
-    , rotation(Vector3(0))
-    , scale(Vector3(1)) { }   //PRUEBA
+Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)) { }   //PRUEBA
 
 void Transform::initComponent(const CompMap& variables) {
     setValueFromMap(position.x, "positionX", variables);
@@ -18,9 +14,9 @@ void Transform::initComponent(const CompMap& variables) {
     setValueFromMap(scale.y, "scaleY", variables);
     setValueFromMap(scale.z, "scaleZ", variables);
     node->setScale(scale);
-    setValueFromMap(rotation.x,"rotationX", variables);
-    setValueFromMap(rotation.y,"rotationY", variables);
-    setValueFromMap(rotation.z,"rotationZ", variables);
+    setValueFromMap(rotation.x, "rotationX", variables);
+    setValueFromMap(rotation.y, "rotationY", variables);
+    setValueFromMap(rotation.z, "rotationZ", variables);
     node->setRotation(rotation);
 }
 

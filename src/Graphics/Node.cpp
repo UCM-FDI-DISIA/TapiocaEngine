@@ -4,10 +4,18 @@
 // Includes del Core
 #include "Utilities/Vector3.h"
 #include "Utilities/checkML.h"
+#include "RenderObject.h"
 
-Ogre::SceneNode* Tapioca::Node::addChild(Node* child) {
+Ogre::SceneNode* Tapioca::Node::createChild(Node* child) {
     children.insert(child);
     return node->createChildSceneNode();
+}
+
+void Tapioca::Node::addChild(Node* child) {
+    if (!children.contains(child)) {
+        children.insert(child);
+        node->addChild(child->getSceneNode());
+    }
 }
 
 void Tapioca::Node::destroyAllAttachedObjects(Ogre::SceneNode* node) {
@@ -50,6 +58,7 @@ void Tapioca::Node::deleteChildren(std::unordered_set<Node*>* nodes) {
 void Tapioca::Node::removeChild(Node* child) {
     if (children.contains(child)) {
         children.erase(child);
+        node->removeChild(child->getSceneNode());
     }
 }
 
@@ -71,15 +80,25 @@ void Tapioca::Node::getAllChildrenAux(std::vector<INode*>& allChildren) {
     }
 }
 
+void Tapioca::Node::attachObject(Tapioca::RenderObject* object) {
+    auto movObject = object->getMovObject();
+    if (!movObject->isAttached() && !objects.contains(object)) {
+        node->attachObject(movObject);
+        objects.insert(object);
+    }
+}
+
 void Tapioca::Node::attachObject(Ogre::MovableObject* object) {
     if (!object->isAttached()) {
         node->attachObject(object);
     }
 }
 
-void Tapioca::Node::detachObject(Ogre::MovableObject* object) {
-    if (object->isAttached()) {
-        node->detachObject(object);
+void Tapioca::Node::detachObject(Tapioca::RenderObject* object) {
+    auto movObject = object->getMovObject();
+    if (movObject->isAttached() && objects.contains(object)) {
+        node->detachObject(movObject);
+        objects.erase(object);
     }
 }
 
@@ -93,11 +112,13 @@ void Tapioca::Node::setDirection(Vector3 dir) { node->setDirection(dir.x, dir.y,
 
 Tapioca::Node::Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent)
     : parent(parent)
-    , sceneManager(sceneManager) {
+    , sceneManager(sceneManager)
+    , children()
+    , objects() {
     if (parent == nullptr) {
         node = sceneManager->getRootSceneNode()->createChildSceneNode();
     } else {
-        node = parent->addChild(this);
+        node = parent->createChild(this);
     }
     node->setPosition(pos.x, pos.y, pos.z);
     node->setScale(scale.x, scale.y, scale.z);
@@ -108,17 +129,12 @@ Tapioca::Node::~Node() {
     children.clear();
 }
 
-void Tapioca::Node::setPosition(Vector3 pos) { }
-
+void Tapioca::Node::setPosition(Vector3 newPos) { node->setPosition(newPos.x, newPos.y, newPos.z); }
+void Tapioca::Node::setScale(Vector3 newScale) { node->setScale(newScale.x, newScale.y, newScale.z); }
+void Tapioca::Node::translate(Vector3 mov) { node->translate(mov.x, mov.y, mov.z); }
+void Tapioca::Node::scale(Vector3 scale) { node->scale(scale.x, scale.y, scale.z); }
 void Tapioca::Node::setRotation(Vector3 rot) { }
-
-void Tapioca::Node::setScale(Vector3 sc) { }
-
-void Tapioca::Node::translate(Vector3 t) { }
-
 void Tapioca::Node::rotate(Vector3 r) { }
-
-void Tapioca::Node::scale(Vector3 s) { }
 
 std::vector<Tapioca::INode*> Tapioca::Node::getAllChildren() {
     std::vector<Tapioca::INode*> allChildren;
@@ -126,4 +142,10 @@ std::vector<Tapioca::INode*> Tapioca::Node::getAllChildren() {
     return allChildren;
 }
 
-void Tapioca::Node::setParent(INode* parent) { }
+void Tapioca::Node::setParent(INode* parent) { 
+    /*if (parent != nullptr) {
+        this->parent->removeChild(this);
+    }
+    this->parent = parent;
+    parent->addChild(this);*/
+}

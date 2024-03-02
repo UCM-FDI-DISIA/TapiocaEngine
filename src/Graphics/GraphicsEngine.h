@@ -60,7 +60,6 @@ private:
     // Administriar objetos
     std::unordered_set<Node*> nodes;
     std::unordered_map<RenderObject*, Node*> objects;
-    std::pair<Camera*, Node*> mainCamera;
     Ogre::Viewport* viewport;
 
     // carga plugIns especificados desde codigo
@@ -78,7 +77,7 @@ private:
     */
     void loadShaders();
 
-    GraphicsEngine(std::string windowName = "motor", uint32_t w = 680, uint32_t h = 480);
+    GraphicsEngine(std::string windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
 
 public:
     virtual ~GraphicsEngine();
@@ -117,9 +116,9 @@ public:
     */
     // METODO
 
-    void createMainCamera();
+    // SOLO PARA PRUEBAS
     void setBackgroundColor(Vector3 color);
-    inline std::pair<Camera*, Node*> getMainCamera() { return mainCamera; }
+    void createMainCamera();
 
     LightDirectional* createLightDirectional(Vector3 direction, Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
@@ -128,5 +127,7 @@ public:
     Ogre::ManualObject* createManualObject(Node* node);
 
     void destroyManualObject(Ogre::ManualObject* object);
+
+    void removeObject(Tapioca::RenderObject* object);
 };
 }

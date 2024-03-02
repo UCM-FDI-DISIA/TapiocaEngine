@@ -39,16 +39,18 @@ GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
     , windowHeight(h)
     , nodes()
     , objects()
-    , mainCamera()
     , viewport(nullptr) { }
 
 GraphicsEngine::~GraphicsEngine() {
-    for (auto& node : nodes) {
-        delete node;
-    }
     for (auto& object : objects) {
         delete object.first;
     }
+    objects.clear();
+    for (auto& node : nodes) {
+        delete node;
+    }
+    nodes.clear();
+
     shutDown();
 }
 
@@ -243,9 +245,11 @@ void GraphicsEngine::removeNode(Node* node) {
 void GraphicsEngine::createMainCamera() {
     std::pair<Camera*, Node*> aux;
     Node* node = createNode(Vector3(0, 0, 20));
-    Camera* mainCamera = new Camera(scnMgr, node, "MainCamera");
+    Camera* mainCamera = new Camera(scnMgr, node, "MainCamera", Vector3(0, 0, 0), 1, 1000, false);
     objects[mainCamera] = node;
     viewport = ogreWindow->addViewport(mainCamera->getCamera());
+    // es lo mismo que poner el auto aspect ration a true
+    mainCamera->getCamera()->setAspectRatio((float)viewport->getActualWidth() / (float)viewport->getActualHeight());
 }
 
 void GraphicsEngine::setBackgroundColor(Vector3 color) {
@@ -263,7 +267,7 @@ LightDirectional* GraphicsEngine::createLightDirectional(Vector3 direction, Vect
 
 Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) {
     Mesh* mesh = new Mesh(scnMgr, node, meshName);
-    objects[mesh] = node;
+    //objects[mesh] = node;
     return mesh;
 }
 
@@ -274,3 +278,10 @@ Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {
 }
 
 void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+
+void GraphicsEngine::removeObject(Tapioca::RenderObject* object) {
+    if (objects.contains(object)) {
+        objects.erase(object);
+        object->detachFromNode();
+    }
+}

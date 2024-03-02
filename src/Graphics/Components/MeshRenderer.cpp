@@ -12,7 +12,7 @@ MeshRenderer::MeshRenderer() : mesh(nullptr) {
 
 MeshRenderer::~MeshRenderer() {
 	// Esto???
-	mesh->detachFromNode();
+	/*mesh->detachFromNode();*/
 	delete mesh;
 }
 

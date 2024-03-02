@@ -10,14 +10,18 @@ class SceneManager;
 namespace Tapioca {
 class Node;
 class GraphicsEngine;
+class Viewport;
 }
 namespace Tapioca {
 class Camera : public RenderObject {
 public:
     friend GraphicsEngine;
+    friend Viewport;
 
 private:
     Ogre::Camera* mCam;
+    bool autoAspectRatio;
+
     // aspectRatio = width/height   1.3 es el por defecto de Ogre
     Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook = Vector3(0, 0, 0),
         float nearDist = 1, float farDist = 1000, bool autoAspectRatio = true, float aspectRatio = 1.33333333333333f);
@@ -26,6 +30,7 @@ private:
 
 public:
     /*
+    * LO HE PUESTO YO DE MIS APUNTES, PERO SE PUEDE BORRAR
     la camara mira hacia el eje z negativo
     El punto indicado es la que mira
     Por debajo funciona como un setDirection, por lo tanto, rota la camara
@@ -55,8 +60,8 @@ public:
     X ej, un angulo de 90º corresponde con que tenemos una vision de 90º en el eje vertical (el horizontal se calcula solo,
     a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane)
     */
-    //void setFOVY(float radians);
-    void setFOVY(float degrees);
+    void setFOVYRadians(float radians);
+    void setFOVYDegrees(float degrees);
 
     /*
     Se indica la distancia. Si es 0 es infinita.
@@ -64,5 +69,7 @@ public:
     por ejemplo con las luces o sombras si se encuentran muy lejos
     */
     void setFarClipDistance(float dist);
+
+    void setAspectRatio(float aspectRatio);
 };
 }

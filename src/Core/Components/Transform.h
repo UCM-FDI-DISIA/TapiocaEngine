@@ -7,6 +7,7 @@ class TransformBuilder;
 
 class Transform : public Component {
     friend TransformBuilder;
+
 private:
     Vector3 position;
     Vector3 rotation;

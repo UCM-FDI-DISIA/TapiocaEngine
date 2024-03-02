@@ -46,14 +46,8 @@ void InputManager::mapInput() {
     // Crea una instancia de LUA
     luaState = luaL_newstate();
 
-    // Ruta del ejecutable
-    /* char buffer[MAX_PATH];
-    GetModuleFileNameA(NULL, buffer, MAX_PATH);
-    std::string::size_type pos = std::string(buffer).find_last_of("\\/");
-    std::string dir = std::string(buffer).substr(0, pos);*/
-
     // Construye la ruta completa al archivo LUA
-    std::string path = MAP_FILE_PATH;
+    std::string path = "assets\\controls\\" + MAP_FILE;
 
     // Si no puede cargar el archivo, se muestra un mensaje y cierra la instancia de LUA
     if (luaL_dofile(luaState, path.c_str()) != 0) {

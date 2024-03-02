@@ -8,9 +8,9 @@ Tapioca::RenderObject::RenderObject(Node* node)
 
 void Tapioca::RenderObject::init(Ogre::MovableObject* movObject) {
     this->movObject = movObject;
-    node->attachObject(movObject);
+    node->attachObject(this);
 }
 
 void Tapioca::RenderObject::setVisible(bool enable) { movObject->setVisible(enable); }
 
-void Tapioca::RenderObject::detachFromNode() { node->detachObject(movObject); }
+void Tapioca::RenderObject::detachFromNode() { node->detachObject(this); }
