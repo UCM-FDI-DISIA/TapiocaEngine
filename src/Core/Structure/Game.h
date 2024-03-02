@@ -2,7 +2,7 @@
 #include "Utilities/defs.h"
 #include <vector>
 #include <stack>
-#include "ComponentFactory.h"
+#include "ComponentBuilder.h"
 namespace Tapioca {
 class Scene;
 class Module;

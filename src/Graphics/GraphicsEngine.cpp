@@ -64,12 +64,13 @@ bool GraphicsEngine::init() {
 
     // tratamiento de errores
     if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
-        //enviar mensaje al main para liberar toda la memoria y cerrar el programa
-        //main->handleError(errormsg)
+        delete fsLayer;
+        return false;
     }
 
     cfgPath = pluginsPath;
     cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
+
     fsLayer->setHomePath(cfgPath);
 
     // (ruta plugins.cfg, ruta ogre.cfg, ruta ogre.log)
@@ -147,7 +148,11 @@ void GraphicsEngine::loadPlugIns() {
 void GraphicsEngine::loadResources() {
     // todos los assets deben estar en la carpeta assets (no pueden estar en subcarpetas)
     // sino, habria que poner mas rutas
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(cfgPath + "/assets", "FileSystem");
+#ifdef _RESOURCES_DIR
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation("./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+#else
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(cfgPath + "/assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+#endif
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
@@ -164,6 +169,8 @@ void GraphicsEngine::loadShaders() {
 void GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
 void GraphicsEngine::shutDown() {
+    if(mRoot == nullptr) return;
+
     // ELIMINAR EL SCENE MANAGER
     mShaderGenerator->removeSceneManager(scnMgr);
     mRoot->destroySceneManager(scnMgr);

@@ -15,6 +15,3 @@ lib
 
 # Ignora todas los directorios que se llamen 'build'
 build/
-
-# No ignora
-!cmake.exe

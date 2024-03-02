@@ -14,15 +14,15 @@ class ParticleSystem : public RenderObject {
 protected:
     Ogre::ParticleSystem* mParticleSystem;
 
-    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string materialName, size_t quota = 500, bool emitting = false);
-    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, size_t quota = 500, bool emitting = false);
-
-    void commonInit(size_t quota, bool emitting);
+    // @brief Constructora. Solo se podrá crear un ParticleSystem a partir de un sistema ya creado en un .particle
+    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string materialName, bool emitting = false);
 
 public:
     virtual ~ParticleSystem() { }
 
     void setEmitting(bool emitting);
-    void setParticleQuota(size_t quota);
+    bool isEmitting();
+
+    void fastForward(float time, float interval = 0.1f);
 };
 }

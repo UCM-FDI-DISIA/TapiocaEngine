@@ -1,7 +1,8 @@
 #pragma once
+#include <Windows.h>
 #include <vector>
 #include <iostream>
-#include "Structure/ComponentFactory.h"
+#include "Structure/ComponentBuilder.h"
 #include "EjemploComponentFactory.h"
 #include "Utilities/defs.h"
 #include "defs.h"

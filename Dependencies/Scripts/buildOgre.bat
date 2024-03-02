@@ -5,6 +5,7 @@ set BAT_DIR=%~dp0
 set OGRE_SRC=%BAT_DIR%..\Ogre\src
 set OGRE_BUILD=%BAT_DIR%..\Ogre\build\x64
 set OGRE_SLN=%BAT_DIR%..\Ogre\build\x64\OGRE.sln
+set BIN_DIR=%BAT_DIR%..\..\bin
 
 rem Se crea el directorio si no está ya creado
 if not exist %OGRE_BUILD% (
@@ -41,9 +42,7 @@ if exist %OGRE_SLN% (
     rem Compilacion de la solucion en Debug y en Release
     msbuild %OGRE_SLN% /p:configuration=Debug /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
     msbuild %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
-    cd ..
-    XCOPY .\Ogre\build\x64\bin\release\*.dll ..\bin /Y
-    XCOPY .\Ogre\build\x64\bin\debug\*.dll ..\bin /Y
-    cd Scripts
+    XCOPY %BAT_DIR%..\Ogre\build\x64\bin\release\*.dll %BIN_DIR% /Y
+    XCOPY %BAT_DIR%..\Ogre\build\x64\bin\debug\*.dll %BIN_DIR% /Y
     echo Terminada la build de Ogre
 ) else echo No se ha encontrado el archivo %OGRE_SLN%

@@ -1,8 +1,9 @@
 #include "DynamicLibraryLoader.h"
 
 namespace Tapioca {
-DynamicLibraryLoader::DynamicLibraryLoader(const string& gameName) : 
-    gameName(gameName), module(nullptr) { }
+DynamicLibraryLoader::DynamicLibraryLoader(const string& gameName)
+    : gameName(gameName)
+    , module(nullptr) { }
 
 DynamicLibraryLoader::~DynamicLibraryLoader() { free(); }
 

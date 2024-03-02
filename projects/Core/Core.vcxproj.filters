@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\src\Core\Structure\Factory.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Structure\ComponentFactory.cpp">
-      <Filter>Structure</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -49,6 +46,9 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,9 +81,6 @@
     <ClInclude Include="..\..\src\Core\Structure\Factory.h">
       <Filter>Structure</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Structure\ComponentFactory.h">
-      <Filter>Structure</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Components\Transform.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -104,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\INode.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h">
+      <Filter>Structure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
