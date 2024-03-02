@@ -71,6 +71,8 @@ bool GraphicsEngine::init() {
     cfgPath = pluginsPath;
     cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
 
+    fsLayer->setHomePath(cfgPath);
+
     // (ruta plugins.cfg, ruta ogre.cfg, ruta ogre.log)
     // ogre.cfg sirve para guardar y restaurar la configuracion de render
     // ogre.log guarda un mensaje de depuracion
