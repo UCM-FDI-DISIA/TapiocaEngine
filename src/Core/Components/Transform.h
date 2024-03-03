@@ -19,7 +19,7 @@ public:
     COMPONENT_ID("Transform")
 
     Transform();
-    ~Transform() { }
+    ~Transform();
     void initComponent(const CompMap& variables) override;
     // void update() override;
     // void fixedUpdate() override;

@@ -9,3 +9,5 @@ Tapioca::LightDirectional::LightDirectional(Ogre::SceneManager* sceneManager, Ta
     mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
     node->setDirection(direction);
 }
+
+void Tapioca::LightDirectional::setDirection(Vector3 direction) { node->setDirection(direction); }

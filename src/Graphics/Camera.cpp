@@ -4,18 +4,17 @@
 #include "Utilities/Vector4.h"
 #include "Node.h"
 
-Tapioca::Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook, float nearDist,
-    float farDist, bool autoAspectRatio, float aspectRatio)
-    : RenderObject(node), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio)
-{
+Tapioca::Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Tapioca::Vector3 targetToLook,
+    float nearDist, float farDist, bool autoAspectRatio, float aspectRatio)
+    : RenderObject(node, scnMgr), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio) {
     init(mCam);
 
     lookAt(targetToLook);
     setNearClipDistance(nearDist);
     setFarClipDistance(farDist);
     if (autoAspectRatio) mCam->setAutoAspectRatio(true);
-    else mCam->setAspectRatio(aspectRatio);
-
+    else
+        mCam->setAspectRatio(aspectRatio);
 }
 
 void Tapioca::Camera::lookAt(Vector3 targetToLook) { node->lookAt(targetToLook); }

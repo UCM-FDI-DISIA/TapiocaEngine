@@ -9,9 +9,12 @@ class Entity;
 
 namespace Tapioca {
 class Node;
+class GraphicsEngine;
 
 class Mesh : public RenderObject {
 private:
+    friend GraphicsEngine;
+
     Ogre::Entity* mesh;
 
 public:

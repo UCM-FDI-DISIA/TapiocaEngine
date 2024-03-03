@@ -23,6 +23,7 @@ void MeshRenderer::initComponent(const CompMap& variables) {
 	}
 	setValueFromMap(materialName, "materialName", variables);
 }
+
 void MeshRenderer::start() {
 	Transform* trans = parent->getComponent<Transform>();
 	mesh = GraphicsEngine::instance()->createMesh(static_cast<Node*>(trans->getNode()), meshName);

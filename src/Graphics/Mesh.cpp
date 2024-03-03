@@ -3,7 +3,8 @@
 #include "Node.h"
 
 Tapioca::Mesh::Mesh(Ogre::SceneManager* sceneManager, Node* node, std::string meshName)
-    : RenderObject(node), mesh(sceneManager->createEntity(meshName)) {
+    : RenderObject(node, sceneManager)
+    , mesh(sceneManager->createEntity(meshName)) {
     init(mesh);
 }
 

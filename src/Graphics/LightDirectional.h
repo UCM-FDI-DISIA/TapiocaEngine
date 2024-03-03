@@ -12,14 +12,14 @@ class Vector4;
 class Vector3;
 
 class LightDirectional : public Light {
-public:
+private:
     friend GraphicsEngine;
 
-private:
     // SOLO NECESITA UNA DIRECCION, PERO NO UNA POSICION (LA POSICION NO AFECTA PARA NADA)
     // SIMULA RAYOS DE LUZ DESDE UNA POSICION LEJANA (COMO EL SOL)
     LightDirectional(Ogre::SceneManager* sceneManager, Node* node, Vector4 color, Vector3 direction);
 
 public:
+    void setDirection(Vector3 direction);
 };
 }

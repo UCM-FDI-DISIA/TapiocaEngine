@@ -21,7 +21,7 @@ public:
     Se utiliza para indicar al render target (la ventana de Ogre), que trozo de la ventana
     usar para renderizar lo que muestra la camara
     */
-    Viewport(Ogre::RenderWindow* renderWindow, Camera* camera, int zOrder);
+    Viewport(Ogre::RenderWindow* renderWindow, Tapioca::Camera* camera, int zOrder);
 
     void setDimensions(Tapioca::Vector4 dimensions);
 
@@ -36,6 +36,10 @@ public:
 
     // (0-1)
     void setHeight(float height);
+
+    int getWidthInPixels();
+
+    int getHeightInPixels();
 
     void setBackground(Tapioca::Vector3 color);
 };

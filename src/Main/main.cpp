@@ -27,6 +27,12 @@ Tapioca::FactoryManager* factories;
 //Tapioca::AudioManager* audio;
 //Tapioca::UIManager* ui;
 
+// TODO: SOLO PARA PRUEBAS, BORRAR
+#include "Node.h"
+#include "LightDirectional.h"
+#include "Mesh.h"
+#include "Viewport.h"
+#include "Utilities/Vector3.h"
 
 static void createModules(HMODULE module);
 
@@ -45,19 +51,32 @@ int main(int argc, char** argv) {
         createBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
-            graphics->createMainCamera();
-            graphics->setBackgroundColor(Tapioca::Vector3(0.83f, 0.5f, 0.9f));
-            graphics->createLightDirectional(Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-            //Node* node = graphics->createNode();
-            //graphics->createMesh(node, "mapache.mesh");
-            //*/
+            auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
+            auto camera = graphics->createCamera(nodeCamera, "MainCamera");
+            auto viewport = graphics->createViewport(camera, 0);
+            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941));
+
+            auto node = graphics->createNode();
+            auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+            auto mesh = graphics->createMesh(node, "racoon/mapache.mesh");
+
             game->run();
-        } 
-        else std::cerr << "Error al inicializar un modulo\n";
+
+            delete nodeCamera;
+            delete camera;
+            delete viewport;
+
+            delete light;
+            delete node;
+            delete mesh;
+        }
+        else
+            std::cerr << "Error al inicializar un modulo\n";
 
         delete game;
-    } 
-    else std::cerr << "Error al cargar la libreria dinamica\n";
+    }
+    else
+        std::cerr << "Error al cargar la libreria dinamica\n";
 
     delete loader;
 

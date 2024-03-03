@@ -11,10 +11,9 @@ class GraphicsEngine;
 class Vector4;
 
 class LightPoint : public Light {
-public:
+private:
     friend GraphicsEngine;
 
-private:
     // SOLO NECESITA UNA POSICION, ILUMINA IGUAL EN TODAS DIRECCIONES
     LightPoint(Ogre::SceneManager* sceneManager, Node* node, Vector4 color);
 

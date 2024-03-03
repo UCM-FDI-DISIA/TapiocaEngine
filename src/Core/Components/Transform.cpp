@@ -5,6 +5,8 @@ namespace Tapioca {
 
 Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)) { }   //PRUEBA
 
+Transform::~Transform() { delete node; }
+
 void Transform::initComponent(const CompMap& variables) {
     setValueFromMap(position.x, "positionX", variables);
     setValueFromMap(position.y, "positionY", variables);

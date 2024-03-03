@@ -25,6 +25,13 @@ public:
     void setEmitting(bool emitting);
     bool isEmitting();
 
-    void fastForward(float time, float interval = 0.1f);
+    /*
+    Se utiliza para acelerar el sistema un numero determinado de segundos
+    Puede ser util para que un sistema de particula que tarda un poco en comenzar a funcionar completamente,
+    lo haga al momento
+    El parametro interval hace referencia al muestreo para generar estas particulas (cuanto mas peque�o sea,
+    mas realista es. Sin embargo, tambien es mas costoso)
+    */
+    void fastForward(float time, float interval);
 };
 }

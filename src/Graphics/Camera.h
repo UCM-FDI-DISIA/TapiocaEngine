@@ -1,7 +1,7 @@
 #pragma once
+#include "Utilities/Vector3.h"
 #include "RenderObject.h"
 #include <string>
-#include "Utilities/Vector3.h"
 
 namespace Ogre {
 class Camera;
@@ -14,23 +14,21 @@ class GraphicsEngine;
 class Viewport;
 
 class Camera : public RenderObject {
-public:
+private:
     friend GraphicsEngine;
     friend Viewport;
 
-private:
     Ogre::Camera* mCam;
     bool autoAspectRatio;
 
     // aspectRatio = width/height   1.3 es el por defecto de Ogre
-    Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook = Vector3(0, 0, 0),
+    Camera(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, Vector3 targetToLook = Vector3(0, 0, 0),
         float nearDist = 1, float farDist = 1000, bool autoAspectRatio = true, float aspectRatio = 1.33333333333333f);
 
     inline Ogre::Camera* getCamera() { return mCam; };
 
 public:
     /*
-    * LO HE PUESTO YO DE MIS APUNTES, PERO SE PUEDE BORRAR
     la camara mira hacia el eje z negativo
     El punto indicado es la que mira
     Por debajo funciona como un setDirection, por lo tanto, rota la camara

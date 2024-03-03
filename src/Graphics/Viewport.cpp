@@ -32,6 +32,10 @@ void Tapioca::Viewport::setHeight(float height) {
     viewport->setDimensions(viewport->getLeft(), viewport->getTop(), viewport->getWidth(), height);
 }
 
+int Tapioca::Viewport::getWidthInPixels() { return viewport->getActualWidth(); }
+
+int Tapioca::Viewport::getHeightInPixels() { return viewport->getActualHeight(); }
+
 void Tapioca::Viewport::setBackground(Vector3 color) {
     viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z));
 }

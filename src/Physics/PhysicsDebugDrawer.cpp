@@ -1,16 +1,16 @@
 #include "PhysicsDebugDrawer.h"
 #include <Ogre.h>
 #include "../Graphics/GraphicsEngine.h"
+#include "../Graphics/Node.h"
 #include "Utilities/checkML.h"
 
 Tapioca::PhysicsDebugDrawer::PhysicsDebugDrawer()
-    : mode(DBG_DrawWireframe) { }
+    : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
 
 Tapioca::PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
 
 void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) {
     auto g = GraphicsEngine::instance();
-    Node* node = g->createNode();
     Ogre::ManualObject* line = g->createManualObject(node);
     line->begin("white", Ogre::RenderOperation::OT_LINE_LIST);
     line->position(from.x(), from.y(), from.z());

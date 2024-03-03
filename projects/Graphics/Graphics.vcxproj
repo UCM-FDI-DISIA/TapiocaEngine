@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Entity.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsEngine.cpp" />
     <ClCompile Include="..\..\src\Graphics\Light.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp" />
@@ -23,11 +22,11 @@
     <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
-    <ClInclude Include="..\..\src\Graphics\Entity.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />
@@ -37,6 +36,7 @@
     <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\src\Graphics\RenderObject.h" />
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
+    <ClInclude Include="..\..\src\Graphics\Viewport.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
