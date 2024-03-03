@@ -1,10 +1,13 @@
 #include "Collider.h"
-#include <iostream>
 #include "Structure/GameObject.h"
+
+#ifdef _DEBUG
+#include <iostream>
+#endif
+
 namespace Tapioca {
 
-Collider::Collider()
-    : Component() { }
+Collider::Collider() : Component() { }
 
 void Collider::onCollisionEnter(GameObject* other) {
 #ifdef _DEBUG

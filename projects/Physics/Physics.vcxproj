@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Physics\Bullet.cpp" />
     <ClCompile Include="..\..\src\Physics\Components\Collider.cpp" />
     <ClCompile Include="..\..\src\Physics\Components\RigidBody.cpp" />
     <ClCompile Include="..\..\src\Physics\PhysicsDebugDrawer.cpp" />

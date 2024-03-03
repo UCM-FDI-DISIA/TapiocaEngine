@@ -1,10 +1,6 @@
 #pragma once
-#include <string>
 #include "RenderObject.h"
-
-namespace Tapioca {
-class Node;
-}
+#include <string>
 
 namespace Ogre {
 class SceneManager;
@@ -12,8 +8,13 @@ class Entity;
 }
 
 namespace Tapioca {
+class Node;
+class GraphicsEngine;
+
 class Mesh : public RenderObject {
 private:
+    friend GraphicsEngine;
+
     Ogre::Entity* mesh;
 
 public:

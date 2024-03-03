@@ -1,6 +1,10 @@
 #pragma once
 #include <vector>
 
+namespace Ogre {
+class SceneNode;
+}
+
 namespace Tapioca {
 class Vector3;
 class Transform;
@@ -8,20 +12,35 @@ class TransformBuilder;
 
 class INode {
 private:
-	friend TransformBuilder;
-	Transform* transform;
+    friend TransformBuilder;
+    Transform* transform;
+
+protected:
+    Ogre::SceneNode* node;
+
+    INode() : transform(nullptr), node(nullptr) { }
+
+    virtual void getAllChildrenAux(std::vector<INode*>& allChildren) = 0;
+
 public:
-	virtual void setPosition(Vector3 position) = 0;
-	virtual void translate(Vector3 movement) = 0;
-	virtual void setRotation(Vector3 rotation) = 0;
-	virtual void setScale(Vector3 scale) = 0;
-	virtual void scale(Vector3 scale) = 0;
+    virtual void removeChild(INode* node) = 0;
+    virtual void removeAttachedParent() = 0;
+    virtual void addChild(INode* node) = 0;
 
-	virtual std::vector<INode*> getAllChildren() = 0;
-	virtual void setParent(INode* parent) = 0;
+    virtual void setPosition(Vector3 position) = 0;
+    virtual void translate(Vector3 movement) = 0;
+    virtual void setRotation(Vector3 rotation) = 0;
+    virtual void setScale(Vector3 scale) = 0;
+    virtual void scale(Vector3 scale) = 0;
 
-	Transform* getTransform() { return transform; }
+    virtual std::vector<INode*> getChildren() = 0;
+    virtual std::vector<INode*> getAllChildren() = 0;
+    virtual void setParent(INode* parent) = 0;
 
-	virtual ~INode() { }
+    inline Transform* getTransform() const { return transform; }
+
+    inline Ogre::SceneNode* getSceneNode() const { return node; }
+
+    virtual ~INode() { }
 };
 }

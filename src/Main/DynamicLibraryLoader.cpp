@@ -1,11 +1,13 @@
 #include "DynamicLibraryLoader.h"
 
-namespace Tapioca {
-DynamicLibraryLoader::DynamicLibraryLoader(const string& gameName)
-    : gameName(gameName)
-    , module(nullptr) { }
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
-DynamicLibraryLoader::~DynamicLibraryLoader() { free(); }
+namespace Tapioca {
+DynamicLibraryLoader::DynamicLibraryLoader(const std::string& gameName) : gameName(gameName), module(nullptr) { }
+
+DynamicLibraryLoader::~DynamicLibraryLoader() { freeModule(); }
 
 bool DynamicLibraryLoader::load() {
 #ifdef _DEBUG
@@ -15,17 +17,19 @@ bool DynamicLibraryLoader::load() {
 #endif
 
 #ifdef _DEBUG
-    cout << "Cargando " << gamePath << "...\n";
+    std::cout << "Cargando " << gamePath << "...\n";
 #endif
 
     if ((module = LoadLibraryA(gamePath.c_str())) == nullptr) {
-        cerr << "Error al cargar la DLL.\n";
+#ifdef _DEBUG
+        std::cerr << "Error al cargar la DLL.\n";
+#endif
         return false;
     }
     return true;
 }
 
-void DynamicLibraryLoader::free() {
+void DynamicLibraryLoader::freeModule() {
     if (module != nullptr) {
         FreeLibrary(module);
     }

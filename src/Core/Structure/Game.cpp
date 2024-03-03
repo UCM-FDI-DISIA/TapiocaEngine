@@ -1,17 +1,21 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Module.h"
-#include <iostream>
 #include <chrono>
 
-namespace Tapioca {
-Game::Game()
-    : finish(false)
-    , deltaTime(0) {
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
-    // No deber�a haber m�s de un objeto Game
+namespace Tapioca {
+
+Game::Game() : finish(false), deltaTime(0) {
+
+    // No deberia haber mas de un objeto Game
     if (instance != nullptr) {
+#ifdef _DEBUG
         std::cerr << "Se ha intentado crear un segundo objeto Game.\n";
+#endif
         return;
     }
     instance = this;
@@ -40,7 +44,7 @@ bool Game::init() {
 }
 
 void Game::run() {
-    // se vuelven a inicializar por si acaso
+    // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
 
@@ -57,8 +61,8 @@ void Game::run() {
         handleEvents();
 
         uint64_t numFixedUpdates = 0;
-        // se realiza el update cada cierto tiempo determinado
-        // se va acumulando el tiempo sobrante (lag) --> varios updates en el mismo frame
+        // Se realiza el update cada cierto tiempo determinado
+        // Se va acumulando el tiempo sobrante (lag) --> varios updates en el mismo frame
         while (lag >= FIXED_DELTA_TIME) {
             fixedUpdate();
             lag -= FIXED_DELTA_TIME;
@@ -76,6 +80,11 @@ void Game::run() {
 
         render();
     }
+}
+
+void Game::start() {
+    for (auto mod : modules)
+        mod->start();
 }
 
 void Game::update() {
@@ -105,8 +114,8 @@ void Game::render() {
 }
 
 void Game::refresh() {
-	for (auto mod : modules)
-		mod->refresh();
+    for (auto mod : modules)
+        mod->refresh();
 
     for (Scene* sc : toDelete)
         delete sc;
@@ -119,6 +128,7 @@ void Game::addModule(Module* m) { modules.push_back(m); }
 
 void Game::pushScene(Scene* sc) {
     scenes.push(sc);
+    // TODO: start que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->start();
 }
 

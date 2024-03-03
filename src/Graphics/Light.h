@@ -1,6 +1,6 @@
 #pragma once
-#include "Utilities/Vector4.h"
 #include "RenderObject.h"
+#include "Utilities/Vector4.h"
 
 namespace Ogre {
 class SceneManager;

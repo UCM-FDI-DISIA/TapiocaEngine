@@ -51,5 +51,16 @@ public:
     inline Vector4& operator*=(const float& other) { return *this = *this * other; }
     inline Vector4& operator/=(const float& other) { return *this = *this / other; }
 
+    inline bool operator==(const Vector4& other) {
+        return (x == other.x && y == other.y && z == other.z && w == other.w);
+    }
+    inline bool operator!=(const Vector4& other) { return !(*this == other); }
+
+    //Para comparar magnitudes
+    //inline bool operator<(const Vector4& other) { return magnitude() < other.magnitude(); }
+    //inline bool operator>(const Vector4& other) { return other.magnitude() < magnitude(); }
+    //inline bool operator<=(const Vector4& other) { return !(magnitude() > other.magnitude()); }
+    //inline bool operator>=(const Vector4& other) { return !(magnitude() < other.magnitude()); }
+
 };
 }

@@ -4,6 +4,7 @@
 #include <cmath>
 
 namespace Tapioca {
+
 Vector4::Vector4(float xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) { }
 
 Vector4::Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) { }
@@ -26,9 +27,7 @@ Vector4 Vector4::getNormalized() const {
 
 float Vector4::normalize() {
 	float mag = magnitude();
-	if(mag != 0) {
-		x /= mag; y /= mag; z /= mag; w /= mag;
-	}
+	if (mag != 0) x /= mag; y /= mag; z /= mag; w /= mag;
 	return mag;
 }
 

@@ -1,23 +1,22 @@
 #pragma once
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
-#include "Structure/ComponentBuilder.h"
+
 #include "Utilities/defs.h"
-using namespace std;
 
 namespace Tapioca {
 /**
-* @brief Clase Singleton y Módulo que se encarga de gestionar las factorías de componentes
+* @brief Clase Singleton y Modulo que se encarga de gestionar las factorias de componentes
 */
 class FactoryManager : public Singleton<FactoryManager>, public Module {
 private:
     friend Singleton<FactoryManager>;
 
-    unordered_map<string, ComponentBuilder*> builders;   // Mapa de factorías de componentes
-    HMODULE module; // Módulo cargado en la memoria del proceso
+    std::unordered_map<std::string, ComponentBuilder*> builders;   // Mapa de factorias de componentes
+    HMODULE module; // Modulo cargado en la memoria del proceso
 
     /**
-    * @brief Inicializa el módulo
+    * @brief Inicializa el modulo
     */
     FactoryManager();
     FactoryManager(HMODULE module);
@@ -29,18 +28,18 @@ public:
     FactoryManager& operator=(FactoryManager&&) = delete;
 
     /**
-    * @brief Libera la memoria usada por las factorías
+    * @brief Libera la memoria usada por las factorias
     */
     ~FactoryManager();
 
     /**
     * @brief Crea un componente a partir de su nombre
     */
-    Component* createComponent(string name);
+    Component* createComponent(std::string name);
 
     /**
-    * @brief Añade una factoría al mapa de factorías
+    * @brief Añade una factoria al mapa de factorias
     */
-    void addFactory(string name, ComponentBuilder* builder);
+    void addFactory(std::string name, ComponentBuilder* builder);
 };
 }

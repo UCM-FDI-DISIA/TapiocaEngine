@@ -16,12 +16,12 @@ extern btQuaternion Tapioca::toBtQuaternion(Vector3 v) {
 }
 
 extern Vector3 Tapioca::toEuler(btQuaternion q) {
-    double roll = atan2(
-        2.0 * (q.getY() * q.getW() + q.getX() * q.getZ()), 1.0 - 2.0 * (q.getY() * q.getY() + q.getX() * q.getX()));
+    double roll = atan2(2.0 * (q.getY() * q.getW() + q.getX() * q.getZ()), 1.0 - 2.0 * (q.getY() * q.getY() + q.getX() * q.getX()));
     double pitch = asin(2.0 * (q.getW() * q.getX() - q.getY() * q.getZ()));
-    double yaw = atan2(
-        2.0 * (q.getZ() * q.getW() + q.getX() * q.getY()), 1.0 - 2.0 * (q.getZ() * q.getZ() + q.getX() * q.getX()));
+    double yaw = atan2(2.0 * (q.getZ() * q.getW() + q.getX() * q.getY()), 1.0 - 2.0 * (q.getZ() * q.getZ() + q.getX() * q.getX()));
 
     return Vector3(float(roll * 180.0 / PI), float(yaw * 180.0 / PI), float(pitch * 180.0 / PI));
 }
+
+
 }

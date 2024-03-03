@@ -19,7 +19,7 @@ private:
     // Tipos de eventos (de input, no los mapeados)
     std::unordered_map<std::string, std::vector<SDL_Event>> inputEventTriggered;
 
-    // Posición del ratón
+    // Posicion del raton
     std::pair<int32_t, int32_t> mousePos;
 
     // Mandos
@@ -35,23 +35,35 @@ private:
 
     // Mapeo de los controles
     std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> inputMap;
-    const std::string MAP_FILE_PATH = "assets\\controlsMapping.lua";
+    const std::string MAP_FILE = "controlsMapping.lua";
     lua_State* luaState;
 
 
     InputManager();
     
-    // @brief Mapear el input a diferentes eventos
+    /*
+    * @brief Mapear el input a diferentes eventos
+    */
     void mapInput();
 
-    // @brief Comprueba si hay algún joystick conectado y si hay al menos uno, empieza a escuchar eventos de joystick
+    /*
+    * @brief Comprueba si hay algun joystick conectado y si hay al menos uno, empieza a escuchar eventos de joystick
+    */
     void initControllers();
-    // @brief Añade el mando con su deadzone por defecto al mapa de mandos
+
+    /*
+    * @brief Añade el mando con su deadzone por defecto al mapa de mandos
+    */
     void addController(int i);
-    // @brief Elimina el mando y su deadzone del mapa de mandos
+
+    /*
+    * @brief Elimina el mando y su deadzone del mapa de mandos
+    */
     void removeController(int i);
 
-    // @brief Limpia el input
+    /*
+    * @brief Limpia el input
+    */
     void clearInput();
     
 
@@ -68,23 +80,36 @@ public:
     bool eventHappened(std::string ev);
 
 
-    // @brief Devuelve la posición del ratón
+    /*
+    * @brief Devuelve la posicion del raton
+    */
     inline const std::pair<int32_t, int32_t>& getMousePos() { return mousePos; }
 
-    // @brief Devuelve true si hay al menos 1 mando conectado
+    /*
+    * @brief Devuelve true si hay al menos 1 mando conectado
+    */
     inline bool isControllerConnected() { return !controllers.empty(); }
 
-    // @brief Devuelve el texto introducido
+    /*
+    * @brief Devuelve el texto introducido
+    */
     inline std::string getInputText() { return inputText; }
-  
-    // @brief Limpia el texto introducido
+    
+    /*
+    * @brief Limpia el texto introducido
+    */
     inline void resetText() { inputText.clear(); }
 
-    // @brief Borra el último char del texto introducido
+    
+    /*
+    * @brief Borra el ultimo char del texto introducido
+    */
     inline void removeLastChar() { if (!inputText.empty()) inputText.pop_back(); }
 
 };
 
-// @brief Para acortar el método InputManager::instance()->method() a inputManager().method()
+/*
+* @brief Para acortar el metodo InputManager::instance()->method() a inputManager().method()
+*/ 
 inline InputManager& inputManager() { return *InputManager::instance(); }
 }

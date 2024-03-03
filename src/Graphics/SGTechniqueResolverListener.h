@@ -2,7 +2,6 @@
 #include <OgreRTShaderSystem.h>
 #include <OgreMaterialManager.h>
 
-
 /*
 // @brief  Clase encargada de generar Shaders para los materiales que no tengan
 */

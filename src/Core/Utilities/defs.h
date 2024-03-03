@@ -5,13 +5,12 @@
 #include <variant>
 #include <Windows.h>
 #include "Structure/ComponentBuilder.h"
-using namespace std;
 
 struct FactoryInfo {
     const char* name;
     Tapioca::ComponentBuilder* builder;
 };
 
-using CompValue = variant<char, int, float, bool, string>;
-using CompMap = unordered_map<string, CompValue>;
+using CompValue = std::variant<char, int, float, bool, std::string>;
+using CompMap = std::unordered_map<std::string, CompValue>;
 typedef FactoryInfo**(__cdecl* EntryPoint)(int&);

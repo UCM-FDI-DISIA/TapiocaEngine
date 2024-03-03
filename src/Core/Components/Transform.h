@@ -1,12 +1,14 @@
 #pragma once
 #include "../Structure/Component.h"
 #include "../Utilities/Vector3.h"
+
 namespace Tapioca {
 class INode;
 class TransformBuilder;
 
 class Transform : public Component {
     friend TransformBuilder;
+
 private:
     Vector3 position;
     Vector3 rotation;
@@ -17,8 +19,9 @@ public:
     COMPONENT_ID("Transform")
 
     Transform();
-    ~Transform() { }
-    void initComponent(const CompMap& variables) override;
+    ~Transform();
+
+    bool initComponent(const CompMap& variables) override;
     // void update() override;
     // void fixedUpdate() override;
 
@@ -40,7 +43,7 @@ public:
     //Eje Z
     Vector3 forward();
 
-    INode* getNode() { return node; }
+    inline INode* getNode() { return node; }
 };
 
 

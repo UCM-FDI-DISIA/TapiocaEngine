@@ -1,5 +1,4 @@
 #pragma once
-
 #include <memory>
 
 #ifdef _DEBUG
@@ -10,7 +9,7 @@ namespace Tapioca {
 // Clase singleton para hacer que las clases hijas sean singleton
 template<typename T> class Singleton {
 private:
-    // Instancia única
+    // Instancia unica
     static T* instance_;
 
 protected:
@@ -23,8 +22,9 @@ public:
 
     virtual ~Singleton() {};
 
-    // Inicializa la instancia con los parámetros deseados (... args)
-    template<typename... T_args> inline static T* create(T_args&&... args) {
+    // Inicializa la instancia con los parametros deseados (... args)
+    template<typename... T_args> 
+    inline static T* create(T_args&&... args) {
         //assert(instance_.get() == nullptr, "Instance already exists");
         if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
 #ifdef _DEBUG
@@ -71,7 +71,7 @@ template<typename T> T* Singleton<T>::instance_ = nullptr;
 *		A& operator=(A&) = delete;
 *		A& operator=(A&&) = delete;
 * 
-*		// La destructora también puede ser virtual
+*		// La destructora tambien puede ser virtual
 *		~A() { ... }
 *
 *		method3() { ... };
@@ -80,7 +80,7 @@ template<typename T> T* Singleton<T>::instance_ = nullptr;
 *	}
 *
 *
-* La clase hija debe ser instanciada así:
+* La clase hija debe ser instanciada asi:
 *	// args depende de los argumentos de la(s) constructora(s) de A
 *	A::create(args);
 *

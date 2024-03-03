@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 
     // Inicializar ImGui backends
     ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
-    ImGui_ImplOpenGL3_Init("#version 130");   // Reemplazar con la versión que queramos de GLSL
+    ImGui_ImplOpenGL3_Init("#version 130");   // Reemplazar con la version que queramos de GLSL
 
     // Bucle principal
     bool done = false;
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        // Ejemplo de ventana de demostración de ImGui
+        // Ejemplo de ventana de demostracion de ImGui
         ImGui::ShowDemoWindow();
 
         // Renderizar ImGui

@@ -1,9 +1,8 @@
 #pragma once
-#include "Utilities/defs.h"
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
-#include "Structure/Scene.h"
-using namespace std;
+#include "Utilities/defs.h"
+
 struct lua_State;
 
 namespace Tapioca {
@@ -14,28 +13,33 @@ class GameObject;
 class Transform;
 
 /**
-* @brief Clase Singleton y Módulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
+* @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
 */
 class SceneManager : public Singleton<SceneManager>, public Module {
 private:
     friend Singleton<SceneManager>;
     friend class Scene;
 
-    HMODULE module;          // Módulo cargado en la memoria del proceso
-    string scenesPath;       // Ruta del archivo de configuración de escenas
-    vector<Scene*> scenes_debug; // Vector de escenas cargadas
-    lua_State* L;			// Estado de lua
+    HMODULE module;                     // Modulo cargado en la memoria del proceso
+    std::string scenesPath;             // Ruta del archivo de configuracion de escenas
+    std::vector<Scene*> scenes_debug;   // Vector de escenas cargadas
+    lua_State* luaState;                // Estado de lua
 
     /*
-    * @brief Constructor: Inicializa el módulo, el punto de entrada y el estado de lua
+    * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
     */
-    SceneManager(HMODULE module, string scenesPath = "archivo.lua");
+    SceneManager(HMODULE module, std::string scenesPath = "archivo.lua");
 
     /*
-    * @brief Carga el archivo de configuración de escenas y crea las escenas, gameobjects y componentes y los inicializa
+    * @brief Carga el archivo de configuracion de escenas y crea las escenas, gameobjects y componentes y los inicializa
     * @return Devuelve true si se ha cargado correctamente
     */
     bool init() override;
+
+    /**
+    * @brief Inicializa las escenas, gameobjects y componentes
+    */
+    void start() override;
 
     /**
     * @brief Crea las escenas, gameobjects y componentes
@@ -72,7 +76,7 @@ private:
     * @param name Nombre del componente
     * @return Devuelve el componente cargado
 	*/
-    Component* loadComponent(string name);
+    Component* loadComponent(std::string name);
 
 public:
     SceneManager(SceneManager&) = delete;

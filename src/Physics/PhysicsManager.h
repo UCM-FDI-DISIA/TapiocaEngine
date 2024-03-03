@@ -21,7 +21,7 @@ class btRigidBody;
 class Collider;
 #pragma endregion
 
-using namespace std;
+
 namespace Tapioca {
 class Vector3;
 class PhysicsDebugDrawer;
@@ -30,28 +30,28 @@ class PhysicsManager : public Singleton<PhysicsManager> , public Module {
     friend Singleton<PhysicsManager>;
 
 private:
-#pragma region métodos
+#pragma region metodos
 
     PhysicsManager();
 
-    //inicialización del mundo
+    //inicializacion del mundo
     bool init() override;
 
 #pragma endregion
 
-#pragma region parámetros
-    //configuración predeterminada para la detección de colisiones
+#pragma region parametros
+    //configuracion predeterminada para la deteccion de colisiones
     btDefaultCollisionConfiguration* colConfig;
-    //detectar pares de objetos de la misma región
+    //detectar pares de objetos de la misma region
     btBroadphaseInterface* broadphase;
-    //confirmar la colisión, notificar a los objetos que se colisionan y callbacks
+    //confirmar la colision, notificar a los objetos que se colisionan y callbacks
     btCollisionDispatcher* colDispatch;
-    //resolver la interacción de colisiones y cálculos de fuerzas resultantes
+    //resolver la interaccion de colisiones y calculos de fuerzas resultantes
     btSequentialImpulseConstraintSolver* constraintSolver;
     //el mundo
     btDiscreteDynamicsWorld* dynamicsWorld;
     //almacenado todos los rigidbodies del mundo
-    unordered_set<btRigidBody*> rigidBodies;
+    std::unordered_set<btRigidBody*> rigidBodies;
 #ifdef _DEBUG
     PhysicsDebugDrawer* pdd;
 #endif   // _DEBUG
@@ -60,7 +60,7 @@ private:
 #pragma endregion
 
 public:
-#pragma region métodos
+#pragma region metodos
 
     ~PhysicsManager();
 
@@ -77,7 +77,7 @@ public:
 
     /*
     /// @brief  crear un rigidbody
-    /// @params position posición inicial del rb
+    /// @params position posicion inicial del rb
     /// @params rotation inicial del rb
     /// @params shapeScale tamaño del shape del collider
     /// @params colliderShape tipo de shape del collider

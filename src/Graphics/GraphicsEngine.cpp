@@ -1,3 +1,12 @@
+// Propios
+#include "LightPoint.h"
+#include "LightDirectional.h"
+#include "Camera.h"
+#include "Node.h"
+#include "Mesh.h"
+#include "Viewport.h"
+#include "GraphicsEngine.h"
+
 // OGRE
 #include <Ogre.h>
 #include <OgreFileSystem.h>
@@ -5,60 +14,51 @@
 #include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreGL3PlusRenderSystem.h>
+
 // SDL
 #include <SDL.h>
 #include <SDL_syswm.h>
 #undef main
+
 // C++
 #include <iostream>
 #include <Windows.h>
+
 // Utilidades
 #include "Utilities/checkML.h"
-// Propios
-#include "GraphicsEngine.h"
-#include "LightPoint.h"
-#include "LightDirectional.h"
-#include "Camera.h"
-#include "Node.h"
-#include "Mesh.h"
 
-using namespace Tapioca;
+Tapioca::GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
+    : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), renderSys(nullptr),
+      mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr), mwindowName(windowName), windowWidth(w),
+      windowHeight(h) { }
 
-GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
-    : fsLayer(nullptr)
-    , mShaderGenerator(nullptr)
-    , cfgPath()
-    , mRoot(nullptr)
-    , scnMgr(nullptr)
-    , renderSys(nullptr)
-    , mMaterialMgrListener(nullptr)
-    , ogreWindow(nullptr)
-    , sdlWindow(nullptr)
-    , mwindowName(windowName)
-    , windowWidth(w)
-    , windowHeight(h)
-    , nodes()
-    , objects()
-    , mainCamera()
-    , viewport(nullptr) { }
-
-GraphicsEngine::~GraphicsEngine() {
+Tapioca::GraphicsEngine::~GraphicsEngine() {
+    /*for (auto& object : objects) {
+        delete object.first;
+    }
+    objects.clear();
     for (auto& node : nodes) {
         delete node;
     }
-    for (auto& object : objects) {
-        delete object.first;
+    nodes.clear();*/
+
+    for (auto& node : selfManagedNodes) {
+        delete node;
     }
+    selfManagedNodes.clear();
+
     shutDown();
 }
 
-bool GraphicsEngine::init() {
+bool Tapioca::GraphicsEngine::init() {
     // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
 
-    // hayamos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa de la carpeta de assets
-    // el nombre es para crear un directorio dentro del home del usuario para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
+    // Pbtenemos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa
+    // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
+    // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
     Ogre::String pluginsPath;
+
     // importante: la ruta donde esta plugins.cfg no puede tener caracteres especiales (solo alfabeto en ingles)
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
 
@@ -88,14 +88,16 @@ bool GraphicsEngine::init() {
     const Ogre::RenderSystemList renderSystems = mRoot->getAvailableRenderers();
     renderSys = renderSystems.front();
     mRoot->setRenderSystem(renderSys);
+
     // Inicializa ogre sin crear la ventana, siempre se hace despues de asignar el sistema de render
     mRoot->initialise(false);
 
-    // Iniciar SDL
+    // Iniciar SDL si no se ha inicializado antes
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
 
     // informacion de la ventana
     Ogre::NameValuePairList miscParams;
+
     // se coge la informacion del sistema de render
     Ogre::ConfigOptionMap ropts = renderSys->getConfigOptions();
     std::istringstream mode(ropts["Video Mode"].currentValue);
@@ -103,6 +105,7 @@ bool GraphicsEngine::init() {
     mode >> windowWidth;    // width
     mode >> token;          // 'x' as seperator between width and height
     mode >> windowHeight;   // height
+
     // se agrega informacion del sistema de render y demas
     miscParams["FSAA"] = ropts["FSAA"].currentValue;
     miscParams["vsync"] = ropts["VSync"].currentValue;
@@ -137,7 +140,7 @@ bool GraphicsEngine::init() {
     return true;
 }
 
-void GraphicsEngine::loadPlugIns() {
+void Tapioca::GraphicsEngine::loadPlugIns() {
 #ifdef _DEBUG
     mRoot->loadPlugin("Codec_STBI_d.dll");   // Necesario para tener codec de archivos png jpg ...
 #else
@@ -145,31 +148,33 @@ void GraphicsEngine::loadPlugIns() {
 #endif
 }
 
-void GraphicsEngine::loadResources() {
-    // todos los assets deben estar en la carpeta assets (no pueden estar en subcarpetas)
-    // sino, habria que poner mas rutas
+void Tapioca::GraphicsEngine::loadResources() {
+    // todos los assets deben estar en la carpeta assets
 #ifdef _RESOURCES_DIR
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation("./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 #else
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(cfgPath + "/assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "/assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 #endif
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void GraphicsEngine::loadShaders() {
+void Tapioca::GraphicsEngine::loadShaders() {
     if (Ogre::RTShader::ShaderGenerator::initialize()) {
         mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
         mShaderGenerator->addSceneManager(scnMgr);
+
         // CREAR LOS SHADERS PARA MATERIALES QUE VENGAN SIN ELLOS
         mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
         Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
     }
 }
 
-void GraphicsEngine::render() { mRoot->renderOneFrame(); }
+void Tapioca::GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
-void GraphicsEngine::shutDown() {
-    if(mRoot == nullptr) return;
+void Tapioca::GraphicsEngine::shutDown() {
+    if (mRoot == nullptr) return;
 
     // ELIMINAR EL SCENE MANAGER
     mShaderGenerator->removeSceneManager(scnMgr);
@@ -220,57 +225,69 @@ void GraphicsEngine::shutDown() {
     fsLayer = nullptr;
 }
 
-Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
-    Node* node = new Node(scnMgr, pos, scale);
-    nodes.insert(node);
+Tapioca::Node* Tapioca::GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
+    return new Node(scnMgr, pos, scale);
+    /*nodes.insert(node);
+    return node;*/
+}
+
+Tapioca::Node* Tapioca::GraphicsEngine::createSelfManagedNode(Tapioca::Vector3 pos, Tapioca::Vector3 scale) {
+    Tapioca::Node* node = new Node(scnMgr, pos, scale);
+    selfManagedNodes.insert(node);
     return node;
 }
 
-Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
-    Node* node = new Node(scnMgr, relativePos, scale, parent);
-    nodes.insert(node);
-    return node;
+Tapioca::Node* Tapioca::GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
+    return new Node(scnMgr, relativePos, scale, parent);
+    /*nodes.insert(node);
+    return node;*/
 }
 
-void GraphicsEngine::removeNode(Node* node) {
-    if (nodes.contains(node)) {
-        nodes.erase(node);
-        node->removeFromTree(&nodes);
-        delete node;
-    }
+//void GraphicsEngine::removeNode(Node* node) {
+//    if (nodes.contains(node)) {
+//        nodes.erase(node);
+//        node->removeFromTree(&nodes);
+//        delete node;
+//    }
+//}
+
+Tapioca::Camera* Tapioca::GraphicsEngine::createCamera(Node* node, std::string name) {
+    return new Camera(scnMgr, node, name);
 }
 
-void GraphicsEngine::createMainCamera() {
-    std::pair<Camera*, Node*> aux;
+Tapioca::Viewport* Tapioca::GraphicsEngine::createViewport(Camera* camera, int zOrder) {
+    return new Viewport(ogreWindow, camera, zOrder);
+}
+
+void Tapioca::GraphicsEngine::createMainCamera() {
     Node* node = createNode(Vector3(0, 0, 20));
-    Camera* mainCamera = new Camera(scnMgr, node, "MainCamera");
-    objects[mainCamera] = node;
-    viewport = ogreWindow->addViewport(mainCamera->getCamera());
+    Camera* camera = new Camera(scnMgr, node, "MainCamera", Vector3(0, 0, 0), 1, 1000, false);
+    Viewport* viewPort = new Viewport(ogreWindow, camera, 0);
+    // es similar a poner el auto aspect ratio a true, solo que no da problemas si hay dos viewports
+    // con la misma camara
+    camera->setAspectRatio((float)viewPort->getWidthInPixels() / (float)viewPort->getHeightInPixels());
 }
 
-void GraphicsEngine::setBackgroundColor(Vector3 color) {
-    if (viewport != nullptr) {
-        viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z));
-    }
+Tapioca::LightDirectional* Tapioca::GraphicsEngine::createLightDirectional(
+    Node* node, Vector3 direction, Vector4 color) {
+    return new LightDirectional(scnMgr, node, color, direction);
 }
 
-LightDirectional* GraphicsEngine::createLightDirectional(Vector3 direction, Vector4 color) {
-    Node* node = createNode();
-    LightDirectional* light = new LightDirectional(scnMgr, node, color, direction);
-    objects[light] = node;
-    return light;
+Tapioca::Mesh* Tapioca::GraphicsEngine::createMesh(Node* node, std::string meshName) {
+    return new Mesh(scnMgr, node, meshName);
 }
 
-Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) {
-    Mesh* mesh = new Mesh(scnMgr, node, meshName);
-    objects[mesh] = node;
-    return mesh;
-}
-
-Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {
+Ogre::ManualObject* Tapioca::GraphicsEngine::createManualObject(Node* node) {
     Ogre::ManualObject* manualObject = scnMgr->createManualObject();
     node->attachObject(manualObject);
     return manualObject;
 }
 
-void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+void Tapioca::GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+
+//void GraphicsEngine::removeObject(Tapioca::RenderObject* object) {
+//    if (objects.contains(object)) {
+//        objects.erase(object);
+//        object->detachFromNode();
+//    }
+//}

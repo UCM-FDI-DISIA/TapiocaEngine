@@ -1,13 +1,11 @@
 #pragma once
-#include <Windows.h>
-#include <vector>
-#include <iostream>
-#include "Structure/ComponentBuilder.h"
-#include "EjemploComponentFactory.h"
 #include "Utilities/defs.h"
 #include "defs.h"
-using namespace std;
-using namespace Tapioca;
+
+#include <Windows.h>
+#include <vector>
+
+
 #define JUEGO_API __declspec(dllexport)
 
 extern "C" {

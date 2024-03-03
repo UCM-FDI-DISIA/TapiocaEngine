@@ -1,58 +1,83 @@
 #pragma once
-#include <iostream>
 #include "Utilities/checkML.h"
 #include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
-#include "InputManager.h"
-#include "SceneManager.h"
+
 #include "GraphicsEngine.h"
-#include "PhysicsManager.h"
+#include "InputManager.h"
 #include "Structure/FactoryManager.h"
-#include "TransformBuilder.h"
-#include "CreateBuilders.h"
+#include "SceneManager.h"
+#include "PhysicsManager.h"
+// #include "AudioManager.h" Descomentar cuando se implemente
 #include "UIManager.h"
-// #include "AudioManager.h" A�adir cuando se implemente
-//#include "Utilities/defs.h"
-using namespace std;
-using namespace Tapioca;
+
+#include "CreateBuilders.h"
+
+#ifdef _DEBUG
+#include <iostream>
+#endif
+
+// IMPORTANTE: METERLO EN UN NAMESPACE CAUSA ERRORES DE COMPILACION
+
+Tapioca::InputManager* input;
+Tapioca::FactoryManager* factories;
+Tapioca::SceneManager* scenes;
+Tapioca::GraphicsEngine* graphics;
+Tapioca::PhysicsManager* physics;
+Tapioca::UIManager* ui;
+//Tapioca::AudioManager* audio;
 
 static void createModules(HMODULE module);
-InputManager* input;
-SceneManager* scenes;
-GraphicsEngine* graphics;
-PhysicsManager* physics;
-FactoryManager* factories;
-UIManager* ui;
-//AudioManager* audio;
-static void createBuilders(HMODULE module);
+
+// TODO: SOLO PARA PRUEBAS, BORRAR
+#include "Node.h"
+#include "LightDirectional.h"
+#include "Mesh.h"
+#include "Viewport.h"
+#include "Utilities/Vector3.h"
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+    Tapioca::DynamicLibraryLoader* loader = new Tapioca::DynamicLibraryLoader();
 
-    DynamicLibraryLoader* loader = new DynamicLibraryLoader();
-   
     if (loader->load()) {
-        Game* game = new Game();
+        Tapioca::Game* game = new Tapioca::Game();
         createModules(loader->getModule());
-        createEngineBuilders();
-        createBuilders(loader->getModule());
+        Tapioca::createEngineBuilders();
+        Tapioca::createGameBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
-            graphics->createMainCamera();
-            graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
-            graphics->createLightDirectional(Vector3(0.0f, -1.0f, -1.0f));
-            //Node* node = graphics->createNode();
-            //graphics->createMesh(node, "mapache.mesh");
-            //*/
+            auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
+            auto camera = graphics->createCamera(nodeCamera, "MainCamera");
+            auto viewport = graphics->createViewport(camera, 0);
+            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941));
+
+            auto node = graphics->createNode();
+            auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+            auto mesh = graphics->createMesh(node, "racoon/mapache.mesh");
+
             game->run();
-        } else {
-            cerr << "Error al inicializar un módulo\n";
+
+            delete nodeCamera;
+            delete camera;
+            delete viewport;
+            delete light;
+            delete node;
+            delete mesh;
         }
+#ifdef _DEBUG
+        else
+            std::cerr << "Error al inicializar un modulo\n";
+#endif
+
         delete game;
-    } else {
-        cerr << "Error al cargar la libreria dinamica\n";
     }
+#ifdef _DEBUG
+    else
+        std::cerr << "Error al cargar la libreria dinamica\n";
+#endif
+
     delete loader;
 
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
@@ -60,25 +85,11 @@ int main(int argc, char** argv) {
 }
 
 static void createModules(HMODULE module) {
-    graphics = GraphicsEngine::create();
-    input = InputManager::create();
-    factories = FactoryManager::create();
-    scenes = SceneManager::create(module);
-    physics = PhysicsManager::create();
-    ui = UIManager::create();
+    graphics = Tapioca::GraphicsEngine::create();
+    input = Tapioca::InputManager::create();
+    factories = Tapioca::FactoryManager::create();
+    scenes = Tapioca::SceneManager::create(module);
+    physics = Tapioca::PhysicsManager::create();
+    ui = Tapioca::UIManager::create();
     // audio = AudioManager::create();
-}
-static void createBuilders(HMODULE module) {
-    // TODO: Pasar esto a Bridge
-    FactoryManager* manager = FactoryManager::instance();
-
-    EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
-
-    int numFactories;
-    FactoryInfo** fI = eP(numFactories);
-    for (int i = 0; i < numFactories; ++i) {
-        manager->addFactory(fI[i]->name, fI[i]->builder);
-        delete fI[i];
-    }
-    delete[] fI;
 }

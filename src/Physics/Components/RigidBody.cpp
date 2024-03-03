@@ -9,18 +9,8 @@
 
 
 namespace Tapioca {
-RigidBody::RigidBody()
-    : transform(nullptr)
-    , collider(nullptr)
-    , rigidBody(nullptr)
-    , mass(0)
-    , isTrigger(false)
-    , mask(-1)
-    , group(1)
-    , friction(0)
-    , colShape(BOX_SHAPE)
-    , movementType(STATIC_OBJECT)
-    , bounciness(0) { }
+RigidBody::RigidBody() : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), 
+    mask(-1), group(1), friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -29,8 +19,7 @@ RigidBody::~RigidBody() {
     }
 }
 
-void RigidBody::initComponent(const CompMap& variables) {
-
+bool RigidBody::initComponent(const CompMap& variables) {
     //transform = parent->getComponent<Transform>();// DESCOMENTAR
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
@@ -39,10 +28,11 @@ void RigidBody::initComponent(const CompMap& variables) {
     //collider = parent->getComponent<Collider>();//DESCOMENTAR
 
     rigidBody->setUserPointer(collider);
+
+    return true;
 }
 
 void RigidBody::update(const uint64_t deltaTime) {
-
     if (movementType == KINEMATIC_OBJECT) {
 
         btTransform btTr = rigidBody->getWorldTransform();
@@ -73,10 +63,8 @@ void RigidBody::setMomeventType(MovementType t) {
 
 void RigidBody::setTrigger(bool t) {
     isTrigger = t;
-    if (isTrigger) {
-        rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-    } else
-        rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    if (isTrigger) rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    else rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 
 void RigidBody::setColliderShape(ColliderShape s) { colShape = s; }

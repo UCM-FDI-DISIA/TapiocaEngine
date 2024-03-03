@@ -1,9 +1,8 @@
 #include "Light.h"
-#include "Utilities/Vector4.h"
 #include <Ogre.h>
 
 Tapioca::Light::Light(Ogre::SceneManager* scnMgr, Node* node, Vector4 color)
-    : RenderObject(node)
+    : RenderObject(node, scnMgr)
     , mLight(scnMgr->createLight())
     , mColor(color) {
 

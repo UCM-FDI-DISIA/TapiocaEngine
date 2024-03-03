@@ -1,8 +1,8 @@
 #pragma once
-#include "Utilities/defs.h"
 #include <vector>
 #include <stack>
-#include "ComponentBuilder.h"
+#include "Utilities/defs.h"
+
 namespace Tapioca {
 class Scene;
 class Module;
@@ -22,6 +22,7 @@ private:
     friend class Module;
     void addModule(Module*);
 
+    void start();
     void update();
     void handleEvents();
     void fixedUpdate();
@@ -44,7 +45,5 @@ public:
     void pushScene(Scene*);
     void popScene();
     void changeScene(Scene*);
-
- 
 };
 }
