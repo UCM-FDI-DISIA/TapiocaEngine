@@ -72,7 +72,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\Graphics\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
