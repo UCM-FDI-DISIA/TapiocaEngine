@@ -20,8 +20,6 @@ protected:
 
     INode() : transform(nullptr), node(nullptr) { }
 
-    virtual void getAllChildrenAux(std::vector<INode*>& allChildren) = 0;
-
 public:
     virtual void removeChild(INode* node) = 0;
     virtual void removeAttachedParent() = 0;
@@ -34,11 +32,13 @@ public:
     virtual void scale(Vector3 scale) = 0;
 
     virtual std::vector<INode*> getChildren() = 0;
+    virtual void getAllChildrenAux(std::vector<INode*>& allChildren) = 0;
     virtual std::vector<INode*> getAllChildren() = 0;
     virtual void setParent(INode* parent) = 0;
 
-    inline Transform* getTransform() const { return transform; }
+    virtual inline INode* getParent() const = 0;
 
+    inline Transform* getTransform() const { return transform; }
     inline Ogre::SceneNode* getSceneNode() const { return node; }
 
     virtual ~INode() { }

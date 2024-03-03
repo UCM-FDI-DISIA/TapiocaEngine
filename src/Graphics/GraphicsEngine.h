@@ -58,12 +58,12 @@ private:
     SDL_Window* sdlWindow;
 
     std::unordered_set<Node*> selfManagedNodes;
-    // TODO: ADMINISTRAR OBJETOS, SE PUEDE BORRAR
+    // TODO: se puede borrar
     /*std::unordered_map<RenderObject*, Node*> objects;
     Ogre::Viewport* viewport;*/
 
     // carga plugIns especificados desde codigo
-    // TODO: SE CARGA DE ARCHIVO, SE PUEDE BORRAR
+    // TODO: se carga de archivo, se puede borrar
     void loadPlugIns();
 
     /*
@@ -120,9 +120,6 @@ public:
     Tapioca::Camera* createCamera(Tapioca::Node* node, std::string name);
 
     Tapioca::Viewport* createViewport(Tapioca::Camera* camera, int zOrder);
-
-    // TODO: SOLO PARA PRUEBAS, SE PUEDE BORRAR
-    void createMainCamera();
 
     Tapioca::LightDirectional* createLightDirectional(Tapioca::Node* node, Tapioca::Vector3 direction,
         Tapioca::Vector4 color = Tapioca::Vector4(1.0f, 1.0f, 1.0f, 1.0f));

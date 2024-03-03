@@ -9,9 +9,7 @@ namespace Tapioca {
 MeshRenderer::MeshRenderer() : mesh(nullptr) { }
 
 MeshRenderer::~MeshRenderer() {
-    // Esto???
-    /*mesh->detachFromNode();*/
-    delete mesh;
+	delete mesh;
 }
 
 bool MeshRenderer::initComponent(const CompMap& variables) {
@@ -23,7 +21,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
         return false;
     }
 
-    // Da igual si no hay material o si el material tiene un nombre vacío
+    // Da igual si no hay material o si el material tiene un nombre vacï¿½o
     setValueFromMap(materialName, "materialName", variables);
 
     return true;
@@ -36,4 +34,6 @@ void MeshRenderer::start() {
     if (materialName != "") 
         mesh->setMaterial(materialName);
 }
+
+void MeshRenderer::update(const uint64_t deltaTime) { }
 }

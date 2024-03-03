@@ -128,7 +128,7 @@ void Game::addModule(Module* m) { modules.push_back(m); }
 
 void Game::pushScene(Scene* sc) {
     scenes.push(sc);
-    // TODO: start que se ejecute para componentes que se crean en tiempo de ejecucion
+    // TODO: mejorar start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->start();
 }
 

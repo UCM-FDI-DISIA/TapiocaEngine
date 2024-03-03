@@ -1,11 +1,19 @@
 #include "Transform.h"
+#include "Structure/GameObject.h"
 #include "Utilities/INode.h"
 
 namespace Tapioca {
 
-Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)) { }   //PRUEBA
+Transform::Transform()
+    : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }   //PRUEBA
 
-Transform::~Transform() { delete node; }
+Transform::~Transform() {
+    for (auto childNode : node->getAllChildren()) {
+        Tapioca::GameObject* childGameObject = childNode->getTransform()->getParent();
+        childGameObject->setAlive(false);
+    }
+    delete node;
+}
 
 bool Transform::initComponent(const CompMap& variables) {
     bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
@@ -105,4 +113,7 @@ Vector3 Transform::forward() {
     return v;
 }
 
+void Transform::setParentHierarchy(Transform* tranform) { node->setParent(tranform->getNode()); }
+
+Transform* Transform::getParentHierarchy() const { return node->getParent()->getTransform(); }
 }

@@ -13,6 +13,19 @@ Ogre::SceneNode* Tapioca::Node::createChild(Node* child) {
     return node->createChildSceneNode();
 }
 
+void Tapioca::Node::removeParent() {
+    if (this->parent != nullptr) {
+        removeAttachedParent();
+    }
+    else {
+        Ogre::SceneNode* parentNode = node->getParentSceneNode();
+        if (parentNode != nullptr) {
+            parentNode->removeChild(node);
+        }
+    }
+    parent = nullptr;
+}
+
 //void Tapioca::Node::destroyAllAttachedObjects(Ogre::SceneNode* node) {
 //    // por precaucion
 //    if (node != nullptr) {
@@ -64,7 +77,7 @@ Ogre::SceneNode* Tapioca::Node::createChild(Node* child) {
 void Tapioca::Node::getAllChildrenAux(std::vector<INode*>& allChildren) {
     for (auto child : children) {
         allChildren.push_back(child);
-        getAllChildrenAux(allChildren);
+        child->getAllChildrenAux(allChildren);
     }
 }
 
@@ -107,6 +120,8 @@ Tapioca::Node::Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale
 }
 
 Tapioca::Node::~Node() {
+    removeParent();
+
     for (auto it = objects.begin(), itAnt = objects.begin(); it != objects.end();) {
         ++itAnt;
         (*it)->detachFromNode();
@@ -163,15 +178,7 @@ std::vector<Tapioca::INode*> Tapioca::Node::getChildren() {
 
 
 void Tapioca::Node::setParent(INode* parent) {
-    if (this->parent != nullptr) {
-        removeAttachedParent();
-    }
-    else {
-        Ogre::SceneNode* parentNode = node->getParentSceneNode();
-        if (parentNode != nullptr) {
-            parentNode->removeChild(node);
-        }
-    }
+    removeParent();
     parent->addChild(this);
     this->parent = parent;
 }

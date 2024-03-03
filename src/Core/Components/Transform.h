@@ -43,8 +43,10 @@ public:
     //Eje Z
     Vector3 forward();
 
+    void setParentHierarchy(Transform* tranform);
+
+    Transform* getParentHierarchy() const;
+
     inline INode* getNode() { return node; }
 };
-
-
 }

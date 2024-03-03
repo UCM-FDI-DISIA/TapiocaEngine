@@ -259,15 +259,6 @@ Tapioca::Viewport* Tapioca::GraphicsEngine::createViewport(Camera* camera, int z
     return new Viewport(ogreWindow, camera, zOrder);
 }
 
-void Tapioca::GraphicsEngine::createMainCamera() {
-    Node* node = createNode(Vector3(0, 0, 20));
-    Camera* camera = new Camera(scnMgr, node, "MainCamera", Vector3(0, 0, 0), 1, 1000, false);
-    Viewport* viewPort = new Viewport(ogreWindow, camera, 0);
-    // es similar a poner el auto aspect ratio a true, solo que no da problemas si hay dos viewports
-    // con la misma camara
-    camera->setAspectRatio((float)viewPort->getWidthInPixels() / (float)viewPort->getHeightInPixels());
-}
-
 Tapioca::LightDirectional* Tapioca::GraphicsEngine::createLightDirectional(
     Node* node, Vector3 direction, Vector4 color) {
     return new LightDirectional(scnMgr, node, color, direction);

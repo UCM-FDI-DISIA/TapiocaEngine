@@ -29,7 +29,7 @@ Tapioca::PhysicsManager* physics;
 
 static void createModules(HMODULE module);
 
-// TODO: SOLO PARA PRUEBAS, BORRAR
+// TODO: solo para pruebas, borrar
 #include "Node.h"
 #include "LightDirectional.h"
 #include "Mesh.h"
@@ -55,16 +55,19 @@ int main(int argc, char** argv) {
 
             auto node = graphics->createNode();
             auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-            auto mesh = graphics->createMesh(node, "racoon/mapache.mesh");
+            //auto mesh = graphics->createMesh(node, "racoon/mapache.mesh");
+
+            node->setParent(nodeCamera);
 
             game->run();
+
+            delete node;
 
             delete nodeCamera;
             delete camera;
             delete viewport;
             delete light;
-            delete node;
-            delete mesh;
+            //delete mesh;
         }
 #ifdef _DEBUG
         else

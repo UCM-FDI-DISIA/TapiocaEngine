@@ -15,5 +15,7 @@ public:
 
 	bool initComponent(const CompMap& variables) override;
 	void start() override;
+
+    void update(const uint64_t deltaTime) override;
 };
 }

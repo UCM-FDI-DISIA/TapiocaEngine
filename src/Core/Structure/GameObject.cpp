@@ -3,7 +3,7 @@
 #include "Component.h"
 
 namespace Tapioca {
-GameObject::GameObject() : scene(nullptr), alive(true) { }
+GameObject::GameObject() : scene(nullptr), alive(true), name("") { }
 
 GameObject::~GameObject() {
     for (auto& i : components)
@@ -38,12 +38,13 @@ void GameObject::deleteComponent(std::string id) {
 }
 
 void GameObject::deleteCompVector(Component* comp) {
-    for (auto it = cmpOrder.cbegin(); it != cmpOrder.cend(); ++it) {
+    cmpOrder.erase(std::remove(cmpOrder.begin(), cmpOrder.end(), comp), cmpOrder.end());
+    /*for (auto it = cmpOrder.cbegin(); it != cmpOrder.cend(); ++it) {
         if (*it == comp) {
             cmpOrder.erase(it);
             break;
         }
-    }
+    }*/
 }
 
 void GameObject::setScene(Scene* sc) { scene = sc; }

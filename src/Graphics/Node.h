@@ -26,6 +26,7 @@ public:
 
 private:
     Ogre::SceneManager* sceneManager;
+    // si es nullptr, quiere decir que el padre es el nodo root
     INode* parent;
     std::unordered_set<INode*> children;
     std::unordered_set<RenderObject*> objects;
@@ -33,6 +34,8 @@ private:
 
     // AGREGAR HIJO
     Ogre::SceneNode* createChild(Node* child);
+
+    void removeParent();
 
     // ELIMINAR
     //// eliminar todos los objetos del nodo y sus hijos
@@ -43,8 +46,6 @@ private:
     //void deleteChildren(std::unordered_set<Node*>* nodes);
     //// eliminar nodos y objetos del grafo de la escena y hacer delete de los nodos hijos
     //void removeFromTree(std::unordered_set<Node*>* nodes);
-
-    void getAllChildrenAux(std::vector<INode*>& allChildren) override;
 
     // PARA OBJETOS
     void attachObject(Tapioca::RenderObject* object);
@@ -57,7 +58,7 @@ private:
     Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent = nullptr);
 
 public:
-    ~Node();
+    virtual ~Node();
 
     void removeChild(INode* node) override;
     void removeAttachedParent() override;
@@ -77,8 +78,11 @@ public:
     void rotate(Vector3 r);
 
     std::vector<INode*> getChildren() override;
+    void getAllChildrenAux(std::vector<INode*>& allChildren) override;
     std::vector<INode*> getAllChildren() override;
 
     void setParent(INode* parent) override;
+
+    virtual inline INode* getParent() const override { return parent; }
 };
 }
