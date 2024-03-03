@@ -137,6 +137,14 @@ bool Tapioca::GraphicsEngine::init() {
         return false;
     }
 
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+    // Turn on double buffering with a 24bit Z buffer
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
     /*SDL_GLContext gl_context = SDL_GL_CreateContext(sdlWindow);
     if (!gl_context) {
 #ifdef _DEBUG
@@ -205,21 +213,21 @@ void Tapioca::GraphicsEngine::loadShaders() {
 }
 
 void Tapioca::GraphicsEngine::render() {
-    // Renderiza la escena de Ogre primero
-    mRoot->renderOneFrame();
-
     // Configura el nuevo frame de ImGui
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
 
-    // Aquí puedes colocar tus ventanas y elementos de ImGui
+    // Dibujar la ventana de demo de ImGui
     ImGui::ShowDemoWindow();
 
     // Renderiza los elementos de ImGui
     ImGui::Render();
 
-    // Ahora dibuja los elementos de ImGui por encima de la escena de Ogre
+    // Dibuja la escena de Ogre
+    mRoot->renderOneFrame();
+
+    // Dibuja los elementos de ImGui por encima de la escena de Ogre
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
     // Intercambiar buffers al final para mostrar todo en la ventana
