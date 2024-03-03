@@ -1,7 +1,7 @@
 #include "PhysicsDebugDrawer.h"
 #include <Ogre.h>
-#include "../Graphics/GraphicsEngine.h"
-#include "../Graphics/Node.h"
+#include "GraphicsEngine.h"
+#include "Node.h"
 #include "Utilities/checkML.h"
 
 Tapioca::PhysicsDebugDrawer::PhysicsDebugDrawer()
