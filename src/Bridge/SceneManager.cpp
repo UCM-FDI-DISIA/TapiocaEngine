@@ -72,6 +72,7 @@ bool SceneManager::loadScenes() {
         std::cout << "Scene: " << sceneName << "\n";
 #endif
         loaded = loadScene(scene);
+        if (!loaded) return false;
         lua_pop(luaState, 1);
 
         //TODO: esta aqui para no dejar memoria de momento
@@ -98,6 +99,8 @@ bool SceneManager::loadGameObjects(Scene* scene) {
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
         loaded = loadGameObject(gameObject);
+        if (!loaded) return false;
+
         scene->addObject(gameObject, gameObjectName);
         lua_pop(luaState, 1);
     }
@@ -121,8 +124,9 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
         std::cout << "\t\tComponent: " << componentName << "\n";
 #endif
         component = loadComponent(componentName);
+        if (component == nullptr) return false;
         // Si no tengo creado componente
-        if (component != nullptr) gameObject->addComponent(component, componentName);
+        gameObject->addComponent(component, componentName);
         lua_pop(luaState, 1);
     }
     return component != nullptr;
