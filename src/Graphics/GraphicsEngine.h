@@ -61,6 +61,7 @@ private:
     // Ventana
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
+    void* gl_context;
 
     std::unordered_set<Node*> selfManagedNodes;
     // TODO: ADMINISTRAR OBJETOS, SE PUEDE BORRAR
@@ -143,7 +144,9 @@ public:
 
     void destroyManualObject(Ogre::ManualObject* object);
     
-    SDL_Window* getSDLWindow() { return sdlWindow; };
+    inline SDL_Window* getSDLWindow() const { return sdlWindow; };
+
+    void* getGLContext() const;
 
     //void removeObject(Tapioca::RenderObject* object);
 };

@@ -18,7 +18,16 @@
 // SDL
 #include <SDL.h>
 #include <SDL_syswm.h>
+#include <SDL_video.h>
+// OPENGL
+#include <SDL_opengl.h>
+#include <GL/gl.h>
 #undef main
+
+// ImGui
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdl2.cpp>
+#include <imgui_impl_opengl3.h>
 
 // C++
 #include <iostream>
@@ -53,9 +62,10 @@ Tapioca::GraphicsEngine::~GraphicsEngine() {
 bool Tapioca::GraphicsEngine::init() {
     // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
 
-    // Pbtenemos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa
+    // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
+    // ESTO ESTA FATAL, NO DEBERIA CREAR UN DIRECTORIO EN EL HOME DEL USUARIO
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
     Ogre::String pluginsPath;
 
@@ -112,22 +122,41 @@ bool Tapioca::GraphicsEngine::init() {
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
     // Iniciar ventana SDL2
-    Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
-    if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI;
+    Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI/* | SDL_WINDOW_OPENGL*/;
+    if (ropts["Full Screen"].currentValue == "Yes")
+        flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI/* | SDL_WINDOW_OPENGL*/;
     // else flags = SDL_WINDOW_RESIZABLE;
 
     // Crear ventana SDL2
-    sdlWindow = SDL_CreateWindow(
-        mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+    sdlWindow = SDL_CreateWindow(mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
+        windowHeight, flags);
+    if (sdlWindow == nullptr) {
+#ifdef _DEBUG
+    	std::cerr << "Error al crear la ventana de SDL: " << SDL_GetError() << '\n';
+#endif
+        return false;
+    }
 
-    SDL_SysWMinfo wmInfo;
-    SDL_VERSION(&wmInfo.version);
-    SDL_GetWindowWMInfo(sdlWindow, &wmInfo);
-    // vincular ventana de SDL con Ogre
-    miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
-
+    /*SDL_GLContext gl_context = SDL_GL_CreateContext(sdlWindow);
+    if (!gl_context) {
+#ifdef _DEBUG
+        std::cerr << "Error al crear el contexto OpenGL: " << SDL_GetError() << '\n';
+#endif
+        return false;
+    }*/
+    
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
+    SDL_SysWMinfo wmInfo;
+    SDL_VERSION(&wmInfo.version);
+    if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
+#ifdef _DEBUG
+		std::cerr << "Error al obtener informacion de la ventana de SDL: " << SDL_GetError() << '\n';
+#endif
+		return false;
+    }
+    // vincular ventana de SDL con Ogre
+    miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
     ogreWindow = mRoot->createRenderWindow(mwindowName, windowWidth, windowHeight, false, &miscParams);
 
     scnMgr = mRoot->createSceneManager();
@@ -136,6 +165,10 @@ bool Tapioca::GraphicsEngine::init() {
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
     loadResources();
+
+    if (SDL_GL_MakeCurrent(sdlWindow, gl_context) != 0) {
+        std::cerr << "Error al hacer actual el contexto OpenGL: " << SDL_GetError() << '\n';
+    }
 
     return true;
 }
@@ -171,7 +204,27 @@ void Tapioca::GraphicsEngine::loadShaders() {
     }
 }
 
-void Tapioca::GraphicsEngine::render() { mRoot->renderOneFrame(); }
+void Tapioca::GraphicsEngine::render() {
+    // Renderiza la escena de Ogre primero
+    mRoot->renderOneFrame();
+
+    // Configura el nuevo frame de ImGui
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame();
+    ImGui::NewFrame();
+
+    // Aquí puedes colocar tus ventanas y elementos de ImGui
+    ImGui::ShowDemoWindow();
+
+    // Renderiza los elementos de ImGui
+    ImGui::Render();
+
+    // Ahora dibuja los elementos de ImGui por encima de la escena de Ogre
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    // Intercambiar buffers al final para mostrar todo en la ventana
+    SDL_GL_SwapWindow(sdlWindow);
+}
 
 void Tapioca::GraphicsEngine::shutDown() {
     if (mRoot == nullptr) return;
@@ -284,6 +337,9 @@ Ogre::ManualObject* Tapioca::GraphicsEngine::createManualObject(Node* node) {
 }
 
 void Tapioca::GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+
+void* Tapioca::GraphicsEngine::getGLContext() const { return static_cast<SDL_GLContext>(gl_context); }
+
 
 //void GraphicsEngine::removeObject(Tapioca::RenderObject* object) {
 //    if (objects.contains(object)) {

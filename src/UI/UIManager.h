@@ -1,7 +1,8 @@
 #pragma once
+#include "GraphicsEngine.h"
 #include "Structure/Module.h"
 #include "Utilities/Singleton.h"
-#include "GraphicsEngine.h"
+
 class SDL_Window;
 
 namespace Tapioca {
@@ -10,6 +11,7 @@ private:
     friend Singleton<UIManager>;
 
     SDL_Window* myWindow;
+    void* gl_context;
 
     UIManager();
 
@@ -25,9 +27,9 @@ public:
 
     bool init() override;
     //void update(const uint64_t deltaTime) { }
-    void handleEvents() override;
+    //void handleEvents() override;
     //void fixedUpdate() override { }
-    void render() override;
+    //void render() override;
     //void refresh() override { }
 };
 }

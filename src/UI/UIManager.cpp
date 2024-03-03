@@ -1,9 +1,13 @@
 #include "UIManager.h"
-#include <iostream>
+
 #include <SDL.h>
+#include <SDL_video.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
-#include <imgui_impl_sdl2.cpp>
+
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
 Tapioca::UIManager::UIManager()
     : myWindow(nullptr) { }
@@ -21,7 +25,9 @@ bool Tapioca::UIManager::init() {
     myWindow = Tapioca::GraphicsEngine::instance()->getSDLWindow();
 
     if (myWindow == nullptr) {
+#ifdef _DEBUG
         std::cerr << "Error al inicializar ImGui: " << SDL_GetError() << '\n';
+#endif
         return false;
     }
 
@@ -30,7 +36,7 @@ bool Tapioca::UIManager::init() {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
-    SDL_GLContext gl_context = SDL_GL_CreateContext(myWindow);
+    gl_context = Tapioca::GraphicsEngine::instance()->getGLContext();
     SDL_GL_SetSwapInterval(1);
     // Inicializar ImGui backends
     ImGui_ImplSDL2_InitForOpenGL(myWindow, gl_context);
@@ -41,29 +47,14 @@ bool Tapioca::UIManager::init() {
 
 //void Tapioca::UIManager::update(const uint64_t deltaTime) { }
 
-void Tapioca::UIManager::handleEvents() { 
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
-        ImGui_ImplSDL2_ProcessEvent(&event);
-}
+//void Tapioca::UIManager::handleEvents() { 
+//    SDL_Event event;
+//    while (SDL_PollEvent(&event))
+//        ImGui_ImplSDL2_ProcessEvent(&event);
+//}
 
 //void Tapioca::UIManager::fixedUpdate() { }
 
-void Tapioca::UIManager::render() {
-    // Nuevos frames de ImGui
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame();
-    ImGui::NewFrame();
-    
-    // Ejemplo de ventana de demostración de ImGui
-    ImGui::ShowDemoWindow();
-    
-    // Renderizar ImGui
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    
-    // Intercambiar buffers
-    SDL_GL_SwapWindow(myWindow);
-}
+//void Tapioca::UIManager::render() {}
 
 //void Tapioca::UIManager::refresh() { }
