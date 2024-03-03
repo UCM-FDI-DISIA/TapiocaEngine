@@ -6,6 +6,7 @@ class GameObject;
 
 class Collider : public Component {
 public:
+    COMPONENT_ID("Collider");
     Collider();
     ~Collider() {};
 

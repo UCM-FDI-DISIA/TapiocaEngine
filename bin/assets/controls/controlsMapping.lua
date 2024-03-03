@@ -58,15 +58,15 @@ events = {
         control = 3     -- SDL_CONTROLLER_AXIS_RIGHTY
     },
     ev_ACCEPT_6 = {
-        src = "ie_mouseButtonDown",
+        src = "ie_mouseButtonLeft",
         control = 1     -- SDL_BUTTON_LEFT
     },
     ev_ACCEPT_7 = {
-        src = "ie_mouseButtonDown",
+        src = "ie_mouseButtonMiddle",
         control = 2     -- SDL_BUTTON_MIDDLE
     },
     ev_ACCEPT_8 = {
-        src = "ie_mouseButtonUp",
+        src = "ie_mouseButtonRight",
         control = 3     -- SDL_BUTTON_RIGHT
     },
 

@@ -34,11 +34,13 @@ private:
 
 
 public:
+    COMPONENT_ID("RigidBody");
     RigidBody();
     ~RigidBody();
 
     bool initComponent(const CompMap& variables) override;
     void update(const uint64_t deltaTime) override;
+    void start() override;
 
     void setActive(bool b) override;
 
