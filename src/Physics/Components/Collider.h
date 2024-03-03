@@ -8,11 +8,11 @@ class Collider : public Component {
 public:
     Collider();
     ~Collider() {};
-    void initComponent(const CompMap& variables) override {};
+
+    bool initComponent(const CompMap& variables) override { return true; };
 
     void onCollisionEnter(GameObject* other);
     void onCollisionExit(GameObject* other);
     void onCollisionStay(GameObject* other);
-
 };
 }

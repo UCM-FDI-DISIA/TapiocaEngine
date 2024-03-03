@@ -21,10 +21,10 @@ public:
     GameObject* getHandler(const std::string& handler) const;
 
     void addObject(GameObject* object, std::string handler);
-    void refresh();
+    void start();
     void update(const uint64_t deltaTime);
     void handleEvents();
     void fixedUpdate();
-    void start();
+    void refresh();
 };
 }

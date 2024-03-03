@@ -20,10 +20,10 @@ private:
     friend Singleton<SceneManager>;
     friend class Scene;
 
-    HMODULE module;                 // Modulo cargado en la memoria del proceso
-    std::string scenesPath;                     // Ruta del archivo de configuracion de escenas
+    HMODULE module;                     // Modulo cargado en la memoria del proceso
+    std::string scenesPath;             // Ruta del archivo de configuracion de escenas
     std::vector<Scene*> scenes_debug;   // Vector de escenas cargadas
-    lua_State* luaState;			// Estado de lua
+    lua_State* luaState;                // Estado de lua
 
     /*
     * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
@@ -35,6 +35,11 @@ private:
     * @return Devuelve true si se ha cargado correctamente
     */
     bool init() override;
+
+    /**
+    * @brief Inicializa las escenas, gameobjects y componentes
+    */
+    void start() override;
 
     /**
     * @brief Crea las escenas, gameobjects y componentes

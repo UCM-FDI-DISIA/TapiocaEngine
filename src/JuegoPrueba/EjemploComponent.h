@@ -15,8 +15,8 @@ public:
 
     EjemploComponent();
     ~EjemploComponent() { }
-    void initComponent(const CompMap& map) override;
-    // void update(const uint64_t deltaTime) override;
+    bool initComponent(const CompMap& variables) override;
+    void update(const uint64_t deltaTime) override { }
     // void handleEvents() override;
     // void fixedUpdate() override;
 };

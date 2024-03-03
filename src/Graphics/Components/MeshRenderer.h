@@ -13,7 +13,7 @@ public:
 	MeshRenderer();
 	~MeshRenderer();
 
-	void initComponent(const CompMap& variables) override;
+	bool initComponent(const CompMap& variables) override;
 	void start() override;
 };
 }

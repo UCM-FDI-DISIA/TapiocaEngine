@@ -1,7 +1,6 @@
 #include "JuegoPrueba.h"
 #include "EjemploComponentFactory.h"
 #include "Structure/ComponentBuilder.h"
-#include "EjemploComponentFactory.h"
 
 #include <iostream>
 

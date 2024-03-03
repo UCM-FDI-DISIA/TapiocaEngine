@@ -20,7 +20,8 @@ public:
 
     Transform();
     ~Transform();
-    void initComponent(const CompMap& variables) override;
+
+    bool initComponent(const CompMap& variables) override;
     // void update() override;
     // void fixedUpdate() override;
 

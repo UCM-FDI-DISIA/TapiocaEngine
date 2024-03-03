@@ -19,7 +19,7 @@ RigidBody::~RigidBody() {
     }
 }
 
-void RigidBody::initComponent(const CompMap& variables) {
+bool RigidBody::initComponent(const CompMap& variables) {
     //transform = parent->getComponent<Transform>();// DESCOMENTAR
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
@@ -28,6 +28,8 @@ void RigidBody::initComponent(const CompMap& variables) {
     //collider = parent->getComponent<Collider>();//DESCOMENTAR
 
     rigidBody->setUserPointer(collider);
+
+    return true;
 }
 
 void RigidBody::update(const uint64_t deltaTime) {

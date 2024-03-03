@@ -10,7 +10,7 @@
 #ifdef _DEBUG
 #include <iostream>   //PRUEBA
 #include "PhysicsDebugDrawer.h"
-#endif   // _DEBUG
+#endif
 
 namespace Tapioca {
 void onCollisionEnter(btPersistentManifold* const& manifold) {
@@ -19,7 +19,7 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
     const btCollisionObject* obj2 = manifold->getBody1();
 #ifdef _DEBUG
     std::cout << "Entro\n";
-#endif   // _DEBUG
+#endif
 
     if (obj1 != nullptr && obj2 != nullptr) {
         Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
@@ -37,7 +37,7 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
     const btCollisionObject* obj2 = manifold->getBody1();
 #ifdef _DEBUG
     std::cout << "Salgo\n";
-#endif   // _DEBUG
+#endif
     if (obj1 != nullptr && obj2 != nullptr) {
         Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
         Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
@@ -55,7 +55,7 @@ bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrap
     void* obj2 = colObj1Wrap->getCollisionObject()->getUserPointer();
 #ifdef _DEBUG
     std::cout << "A\n";
-#endif   // _DEBUG
+#endif 
     if (obj1 != nullptr && obj2 != nullptr) {
         Collider* col1 = static_cast<Collider*>(obj1);
         Collider* col2 = static_cast<Collider*>(obj2);

@@ -6,7 +6,8 @@ namespace Tapioca {
 GameObject::GameObject() : scene(nullptr), alive(true) { }
 
 GameObject::~GameObject() {
-    for (auto& i : components) delete i.second;
+    for (auto& i : components)
+        delete i.second;
 }
 
 void GameObject::addComponent(Component* comp, std::string id) {
@@ -34,7 +35,6 @@ std::vector<Component*> GameObject::getComponents(std::string id) {
 void GameObject::deleteComponent(std::string id) {
     auto it = components.find(id);
     if (it != components.end()) it->second->alive = false;
-
 }
 
 void GameObject::deleteCompVector(Component* comp) {
@@ -55,8 +55,9 @@ void GameObject::refresh() {
             deleteCompVector(it->second);
             delete it->second;
             it = components.erase(it);
-        } 
-        else ++it;
+        }
+        else
+            ++it;
     }
 }
 
@@ -73,7 +74,8 @@ void GameObject::handleEvents() {
 }
 
 void GameObject::initComponents(const CompMap& variables) {
-    for (auto comp : cmpOrder) comp->initComponent(variables);
+    for (auto comp : cmpOrder)
+        comp->initComponent(variables);
 }
 void GameObject::fixedUpdate() {
     for (auto comp : cmpOrder) {
@@ -82,7 +84,8 @@ void GameObject::fixedUpdate() {
 }
 
 void GameObject::start() {
-    for (auto comp : cmpOrder) comp->start();
+    for (auto comp : cmpOrder)
+        comp->start();
 }
 
 void GameObject::onCollisionEnter(GameObject* other) {

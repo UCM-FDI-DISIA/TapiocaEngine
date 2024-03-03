@@ -14,22 +14,29 @@ MeshRenderer::~MeshRenderer() {
 	delete mesh;
 }
 
-void MeshRenderer::initComponent(const CompMap& variables) {
-	setValueFromMap(meshName, "meshName", variables);
-	if (meshName == "") {
-		// No hay nombre de mesh
-		alive = false;
-		return;
+bool MeshRenderer::initComponent(const CompMap& variables) {
+    // No se ha podido establecer o No hay nombre de mesh
+    if (!setValueFromMap(meshName, "meshName", variables) || meshName == "") {
+#ifdef _DEBUG
+		std::cerr << "Error: MeshRenderer: no se pudo inicializar el nombre del mesh.\n";
+#endif
+        return false;
 	}
-	setValueFromMap(materialName, "materialName", variables);
+
+	// No se ha podido establecer o No hay nombre de material
+    if (!setValueFromMap(materialName, "materialName", variables) || materialName == "") {
+#ifdef _DEBUG
+        std::cerr << "Error: MeshRenderer: no se pudo inicializar el nombre del material.\n";
+#endif
+        return false;
+    }
+
+	return true;
 }
 
 void MeshRenderer::start() {
 	Transform* trans = parent->getComponent<Transform>();
 	mesh = GraphicsEngine::instance()->createMesh(static_cast<Node*>(trans->getNode()), meshName);
-
-	if (materialName != "") {
-		mesh->setMaterial(materialName);
-	}
+	mesh->setMaterial(materialName);
 }
 }

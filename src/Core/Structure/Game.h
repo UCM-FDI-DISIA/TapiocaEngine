@@ -22,6 +22,7 @@ private:
     friend class Module;
     void addModule(Module*);
 
+    void start();
     void update();
     void handleEvents();
     void fixedUpdate();
@@ -44,7 +45,5 @@ public:
     void pushScene(Scene*);
     void popScene();
     void changeScene(Scene*);
-
- 
 };
 }

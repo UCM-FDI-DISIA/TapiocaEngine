@@ -1,31 +1,33 @@
 #pragma once
+#include "Utilities/checkML.h"
 #include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
 
-#include "InputManager.h"
-#include "SceneManager.h"
 #include "GraphicsEngine.h"
+#include "InputManager.h"
+#include "Structure/FactoryManager.h"
+#include "SceneManager.h"
 #include "PhysicsManager.h"
 // #include "AudioManager.h" Descomentar cuando se implemente
 // #include "UIManager.h" Descomentar cuando se implemente
 
-#include "Structure/FactoryManager.h"
 #include "CreateBuilders.h"
-//#include "Utilities/defs.h"
 
-#include "Utilities/checkML.h"
+#ifdef _DEBUG
 #include <iostream>
-
+#endif
 
 // IMPORTANTE: METERLO EN UN NAMESPACE CAUSA ERRORES DE COMPILACION
 
 Tapioca::InputManager* input;
+Tapioca::FactoryManager* factories;
 Tapioca::SceneManager* scenes;
 Tapioca::GraphicsEngine* graphics;
 Tapioca::PhysicsManager* physics;
-Tapioca::FactoryManager* factories;
 //Tapioca::AudioManager* audio;
 //Tapioca::UIManager* ui;
+
+static void createModules(HMODULE module);
 
 // TODO: SOLO PARA PRUEBAS, BORRAR
 #include "Node.h"
@@ -33,11 +35,6 @@ Tapioca::FactoryManager* factories;
 #include "Mesh.h"
 #include "Viewport.h"
 #include "Utilities/Vector3.h"
-
-static void createModules(HMODULE module);
-
-static void createBuilders(HMODULE module);
-
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -48,7 +45,7 @@ int main(int argc, char** argv) {
         Tapioca::Game* game = new Tapioca::Game();
         createModules(loader->getModule());
         Tapioca::createEngineBuilders();
-        createBuilders(loader->getModule());
+        Tapioca::createGameBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
@@ -65,25 +62,27 @@ int main(int argc, char** argv) {
             delete nodeCamera;
             delete camera;
             delete viewport;
-
             delete light;
             delete node;
             delete mesh;
         }
+#ifdef _DEBUG
         else
             std::cerr << "Error al inicializar un modulo\n";
+#endif
 
         delete game;
     }
+#ifdef _DEBUG
     else
         std::cerr << "Error al cargar la libreria dinamica\n";
+#endif
 
     delete loader;
 
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     return 0;
 }
-
 
 static void createModules(HMODULE module) {
     graphics = Tapioca::GraphicsEngine::create();
@@ -93,20 +92,4 @@ static void createModules(HMODULE module) {
     physics = Tapioca::PhysicsManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
-}
-
-
-static void createBuilders(HMODULE module) {
-    // TODO: Pasar esto a Bridge
-    Tapioca::FactoryManager* manager = Tapioca::FactoryManager::instance();
-
-    EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
-
-    int numFactories;
-    FactoryInfo** fI = eP(numFactories);
-    for (int i = 0; i < numFactories; ++i) {
-        manager->addFactory(fI[i]->name, fI[i]->builder);
-        delete fI[i];
-    }
-    delete[] fI;
 }

@@ -18,10 +18,12 @@
 
 namespace Tapioca {
 
-SceneManager::SceneManager(HMODULE module, std::string scenesPath) : module(module), scenesPath(scenesPath), luaState(nullptr) { }
+SceneManager::SceneManager(HMODULE module, std::string scenesPath)
+    : module(module), scenesPath(scenesPath), luaState(nullptr) { }
 
 SceneManager::~SceneManager() {
-    for (Scene* s : scenes_debug) delete s;
+    for (Scene* s : scenes_debug)
+        delete s;
     scenes_debug.clear();
 }
 
@@ -58,33 +60,31 @@ bool SceneManager::init() {
 
 bool SceneManager::loadScenes() {
     lua_getglobal(luaState, "scenes");
-    if (lua_istable(luaState, -1)) {
-        lua_pushnil(luaState);
-        bool loaded = false;
-        while (lua_next(luaState, -2) != 0) {
-            Scene* scene = new Scene();
-            std::string sceneName = lua_tostring(luaState, -2);
+    if (!lua_istable(luaState, -1)) return false;
+
+    lua_pushnil(luaState);
+    bool loaded = false;
+    while (lua_next(luaState, -2) != 0) {
+        Scene* scene = new Scene();
+        std::string sceneName = lua_tostring(luaState, -2);
 
 #ifdef _DEBUG
-            std::cout << "Scene: " << sceneName << "\n";
+        std::cout << "Scene: " << sceneName << "\n";
 #endif
-            loaded = loadScene(scene);
-            lua_pop(luaState, 1);
+        loaded = loadScene(scene);
+        lua_pop(luaState, 1);
 
-            //TODO: esta aqui para no dejar memoria de momento
-            scenes_debug.push_back(scene);
-        }
-        return loaded;
+        //TODO: esta aqui para no dejar memoria de momento
+        scenes_debug.push_back(scene);
     }
-    return false;
+    return loaded;
 }
 
 bool SceneManager::loadScene(Scene* scene) {
-    if (lua_istable(luaState, -1)) {
-        lua_pushnil(luaState);
-        return loadGameObjects(scene);
-    }
-    return false;
+    if (!lua_istable(luaState, -1)) return false;
+
+    lua_pushnil(luaState);
+    return loadGameObjects(scene);
 }
 
 bool SceneManager::loadGameObjects(Scene* scene) {
@@ -105,11 +105,10 @@ bool SceneManager::loadGameObjects(Scene* scene) {
 }
 
 bool SceneManager::loadGameObject(GameObject* gameObject) {
-    if (lua_istable(luaState, -1)) {
-        lua_pushnil(luaState);
-        return loadComponents(gameObject);
-    }
-    return false;
+    if (!lua_istable(luaState, -1)) return false;
+
+    lua_pushnil(luaState);
+    return loadComponents(gameObject);
 }
 
 bool SceneManager::loadComponents(GameObject* gameObject) {
@@ -122,7 +121,7 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
         std::cout << "\t\tComponent: " << componentName << "\n";
 #endif
         component = loadComponent(componentName);
-        //este if es porque no tengo creado componente
+        // Si no tengo creado componente
         if (component != nullptr) gameObject->addComponent(component, componentName);
         lua_pop(luaState, 1);
     }
@@ -130,61 +129,69 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
 }
 
 Component* SceneManager::loadComponent(std::string name) {
-    if (lua_istable(luaState, -1)) {
-        lua_pushnil(luaState);
-        CompMap map;
+    if (!lua_istable(luaState, -1)) return nullptr;
 
-        std::string key = "";
-        CompValue value;
-        while (lua_next(luaState, -2) != 0) {
-            //TODO: no deberia pasar
-            if (lua_istable(luaState, -1)) lua_pop(luaState, 1);
-            else {
-                key = lua_tostring(luaState, -2);
-                if (lua_isboolean(luaState, -1)) {
-                    value = lua_toboolean(luaState, -1) == 1;
-#ifdef _DEBUG
-                    std::cout << "\t\t\variable: " << key << " valor: " << (get<bool>(value) ? "true" : "false")
-                              << "\n";
-#endif
-                }
-                else if (lua_isinteger(luaState, -1)) {
-                    value = (int)lua_tointeger(luaState, -1);
-#ifdef _DEBUG
-                    std::cout << "\t\t\variable: " << key << " valor: " << get<int>(value) << "\n";
-#endif
-                }
-                else if (lua_isnumber(luaState, -1)) {
-                    value = (float)lua_tonumber(luaState, -1);
-#ifdef _DEBUG
-                    std::cout << "\t\t\variable: " << key << " valor: " << get<float>(value) << "\n";
-#endif
-                }
-                else if (lua_isstring(luaState, -1)) {
-                    value = lua_tostring(luaState, -1);
-#ifdef _DEBUG
-                    std::cout << "\t\t\variable: " << key << " valor: " << get<std::string>(value) << "\n";
-#endif
-                }
+    lua_pushnil(luaState);
+    CompMap map;
 
-                map[key] = value;
-                lua_pop(luaState, 1);
+    std::string key = "";
+    CompValue value;
+    while (lua_next(luaState, -2) != 0) {
+        //TODO: no deberia pasar
+        if (lua_istable(luaState, -1)) lua_pop(luaState, 1);
+        else {
+            key = lua_tostring(luaState, -2);
+            if (lua_isboolean(luaState, -1)) {
+                value = lua_toboolean(luaState, -1) == 1;
+#ifdef _DEBUG
+                std::cout << "\t\t\variable: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
+#endif
             }
-            
-        }
-
-        Component* comp = FactoryManager::instance()->createComponent(name);
-        if (comp == nullptr) {
+            else if (lua_isinteger(luaState, -1)) {
+                value = (int)lua_tointeger(luaState, -1);
 #ifdef _DEBUG
-            std::cerr << "No existe el componente: " << name << "\n";
+                std::cout << "\t\t\variable: " << key << " valor: " << get<int>(value) << "\n";
 #endif
-            return nullptr;
+            }
+            else if (lua_isnumber(luaState, -1)) {
+                value = (float)lua_tonumber(luaState, -1);
+#ifdef _DEBUG
+                std::cout << "\t\t\variable: " << key << " valor: " << get<float>(value) << "\n";
+#endif
+            }
+            else if (lua_isstring(luaState, -1)) {
+                value = lua_tostring(luaState, -1);
+#ifdef _DEBUG
+                std::cout << "\t\t\variable: " << key << " valor: " << get<std::string>(value) << "\n";
+#endif
+            }
+
+            map[key] = value;
+            lua_pop(luaState, 1);
         }
-        comp->initComponent(map);
-        return comp;
     }
-    return nullptr;
+
+    Component* comp = FactoryManager::instance()->createComponent(name);
+    if (comp == nullptr) {
+#ifdef _DEBUG
+        std::cerr << "No existe el componente: " << name << "\n";
+#endif
+        return nullptr;
+    }
+
+    if (!comp->initComponent(map)) {
+#ifdef _DEBUG
+        std::cerr << "Error al inicializar el componente: " << name << "\n";
+#endif
+        delete comp;
+        return nullptr;
+    }
+
+    return comp;
 }
 
-
+void SceneManager::start() {
+    for (auto scene : scenes_debug)
+        scene->start();
+}
 }

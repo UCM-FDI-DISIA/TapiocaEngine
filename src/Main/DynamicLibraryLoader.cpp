@@ -1,5 +1,8 @@
 #include "DynamicLibraryLoader.h"
+
+#ifdef _DEBUG
 #include <iostream>
+#endif
 
 namespace Tapioca {
 DynamicLibraryLoader::DynamicLibraryLoader(const std::string& gameName) : gameName(gameName), module(nullptr) { }
@@ -18,7 +21,9 @@ bool DynamicLibraryLoader::load() {
 #endif
 
     if ((module = LoadLibraryA(gamePath.c_str())) == nullptr) {
+#ifdef _DEBUG
         std::cerr << "Error al cargar la DLL.\n";
+#endif
         return false;
     }
     return true;

@@ -37,7 +37,7 @@ public:
     RigidBody();
     ~RigidBody();
 
-    void initComponent(const CompMap& variables) override;
+    bool initComponent(const CompMap& variables) override;
     void update(const uint64_t deltaTime) override;
 
     void setActive(bool b) override;
