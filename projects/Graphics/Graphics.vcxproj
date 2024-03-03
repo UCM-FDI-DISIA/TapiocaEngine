@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />
     <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsEngine.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="..\..\src\Graphics\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Graphics\BillboardSet.h" />
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />

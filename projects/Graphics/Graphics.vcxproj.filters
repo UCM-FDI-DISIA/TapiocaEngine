@@ -40,6 +40,9 @@
     <ClCompile Include="..\..\src\Graphics\Plane.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h">
@@ -81,7 +84,7 @@
     <ClInclude Include="..\..\src\Graphics\Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h">
+    <ClInclude Include="..\..\src\Graphics\BillboardSet.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
