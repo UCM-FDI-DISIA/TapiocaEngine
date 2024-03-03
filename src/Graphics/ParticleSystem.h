@@ -14,7 +14,9 @@ class ParticleSystem : public RenderObject {
 protected:
     Ogre::ParticleSystem* mParticleSystem;
 
-    // @brief Constructora. Solo se podrá crear un ParticleSystem a partir de un sistema ya creado en un .particle
+    /*
+    * @brief Constructora.Solo se podra crear un ParticleSystem a partir de un sistema ya creado en un.particle
+    */ 
     ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string materialName, bool emitting = false);
 
 public:

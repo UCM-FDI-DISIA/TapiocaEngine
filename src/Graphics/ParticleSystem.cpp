@@ -1,5 +1,4 @@
 #include "ParticleSystem.h"
-
 #include <Ogre.h>
 
 namespace Tapioca {

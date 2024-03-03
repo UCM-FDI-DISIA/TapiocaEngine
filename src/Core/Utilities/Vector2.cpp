@@ -18,7 +18,7 @@ Vector2 Vector2::getNormalized() const {
 
 float Vector2::normalize() {
 	float mag = magnitude();
-	if(mag != 0) {
+	if (mag != 0) {
         x /= mag; y /= mag;
 	}
 	return mag;

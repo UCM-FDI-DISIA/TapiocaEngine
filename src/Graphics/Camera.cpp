@@ -6,20 +6,16 @@
 
 Tapioca::Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook, float nearDist,
     float farDist, bool autoAspectRatio, float aspectRatio)
-    : RenderObject(node)
-    , mCam(scnMgr->createCamera(name))
-    , autoAspectRatio(autoAspectRatio) {
-
+    : RenderObject(node), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio)
+{
     init(mCam);
 
     lookAt(targetToLook);
     setNearClipDistance(nearDist);
     setFarClipDistance(farDist);
-    if (autoAspectRatio) {
-        mCam->setAutoAspectRatio(true);
-    } else {
-        mCam->setAspectRatio(aspectRatio);
-    }
+    if (autoAspectRatio) mCam->setAutoAspectRatio(true);
+    else mCam->setAspectRatio(aspectRatio);
+
 }
 
 void Tapioca::Camera::lookAt(Vector3 targetToLook) { node->lookAt(targetToLook); }
@@ -35,7 +31,5 @@ void Tapioca::Camera::setFOVYDegrees(float degrees) { mCam->setFOVy(Ogre::Radian
 void Tapioca::Camera::setFarClipDistance(float dist) { mCam->setFarClipDistance(dist); }
 
 void Tapioca::Camera::setAspectRatio(float aspectRatio) {
-    if (!autoAspectRatio) {
-        mCam->setAspectRatio(aspectRatio);
-    }
+    if (!autoAspectRatio) mCam->setAspectRatio(aspectRatio);
 }

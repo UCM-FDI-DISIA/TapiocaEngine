@@ -4,18 +4,17 @@
 #include "Structure/Component.h"
 #include "Utilities/Vector3.h"
 #include "../Physics_def.h"
+
 class btRigidBody;
 #pragma endregion
 
 namespace Tapioca {
-
 class Vector3;
 class Transform;
 class Collider;
 class RigidBody : public Component {
 
 private:
-
     btRigidBody* rigidBody;
     Transform* transform;
     Collider* collider;
@@ -24,9 +23,9 @@ private:
 
     MovementType movementType;
     bool isTrigger;
-    //indica con qué grupo se puede colisionar (en binario)
+    //indica con que grupo se puede colisionar (en binario)
     int mask;
-    //mi grupo/filtro de colisión
+    //mi grupo/filtro de colision
     int group;
 
     float mass;
@@ -58,7 +57,7 @@ public:
 
     //fuerza gradual
     void addForce(Vector3 f);
-    //aplica solo una fuerza instantánea (golpes,explosiones)
+    //aplica solo una fuerza instantanea (golpes,explosiones)
     void addImpulse(Vector3 f);
 
 
@@ -75,6 +74,7 @@ public:
     Vector3 getVelocity() const;
     Vector3 getGravity() const;
 
-
 };
+
+
 }

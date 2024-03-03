@@ -1,5 +1,6 @@
 #include "SGTechniqueResolverListener.h"
 #include <OgreTechnique.h>
+
 SGTechniqueResolverListener::SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* pShaderGenerator) {
     mShaderGenerator = pShaderGenerator;
 }

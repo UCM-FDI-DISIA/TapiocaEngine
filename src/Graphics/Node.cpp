@@ -1,10 +1,13 @@
 #include "Node.h"
+
 // Includes de Ogre
 #include <Ogre.h>
+
 // Includes del Core
-#include "Utilities/Vector3.h"
-#include "Utilities/checkML.h"
 #include "RenderObject.h"
+#include "Utilities/Vector3.h"
+
+#include "Utilities/checkML.h"
 
 Ogre::SceneNode* Tapioca::Node::createChild(Node* child) {
     children.insert(child);
@@ -20,19 +23,17 @@ void Tapioca::Node::addChild(Node* child) {
 
 void Tapioca::Node::destroyAllAttachedObjects(Ogre::SceneNode* node) {
     // por precaucion
-    if (node != nullptr) {
-        return;
-    } else {
+    if (node != nullptr) return;
+    else {
         // se recorren todos los objetos que cuelgan del nodo y se eliminan
         // (un nodo puede tener colgando varios objetos)
-        for (auto object : node->getAttachedObjects()) {
+        for (auto object : node->getAttachedObjects()) 
             sceneManager->destroyMovableObject(object);
-        }
 
         // se hace lo mismo con todos los hijos del nodo
-        for (auto child : node->getChildren()) {
+        for (auto child : node->getChildren())
             destroyAllAttachedObjects(static_cast<Ogre::SceneNode*>(child));
-        }
+
     }
 }
 
@@ -63,10 +64,9 @@ void Tapioca::Node::removeChild(Node* child) {
 }
 
 void Tapioca::Node::removeFromTree(std::unordered_set<Node*>* nodes) {
-    if (parent != nullptr) {
-        // si el nodo tiene padre, se elimina de la lista del padre
-        parent->removeChild(this);
-    }
+    // si el nodo tiene padre, se elimina de la lista del padre
+    if (parent != nullptr) parent->removeChild(this);
+    
     // se eliminan objetos y nodos del grafo de la escena
     this->removeFromHierarchy();
     // se hace el delete de todos los nodos hijos
@@ -89,9 +89,8 @@ void Tapioca::Node::attachObject(Tapioca::RenderObject* object) {
 }
 
 void Tapioca::Node::attachObject(Ogre::MovableObject* object) {
-    if (!object->isAttached()) {
-        node->attachObject(object);
-    }
+    if (!object->isAttached()) node->attachObject(object);
+
 }
 
 void Tapioca::Node::detachObject(Tapioca::RenderObject* object) {
@@ -111,15 +110,11 @@ void Tapioca::Node::lookAt(Vector3 target) {
 void Tapioca::Node::setDirection(Vector3 dir) { node->setDirection(dir.x, dir.y, dir.z, Ogre::Node::TS_LOCAL); }
 
 Tapioca::Node::Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent)
-    : parent(parent)
-    , sceneManager(sceneManager)
-    , children()
-    , objects() {
-    if (parent == nullptr) {
-        node = sceneManager->getRootSceneNode()->createChildSceneNode();
-    } else {
-        node = parent->createChild(this);
-    }
+    : parent(parent), sceneManager(sceneManager), children(), objects() 
+{
+    if (parent == nullptr) node = sceneManager->getRootSceneNode()->createChildSceneNode();
+    else node = parent->createChild(this);
+
     node->setPosition(pos.x, pos.y, pos.z);
     node->setScale(scale.x, scale.y, scale.z);
 }

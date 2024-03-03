@@ -4,6 +4,7 @@
 #include <string>
 #include <variant>
 #include "Utilities/Concepts.h"
+
 using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
 
 namespace Tapioca {
@@ -39,36 +40,32 @@ public:
 
     void addComponent(Component* comp, std::string id);
     template<IsComponent TComp>
-    TComp* addComponent() {
+    inline TComp* addComponent() {
         TComp* comp = new TComp();
         addComponent(comp, TComp::id);
         return comp;
     }
     Component* getComponent(std::string id);
     template<IsComponent TComp>
-    TComp* getComponent() {
+    inline TComp* getComponent() {
         auto it = components.find(TComp::id);
-        if (it == components.end()) {
-            return nullptr;
-        }
+        if (it == components.end()) return nullptr; 
         return static_cast<TComp*>(it->second);
     }
     std::vector<Component*> getComponents(std::string id);
     template<IsComponent TComp>
-    std::vector<TComp*> getComponents() {
+    inline std::vector<TComp*> getComponents() {
         std::vector<TComp*> out;
 
-        for(auto& comp : components) {
-            if(comp.first == TComp::id) out.push_back(static_cast<TComp*>(comp.second));
+        for (auto& comp : components) {
+            if (comp.first == TComp::id) out.push_back(static_cast<TComp*>(comp.second));
         }
 
         return out;
     }
     void deleteComponent(std::string id);
     template<IsComponent TComp>
-    void deleteComponent() {
-
-    }
+    void deleteComponent() { }
 
 
     void onCollisionEnter(GameObject* other);

@@ -1,8 +1,8 @@
 #pragma once
-#include "Utilities/defs.h"
 #include <vector>
 #include <stack>
-#include "ComponentBuilder.h"
+#include "Utilities/defs.h"
+
 namespace Tapioca {
 class Scene;
 class Module;

@@ -16,16 +16,23 @@
 
 namespace Tapioca {
 
-InputManager::InputManager()
-    : inputText("")
-    , luaState(nullptr) {
+InputManager::InputManager() : inputText(""), luaState(nullptr) {
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
 
-    inputEventTriggered = {{"ie_closeWindow", {}}, {"ie_keyUp", {}}, {"ie_keyDown", {}},
+    inputEventTriggered = {
+        {"ie_closeWindow", {}}, 
+        {"ie_keyUp", {}}, 
+        {"ie_keyDown", {}},
 
-        {"ie_mouseMoving", {}}, {"ie_mouseButtonUp", {}}, {"ie_mouseButtonDown", {}}, {"ie_mouseWheel", {}},
+        {"ie_mouseMoving", {}}, 
+        {"ie_mouseButtonUp", {}}, 
+        {"ie_mouseButtonDown", {}}, 
+        {"ie_mouseWheel", {}},
 
-        {"ie_ctrlAxisMotion", {}}, {"ie_ctrlButtonUp", {}}, {"ie_ctrlButtonDown", {}}};
+        {"ie_ctrlAxisMotion", {}}, 
+        {"ie_ctrlButtonUp", {}}, 
+        {"ie_ctrlButtonDown", {}}
+    };
 
     resetText();
     initControllers();
@@ -52,12 +59,13 @@ void InputManager::mapInput() {
     // Si no puede cargar el archivo, se muestra un mensaje y cierra la instancia de LUA
     if (luaL_dofile(luaState, path.c_str()) != 0) {
 #ifdef _DEBUG
-        std::cerr << "Error loading LUA file: " << lua_tostring(luaState, -1) << '\n';
+        std::cerr << "Error al cargar archivo LUA: " << lua_tostring(luaState, -1) << '\n';
 #endif
         lua_close(luaState);
-    } else {
+    } 
+    else {
 #ifdef _DEBUG
-        std::cout << "Controls Mapping file loaded correctly" << '\n';
+        std::cout << "Mapa de controles cargado correctamente" << '\n';
 #endif
         // Mete en el stack de luaState la variable global con el nombre events
         lua_getglobal(luaState, "events");
@@ -70,7 +78,7 @@ void InputManager::mapInput() {
 
             // Itera sobre todos los elementos de la tabla
             // (-2 es el valor de la variable. En este caso, todo lo que
-            // haya dentro del {} después de events =)
+            // haya dentro del {} despues de events =)
             while (lua_next(luaState, -2) != 0) {
                 // Lee le nombre del evento
                 std::string evt = lua_tostring(luaState, -2);
@@ -100,7 +108,7 @@ void InputManager::mapInput() {
 
                     // Itera sobre todos los elementos de la tabla
                     // (-2 es el valor de la variable. En este caso, todo lo que
-                    // haya dentro del {} después de ev_EVENTO =)
+                    // haya dentro del {} despues de ev_EVENTO =)
                     while (lua_next(luaState, -2) != 0) {
                         // Lee el nombre de la variable y su valor
                         std::string key = lua_tostring(luaState, -2);
@@ -111,7 +119,7 @@ void InputManager::mapInput() {
 
                         // Si la variable es "src", el valor es la clave
                         // del evento de inputEventTriggered. Si es "control",
-                        // el valor es la tecla/botón/eje/etc mapeado al evento
+                        // el valor es la tecla/boton/eje/etc mapeado al evento
                         if (key == "src") src = value;
                         else if (key == "control")
                             ctrl = stoi(value);
@@ -148,11 +156,11 @@ bool InputManager::eventHappened(std::string event) {
             // Si son eventos de tecla, comprueba si la tecla coincide con la mapeada
             if (elem.first == "ie_keyDown" || elem.first == "ie_keyUp") happened = evt.key.keysym.sym == elem.second;
 
-            // Si son eventos de movimiento de ratón, lo pone en true
+            // Si son eventos de movimiento de raton, lo pone en true
             else if (elem.first == "ie_mouseMoving")
                 happened = true;
 
-            // Si son eventos de botones de ratón, comprueba si el bótón coincide con el mapeado
+            // Si son eventos de botones de raton, comprueba si el boton coincide con el mapeado
             else if (elem.first == "ie_mouseButtonUp" || elem.first == "ie_mouseButtonDown")
                 happened = evt.button.button == elem.second;
 
@@ -163,8 +171,8 @@ bool InputManager::eventHappened(std::string event) {
                     SDL_GameControllerGetAxis(controllers[evt.cdevice.which], (SDL_GameControllerAxis)elem.second) >=
                         deadZones[evt.cdevice.which];
 
-            // Si son eventos de botón de mando, comprueba si el botón coincide con el mapeado
-            // y si el botón que coincide ha sido pulsado en el mando que ha enviado el evento
+            // Si son eventos de boton de mando, comprueba si el boton coincide con el mapeado
+            // y si el boton que coincide ha sido pulsado en el mando que ha enviado el evento
             else if (elem.first == "ie_ctrlButtonUp" || elem.first == "ie_ctrlButtonDown")
                 happened = evt.cbutton.button == (SDL_GameControllerButton)elem.second &&
                     SDL_GameControllerGetButton(
@@ -181,7 +189,7 @@ void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
 #ifdef _DEBUG
     else
-        std::cout << "No joysticks connected\n";
+        std::cout << "No hay joysticks conectados\n";
 #endif
 }
 
@@ -192,9 +200,9 @@ void InputManager::addController(int i) {
         deadZones.insert({i, DEFAULT_DEADZONE});
 
 #ifdef _DEBUG
-        std::cout << "Controller added (" << SDL_GameControllerName(ctrl) << ")\n";
-    } else
-        std::cout << "Unable to open game controller, " << SDL_GetError() << "\n";
+        std::cout << "Mando conectado (" << SDL_GameControllerName(ctrl) << ")\n";
+    } 
+    else std::cerr << "No se pudo abrir mando, " << SDL_GetError() << "\n";
 #else
     }
 #endif
@@ -208,7 +216,7 @@ void InputManager::removeController(int i) {
         ctrl = nullptr;
 
 #ifdef _DEBUG
-        std::cout << "Jotstick removed\n";
+        std::cout << "Mando quitado\n";
 #endif
     }
 }
@@ -236,7 +244,7 @@ void InputManager::updateState(const SDL_Event& event) {
         inputEventTriggered["ie_keyUp"].push_back(event);
         break;
 
-    // Ratón
+    // Raton
     case SDL_MOUSEMOTION:
         inputEventTriggered["ie_mouseMoving"].push_back(event);
         mousePos.first = event.motion.x;
@@ -284,9 +292,9 @@ void InputManager::updateState(const SDL_Event& event) {
     }
 
 
-    // Si está activa la entrada de texto
+    // Si esta activa la entrada de texto
     if (SDL_IsTextInputActive()) {
-        // Borra el último char
+        // Borra el ultimo char
         if (eventHappened("ev_TOGGLE_TEXT_INPUT")) removeLastChar();
 
         // Desactiva la entrada de texto y limpia el texto introducido
@@ -295,7 +303,7 @@ void InputManager::updateState(const SDL_Event& event) {
             resetText();
             handleEvents();
 #ifdef _DEBUG
-            std::cout << "Ended text input\n";
+            std::cout << "Entrada de texto finalizada\n";
 #endif
         }
     }
@@ -310,7 +318,7 @@ void InputManager::handleEvents() {
     if (eventHappened("ev_CLOSE")) Game::get()->exit();
 
 #ifdef _DEBUG
-    if (eventHappened("ev_ACCEPT")) std::cout << "Accept event\n";
+    if (eventHappened("ev_ACCEPT")) std::cout << "Aceptar\n";
 #endif
 }
 

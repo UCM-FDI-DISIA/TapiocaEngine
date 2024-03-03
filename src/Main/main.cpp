@@ -1,75 +1,85 @@
 #pragma once
-#include <iostream>
-#include "Utilities/checkML.h"
 #include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
+
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "GraphicsEngine.h"
 #include "PhysicsManager.h"
+// #include "AudioManager.h" Descomentar cuando se implemente
+// #include "UIManager.h" Descomentar cuando se implemente
+
 #include "Structure/FactoryManager.h"
-// #include "AudioManager.h" A�adir cuando se implemente
-// #include "UIManager.h" A�adir cuando se implemente
 #include "CreateBuilders.h"
 //#include "Utilities/defs.h"
-using namespace std;
-using namespace Tapioca;
+
+#include "Utilities/checkML.h"
+#include <iostream>
+
+
+// IMPORTANTE: METERLO EN UN NAMESPACE CAUSA ERRORES DE COMPILACION
+
+Tapioca::InputManager* input;
+Tapioca::SceneManager* scenes;
+Tapioca::GraphicsEngine* graphics;
+Tapioca::PhysicsManager* physics;
+Tapioca::FactoryManager* factories;
+//Tapioca::AudioManager* audio;
+//Tapioca::UIManager* ui;
+
 
 static void createModules(HMODULE module);
-InputManager* input;
-SceneManager* scenes;
-GraphicsEngine* graphics;
-PhysicsManager* physics;
-FactoryManager* factories;
-//AudioManager* audio;
-//UIManager* ui;
+
 static void createBuilders(HMODULE module);
+
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-
-    DynamicLibraryLoader* loader = new DynamicLibraryLoader();
+    Tapioca::DynamicLibraryLoader* loader = new Tapioca::DynamicLibraryLoader();
 
     if (loader->load()) {
-        Game* game = new Game();
+        Tapioca::Game* game = new Tapioca::Game();
         createModules(loader->getModule());
-        createEngineBuilders();
+        Tapioca::createEngineBuilders();
         createBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
             graphics->createMainCamera();
-            graphics->setBackgroundColor(Vector3(0.83f, 0.5f, 0.9f));
-            graphics->createLightDirectional(Vector3(0.0f, -1.0f, -1.0f));
+            graphics->setBackgroundColor(Tapioca::Vector3(0.83f, 0.5f, 0.9f));
+            graphics->createLightDirectional(Tapioca::Vector3(0.0f, -1.0f, -1.0f));
             //Node* node = graphics->createNode();
             //graphics->createMesh(node, "mapache.mesh");
             //*/
             game->run();
-        } else {
-            cerr << "Error al inicializar un módulo\n";
-        }
+        } 
+        else std::cerr << "Error al inicializar un modulo\n";
+
         delete game;
-    } else {
-        cerr << "Error al cargar la libreria dinamica\n";
-    }
+    } 
+    else std::cerr << "Error al cargar la libreria dinamica\n";
+
     delete loader;
 
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     return 0;
 }
 
+
 static void createModules(HMODULE module) {
-    graphics = GraphicsEngine::create();
-    input = InputManager::create();
-    factories = FactoryManager::create();
-    scenes = SceneManager::create(module);
-    physics = PhysicsManager::create();
+    graphics = Tapioca::GraphicsEngine::create();
+    input = Tapioca::InputManager::create();
+    factories = Tapioca::FactoryManager::create();
+    scenes = Tapioca::SceneManager::create(module);
+    physics = Tapioca::PhysicsManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();
 }
+
+
 static void createBuilders(HMODULE module) {
     // TODO: Pasar esto a Bridge
-    FactoryManager* manager = FactoryManager::instance();
+    Tapioca::FactoryManager* manager = Tapioca::FactoryManager::instance();
 
     EntryPoint eP = (EntryPoint)GetProcAddress(module, "getComponentFactories");
 

@@ -1,18 +1,18 @@
 #pragma once
+#include "RenderObject.h"
 #include <string>
 #include "Utilities/Vector3.h"
-#include "RenderObject.h"
 
 namespace Ogre {
 class Camera;
 class SceneManager;
 }
+
 namespace Tapioca {
 class Node;
 class GraphicsEngine;
 class Viewport;
-}
-namespace Tapioca {
+
 class Camera : public RenderObject {
 public:
     friend GraphicsEngine;
@@ -26,7 +26,7 @@ private:
     Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook = Vector3(0, 0, 0),
         float nearDist = 1, float farDist = 1000, bool autoAspectRatio = true, float aspectRatio = 1.33333333333333f);
 
-    Ogre::Camera* getCamera() { return mCam; };
+    inline Ogre::Camera* getCamera() { return mCam; };
 
 public:
     /*

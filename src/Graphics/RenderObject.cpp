@@ -2,9 +2,7 @@
 #include "OgreMovableObject.h"
 #include "Node.h"
 
-Tapioca::RenderObject::RenderObject(Node* node)
-    : movObject(nullptr)
-    , node(node) { }
+Tapioca::RenderObject::RenderObject(Node* node) : movObject(nullptr), node(node) { }
 
 void Tapioca::RenderObject::init(Ogre::MovableObject* movObject) {
     this->movObject = movObject;

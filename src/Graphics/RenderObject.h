@@ -7,9 +7,7 @@ class MovableObject;
 namespace Tapioca {
 class Node;
 class GraphicsEngine;
-}
 
-namespace Tapioca {
 class RenderObject {
 public:
     friend Node;
@@ -18,7 +16,7 @@ public:
 private:
     Ogre::MovableObject* movObject;
 
-    Ogre::MovableObject* getMovObject() const { return movObject; }
+    inline Ogre::MovableObject* getMovObject() const { return movObject; }
 
 protected:
     Tapioca::Node* node;

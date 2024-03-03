@@ -1,17 +1,21 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Module.h"
-#include <iostream>
 #include <chrono>
 
-namespace Tapioca {
-Game::Game()
-    : finish(false)
-    , deltaTime(0) {
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
-    // No deber�a haber m�s de un objeto Game
+namespace Tapioca {
+
+Game::Game() : finish(false), deltaTime(0) {
+
+    // No deberia haber mas de un objeto Game
     if (instance != nullptr) {
+#ifdef _DEBUG
         std::cerr << "Se ha intentado crear un segundo objeto Game.\n";
+#endif
         return;
     }
     instance = this;
@@ -25,8 +29,7 @@ Game::~Game() {
         scenes.pop();
     }
 
-    for (Module* mod : modules)
-        delete mod;
+    for (Module* mod : modules) delete mod;
 }
 
 bool Game::init() {
@@ -79,37 +82,31 @@ void Game::run() {
 }
 
 void Game::update() {
-    for (auto mod : modules)
-        mod->update(deltaTime);
+    for (auto mod : modules) mod->update(deltaTime);
 
     if (!scenes.empty()) scenes.top()->update(deltaTime);
 }
 
 void Game::handleEvents() {
-    for (auto mod : modules)
-        mod->handleEvents();
+    for (auto mod : modules) mod->handleEvents();
 
     if (!scenes.empty()) scenes.top()->handleEvents();
 }
 
 void Game::fixedUpdate() {
-    for (auto mod : modules)
-        mod->fixedUpdate();
+    for (auto mod : modules) mod->fixedUpdate();
 
     if (!scenes.empty()) scenes.top()->fixedUpdate();
 }
 
 void Game::render() {
-    for (auto mod : modules)
-        mod->render();
+    for (auto mod : modules) mod->render();
 }
 
 void Game::refresh() {
-	for (auto mod : modules)
-		mod->refresh();
+	for (auto mod : modules) mod->refresh();
 
-    for (Scene* sc : toDelete)
-        delete sc;
+    for (Scene* sc : toDelete) delete sc;
     toDelete.clear();
 
     if (!scenes.empty()) scenes.top()->refresh();
@@ -125,8 +122,7 @@ void Game::pushScene(Scene* sc) {
 void Game::popScene() {
     toDelete.push_back(scenes.top());
     if (!scenes.empty()) scenes.pop();
-    else
-        finish = true;
+    else finish = true;
 }
 
 void Game::changeScene(Scene* sc) {

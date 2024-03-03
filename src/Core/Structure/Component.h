@@ -1,10 +1,12 @@
 #pragma once
-#include <iostream>
-#include <cstdint>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <variant>
+
+#ifdef _DEBUG
+#include <iostream>
+#endif;
 
 namespace Tapioca {
 class GameObject;
@@ -12,8 +14,8 @@ class GameObject;
 class Component {
 private:
     std::string id;
-    std::unordered_map<std::string, std::variant<int, std::string, float, bool>>
-        attributes;   //lista de atributos que tiene el componente
+    //lista de atributos que tiene el componente
+    std::unordered_map<std::string, std::variant<int, std::string, float, bool>> attributes;   
 
     friend class GameObject;
     void setParent(GameObject* obj);
@@ -37,20 +39,32 @@ public:
 
     inline bool isAlive() const { return alive; }     //para comprobar su existencia, en caso contrario se borra
     inline bool isActive() const { return active; }   //para comprobar si esta activo, en caso contrario no se actualiza
-    virtual void setActive(bool b) { active = b; }    //activar/desactivar componente
+    inline virtual void setActive(bool b) { active = b; }   //activar/desactivar componente
 
-    template<typename T> inline void setValueFromMap(T& var, std::string varName, const CompMap& map) {
+    template<typename T> 
+    inline void setValueFromMap(T& var, std::string varName, const CompMap& map) {
         auto v = map.find(varName);
         if (v != map.end()) {
+            // Si la variante tiene el tipo T
+            if (std::holds_alternative<T>(v->second)) var = std::get<T>(v->second);
+#ifdef _DEBUG 
+            else std::cerr << "Incompatibilidad de tipo.\n";
+#endif
+            /*
             try {
                 var = std::get<T>(v->second);
-            } catch (const std::bad_variant_access&) {
+            } 
+            catch (const std::bad_variant_access&) {
+#ifdef _DEBUG
                 std::cerr << "Error al obtener el valor para la variable: " << varName
                           << " - Incompatibilidad de tipo.\n";
+#endif
             }
-        } else {
-            std::cerr << "Nombre de variable no encontrado en el mapa: " << varName << '\n';
-        }
+            */
+        } 
+#ifdef _DEBUG
+        else std::cerr << "Nombre de variable no encontrado en el mapa: " << varName << '\n';
+#endif
     }
 
     virtual void update(const uint64_t deltaTime) { }

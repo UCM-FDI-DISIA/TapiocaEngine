@@ -6,9 +6,7 @@
 #include "Mesh.h"
 
 namespace Tapioca {
-MeshRenderer::MeshRenderer() : mesh(nullptr) {
-	
-}
+MeshRenderer::MeshRenderer() : mesh(nullptr) { }
 
 MeshRenderer::~MeshRenderer() {
 	// Esto???
@@ -18,7 +16,7 @@ MeshRenderer::~MeshRenderer() {
 
 void MeshRenderer::initComponent(const CompMap& variables) {
 	setValueFromMap(meshName, "meshName", variables);
-	if(meshName == "") {
+	if (meshName == "") {
 		// No hay nombre de mesh
 		alive = false;
 		return;
@@ -29,7 +27,7 @@ void MeshRenderer::start() {
 	Transform* trans = parent->getComponent<Transform>();
 	mesh = GraphicsEngine::instance()->createMesh(static_cast<Node*>(trans->getNode()), meshName);
 
-	if(materialName != "") {
+	if (materialName != "") {
 		mesh->setMaterial(materialName);
 	}
 }

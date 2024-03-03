@@ -1,6 +1,7 @@
 #pragma once
 #include "../Structure/Component.h"
 #include "../Utilities/Vector3.h"
+
 namespace Tapioca {
 class INode;
 class TransformBuilder;
@@ -41,7 +42,7 @@ public:
     //Eje Z
     Vector3 forward();
 
-    INode* getNode() { return node; }
+    inline INode* getNode() { return node; }
 };
 
 

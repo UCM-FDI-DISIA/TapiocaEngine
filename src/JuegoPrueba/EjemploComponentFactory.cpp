@@ -1,4 +1,11 @@
 #include "EjemploComponentFactory.h"
-using namespace TapiocaGame;
+#include "Structure/Component.h"
+#include "EjemploComponent.h"
+#include "defs.h"
 
-Component* EjemploComponentFactory::createComponent() { return new EjemploComponent(); }
+
+namespace TapiocaGame {
+
+	Tapioca::Component* EjemploComponentFactory::createComponent() { return new EjemploComponent(); }
+
+}

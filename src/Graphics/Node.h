@@ -1,8 +1,8 @@
 #pragma once
+#include "Utilities/INode.h"
+
 #include <unordered_set>
 #include <vector>
-
-#include "Utilities/INode.h"
 
 namespace Ogre {
 class SceneManager;
@@ -16,9 +16,7 @@ class GraphicsEngine;
 class RenderObject;
 class Camera;
 class LightDirectional;
-}
 
-namespace Tapioca {
 class Node : public INode {
 public:
     friend GraphicsEngine;
@@ -60,7 +58,7 @@ private:
     void lookAt(Vector3 target);
     void setDirection(Vector3 dir);
 
-    Ogre::SceneNode* getSceneNode() const { return node; }
+    inline Ogre::SceneNode* getSceneNode() const { return node; }
 
     Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent = nullptr);
 

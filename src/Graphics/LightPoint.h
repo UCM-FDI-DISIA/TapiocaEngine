@@ -4,13 +4,12 @@
 namespace Ogre {
 class SceneManager;
 }
+
 namespace Tapioca {
 class Node;
 class GraphicsEngine;
 class Vector4;
-}
 
-namespace Tapioca {
 class LightPoint : public Light {
 public:
     friend GraphicsEngine;

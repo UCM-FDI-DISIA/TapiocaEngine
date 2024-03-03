@@ -1,16 +1,14 @@
 #pragma once
-#include <string>
 #include "Structure/Component.h"
-using namespace std;
-using namespace Tapioca;
+#include <string>
 
 namespace TapiocaGame {
-class EjemploComponent : public Component {
+class EjemploComponent : public Tapioca::Component {
 private:
     int a;
     float b;
     bool c;
-    string d;
+    std::string d;
 
 public:
     COMPONENT_ID("EjemploComponent")
