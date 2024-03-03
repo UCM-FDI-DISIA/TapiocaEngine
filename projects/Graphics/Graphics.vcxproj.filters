@@ -81,6 +81,9 @@
     <ClInclude Include="..\..\src\Graphics\Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Archivos de recursos">

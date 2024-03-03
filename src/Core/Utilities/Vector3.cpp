@@ -2,6 +2,9 @@
 #include "Vector2.h"
 #include "Vector2.h"
 #include <cmath>
+#include <math.h>
+#define PI 3.14159265358979323846 
+
 
 namespace Tapioca {
 
@@ -42,6 +45,20 @@ Vector3 Vector3::rotateY(float degrees) {
 
 Vector3 Vector3::rotateZ(float degrees) {
     return Vector3(cos(degrees) * x - sin(degrees) * y, sin(degrees) * x + cos(degrees) * y, z);
+}
+
+Vector3 Vector3::cross(Vector3 other) { 
+   // float cosalfa = dot(other) / (magnitude() * other.magnitude());
+   // float alfa =  acos(cosalfa);//pero esto lo da en radianes
+    //alfa *= (180 /PI );
+    //return magnitude() * other.magnitude() * sin(alfa); 
+    return Vector3((y * other.z - z * other.y), (z * other.x - x * other.z), (x * other.y - y * other.x));
+
+}
+
+float Vector3::dot(Vector3 other) { 
+    return x*other.x + y*other.y + z*other.z; 
+
 }
 
 }
