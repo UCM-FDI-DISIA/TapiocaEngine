@@ -38,7 +38,7 @@ public:
     UIManager& operator=(UIManager&&) = delete;
 
     bool init() override;
-    void preViewportUpdate(const Ogre:: RenderTargetViewportEvent& evt) override;
+    //void preViewportUpdate(const Ogre:: RenderTargetViewportEvent& evt) override;
     //void update(const uint64_t deltaTime) { }
     //void handleEvents() override;
     //void fixedUpdate() override { }

@@ -81,14 +81,14 @@ bool Tapioca::UIManager::init() {
    // ImGui::NewFrame();*/
     return true;
 }
-void preViewportUpdate(const Ogre::RenderTargetViewportEvent& evt)  {
-    if (!evt.source->getOverlaysEnabled()) return;
-   // if (!mTrayMgr->getTraysLayer()->isVisible()) return;
-
-    Ogre::ImGuiOverlay::NewFrame();
-
-    ImGui::ShowDemoWindow();
-}
+//void preViewportUpdate(const Ogre::RenderTargetViewportEvent& evt)  {
+//    if (!evt.source->getOverlaysEnabled()) return;
+//   // if (!mTrayMgr->getTraysLayer()->isVisible()) return;
+//
+//    Ogre::ImGuiOverlay::NewFrame();
+//
+//    ImGui::ShowDemoWindow();
+//}
 
 //void Tapioca::UIManager::update(const uint64_t deltaTime) { }
 

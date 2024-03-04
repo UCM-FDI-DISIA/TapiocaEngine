@@ -31,6 +31,7 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdl2.cpp>
 #include <imgui_impl_opengl3.h>
+#include "OgreImGuiOverlay.h"
 
 // C++
 #include <iostream>
@@ -224,6 +225,12 @@ void Tapioca::GraphicsEngine::render() {
    // ImGui_ImplOpenGL3_NewFrame();
     //ImGui_ImplSDL2_NewFrame();
     mRoot->renderOneFrame();
+    //ESTO ES LO QUE IRIA EN UIMANAGER PREVIEWPORTUPDATE
+    //pero esa funcion da error de linkado y no se porque 
+    //tbm podriamos meter en graphics engine un render y un ui render por que al llamarlo desde aqui funciona
+    Ogre::ImGuiOverlay::NewFrame();
+
+    ImGui::ShowDemoWindow();
     //ImGuiIO& io = ImGui::GetIO();
     //Ogre::Viewport* vp = scnMgr->getCurrentViewport();
     ////just some defaults so it doesn't crash
