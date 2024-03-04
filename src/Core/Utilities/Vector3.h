@@ -61,8 +61,8 @@ public:
     inline Vector3& operator*=(const float& other) { return *this = *this * other; }
     inline Vector3& operator/=(const float& other) { return *this = *this / other; }
 
-    inline bool operator==(const Vector3& other) { return (x == other.x && y == other.y && z == other.z); }
-    inline bool operator!=(const Vector3& other) { return !(*this == other); }
+    inline bool operator==(const Vector3& other) const { return (x == other.x && y == other.y && z == other.z); }
+    inline bool operator!=(const Vector3& other) const { return !(*this == other); }
 
     //Para comparar magnitudes
     //inline bool operator<(const Vector3& other) { return magnitude() < other.magnitude(); }

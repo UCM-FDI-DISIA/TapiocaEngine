@@ -39,8 +39,8 @@ public:
     inline Vector2& operator*=(const float& other) { return *this = *this * other; }
     inline Vector2& operator/=(const float& other) { return *this = *this / other; }
 
-    inline bool operator==(const Vector2& other) { return (x == other.x && y == other.y); }
-    inline bool operator!=(const Vector2& other) { return !(*this == other); }
+    inline bool operator==(const Vector2& other) const { return (x == other.x && y == other.y); }
+    inline bool operator!=(const Vector2& other) const { return !(*this == other); }
 
     //Para comparar magnitudes
     //inline bool operator<(const Vector2& other) { return magnitude() < other.magnitude(); }

@@ -21,7 +21,6 @@ private:
     void setParent(GameObject* obj);
 
 protected:
-    enum messageType { MESSAGE_A, MESSAGE_B, MESSAGE_C, MESSAGE_D };
     GameObject* parent;
     bool alive;
     bool active;   // Indica si el componente esta activo (si se actualizan update,handleEvents,...)
@@ -75,8 +74,8 @@ public:
 
     static void addListener(Component* component);                       // Anade componente como listener
     static void removeListener(Component* component);                    // Quita componente como listener
-    void sendEvent(Component* component, messageType m);                 // Funcion para enviar mensajes
-    virtual void receiveEvent(Component* component, messageType m) {};   // Funcion para recibir mensajes
+    void sendEvent(Component* component, std::string m);                 // Funcion para enviar mensajes
+    virtual void receiveEvent(Component* component, std::string m) {};   // Funcion para recibir mensajes
 };
 
 #define COMPONENT_ID(_id) inline static const std::string id = _id;
