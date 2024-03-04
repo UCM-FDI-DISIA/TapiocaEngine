@@ -28,6 +28,7 @@ class RenderSystem;
 class RenderWindow;
 class ManualObject;
 class Viewport;
+class OverlaySystem;
 
 namespace RTShader {
     class ShaderGenerator;
@@ -62,7 +63,8 @@ private:
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
     void* gl_context;
-
+    //UI 
+    Ogre::OverlaySystem* overSys;
     std::unordered_set<Node*> selfManagedNodes;
     // TODO: ADMINISTRAR OBJETOS, SE PUEDE BORRAR
     /*std::unordered_map<RenderObject*, Node*> objects;
@@ -145,7 +147,7 @@ public:
     void destroyManualObject(Ogre::ManualObject* object);
     
     inline SDL_Window* getSDLWindow() const { return sdlWindow; };
-
+    inline Ogre::RenderWindow* getOgreWindow() { return ogreWindow; };
     void* getGLContext() const;
 
     //void removeObject(Tapioca::RenderObject* object);

@@ -14,6 +14,9 @@
 #include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreGL3PlusRenderSystem.h>
+#include "OgreOverlay.h"
+#include "OgreOverlaySystem.h"
+
 
 // SDL
 #include <SDL.h>
@@ -88,7 +91,7 @@ bool Tapioca::GraphicsEngine::init() {
     // ogre.log guarda un mensaje de depuracion
     // getWritablePath parte del homePath (asignado arriba)
     mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
-
+    overSys = new Ogre::OverlaySystem();
     // Otra forma: cargar los plugins desde codigo
     // loadPlugIns();   // cargar codec, que sirve para poder usar png, jpg... (para las texturas)
     // mRoot->loadPlugin("RenderSystem_GL3PLUS");   // cargar sistema de render por nombre
@@ -168,6 +171,7 @@ bool Tapioca::GraphicsEngine::init() {
     ogreWindow = mRoot->createRenderWindow(mwindowName, windowWidth, windowHeight, false, &miscParams);
 
     scnMgr = mRoot->createSceneManager();
+    scnMgr->addRenderQueueListener(overSys);
     loadShaders();
 
     // si da problemas usar el renderSys cogerlo directamente desde root
@@ -177,7 +181,7 @@ bool Tapioca::GraphicsEngine::init() {
     if (SDL_GL_MakeCurrent(sdlWindow, gl_context) != 0) {
         std::cerr << "Error al hacer actual el contexto OpenGL: " << SDL_GetError() << '\n';
     }
-
+    
     return true;
 }
 
@@ -213,25 +217,45 @@ void Tapioca::GraphicsEngine::loadShaders() {
 }
 
 void Tapioca::GraphicsEngine::render() {
-    // Configura el nuevo frame de ImGui
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame();
-    ImGui::NewFrame();
+    // Dibuja la escena de Ogre
+   
 
+    // Configura el nuevo frame de ImGui
+   // ImGui_ImplOpenGL3_NewFrame();
+    //ImGui_ImplSDL2_NewFrame();
+    mRoot->renderOneFrame();
+    //ImGuiIO& io = ImGui::GetIO();
+    //Ogre::Viewport* vp = scnMgr->getCurrentViewport();
+    ////just some defaults so it doesn't crash
+    //float width = 400.f;
+    //float height = 400.f;
+
+    //////might not exist if this got called before the rendering loop
+    //if (vp) {
+    //   width = scnMgr->getCurrentViewport()->getActualWidth();
+    //   height = scnMgr->getCurrentViewport()->getActualHeight();
+    //    }
+
+    ////// Setup display size (every frame to accommodate for window resizing)
+    //io.DisplaySize = ImVec2(width, height);
+
+    //// Start the frame
+    //ImGui::NewFrame();
+
+    
+    //bool demo = true;
     // Dibujar la ventana de demo de ImGui
-    ImGui::ShowDemoWindow();
+    //ImGui::ShowDemoWindow(&demo);
 
     // Renderiza los elementos de ImGui
-    ImGui::Render();
+    //ImGui::Render();
 
-    // Dibuja la escena de Ogre
-    mRoot->renderOneFrame();
-
+ 
     // Dibuja los elementos de ImGui por encima de la escena de Ogre
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+   // ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
     // Intercambiar buffers al final para mostrar todo en la ventana
-    SDL_GL_SwapWindow(sdlWindow);
+    //SDL_GL_SwapWindow(sdlWindow);
 }
 
 void Tapioca::GraphicsEngine::shutDown() {

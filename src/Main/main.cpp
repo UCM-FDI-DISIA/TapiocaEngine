@@ -86,10 +86,11 @@ int main(int argc, char** argv) {
 
 static void createModules(HMODULE module) {
     graphics = Tapioca::GraphicsEngine::create();
-    input = Tapioca::InputManager::create();
+    ui = Tapioca::UIManager::create();
     factories = Tapioca::FactoryManager::create();
     scenes = Tapioca::SceneManager::create(module);
     physics = Tapioca::PhysicsManager::create();
-    ui = Tapioca::UIManager::create();
+   
+    input = Tapioca::InputManager::create();
     // audio = AudioManager::create();
 }
