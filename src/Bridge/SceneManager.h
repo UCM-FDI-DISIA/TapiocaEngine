@@ -78,6 +78,11 @@ private:
 	*/
     Component* loadComponent(std::string name);
 
+    /**
+    * @brief Elimina las escenas, gameobjects y componentes
+    */
+    void destroy();
+
 public:
     SceneManager(SceneManager&) = delete;
     SceneManager(SceneManager&&) = delete;

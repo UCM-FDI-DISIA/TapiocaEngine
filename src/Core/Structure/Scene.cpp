@@ -51,6 +51,8 @@ void Scene::refresh() {
     for (auto& obj : objects) obj->refresh();
 }
 
+std::vector<GameObject*> Scene::getObjects() const { return objects; }
+
 GameObject* Scene::getHandler(const std::string& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;

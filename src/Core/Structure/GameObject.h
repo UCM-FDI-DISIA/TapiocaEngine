@@ -55,6 +55,7 @@ public:
         if (it == components.end()) return nullptr;
         return static_cast<TComp*>(it->second);
     }
+    std::vector<Component*> getAllComponents();
     std::vector<Component*> getComponents(std::string id);
     template<IsComponent TComp> inline std::vector<TComp*> getComponents() {
         std::vector<TComp*> out;

@@ -18,6 +18,7 @@ public:
     Scene();
     ~Scene();
 
+    std::vector<GameObject*> getObjects() const;
     GameObject* getHandler(const std::string& handler) const;
 
     void addObject(GameObject* object, std::string handler);

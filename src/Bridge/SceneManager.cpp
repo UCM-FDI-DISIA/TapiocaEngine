@@ -20,10 +20,7 @@ namespace Tapioca {
 
 SceneManager::SceneManager(HMODULE module, std::string scenesPath) : module(module), scenesPath(scenesPath), luaState(nullptr) { }
 
-SceneManager::~SceneManager() {
-    for (Scene* s : scenes_debug) delete s;
-    scenes_debug.clear();
-}
+SceneManager::~SceneManager() { destroy(); }
 
 bool SceneManager::init() {
     // Construye la ruta completa al archivo LUA
@@ -70,7 +67,10 @@ bool SceneManager::loadScenes() {
         std::cout << "Scene: " << sceneName << "\n";
 #endif
         loaded = loadScene(scene);
-        if (!loaded) return false;
+        if (!loaded) {
+			delete scene;
+			return false;
+        }
         lua_pop(luaState, 1);
 
         //TODO: esta aqui para no dejar memoria de momento
@@ -97,7 +97,10 @@ bool SceneManager::loadGameObjects(Scene* scene) {
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
         loaded = loadGameObject(gameObject);
-        if (!loaded) return false;
+        if (!loaded) {
+			delete gameObject;
+			return false;
+		}
 
         scene->addObject(gameObject, gameObjectName);
         lua_pop(luaState, 1);
@@ -190,6 +193,22 @@ Component* SceneManager::loadComponent(std::string name) {
     }
 
     return comp;
+}
+
+void SceneManager::destroy() {
+    for (Scene* s : scenes_debug) {
+        for (GameObject* g : s->getObjects()) {
+            for (Component* c : g->getAllComponents()) {
+				delete c;
+				c = nullptr;
+			}
+			delete g;
+			g = nullptr;
+		}
+        delete s;
+        s = nullptr;
+    }
+    scenes_debug.clear();
 }
 
 void SceneManager::start() {
