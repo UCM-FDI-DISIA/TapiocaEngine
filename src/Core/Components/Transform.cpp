@@ -129,4 +129,8 @@ std::vector<Transform*> Transform::getAllChildren() const {
 
     return children;
 }
+void Transform::fixedUpdate() {
+    //TODO quitar esto que era para probar un cosa
+    node->yaw(1);
+}
 }

@@ -30,7 +30,7 @@ public:
     virtual void setRotation(Vector3 rotation) = 0;
     virtual void setScale(Vector3 scale) = 0;
     virtual void scale(Vector3 scale) = 0;
-
+    virtual void yaw(float angle)=0;
     virtual std::vector<INode*> getChildren() = 0;
     virtual void getAllChildrenAux(std::vector<INode*>& allChildren) = 0;
     virtual std::vector<INode*> getAllChildren() = 0;

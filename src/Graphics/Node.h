@@ -77,6 +77,8 @@ public:
     // TODO: terminar rotate y rotaciones en los ejes basicos (pitch, yaw, roll)
     void rotate(Vector3 r);
 
+    void yaw(float angle);
+
     std::vector<INode*> getChildren() override;
     void getAllChildrenAux(std::vector<INode*>& allChildren) override;
     std::vector<INode*> getAllChildren() override;

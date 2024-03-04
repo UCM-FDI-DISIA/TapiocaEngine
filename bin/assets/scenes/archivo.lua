@@ -4,11 +4,11 @@ scenes = {
                 Transform = {
                     positionX = 0.0,
                     positionY = 0.0,
-                    positionZ = 0.0,
-                    scaleX = 1.0,
-                    scaleY = 1.0,
-                    scaleZ = 1.0,
-                    rotationX = 90.0,
+                    positionZ = 6.0,
+                    scaleX = 2.0,
+                    scaleY = 2.0,
+                    scaleZ = 2.0,
+                    rotationX = -90.0,
                     rotationY = 0.0,
                     rotationZ = 0.0
                 },
@@ -19,7 +19,7 @@ scenes = {
                     d = "ejemplo"
                 },
                 MeshRenderer = {
-                    meshName = "racoon/mapache.mesh"
+                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
                 }--]]--
             },
             Entity1={

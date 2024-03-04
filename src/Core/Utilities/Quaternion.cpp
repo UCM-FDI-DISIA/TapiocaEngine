@@ -20,6 +20,33 @@ Quaternion::Quaternion(float alfa, Vector3 vec) {
     vector = Vector3(alfasin * uvec.x, alfasin * uvec.y, alfasin * uvec.z);
 }
 
+Quaternion::Quaternion(Vector3 euler) { 
+    //la libreria math opera en radianes
+    float roll = euler.x * (PI / 180);
+    float cosroll = cos(roll / 2);
+    float sinroll = sin(roll / 2);
+
+    float yaw = euler.y * (PI / 180);
+    float cosyaw = cos(yaw / 2);
+    float sinyaw = sin(yaw / 2);
+
+    float pitch = euler.z * (PI / 180);
+    float cospitch = cos(pitch / 2);
+    float sinpitch = sin(pitch / 2);
+
+    scalar = cosroll * cosyaw * cospitch + sinroll * sinyaw * sinpitch;
+
+    vector.x = sinroll * cosyaw * cospitch - cosroll * sinyaw * sinpitch;
+
+    vector.y = cosroll * sinyaw * cospitch + sinroll * cosyaw * sinpitch;
+
+    vector.z = cosroll * cosyaw * sinpitch - sinroll * sinyaw * cospitch;
+
+    angle = 2 * acos(scalar);
+
+
+}
+
 Quaternion Quaternion::inverse() { return conjugate() / norm(); }
 
 Quaternion Quaternion::conjugate() { return Quaternion(scalar, -vector.x, -vector.y, -vector.z); }

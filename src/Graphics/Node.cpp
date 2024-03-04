@@ -4,6 +4,7 @@
 #include <Ogre.h>
 // CORE
 #include "Utilities/Vector3.h"
+#include "Utilities/Quaternion.h"
 
 #ifdef _DEBUG
 #include <iostream>
@@ -165,8 +166,17 @@ void Node::setPosition(Vector3 newPos) { node->setPosition(newPos.x, newPos.y, n
 void Node::setScale(Vector3 newScale) { node->setScale(newScale.x, newScale.y, newScale.z); }
 void Node::translate(Vector3 mov) { node->translate(mov.x, mov.y, mov.z); }
 void Node::scale(Vector3 scale) { node->scale(scale.x, scale.y, scale.z); }
-void Node::setRotation(Vector3 rot) { }
+void Node::setRotation(Vector3 rot) { 
+    Quaternion q = Quaternion(rot);
+    Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
+    node->setOrientation(oq);
+}
 void Node::rotate(Vector3 r) { }
+
+void Node::yaw(float angle) { 
+    //TODO cambiar el espacio para comprobar que desde blender se exporta con los ejese bien (parece qeu si)
+    node->yaw(Ogre::Degree(angle),Ogre::Node::TS_WORLD); 
+}
 
 std::vector<INode*> Node::getAllChildren() {
     std::vector<INode*> allChildren;

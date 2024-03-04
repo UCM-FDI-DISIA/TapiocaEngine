@@ -31,6 +31,11 @@ public:
     *@params alfa en grados sexagesimales!!!! 
     */
     Quaternion(float alfa, Vector3 vec);
+
+    /*
+    * @brief construye un cuaternion a partir de rotaciones en los 3 ejes globales (x y z) en grados SEXAGESIMALES
+    */
+    Quaternion( Vector3 euler);
     /*
     * @brief devuelve el quaternion inverso que es el conjugado entre la magnitud 
     */

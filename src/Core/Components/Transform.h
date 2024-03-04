@@ -58,5 +58,6 @@ public:
     std::vector<Transform*> getChildren() const;
     // Devuelve tanto los hijos directos como los indirectos de este Transform.
     std::vector<Transform*> getAllChildren() const;
+    virtual void fixedUpdate() override;
 };
 }
