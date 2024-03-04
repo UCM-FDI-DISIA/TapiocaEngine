@@ -11,15 +11,17 @@ namespace Tapioca {
 class Node;
 
 class ParticleSystem : public RenderObject {
-protected:
+private:
     Ogre::ParticleSystem* mParticleSystem;
+
+public:
 
     /*
     * @brief Constructora.Solo se podra crear un ParticleSystem a partir de un sistema ya creado en un.particle
-    */ 
-    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string materialName, bool emitting = false);
+    */
+    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string materialName,
+                   bool emitting = false);
 
-public:
     virtual ~ParticleSystem() { }
 
     void setEmitting(bool emitting);

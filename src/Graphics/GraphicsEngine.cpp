@@ -1,3 +1,5 @@
+#include "GraphicsEngine.h"
+
 // Propios
 #include "LightPoint.h"
 #include "LightDirectional.h"
@@ -5,7 +7,7 @@
 #include "Node.h"
 #include "Mesh.h"
 #include "Viewport.h"
-#include "GraphicsEngine.h"
+#include "ParticleSystem.h"
 
 // OGRE
 #include <Ogre.h>
@@ -265,7 +267,13 @@ LightDirectional* GraphicsEngine::createLightDirectional(
 }
 
 Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) {
-    return new Mesh(scnMgr, node, meshName);
+    return new Mesh(scnMgr, node, meshName); 
+}
+
+ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name,
+    std::string templateName, bool emitting) 
+{
+    return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
 Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {

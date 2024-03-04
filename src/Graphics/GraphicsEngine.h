@@ -35,7 +35,7 @@ class Camera;
 class LightDirectional;
 class Mesh;
 class Viewport;
-
+class ParticleSystem;
 
 class GraphicsEngine : public Singleton<GraphicsEngine>, Module {
 private:
@@ -119,6 +119,9 @@ public:
     LightDirectional* createLightDirectional(Node* node, Vector3 direction, Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
     Mesh* createMesh(Node* node, std::string meshName);
+
+    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name, std::string templateName, 
+                                         bool emitting);
 
     Ogre::ManualObject* createManualObject(Node* node);
 
