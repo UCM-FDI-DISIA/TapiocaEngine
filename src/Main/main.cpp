@@ -73,7 +73,6 @@ int main(int argc, char** argv) {
         else
             std::cerr << "Error al inicializar un modulo\n";
 #endif
-
         delete game;
     }
 #ifdef _DEBUG

@@ -47,6 +47,8 @@ public:
 
     Transform* getParentHierarchy() const;
 
+    std::vector<Transform*> getChildren() const;
+
     inline INode* getNode() { return node; }
 };
 }

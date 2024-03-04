@@ -46,7 +46,8 @@ GraphicsEngine::~GraphicsEngine() {
     }
     nodes.clear();*/
 
-    for (auto& node : selfManagedNodes) delete node;
+    for (auto& node : selfManagedNodes)
+        delete node;
     selfManagedNodes.clear();
 
     shutDown();
@@ -59,9 +60,14 @@ bool GraphicsEngine::init() {
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
-    Ogre::String pluginsPath;
+
+    Ogre::String homePath = fsLayer->getWritablePath(".");
+    if (fsLayer->fileExists(homePath)) {
+        fsLayer->removeDirectory(homePath);
+    }
 
     // importante: la ruta donde esta plugins.cfg no puede tener caracteres especiales (solo alfabeto en ingles)
+    Ogre::String pluginsPath;
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
 
     // tratamiento de errores
@@ -119,8 +125,8 @@ bool GraphicsEngine::init() {
     // else flags = SDL_WINDOW_RESIZABLE;
 
     // Crear ventana SDL2
-    sdlWindow = SDL_CreateWindow(mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
-                                 windowWidth, windowHeight, flags);
+    sdlWindow = SDL_CreateWindow(mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
+                                 windowHeight, flags);
 
     SDL_SysWMinfo wmInfo;
     SDL_VERSION(&wmInfo.version);
@@ -253,26 +259,20 @@ Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3
 //    }
 //}
 
-Camera* GraphicsEngine::createCamera(Node* node, std::string name) {
-    return new Camera(scnMgr, node, name);
-}
+Camera* GraphicsEngine::createCamera(Node* node, std::string name) { return new Camera(scnMgr, node, name); }
 
 Viewport* GraphicsEngine::createViewport(Camera* camera, int zOrder) {
     return new Viewport(ogreWindow, camera, zOrder);
 }
 
-LightDirectional* GraphicsEngine::createLightDirectional(
-    Node* node, Vector3 direction, Vector4 color) {
+LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 direction, Vector4 color) {
     return new LightDirectional(scnMgr, node, color, direction);
 }
 
-Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) {
-    return new Mesh(scnMgr, node, meshName); 
-}
+Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) { return new Mesh(scnMgr, node, meshName); }
 
 ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name,
-    std::string templateName, bool emitting) 
-{
+                                                     std::string templateName, bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 

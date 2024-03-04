@@ -7,6 +7,7 @@ namespace Tapioca {
 Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }
 
 Transform::~Transform() {
+    this->getParent()->setAlive(false);
     for (auto childNode : node->getAllChildren()) {
         Tapioca::GameObject* childGameObject = childNode->getTransform()->getParent();
         childGameObject->setAlive(false);
@@ -16,8 +17,7 @@ Transform::~Transform() {
 
 bool Transform::initComponent(const CompMap& variables) {
     bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
-					   setValueFromMap(position.y, "positionY", variables) &&
-					   setValueFromMap(position.z, "positionZ", variables);
+        setValueFromMap(position.y, "positionY", variables) && setValueFromMap(position.z, "positionZ", variables);
     if (!positionSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la posicion.\n";
@@ -26,9 +26,8 @@ bool Transform::initComponent(const CompMap& variables) {
     }
     node->setPosition(position);
 
-    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) &&
-					setValueFromMap(scale.y, "scaleY", variables) &&
-					setValueFromMap(scale.z, "scaleZ", variables);
+    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
+        setValueFromMap(scale.z, "scaleZ", variables);
     if (!scaleSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
@@ -38,8 +37,7 @@ bool Transform::initComponent(const CompMap& variables) {
     node->setScale(scale);
 
     bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
-					   setValueFromMap(rotation.y, "rotationY", variables) &&
-					   setValueFromMap(rotation.z, "rotationZ", variables);
+        setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
     if (!rotationSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la rotacion.\n";
@@ -115,4 +113,14 @@ Vector3 Transform::forward() {
 void Transform::setParentHierarchy(Transform* tranform) { node->setParent(tranform->getNode()); }
 
 Transform* Transform::getParentHierarchy() const { return node->getParent()->getTransform(); }
+
+std::vector<Transform*> Transform::getChildren() const {
+    auto childrenNode = node->getChildren();
+    std::vector<Transform*> childrenTransform;
+    childrenTransform.reserve(childrenNode.size());
+    for (auto child : childrenNode) {
+        childrenTransform.push_back(child->getTransform());
+    }
+    return childrenTransform;
+}
 }
