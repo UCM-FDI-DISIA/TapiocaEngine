@@ -31,8 +31,7 @@ void MeshRenderer::start() {
     Transform* trans = parent->getComponent<Transform>();
     mesh = GraphicsEngine::instance()->createMesh(static_cast<Node*>(trans->getNode()), meshName);
 
-    if (materialName != "") 
-        mesh->setMaterial(materialName);
+    if (materialName != "") mesh->setMaterial(materialName);
 }
 
 void MeshRenderer::update(const uint64_t deltaTime) { }

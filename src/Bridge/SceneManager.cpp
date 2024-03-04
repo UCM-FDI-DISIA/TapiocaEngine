@@ -18,12 +18,10 @@
 
 namespace Tapioca {
 
-SceneManager::SceneManager(HMODULE module, std::string scenesPath)
-    : module(module), scenesPath(scenesPath), luaState(nullptr) { }
+SceneManager::SceneManager(HMODULE module, std::string scenesPath) : module(module), scenesPath(scenesPath), luaState(nullptr) { }
 
 SceneManager::~SceneManager() {
-    for (Scene* s : scenes_debug)
-        delete s;
+    for (Scene* s : scenes_debug) delete s;
     scenes_debug.clear();
 }
 
@@ -195,7 +193,6 @@ Component* SceneManager::loadComponent(std::string name) {
 }
 
 void SceneManager::start() {
-    for (auto scene : scenes_debug)
-        scene->start();
+    for (auto scene : scenes_debug) scene->start();
 }
 }

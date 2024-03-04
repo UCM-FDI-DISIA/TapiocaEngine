@@ -57,7 +57,7 @@ Vector3 Vector3::cross(Vector3 other) {
 }
 
 float Vector3::dot(Vector3 other) { 
-    return x*other.x + y*other.y + z*other.z; 
+    return x * other.x + y * other.y + z * other.z; 
 
 }
 

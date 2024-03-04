@@ -1,17 +1,15 @@
 #pragma once
 
-namespace Tapioca {
-class Camera;
-class Vector4;
-class Vector3;
-}
-
 namespace Ogre {
 class RenderWindow;
 class Viewport;
 }
 
 namespace Tapioca {
+    class Camera;
+    class Vector4;
+    class Vector3;
+
 class Viewport {
 private:
     Ogre::Viewport* viewport;

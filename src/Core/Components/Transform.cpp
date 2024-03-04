@@ -4,8 +4,7 @@
 
 namespace Tapioca {
 
-Transform::Transform()
-    : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }   //PRUEBA
+Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }
 
 Transform::~Transform() {
     for (auto childNode : node->getAllChildren()) {

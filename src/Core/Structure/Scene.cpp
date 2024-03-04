@@ -9,8 +9,7 @@ namespace Tapioca {
 Scene::Scene() { }
 
 Scene::~Scene() {
-    for (auto obj : objects)
-        delete obj;
+    for (auto obj : objects) delete obj;
 }
 
 void Scene::addObject(GameObject* object, std::string handler) {
@@ -49,8 +48,7 @@ void Scene::refresh() {
         }),
         objects.end());
 
-    for (auto& obj : objects)
-        obj->refresh();
+    for (auto& obj : objects) obj->refresh();
 }
 
 GameObject* Scene::getHandler(const std::string& handler) const {
@@ -60,18 +58,21 @@ GameObject* Scene::getHandler(const std::string& handler) const {
 }
 
 void Scene::update(const uint64_t deltaTime) {
-    for (auto obj : objects)
+    for (auto obj : objects) {
         if (obj->isAlive()) obj->update(deltaTime);
+    }
 }
 
 void Scene::handleEvents() {
-    for (auto obj : objects)
+    for (auto obj : objects) {
         if (obj->isAlive()) obj->handleEvents();
+    }
 }
 
 void Scene::fixedUpdate() {
-    for (auto obj : objects)
+    for (auto obj : objects) {
         if (obj->isAlive()) obj->fixedUpdate();
+    }
 }
 void Scene::start() {
     // TODO: solo para pruebas
@@ -85,7 +86,8 @@ void Scene::start() {
     entity1Transform->setParentHierarchy(holaTransform);
     entity2Transform->setParentHierarchy(entity1Transform);*/
 
-    for (auto obj : objects)
-        obj->start();
+    for (auto obj : objects) obj->start();
 }
+
+
 }

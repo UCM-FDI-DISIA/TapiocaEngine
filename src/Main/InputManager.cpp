@@ -180,16 +180,14 @@ bool InputManager::eventHappened(std::string event) {
         }
     }
     if (happened) return true;
-    else
-        return false;
+    else return false;
 }
 
 
 void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
 #ifdef _DEBUG
-    else
-        std::cout << "No hay joysticks conectados\n";
+    else std::cout << "No hay joysticks conectados\n";
 #endif
 }
 

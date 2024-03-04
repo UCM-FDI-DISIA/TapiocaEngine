@@ -6,12 +6,10 @@ namespace Tapioca {
 Plane::Plane(Ogre::SceneManager* scnMgr, Node* node) : RenderObject(node, scnMgr), mPlane(new Ogre::Plane()) { }
 
 Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, const Vector3& rkNormal, float fConstant)
-    : RenderObject(node, scnMgr),
-      mPlane(new Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant)) { }
+    : RenderObject(node, scnMgr), mPlane(new Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant)) { }
 
 Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, float a, float b, float c, float _d)
-    : RenderObject(node, scnMgr),
-      mPlane(new Ogre::Plane(a, b, c, _d)) { }
+: RenderObject(node, scnMgr), mPlane(new Ogre::Plane(a, b, c, _d)) { }
 
 Vector3 Plane::getNormal() const { return Vector3(mPlane->normal.x, mPlane->normal.y, mPlane->normal.z); }
 
@@ -37,8 +35,8 @@ Vector3 Plane::projectVector(const Vector3& v) const {
 float Plane::normalise(void) { return mPlane->normalise(); }
 
 bool Plane::operator==(const Plane& rhs) const {
-    return (
-        rhs.getD() == mPlane->d && rhs.getNormal() == Vector3(mPlane->normal.x, mPlane->normal.y, mPlane->normal.z));
+    return (rhs.getD() == mPlane->d
+            && rhs.getNormal() == Vector3(mPlane->normal.x, mPlane->normal.y, mPlane->normal.z));
 }
 
 bool Plane::operator!=(const Plane& rhs) const { return !(*this == rhs); }

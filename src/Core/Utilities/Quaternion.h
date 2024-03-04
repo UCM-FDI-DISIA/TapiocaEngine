@@ -5,10 +5,8 @@
 //donde x y z w son numeros reales y ddone i j k son 
 //numeros complejos , vectores unitarios ortogonales entre si. i^2 = j^2 = k^2 = -1
 /// usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html
-namespace Tapioca{
-class Vector3;
-}
 namespace Tapioca {
+
 class Quaternion {
 public:
     //cualquier rotacion en un espacio tridimensional se puede definir
@@ -21,11 +19,11 @@ public:
     float angle;// se almacenara en radianes
 
     //para pasar de  eje + angulo  a quaternion
-   // 0 + (x,y,z ) 
-  // q= q0 +q1+q2+q3 , 
- //q0 = cos(0/2), q1 = xsin(0/2) , q2 = ysin(0/2),q3= zsin(0/2)
+    // 0 + (x,y,z )
+    // q = q0 + q1 + q2 + q3 ,
+    // q0 = cos(0/2), q1 = xsin(0/2), q2 = ysin(0/2), q3 = zsin(0/2)
 
-//para rotar un punto se multiplica por el cuatrenion y lueg por su conjugado pr = q*p*qc
+    //para rotar un punto se multiplica por el cuatrenion y lueg por su conjugado pr = q*p*qc
 
     Quaternion(float q0, float q1, float q2, float q3);
     /*

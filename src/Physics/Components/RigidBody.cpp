@@ -9,9 +9,8 @@
 
 
 namespace Tapioca {
-RigidBody::RigidBody()
-    : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1),
-      friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0) { }
+RigidBody::RigidBody() : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1),
+    group(1), friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -101,7 +100,8 @@ void RigidBody::start() {
     transform = parent->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
-        transform->getScale(), colShape, movementType, mass, friction, bounciness, isTrigger, group, mask);
+                                                            transform->getScale(), colShape, movementType, mass, 
+                                                            friction, bounciness, isTrigger, group, mask);
 
     collider = parent->getComponent<Collider>();
 

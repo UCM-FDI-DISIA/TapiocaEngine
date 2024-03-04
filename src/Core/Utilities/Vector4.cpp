@@ -27,7 +27,12 @@ Vector4 Vector4::getNormalized() const {
 
 float Vector4::normalize() {
 	float mag = magnitude();
-	if (mag != 0) x /= mag; y /= mag; z /= mag; w /= mag;
+    if (mag != 0) {
+        x /= mag;
+        y /= mag;
+        z /= mag;
+        w /= mag;
+    }
 	return mag;
 }
 

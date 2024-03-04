@@ -135,9 +135,8 @@ void PhysicsManager::update(const uint64_t deltaTime) {
 void PhysicsManager::fixedUpdate(float deltaTime) { dynamicsWorld->stepSimulation(deltaTime); }
 
 
-btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
-    ColliderShape colliderShape, MovementType type, float mass, float friction, float bounciness, 
-    bool isTrigger, int group, int mask) 
+btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale, ColliderShape colliderShape,
+    MovementType type, float mass, float friction, float bounciness, bool isTrigger, int group, int mask) 
 {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);

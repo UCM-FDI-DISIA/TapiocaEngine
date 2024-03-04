@@ -84,9 +84,9 @@ public:
     /// @params mass masa del rb
     /// @return puntero al rb creado
     */
-    btRigidBody* createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
-        ColliderShape colliderShape = BOX_SHAPE, MovementType type = STATIC_OBJECT, float mass = 0, float friction = 0,
-        float bounciness = 0, bool isTrigger = false, int group = 1, int mask = -1);
+    btRigidBody* createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale, ColliderShape colliderShape = BOX_SHAPE, 
+                                 MovementType type = STATIC_OBJECT, float mass = 0, float friction = 0, float bounciness = 0, 
+                                 bool isTrigger = false, int group = 1, int mask = -1);
 
     /*
     /// @brief  destruir rigidBody

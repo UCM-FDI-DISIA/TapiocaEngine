@@ -5,7 +5,10 @@ namespace Tapioca {
 
 ParticleSystem::ParticleSystem(
     Ogre::SceneManager* scnMgr, Node* node, std::string name, std::string templateName, bool emitting)
-    : RenderObject(node, scnMgr), mParticleSystem(scnMgr->createParticleSystem(name, templateName)) {
+    : RenderObject(node, scnMgr), mParticleSystem(scnMgr->createParticleSystem(name, templateName))
+{
+    Ogre::Billboard* bb;
+    Ogre::BillboardSet* bbs;
     init(mParticleSystem);
     mParticleSystem->setEmitting(emitting);
 }

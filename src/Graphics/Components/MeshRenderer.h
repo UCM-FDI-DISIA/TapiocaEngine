@@ -8,6 +8,7 @@ class MeshRenderer : public Component {
 private:
 	Mesh* mesh;
 	std::string meshName, materialName;
+
 public:
 	COMPONENT_ID("MeshRenderer")
 	MeshRenderer();
