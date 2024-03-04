@@ -35,8 +35,8 @@ class Camera;
 class LightDirectional;
 class Mesh;
 class Viewport;
+class BillboardSet;
 class ParticleSystem;
-
 class GraphicsEngine : public Singleton<GraphicsEngine>, Module {
 private:
     friend Singleton<GraphicsEngine>;
@@ -120,10 +120,11 @@ public:
 
     Mesh* createMesh(Node* node, std::string meshName);
 
-    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name, std::string templateName, 
-                                         bool emitting);
+    BillboardSet* createBillboardSet(Node* node, std::string name, unsigned int poolSize);
 
-    Ogre::ManualObject* createManualObject(Node* node);
+    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name, std::string templateName,
+        bool emitting);
+        Ogre::ManualObject* createManualObject(Node* node);
 
     void destroyManualObject(Ogre::ManualObject* object);
 

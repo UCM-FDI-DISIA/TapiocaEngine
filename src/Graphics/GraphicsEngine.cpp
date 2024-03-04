@@ -7,6 +7,8 @@
 #include "Node.h"
 #include "Mesh.h"
 #include "Viewport.h"
+#include "GraphicsEngine.h"
+#include "BillboardSet.h"
 #include "ParticleSystem.h"
 
 // OGRE
@@ -270,6 +272,16 @@ LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 dir
 }
 
 Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) { return new Mesh(scnMgr, node, meshName); }
+
+BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string name = "", unsigned int poolSize = 0) {
+    if (name == "" && poolSize == 0) return new BillboardSet(scnMgr, node);
+    else if (name != "" && poolSize == 0)
+        return new BillboardSet(scnMgr, node, name);
+    else if (name == "" && poolSize != 0)
+        return new BillboardSet(scnMgr, node, poolSize);
+    else
+        return new BillboardSet(scnMgr, node, name, poolSize);
+}
 
 ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name,
                                                      std::string templateName, bool emitting) {

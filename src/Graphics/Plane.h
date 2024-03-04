@@ -1,6 +1,7 @@
 #pragma once
 #include "OgreMath.h"
 #include "RenderObject.h"
+#include <string>
 
 namespace Ogre {
 class SceneManager;
@@ -11,19 +12,21 @@ namespace Tapioca {
 class Node;
 class Vector3;
 
-class Plane : public RenderObject{
+class Plane : public RenderObject {
 protected:
     Ogre::Plane* mPlane;
 
     //Construye un plano con todo inicializado a 0
     Plane(Ogre::SceneManager* scnMgr, Node* node);
-    //Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal 
+    //Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
     Plane(Ogre::SceneManager* scnMgr, Node* node, const Vector3& rkNormal, float fConstant);
     //Construye un plano usando 4 constantes
     Plane(Ogre::SceneManager* scnMgr, Node* node, float a, float b, float c, float _d);
 
 public:
-    virtual ~Plane() { if(mPlane != nullptr) delete mPlane; };
+    virtual ~Plane() {
+        if (mPlane != nullptr) delete mPlane;
+    };
     //Devuelve la normal que forma el plano
     Vector3 getNormal() const;
     //Devuelve la distancia desde el plano al origen
@@ -42,8 +45,6 @@ public:
     //Comparadores del plano
     bool operator==(const Plane& rhs) const;
     bool operator!=(const Plane& rhs) const;
-
 };
 
 }
-
