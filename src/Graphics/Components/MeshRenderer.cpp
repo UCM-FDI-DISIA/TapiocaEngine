@@ -28,7 +28,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 }
 
 void MeshRenderer::start() {
-    Transform* trans = parent->getComponent<Transform>();
+    Transform* trans = object->getComponent<Transform>();
     mesh = GraphicsEngine::instance()->createMesh(static_cast<Node*>(trans->getNode()), meshName);
 
     if (materialName != "") mesh->setMaterial(materialName);

@@ -7,9 +7,10 @@ namespace Tapioca {
 Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }
 
 Transform::~Transform() {
+    object->die();
     for (auto childNode : node->getAllChildren()) {
-        Tapioca::GameObject* childGameObject = childNode->getTransform()->getParent();
-        childGameObject->setAlive(false);
+        Tapioca::GameObject* childGameObject = childNode->getTransform()->getObject();
+        childGameObject->die();
     }
     delete node;
 }
@@ -48,10 +49,6 @@ bool Transform::initComponent(const CompMap& variables) {
     }
     node->setRotation(rotation);
 }
-
-Vector3 Transform::getPosition() { return position; }
-Vector3 Transform::getRotation() { return rotation; }
-Vector3 Transform::getScale() { return scale; }
 
 void Transform::setPosition(Vector3 p) {
     position = p;
@@ -112,7 +109,27 @@ Vector3 Transform::forward() {
     return v;
 }
 
-void Transform::setParentHierarchy(Transform* tranform) { node->setParent(tranform->getNode()); }
+void Transform::setParent(Transform* tranform) { node->setParent(tranform->getNode()); }
 
-Transform* Transform::getParentHierarchy() const { return node->getParent()->getTransform(); }
+Transform* Transform::getParent() const { return node->getParent()->getTransform(); }
+
+std::vector<Transform*> Transform::getChildren() const {
+    std::vector<INode*> childrenNodes = node->getChildren();
+    std::vector<Transform*> children(childrenNodes.size());
+
+    for (INode* node : childrenNodes)
+        children.push_back(node->getTransform());
+
+    return children;
+}
+
+std::vector<Transform*> Transform::getAllChildren() const {
+    std::vector<INode*> childrenNodes = node->getAllChildren();
+    std::vector<Transform*> children(childrenNodes.size());
+
+    for (INode* node : childrenNodes)
+        children.push_back(node->getTransform());
+
+    return children;
+}
 }

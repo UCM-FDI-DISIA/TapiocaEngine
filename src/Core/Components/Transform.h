@@ -6,6 +6,10 @@ namespace Tapioca {
 class INode;
 class TransformBuilder;
 
+/*
+* Transform guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
+* Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
+*/
 class Transform : public Component {
     friend TransformBuilder;
 
@@ -22,31 +26,37 @@ public:
     ~Transform();
 
     bool initComponent(const CompMap& variables) override;
-    // void update() override;
-    // void fixedUpdate() override;
 
-    Vector3 getPosition();
-    Vector3 getRotation();
-    Vector3 getScale();
+    inline Vector3 getPosition() const { return position; }
+    inline Vector3 getRotation() const { return rotation; }
+    inline Vector3 getScale() const { return scale; }
 
     void setPosition(Vector3 p);
     void setRotation(Vector3);
     void setScale(Vector3 s);
 
+    // Mueve el objeto tanto como el vector dado indica.
     void translate(Vector3 p);
+    // Rota el objeto sobre los ejes tanto como el vector dado indica.
     void rotate(Vector3 r);
 
-    //Eje X
+    // Devuelve el eje X de coordenadas locales en coordenadas globales.
     Vector3 right();
-    //Eje Y
+    // Devuelve el eje Y de coordenadas locales en coordenadas globales.
     Vector3 up();
-    //Eje Z
+    // Devuelve el eje Z de coordenadas locales en coordenadas globales.
     Vector3 forward();
 
-    void setParentHierarchy(Transform* tranform);
+    // Hace que el Transform dado sea padre de este.
+    void setParent(Transform* tranform);
+    // Devuelve el padre de este Transform.
+    Transform* getParent() const;
+    // Devuelve la interfaz de nodo de este Transform.
+    inline INode* getNode() const { return node; }
 
-    Transform* getParentHierarchy() const;
-
-    inline INode* getNode() { return node; }
+    // Devuelve los hijos directos de este Transform.
+    std::vector<Transform*> getChildren() const;
+    // Devuelve tanto los hijos directos como los indirectos de este Transform.
+    std::vector<Transform*> getAllChildren() const;
 };
 }

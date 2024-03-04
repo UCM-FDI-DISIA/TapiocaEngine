@@ -94,7 +94,7 @@ void Game::update() {
 void Game::handleEvents() {
     for (auto mod : modules) mod->handleEvents();
 
-    if (!scenes.empty()) scenes.top()->handleEvents();
+    //if (!scenes.empty()) scenes.top()->handleEvents();
 }
 
 void Game::fixedUpdate() {

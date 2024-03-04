@@ -97,13 +97,13 @@ void RigidBody::update(const uint64_t deltaTime) {
 
 void RigidBody::start() {
 
-    transform = parent->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
                                                             transform->getScale(), colShape, movementType, mass, 
                                                             friction, bounciness, isTrigger, group, mask);
 
-    collider = parent->getComponent<Collider>();
+    collider = object->getComponent<Collider>();
 
     rigidBody->setUserPointer(collider);
 }
