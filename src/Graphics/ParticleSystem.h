@@ -17,9 +17,14 @@ private:
 public:
 
     /*
-    * @brief Constructora.Solo se podra crear un ParticleSystem a partir de un sistema ya creado en un.particle
+    * @brief Constructora. Solo se podra crear un ParticleSystem a partir de un sistema ya creado en un .particle
+    * @param scnMgr SceneManager de ogre
+    * @param node Nodo que contiene el ParticleSystem
+    * @param name Nombre del ParticleSystem
+    * @param templateName Nombre del sistema de particulas definido en el .particle 
+    * @param emitting Si el sistema comienza emitiendo por defecto o no
     */
-    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string materialName,
+    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string name, std::string templateName,
                    bool emitting = false);
 
     virtual ~ParticleSystem() { }
@@ -27,12 +32,11 @@ public:
     void setEmitting(bool emitting);
     bool isEmitting();
 
-    /*
-    Se utiliza para acelerar el sistema un numero determinado de segundos
-    Puede ser util para que un sistema de particula que tarda un poco en comenzar a funcionar completamente,
-    lo haga al momento
-    El parametro interval hace referencia al muestreo para generar estas particulas (cuanto mas peque�o sea,
-    mas realista es. Sin embargo, tambien es mas costoso)
+    /* 
+    * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas
+    * que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento.
+    * @param time Tiempo en segundos que se adelantan
+    * @param interval Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso)
     */
     void fastForward(float time, float interval);
 };

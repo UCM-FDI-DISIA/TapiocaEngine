@@ -1,18 +1,16 @@
 #include "InputManager.h"
 
 #include <SDL.h>
+//#include <imgui_impl_sdl2.h>      // Para gestionar los eventos de la interfaz
 #include <lua.hpp>
-#include <LuaBridge.h>
 #include <sstream>
-#include <Windows.h>
-
 #include "Structure/Game.h"
 
 #include "Utilities/checkML.h"
-
 #ifdef _DEBUG
 #include <iostream>
 #endif
+
 
 namespace Tapioca {
 
@@ -89,9 +87,7 @@ void InputManager::mapInput() {
                 std::stringstream ss(evt);
                 std::string token = "";
                 char delimiter = '_';
-                while (std::getline(ss, token, delimiter)) {
-                    tokens.push_back(token);
-                }
+                while (std::getline(ss, token, delimiter)) tokens.push_back(token);
 
                 // Obtiene el nombre del evento ("ev" + "_" + "nombre")
                 evt = tokens[0] + "_" + tokens[1];
@@ -168,15 +164,13 @@ bool InputManager::eventHappened(std::string event) {
             // deadzone y si el eje que coincide es el del mando que ha enviado el evento
             else if (elem.first == "ie_ctrlAxisMotion")
                 happened = evt.caxis.axis == (SDL_GameControllerAxis)elem.second &&
-                    SDL_GameControllerGetAxis(controllers[evt.cdevice.which], (SDL_GameControllerAxis)elem.second) >=
-                        deadZones[evt.cdevice.which];
+                           SDL_GameControllerGetAxis(controllers[evt.cdevice.which], (SDL_GameControllerAxis)elem.second) >= deadZones[evt.cdevice.which];
 
             // Si son eventos de boton de mando, comprueba si el boton coincide con el mapeado
             // y si el boton que coincide ha sido pulsado en el mando que ha enviado el evento
             else if (elem.first == "ie_ctrlButtonUp" || elem.first == "ie_ctrlButtonDown")
                 happened = evt.cbutton.button == (SDL_GameControllerButton)elem.second &&
-                    SDL_GameControllerGetButton(
-                        controllers[evt.cdevice.which], (SDL_GameControllerButton)elem.second) == evt.cbutton.state;
+                           SDL_GameControllerGetButton(controllers[evt.cdevice.which], (SDL_GameControllerButton)elem.second) == evt.cbutton.state;
         }
     }
     if (happened) return true;
@@ -214,15 +208,14 @@ void InputManager::removeController(int i) {
         ctrl = nullptr;
 
 #ifdef _DEBUG
-        std::cout << "Mando quitado\n";
+        std::cout << "Mando desconectado\n";
 #endif
     }
 }
 
 
 void InputManager::clearInput() {
-    for (auto& e : inputEventTriggered)
-        e.second.clear();
+    for (auto& e : inputEventTriggered) e.second.clear();
 }
 
 void InputManager::updateState(const SDL_Event& event) {
@@ -310,8 +303,10 @@ void InputManager::updateState(const SDL_Event& event) {
 void InputManager::handleEvents() {
     SDL_Event event;
     clearInput();
-    while (SDL_PollEvent(&event))
+    while (SDL_PollEvent(&event)) {
         updateState(event);
+        //ImGui_ImplSDL2_ProcessEvent(&event);
+    }
 
     if (eventHappened("ev_CLOSE")) Game::get()->exit();
 
