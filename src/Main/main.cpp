@@ -9,7 +9,7 @@
 #include "SceneManager.h"
 #include "PhysicsManager.h"
 // #include "AudioManager.h" Descomentar cuando se implemente
-// #include "UIManager.h" Descomentar cuando se implemente
+#include "UIManager.h"
 
 #include "CreateBuilders.h"
 
@@ -24,8 +24,8 @@ Tapioca::FactoryManager* factories;
 Tapioca::SceneManager* scenes;
 Tapioca::GraphicsEngine* graphics;
 Tapioca::PhysicsManager* physics;
+Tapioca::UIManager* ui;
 //Tapioca::AudioManager* audio;
-//Tapioca::UIManager* ui;
 
 static void createModules(Tapioca::Game*);
 
@@ -90,6 +90,8 @@ int main(int argc, char** argv) {
 static void createModules(Tapioca::Game* game) {
     graphics = Tapioca::GraphicsEngine::create();
     game->addModule(graphics);
+    ui = Tapioca::UIManager::create();
+    game->addModule(ui);
     input = Tapioca::InputManager::create();
     game->addModule(input);
     factories = Tapioca::FactoryManager::create();
@@ -100,6 +102,4 @@ static void createModules(Tapioca::Game* game) {
     game->addModule(physics);
     // audio = AudioManager::create();
     // game->addModule(audio);
-    // ui = UIManager::create();
-    // game->addModule(ui);
 }

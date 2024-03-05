@@ -19,11 +19,18 @@
 #include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreGL3PlusRenderSystem.h>
+#include "OgreOverlaySystem.h"
 
 // SDL
 #include <SDL.h>
 #include <SDL_syswm.h>
 #undef main
+
+// ImGui
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdl2.cpp>
+#include <imgui_impl_opengl3.h>
+#include "OgreImGuiOverlay.h"
 
 // C++
 #include <iostream>
@@ -59,9 +66,10 @@ GraphicsEngine::~GraphicsEngine() {
 bool GraphicsEngine::init() {
     // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
 
-    // Pbtenemos la ubicacion de plugins.cfg y a partir de la misma obtenenmos la ruta relativa
+    // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
+    // ESTO ESTA FATAL, NO DEBERIA CREAR UN DIRECTORIO EN EL HOME DEL USUARIO
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
 
     Ogre::String homePath = fsLayer->getWritablePath(".");
@@ -89,6 +97,7 @@ bool GraphicsEngine::init() {
     // ogre.log guarda un mensaje de depuracion
     // getWritablePath parte del homePath (asignado arriba)
     mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
+    overSys = new Ogre::OverlaySystem();
 
     // Otra forma: cargar los plugins desde codigo
     // loadPlugIns();   // cargar codec, que sirve para poder usar png, jpg... (para las texturas)
@@ -129,24 +138,38 @@ bool GraphicsEngine::init() {
 
     // Crear ventana SDL2
     sdlWindow = SDL_CreateWindow(mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
-                                 windowHeight, flags);
-
-    SDL_SysWMinfo wmInfo;
-    SDL_VERSION(&wmInfo.version);
-    SDL_GetWindowWMInfo(sdlWindow, &wmInfo);
-    // vincular ventana de SDL con Ogre
-    miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+        windowHeight, flags);
+    if (sdlWindow == nullptr) {
+#ifdef _DEBUG
+    	std::cerr << "Error al crear la ventana de SDL: " << SDL_GetError() << '\n';
+#endif
+        return false;
+    }
 
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
+    SDL_SysWMinfo wmInfo;
+    SDL_VERSION(&wmInfo.version);
+    if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
+#ifdef _DEBUG
+		std::cerr << "Error al obtener informacion de la ventana de SDL: " << SDL_GetError() << '\n';
+#endif
+		return false;
+    }
+    // vincular ventana de SDL con Ogre
+    miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
     ogreWindow = mRoot->createRenderWindow(mwindowName, windowWidth, windowHeight, false, &miscParams);
 
     scnMgr = mRoot->createSceneManager();
+    scnMgr->addRenderQueueListener(overSys);
     loadShaders();
 
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
     loadResources();
+
+    glContext = SDL_GL_GetCurrentContext();
+    SDL_GL_SetSwapInterval(1);
 
     return true;
 }
@@ -220,6 +243,11 @@ void GraphicsEngine::shutDown() {
         ogreWindow = nullptr;
     }
 
+    if (glContext != nullptr) {
+    	SDL_GL_DeleteContext((SDL_GLContext)glContext);
+		glContext = nullptr;
+    }
+
     // eliminar la ventana de sdl
     if (sdlWindow != nullptr) {
         SDL_DestroyWindow(sdlWindow);
@@ -238,8 +266,6 @@ void GraphicsEngine::shutDown() {
 
 Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
     return new Node(scnMgr, pos, scale);
-    /*nodes.insert(node);
-    return node;*/
 }
 
 Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
@@ -250,8 +276,6 @@ Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
 
 Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
     return new Node(scnMgr, relativePos, scale, parent);
-    /*nodes.insert(node);
-    return node;*/
 }
 
 //void GraphicsEngine::removeNode(Node* node) {
@@ -299,11 +323,12 @@ SDL_Window* GraphicsEngine::getSDLWindow() { return sdlWindow; }
 
 Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
 
+void* GraphicsEngine::getGLContext() { return glContext; }
+
 //void GraphicsEngine::removeObject(RenderObject* object) {
 //    if (objects.contains(object)) {
 //        objects.erase(object);
 //        object->detachFromNode();
 //    }
 //}
-
 }

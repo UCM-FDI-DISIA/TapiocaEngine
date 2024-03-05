@@ -1,4 +1,9 @@
 #pragma once
+#include <string>
+#include <unordered_set>
+#include <unordered_map>
+
+// Includes de Core
 // Herencia
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
@@ -6,10 +11,6 @@
 // Includes de Core para parametros con valores por defecto
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
-
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 
 class SGTechniqueResolverListener;
 class SDL_Window;
@@ -23,6 +24,7 @@ class RenderSystem;
 class RenderWindow;
 class ManualObject;
 class Viewport;
+class OverlaySystem;
 
     namespace RTShader {
     class ShaderGenerator;
@@ -38,6 +40,7 @@ class Viewport;
 class BillboardSet;
 class Billboard;
 class ParticleSystem;
+
 class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
     friend Singleton<GraphicsEngine>;
@@ -57,7 +60,11 @@ private:
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
 
+    // UI
+    Ogre::OverlaySystem* overSys;
     std::unordered_set<Node*> selfManagedNodes;
+    void* glContext;
+
     // TODO: se puede borrar
     /*std::unordered_map<RenderObject*, Node*> objects;
     Ogre::Viewport* viewport;*/
@@ -80,6 +87,11 @@ private:
     GraphicsEngine(std::string const& windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
 
 public:
+    GraphicsEngine(GraphicsEngine&) = delete;
+    GraphicsEngine(GraphicsEngine&&) = delete;
+    GraphicsEngine& operator=(GraphicsEngine&) = delete;
+    GraphicsEngine& operator=(GraphicsEngine&&) = delete;
+
     virtual ~GraphicsEngine();
 
     /*
@@ -132,11 +144,11 @@ public:
 
     Ogre::ManualObject* createManualObject(Node* node);
 
-    
     void destroyManualObject(Ogre::ManualObject* object);
 
     SDL_Window* getSDLWindow();
     Ogre::RenderWindow* getOgreWindow();
+    void* getGLContext();
 
     //void removeObject(RenderObject* object);
 };
