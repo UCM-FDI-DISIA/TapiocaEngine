@@ -10,13 +10,14 @@ Skyplane::Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string const& ma
     : RenderObject(node, scnMgr), scnM(scnMgr), material(materialName), rkNormal(rkNormal), fConstant(fConstant), 
     scale(scale), tiling(tiling), drawFirst(drawFirst), bow(bow), xSegments(xsegments), ySegments(ysegments) 
 {
+    scnM = scnMgr;
     scnM->setSkyPlane(enable, Ogre::Plane({rkNormal.x, rkNormal.y, rkNormal.z}, fConstant), material, scale, tiling,
                       drawFirst, bow, xsegments, ysegments);
 }
 
-void Skyplane::setVisible(bool visible) {
-    scnM->setSkyPlane(visible, Ogre::Plane({rkNormal.x, rkNormal.y, rkNormal.z}, fConstant), material, scale, tiling,
-                      drawFirst, bow, xSegments, ySegments);
+void Skyplane::setEnable(bool enable) { scnM->setSkyPlaneEnabled(enable); }
+
+bool Skyplane::isEnable() { return scnM->isSkyPlaneEnabled(); }
 }
 
-}
+

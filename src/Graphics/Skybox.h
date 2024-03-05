@@ -22,9 +22,9 @@ protected:
     * e indicando si se pinta antes o después del resto de elementos en función de orderC
     */
     Skybox(Ogre::SceneManager* scnMgr, Node* node, std::string const& texture, float distC = 5000, bool orderC = true);
-
 public:
     virtual ~Skybox() {/*if (mSkybox != nullptr) delete mSkybox;*/};
-    void setVisible(bool visible);
+    void setEnable(bool enable);
+    bool isEnable();
 };
 }

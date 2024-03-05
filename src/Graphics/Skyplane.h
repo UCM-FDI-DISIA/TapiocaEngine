@@ -25,14 +25,13 @@ protected:
     int ySegments;
 
     // Construye un skyplane
-    Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string const& materialName, bool enable = true, 
-            Vector3 rkNormal = {0.0f, 0.0f, 1.0f}, float fConstant = -20.0f, float scale = 0.3f, 
-            float tiling = 1.0f, bool drawFirst = true, float bow = 1.0f, int xsegments = 100, int ysegments = 100);
-
-    
+    Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string const& materialName, bool enable = true,
+             Vector3 rkNormal = {0.0f, 0.0f, 1.0f}, float fConstant = -20.0f, float scale = 0.3f, float tiling = 1.0f,
+             bool drawFirst = true, float bow = 1.0f, int xsegments = 100, int ysegments = 100);
 
 public:
     virtual ~Skyplane() {/*if (mSkyplane != nullptr) delete mSkyplane;*/};
-    void setVisible(bool visible);
+    void setEnable(bool enable);
+    bool isEnable();
 };
 }

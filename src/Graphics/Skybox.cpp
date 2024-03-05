@@ -10,5 +10,7 @@ Skybox::Skybox(Ogre::SceneManager* scnMgr, Node* node, std::string const& textur
     scnMgr->setSkyBox(true, texture, distC, orderC);
 }
 
-void Skybox::setVisible(bool visible) { scnM->setSkyBox(false, texture, distC, orderC); }
+void Skybox::setEnable(bool enable) { scnM->setSkyBoxEnabled(false); }
+
+bool Skybox::isEnable() { return scnM->isSkyBoxEnabled(); }
 }
