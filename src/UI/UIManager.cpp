@@ -15,9 +15,8 @@ namespace Tapioca {
 UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr) { }
 
 UIManager::~UIManager() {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
+    imguiOverlay = nullptr;
+    myOgreWindow = nullptr;
 }
 
 bool UIManager::init() {
@@ -30,14 +29,15 @@ bool UIManager::init() {
     ImGui_ImplSDL2_InitForOpenGL(graphics->getSDLWindow(), (SDL_GLContext)graphics->getGLContext());
     ImGui_ImplOpenGL3_Init("#version 130");
 
-    if (auto overlay = Ogre::OverlayManager::getSingleton().getByName("ImGuiOverlay"))
+    Ogre::OverlayManager* overlayManager = Ogre::OverlayManager::getSingletonPtr();
+    if (auto overlay = overlayManager->getByName("ImGuiOverlay"))
         imguiOverlay = static_cast<Ogre::ImGuiOverlay*>(overlay);
     else {
-        imguiOverlay = new Ogre::ImGuiOverlay();
-        Ogre::OverlayManager::getSingleton().addOverlay(imguiOverlay);
+        imguiOverlay = new Ogre::ImGuiOverlay(); // <- Aqui se producen los memory leaks
+        overlayManager->addOverlay(imguiOverlay);
     }
 
-    float vpScale = Ogre::OverlayManager::getSingleton().getPixelRatio();
+    float vpScale = overlayManager->getPixelRatio();
     ImGui::GetStyle().ScaleAllSizes(vpScale);
     io.FontGlobalScale = std::round(vpScale);
     imguiOverlay->setZOrder(300);

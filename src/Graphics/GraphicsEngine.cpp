@@ -20,7 +20,7 @@
 #include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreGL3PlusRenderSystem.h>
-#include "OgreOverlaySystem.h"
+#include <OgreOverlaySystem.h>
 
 // SDL
 #include <SDL.h>
@@ -31,7 +31,7 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdl2.cpp>
 #include <imgui_impl_opengl3.h>
-#include "OgreImGuiOverlay.h"
+#include <OgreImGuiOverlay.h>
 
 // C++
 #include <iostream>
@@ -214,9 +214,19 @@ void GraphicsEngine::shutDown() {
     if (mRoot == nullptr) return;
 
     // ELIMINAR EL SCENE MANAGER
+    scnMgr->removeRenderQueueListener(overSys);
     mShaderGenerator->removeSceneManager(scnMgr);
     mRoot->destroySceneManager(scnMgr);
 
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    //ImGui::DestroyContext();
+
+    if (overSys != nullptr) {
+        delete overSys;
+        overSys = nullptr;
+    }
+    
     // ELIMINAR EL SISTEMA DE SHADERS
 
     // (Un material puede tener varias Techniques
