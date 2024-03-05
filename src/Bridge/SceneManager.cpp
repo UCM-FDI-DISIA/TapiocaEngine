@@ -18,7 +18,7 @@
 
 namespace Tapioca {
 
-SceneManager::SceneManager(HMODULE module, std::string const& scenesPath) : module(module), scenesPath(scenesPath), luaState(nullptr) { }
+SceneManager::SceneManager(std::string const& scenesPath) : scenesPath(scenesPath), luaState(nullptr) { }
 
 SceneManager::~SceneManager() { destroy(); }
 
