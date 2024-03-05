@@ -10,7 +10,7 @@ class Node;
 
 class RenderObject {
 private:
-    friend Tapioca::Node;
+    friend Node;
 
     Ogre::MovableObject* movObject;
 
@@ -18,7 +18,7 @@ private:
 
 protected:
     Ogre::SceneManager* sceneManager;
-    Tapioca::Node* node;
+    Node* node;
 
     RenderObject(Node* node, Ogre::SceneManager* sceneManager);
 

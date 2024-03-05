@@ -29,7 +29,7 @@ protected:
     std::string mName;
 
     //Crea un BillboardSet con nombre a partir de un número de elementos
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name, unsigned int poolSize);
+    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize);
 
 public:
     //Destructora de la clase
@@ -54,6 +54,6 @@ public:
     //Elimina el Billboard según su índice
     void removeBillboard(unsigned int index);
     //Añade un Billboard al BillboardSet con la posición y color proporcionados (blanco por defecto)
-    Tapioca::Billboard* createBillboard(const Vector3& position, const Vector4& colour);
+    Billboard* createBillboard(const Vector3& position, const Vector4& colour);
 };
 }

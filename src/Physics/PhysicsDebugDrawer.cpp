@@ -4,11 +4,14 @@
 #include "Node.h"
 #include "Utilities/checkML.h"
 
-Tapioca::PhysicsDebugDrawer::PhysicsDebugDrawer() : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
+namespace Tapioca {
 
-Tapioca::PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
+	
+PhysicsDebugDrawer::PhysicsDebugDrawer() : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
 
-void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) {
+PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
+
+void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) {
     auto g = GraphicsEngine::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
     line->begin("white", Ogre::RenderOperation::OT_LINE_LIST);
@@ -19,20 +22,25 @@ void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector
     lines.push_back(line);
 }
 
-void Tapioca::PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& fromColor, const btVector3& toColor) { }
+void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& fromColor,
+                                           const btVector3& toColor) { }
 
-void Tapioca::PhysicsDebugDrawer::reportErrorWarning(const char* warningString) { }
+void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) { }
 
-void Tapioca::PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color) { }
+void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB,
+                                                   btScalar distance, int lifeTime, const btVector3& color) { }
 
-void Tapioca::PhysicsDebugDrawer::draw3dText(const btVector3& location, const char* textString) { }
+void PhysicsDebugDrawer::draw3dText(const btVector3& location, const char* textString) { }
 
-void Tapioca::PhysicsDebugDrawer::drawTransform(const btTransform& transform, btScalar orthoLen) { }
+void PhysicsDebugDrawer::drawTransform(const btTransform& transform, btScalar orthoLen) { }
 
-void Tapioca::PhysicsDebugDrawer::clearLines() {
+void PhysicsDebugDrawer::clearLines() {
     auto g = GraphicsEngine::instance();
     for (std::list<Ogre::ManualObject*>::iterator it = lines.begin(); it != lines.end();) {
         g->destroyManualObject(*it);
         it = lines.erase(it);
     }
+}
+
+
 }

@@ -23,7 +23,7 @@ protected:
     Ogre::Billboard* mBillboard;
     
     //Crea un único Billboard
-    Billboard(Ogre::SceneManager* scnMgr, Node* node, std::string name, const Vector3& position,
+    Billboard(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, const Vector3& position,
               const Vector4& colour);
 
     //Crea un único Billboard si se le proporciona un puntero a Ogre::Billboard (a partir de un BillboardSet)

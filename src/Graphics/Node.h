@@ -48,9 +48,9 @@ private:
     //void removeFromTree(std::unordered_set<Node*>* nodes);
 
     // PARA OBJETOS
-    void attachObject(Tapioca::RenderObject* object);
+    void attachObject(RenderObject* object);
     void attachObject(Ogre::MovableObject* object);   // solo para ManualObject
-    void detachObject(Tapioca::RenderObject* object);
+    void detachObject(RenderObject* object);
 
     void lookAt(Vector3 target);
     void setDirection(Vector3 dir);

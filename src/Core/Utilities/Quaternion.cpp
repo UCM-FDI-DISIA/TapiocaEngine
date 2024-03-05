@@ -1,13 +1,13 @@
 #include "Quaternion.h"
 #include "math.h"
-#define PI 3.14159265358979323846
+#define PI 3.14159265358979323846f
 
 namespace Tapioca {
 
 Quaternion::Quaternion(float q0, float q1, float q2, float q3) {
     scalar = q0;
     vector = Vector3(q1, q2, q3);
-    angle = 2 * acos(q0);
+    angle = 2 * acosf(q0);
 }
 
 Quaternion::Quaternion(float alfa, Vector3 vec) {
@@ -15,24 +15,24 @@ Quaternion::Quaternion(float alfa, Vector3 vec) {
     Vector3 uvec = vec / vec.magnitude();
     float alfarad = alfa * (PI / 180);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
     angle = alfarad;
-    scalar = cos(alfarad / 2.0);
-    float alfasin = sin(alfarad / 2.0);
+    scalar = cosf(alfarad / 2);
+    float alfasin = sinf(alfarad / 2);
     vector = Vector3(alfasin * uvec.x, alfasin * uvec.y, alfasin * uvec.z);
 }
 
 Quaternion::Quaternion(Vector3 euler) { 
     //la libreria math opera en radianes
     float roll = euler.x * (PI / 180);
-    float cosroll = cos(roll / 2);
-    float sinroll = sin(roll / 2);
+    float cosroll = cosf(roll / 2);
+    float sinroll = sinf(roll / 2);
 
     float yaw = euler.y * (PI / 180);
-    float cosyaw = cos(yaw / 2);
-    float sinyaw = sin(yaw / 2);
+    float cosyaw = cosf(yaw / 2);
+    float sinyaw = sinf(yaw / 2);
 
     float pitch = euler.z * (PI / 180);
-    float cospitch = cos(pitch / 2);
-    float sinpitch = sin(pitch / 2);
+    float cospitch = cosf(pitch / 2);
+    float sinpitch = sinf(pitch / 2);
 
     scalar = cosroll * cosyaw * cospitch + sinroll * sinyaw * sinpitch;
 
@@ -42,7 +42,7 @@ Quaternion::Quaternion(Vector3 euler) {
 
     vector.z = cosroll * cosyaw * sinpitch - sinroll * sinyaw * cospitch;
 
-    angle = 2 * acos(scalar);
+    angle = 2 * acosf(scalar);
 
 
 }
@@ -52,7 +52,7 @@ Quaternion Quaternion::inverse() { return conjugate() / norm(); }
 Quaternion Quaternion::conjugate() { return Quaternion(scalar, -vector.x, -vector.y, -vector.z); }
 
 float Quaternion::norm() {
-    return sqrt(scalar * scalar + vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+    return sqrtf(scalar * scalar + vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 }
 
 Vector3 Quaternion::euler() {
@@ -108,8 +108,8 @@ Vector3 Quaternion::rotatePoint(Vector3 point) {
     //degrees = degrees * (PI / 180);
     // return( point * cos(degrees)) + (axis.cross(point)) * sin(degrees) + axis * ((axis.dot(point)*(1-cos(degrees))));
     //return point + axis.cross(axis.cross(point)) * (1 - cos(degrees)) + axis.cross(point) * sin(degrees);
-    Vector3 axis = vector / sin(angle / 2);
-    return point + axis.cross(axis.cross(point) * (1 - cos(angle))) + axis.cross(point) * sin(angle);
+    Vector3 axis = vector / sinf(angle / 2);
+    return point + axis.cross(axis.cross(point) * (1 - cosf(angle))) + axis.cross(point) * sinf(angle);
 }
 
 

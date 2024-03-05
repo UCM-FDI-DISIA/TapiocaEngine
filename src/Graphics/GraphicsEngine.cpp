@@ -274,11 +274,11 @@ LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 dir
 
 Mesh* GraphicsEngine::createMesh(Node* node, std::string const& meshName) { return new Mesh(scnMgr, node, meshName); }
 
-Billboard* GraphicsEngine::createBillboard(Node* node, std::string name, Vector3 position, Vector4 colour) {
+Billboard* GraphicsEngine::createBillboard(Node* node, std::string const& name, Vector3 position, Vector4 colour) {
     return new Billboard(scnMgr, node, name, position, colour);
 }
 
-BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string name, unsigned int poolSize) {
+BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& name, unsigned int poolSize) {
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 

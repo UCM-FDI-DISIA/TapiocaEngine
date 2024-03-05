@@ -5,35 +5,39 @@
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 
-Tapioca::BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name, unsigned int poolSize)
-    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)), mName(name) {
+namespace Tapioca {
+
+BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize)
+    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)), mName(name) 
+{
     init(mBillboardSet);
 }
 
-void Tapioca::BillboardSet::setVisible(bool v) { mBillboardSet->setVisible(v); }
+void BillboardSet::setVisible(bool v) { mBillboardSet->setVisible(v); }
 
-bool Tapioca::BillboardSet::getVisible() const { return mBillboardSet->getVisible(); }
+bool BillboardSet::getVisible() const { return mBillboardSet->getVisible(); }
 
-void Tapioca::BillboardSet::clear() { mBillboardSet->clear(); }
+void BillboardSet::clear() { mBillboardSet->clear(); }
 
-const std::string Tapioca::BillboardSet::getName() const { return mBillboardSet->getName(); }
+const std::string BillboardSet::getName() const { return mBillboardSet->getName(); }
 
-void Tapioca::BillboardSet::setPoolSize(size_t size) { mBillboardSet->setPoolSize(size); }
+void BillboardSet::setPoolSize(size_t size) { mBillboardSet->setPoolSize(size); }
 
-int Tapioca::BillboardSet::getPoolSize() const { return mBillboardSet->getPoolSize(); }
+int BillboardSet::getPoolSize() const { return mBillboardSet->getPoolSize(); }
 
-int Tapioca::BillboardSet::getNumBillboards() const { return mBillboardSet->getNumBillboards(); }
+int BillboardSet::getNumBillboards() const { return mBillboardSet->getNumBillboards(); }
 
-void Tapioca::BillboardSet::removeBillboard(unsigned int index) { mBillboardSet->removeBillboard(index); }
+void BillboardSet::removeBillboard(unsigned int index) { mBillboardSet->removeBillboard(index); }
 
-Tapioca::Billboard* Tapioca::BillboardSet::createBillboard(const Vector3& position,
-                                                           const Vector4& colour = (255, 255, 255, 255)) {
-    Billboard* mBillboard = new Tapioca::Billboard(
-        sceneManager, node,
-        mBillboardSet->createBillboard(Ogre::Vector3(position.x, position.y, position.z),
-                                       Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w)));
+Billboard* BillboardSet::createBillboard(const Vector3& position, const Vector4& colour = (255.0f, 255.0f, 255.0f, 255.0f))
+{
+    Ogre::Billboard* bb = mBillboardSet->createBillboard(Ogre::Vector3(position.x, position.y, position.z),
+                                                          Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
+    Billboard* mBillboard = new Billboard(sceneManager, node, bb);
 
     mBillboardUnorderedSet.insert(mBillboard);
 
     return mBillboard;
+}
+
 }

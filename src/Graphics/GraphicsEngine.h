@@ -122,9 +122,9 @@ public:
 
     Mesh* createMesh(Node* node, std::string const& meshName);
 
-    Billboard* createBillboard(Node* node, std::string name, Vector3 position, Vector4 colour);
+    Billboard* createBillboard(Node* node, std::string const& name, Vector3 position, Vector4 colour);
 
-    BillboardSet* createBillboardSet(Node* node, std::string name, unsigned int poolSize);
+    BillboardSet* createBillboardSet(Node* node, std::string const& name, unsigned int poolSize);
 
     ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
                                          std::string const& templateName,

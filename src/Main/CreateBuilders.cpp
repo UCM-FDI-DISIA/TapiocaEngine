@@ -21,6 +21,6 @@ void createEngineBuilders() {
 
 void createGameBuilders(HMODULE module) {
     EntryPoint eP = (EntryPoint)GetProcAddress(module, "init");
-    eP(Tapioca::FactoryManager::instance());
+    eP(FactoryManager::instance());
 }
 }

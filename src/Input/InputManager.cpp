@@ -142,7 +142,7 @@ void InputManager::mapInput() {
 //    lua_close(luaState);
 }
 
-bool InputManager::eventHappened(std::string event) {
+bool InputManager::eventHappened(std::string const& event) {
     if (inputMap.find(event) == inputMap.end()) return false;
 
     bool happened = false;

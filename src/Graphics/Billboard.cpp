@@ -5,11 +5,14 @@
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 
-Tapioca::Billboard::Billboard(Ogre::SceneManager* scnMgr, Node* node, std::string name, const Vector3& position,
-                              const Vector4& colour = Vector4(255, 255, 255, 255))
-    : RenderObject(node, scnMgr),
-      mBillboard(new Ogre::Billboard(Ogre::Vector3(position.x, position.y, position.z), new Ogre::BillboardSet(name),
-                                     Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w))) { }
+namespace Tapioca {
 
-Tapioca::Billboard::Billboard(Ogre::SceneManager* scnMgr, Node* node, Ogre::Billboard* oBillboard)
+    Billboard::Billboard(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, const Vector3& position, 
+    const Vector4& colour = Vector4(255.0f, 255.0f, 255.0f, 255.0f)) : RenderObject(node, scnMgr), 
+    mBillboard(new Ogre::Billboard(Ogre::Vector3(position.x, position.y, position.z), new Ogre::BillboardSet(name),
+    Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w))) { }
+
+Billboard::Billboard(Ogre::SceneManager* scnMgr, Node* node, Ogre::Billboard* oBillboard)
     : RenderObject(node, scnMgr), mBillboard(oBillboard) { }
+
+}

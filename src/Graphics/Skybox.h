@@ -13,16 +13,15 @@ class Node;
 class Skybox : public RenderObject {
 protected:
     std::string texture;
-    int distC;
+    float distC;
     bool orderC;
     Ogre::SceneManager* scnM;
-    // Construye un skybox con la textura texture
-    Skybox(Ogre::SceneManager* scnMgr, Node* node, std::string const& texture);
-    // Construye un skybox con la textura texture a una distancia distC de la cámara
-    Skybox(Ogre::SceneManager* scnMgr, Node* node, std::string const& texture, int distC);
-    // Construye un skybox con la textura texture a una distancia distC de la cámara indicando si 
-    // se pinta antes o después del resto de elementos en función de orderC
-    Skybox(Ogre::SceneManager* scnMgr, Node* node, std::string const& texture, int distC, bool orderC);
+
+    /*
+    * @brief Construye un skybox con la textura texture a una distancia distC de la cámara
+    * e indicando si se pinta antes o después del resto de elementos en función de orderC
+    */
+    Skybox(Ogre::SceneManager* scnMgr, Node* node, std::string const& texture, float distC = 5000, bool orderC = true);
 
 public:
     virtual ~Skybox() {/*if (mSkybox != nullptr) delete mSkybox;*/};

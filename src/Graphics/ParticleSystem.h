@@ -24,7 +24,7 @@ public:
     * @param templateName Nombre del sistema de particulas definido en el .particle 
     * @param emitting Si el sistema comienza emitiendo por defecto o no
     */
-    ParticleSystem(Ogre::SceneManager* scnMgr, Tapioca::Node* node, std::string const& name,
+    ParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
                    std::string const& templateName, bool emitting = false);
 
     virtual ~ParticleSystem() { }

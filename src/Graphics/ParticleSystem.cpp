@@ -7,8 +7,6 @@ ParticleSystem::ParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::stri
                                std::string const& templateName, bool emitting)
     : RenderObject(node, scnMgr), mParticleSystem(scnMgr->createParticleSystem(name, templateName))
 {
-    Ogre::Billboard* bb;
-    Ogre::BillboardSet* bbs;
     init(mParticleSystem);
     mParticleSystem->setEmitting(emitting);
 }

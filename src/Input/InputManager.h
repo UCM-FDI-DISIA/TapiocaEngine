@@ -85,7 +85,7 @@ public:
     * @brief Comprueba si se ha producido el evento indicado
     * @param ev Identificador del evento
     */
-    bool eventHappened(std::string ev);
+    bool eventHappened(std::string const& ev);
 
 
     /*
