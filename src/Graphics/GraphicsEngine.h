@@ -37,7 +37,7 @@ class Mesh;
 class Viewport;
 class BillboardSet;
 class ParticleSystem;
-class GraphicsEngine : public Singleton<GraphicsEngine>, Module {
+class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
     friend Singleton<GraphicsEngine>;
 

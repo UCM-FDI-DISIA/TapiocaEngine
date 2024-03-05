@@ -27,7 +27,7 @@ Tapioca::PhysicsManager* physics;
 //Tapioca::AudioManager* audio;
 //Tapioca::UIManager* ui;
 
-static void createModules(HMODULE module);
+static void createModules(Tapioca::Game*);
 
 // TODO: solo para pruebas, borrar
 #include "Node.h"
@@ -43,10 +43,10 @@ int main(int argc, char** argv) {
 
     if (loader->load()) {
         Tapioca::Game* game = new Tapioca::Game();
-        createModules();
-        Tapioca::createEngineBuilders();
-        Tapioca::createGameBuilders(loader->getModule());
+        createModules(game);
         if (game->init()) {
+            Tapioca::createEngineBuilders();
+            Tapioca::createGameBuilders(loader->getModule());
             //* Prueba
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
             auto camera = graphics->createCamera(nodeCamera, "MainCamera");
@@ -55,19 +55,20 @@ int main(int argc, char** argv) {
 
             auto node = graphics->createNode();
             auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-            //auto mesh = graphics->createMesh(node, "racoon/mapache.mesh");
 
             node->setParent(nodeCamera);
+            //*/
 
             game->run();
 
+            //*
             delete node;
 
             delete nodeCamera;
             delete camera;
             delete viewport;
             delete light;
-            //delete mesh;
+            //*/
         }
 #ifdef _DEBUG
         else
@@ -86,12 +87,19 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-static void createModules() {
+static void createModules(Tapioca::Game* game) {
     graphics = Tapioca::GraphicsEngine::create();
+    game->addModule(graphics);
     input = Tapioca::InputManager::create();
+    game->addModule(input);
     factories = Tapioca::FactoryManager::create();
+    game->addModule(factories);
     scenes = Tapioca::SceneManager::create();
+    game->addModule(scenes);
     physics = Tapioca::PhysicsManager::create();
+    game->addModule(physics);
     // audio = AudioManager::create();
+    // game->addModule(audio);
     // ui = UIManager::create();
+    // game->addModule(ui);
 }

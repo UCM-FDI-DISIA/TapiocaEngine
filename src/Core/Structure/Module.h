@@ -4,7 +4,7 @@
 namespace Tapioca {
 class Module {
 public:
-    Module();
+    Module() { }
     virtual ~Module() { }
 
     virtual bool init() { return true; }
