@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
     <ClCompile Include="..\..\src\Graphics\Skybox.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Skyplane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +45,7 @@
     <ClInclude Include="..\..\src\Graphics\RenderObject.h" />
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
     <ClInclude Include="..\..\src\Graphics\Skybox.h" />
+    <ClInclude Include="..\..\src\Graphics\Skyplane.h" />
     <ClInclude Include="..\..\src\Graphics\Viewport.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
