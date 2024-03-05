@@ -28,7 +28,7 @@ private:
     /*
     * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
     */
-    SceneManager(HMODULE module, std::string scenesPath = "archivo.lua");
+    SceneManager(HMODULE module, std::string const& scenesPath = "archivo.lua");
 
     /*
     * @brief Carga el archivo de configuracion de escenas y crea las escenas, gameobjects y componentes y los inicializa
@@ -76,7 +76,7 @@ private:
     * @param name Nombre del componente
     * @return Devuelve el componente cargado
 	*/
-    Component* loadComponent(std::string name);
+    Component* loadComponent(std::string const& name);
 
     /**
     * @brief Elimina las escenas, gameobjects y componentes

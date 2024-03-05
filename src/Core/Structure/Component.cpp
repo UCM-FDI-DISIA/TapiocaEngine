@@ -9,7 +9,7 @@ std::unordered_set<Component*> Component::listeners = std::unordered_set<Compone
 
 Component::Component() : object(nullptr), alive(true), active(true), id("") { }
 
-void Component::pushEvent(std::string id, void* info, bool global) {
+void Component::pushEvent(std::string const& id, void* info, bool global) {
 	object->pushEvent(id, info, global);
 }
 

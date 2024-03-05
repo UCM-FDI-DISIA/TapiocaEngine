@@ -22,7 +22,7 @@ private:
     bool autoAspectRatio;
 
     // aspectRatio = width/height   1.3 es el por defecto de Ogre
-    Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook = Vector3(0, 0, 0),
+    Camera(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, Vector3 targetToLook = Vector3(0, 0, 0),
            float nearDist = 1, float farDist = 1000, bool autoAspectRatio = true, float aspectRatio = 1.33333333333333f);
 
     inline Ogre::Camera* getCamera() { return mCam; };

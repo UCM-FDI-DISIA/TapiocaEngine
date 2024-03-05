@@ -12,7 +12,7 @@ Scene::~Scene() {
     for (auto obj : objects) delete obj;
 }
 
-void Scene::addObject(GameObject* object, std::string handler) {
+void Scene::addObject(GameObject* object, std::string const& handler) {
     objects.push_back(object);
     if (handler != "") {
         object->handler = handler;
@@ -39,7 +39,7 @@ void Scene::refresh() {
     for (auto& obj : objects) obj->refresh();
 }
 
-void Scene::pushEvent(std::string id, void* info) {
+void Scene::pushEvent(std::string const& id, void* info) {
     for (auto obj : objects) {
         if (obj->isAlive()) obj->handleEvent(id, info);
     }

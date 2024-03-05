@@ -26,9 +26,9 @@ protected:
     //Crea un BillboardSet a partir de un número de elementos
     BillboardSet(Ogre::SceneManager* scnMgr, Node* node, unsigned int poolSize);
     //Crea un BillboardSet con nombre a partir de un número de elementos
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name, unsigned int poolSize);
+    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize);
     //Crea un BillboardSet con nombre (crea 20 elementos por defecto)
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name);
+    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name);
 
 public:
     //Destructora de la clase
