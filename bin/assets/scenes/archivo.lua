@@ -12,12 +12,6 @@ scenes = {
                     rotationY = 0.0,
                     rotationZ = 0.0
                 },
-                ejemploComponent = {
-                    a = 1,
-                    b = 0.1,
-                    c = true,
-                    d = "ejemplo"
-                },
                 MeshRenderer = {
                     meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
                 }--]]--
