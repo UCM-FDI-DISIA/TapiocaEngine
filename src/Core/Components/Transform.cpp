@@ -1,16 +1,23 @@
 #include "Transform.h"
+#include "Structure/GameObject.h"
 #include "Utilities/INode.h"
 
 namespace Tapioca {
 
-Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)) { }   //PRUEBA
+Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }
 
-Transform::~Transform() { delete node; }
+Transform::~Transform() {
+    object->die();
+    for (auto childNode : node->getAllChildren()) {
+        Tapioca::GameObject* childGameObject = childNode->getTransform()->getObject();
+        childGameObject->die();
+    }
+    delete node;
+}
 
 bool Transform::initComponent(const CompMap& variables) {
     bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
-					   setValueFromMap(position.y, "positionY", variables) &&
-					   setValueFromMap(position.z, "positionZ", variables);
+        setValueFromMap(position.y, "positionY", variables) && setValueFromMap(position.z, "positionZ", variables);
     if (!positionSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la posicion.\n";
@@ -19,9 +26,8 @@ bool Transform::initComponent(const CompMap& variables) {
     }
     node->setPosition(position);
 
-    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) &&
-					setValueFromMap(scale.y, "scaleY", variables) &&
-					setValueFromMap(scale.z, "scaleZ", variables);
+    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
+        setValueFromMap(scale.z, "scaleZ", variables);
     if (!scaleSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
@@ -31,8 +37,7 @@ bool Transform::initComponent(const CompMap& variables) {
     node->setScale(scale);
 
     bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
-					   setValueFromMap(rotation.y, "rotationY", variables) &&
-					   setValueFromMap(rotation.z, "rotationZ", variables);
+        setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
     if (!rotationSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la rotacion.\n";
@@ -41,10 +46,6 @@ bool Transform::initComponent(const CompMap& variables) {
     }
     node->setRotation(rotation);
 }
-
-Vector3 Transform::getPosition() { return position; }
-Vector3 Transform::getRotation() { return rotation; }
-Vector3 Transform::getScale() { return scale; }
 
 void Transform::setPosition(Vector3 p) {
     position = p;
@@ -105,4 +106,33 @@ Vector3 Transform::forward() {
     return v;
 }
 
+void Transform::setParent(Transform* tranform) { node->setParent(tranform->getNode()); }
+
+Transform* Transform::getParent() const { return node->getParent()->getTransform(); }
+
+std::vector<Transform*> Transform::getChildren() const {
+    std::vector<INode*> childrenNodes = node->getChildren();
+    std::vector<Transform*> children;
+    children.reserve(childrenNodes.size());
+
+    for (INode* node : childrenNodes)
+        children.push_back(node->getTransform());
+
+    return children;
+}
+
+std::vector<Transform*> Transform::getAllChildren() const {
+    std::vector<INode*> childrenNodes = node->getAllChildren();
+    std::vector<Transform*> children;
+    children.reserve(childrenNodes.size());
+
+    for (INode* node : childrenNodes)
+        children.push_back(node->getTransform());
+
+    return children;
+}
+void Transform::fixedUpdate() {
+    //TODO quitar esto que era para probar un cosa
+    node->yaw(1);
+}
 }

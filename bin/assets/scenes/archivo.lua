@@ -1,14 +1,14 @@
 scenes = {
     Escena1={
-            {
+            Hola={
                 Transform = {
                     positionX = 0.0,
                     positionY = 0.0,
-                    positionZ = 0.0,
-                    scaleX = 1.0,
-                    scaleY = 1.0,
-                    scaleZ = 1.0,
-                    rotationX = 90.0,
+                    positionZ = 6.0,
+                    scaleX = 2.0,
+                    scaleY = 2.0,
+                    scaleZ = 2.0,
+                    rotationX = -90.0,
                     rotationY = 0.0,
                     rotationZ = 0.0
                 },
@@ -19,7 +19,7 @@ scenes = {
                     d = "ejemplo"
                 },
                 MeshRenderer = {
-                    meshName = "racoon/mapache.mesh"
+                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
                 }--]]--
             },
             Entity1={
@@ -36,47 +36,7 @@ scenes = {
                 }
                 -- + componentes 
             },
-            {
-                Transform = {
-                    positionX = 22.0,
-                    positionY = 12.0,
-                    positionZ = -56.0,
-                    scaleX = 25.0,
-                    scaleY = 25.0,
-                    scaleZ = 25.0,
-                    rotationX = 25.0,
-                    rotationY = 25.0,
-                    rotationZ = 25.0
-                }
-            },
             Entity2={
-                Transform = {
-                    positionX = 22.0,
-                    positionY = 12.0,
-                    positionZ = -56.0,
-                    scaleX = 25.0,
-                    scaleY = 25.0,
-                    scaleZ = 25.0,
-                    rotationX = 25.0,
-                    rotationY = 25.0,
-                    rotationZ = 25.0
-                }
-                    -- + componentes
-            },
-            {
-                Transform = {
-                    positionX = 22.0,
-                    positionY = 12.0,
-                    positionZ = -56.0,
-                    scaleX = 25.0,
-                    scaleY = 25.0,
-                    scaleZ = 25.0,
-                    rotationX = 25.0,
-                    rotationY = 25.0,
-                    rotationZ = 25.0
-                }
-            },
-            {
                 Transform = {
                     positionX = 22.0,
                     positionY = 12.0,

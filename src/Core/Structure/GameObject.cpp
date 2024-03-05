@@ -3,26 +3,35 @@
 #include "Component.h"
 
 namespace Tapioca {
-GameObject::GameObject() : scene(nullptr), alive(true) { }
+GameObject::GameObject() : scene(nullptr), alive(true), handler("") { }
 
 GameObject::~GameObject() {
     for (auto& i : components)
         delete i.second;
 }
 
-void GameObject::addComponent(Component* comp, std::string id) {
+void GameObject::addComponent(Component* comp, std::string const& id) {
     components.insert(std::pair<std::string, Component*>(id, comp));
     cmpOrder.push_back(comp);
-    comp->setParent(this);
+    comp->object = this;
 }
 
-Component* GameObject::getComponent(std::string id) {
+Component* GameObject::getComponent(std::string const& id) {
     auto it = components.find(id);
     if (it == components.end()) return nullptr;
     return it->second;
 }
 
-std::vector<Component*> GameObject::getComponents(std::string id) {
+std::vector<Component*> GameObject::getAllComponents() {
+    std::vector<Component*> out;
+
+    for (auto& comp : components)
+        out.push_back(comp.second);
+
+    return out;
+}
+
+std::vector<Component*> GameObject::getComponents(std::string const& id) {
     std::vector<Component*> out;
 
     for (auto& comp : components) {
@@ -32,18 +41,13 @@ std::vector<Component*> GameObject::getComponents(std::string id) {
     return out;
 }
 
-void GameObject::deleteComponent(std::string id) {
-    auto it = components.find(id);
-    if (it != components.end()) it->second->alive = false;
+void GameObject::pushEvent(std::string const& id, void* info, bool global) {
+    if (global) scene->pushEvent(id, info);
+    else handleEvent(id, info);
 }
 
 void GameObject::deleteCompVector(Component* comp) {
-    for (auto it = cmpOrder.cbegin(); it != cmpOrder.cend(); ++it) {
-        if (*it == comp) {
-            cmpOrder.erase(it);
-            break;
-        }
-    }
+    cmpOrder.erase(std::remove(cmpOrder.begin(), cmpOrder.end(), comp), cmpOrder.end());
 }
 
 void GameObject::setScene(Scene* sc) { scene = sc; }
@@ -67,9 +71,9 @@ void GameObject::update(const uint64_t deltaTime) {
     }
 }
 
-void GameObject::handleEvents() {
+void GameObject::handleEvent(std::string const& id, void* info) {
     for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->handleEvents();
+        if (comp->isActive()) comp->handleEvent(id, info);
     }
 }
 
@@ -86,23 +90,5 @@ void GameObject::fixedUpdate() {
 void GameObject::start() {
     for (auto comp : cmpOrder)
         comp->start();
-}
-
-void GameObject::onCollisionEnter(GameObject* other) {
-    for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->onCollisionEnter(other);
-    }
-}
-
-void GameObject::onCollisionExit(GameObject* other) {
-    for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->onCollisionExit(other);
-    }
-}
-
-void GameObject::onCollisionStay(GameObject* other) {
-    for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->onCollisionStay(other);
-    }
 }
 }

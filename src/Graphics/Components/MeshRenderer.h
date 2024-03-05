@@ -8,6 +8,7 @@ class MeshRenderer : public Component {
 private:
 	Mesh* mesh;
 	std::string meshName, materialName;
+
 public:
 	COMPONENT_ID("MeshRenderer")
 	MeshRenderer();
@@ -15,5 +16,7 @@ public:
 
 	bool initComponent(const CompMap& variables) override;
 	void start() override;
+
+    void update(const uint64_t deltaTime) override;
 };
 }

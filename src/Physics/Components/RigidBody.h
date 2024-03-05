@@ -6,13 +6,17 @@
 #include "../Physics_def.h"
 
 class btRigidBody;
+
 #pragma endregion
 
 namespace Tapioca {
+class RigidBodyBuilder;
 class Vector3;
 class Transform;
 class Collider;
+
 class RigidBody : public Component {
+    friend RigidBodyBuilder;
 
 private:
     btRigidBody* rigidBody;
@@ -20,7 +24,6 @@ private:
     Collider* collider;
     ColliderShape colShape;
     Vector3 colliderScale;
-
     MovementType movementType;
     bool isTrigger;
     //indica con que grupo se puede colisionar (en binario)
@@ -34,11 +37,13 @@ private:
 
 
 public:
+    COMPONENT_ID("RigidBody");
     RigidBody();
     ~RigidBody();
 
     bool initComponent(const CompMap& variables) override;
     void update(const uint64_t deltaTime) override;
+    void start() override;
 
     void setActive(bool b) override;
 
@@ -48,7 +53,7 @@ public:
     void setColliderShape(ColliderShape s);
     void setMask(int m);
     void setGroup(int g);
-   
+
     void setMass(float m);
     void setFriction(float f);
     void setBounciness(float b);
@@ -61,7 +66,7 @@ public:
     void addImpulse(Vector3 f);
 
 
-    bool getTrigger()const;
+    bool getTrigger() const;
     int getColliderShape() const;
     Vector3 getColliderScale() const;
     int getMovementType() const;
@@ -73,7 +78,6 @@ public:
     float getBounciness() const;
     Vector3 getVelocity() const;
     Vector3 getGravity() const;
-
 };
 
 

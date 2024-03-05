@@ -18,43 +18,44 @@ private:
 
     void refresh();
     void update(const uint64_t deltaTime);
-    void handleEvents();
+    void handleEvent(std::string const& id, void* info);
     void initComponents(const CompMap& variables);
     void fixedUpdate();
     void start();
 
     Scene* scene;
     bool alive;
+    std::string handler;
 
     void deleteCompVector(Component* comp);
     std::unordered_multimap<std::string, Component*> components;
-    std::vector<Component*> cmpOrder; // TODO Hace falta??????
+    std::vector<Component*> cmpOrder;   // TODO: Hace falta??????
 
 public:
     GameObject();
     ~GameObject();
 
+    inline std::string getHandler() const { return handler; }
+
     inline bool isAlive() const { return alive; }
-    inline void setAlive(bool alive) { this->alive = alive; }
+    inline void die() { alive = false; }
     inline virtual Scene* getScene() const { return scene; }
 
-    void addComponent(Component* comp, std::string id);
-    template<IsComponent TComp>
-    inline TComp* addComponent() {
+    void addComponent(Component* comp, std::string const& id);
+    template<IsComponent TComp> inline TComp* addComponent() {
         TComp* comp = new TComp();
         addComponent(comp, TComp::id);
         return comp;
     }
-    Component* getComponent(std::string id);
-    template<IsComponent TComp>
-    inline TComp* getComponent() {
+    Component* getComponent(std::string const& id);
+    template<IsComponent TComp> inline TComp* getComponent() {
         auto it = components.find(TComp::id);
-        if (it == components.end()) return nullptr; 
+        if (it == components.end()) return nullptr;
         return static_cast<TComp*>(it->second);
     }
-    std::vector<Component*> getComponents(std::string id);
-    template<IsComponent TComp>
-    inline std::vector<TComp*> getComponents() {
+    std::vector<Component*> getAllComponents();
+    std::vector<Component*> getComponents(std::string const& id);
+    template<IsComponent TComp> inline std::vector<TComp*> getComponents() {
         std::vector<TComp*> out;
 
         for (auto& comp : components) {
@@ -63,13 +64,7 @@ public:
 
         return out;
     }
-    void deleteComponent(std::string id);
-    template<IsComponent TComp>
-    void deleteComponent() { }
 
-
-    void onCollisionEnter(GameObject* other);
-    void onCollisionExit(GameObject* other);
-    void onCollisionStay(GameObject* other);
+    void pushEvent(std::string const& id, void* info, bool global = true);
 };
 }

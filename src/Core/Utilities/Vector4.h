@@ -51,10 +51,10 @@ public:
     inline Vector4& operator*=(const float& other) { return *this = *this * other; }
     inline Vector4& operator/=(const float& other) { return *this = *this / other; }
 
-    inline bool operator==(const Vector4& other) {
+    inline bool operator==(const Vector4& other) const {
         return (x == other.x && y == other.y && z == other.z && w == other.w);
     }
-    inline bool operator!=(const Vector4& other) { return !(*this == other); }
+    inline bool operator!=(const Vector4& other) const { return !(*this == other); }
 
     //Para comparar magnitudes
     //inline bool operator<(const Vector4& other) { return magnitude() < other.magnitude(); }

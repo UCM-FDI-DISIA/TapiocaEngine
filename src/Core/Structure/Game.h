@@ -19,8 +19,6 @@ private:
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;
     bool finish;
 
-    friend class Module;
-    void addModule(Module*);
 
     void start();
     void update();
@@ -45,5 +43,8 @@ public:
     void pushScene(Scene*);
     void popScene();
     void changeScene(Scene*);
+
+    
+    void addModule(Module*);
 };
 }

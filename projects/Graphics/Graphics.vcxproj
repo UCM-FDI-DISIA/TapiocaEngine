@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Billboard.cpp" />
+    <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />
     <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsEngine.cpp" />
@@ -25,11 +25,13 @@
     <ClCompile Include="..\..\src\Graphics\Plane.cpp" />
     <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Skybox.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Skyplane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.h" />
-    <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h" />
+    <ClInclude Include="..\..\src\Graphics\Billboard.h" />
+    <ClInclude Include="..\..\src\Graphics\BillboardSet.h" />
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />
@@ -42,6 +44,8 @@
     <ClInclude Include="..\..\src\Graphics\Plane.h" />
     <ClInclude Include="..\..\src\Graphics\RenderObject.h" />
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
+    <ClInclude Include="..\..\src\Graphics\Skybox.h" />
+    <ClInclude Include="..\..\src\Graphics\Skyplane.h" />
     <ClInclude Include="..\..\src\Graphics\Viewport.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

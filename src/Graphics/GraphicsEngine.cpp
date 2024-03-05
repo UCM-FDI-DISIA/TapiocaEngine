@@ -1,3 +1,5 @@
+#include "GraphicsEngine.h"
+
 // Propios
 #include "LightPoint.h"
 #include "LightDirectional.h"
@@ -6,6 +8,8 @@
 #include "Mesh.h"
 #include "Viewport.h"
 #include "GraphicsEngine.h"
+#include "BillboardSet.h"
+#include "ParticleSystem.h"
 
 // OGRE
 #include <Ogre.h>
@@ -40,12 +44,14 @@
 // Utilidades
 #include "Utilities/checkML.h"
 
-Tapioca::GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
+namespace Tapioca {
+
+GraphicsEngine::GraphicsEngine(std::string const& windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), renderSys(nullptr),
       mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr), mwindowName(windowName), windowWidth(w),
       windowHeight(h) { }
 
-Tapioca::GraphicsEngine::~GraphicsEngine() {
+GraphicsEngine::~GraphicsEngine() {
     /*for (auto& object : objects) {
         delete object.first;
     }
@@ -55,15 +61,14 @@ Tapioca::GraphicsEngine::~GraphicsEngine() {
     }
     nodes.clear();*/
 
-    for (auto& node : selfManagedNodes) {
+    for (auto& node : selfManagedNodes)
         delete node;
-    }
     selfManagedNodes.clear();
 
     shutDown();
 }
 
-bool Tapioca::GraphicsEngine::init() {
+bool GraphicsEngine::init() {
     // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
 
     // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
@@ -71,9 +76,14 @@ bool Tapioca::GraphicsEngine::init() {
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
     // ESTO ESTA FATAL, NO DEBERIA CREAR UN DIRECTORIO EN EL HOME DEL USUARIO
     fsLayer = new Ogre::FileSystemLayer("TapiocaDirectory");
-    Ogre::String pluginsPath;
+
+    Ogre::String homePath = fsLayer->getWritablePath(".");
+    if (fsLayer->fileExists(homePath)) {
+        fsLayer->removeDirectory(homePath);
+    }
 
     // importante: la ruta donde esta plugins.cfg no puede tener caracteres especiales (solo alfabeto en ingles)
+    Ogre::String pluginsPath;
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
 
     // tratamiento de errores
@@ -126,9 +136,8 @@ bool Tapioca::GraphicsEngine::init() {
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
     // Iniciar ventana SDL2
-    Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI/* | SDL_WINDOW_OPENGL*/;
-    if (ropts["Full Screen"].currentValue == "Yes")
-        flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI/* | SDL_WINDOW_OPENGL*/;
+    Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
+    if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI;
     // else flags = SDL_WINDOW_RESIZABLE;
 
     // Crear ventana SDL2
@@ -186,7 +195,7 @@ bool Tapioca::GraphicsEngine::init() {
     return true;
 }
 
-void Tapioca::GraphicsEngine::loadPlugIns() {
+void GraphicsEngine::loadPlugIns() {
 #ifdef _DEBUG
     mRoot->loadPlugin("Codec_STBI_d.dll");   // Necesario para tener codec de archivos png jpg ...
 #else
@@ -194,7 +203,7 @@ void Tapioca::GraphicsEngine::loadPlugIns() {
 #endif
 }
 
-void Tapioca::GraphicsEngine::loadResources() {
+void GraphicsEngine::loadResources() {
     // todos los assets deben estar en la carpeta assets
 #ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
@@ -206,7 +215,7 @@ void Tapioca::GraphicsEngine::loadResources() {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void Tapioca::GraphicsEngine::loadShaders() {
+void GraphicsEngine::loadShaders() {
     if (Ogre::RTShader::ShaderGenerator::initialize()) {
         mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
         mShaderGenerator->addSceneManager(scnMgr);
@@ -217,55 +226,9 @@ void Tapioca::GraphicsEngine::loadShaders() {
     }
 }
 
-void Tapioca::GraphicsEngine::render() {
-    // Dibuja la escena de Ogre
-   
+void GraphicsEngine::render() { mRoot->renderOneFrame(); }
 
-    // Configura el nuevo frame de ImGui
-   // ImGui_ImplOpenGL3_NewFrame();
-    //ImGui_ImplSDL2_NewFrame();
-    mRoot->renderOneFrame();
-    //ESTO ES LO QUE IRIA EN UIMANAGER PREVIEWPORTUPDATE
-    //pero esa funcion da error de linkado y no se porque 
-    //tbm podriamos meter en graphics engine un render y un ui render por que al llamarlo desde aqui funciona
-    Ogre::ImGuiOverlay::NewFrame();
-
-    ImGui::ShowDemoWindow();
-    //ImGuiIO& io = ImGui::GetIO();
-    //Ogre::Viewport* vp = scnMgr->getCurrentViewport();
-    ////just some defaults so it doesn't crash
-    //float width = 400.f;
-    //float height = 400.f;
-
-    //////might not exist if this got called before the rendering loop
-    //if (vp) {
-    //   width = scnMgr->getCurrentViewport()->getActualWidth();
-    //   height = scnMgr->getCurrentViewport()->getActualHeight();
-    //    }
-
-    ////// Setup display size (every frame to accommodate for window resizing)
-    //io.DisplaySize = ImVec2(width, height);
-
-    //// Start the frame
-    //ImGui::NewFrame();
-
-    
-    //bool demo = true;
-    // Dibujar la ventana de demo de ImGui
-    //ImGui::ShowDemoWindow(&demo);
-
-    // Renderiza los elementos de ImGui
-    //ImGui::Render();
-
- 
-    // Dibuja los elementos de ImGui por encima de la escena de Ogre
-   // ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-    // Intercambiar buffers al final para mostrar todo en la ventana
-    //SDL_GL_SwapWindow(sdlWindow);
-}
-
-void Tapioca::GraphicsEngine::shutDown() {
+void GraphicsEngine::shutDown() {
     if (mRoot == nullptr) return;
 
     // ELIMINAR EL SCENE MANAGER
@@ -317,19 +280,19 @@ void Tapioca::GraphicsEngine::shutDown() {
     fsLayer = nullptr;
 }
 
-Tapioca::Node* Tapioca::GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
+Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
     return new Node(scnMgr, pos, scale);
     /*nodes.insert(node);
     return node;*/
 }
 
-Tapioca::Node* Tapioca::GraphicsEngine::createSelfManagedNode(Tapioca::Vector3 pos, Tapioca::Vector3 scale) {
-    Tapioca::Node* node = new Node(scnMgr, pos, scale);
+Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
+    Node* node = new Node(scnMgr, pos, scale);
     selfManagedNodes.insert(node);
     return node;
 }
 
-Tapioca::Node* Tapioca::GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
+Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
     return new Node(scnMgr, relativePos, scale, parent);
     /*nodes.insert(node);
     return node;*/
@@ -343,46 +306,50 @@ Tapioca::Node* Tapioca::GraphicsEngine::createChildNode(Node* parent, Vector3 re
 //    }
 //}
 
-Tapioca::Camera* Tapioca::GraphicsEngine::createCamera(Node* node, std::string name) {
-    return new Camera(scnMgr, node, name);
-}
+Camera* GraphicsEngine::createCamera(Node* node, std::string const& name) { return new Camera(scnMgr, node, name); }
 
-Tapioca::Viewport* Tapioca::GraphicsEngine::createViewport(Camera* camera, int zOrder) {
+Viewport* GraphicsEngine::createViewport(Camera* camera, int zOrder) {
     return new Viewport(ogreWindow, camera, zOrder);
 }
 
-void Tapioca::GraphicsEngine::createMainCamera() {
-    Node* node = createNode(Vector3(0, 0, 20));
-    Camera* camera = new Camera(scnMgr, node, "MainCamera", Vector3(0, 0, 0), 1, 1000, false);
-    Viewport* viewPort = new Viewport(ogreWindow, camera, 0);
-    // es similar a poner el auto aspect ratio a true, solo que no da problemas si hay dos viewports
-    // con la misma camara
-    camera->setAspectRatio((float)viewPort->getWidthInPixels() / (float)viewPort->getHeightInPixels());
-}
-
-Tapioca::LightDirectional* Tapioca::GraphicsEngine::createLightDirectional(
-    Node* node, Vector3 direction, Vector4 color) {
+LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 direction, Vector4 color) {
     return new LightDirectional(scnMgr, node, color, direction);
 }
 
-Tapioca::Mesh* Tapioca::GraphicsEngine::createMesh(Node* node, std::string meshName) {
-    return new Mesh(scnMgr, node, meshName);
+Mesh* GraphicsEngine::createMesh(Node* node, std::string const& meshName) { return new Mesh(scnMgr, node, meshName); }
+
+BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& name = "", unsigned int poolSize = 0) {
+    if (name == "" && poolSize == 0) return new BillboardSet(scnMgr, node);
+    else if (name != "" && poolSize == 0)
+        return new BillboardSet(scnMgr, node, name);
+    else if (name == "" && poolSize != 0)
+        return new BillboardSet(scnMgr, node, poolSize);
+    else
+        return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
-Ogre::ManualObject* Tapioca::GraphicsEngine::createManualObject(Node* node) {
+ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
+                                                     std::string const& templateName, bool emitting) {
+    return new ParticleSystem(scnMgr, node, name, templateName, emitting);
+}
+
+Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {
     Ogre::ManualObject* manualObject = scnMgr->createManualObject();
     node->attachObject(manualObject);
     return manualObject;
 }
 
-void Tapioca::GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
 
-void* Tapioca::GraphicsEngine::getGLContext() const { return static_cast<SDL_GLContext>(gl_context); }
+SDL_Window* GraphicsEngine::getSDLWindow() { return sdlWindow; }
 
+Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
 
-//void GraphicsEngine::removeObject(Tapioca::RenderObject* object) {
+//void GraphicsEngine::removeObject(RenderObject* object) {
 //    if (objects.contains(object)) {
 //        objects.erase(object);
 //        object->detachFromNode();
 //    }
 //}
+
+}

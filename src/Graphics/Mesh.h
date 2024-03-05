@@ -18,8 +18,8 @@ private:
     Ogre::Entity* mesh;
 
 public:
-    Mesh(Ogre::SceneManager* sceneManager, Node* node, std::string meshName);
+    Mesh(Ogre::SceneManager* sceneManager, Node* node, std::string const& meshName);
 
-    void setMaterial(std::string materialName);
+    void setMaterial(std::string const& materialName);
 };
 }

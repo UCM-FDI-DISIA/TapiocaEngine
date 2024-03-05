@@ -25,8 +25,8 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
         Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
         Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
         if (col2 != nullptr && col1 != nullptr) {
-            col1->onCollisionEnter(col2->getParent());
-            col2->onCollisionEnter(col1->getParent());
+            col1->onCollisionEnter(col2->getObject());
+            col2->onCollisionEnter(col1->getObject());
         }
     }
 }
@@ -42,8 +42,8 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
         Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
         Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
         if (col2 != nullptr && col1 != nullptr) {
-            col1->onCollisionExit(col2->getParent());
-            col2->onCollisionExit(col1->getParent());
+            col1->onCollisionExit(col2->getObject());
+            col2->onCollisionExit(col1->getObject());
         }
     }
 }
@@ -60,8 +60,8 @@ bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrap
         Collider* col1 = static_cast<Collider*>(obj1);
         Collider* col2 = static_cast<Collider*>(obj2);
         if (col1 != nullptr && col2 != nullptr) {
-            col1->onCollisionStay(col2->getParent());
-            col2->onCollisionStay(col1->getParent());
+            col1->onCollisionStay(col2->getObject());
+            col2->onCollisionStay(col1->getObject());
         }
     }
 
@@ -135,9 +135,8 @@ void PhysicsManager::update(const uint64_t deltaTime) {
 void PhysicsManager::fixedUpdate(float deltaTime) { dynamicsWorld->stepSimulation(deltaTime); }
 
 
-btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale,
-    ColliderShape colliderShape, MovementType type, float mass, float friction, float bounciness, 
-    bool isTrigger, int group, int mask) 
+btRigidBody* PhysicsManager::createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale, ColliderShape colliderShape,
+    MovementType type, float mass, float friction, float bounciness, bool isTrigger, int group, int mask) 
 {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);

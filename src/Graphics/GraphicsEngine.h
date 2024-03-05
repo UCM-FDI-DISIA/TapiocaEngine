@@ -30,9 +30,9 @@ class ManualObject;
 class Viewport;
 class OverlaySystem;
 
-namespace RTShader {
+    namespace RTShader {
     class ShaderGenerator;
-}
+    }
 }
 
 namespace Tapioca {
@@ -41,9 +41,9 @@ class Camera;
 class LightDirectional;
 class Mesh;
 class Viewport;
-
-
-class GraphicsEngine : public Tapioca::Singleton<GraphicsEngine>, Tapioca::Module {
+class BillboardSet;
+class ParticleSystem;
+class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
     friend Singleton<GraphicsEngine>;
 
@@ -54,8 +54,7 @@ private:
     Ogre::Root* mRoot;                                   // root de Ogre
     Ogre::SceneManager* scnMgr;                          // gestor de escenas
     Ogre::RenderSystem* renderSys;                       // sistema de render usado
-    SGTechniqueResolverListener*
-        mMaterialMgrListener;         // listener para crear shaders para los materiales que vienen sin ellos
+    SGTechniqueResolverListener* mMaterialMgrListener;   // listener para crear shaders para los materiales que vienen sin ellos
     std::string mwindowName;          // nombre de la ventana
     Ogre::RenderWindow* ogreWindow;   // ventana de ogre (solo para render)
 
@@ -66,12 +65,12 @@ private:
     //UI 
     Ogre::OverlaySystem* overSys;
     std::unordered_set<Node*> selfManagedNodes;
-    // TODO: ADMINISTRAR OBJETOS, SE PUEDE BORRAR
+    // TODO: se puede borrar
     /*std::unordered_map<RenderObject*, Node*> objects;
     Ogre::Viewport* viewport;*/
 
     // carga plugIns especificados desde codigo
-    // TODO: SE CARGA DE ARCHIVO, SE PUEDE BORRAR
+    // TODO: se carga de archivo, se puede borrar
     void loadPlugIns();
 
     /*
@@ -85,7 +84,7 @@ private:
     */
     void loadShaders();
 
-    GraphicsEngine(std::string windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
+    GraphicsEngine(std::string const& windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
 
 public:
     GraphicsEngine(GraphicsEngine&) = delete;
@@ -112,44 +111,47 @@ public:
 
 
     // CREAR OBJETOS
-    Tapioca::Node* createNode(Tapioca::Vector3 pos = Tapioca::Vector3(0.0f, 0.0f, 0.0f),
-        Tapioca::Vector3 scale = Tapioca::Vector3(1.0f, 1.0f, 1.0f));
+    Node* createNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     // solo para manual object
-    Tapioca::Node* createSelfManagedNode(Tapioca::Vector3 pos = Tapioca::Vector3(0.0f, 0.0f, 0.0f),
-        Tapioca::Vector3 scale = Tapioca::Vector3(1.0f, 1.0f, 1.0f));
+    Node* createSelfManagedNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
-    Tapioca::Node* createChildNode(Tapioca::Node* parent,
-        Tapioca::Vector3 relativePos = Tapioca::Vector3(0.0f, 0.0f, 0.0f),
-        Tapioca::Vector3 scale = Tapioca::Vector3(1.0f, 1.0f, 1.0f));
+    Node* createChildNode(Node* parent, Vector3 relativePos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     // eliminar un nodo por completo
     // esto quiere decir: delete del nodo y sus hijos, quitar objetos y nodos del propio nodo y de sus hijos del grafo de la escena
     //void removeNode(Node* node);
 
+    
     /*
     * @brief devuelve a una camara que se podra manipular
     */
-    Tapioca::Camera* createCamera(Tapioca::Node* node, std::string name);
+    Camera* createCamera(Node* node, std::string const& name);
 
-    Tapioca::Viewport* createViewport(Tapioca::Camera* camera, int zOrder);
+    Viewport* createViewport(Camera* camera, int zOrder);
 
-    // TODO: SOLO PARA PRUEBAS, SE PUEDE BORRAR
-    void createMainCamera();
+    LightDirectional* createLightDirectional(Node* node, Vector3 direction, Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    Tapioca::LightDirectional* createLightDirectional(Tapioca::Node* node, Tapioca::Vector3 direction,
-        Tapioca::Vector4 color = Tapioca::Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+    Mesh* createMesh(Node* node, std::string const& meshName);
 
-    Tapioca::Mesh* createMesh(Tapioca::Node* node, std::string meshName);
+    BillboardSet* createBillboardSet(Node* node, std::string const& name, unsigned int poolSize);
 
-    Ogre::ManualObject* createManualObject(Tapioca::Node* node);
+    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
+                                         std::string const& templateName,
+                                         bool emitting);
 
+    Ogre::ManualObject* createManualObject(Node* node);
+
+    
     void destroyManualObject(Ogre::ManualObject* object);
     
     inline SDL_Window* getSDLWindow() const { return sdlWindow; };
     inline Ogre::RenderWindow* getOgreWindow() { return ogreWindow; };
     void* getGLContext() const;
 
-    //void removeObject(Tapioca::RenderObject* object);
+    SDL_Window* getSDLWindow();
+    Ogre::RenderWindow* getOgreWindow();
+
+    //void removeObject(RenderObject* object);
 };
 }

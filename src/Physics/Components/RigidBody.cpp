@@ -9,8 +9,9 @@
 
 
 namespace Tapioca {
-RigidBody::RigidBody() : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), 
-    mask(-1), group(1), friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0) { }
+RigidBody::RigidBody()
+    : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1),
+      friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -20,14 +21,69 @@ RigidBody::~RigidBody() {
 }
 
 bool RigidBody::initComponent(const CompMap& variables) {
-    //transform = parent->getComponent<Transform>();// DESCOMENTAR
 
-    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
-        transform->getScale(), colShape, movementType, mass, friction, bounciness, isTrigger, group, mask);
+    int colShapeAux;
 
-    //collider = parent->getComponent<Collider>();//DESCOMENTAR
+    bool colShapeSet = setValueFromMap(colShapeAux, "colShape", variables);
+    if (!colShapeSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar colShape.\n";
+#endif
+        return false;
+    }
+    colShape = (ColliderShape)colShapeAux;
 
-    rigidBody->setUserPointer(collider);
+    bool colliderScaleSet = setValueFromMap(colliderScale.x, "colliderScaleX", variables) &&
+        setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
+        setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
+    if (!colliderScaleSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: Transform: no se pudo inicializar colliderScale.\n";
+#endif
+        return false;
+    }
+
+    bool isTriggerSet = setValueFromMap(isTrigger, "isTrigger", variables);
+    if (!isTriggerSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar isTrigger.\n";
+#endif
+        return false;
+    }
+
+    int movementTypeAux;
+    bool movementTypeSet = setValueFromMap(movementTypeAux, "movementType", variables);
+    if (!movementTypeSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar movementType.\n";
+#endif
+        return false;
+    }
+
+    movementType = (MovementType)movementTypeAux;
+
+    bool frictionSet = setValueFromMap(friction, "friction", variables);
+    if (!frictionSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar friction.\n";
+#endif
+        return false;
+    }
+
+    bool massSet = setValueFromMap(mass, "mass", variables);
+    if (!massSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar mass.\n";
+#endif
+        return false;
+    }
+    bool bouncinessSet = setValueFromMap(bounciness, "bounciness", variables);
+    if (!bouncinessSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar bounciness.\n";
+#endif
+        return false;
+    }
 
     return true;
 }
@@ -49,6 +105,19 @@ void RigidBody::update(const uint64_t deltaTime) {
     }
 }
 
+void RigidBody::start() {
+
+    transform = object->getComponent<Transform>();
+
+    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
+                                                            transform->getScale(), colShape, movementType, mass,
+                                                            friction, bounciness, isTrigger, group, mask);
+
+    collider = object->getComponent<Collider>();
+
+    rigidBody->setUserPointer(collider);
+}
+
 void RigidBody::setActive(bool b) {
     Component::setActive(b);
     rigidBody->activate(b);
@@ -63,8 +132,10 @@ void RigidBody::setMomeventType(MovementType t) {
 
 void RigidBody::setTrigger(bool t) {
     isTrigger = t;
-    if (isTrigger) rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-    else rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    if (isTrigger)
+        rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    else
+        rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 
 void RigidBody::setColliderShape(ColliderShape s) { colShape = s; }

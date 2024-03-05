@@ -29,8 +29,7 @@ Game::~Game() {
         scenes.pop();
     }
 
-    for (Module* mod : modules)
-        delete mod;
+    for (Module* mod : modules) delete mod;
 }
 
 bool Game::init() {
@@ -83,42 +82,35 @@ void Game::run() {
 }
 
 void Game::start() {
-    for (auto mod : modules)
-        mod->start();
+    for (auto mod : modules) mod->start();
 }
 
 void Game::update() {
-    for (auto mod : modules)
-        mod->update(deltaTime);
+    for (auto mod : modules) mod->update(deltaTime);
 
     if (!scenes.empty()) scenes.top()->update(deltaTime);
 }
 
 void Game::handleEvents() {
-    for (auto mod : modules)
-        mod->handleEvents();
+    for (auto mod : modules) mod->handleEvents();
 
-    if (!scenes.empty()) scenes.top()->handleEvents();
+    //if (!scenes.empty()) scenes.top()->handleEvents();
 }
 
 void Game::fixedUpdate() {
-    for (auto mod : modules)
-        mod->fixedUpdate();
+    for (auto mod : modules) mod->fixedUpdate();
 
     if (!scenes.empty()) scenes.top()->fixedUpdate();
 }
 
 void Game::render() {
-    for (auto mod : modules)
-        mod->render();
+    for (auto mod : modules) mod->render();
 }
 
 void Game::refresh() {
-    for (auto mod : modules)
-        mod->refresh();
+    for (auto mod : modules) mod->refresh();
 
-    for (Scene* sc : toDelete)
-        delete sc;
+    for (Scene* sc : toDelete) delete sc;
     toDelete.clear();
 
     if (!scenes.empty()) scenes.top()->refresh();
@@ -128,15 +120,14 @@ void Game::addModule(Module* m) { modules.push_back(m); }
 
 void Game::pushScene(Scene* sc) {
     scenes.push(sc);
-    // TODO: start que se ejecute para componentes que se crean en tiempo de ejecucion
+    // TODO: mejorar start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->start();
 }
 
 void Game::popScene() {
     toDelete.push_back(scenes.top());
     if (!scenes.empty()) scenes.pop();
-    else
-        finish = true;
+    else finish = true;
 }
 
 void Game::changeScene(Scene* sc) {

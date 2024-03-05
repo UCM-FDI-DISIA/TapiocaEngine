@@ -6,17 +6,16 @@ namespace Ogre {
 class SceneManager;
 class Light;
 }
-namespace Tapioca {
-class Node;
-}
 
 namespace Tapioca {
+class Node;
+
 class Light : public RenderObject {
 protected:
     Ogre::Light* mLight;
-    Tapioca::Vector4 mColor;
+    Vector4 mColor;
 
-    Light(Ogre::SceneManager* scnMgr, Tapioca::Node* node, Vector4 color);
+    Light(Ogre::SceneManager* scnMgr, Node* node, Vector4 color);
 
 public:
     virtual ~Light() { }

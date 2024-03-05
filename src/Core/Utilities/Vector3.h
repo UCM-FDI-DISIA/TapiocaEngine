@@ -40,6 +40,15 @@ public:
     Vector3 rotateY(float degrees);
     //rotar sobre el eje z
     Vector3 rotateZ(float degrees);
+    /*
+    * @brief producto en cruz , devuelve el vector perpendicular.Sistema diestro
+    */
+    Vector3 cross(Vector3 other);
+    /*
+    * @brief producto escalar 
+    */
+   float dot(Vector3 other);
+
 
     inline Vector3 operator+(const Vector3& other) const { return Vector3(x + other.x, y + other.y, z + other.z); }
     inline Vector3 operator-() const { return Vector3(-x, -y, -z); }
@@ -52,8 +61,8 @@ public:
     inline Vector3& operator*=(const float& other) { return *this = *this * other; }
     inline Vector3& operator/=(const float& other) { return *this = *this / other; }
 
-    inline bool operator==(const Vector3& other) { return (x == other.x && y == other.y && z == other.z); }
-    inline bool operator!=(const Vector3& other) { return !(*this == other); }
+    inline bool operator==(const Vector3& other) const { return (x == other.x && y == other.y && z == other.z); }
+    inline bool operator!=(const Vector3& other) const { return !(*this == other); }
 
     //Para comparar magnitudes
     //inline bool operator<(const Vector3& other) { return magnitude() < other.magnitude(); }

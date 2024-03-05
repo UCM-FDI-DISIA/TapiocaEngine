@@ -27,9 +27,9 @@ Tapioca::PhysicsManager* physics;
 Tapioca::UIManager* ui;
 //Tapioca::AudioManager* audio;
 
-static void createModules(HMODULE module);
+static void createModules(Tapioca::Game*);
 
-// TODO: SOLO PARA PRUEBAS, BORRAR
+// TODO: solo para pruebas, borrar
 #include "Node.h"
 #include "LightDirectional.h"
 #include "Mesh.h"
@@ -43,34 +43,37 @@ int main(int argc, char** argv) {
 
     if (loader->load()) {
         Tapioca::Game* game = new Tapioca::Game();
-        createModules(loader->getModule());
-        Tapioca::createEngineBuilders();
-        Tapioca::createGameBuilders(loader->getModule());
+        createModules(game);
         if (game->init()) {
+            Tapioca::createEngineBuilders();
+            Tapioca::createGameBuilders(loader->getModule());
             //* Prueba
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
             auto camera = graphics->createCamera(nodeCamera, "MainCamera");
             auto viewport = graphics->createViewport(camera, 0);
-            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941));
+            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
 
             auto node = graphics->createNode();
             auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-            auto mesh = graphics->createMesh(node, "racoon/mapache.mesh");
+
+            node->setParent(nodeCamera);
+            //*/
 
             game->run();
+
+            //*
+            delete node;
 
             delete nodeCamera;
             delete camera;
             delete viewport;
             delete light;
-            delete node;
-            delete mesh;
+            //*/
         }
 #ifdef _DEBUG
         else
             std::cerr << "Error al inicializar un modulo\n";
 #endif
-
         delete game;
     }
 #ifdef _DEBUG
@@ -84,13 +87,19 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-static void createModules(HMODULE module) {
+static void createModules(Tapioca::Game* game) {
     graphics = Tapioca::GraphicsEngine::create();
+    game->addModule(graphics);
     ui = Tapioca::UIManager::create();
-    factories = Tapioca::FactoryManager::create();
-    scenes = Tapioca::SceneManager::create(module);
-    physics = Tapioca::PhysicsManager::create();
-   
+    game->addModule(ui);
     input = Tapioca::InputManager::create();
+    game->addModule(input);
+    factories = Tapioca::FactoryManager::create();
+    game->addModule(factories);
+    scenes = Tapioca::SceneManager::create();
+    game->addModule(scenes);
+    physics = Tapioca::PhysicsManager::create();
+    game->addModule(physics);
     // audio = AudioManager::create();
+    // game->addModule(audio);
 }

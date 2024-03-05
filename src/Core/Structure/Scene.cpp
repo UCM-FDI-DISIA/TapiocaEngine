@@ -2,68 +2,71 @@
 #include "GameObject.h"
 #include "Game.h"
 
+// TODO: solo para prueba
+#include "Components/Transform.h"
+
 namespace Tapioca {
 Scene::Scene() { }
 
 Scene::~Scene() {
-    for (auto obj : objects)
-        delete obj;
+    for (auto obj : objects) delete obj;
 }
 
-void Scene::addObject(GameObject* object, std::string handler) {
+void Scene::addObject(GameObject* object, std::string const& handler) {
     objects.push_back(object);
-    if (handler != "") handlers[handler] = object;
+    if (handler != "") {
+        object->handler = handler;
+        handlers[handler] = object;
+    }
     object->setScene(this);
 }
 
 void Scene::refresh() {
-    // Sacar el objeto de los handlers
-    for (auto it = handlers.begin(); it != handlers.end();) {
-        if (!it->second->isAlive()) it = handlers.erase(it);
-        else
-            ++it;
-    }
-
     objects.erase(std::remove_if(objects.begin(), objects.end(),
-                      [](GameObject* obj) {
-                          if (obj->isAlive()) return false;
-                          else {
-                              delete obj;
-                              // hacer que el hueco de memoria
-                              // apunte a nullptr siempre va despues de eliminar el objeto
-                              obj = nullptr;
-                              return true;
-                          }
-                      }),
+        [this](GameObject* obj) {
+            if (obj->isAlive()) return false;
+            else {
+                // eliminar el objeto del handler
+                if (handlers.find(obj->handler) != handlers.end()) handlers.erase(obj->handler);
+
+                delete obj;
+                obj = nullptr;
+                return true;
+            }
+        }),
         objects.end());
 
-    for (auto& obj : objects)
-        obj->refresh();
+    for (auto& obj : objects) obj->refresh();
 }
+
+void Scene::pushEvent(std::string const& id, void* info) {
+    for (auto obj : objects) {
+        if (obj->isAlive()) obj->handleEvent(id, info);
+    }
+}
+
+std::vector<GameObject*> Scene::getObjects() const { return objects; }
 
 GameObject* Scene::getHandler(const std::string& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;
-    else
-        return nullptr;
+    else return nullptr;
 }
 
 void Scene::update(const uint64_t deltaTime) {
-    for (auto obj : objects)
-        obj->update(deltaTime);
-}
-
-void Scene::handleEvents() {
-    for (auto obj : objects)
-        obj->handleEvents();
+    for (auto obj : objects) {
+        if (obj->isAlive()) obj->update(deltaTime);
+    }
 }
 
 void Scene::fixedUpdate() {
-    for (auto obj : objects)
-        obj->fixedUpdate();
+    for (auto obj : objects) {
+        if (obj->isAlive()) obj->fixedUpdate();
+    }
 }
 void Scene::start() {
-    for (auto obj : objects)
-        obj->start();
+    for (auto obj : objects) obj->start();
 }
+
+
 }
