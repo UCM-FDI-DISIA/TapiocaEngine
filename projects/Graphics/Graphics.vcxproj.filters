@@ -44,6 +44,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Graphics\Billboard.cpp">
+	<Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Skybox.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -91,6 +94,11 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Billboard.h">
+	<Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Skybox.h">
+	<Filter>Archivos de encabezado</Filter>
+    </ClInclude>
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
