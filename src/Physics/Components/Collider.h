@@ -2,9 +2,12 @@
 #include "Structure/Component.h"
 
 namespace Tapioca {
+class ColliderBuilder;
 class GameObject;
 
 class Collider : public Component {
+    friend ColliderBuilder;
+
 public:
     COMPONENT_ID("Collider");
     Collider();
