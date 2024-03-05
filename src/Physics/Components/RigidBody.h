@@ -10,13 +10,13 @@ class btRigidBody;
 #pragma endregion
 
 namespace Tapioca {
-class RigidBodyBuilder;
+//class RigidBodyBuilder;
 class Vector3;
 class Transform;
 class Collider;
 
 class RigidBody : public Component {
-    friend RigidBodyBuilder;
+    //friend RigidBodyBuilder;
 
 private:
     btRigidBody* rigidBody;

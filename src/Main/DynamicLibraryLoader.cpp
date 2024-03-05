@@ -26,6 +26,10 @@ bool DynamicLibraryLoader::load() {
 #endif
         return false;
     }
+
+#ifdef _DEBUG
+    std::cout << "Se ha cargado \"" << gameName << "\" correctamente\n";
+#endif
     return true;
 }
 

@@ -17,10 +17,15 @@ FactoryManager::~FactoryManager() {
 }
 
 Component* FactoryManager::createComponent(std::string const& name) {
-    if (builders.find(name) != builders.end()) return builders[name]->createComponent();
+    if (builders.find(name) != builders.end())
+        return builders[name]->createComponent();
     return nullptr;
 }
 
-void FactoryManager::addFactory(std::string const& name, ComponentBuilder* builder) { builders[name] = builder; }
-
+void FactoryManager::addFactory(std::string const& name, ComponentBuilder* builder) { 
+#ifdef _DEBUG
+    std::cout << "Anadiendo la factoria " << name << "\n";
+#endif
+    builders[name] = builder;
+}
 }

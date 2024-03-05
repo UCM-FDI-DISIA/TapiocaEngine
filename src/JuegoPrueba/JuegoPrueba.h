@@ -1,21 +1,18 @@
 #pragma once
-#include "Utilities/defs.h"
-#include "defs.h"
-
-#include <Windows.h>
-#include <vector>
-
+namespace Tapioca {
+class FactoryManager;
+}
 
 #define JUEGO_API __declspec(dllexport)
 
 extern "C" {
-/*
-* @brief Saluda a una persona
-* @param nombre Nombre de la persona a saludar
+/**
+* @brief Inicializa el juego
 */
-JUEGO_API void saluda(const char* nombre);
+JUEGO_API void init(Tapioca::FactoryManager* manager);
 
-//
-JUEGO_API FactoryInfo** getComponentFactories(int& count);
+/**
+* @brief Anade las factorias de componentes del juego al motor
+*/
+JUEGO_API void addComponentFactories(Tapioca::FactoryManager* manager);
 }
-    

@@ -13,11 +13,11 @@ private:
     friend Tapioca::Node;
 
     Ogre::MovableObject* movObject;
-    Ogre::SceneManager* sceneManager;
 
     inline Ogre::MovableObject* getMovObject() const { return movObject; }
 
 protected:
+    Ogre::SceneManager* sceneManager;
     Tapioca::Node* node;
 
     RenderObject(Node* node, Ogre::SceneManager* sceneManager);
