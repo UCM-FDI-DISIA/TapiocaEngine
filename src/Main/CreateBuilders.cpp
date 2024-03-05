@@ -1,14 +1,18 @@
 #include "CreateBuilders.h"
 #include "Structure/FactoryManager.h"
 #include "TransformBuilder.h"
+#include "ColliderBuilder.h"
+#include "RigidBodyBuilder.h"
 #include "Structure/BasicBuilder.h"
 #include "Components/MeshRenderer.h"
 
 namespace Tapioca {
 void createEngineBuilders() {
-	FactoryManager* manager = FactoryManager::instance();
-	manager->addFactory("Transform", new TransformBuilder());
-	manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
+    FactoryManager* manager = FactoryManager::instance();
+    manager->addFactory("Transform", new TransformBuilder());
+    manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
+    manager->addFactory("Collider", new ColliderBuilder());
+    manager->addFactory("RigidBody", new RigidBodyBuilder());
 }
 
 void createGameBuilders(HMODULE module) {
