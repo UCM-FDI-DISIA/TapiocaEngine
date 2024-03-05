@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
             auto camera = graphics->createCamera(nodeCamera, "MainCamera");
             auto viewport = graphics->createViewport(camera, 0);
-            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941));
+            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
 
             auto node = graphics->createNode();
             auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));

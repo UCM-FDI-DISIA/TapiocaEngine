@@ -1,10 +1,12 @@
 #include "InputManager.h"
 
 #include <SDL.h>
+#include <Ogre.h>
 //#include <imgui_impl_sdl2.h>      // Para gestionar los eventos de la interfaz
 #include <lua.hpp>
 #include <sstream>
 #include "Structure/Game.h"
+#include "GraphicsEngine.h"
 
 #include "Utilities/checkML.h"
 #ifdef _DEBUG
@@ -31,12 +33,18 @@ InputManager::InputManager() : inputText(""), luaState(nullptr) {
         {"ie_ctrlButtonUp", {}}, 
         {"ie_ctrlButtonDown", {}}
     };
+    mapInput();
+}
 
+bool InputManager::init() { 
     resetText();
     initControllers();
     clearInput();
 
-    mapInput();
+    sdlWindow = GraphicsEngine::instance()->getSDLWindow();
+    ogreWindow = GraphicsEngine::instance()->getOgreWindow();
+
+    return true;
 }
 
 InputManager::~InputManager() {
@@ -222,11 +230,16 @@ void InputManager::updateState(const SDL_Event& event) {
     // Eventos de input
     switch (event.type) {
     // Ventana
-    case SDL_WINDOWEVENT_CLOSE:
-    case SDL_QUIT:
+    case SDL_WINDOWEVENT_CLOSE: case SDL_QUIT:
         Game::get()->exit();
         break;
-
+    case SDL_WINDOWEVENT:
+        if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+            int x, y;
+            SDL_GetWindowSize(sdlWindow, &x, &y);
+            ogreWindow->resize(x, y);
+        }
+        break;
     // Teclado
     case SDL_KEYDOWN:
         inputEventTriggered["ie_keyDown"].push_back(event);

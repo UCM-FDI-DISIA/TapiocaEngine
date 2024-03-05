@@ -109,6 +109,7 @@ public:
     // esto quiere decir: delete del nodo y sus hijos, quitar objetos y nodos del propio nodo y de sus hijos del grafo de la escena
     //void removeNode(Node* node);
 
+    
     /*
     * @brief devuelve a una camara que se podra manipular
     */
@@ -123,10 +124,15 @@ public:
     BillboardSet* createBillboardSet(Node* node, std::string name, unsigned int poolSize);
 
     ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name, std::string templateName,
-        bool emitting);
-        Ogre::ManualObject* createManualObject(Node* node);
+                                         bool emitting);
 
+    Ogre::ManualObject* createManualObject(Node* node);
+
+    
     void destroyManualObject(Ogre::ManualObject* object);
+
+    SDL_Window* getSDLWindow();
+    Ogre::RenderWindow* getOgreWindow();
 
     //void removeObject(RenderObject* object);
 };

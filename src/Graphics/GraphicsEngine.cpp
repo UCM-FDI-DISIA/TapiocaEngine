@@ -122,7 +122,7 @@ bool GraphicsEngine::init() {
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
     // Iniciar ventana SDL2
-    Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
+    Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
     if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI;
     // else flags = SDL_WINDOW_RESIZABLE;
 
@@ -295,6 +295,10 @@ Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {
 }
 
 void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+
+SDL_Window* GraphicsEngine::getSDLWindow() { return sdlWindow; }
+
+Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
 
 //void GraphicsEngine::removeObject(RenderObject* object) {
 //    if (objects.contains(object)) {
