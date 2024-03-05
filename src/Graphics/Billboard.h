@@ -5,15 +5,14 @@
 namespace Ogre {
 class SceneManager;
 class Billboard;
-class BillboardSet;
 }
 
 namespace Tapioca {
 class Node;
 class GraphicsEngine;
-class BillboardSet;
 class Vector3;
 class Vector4;
+class BillboardSet;
 
 class Billboard : public RenderObject {
 private:
