@@ -6,13 +6,17 @@
 #include "../Physics_def.h"
 
 class btRigidBody;
+
 #pragma endregion
 
 namespace Tapioca {
+class RigidBodyBuilder;
 class Vector3;
 class Transform;
 class Collider;
+
 class RigidBody : public Component {
+    friend RigidBodyBuilder;
 
 private:
     btRigidBody* rigidBody;
@@ -49,7 +53,7 @@ public:
     void setColliderShape(ColliderShape s);
     void setMask(int m);
     void setGroup(int g);
-   
+
     void setMass(float m);
     void setFriction(float f);
     void setBounciness(float b);
@@ -62,7 +66,7 @@ public:
     void addImpulse(Vector3 f);
 
 
-    bool getTrigger()const;
+    bool getTrigger() const;
     int getColliderShape() const;
     Vector3 getColliderScale() const;
     int getMovementType() const;
@@ -74,7 +78,6 @@ public:
     float getBounciness() const;
     Vector3 getVelocity() const;
     Vector3 getGravity() const;
-
 };
 
 
