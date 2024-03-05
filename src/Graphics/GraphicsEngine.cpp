@@ -18,17 +18,11 @@
 #include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreGL3PlusRenderSystem.h>
-#include "OgreOverlay.h"
 #include "OgreOverlaySystem.h"
-
 
 // SDL
 #include <SDL.h>
 #include <SDL_syswm.h>
-#include <SDL_video.h>
-// OPENGL
-#include <SDL_opengl.h>
-#include <GL/gl.h>
 #undef main
 
 // ImGui
@@ -103,6 +97,7 @@ bool GraphicsEngine::init() {
     // getWritablePath parte del homePath (asignado arriba)
     mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
     overSys = new Ogre::OverlaySystem();
+
     // Otra forma: cargar los plugins desde codigo
     // loadPlugIns();   // cargar codec, que sirve para poder usar png, jpg... (para las texturas)
     // mRoot->loadPlugin("RenderSystem_GL3PLUS");   // cargar sistema de render por nombre
@@ -149,22 +144,6 @@ bool GraphicsEngine::init() {
 #endif
         return false;
     }
-
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-    // Turn on double buffering with a 24bit Z buffer
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-
-    /*SDL_GLContext gl_context = SDL_GL_CreateContext(sdlWindow);
-    if (!gl_context) {
-#ifdef _DEBUG
-        std::cerr << "Error al crear el contexto OpenGL: " << SDL_GetError() << '\n';
-#endif
-        return false;
-    }*/
     
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
@@ -188,10 +167,6 @@ bool GraphicsEngine::init() {
     renderSys->_initRenderTargets();
     loadResources();
 
-    if (SDL_GL_MakeCurrent(sdlWindow, gl_context) != 0) {
-        std::cerr << "Error al hacer actual el contexto OpenGL: " << SDL_GetError() << '\n';
-    }
-    
     return true;
 }
 
@@ -282,8 +257,6 @@ void GraphicsEngine::shutDown() {
 
 Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
     return new Node(scnMgr, pos, scale);
-    /*nodes.insert(node);
-    return node;*/
 }
 
 Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
@@ -294,8 +267,6 @@ Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
 
 Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
     return new Node(scnMgr, relativePos, scale, parent);
-    /*nodes.insert(node);
-    return node;*/
 }
 
 //void GraphicsEngine::removeNode(Node* node) {
@@ -351,5 +322,4 @@ Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
 //        object->detachFromNode();
 //    }
 //}
-
 }

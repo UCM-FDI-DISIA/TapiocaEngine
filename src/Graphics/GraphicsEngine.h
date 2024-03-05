@@ -12,10 +12,6 @@
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-
 class SGTechniqueResolverListener;
 class SDL_Window;
 
@@ -43,7 +39,8 @@ class Mesh;
 class Viewport;
 class BillboardSet;
 class ParticleSystem;
-class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
+
+class GraphicsEngine : public Tapioca::Singleton<GraphicsEngine>, public Tapioca::Module {
 private:
     friend Singleton<GraphicsEngine>;
 
@@ -61,8 +58,8 @@ private:
     // Ventana
     uint32_t windowWidth, windowHeight;
     SDL_Window* sdlWindow;
-    void* gl_context;
-    //UI 
+
+    // UI
     Ogre::OverlaySystem* overSys;
     std::unordered_set<Node*> selfManagedNodes;
     // TODO: se puede borrar
@@ -142,12 +139,7 @@ public:
 
     Ogre::ManualObject* createManualObject(Node* node);
 
-    
     void destroyManualObject(Ogre::ManualObject* object);
-    
-    inline SDL_Window* getSDLWindow() const { return sdlWindow; };
-    inline Ogre::RenderWindow* getOgreWindow() { return ogreWindow; };
-    void* getGLContext() const;
 
     SDL_Window* getSDLWindow();
     Ogre::RenderWindow* getOgreWindow();
