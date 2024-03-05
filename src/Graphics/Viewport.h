@@ -1,4 +1,5 @@
 #pragma once
+#include "Utilities/defs.h"
 
 namespace Ogre {
 class RenderWindow;
@@ -10,7 +11,7 @@ namespace Tapioca {
     class Vector4;
     class Vector3;
 
-class Viewport {
+class TAPIOCA_API Viewport {
 private:
     Ogre::Viewport* viewport;
 

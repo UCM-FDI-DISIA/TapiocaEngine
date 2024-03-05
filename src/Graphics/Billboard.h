@@ -1,6 +1,5 @@
 #pragma once
 #include "RenderObject.h"
-#include <string>
 
 namespace Ogre {
 class SceneManager;
@@ -14,7 +13,7 @@ class Vector3;
 class Vector4;
 class BillboardSet;
 
-class Billboard : public RenderObject {
+class TAPIOCA_API Billboard : public RenderObject {
 private:
     friend GraphicsEngine;
     friend BillboardSet;

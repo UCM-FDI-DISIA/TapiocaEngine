@@ -5,7 +5,7 @@ namespace Tapioca {
 class ColliderBuilder;
 class GameObject;
 
-class Collider : public Component {
+class TAPIOCA_API Collider : public Component {
     friend ColliderBuilder;
 
 public:

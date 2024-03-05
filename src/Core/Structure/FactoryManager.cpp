@@ -3,7 +3,8 @@
 #include "Components/RigidBody.h"
 #include "Components/Collider.h"
 
-#include "Utilities/checkML.h"
+#include "Component.h"
+#include "ComponentBuilder.h"
 
 namespace Tapioca {
 

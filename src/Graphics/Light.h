@@ -10,7 +10,7 @@ class Light;
 namespace Tapioca {
 class Node;
 
-class Light : public RenderObject {
+class TAPIOCA_API Light : public RenderObject {
 protected:
     Ogre::Light* mLight;
     Vector4 mColor;

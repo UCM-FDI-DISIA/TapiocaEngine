@@ -1,5 +1,6 @@
 #pragma once
 #include "Light.h"
+#include "Utilities/defs.h"
 
 namespace Ogre {
 class SceneManager;
@@ -10,7 +11,7 @@ class Node;
 class GraphicsEngine;
 class Vector4;
 
-class LightPoint : public Light {
+class TAPIOCA_API LightPoint : public Light {
 private:
     friend GraphicsEngine;
 

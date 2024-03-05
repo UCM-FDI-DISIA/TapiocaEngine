@@ -1,8 +1,8 @@
 #pragma once
-#include <cstdint>
+#include "Utilities/defs.h"
 
 namespace Tapioca {
-class Module {
+class TAPIOCA_API Module {
 public:
     Module() { }
     virtual ~Module() { }

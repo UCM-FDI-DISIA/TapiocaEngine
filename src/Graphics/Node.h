@@ -1,6 +1,5 @@
 #pragma once
 #include "Utilities/INode.h"
-
 #include <unordered_set>
 #include <vector>
 
@@ -17,7 +16,7 @@ class RenderObject;
 class Camera;
 class LightDirectional;
 
-class Node : public INode {
+class TAPIOCA_API Node : public INode {
 public:
     friend GraphicsEngine;
     friend RenderObject;

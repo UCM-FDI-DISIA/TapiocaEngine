@@ -1,6 +1,5 @@
 #pragma once
 #include "RenderObject.h"
-#include <string>
 
 namespace Ogre {
 class SceneManager;
@@ -10,7 +9,7 @@ class ParticleSystem;
 namespace Tapioca {
 class Node;
 
-class ParticleSystem : public RenderObject {
+class TAPIOCA_API ParticleSystem : public RenderObject {
 private:
     Ogre::ParticleSystem* mParticleSystem;
 

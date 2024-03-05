@@ -6,8 +6,7 @@
 //numeros complejos , vectores unitarios ortogonales entre si. i^2 = j^2 = k^2 = -1
 /// usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html
 namespace Tapioca {
-
-class Quaternion {
+class TAPIOCA_API Quaternion {
 public:
     //cualquier rotacion en un espacio tridimensional se puede definir
     // con un vector unitario y una cantidad de giro sobre ese vector

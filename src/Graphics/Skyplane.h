@@ -1,8 +1,6 @@
 #pragma once
 #include "RenderObject.h"
-#include <string>
 #include "Utilities/Vector3.h"
-
 
 namespace Ogre {
 class SceneManager;
@@ -11,7 +9,7 @@ class SceneManager;
 namespace Tapioca {
 class Node;
 
-class Skyplane : public RenderObject {
+class TAPIOCA_API Skyplane : public RenderObject {
 protected:
     Ogre::SceneManager* scnM;
     std::string material;

@@ -1,7 +1,6 @@
 #pragma once
 #include "Utilities/Vector3.h"
 #include "RenderObject.h"
-#include <string>
 
 namespace Ogre {
 class Camera;
@@ -13,7 +12,7 @@ class Node;
 class GraphicsEngine;
 class Viewport;
 
-class Camera : public RenderObject {
+class TAPIOCA_API Camera : public RenderObject {
 private:
     friend GraphicsEngine;
     friend Viewport;

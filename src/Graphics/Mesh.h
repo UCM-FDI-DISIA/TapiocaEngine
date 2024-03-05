@@ -1,6 +1,5 @@
 #pragma once
 #include "RenderObject.h"
-#include <string>
 
 namespace Ogre {
 class SceneManager;
@@ -11,7 +10,7 @@ namespace Tapioca {
 class Node;
 class GraphicsEngine;
 
-class Mesh : public RenderObject {
+class TAPIOCA_API Mesh : public RenderObject {
 private:
     friend GraphicsEngine;
 

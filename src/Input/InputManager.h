@@ -1,10 +1,7 @@
 #pragma once
 #include <Utilities/Singleton.h>
 #include <Structure/Module.h>
-
 #include <vector>
-#include <string>
-#include <unordered_map>
 
 class SDL_Window;
 union SDL_Event;
@@ -17,7 +14,7 @@ struct lua_State;
 //}
 
 namespace Tapioca {
-class InputManager : public Singleton<InputManager>, public Module {
+class TAPIOCA_API InputManager : public Singleton<InputManager>, public Module {
     friend Singleton<InputManager>;
 
 private:

@@ -11,7 +11,7 @@ class GraphicsEngine;
 class Vector4;
 class Vector3;
 
-class LightDirectional : public Light {
+class TAPIOCA_API LightDirectional : public Light {
 private:
     friend GraphicsEngine;
 

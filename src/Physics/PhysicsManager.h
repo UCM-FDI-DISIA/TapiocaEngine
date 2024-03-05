@@ -25,7 +25,7 @@ class Collider;
 namespace Tapioca {
 class Vector3;
 class PhysicsDebugDrawer;
-class PhysicsManager : public Singleton<PhysicsManager> , public Module {
+class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager> , public Module {
 
     friend Singleton<PhysicsManager>;
 

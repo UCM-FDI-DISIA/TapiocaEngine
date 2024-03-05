@@ -1,7 +1,5 @@
 #pragma once
-#include <string>
 #include <unordered_set>
-#include <unordered_map>
 
 // Includes de Core
 // Herencia
@@ -43,7 +41,7 @@ class Billboard;
 class ParticleSystem;
 class Plane;
 
-class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
+class TAPIOCA_API GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
     friend Singleton<GraphicsEngine>;
 

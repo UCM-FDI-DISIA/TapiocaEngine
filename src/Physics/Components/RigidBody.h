@@ -15,7 +15,7 @@ class Vector3;
 class Transform;
 class Collider;
 
-class RigidBody : public Component {
+class TAPIOCA_API RigidBody : public Component {
     //friend RigidBodyBuilder;
 
 private:

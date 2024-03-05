@@ -1,10 +1,11 @@
 #pragma once
+#include "defs.h"
 
 namespace Tapioca {
 /**
 * Clase que implementa un vector geometrico de dos dimensiones.
 */
-class Vector2 {
+class TAPIOCA_API Vector2 {
 public:
     // Genera un vector que inicializa "x" e "y" al numero dado.
     // Si no se da un numero, este se considera cero.

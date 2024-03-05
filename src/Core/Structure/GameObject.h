@@ -1,17 +1,13 @@
 #pragma once
-#include <unordered_map>
 #include <vector>
-#include <string>
-#include <variant>
 #include "Utilities/Concepts.h"
-
-using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
+#include "Utilities/defs.h"
 
 namespace Tapioca {
 class Component;
 class Scene;
 
-class GameObject {
+class TAPIOCA_API GameObject {
 private:
     friend class Scene;
     void setScene(Scene*);

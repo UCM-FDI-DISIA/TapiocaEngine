@@ -1,7 +1,8 @@
 #pragma once
+#include <unordered_set>
 #include "../Structure/Component.h"
 #include "../Utilities/Vector3.h"
-#include <unordered_set>
+#include "../Utilities/defs.h"
 
 namespace Tapioca {
 class INode;
@@ -11,7 +12,7 @@ class TransformBuilder;
 * Transform guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
 * Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
 */
-class Transform : public Component {
+class TAPIOCA_API Transform : public Component {
     friend TransformBuilder;
 
 private:

@@ -1,17 +1,11 @@
 #pragma once
-#include <string>
-#include <unordered_map>
 #include <unordered_set>
-#include <variant>
-
-#ifdef _DEBUG
-#include <iostream>
-#endif;
+#include "Utilities/defs.h"
 
 namespace Tapioca {
 class GameObject;
 
-class Component {
+class TAPIOCA_API Component {
 private:
     std::string id;
     // Lista de atributos que tiene el componente

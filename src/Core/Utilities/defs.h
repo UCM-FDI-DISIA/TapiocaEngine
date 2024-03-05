@@ -1,10 +1,14 @@
 #pragma once
-#include <vector>
 #include <string>
 #include <unordered_map>
 #include <variant>
-#include <Windows.h>
-#include "Structure/ComponentBuilder.h"
+
+#define TAPIOCA_API __declspec(dllexport)
+
+#ifdef _DEBUG
+#include <iostream>
+#endif;
+
 namespace Tapioca {
 class FactoryManager;
 }

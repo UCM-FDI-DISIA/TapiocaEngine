@@ -7,7 +7,7 @@ namespace Tapioca {
 class Scene;
 class Module;
 
-class Game {
+class TAPIOCA_API Game {
 private:
     static Game* instance;
 

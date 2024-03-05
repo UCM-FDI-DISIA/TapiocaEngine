@@ -1,6 +1,5 @@
 #pragma once
 #include "RenderObject.h"
-#include <string>
 
 namespace Ogre {
 class SceneManager;
@@ -10,7 +9,7 @@ class Skybox;
 namespace Tapioca {
 class Node;
 
-class Skybox : public RenderObject {
+class TAPIOCA_API Skybox : public RenderObject {
 protected:
     std::string texture;
     float distC;

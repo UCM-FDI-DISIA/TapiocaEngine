@@ -1,7 +1,6 @@
 #pragma once
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
-#include "Utilities/defs.h"
 
 struct lua_State;
 
@@ -15,7 +14,7 @@ class Transform;
 /**
 * @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
 */
-class SceneManager : public Singleton<SceneManager>, public Module {
+class TAPIOCA_API SceneManager : public Singleton<SceneManager>, public Module {
 private:
     friend Singleton<SceneManager>;
     friend class Scene;

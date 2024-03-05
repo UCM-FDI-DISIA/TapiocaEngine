@@ -1,14 +1,11 @@
 #pragma once
 #include <vector>
-#include <string>
-#include <unordered_map>
-#include <variant>
-using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
+#include "Utilities/defs.h"
 
 namespace Tapioca {
 class GameObject;
 
-class Scene {
+class TAPIOCA_API Scene {
 private:
     friend class GameObject;
     std::vector<GameObject*> objects;

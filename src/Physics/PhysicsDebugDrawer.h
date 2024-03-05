@@ -1,6 +1,7 @@
 #pragma once
 #include <LinearMath/btIDebugDraw.h>
 #include <list>
+#include "Utilities/defs.h"
 
 namespace Ogre {
 class ManualObject;
@@ -9,7 +10,7 @@ class ManualObject;
 namespace Tapioca {
 class Node;
 
-class PhysicsDebugDrawer : public btIDebugDraw {
+class TAPIOCA_API PhysicsDebugDrawer : public btIDebugDraw {
     int mode;
     std::list<Ogre::ManualObject*> lines;
     Node* node;

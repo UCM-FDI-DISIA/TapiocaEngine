@@ -1,4 +1,5 @@
 #pragma once
+#include "Utilities/defs.h"
 
 namespace Ogre {
 class MovableObject;
@@ -8,7 +9,7 @@ class SceneManager;
 namespace Tapioca {
 class Node;
 
-class RenderObject {
+class TAPIOCA_API RenderObject {
 private:
     friend Node;
 

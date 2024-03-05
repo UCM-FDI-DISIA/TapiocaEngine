@@ -1,14 +1,16 @@
 #pragma once
+#include <Windows.h>
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 
-#include "Utilities/defs.h"
-
 namespace Tapioca {
+class Component;
+class ComponentBuilder;
+
 /**
 * @brief Clase Singleton y Modulo que se encarga de gestionar las factorias de componentes
 */
-class FactoryManager : public Singleton<FactoryManager>, public Module {
+class TAPIOCA_API FactoryManager : public Singleton<FactoryManager>, public Module {
 private:
     friend Singleton<FactoryManager>;
 

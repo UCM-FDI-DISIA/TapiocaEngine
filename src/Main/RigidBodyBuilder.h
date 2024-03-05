@@ -2,7 +2,7 @@
 #include "Structure/ComponentBuilder.h"
 
 namespace Tapioca {
-class RigidBodyBuilder : public ComponentBuilder {
+class TAPIOCA_API RigidBodyBuilder : public ComponentBuilder {
 public:
     Component* createComponent() override;
 };

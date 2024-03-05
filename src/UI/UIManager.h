@@ -14,7 +14,7 @@ namespace Tapioca {
 /**
 * @brief Clase que se encarga de la interfaz de usuario
 */
-class UIManager : public Singleton<UIManager>, public Module, public Ogre::RenderTargetListener {
+class TAPIOCA_API UIManager : public Singleton<UIManager>, public Module, public Ogre::RenderTargetListener {
 private:
     friend Singleton<UIManager>;
 

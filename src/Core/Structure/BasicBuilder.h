@@ -4,7 +4,7 @@
 
 namespace Tapioca {
 template<IsComponent TComp>
-class BasicBuilder : public ComponentBuilder {
+class TAPIOCA_API BasicBuilder : public ComponentBuilder {
 public:
 	inline Component* createComponent() override { return new TComp(); }
 };

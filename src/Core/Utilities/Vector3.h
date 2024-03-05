@@ -1,4 +1,5 @@
 #pragma once
+#include "defs.h"
 
 namespace Tapioca {
 class Vector2;
@@ -6,7 +7,7 @@ class Vector2;
 /**
 * Clase que implementa un vector geometrico de tres dimensiones.
 */
-class Vector3 {
+class TAPIOCA_API Vector3 {
 public:
     // Genera un vector que inicializa "x", "y" y "z" al numero dado.
     // Si no se da un numero, este se considera cero.

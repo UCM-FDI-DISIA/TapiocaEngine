@@ -4,7 +4,7 @@
 namespace Tapioca {
 class Mesh;
 
-class MeshRenderer : public Component {
+class TAPIOCA_API MeshRenderer : public Component {
 private:
 	Mesh* mesh;
 	std::string meshName, materialName;

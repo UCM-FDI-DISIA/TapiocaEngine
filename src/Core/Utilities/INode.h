@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Utilities/defs.h"
 
 namespace Ogre {
 class SceneNode;
@@ -10,7 +11,7 @@ class Vector3;
 class Transform;
 class TransformBuilder;
 
-class INode {
+class TAPIOCA_API INode {
 private:
     friend TransformBuilder;
     Transform* transform;

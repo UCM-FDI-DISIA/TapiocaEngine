@@ -2,7 +2,6 @@
 #include "OgreMath.h"
 #include "RenderObject.h"
 #include "OgrePlane.h"
-#include <string>
 #include "OgreMovablePlane.h"
 
 namespace Ogre {
@@ -14,7 +13,7 @@ namespace Tapioca {
 class Node;
 class Vector3;
 
-class Plane : public RenderObject {
+class TAPIOCA_API Plane : public RenderObject {
 private:
     Ogre::Entity* mPlane;
     Ogre::Plane mPlaneAux;

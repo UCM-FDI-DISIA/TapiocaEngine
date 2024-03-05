@@ -1,13 +1,11 @@
 #pragma once
 #include <memory>
-
-#ifdef _DEBUG
-#include <iostream>
-#endif
+#include "defs.h"
 
 namespace Tapioca {
 // Clase singleton para hacer que las clases hijas sean singleton
-template<typename T> class Singleton {
+template<typename T>
+class TAPIOCA_API Singleton {
 private:
     // Instancia unica
     static T* instance_;
@@ -23,12 +21,13 @@ public:
     virtual ~Singleton() {};
 
     // Inicializa la instancia con los parametros deseados (... args)
-    template<typename... T_args> 
+    template<typename... T_args>
     inline static T* create(T_args&&... args) {
         //assert(instance_.get() == nullptr, "Instance already exists");
         if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
 #ifdef _DEBUG
-        else std::cout << "Instance already exists\n";
+        else
+            std::cout << "Instance already exists\n";
 #endif
         return instance_;
     }
@@ -43,7 +42,8 @@ public:
     }
 };
 
-template<typename T> T* Singleton<T>::instance_ = nullptr;
+template<typename T>
+T* Singleton<T>::instance_ = nullptr;
 }
 
 
