@@ -20,7 +20,6 @@ private:
     Collider* collider;
     ColliderShape colShape;
     Vector3 colliderScale;
-
     MovementType movementType;
     bool isTrigger;
     //indica con que grupo se puede colisionar (en binario)

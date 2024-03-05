@@ -13,21 +13,21 @@ void Collider::onCollisionEnter(GameObject* other) {
 #ifdef _DEBUG
     std::cout << "Entro en collision\n";
 #endif
-    //object->onCollisionEnter(other);
+    pushEvent("Collider", "onCollisionEnter", false);
 }
 
 void Collider::onCollisionExit(GameObject* other) {
 #ifdef _DEBUG
     std::cout << "Salgo de collision\n";
 #endif
-    //object->onCollisionExit(other);
+    pushEvent("Collider", "onCollisionExit", false);
 }
 
 void Collider::onCollisionStay(GameObject* other) {
 #ifdef _DEBUG
     std::cout << "Estoy en collision\n";
 #endif
-    //object->onCollisionStay(other);
+    pushEvent("Collider", "onCollisionStay", false);
 }
 
 }

@@ -9,8 +9,9 @@
 
 
 namespace Tapioca {
-RigidBody::RigidBody() : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1),
-    group(1), friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0) { }
+RigidBody::RigidBody()
+    : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1),
+      friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -22,7 +23,7 @@ RigidBody::~RigidBody() {
 bool RigidBody::initComponent(const CompMap& variables) {
 
     int colShapeAux;
-    
+
     bool colShapeSet = setValueFromMap(colShapeAux, "colShape", variables);
     if (!colShapeSet) {
 #ifdef _DEBUG
@@ -32,6 +33,15 @@ bool RigidBody::initComponent(const CompMap& variables) {
     }
     colShape = (ColliderShape)colShapeAux;
 
+    bool colliderScaleSet = setValueFromMap(colliderScale.x, "colliderScaleX", variables) &&
+        setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
+        setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
+    if (!colliderScaleSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: Transform: no se pudo inicializar colliderScale.\n";
+#endif
+        return false;
+    }
 
     bool isTriggerSet = setValueFromMap(isTrigger, "isTrigger", variables);
     if (!isTriggerSet) {
@@ -49,7 +59,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-   
+
     movementType = (MovementType)movementTypeAux;
 
     bool frictionSet = setValueFromMap(friction, "friction", variables);
@@ -100,7 +110,7 @@ void RigidBody::start() {
     transform = object->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
-                                                            transform->getScale(), colShape, movementType, mass, 
+                                                            transform->getScale(), colShape, movementType, mass,
                                                             friction, bounciness, isTrigger, group, mask);
 
     collider = object->getComponent<Collider>();
