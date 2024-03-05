@@ -11,10 +11,10 @@ union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
 struct lua_State;
-
-namespace Ogre {
-class RenderWindow;
-}
+//
+//namespace Ogre {
+//class RenderWindow;
+//}
 
 namespace Tapioca {
 class InputManager : public Singleton<InputManager>, public Module {
@@ -43,8 +43,8 @@ private:
     const std::string MAP_FILE = "controlsMapping.lua";
     lua_State* luaState;
 
-    SDL_Window* sdlWindow;
-    Ogre::RenderWindow* ogreWindow;
+    /*SDL_Window* sdlWindow;
+    Ogre::RenderWindow* ogreWindow;*/
 
     InputManager();
     
