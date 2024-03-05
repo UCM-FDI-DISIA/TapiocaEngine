@@ -30,9 +30,6 @@
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Structure\Module.cpp">
-      <Filter>Structure</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp">
       <Filter>Components</Filter>
     </ClCompile>

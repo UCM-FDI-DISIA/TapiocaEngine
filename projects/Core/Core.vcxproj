@@ -91,7 +91,6 @@
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\Module.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
