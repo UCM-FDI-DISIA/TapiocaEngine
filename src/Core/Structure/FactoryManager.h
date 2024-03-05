@@ -35,11 +35,11 @@ public:
     /**
     * @brief Crea un componente a partir de su nombre
     */
-    Component* createComponent(std::string name);
+    Component* createComponent(std::string const& name);
 
     /**
     * @brief Añade una factoria al mapa de factorias
     */
-    void addFactory(std::string name, ComponentBuilder* builder);
+    void addFactory(std::string const& name, ComponentBuilder* builder);
 };
 }

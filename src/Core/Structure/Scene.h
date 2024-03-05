@@ -21,12 +21,12 @@ public:
     std::vector<GameObject*> getObjects() const;
     GameObject* getHandler(const std::string& handler) const;
 
-    void addObject(GameObject* object, std::string handler = "");
+    void addObject(GameObject* object, std::string const& handler = "");
     void start();
     void update(const uint64_t deltaTime);
     //void handleEvents();
     void fixedUpdate();
     void refresh();
-    void pushEvent(std::string id, void* info);
+    void pushEvent(std::string const& id, void* info);
 };
 }

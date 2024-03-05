@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
 
     if (loader->load()) {
         Tapioca::Game* game = new Tapioca::Game();
-        createModules(loader->getModule());
+        createModules();
         Tapioca::createEngineBuilders();
         Tapioca::createGameBuilders(loader->getModule());
         if (game->init()) {
@@ -86,11 +86,11 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-static void createModules(HMODULE module) {
+static void createModules() {
     graphics = Tapioca::GraphicsEngine::create();
     input = Tapioca::InputManager::create();
     factories = Tapioca::FactoryManager::create();
-    scenes = Tapioca::SceneManager::create(module);
+    scenes = Tapioca::SceneManager::create();
     physics = Tapioca::PhysicsManager::create();
     // audio = AudioManager::create();
     // ui = UIManager::create();

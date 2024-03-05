@@ -10,13 +10,13 @@ GameObject::~GameObject() {
         delete i.second;
 }
 
-void GameObject::addComponent(Component* comp, std::string id) {
+void GameObject::addComponent(Component* comp, std::string const& id) {
     components.insert(std::pair<std::string, Component*>(id, comp));
     cmpOrder.push_back(comp);
     comp->object = this;
 }
 
-Component* GameObject::getComponent(std::string id) {
+Component* GameObject::getComponent(std::string const& id) {
     auto it = components.find(id);
     if (it == components.end()) return nullptr;
     return it->second;
@@ -31,7 +31,7 @@ std::vector<Component*> GameObject::getAllComponents() {
     return out;
 }
 
-std::vector<Component*> GameObject::getComponents(std::string id) {
+std::vector<Component*> GameObject::getComponents(std::string const& id) {
     std::vector<Component*> out;
 
     for (auto& comp : components) {
@@ -41,7 +41,7 @@ std::vector<Component*> GameObject::getComponents(std::string id) {
     return out;
 }
 
-void GameObject::pushEvent(std::string id, void* info, bool global) {
+void GameObject::pushEvent(std::string const& id, void* info, bool global) {
     if (global) scene->pushEvent(id, info);
     else handleEvent(id, info);
 }
@@ -71,7 +71,7 @@ void GameObject::update(const uint64_t deltaTime) {
     }
 }
 
-void GameObject::handleEvent(std::string id, void* info) {
+void GameObject::handleEvent(std::string const& id, void* info) {
     for (auto comp : cmpOrder) {
         if (comp->isActive()) comp->handleEvent(id, info);
     }

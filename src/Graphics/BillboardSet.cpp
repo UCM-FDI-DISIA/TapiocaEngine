@@ -15,13 +15,15 @@ Tapioca::BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, unsi
     init(mBillboardSet);
 }
 
-Tapioca::BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name, unsigned int poolSize)
-    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)) {
+Tapioca::BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
+    unsigned int poolSize) : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)) 
+{
     init(mBillboardSet);
 }
 
-Tapioca::BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name)
-    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name)) {
+Tapioca::BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name)
+    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name)) 
+{
     init(mBillboardSet);
 }
 

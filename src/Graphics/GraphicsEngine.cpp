@@ -33,7 +33,7 @@
 
 namespace Tapioca {
 
-GraphicsEngine::GraphicsEngine(std::string windowName, uint32_t w, uint32_t h)
+GraphicsEngine::GraphicsEngine(std::string const& windowName, uint32_t w, uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), renderSys(nullptr),
       mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr), mwindowName(windowName), windowWidth(w),
       windowHeight(h) { }
@@ -261,7 +261,7 @@ Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3
 //    }
 //}
 
-Camera* GraphicsEngine::createCamera(Node* node, std::string name) { return new Camera(scnMgr, node, name); }
+Camera* GraphicsEngine::createCamera(Node* node, std::string const& name) { return new Camera(scnMgr, node, name); }
 
 Viewport* GraphicsEngine::createViewport(Camera* camera, int zOrder) {
     return new Viewport(ogreWindow, camera, zOrder);
@@ -271,9 +271,9 @@ LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 dir
     return new LightDirectional(scnMgr, node, color, direction);
 }
 
-Mesh* GraphicsEngine::createMesh(Node* node, std::string meshName) { return new Mesh(scnMgr, node, meshName); }
+Mesh* GraphicsEngine::createMesh(Node* node, std::string const& meshName) { return new Mesh(scnMgr, node, meshName); }
 
-BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string name = "", unsigned int poolSize = 0) {
+BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& name = "", unsigned int poolSize = 0) {
     if (name == "" && poolSize == 0) return new BillboardSet(scnMgr, node);
     else if (name != "" && poolSize == 0)
         return new BillboardSet(scnMgr, node, name);
@@ -283,8 +283,8 @@ BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string name = 
         return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
-ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name,
-                                                     std::string templateName, bool emitting) {
+ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
+                                                     std::string const& templateName, bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 

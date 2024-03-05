@@ -18,7 +18,7 @@ private:
 
     void refresh();
     void update(const uint64_t deltaTime);
-    void handleEvent(std::string id, void* info);
+    void handleEvent(std::string const& id, void* info);
     void initComponents(const CompMap& variables);
     void fixedUpdate();
     void start();
@@ -41,20 +41,20 @@ public:
     inline void die() { alive = false; }
     inline virtual Scene* getScene() const { return scene; }
 
-    void addComponent(Component* comp, std::string id);
+    void addComponent(Component* comp, std::string const& id);
     template<IsComponent TComp> inline TComp* addComponent() {
         TComp* comp = new TComp();
         addComponent(comp, TComp::id);
         return comp;
     }
-    Component* getComponent(std::string id);
+    Component* getComponent(std::string const& id);
     template<IsComponent TComp> inline TComp* getComponent() {
         auto it = components.find(TComp::id);
         if (it == components.end()) return nullptr;
         return static_cast<TComp*>(it->second);
     }
     std::vector<Component*> getAllComponents();
-    std::vector<Component*> getComponents(std::string id);
+    std::vector<Component*> getComponents(std::string const& id);
     template<IsComponent TComp> inline std::vector<TComp*> getComponents() {
         std::vector<TComp*> out;
 
@@ -65,6 +65,6 @@ public:
         return out;
     }
 
-    void pushEvent(std::string id, void* info, bool global = true);
+    void pushEvent(std::string const& id, void* info, bool global = true);
 };
 }

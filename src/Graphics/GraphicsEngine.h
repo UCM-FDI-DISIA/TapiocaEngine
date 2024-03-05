@@ -76,7 +76,7 @@ private:
     */
     void loadShaders();
 
-    GraphicsEngine(std::string windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
+    GraphicsEngine(std::string const& windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
 
 public:
     virtual ~GraphicsEngine();
@@ -113,17 +113,18 @@ public:
     /*
     * @brief devuelve a una camara que se podra manipular
     */
-    Camera* createCamera(Node* node, std::string name);
+    Camera* createCamera(Node* node, std::string const& name);
 
     Viewport* createViewport(Camera* camera, int zOrder);
 
     LightDirectional* createLightDirectional(Node* node, Vector3 direction, Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    Mesh* createMesh(Node* node, std::string meshName);
+    Mesh* createMesh(Node* node, std::string const& meshName);
 
-    BillboardSet* createBillboardSet(Node* node, std::string name, unsigned int poolSize);
+    BillboardSet* createBillboardSet(Node* node, std::string const& name, unsigned int poolSize);
 
-    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string name, std::string templateName,
+    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
+                                         std::string const& templateName,
                                          bool emitting);
 
     Ogre::ManualObject* createManualObject(Node* node);

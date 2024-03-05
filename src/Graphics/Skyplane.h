@@ -15,7 +15,7 @@ protected:
     std::string material;
     Ogre::SceneManager* scnM;
     // Construye un skyplane
-    Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string texture);
+    Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string const& texture);
 
 public:
     virtual ~Skyplane() {/*if (mSkyplane != nullptr) delete mSkyplane;*/};

@@ -58,12 +58,12 @@ public:
     virtual void fixedUpdate() { }
     // Metodo que se usa para recibir eventos. El parametro 'info' se usa para pasar informacion si hace falta.
     // TODO: Incluir cuando se llama.
-    virtual void handleEvent(std::string id, void* info) { }
+    virtual void handleEvent(std::string const& id, void* info) { }
 
-    void pushEvent(std::string id, void* info, bool global = true);
+    void pushEvent(std::string const& id, void* info, bool global = true);
 
     template<typename T>
-    inline bool setValueFromMap(T& var, std::string varName, const CompMap& map) {
+    inline bool setValueFromMap(T& var, std::string const& varName, const CompMap& map) {
         auto v = map.find(varName);
         if (v == map.end()) {
 #ifdef _DEBUG

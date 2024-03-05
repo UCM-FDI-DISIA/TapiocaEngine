@@ -6,7 +6,7 @@
 
 namespace Tapioca {
 
-Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string name, Vector3 targetToLook, float nearDist, 
+Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, Vector3 targetToLook, float nearDist, 
     float farDist, bool autoAspectRatio, float aspectRatio)
     : RenderObject(node, scnMgr), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio) 
 {
