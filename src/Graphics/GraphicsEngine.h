@@ -41,7 +41,7 @@ class BillboardSet;
 class Billboard;
 class ParticleSystem;
 
-class GraphicsEngine : public Tapioca::Singleton<GraphicsEngine>, public Tapioca::Module {
+class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
     friend Singleton<GraphicsEngine>;
 
@@ -63,6 +63,8 @@ private:
     // UI
     Ogre::OverlaySystem* overSys;
     std::unordered_set<Node*> selfManagedNodes;
+    void* glContext;
+
     // TODO: se puede borrar
     /*std::unordered_map<RenderObject*, Node*> objects;
     Ogre::Viewport* viewport;*/
@@ -146,6 +148,7 @@ public:
 
     SDL_Window* getSDLWindow();
     Ogre::RenderWindow* getOgreWindow();
+    void* getGLContext();
 
     //void removeObject(RenderObject* object);
 };

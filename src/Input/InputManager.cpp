@@ -1,7 +1,7 @@
 #include "InputManager.h"
 
 #include <SDL.h>
-//#include <imgui_impl_sdl2.h>      // Para gestionar los eventos de la interfaz
+#include <imgui_impl_sdl2.h>      // Para gestionar los eventos de la interfaz
 //#include <lua.hpp>
 #include <sstream>
 #include "Structure/Game.h"
@@ -317,8 +317,8 @@ void InputManager::handleEvents() {
     SDL_Event event;
     clearInput();
     while (SDL_PollEvent(&event)) {
+        ImGui_ImplSDL2_ProcessEvent(&event);
         updateState(event);
-        //ImGui_ImplSDL2_ProcessEvent(&event);
     }
 
     if (eventHappened("ev_CLOSE")) Game::get()->exit();

@@ -11,19 +11,25 @@ class ImGuiOverlay;
 }
 
 namespace Tapioca {
+/**
+* @brief Clase que se encarga de la interfaz de usuario
+*/
 class UIManager : public Singleton<UIManager>, public Module, public Ogre::RenderTargetListener {
 private:
     friend Singleton<UIManager>;
 
-    Ogre::RenderWindow* myOgreWindow;
-    Ogre::ImGuiOverlay* imguiOverlay;
+    Ogre::RenderWindow* myOgreWindow;   // Referencia a la ventana de Ogre
+    Ogre::ImGuiOverlay* imguiOverlay;   // Overlay de ImGui
 
+    /**
+    * @brief Inicializa a nulo los punteros
+    */
     UIManager();
 
-    Ogre::ImGuiOverlay* initImgui();
-    void shutdown();
-
 public:
+    /**
+    * @brief Termina ImGui con SDL y OpenGL y destruye el contexto
+    */
     ~UIManager();
 
     UIManager(UIManager&) = delete;
@@ -31,11 +37,14 @@ public:
     UIManager& operator=(UIManager&) = delete;
     UIManager& operator=(UIManager&&) = delete;
 
+    /**
+    * @brief Inicializa ImGui con SDL y OpenGL, y crea el overlay con la interfaz
+    */
     bool init() override;
-    //void update(const uint64_t deltaTime);
-    //void handleEvents() override;
-    //void fixedUpdate() override;
+
+    /**
+    * @brief Renderiza la interfaz de usuario
+    */
     void render() override;
-    //void refresh() override;
 };
 }

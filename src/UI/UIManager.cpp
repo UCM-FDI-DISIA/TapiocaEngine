@@ -1,64 +1,57 @@
 #include "UIManager.h"
 
+#include <SDL.h>
 #include <Ogre.h>
 #include <OgreImGuiOverlay.h>
 #include <OgreOverlayManager.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_opengl3.h>
 
 #ifdef _DEBUG
 #include <iostream>
 #endif
 
-Tapioca::UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr) { }
+namespace Tapioca {
+UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr) { }
 
-void Tapioca::UIManager::shutdown() {
+UIManager::~UIManager() {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
 }
 
-Ogre::ImGuiOverlay* Tapioca::UIManager::initImgui() { 
-     if (auto overlay = Ogre::OverlayManager::getSingleton().getByName("ImGuiOverlay"))
-        return static_cast<Ogre::ImGuiOverlay*>(overlay);
+bool UIManager::init() {
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
+    GraphicsEngine* graphics = GraphicsEngine::instance();
+    ImGui_ImplSDL2_InitForOpenGL(graphics->getSDLWindow(), (SDL_GLContext)graphics->getGLContext());
+    ImGui_ImplOpenGL3_Init("#version 130");
 
-    auto imguiOverlay = new Ogre::ImGuiOverlay();
-    Ogre::OverlayManager::getSingleton().addOverlay(imguiOverlay);   // now owned by overlaymgr
+    if (auto overlay = Ogre::OverlayManager::getSingleton().getByName("ImGuiOverlay"))
+        imguiOverlay = static_cast<Ogre::ImGuiOverlay*>(overlay);
+    else {
+        imguiOverlay = new Ogre::ImGuiOverlay();
+        Ogre::OverlayManager::getSingleton().addOverlay(imguiOverlay);
+    }
 
     float vpScale = Ogre::OverlayManager::getSingleton().getPixelRatio();
     ImGui::GetStyle().ScaleAllSizes(vpScale);
-
-    //mImGuiListener.reset(new ImGuiInputListener());
-
-    return imguiOverlay;
-}
-
-Tapioca::UIManager::~UIManager() { shutdown(); }
-
-bool Tapioca::UIManager::init() {
-
-    myOgreWindow = Tapioca::GraphicsEngine::instance()->getOgreWindow();
-    imguiOverlay = initImgui();
-  
-    float vpScale = Ogre::OverlayManager::getSingleton().getPixelRatio();
-    ImGui::GetIO().FontGlobalScale = std::round(vpScale);   // default font does not work with fractional scaling
+    io.FontGlobalScale = std::round(vpScale);
     imguiOverlay->setZOrder(300);
     imguiOverlay->show();
+
+    myOgreWindow = GraphicsEngine::instance()->getOgreWindow();
     myOgreWindow->addListener(this);
     Ogre::ImGuiOverlay::NewFrame();
 
     return true;
 }
 
-//void Tapioca::UIManager::update(const uint64_t deltaTime) { }
-
-//void Tapioca::UIManager::handleEvents() { 
-//    SDL_Event event;
-//    while (SDL_PollEvent(&event))
-//        ImGui_ImplSDL2_ProcessEvent(&event);
-//}
-
-//void Tapioca::UIManager::fixedUpdate() { }
-
-void Tapioca::UIManager::render() {
+void UIManager::render() {
     Ogre::ImGuiOverlay::NewFrame();
     ImGui::ShowDemoWindow();
 }
-
-//void Tapioca::UIManager::refresh() { }
+}

@@ -145,7 +145,7 @@ bool GraphicsEngine::init() {
 #endif
         return false;
     }
-    
+
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
     SDL_SysWMinfo wmInfo;
@@ -167,6 +167,9 @@ bool GraphicsEngine::init() {
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
     loadResources();
+
+    glContext = SDL_GL_GetCurrentContext();
+    SDL_GL_SetSwapInterval(1);
 
     return true;
 }
@@ -238,6 +241,11 @@ void GraphicsEngine::shutDown() {
     if (ogreWindow != nullptr) {
         mRoot->destroyRenderTarget(ogreWindow);
         ogreWindow = nullptr;
+    }
+
+    if (glContext != nullptr) {
+    	SDL_GL_DeleteContext((SDL_GLContext)glContext);
+		glContext = nullptr;
     }
 
     // eliminar la ventana de sdl
@@ -314,6 +322,8 @@ void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->d
 SDL_Window* GraphicsEngine::getSDLWindow() { return sdlWindow; }
 
 Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
+
+void* GraphicsEngine::getGLContext() { return glContext; }
 
 //void GraphicsEngine::removeObject(RenderObject* object) {
 //    if (objects.contains(object)) {
