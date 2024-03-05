@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderObject.h"
 #include <string>
+#include <unordered_set>
 
 namespace Ogre {
 class SceneManager;
@@ -13,22 +14,22 @@ class Node;
 class GraphicsEngine;
 class Vector3;
 class Vector4;
+class Billboard;
 
 class BillboardSet : public RenderObject {
 private:
     friend GraphicsEngine;
 
 protected:
+    //BillboardSet de Ogre
     Ogre::BillboardSet* mBillboardSet;
+    //UnorderedSet de Billboards de Tapioca
+    std::unordered_set<Billboard*> mBillboardUnorderedSet;
+    //Nombre identificador
+    std::string mName;
 
-    //Constructora por defecto
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node);
-    //Crea un BillboardSet a partir de un número de elementos
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, unsigned int poolSize);
     //Crea un BillboardSet con nombre a partir de un número de elementos
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize);
-    //Crea un BillboardSet con nombre (crea 20 elementos por defecto)
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name);
+    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string name, unsigned int poolSize);
 
 public:
     //Destructora de la clase
@@ -53,6 +54,6 @@ public:
     //Elimina el Billboard según su índice
     void removeBillboard(unsigned int index);
     //Añade un Billboard al BillboardSet con la posición y color proporcionados (blanco por defecto)
-    void createBillboard(const Vector3& position, const Vector4& colour);
+    Tapioca::Billboard* createBillboard(const Vector3& position, const Vector4& colour);
 };
 }

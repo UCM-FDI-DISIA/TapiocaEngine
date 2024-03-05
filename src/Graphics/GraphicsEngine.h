@@ -36,6 +36,7 @@ class LightDirectional;
 class Mesh;
 class Viewport;
 class BillboardSet;
+class Billboard;
 class ParticleSystem;
 class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
@@ -121,7 +122,9 @@ public:
 
     Mesh* createMesh(Node* node, std::string const& meshName);
 
-    BillboardSet* createBillboardSet(Node* node, std::string const& name, unsigned int poolSize);
+    Billboard* createBillboard(Node* node, std::string name, Vector3 position, Vector4 colour);
+
+    BillboardSet* createBillboardSet(Node* node, std::string name, unsigned int poolSize);
 
     ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
                                          std::string const& templateName,

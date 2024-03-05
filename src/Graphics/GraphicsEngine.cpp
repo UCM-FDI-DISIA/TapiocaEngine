@@ -9,6 +9,7 @@
 #include "Viewport.h"
 #include "GraphicsEngine.h"
 #include "BillboardSet.h"
+#include "Billboard.h"
 #include "ParticleSystem.h"
 
 // OGRE
@@ -273,14 +274,12 @@ LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 dir
 
 Mesh* GraphicsEngine::createMesh(Node* node, std::string const& meshName) { return new Mesh(scnMgr, node, meshName); }
 
-BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& name = "", unsigned int poolSize = 0) {
-    if (name == "" && poolSize == 0) return new BillboardSet(scnMgr, node);
-    else if (name != "" && poolSize == 0)
-        return new BillboardSet(scnMgr, node, name);
-    else if (name == "" && poolSize != 0)
-        return new BillboardSet(scnMgr, node, poolSize);
-    else
-        return new BillboardSet(scnMgr, node, name, poolSize);
+Billboard* GraphicsEngine::createBillboard(Node* node, std::string name, Vector3 position, Vector4 colour) {
+    return new Billboard(scnMgr, node, name, position, colour);
+}
+
+BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string name, unsigned int poolSize) {
+    return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
 ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
