@@ -112,7 +112,8 @@ Transform* Transform::getParent() const { return node->getParent()->getTransform
 
 std::vector<Transform*> Transform::getChildren() const {
     std::vector<INode*> childrenNodes = node->getChildren();
-    std::vector<Transform*> children(childrenNodes.size());
+    std::vector<Transform*> children;
+    children.reserve(childrenNodes.size());
 
     for (INode* node : childrenNodes)
         children.push_back(node->getTransform());
@@ -122,7 +123,8 @@ std::vector<Transform*> Transform::getChildren() const {
 
 std::vector<Transform*> Transform::getAllChildren() const {
     std::vector<INode*> childrenNodes = node->getAllChildren();
-    std::vector<Transform*> children(childrenNodes.size());
+    std::vector<Transform*> children;
+    children.reserve(childrenNodes.size());
 
     for (INode* node : childrenNodes)
         children.push_back(node->getTransform());
