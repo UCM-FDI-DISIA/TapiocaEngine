@@ -3,16 +3,15 @@
 #include "Utilities/INode.h"
 
 namespace Tapioca {
-
-Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), node(nullptr) { }
+Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
 
 Transform::~Transform() {
+    parent->deleteChild(this);
     object->die();
-    for (auto childNode : node->getAllChildren()) {
-        Tapioca::GameObject* childGameObject = childNode->getTransform()->getObject();
+    for (auto childNode : getAllChildren()) {
+        Tapioca::GameObject* childGameObject = childNode->getObject();
         childGameObject->die();
     }
-    delete node;
 }
 
 bool Transform::initComponent(const CompMap& variables) {
@@ -24,17 +23,7 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    node->setPosition(position);
-
-    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
-        setValueFromMap(scale.z, "scaleZ", variables);
-    if (!scaleSet) {
-#ifdef _DEBUG
-        std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
-#endif
-        return false;
-    }
-    node->setScale(scale);
+    moved();
 
     bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
         setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
@@ -44,29 +33,39 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    node->setRotation(rotation);
+    rotated();
+
+    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
+        setValueFromMap(scale.z, "scaleZ", variables);
+    if (!scaleSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
+#endif
+        return false;
+    }
+    scaled();
 }
 
 void Transform::setPosition(Vector3 p) {
     position = p;
-    node->setPosition(p);
+    moved();
 }
 void Transform::setRotation(Vector3 r) {
     rotation = r;
-    node->setRotation(r);
+    rotated();
 }
 void Transform::setScale(Vector3 s) {
     scale = s;
-    node->setScale(s);
+    scaled();
 }
 
 void Transform::translate(Vector3 p) {
     position += p;
-    node->translate(p);
+    moved();
 }
 void Transform::rotate(Vector3 r) {
     rotation += r;
-    node->setRotation(rotation);
+    rotated();
 }
 
 Vector3 Transform::right() {
@@ -106,33 +105,40 @@ Vector3 Transform::forward() {
     return v;
 }
 
-void Transform::setParent(Transform* tranform) { node->setParent(tranform->getNode()); }
+void Transform::deleteChild(Transform* child) {
+    auto it = children.find(child);
+    if (it != children.end()) children.erase(it);
+}
 
-Transform* Transform::getParent() const { return node->getParent()->getTransform(); }
+void Transform::setParent(Transform* transform) {
+    if (parent != nullptr) parent->deleteChild(this);
+    parent = transform;
+}
+
+Transform* Transform::getParent() const { return parent; }
 
 std::vector<Transform*> Transform::getChildren() const {
-    std::vector<INode*> childrenNodes = node->getChildren();
-    std::vector<Transform*> children;
-    children.reserve(childrenNodes.size());
-
-    for (INode* node : childrenNodes)
-        children.push_back(node->getTransform());
-
-    return children;
+    std::vector<Transform*> aux;
+    std::copy(children.begin(), children.end(), aux.begin());
+    return aux;
 }
 
 std::vector<Transform*> Transform::getAllChildren() const {
-    std::vector<INode*> childrenNodes = node->getAllChildren();
-    std::vector<Transform*> children;
-    children.reserve(childrenNodes.size());
+    std::vector<Transform*> allChildren;
 
-    for (INode* node : childrenNodes)
-        children.push_back(node->getTransform());
+    getAllChildrenAux(allChildren);
 
-    return children;
+    return allChildren;
 }
+
+void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
+    for (auto child : children) {
+        allChildren.push_back(child);
+        child->getAllChildrenAux(allChildren);
+    }
+}
+
 void Transform::fixedUpdate() {
-    //TODO quitar esto que era para probar un cosa
-    node->yaw(1);
+
 }
 }

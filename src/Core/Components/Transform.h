@@ -1,6 +1,7 @@
 #pragma once
 #include "../Structure/Component.h"
 #include "../Utilities/Vector3.h"
+#include <unordered_set>
 
 namespace Tapioca {
 class INode;
@@ -15,9 +16,16 @@ class Transform : public Component {
 
 private:
     Vector3 position;
+    void moved() { };
     Vector3 rotation;
+    void rotated() { };
     Vector3 scale;
-    INode* node;
+    void scaled() { };
+
+    Transform* parent;
+    std::unordered_set<Transform*> children;
+    void deleteChild(Transform* child);
+    void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
 
 public:
     COMPONENT_ID("Transform")
@@ -48,11 +56,9 @@ public:
     Vector3 forward();
 
     // Hace que el Transform dado sea padre de este.
-    void setParent(Transform* tranform);
+    void setParent(Transform* transform);
     // Devuelve el padre de este Transform.
     Transform* getParent() const;
-    // Devuelve la interfaz de nodo de este Transform.
-    inline INode* getNode() const { return node; }
 
     // Devuelve los hijos directos de este Transform.
     std::vector<Transform*> getChildren() const;

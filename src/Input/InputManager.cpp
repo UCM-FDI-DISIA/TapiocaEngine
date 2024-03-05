@@ -1,12 +1,11 @@
 #include "InputManager.h"
 
 #include <SDL.h>
-#include <Ogre.h>
 //#include <imgui_impl_sdl2.h>      // Para gestionar los eventos de la interfaz
-#include <lua.hpp>
+//#include <lua.hpp>
 #include <sstream>
 #include "Structure/Game.h"
-#include "GraphicsEngine.h"
+//#include "GraphicsEngine.h"
 
 #include "Utilities/checkML.h"
 #ifdef _DEBUG
@@ -41,107 +40,106 @@ bool InputManager::init() {
     initControllers();
     clearInput();
 
-    sdlWindow = GraphicsEngine::instance()->getSDLWindow();
-    ogreWindow = GraphicsEngine::instance()->getOgreWindow();
+    /*sdlWindow = GraphicsEngine::instance()->getSDLWindow();
+    ogreWindow = GraphicsEngine::instance()->getOgreWindow();*/
 
     return true;
 }
 
 InputManager::~InputManager() {
     clearInput();
-    for (auto ctrl : controllers)
-        removeController(ctrl.first);
+    for (auto ctrl : controllers) removeController(ctrl.first);
     controllers.clear();
 }
 
 
 void InputManager::mapInput() {
-    // Crea una instancia de LUA
-    luaState = luaL_newstate();
-
-    // Construye la ruta completa al archivo LUA
-    std::string path = "assets\\controls\\" + MAP_FILE;
-
-    // Si no puede cargar el archivo, se muestra un mensaje y cierra la instancia de LUA
-    if (luaL_dofile(luaState, path.c_str()) != 0) {
-#ifdef _DEBUG
-        std::cerr << "Error al cargar archivo LUA: " << lua_tostring(luaState, -1) << '\n';
-#endif
-        lua_close(luaState);
-    } 
-    else {
-#ifdef _DEBUG
-        std::cout << "Mapa de controles cargado correctamente" << '\n';
-#endif
-        // Mete en el stack de luaState la variable global con el nombre events
-        lua_getglobal(luaState, "events");
-
-        // Si lo que haya en el stack de luaState es una tabla
-        // (-1 es el nombre de la variable, en este caso, events)
-        if (lua_istable(luaState, -1)) {
-            // "Entra" a leer las variables de la tabla
-            lua_pushnil(luaState);
-
-            // Itera sobre todos los elementos de la tabla
-            // (-2 es el valor de la variable. En este caso, todo lo que
-            // haya dentro del {} despues de events =)
-            while (lua_next(luaState, -2) != 0) {
-                // Lee le nombre del evento
-                std::string evt = lua_tostring(luaState, -2);
-
-                // Lo separa por el caracter "_" (por si hay
-                // varios controles mapeados al mismo evento)
-                std::vector<std::string> tokens;
-                std::stringstream ss(evt);
-                std::string token = "";
-                char delimiter = '_';
-                while (std::getline(ss, token, delimiter)) tokens.push_back(token);
-
-                // Obtiene el nombre del evento ("ev" + "_" + "nombre")
-                evt = tokens[0] + "_" + tokens[1];
-
-
-                std::string src = "";
-                int ctrl = 0;
-
-                // Si lo que haya en el stack de luaState es una tabla
-                // (-1 es el nombre de la variable, en este caso, el nombre del evento)
-                if (lua_istable(luaState, -1)) {
-                    // "Entra" a leer las variables de la tabla
-                    lua_pushnil(luaState);
-
-                    // Itera sobre todos los elementos de la tabla
-                    // (-2 es el valor de la variable. En este caso, todo lo que
-                    // haya dentro del {} despues de ev_EVENTO =)
-                    while (lua_next(luaState, -2) != 0) {
-                        // Lee el nombre de la variable y su valor
-                        std::string key = lua_tostring(luaState, -2);
-                        std::string value = lua_tostring(luaState, -1);
-
-                        // Lo saca del stack para leer la siguiente variable
-                        lua_pop(luaState, 1);
-
-                        // Si la variable es "src", el valor es la clave
-                        // del evento de inputEventTriggered. Si es "control",
-                        // el valor es la tecla/boton/eje/etc mapeado al evento
-                        if (key == "src") src = value;
-                        else if (key == "control")
-                            ctrl = stoi(value);
-                    }
-                    // Añade el evento al mapa de input
-                    inputMap[evt].push_back({src, ctrl});
-
-                    // Saca el evento del stack para leer el siguiente
-                    lua_pop(luaState, 1);
-                }
-            }
-            // Saca events del stack, en caso de que hubiera otra variable global a leer
-            lua_pop(luaState, 1);
-        }
-    }
-
-
-    lua_close(luaState);
+//    // Crea una instancia de LUA
+//    luaState = luaL_newstate();
+//
+//    // Construye la ruta completa al archivo LUA
+//    std::string path = "assets\\controls\\" + MAP_FILE;
+//
+//    // Si no puede cargar el archivo, se muestra un mensaje y cierra la instancia de LUA
+//    if (luaL_dofile(luaState, path.c_str()) != 0) {
+//#ifdef _DEBUG
+//        std::cerr << "Error al cargar archivo LUA: " << lua_tostring(luaState, -1) << '\n';
+//#endif
+//        lua_close(luaState);
+//    } 
+//    else {
+//#ifdef _DEBUG
+//        std::cout << "Mapa de controles cargado correctamente" << '\n';
+//#endif
+//        // Mete en el stack de luaState la variable global con el nombre events
+//        lua_getglobal(luaState, "events");
+//
+//        // Si lo que haya en el stack de luaState es una tabla
+//        // (-1 es el nombre de la variable, en este caso, events)
+//        if (lua_istable(luaState, -1)) {
+//            // "Entra" a leer las variables de la tabla
+//            lua_pushnil(luaState);
+//
+//            // Itera sobre todos los elementos de la tabla
+//            // (-2 es el valor de la variable. En este caso, todo lo que
+//            // haya dentro del {} despues de events =)
+//            while (lua_next(luaState, -2) != 0) {
+//                // Lee le nombre del evento
+//                std::string evt = lua_tostring(luaState, -2);
+//
+//                // Lo separa por el caracter "_" (por si hay
+//                // varios controles mapeados al mismo evento)
+//                std::vector<std::string> tokens;
+//                std::stringstream ss(evt);
+//                std::string token = "";
+//                char delimiter = '_';
+//                while (std::getline(ss, token, delimiter)) tokens.push_back(token);
+//
+//                // Obtiene el nombre del evento ("ev" + "_" + "nombre")
+//                evt = tokens[0] + "_" + tokens[1];
+//
+//
+//                std::string src = "";
+//                int ctrl = 0;
+//
+//                // Si lo que haya en el stack de luaState es una tabla
+//                // (-1 es el nombre de la variable, en este caso, el nombre del evento)
+//                if (lua_istable(luaState, -1)) {
+//                    // "Entra" a leer las variables de la tabla
+//                    lua_pushnil(luaState);
+//
+//                    // Itera sobre todos los elementos de la tabla
+//                    // (-2 es el valor de la variable. En este caso, todo lo que
+//                    // haya dentro del {} despues de ev_EVENTO =)
+//                    while (lua_next(luaState, -2) != 0) {
+//                        // Lee el nombre de la variable y su valor
+//                        std::string key = lua_tostring(luaState, -2);
+//                        std::string value = lua_tostring(luaState, -1);
+//
+//                        // Lo saca del stack para leer la siguiente variable
+//                        lua_pop(luaState, 1);
+//
+//                        // Si la variable es "src", el valor es la clave
+//                        // del evento de inputEventTriggered. Si es "control",
+//                        // el valor es la tecla/boton/eje/etc mapeado al evento
+//                        if (key == "src") src = value;
+//                        else if (key == "control")
+//                            ctrl = stoi(value);
+//                    }
+//                    // Añade el evento al mapa de input
+//                    inputMap[evt].push_back({src, ctrl});
+//
+//                    // Saca el evento del stack para leer el siguiente
+//                    lua_pop(luaState, 1);
+//                }
+//            }
+//            // Saca events del stack, en caso de que hubiera otra variable global a leer
+//            lua_pop(luaState, 1);
+//        }
+//    }
+//
+//
+//    lua_close(luaState);
 }
 
 bool InputManager::eventHappened(std::string event) {
@@ -233,6 +231,7 @@ void InputManager::updateState(const SDL_Event& event) {
     case SDL_WINDOWEVENT_CLOSE: case SDL_QUIT:
         Game::get()->exit();
         break;
+    /*
     case SDL_WINDOWEVENT:
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
             int x, y;
@@ -240,6 +239,7 @@ void InputManager::updateState(const SDL_Event& event) {
             ogreWindow->resize(x, y);
         }
         break;
+    */
     // Teclado
     case SDL_KEYDOWN:
         inputEventTriggered["ie_keyDown"].push_back(event);

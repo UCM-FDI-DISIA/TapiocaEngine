@@ -149,13 +149,13 @@ Component* SceneManager::loadComponent(std::string const& name) {
             if (lua_isboolean(luaState, -1)) {
                 value = lua_toboolean(luaState, -1) == 1;
 #ifdef _DEBUG
-                std::cout << "\t\t\variable: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
+                std::cout << "\t\tvariable: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
 #endif
             }
             else if (lua_isinteger(luaState, -1)) {
                 value = (int)lua_tointeger(luaState, -1);
 #ifdef _DEBUG
-                std::cout << "\t\t\variable: " << key << " valor: " << get<int>(value) << "\n";
+                std::cout << "\t\tvariable: " << key << " valor: " << get<int>(value) << "\n";
 #endif
             }
             else if (lua_isnumber(luaState, -1)) {
@@ -167,7 +167,7 @@ Component* SceneManager::loadComponent(std::string const& name) {
             else if (lua_isstring(luaState, -1)) {
                 value = lua_tostring(luaState, -1);
 #ifdef _DEBUG
-                std::cout << "\t\t\variable: " << key << " valor: " << get<std::string>(value) << "\n";
+                std::cout << "\t\tvariable: " << key << " valor: " << get<std::string>(value) << "\n";
 #endif
             }
 

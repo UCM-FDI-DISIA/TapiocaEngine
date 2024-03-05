@@ -6,8 +6,8 @@
 namespace Tapioca {
 Component* TransformBuilder::createComponent() {
     Transform* tr = new Transform();
-    tr->node = GraphicsEngine::instance()->createNode();
-    tr->node->transform = tr;
+    //tr->node = GraphicsEngine::instance()->createNode();
+    //tr->node->transform = tr;
     return tr;
 }
 }

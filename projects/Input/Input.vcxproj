@@ -13,8 +13,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5e0af72d-8466-4a76-b633-4d6198f021b1}</ProjectGuid>
-    <RootNamespace>Core</RootNamespace>
+    <ProjectGuid>{e3f8c2c9-6137-4434-999c-b6e8958260f5}</ProjectGuid>
+    <RootNamespace>Input</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -58,8 +58,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\MiBiblioteca\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -74,8 +74,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\MiBiblioteca\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\Core\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,38 +85,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Core\Components\Transform.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
-    <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp" />
-    <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
-    <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
-    <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp" />
+    <ClCompile Include="..\..\src\Input\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Core\Components\Transform.h" />
-    <ClInclude Include="..\..\src\Core\Core.h" />
-    <ClInclude Include="..\..\src\Core\Structure\BasicBuilder.h" />
-    <ClInclude Include="..\..\src\Core\Structure\Component.h" />
-    <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h" />
-    <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h" />
-    <ClInclude Include="..\..\src\Core\Structure\Game.h" />
-    <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
-    <ClInclude Include="..\..\src\Core\Structure\Module.h" />
-    <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\checkML.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\Concepts.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\defs.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\INode.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\Singleton.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\Vector3.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\Vector4.h" />
+    <ClInclude Include="..\..\src\Input\InputManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
