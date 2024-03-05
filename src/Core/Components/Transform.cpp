@@ -6,7 +6,7 @@ namespace Tapioca {
 Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
 
 Transform::~Transform() {
-    parent->deleteChild(this);
+    if (parent != nullptr) parent->deleteChild(this);
     object->die();
     for (auto childNode : getAllChildren()) {
         Tapioca::GameObject* childGameObject = childNode->getObject();
@@ -138,7 +138,5 @@ void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
     }
 }
 
-void Transform::fixedUpdate() {
-
-}
+void Transform::fixedUpdate() { }
 }
