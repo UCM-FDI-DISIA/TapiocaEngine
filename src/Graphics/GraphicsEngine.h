@@ -19,6 +19,7 @@ namespace Ogre {
 class FileSystemLayer;
 class Root;
 class SceneManager;
+class MeshManager;
 class GL3PlusRenderSystem;
 class RenderSystem;
 class RenderWindow;
@@ -40,6 +41,7 @@ class Viewport;
 class BillboardSet;
 class Billboard;
 class ParticleSystem;
+class Plane;
 
 class GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
@@ -51,6 +53,7 @@ private:
     std::string cfgPath;                                 // ruta donde se guardar los archivos de config (bin)
     Ogre::Root* mRoot;                                   // root de Ogre
     Ogre::SceneManager* scnMgr;                          // gestor de escenas
+    Ogre::MeshManager* mshMgr;                           // gestor de mallas
     Ogre::RenderSystem* renderSys;                       // sistema de render usado
     SGTechniqueResolverListener* mMaterialMgrListener;   // listener para crear shaders para los materiales que vienen sin ellos
     std::string mwindowName;          // nombre de la ventana
@@ -141,6 +144,16 @@ public:
     ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
                                          std::string const& templateName,
                                          bool emitting);
+
+    //Plane* createPlane(Node* node, std::string name, float width, float height, int xSegments, int ySegments, float x,
+    //                   float y, float z, std::string material = "");
+
+    Plane* createPlane(Node* node, const Vector3& rkNormal,
+                       float fConstant, std::string name, float width, float height, int xSegments, int ySegments, float x, float y, float z,
+                       std::string material = "");
+
+    Plane* createPlane(Node* node, float a, float b, float c,
+                       float _d, std::string name, float width, float height, int xSegments, int ySegments, float x, float y, float z, std::string material = "");
 
     Ogre::ManualObject* createManualObject(Node* node);
 

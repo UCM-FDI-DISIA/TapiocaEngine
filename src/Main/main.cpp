@@ -55,6 +55,7 @@ int main(int argc, char** argv) {
 
             auto node = graphics->createNode();
             auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+            //auto plane = graphics->createPlane(node, 0.f, 1.f, 1.f, 0.f, "abc", 5, 5, 1, 1, 0, -1, -5);
 
             node->setParent(nodeCamera);
             //*/

@@ -1,7 +1,9 @@
 #pragma once
 #include "OgreMath.h"
 #include "RenderObject.h"
+#include "OgrePlane.h"
 #include <string>
+#include "OgreMovablePlane.h"
 
 namespace Ogre {
 class SceneManager;
@@ -13,20 +15,26 @@ class Node;
 class Vector3;
 
 class Plane : public RenderObject {
-protected:
-    Ogre::Plane* mPlane;
-
-    //Construye un plano con todo inicializado a 0
-    Plane(Ogre::SceneManager* scnMgr, Node* node);
-    //Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
-    Plane(Ogre::SceneManager* scnMgr, Node* node, const Vector3& rkNormal, float fConstant);
-    //Construye un plano usando 4 constantes
-    Plane(Ogre::SceneManager* scnMgr, Node* node, float a, float b, float c, float _d);
+private:
+    Ogre::Entity* mPlane;
+    Ogre::Plane mPlaneAux;
+    std::string name;
 
 public:
-    virtual ~Plane() {
-        if (mPlane != nullptr) delete mPlane;
-    };
+    //Construye un plano con todo inicializado a 0
+    //Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, std::string name, float width, float height,
+    //      int xSegments, int ySegments, float x, float y, float z, std::string material);
+    //Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
+    Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, const Vector3& rkNormal, float fConstant,
+          std::string name, float width, float height, int xSegments, int ySegments, float x, float y, float z,
+          std::string material);
+    //Construye un plano usando 4 constantes
+    Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, float a, float b, float c, float _d,
+          std::string name, float width, float height, int xSegments, int ySegments, float x, float y,
+          float z,
+          std::string material);
+
+    virtual ~Plane() { };
     //Devuelve la normal que forma el plano
     Vector3 getNormal() const;
     //Devuelve la distancia desde el plano al origen

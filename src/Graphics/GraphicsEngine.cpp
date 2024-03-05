@@ -11,6 +11,7 @@
 #include "BillboardSet.h"
 #include "Billboard.h"
 #include "ParticleSystem.h"
+#include "Plane.h"
 
 // OGRE
 #include <Ogre.h>
@@ -138,10 +139,10 @@ bool GraphicsEngine::init() {
 
     // Crear ventana SDL2
     sdlWindow = SDL_CreateWindow(mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
-        windowHeight, flags);
+                                 windowHeight, flags);
     if (sdlWindow == nullptr) {
 #ifdef _DEBUG
-    	std::cerr << "Error al crear la ventana de SDL: " << SDL_GetError() << '\n';
+        std::cerr << "Error al crear la ventana de SDL: " << SDL_GetError() << '\n';
 #endif
         return false;
     }
@@ -152,9 +153,9 @@ bool GraphicsEngine::init() {
     SDL_VERSION(&wmInfo.version);
     if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
 #ifdef _DEBUG
-		std::cerr << "Error al obtener informacion de la ventana de SDL: " << SDL_GetError() << '\n';
+        std::cerr << "Error al obtener informacion de la ventana de SDL: " << SDL_GetError() << '\n';
 #endif
-		return false;
+        return false;
     }
     // vincular ventana de SDL con Ogre
     miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
@@ -163,6 +164,8 @@ bool GraphicsEngine::init() {
     scnMgr = mRoot->createSceneManager();
     scnMgr->addRenderQueueListener(overSys);
     loadShaders();
+
+    mshMgr = mRoot->getMeshManager();
 
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
@@ -244,8 +247,8 @@ void GraphicsEngine::shutDown() {
     }
 
     if (glContext != nullptr) {
-    	SDL_GL_DeleteContext((SDL_GLContext)glContext);
-		glContext = nullptr;
+        SDL_GL_DeleteContext((SDL_GLContext)glContext);
+        glContext = nullptr;
     }
 
     // eliminar la ventana de sdl
@@ -264,9 +267,7 @@ void GraphicsEngine::shutDown() {
     fsLayer = nullptr;
 }
 
-Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) {
-    return new Node(scnMgr, pos, scale);
-}
+Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) { return new Node(scnMgr, pos, scale); }
 
 Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
     Node* node = new Node(scnMgr, pos, scale);
@@ -309,6 +310,24 @@ BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& 
 ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
                                                      std::string const& templateName, bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
+}
+
+//Plane* GraphicsEngine::createPlane(Node* node, std::string name, float width, float height, int xSegments,
+//                                   int ySegments, float x, float y, float z, std::string material) {
+//    return new Plane(scnMgr, node, mshMgr, name, width, height, xSegments, ySegments, x, y, z, material);
+//}
+
+Plane* GraphicsEngine::createPlane(Node* node, const Vector3& rkNormal, float fConstant, std::string name, float width,
+                                   float height, int xSegments, int ySegments, float x, float y, float z,
+                                   std::string material) {
+    return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments, x, y, z,
+                     material);
+}
+
+Plane* GraphicsEngine::createPlane(Node* node, float a, float b, float c, float _d, std::string name, float width,
+                                   float height, int xSegments, int ySegments, float x, float y, float z,
+                                   std::string material) {
+    return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments, x, y, z, material);
 }
 
 Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {

@@ -1,43 +1,89 @@
 #include "Plane.h"
 #include <Ogre.h>
+#include "Node.h"
 #include "Utilities/Vector3.h"
+#include "Utilities/checkML.h"
 
 namespace Tapioca {
-Plane::Plane(Ogre::SceneManager* scnMgr, Node* node) : RenderObject(node, scnMgr), mPlane(new Ogre::Plane()) { }
 
-Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, const Vector3& rkNormal, float fConstant)
-    : RenderObject(node, scnMgr),
-      mPlane(new Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant)) { }
+//Plane(Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant))
 
-Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, float a, float b, float c, float _d)
-    : RenderObject(node, scnMgr), mPlane(new Ogre::Plane(a, b, c, _d)) { }
+//Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, std::string name, float width,
+//             float height, int xSegments, int ySegments, float x, float y, float z, std::string material)
+//    : RenderObject(node, scnMgr), name(name) {
+//    mPlaneAux = Ogre::Plane();
+//    mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::Plane(), width, height,
+//                        xSegments, ySegments);
+//
+//    mPlane = scnMgr->createEntity(name);
+//    if (material != "") mPlane->setMaterialName(material);
+//
+//    init(mPlane);
+//
+//    node->setPosition(Vector3(x, y, z));
+//}
 
-Vector3 Plane::getNormal() const { return Vector3(mPlane->normal.x, mPlane->normal.y, mPlane->normal.z); }
+Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, const Vector3& rkNormal,
+             float fConstant, std::string name, float width, float height, int xSegments, int ySegments, float x,
+             float y, float z, std::string material)
+    : RenderObject(node, scnMgr) {
+    mPlaneAux = Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant);
+    mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
+                        xSegments, ySegments);
 
-float Plane::getD() const { return mPlane->d; }
+    mPlane = scnMgr->createEntity(name);
+    if (material != "") mPlane->setMaterialName(material);
+
+    init(mPlane);
+
+    node->setPosition(Vector3(x, y, z));
+}
+
+Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, float a, float b, float c, float _d,
+             std::string name, float width, float height, int xSegments, int ySegments, float x, float y, float z,
+             std::string material)
+    : RenderObject(node, scnMgr) {
+    mPlaneAux = Ogre::Plane(Ogre::Vector3(a, b, c), _d);
+    mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
+                        xSegments, ySegments);
+
+    mPlane = scnMgr->createEntity(name);
+    if (material != "") mPlane->setMaterialName(material);
+
+    init(mPlane);
+
+    node->setPosition(Vector3(x, y, z));
+}
+
+Vector3 Plane::getNormal() const { return Vector3(mPlaneAux.normal.x, mPlaneAux.normal.y, mPlaneAux.normal.z); }
+
+float Plane::getD() const { return mPlaneAux.d; }
 
 float Plane::getDistance(const Vector3& rkPoint) const {
-    return mPlane->getDistance(Ogre::Vector3(rkPoint.x, rkPoint.y, rkPoint.z));
+    return mPlaneAux.getDistance(Ogre::Vector3(rkPoint.x, rkPoint.y, rkPoint.z));
 }
 
 void Plane::redefine(const Vector3& p0, const Vector3& p1, const Vector3& p2) {
-    mPlane->redefine(Ogre::Vector3(p0.x, p0.y, p0.z), Ogre::Vector3(p1.x, p1.y, p1.z), Ogre::Vector3(p2.x, p2.y, p2.z));
+    Ogre::MeshManager::getSingleton().getByName(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    mPlaneAux.redefine(Ogre::Vector3(p0.x, p0.y, p0.z), Ogre::Vector3(p1.x, p1.y, p1.z),
+                       Ogre::Vector3(p2.x, p2.y, p2.z));
 }
 
 void Plane::redefine(const Vector3& rkNormal, const Vector3& rkPoint) {
-    mPlane->redefine(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), Ogre::Vector3(rkPoint.x, rkPoint.y, rkPoint.z));
+    mPlaneAux.redefine(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z),
+                       Ogre::Vector3(rkPoint.x, rkPoint.y, rkPoint.z));
 }
 
 Vector3 Plane::projectVector(const Vector3& v) const {
-    Ogre::Vector3 aux = mPlane->projectVector(Ogre::Vector3(v.x, v.y, v.z));
+    Ogre::Vector3 aux = mPlaneAux.projectVector(Ogre::Vector3(v.x, v.y, v.z));
     return Vector3(aux.x, aux.y, aux.z);
 }
 
-float Plane::normalise(void) { return mPlane->normalise(); }
+float Plane::normalise(void) { return mPlaneAux.normalise(); }
 
 bool Plane::operator==(const Plane& rhs) const {
-    return (rhs.getD() == mPlane->d &&
-            rhs.getNormal() == Vector3(mPlane->normal.x, mPlane->normal.y, mPlane->normal.z));
+    return (rhs.getD() == mPlaneAux.d &&
+            rhs.getNormal() == Vector3(mPlaneAux.normal.x, mPlaneAux.normal.y, mPlaneAux.normal.z));
 }
 
 bool Plane::operator!=(const Plane& rhs) const { return !(*this == rhs); }
