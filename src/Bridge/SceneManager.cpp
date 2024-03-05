@@ -18,15 +18,19 @@
 
 namespace Tapioca {
 
-SceneManager::SceneManager(std::string const& scenesPath) : scenesPath(scenesPath), luaState(nullptr) { }
+SceneManager::SceneManager() : luaState(nullptr) { }
 
-SceneManager::~SceneManager() { destroy(); }
+SceneManager::~SceneManager() { }
 
 bool SceneManager::init() {
-    // Construye la ruta completa al archivo LUA
-    std::string path = "assets\\scenes\\" + scenesPath;
+    //TODO: llamar esto en otro sitio
+    loadScene("archivo.lua");
+    return true;
+}
 
+bool SceneManager::loadScene(const std::string& scenesPath) {
     luaState = luaL_newstate();
+    std::string path = "assets\\scenes\\" + scenesPath;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(luaState, -1) << '\n';
@@ -34,54 +38,26 @@ bool SceneManager::init() {
         lua_close(luaState);
         return false;
     }
-
-    if (!loadScenes()) {
+    Scene* scene = new Scene();
+    if (!loadScene(scene)) {
 #ifdef _DEBUG
-        std::cerr << "Error al cargar las escenas, gameobjects y componentes\n";
+        std::cerr << "Error al cargar de escena, gameobjects y componentes\n";
 #endif
         lua_close(luaState);
+        delete scene;
         return false;
     }
-    // TODO: Anadir la escena preferida primero
-    Game::get()->pushScene(scenes_debug.back());
-    scenes_debug.pop_back();
-
-#ifdef _DEBUG
-    std::cout << "Archivo LUA cargado correctamente\n";
-#endif
+    Game::get()->pushScene(scene);
     lua_close(luaState);
+#ifdef _DEBUG
+    std::cout << "Escena cargado correctamente\n";
+#endif
     return true;
 }
 
-bool SceneManager::loadScenes() {
-    lua_getglobal(luaState, "scenes");
-    if (!lua_istable(luaState, -1)) return false;
-
-    lua_pushnil(luaState);
-    bool loaded = false;
-    while (lua_next(luaState, -2) != 0) {
-        Scene* scene = new Scene();
-        std::string sceneName = lua_tostring(luaState, -2);
-
-#ifdef _DEBUG
-        std::cout << "Scene: " << sceneName << "\n";
-#endif
-        loaded = loadScene(scene);
-        if (!loaded) {
-			delete scene;
-			return false;
-        }
-        lua_pop(luaState, 1);
-
-        //TODO: esta aqui para no dejar memoria de momento
-        scenes_debug.push_back(scene);
-    }
-    return loaded;
-}
-
 bool SceneManager::loadScene(Scene* scene) {
+    lua_getglobal(luaState, "scene");
     if (!lua_istable(luaState, -1)) return false;
-
     lua_pushnil(luaState);
     return loadGameObjects(scene);
 }
@@ -92,15 +68,14 @@ bool SceneManager::loadGameObjects(Scene* scene) {
         GameObject* gameObject = new GameObject();
         std::string gameObjectName = "";
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
-
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
         loaded = loadGameObject(gameObject);
         if (!loaded) {
-			delete gameObject;
-			return false;
-		}
+            delete gameObject;
+            return false;
+        }
 
         scene->addObject(gameObject, gameObjectName);
         lua_pop(luaState, 1);
@@ -108,11 +83,53 @@ bool SceneManager::loadGameObjects(Scene* scene) {
     return loaded;
 }
 
-bool SceneManager::loadGameObject(GameObject* gameObject) {
-    if (!lua_istable(luaState, -1)) return false;
+bool SceneManager::loadGameObjects(GameObject* parent) {
 
+#ifdef _DEBUG
+    std::cout << "Children: start\n";
+#endif
+    Scene* scene = parent->getScene();
+
+    bool loaded = true;
+    while (lua_next(luaState, -2) != 0) {
+        GameObject* gameObject = new GameObject();
+        std::string gameObjectName = "";
+        if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
+#ifdef _DEBUG
+        std::cout << "\tGameObject: " << gameObjectName << "\n";
+#endif
+        loaded = loadGameObject(gameObject);
+        if (!loaded) {
+            delete gameObject;
+            return false;
+        }
+        //TODO: relaciona lo de padre hijo
+        scene->addObject(gameObject, gameObjectName);
+        lua_pop(luaState, 1);
+    }
+
+#ifdef _DEBUG
+    std::cout << "Children: end\n";
+#endif
+    return loaded;
+}
+
+bool SceneManager::loadGameObject(GameObject* gameObject) {
     lua_pushnil(luaState);
-    return loadComponents(gameObject);
+    std::string name = "";
+    while (lua_next(luaState, -2) != 0) {
+        if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
+        if (name == "components") {
+            lua_pushnil(luaState);
+            if (!loadComponents(gameObject)) return false;
+        }
+        else if (name == "children") {
+            //lua_pushnil(luaState);
+            //if (!loadGameObjects(gameObject)) return false;
+        }
+        lua_pop(luaState, 1);
+    }
+    return true;
 }
 
 bool SceneManager::loadComponents(GameObject* gameObject) {
@@ -141,9 +158,13 @@ Component* SceneManager::loadComponent(std::string const& name) {
 
     std::string key = "";
     CompValue value;
-    while (lua_next(luaState, -2) != 0) {
-        //TODO: no deberia pasar
-        if (lua_istable(luaState, -1)) lua_pop(luaState, 1);
+    bool load = true;
+
+    while (lua_next(luaState, -2) != 0 && load) {
+        if (lua_istable(luaState, -1)) {
+            lua_pop(luaState, 1);
+            load = false;
+        }
         else {
             key = lua_tostring(luaState, -2);
             if (lua_isboolean(luaState, -1)) {
@@ -161,7 +182,7 @@ Component* SceneManager::loadComponent(std::string const& name) {
             else if (lua_isnumber(luaState, -1)) {
                 value = (float)lua_tonumber(luaState, -1);
 #ifdef _DEBUG
-                std::cout << "\t\t\variable: " << key << " valor: " << get<float>(value) << "\n";
+                std::cout << "\t\tvariable: " << key << " valor: " << get<float>(value) << "\n";
 #endif
             }
             else if (lua_isstring(luaState, -1)) {
@@ -175,8 +196,10 @@ Component* SceneManager::loadComponent(std::string const& name) {
             lua_pop(luaState, 1);
         }
     }
-
-    Component* comp = FactoryManager::instance()->createComponent(name);
+    Component* comp = nullptr;
+    if (load) {
+        comp = FactoryManager::instance()->createComponent(name);
+    }
     if (comp == nullptr) {
 #ifdef _DEBUG
         std::cerr << "No existe el componente: " << name << "\n";
@@ -195,23 +218,4 @@ Component* SceneManager::loadComponent(std::string const& name) {
     return comp;
 }
 
-void SceneManager::destroy() {
-    for (Scene* s : scenes_debug) {
-        for (GameObject* g : s->getObjects()) {
-            for (Component* c : g->getAllComponents()) {
-				delete c;
-				c = nullptr;
-			}
-			delete g;
-			g = nullptr;
-		}
-        delete s;
-        s = nullptr;
-    }
-    scenes_debug.clear();
-}
-
-void SceneManager::start() {
-    for (auto scene : scenes_debug) scene->start();
-}
 }

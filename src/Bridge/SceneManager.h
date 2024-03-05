@@ -19,15 +19,12 @@ class SceneManager : public Singleton<SceneManager>, public Module {
 private:
     friend Singleton<SceneManager>;
     friend class Scene;
-
-    std::string scenesPath;             // Ruta del archivo de configuracion de escenas
-    std::vector<Scene*> scenes_debug;   // Vector de escenas cargadas
     lua_State* luaState;                // Estado de lua
 
     /*
     * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
     */
-    SceneManager(std::string const& scenesPath = "archivo.lua");
+    SceneManager();
 
     /*
     * @brief Carga el archivo de configuracion de escenas y crea las escenas, gameobjects y componentes y los inicializa
@@ -38,13 +35,8 @@ private:
     /**
     * @brief Inicializa las escenas, gameobjects y componentes
     */
-    void start() override;
+    void start() override {};
 
-    /**
-    * @brief Crea las escenas, gameobjects y componentes
-    * @return Devuelve true si se ha cargado correctamente
-    */
-    bool loadScenes();
     /**
     * @brief Carga una escena
     * @return Devuelve la escena cargada
@@ -57,6 +49,14 @@ private:
     * @return Devuelve true si se ha cargado correctamente
     */
     bool loadGameObjects(Scene* scene);
+
+    /**
+    * @brief Carga los gameobjects de una escena con un padre
+    * @param scene Escena a la que se le van a cargar los gameobjects
+    * @return Devuelve true si se ha cargado correctamente
+    */
+    bool loadGameObjects(GameObject* parent);
+
     /**
     * @brief Carga un gameobject
     * @param scene Escena a la que pertenece el gameobject
@@ -77,10 +77,6 @@ private:
 	*/
     Component* loadComponent(std::string const& name);
 
-    /**
-    * @brief Elimina las escenas, gameobjects y componentes
-    */
-    void destroy();
 
 public:
     SceneManager(SceneManager&) = delete;
@@ -92,5 +88,12 @@ public:
     * @brief Elimina las escenas, gameobjects y componentes
     */
     ~SceneManager();
+
+     /**
+    * @brief Carga la escena 
+    * @param nombre de escena
+    * @return Devuelve true si se ha cargado correctamente
+	*/
+    bool loadScene(const std::string& scenesPath);
 };
 }
