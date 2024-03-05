@@ -1,7 +1,7 @@
 #pragma once
 #include "RenderObject.h"
 #include <string>
-#include <unordered_set>
+#include <unordered_map>
 
 namespace Ogre {
 class SceneManager;
@@ -24,7 +24,7 @@ protected:
     //BillboardSet de Ogre
     Ogre::BillboardSet* mBillboardSet;
     //UnorderedSet de Billboards de Tapioca
-    std::unordered_set<Billboard*> mBillboardUnorderedSet;
+    std::unordered_map<Ogre::Billboard*, Tapioca::Billboard*> mBillboardUnorderedMap;
     //Nombre identificador
     std::string mName;
 
@@ -33,16 +33,8 @@ protected:
 
 public:
     //Destructora de la clase
-    virtual ~BillboardSet() {
-        if (mBillboardSet != nullptr) delete mBillboardSet;
-    }
-
-    //Cambia la visibilidad del BillboardSet
-    void setVisible(bool v);
-    //Comprueba si el Billboard es visible o no
-    bool getVisible() const;
-    //Vacía el BillboardSet
-    void clear();
+    virtual ~BillboardSet();
+    
     //Devuelve el nombre del Billboard
     const std::string getName() const;
     //Ajusta el tamaño del BillboardSet al indicado
@@ -51,9 +43,20 @@ public:
     int getPoolSize() const;
     //Devuelve el número de Billboards del BillboardSet
     int getNumBillboards() const;
+    //Cambia la visibilidad del BillboardSet
+    void setVisible(bool v);
+    //Comprueba si el Billboard es visible o no
+    bool getVisible() const;
+    //Vacía el BillboardSet
+    void clear();
     //Elimina el Billboard según su índice
     void removeBillboard(unsigned int index);
+    //Elimina el Billboard proporcionado
+    void removeBillboard(Billboard* bb);
     //Añade un Billboard al BillboardSet con la posición y color proporcionados (blanco por defecto)
-    Billboard* createBillboard(const Vector3& position, const Vector4& colour);
+    Tapioca::Billboard* createBillboard(const Vector3& position, const Vector4& colour);
+    //Devuelve un puntero al Billboard que corresponde con el índice indicado
+    Tapioca::Billboard* getBillboard(unsigned int index) const;
+
 };
 }

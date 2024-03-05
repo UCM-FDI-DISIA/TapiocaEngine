@@ -8,16 +8,53 @@
 namespace Tapioca {
 
 BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize)
-    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)), mName(name) 
-{
+    : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)), mName(name) {
     init(mBillboardSet);
 }
 
-void BillboardSet::setVisible(bool v) { mBillboardSet->setVisible(v); }
+Tapioca::BillboardSet::~BillboardSet() {
+    if (mBillboardSet != nullptr) delete mBillboardSet;
+    mBillboardUnorderedMap.clear();
+}
 
-bool BillboardSet::getVisible() const { return mBillboardSet->getVisible(); }
+void Tapioca::BillboardSet::clear() {
+    //Vacía el UnorderedMap de Tapioca::Billboards
+    mBillboardUnorderedMap.clear();
+    //Vacía el Ogre::BillboardSet
+    mBillboardSet->clear();
+}
 
-void BillboardSet::clear() { mBillboardSet->clear(); }
+void Tapioca::BillboardSet::removeBillboard(unsigned int index) {
+    //Elimina el Tapioca::Billboard del UnorderedMap
+    mBillboardUnorderedMap.erase(mBillboardSet->getBillboard(index));
+    //Elimina el Ogre::Billboard del Ogre::BillboardSet
+    mBillboardSet->removeBillboard(index);
+}
+
+void Tapioca::BillboardSet::removeBillboard(Billboard* bb) {
+    //Elimina el Tapioca::Billboard del UnorderedMap
+    mBillboardUnorderedMap.erase(bb->getBillboard());
+    //Elimina el Ogre::Billboard del Ogre::BillboardSet
+    mBillboardSet->removeBillboard(bb->getBillboard());
+}
+
+Tapioca::Billboard* Tapioca::BillboardSet::createBillboard(const Vector3& position,
+                                                           const Vector4& colour = (float(255), float(255), float(255),
+                                                                                    float(255))) {
+    //Crea el Ogre::Billboard
+    Ogre::Billboard* oBillboard = mBillboardSet->createBillboard(
+        Ogre::Vector3(position.x, position.y, position.z), Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
+    //Crea un Tapioca::Billboard a partir del Ogre::Billboard creado previamente
+    Billboard* mBillboard = new Tapioca::Billboard(sceneManager, node, oBillboard);
+    //Inserta el Billboard en el UnorderedMap
+    mBillboardUnorderedMap.insert({oBillboard, mBillboard});
+
+    return mBillboard;
+}
+
+Tapioca::Billboard* Tapioca::BillboardSet::getBillboard(unsigned int index) const {
+    return (*mBillboardUnorderedMap.find(mBillboardSet->getBillboard(index))).second;
+}
 
 const std::string BillboardSet::getName() const { return mBillboardSet->getName(); }
 
@@ -27,17 +64,8 @@ int BillboardSet::getPoolSize() const { return mBillboardSet->getPoolSize(); }
 
 int BillboardSet::getNumBillboards() const { return mBillboardSet->getNumBillboards(); }
 
-void BillboardSet::removeBillboard(unsigned int index) { mBillboardSet->removeBillboard(index); }
+void Tapioca::BillboardSet::setVisible(bool v) { mBillboardSet->setVisible(v); }
 
-Billboard* BillboardSet::createBillboard(const Vector3& position, const Vector4& colour = (255.0f, 255.0f, 255.0f, 255.0f))
-{
-    Ogre::Billboard* bb = mBillboardSet->createBillboard(Ogre::Vector3(position.x, position.y, position.z),
-                                                          Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
-    Billboard* mBillboard = new Billboard(sceneManager, node, bb);
+bool Tapioca::BillboardSet::getVisible() const { return mBillboardSet->getVisible(); }
 
-    mBillboardUnorderedSet.insert(mBillboard);
-
-    return mBillboard;
-}
-
-}
+};
