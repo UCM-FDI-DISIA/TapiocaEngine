@@ -21,8 +21,12 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
         return false;
     }
 
-    // Da igual si no hay material o si el material tiene un nombre vac�o
-    setValueFromMap(materialName, "materialName", variables);
+    // Da igual si no hay material o si el material tiene un nombre vacio
+    if (!setValueFromMap(materialName, "materialName", variables)) {
+#ifdef _DEBUG
+        std::cout << "No existe nombre para el material: se coloca el predefinido por la mesh.\n";
+#endif
+    }
 
     return true;
 }

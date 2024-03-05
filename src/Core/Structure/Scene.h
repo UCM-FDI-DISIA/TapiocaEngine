@@ -21,7 +21,7 @@ public:
     std::vector<GameObject*> getObjects() const;
     GameObject* getHandler(const std::string& handler) const;
 
-    void addObject(GameObject* object, std::string const& handler = "");
+    bool addObject(GameObject* object, std::string const& handler = "");
     void start();
     void update(const uint64_t deltaTime);
     //void handleEvents();

@@ -63,7 +63,6 @@ bool SceneManager::loadScene(Scene* scene) {
 }
 
 bool SceneManager::loadGameObjects(Scene* scene) {
-    bool loaded = false;
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
         std::string gameObjectName = "";
@@ -71,16 +70,14 @@ bool SceneManager::loadGameObjects(Scene* scene) {
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        loaded = loadGameObject(gameObject);
-        if (!loaded) {
+        if (!loadGameObject(gameObject) || !scene->addObject(gameObject, gameObjectName)) {
             delete gameObject;
             return false;
         }
 
-        scene->addObject(gameObject, gameObjectName);
         lua_pop(luaState, 1);
     }
-    return loaded;
+    return true;
 }
 
 bool SceneManager::loadGameObjects(GameObject* parent) {
@@ -217,5 +214,4 @@ Component* SceneManager::loadComponent(std::string const& name) {
 
     return comp;
 }
-
 }

@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
     if (loader->load()) {
         Tapioca::Game* game = new Tapioca::Game();
         createModules(game);
-            Tapioca::createEngineBuilders();
-            Tapioca::createGameBuilders(loader->getModule());
+        Tapioca::createEngineBuilders();
+        Tapioca::createGameBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));

@@ -35,8 +35,5 @@
     <ClInclude Include="..\..\src\JuegoPrueba\EjemploComponentFactory.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\JuegoPrueba\defs.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,13 +12,20 @@ Scene::~Scene() {
     for (auto obj : objects) delete obj;
 }
 
-void Scene::addObject(GameObject* object, std::string const& handler) {
-    objects.push_back(object);
+bool Scene::addObject(GameObject* object, std::string const& handler) {
     if (handler != "") {
+        if (handlers.contains(handler)) {
+#ifdef _DEBUG
+			std::cerr << "Ya existe ese nombre de handler, por favor elige otro.\n";
+#endif
+			return false;
+        }
         object->handler = handler;
         handlers[handler] = object;
     }
+    objects.push_back(object);
     object->setScene(this);
+    return true;
 }
 
 void Scene::refresh() {
