@@ -66,11 +66,12 @@ bool SceneManager::loadGameObjects(Scene* scene) {
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
         std::string gameObjectName = "";
+
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        if (!loadGameObject(gameObject) || !scene->addObject(gameObject, gameObjectName)) {
+        if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject)) {
             delete gameObject;
             return false;
         }
@@ -80,40 +81,12 @@ bool SceneManager::loadGameObjects(Scene* scene) {
     return true;
 }
 
-bool SceneManager::loadGameObjects(GameObject* parent) {
-
-#ifdef _DEBUG
-    std::cout << "Children: start\n";
-#endif
-    Scene* scene = parent->getScene();
-
-    bool loaded = true;
-    while (lua_next(luaState, -2) != 0) {
-        GameObject* gameObject = new GameObject();
-        std::string gameObjectName = "";
-        if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
-#ifdef _DEBUG
-        std::cout << "\tGameObject: " << gameObjectName << "\n";
-#endif
-        loaded = loadGameObject(gameObject);
-        if (!loaded) {
-            delete gameObject;
-            return false;
-        }
-        //TODO: relaciona lo de padre hijo
-        scene->addObject(gameObject, gameObjectName);
-        lua_pop(luaState, 1);
-    }
-
-#ifdef _DEBUG
-    std::cout << "Children: end\n";
-#endif
-    return loaded;
-}
-
 bool SceneManager::loadGameObject(GameObject* gameObject) {
     lua_pushnil(luaState);
     std::string name = "";
+
+    std::vector<GameObject*> children;
+
     while (lua_next(luaState, -2) != 0) {
         if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
         if (name == "components") {
@@ -121,11 +94,45 @@ bool SceneManager::loadGameObject(GameObject* gameObject) {
             if (!loadComponents(gameObject)) return false;
         }
         else if (name == "children") {
-            //lua_pushnil(luaState);
-            //if (!loadGameObjects(gameObject)) return false;
+            lua_pushnil(luaState);
+            if (!loadGameObjects(gameObject->getScene(), children)) {
+
+                return false;
+            }
         }
         lua_pop(luaState, 1);
     }
+    //relacionar padre hijo
+    Transform* tr = gameObject->getComponent<Transform>();
+    for (GameObject* obj : children) {
+        obj->getComponent<Transform>()->setParent(tr);
+    }
+    children.clear();
+    return true;
+}
+
+bool SceneManager::loadGameObjects(Scene* scene, std::vector<GameObject*>& gameObjects) {
+
+#ifdef _DEBUG
+    std::cout << "Children: start\n";
+#endif
+    while (lua_next(luaState, -2) != 0) {
+        GameObject* gameObject = new GameObject();
+        std::string gameObjectName = "";
+        if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
+        scene->addObject(gameObject, gameObjectName);
+        gameObjects.push_back(gameObject);
+#ifdef _DEBUG
+        std::cout << "\tGameObject: " << gameObjectName << "\n";
+#endif
+        if (!loadGameObject(gameObject)) return false;
+
+        lua_pop(luaState, 1);
+    }
+
+#ifdef _DEBUG
+    std::cout << "Children: end\n";
+#endif
     return true;
 }
 
@@ -144,7 +151,10 @@ bool SceneManager::loadComponents(GameObject* gameObject) {
         gameObject->addComponent(component, componentName);
         lua_pop(luaState, 1);
     }
-    return component != nullptr;
+    if (gameObject->getComponent<Transform>() == nullptr) {
+        gameObject->addComponent<Transform>();
+    }
+    return true;
 }
 
 Component* SceneManager::loadComponent(std::string const& name) {

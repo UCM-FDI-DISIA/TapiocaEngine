@@ -27,6 +27,9 @@ private:
     void deleteChild(Transform* child);
     void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
 
+    void clearConnection();
+    void addChild(Transform* child);
+
 public:
     COMPONENT_ID("Transform")
 

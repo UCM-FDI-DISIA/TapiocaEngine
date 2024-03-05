@@ -3,15 +3,17 @@
 #include "Utilities/INode.h"
 
 namespace Tapioca {
-Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
+Transform::Transform(): Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
 
 Transform::~Transform() {
-    if (parent != nullptr) parent->deleteChild(this);
     object->die();
+
     for (auto childNode : getAllChildren()) {
         GameObject* childGameObject = childNode->getObject();
         childGameObject->die();
+        childNode->clearConnection();
     }
+    clearConnection();
 }
 
 bool Transform::initComponent(const CompMap& variables) {
@@ -37,7 +39,7 @@ bool Transform::initComponent(const CompMap& variables) {
     }
     rotated();
 
-    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && 
+    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) &&
                     setValueFromMap(scale.y, "scaleY", variables) &&
                     setValueFromMap(scale.z, "scaleZ", variables);
     if (!scaleSet) {
@@ -118,6 +120,7 @@ void Transform::deleteChild(Transform* child) {
 void Transform::setParent(Transform* transform) {
     if (parent != nullptr) parent->deleteChild(this);
     parent = transform;
+    parent->addChild(this);
 }
 
 Transform* Transform::getParent() const { return parent; }
@@ -141,6 +144,16 @@ void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
         allChildren.push_back(child);
         child->getAllChildrenAux(allChildren);
     }
+}
+
+void Transform::clearConnection() {
+    if (parent != nullptr) parent->deleteChild(this);
+    parent = nullptr;
+    children.clear();
+}
+
+void Transform::addChild(Transform* child) {
+    children.insert(child); 
 }
 
 void Transform::fixedUpdate() { }

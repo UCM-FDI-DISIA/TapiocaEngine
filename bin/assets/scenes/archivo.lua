@@ -35,6 +35,39 @@ scene = {
                             rotationX = 25.0,
                             rotationY = 25.0,
                             rotationZ = 25.0
+                        },
+                    },
+                     children ={
+                        a3={
+                            components = {
+                                Transform = {
+                                    positionX = 22.0,
+                                    positionY = 12.0,
+                                    positionZ = -56.0,
+                                    scaleX = 25.0,
+                                    scaleY = 25.0,
+                                    scaleZ = 25.0,
+                                    rotationX = 25.0,
+                                    rotationY = 25.0,
+                                    rotationZ = 25.0
+                                }
+                            }
+                        },
+                        a4={
+                            components = {
+                                Transform = {
+                                    positionX = 22.0,
+                                    positionY = 12.0,
+                                    positionZ = -56.0,
+                                    scaleX = 25.0,
+                                    scaleY = 25.0,
+                                    scaleZ = 25.0,
+                                    rotationX = 25.0,
+                                    rotationY = 25.0,
+                                    rotationZ = 25.0
+                                }
+                            }
+                            
                         }
                     }
                 },
@@ -73,6 +106,38 @@ scene = {
             }
         },
         Entity2={
+            components = {
+                Transform = {
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
+                }
+            }
+            
+        },
+        Entity3={
+            components = {
+                Transform = {
+                    positionX = 22.0,
+                    positionY = 12.0,
+                    positionZ = -56.0,
+                    scaleX = 25.0,
+                    scaleY = 25.0,
+                    scaleZ = 25.0,
+                    rotationX = 25.0,
+                    rotationY = 25.0,
+                    rotationZ = 25.0
+                }
+            }
+            
+        },
+        Entity4={
             components = {
                 Transform = {
                     positionX = 22.0,

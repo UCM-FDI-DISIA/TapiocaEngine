@@ -52,10 +52,9 @@ private:
 
     /**
     * @brief Carga los gameobjects de una escena con un padre
-    * @param scene Escena a la que se le van a cargar los gameobjects
     * @return Devuelve true si se ha cargado correctamente
     */
-    bool loadGameObjects(GameObject* parent);
+    bool loadGameObjects(Scene* scene, std::vector<GameObject*>& gameObjectList);
 
     /**
     * @brief Carga un gameobject
