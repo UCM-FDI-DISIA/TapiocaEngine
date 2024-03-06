@@ -110,7 +110,7 @@ void RigidBody::start() {
     transform = object->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
-                                                            transform->getScale(), colShape, movementType, mass,
+                                                            colliderScale, colShape, movementType, mass,
                                                             friction, bounciness, isTrigger, group, mask);
 
     collider = object->getComponent<Collider>();

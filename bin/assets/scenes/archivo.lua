@@ -20,6 +20,17 @@ scene = {
                 },
                 MeshRenderer = {
                     meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
+                },
+                RigidBody = {    
+                    colShape=0, --0 BOX, 1 SPHERE, 2 PLANE, 3 CAPSULE
+                    colliderScaleX=2.0,
+                    colliderScaleY=2.0,
+                    colliderScaleZ=2.0,
+                    isTrigger=false,
+                    movementType=1, --0 DYNAMIC , 1 STATIC, 2 KINEMATIC
+                    friction=1.0,
+                    mass=3.0,
+                    bounciness=0.0
                 }
             },
             children ={

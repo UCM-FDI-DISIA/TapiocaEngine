@@ -109,10 +109,10 @@ static void createModules(Tapioca::Game* game) {
     game->addModule(input);
     factories = Tapioca::FactoryManager::create();
     game->addModule(factories);
-    scenes = Tapioca::SceneManager::create();
-    game->addModule(scenes);
     physics = Tapioca::PhysicsManager::create();
     game->addModule(physics);
+    scenes = Tapioca::SceneManager::create();
+    game->addModule(scenes);
     // audio = AudioManager::create();
     // game->addModule(audio);
 }

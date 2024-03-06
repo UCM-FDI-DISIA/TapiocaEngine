@@ -71,7 +71,7 @@ PhysicsManager::PhysicsManager() : colConfig(nullptr), colDispatch(nullptr), bro
     , pdd(nullptr)
 #endif   // _DEBUG
 {
-    // init();
+   //  init();
 }
 
 PhysicsManager::~PhysicsManager() { destroy(); }
@@ -96,10 +96,10 @@ bool PhysicsManager::init() {
     gContactAddedCallback = onCollisionStay;
     gContactEndedCallback = onCollisionExit;
 
-    createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 1,
-        (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
-    createRigidBody(
-        Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
+    //createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 1,
+    //    (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
+    //createRigidBody(
+    //    Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
 
 #ifdef _DEBUG
     pdd = new PhysicsDebugDrawer();
@@ -124,8 +124,8 @@ void PhysicsManager::update(const uint64_t deltaTime) {
             body->getMotionState()->getWorldTransform(tr);
         } 
         else tr = obj->getWorldTransform();
-      /*  std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
-                  << tr.getOrigin().getZ() << "\n";*/
+        std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
+                  << tr.getOrigin().getZ() << "\n";
     }
 #endif
 
@@ -202,8 +202,9 @@ void PhysicsManager::destroy() {
 
     auto it = rigidBodies.begin();
     while (it != rigidBodies.end()) {
-        destroyRigidBody(*it);
-        it = rigidBodies.erase(it);
+        auto itAux = it;
+        ++it;
+        destroyRigidBody(*itAux);
     }
 
     delete colConfig;
@@ -228,6 +229,7 @@ void PhysicsManager::destroy() {
 }
 
 void PhysicsManager::destroyRigidBody(btRigidBody* rb) {
+    rigidBodies.erase(rb);
     if (rb && rb->getMotionState()) delete rb->getMotionState();
     delete rb->getCollisionShape();
     dynamicsWorld->removeCollisionObject(rb);
