@@ -73,10 +73,12 @@ public:
     Vector3(5,5,5)*/
     void scale(Vector3 s) override;
     void setRotation(Vector3 rot) override;
-    // TODO: terminar rotate y rotaciones en los ejes basicos (pitch, yaw, roll)
-    void rotate(Vector3 r);
+    // TODO: terminar rotate y rotaciones en los ejes basicos (roll, yaw, pitch)
+    void rotate(Vector3 r) override;
 
-    void yaw(float angle);
+    void roll(float angle) override;
+    void yaw(float angle) override;
+    void pitch(float angle) override;
 
     std::vector<INode*> getChildren() override;
     void getAllChildrenAux(std::vector<INode*>& allChildren) override;

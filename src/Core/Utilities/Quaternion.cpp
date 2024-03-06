@@ -82,7 +82,7 @@ Quaternion Quaternion::operator*(const Quaternion rhs) {
     // float d = vector.dot(rhs.vector);
     // newVector = vector.cross(rhs.vector) +  rhs.vector*scalar + vector*rhs.scalar;
     // newScalar = scalar * rhs.scalar - vector.dot(rhs.vector);
-    // producto de hamilton
+    // producto de hamilton (un man irlandes >:t)
     newScalar = scalar * rhs.scalar - vector.x * rhs.vector.x - vector.y * rhs.vector.y - vector.z * rhs.vector.z;
     newVector =
         Vector3((scalar * rhs.vector.x + vector.x * rhs.scalar + vector.y * rhs.vector.z - vector.z * rhs.vector.y),
