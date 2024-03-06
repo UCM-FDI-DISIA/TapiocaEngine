@@ -16,11 +16,6 @@ SceneManager::SceneManager() : luaState(nullptr) { }
 
 SceneManager::~SceneManager() { }
 
-bool SceneManager::init() {
-    //TODO: llamar esto en otro sitio
-    return loadScene("archivo.lua");
-}
-
 bool SceneManager::loadScene(std::string const& sceneName) {
     luaState = luaL_newstate();
     std::string path = "assets\\scenes\\" + sceneName;

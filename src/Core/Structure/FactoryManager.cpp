@@ -1,5 +1,6 @@
 #include "FactoryManager.h"
 #include "DynamicLibraryLoader.h"
+#include "SceneManager.h"
 
 #include "Component.h"
 #include "ComponentBuilder.h"
@@ -46,7 +47,7 @@ void FactoryManager::createEngineBuilders() {
 bool FactoryManager::initGame() {
     if (loader->load()) {
         EntryPoint eP = (EntryPoint)GetProcAddress(loader->getModule(), "init");
-		eP(FactoryManager::instance());
+		eP(FactoryManager::instance(), SceneManager::instance());
 	}
     else {
 #ifdef _DEBUG

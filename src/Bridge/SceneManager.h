@@ -27,12 +27,6 @@ private:
     */
     SceneManager();
 
-    /*
-    * @brief Carga el archivo de configuracion de escenas y crea las escenas, gameobjects y componentes y los inicializa
-    * @return Devuelve true si se ha cargado correctamente
-    */
-    bool init() override;
-
     /**
     * @brief Inicializa las escenas, gameobjects y componentes
     */
