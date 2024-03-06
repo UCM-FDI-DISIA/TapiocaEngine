@@ -60,8 +60,7 @@ std::vector<GameObject*> Scene::getObjects() const { return objects; }
 GameObject* Scene::getHandler(std::string const& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;
-    else
-        return nullptr;
+    else return nullptr;
 }
 
 void Scene::update(const uint64_t deltaTime) {

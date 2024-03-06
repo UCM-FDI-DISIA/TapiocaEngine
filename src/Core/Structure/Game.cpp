@@ -114,6 +114,13 @@ void Game::refresh() {
 
 void Game::addModule(Module* const m) { modules.push_back(m); }
 
+void Game::pushEvent(std::string const& id, void* info) { 
+#ifdef _DEBUG
+    if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
+#endif
+    if (!scenes.empty()) scenes.top()->pushEvent(id, info);
+}
+
 void Game::pushScene(Scene* const sc) {
     scenes.push(sc);
     // TODO: mejorar start para que se ejecute para componentes que se crean en tiempo de ejecucion

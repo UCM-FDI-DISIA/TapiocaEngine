@@ -46,5 +46,7 @@ public:
 
     
     void addModule(Module* const m);
+
+    void pushEvent(std::string const& id, void* info);
 };
 }
