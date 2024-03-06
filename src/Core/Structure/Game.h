@@ -1,15 +1,16 @@
 #pragma once
 #include <vector>
 #include <stack>
+#include "Utilities/Singleton.h"
 #include "Utilities/defs.h"
 
 namespace Tapioca {
 class Scene;
 class Module;
 
-class TAPIOCA_API Game {
+class TAPIOCA_API Game : public Singleton<Game> {
 private:
-    static Game* instance;
+    friend Singleton<Game>;
 
     std::vector<Module*> modules;
     std::stack<Scene*> scenes;
@@ -27,11 +28,10 @@ private:
     void render();
     void refresh();
 
+    Game();
 
 public:
-    Game();
     ~Game();
-    inline static Game* get() { return instance; }
 
     static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps (62.5)
 

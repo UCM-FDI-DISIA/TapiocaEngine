@@ -5,21 +5,9 @@
 
 namespace Tapioca {
 
-Game::Game() : finish(false), deltaTime(0) {
-
-    // No deberia haber mas de un objeto Game
-    if (instance != nullptr) {
-#ifdef _DEBUG
-        std::cerr << "Se ha intentado crear un segundo objeto Game.\n";
-#endif
-        return;
-    }
-    instance = this;
-}
+Game::Game() : finish(false), deltaTime(0) { }
 
 Game::~Game() {
-    instance = nullptr;
-
     while (!scenes.empty()) {
         delete scenes.top();
         scenes.pop();
@@ -140,5 +128,4 @@ void Game::changeScene(Scene* const sc) {
     sc->start();
 }
 
-Game* Game::instance = nullptr;
 }

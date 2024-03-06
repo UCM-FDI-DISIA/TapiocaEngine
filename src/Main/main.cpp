@@ -36,7 +36,8 @@ static void createModules(Tapioca::Game*);
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    Tapioca::Game* game = new Tapioca::Game();
+    Tapioca::Game* game = Tapioca::Game::create();
+
     createModules(game);
     if (game->init()) {
         //* Prueba

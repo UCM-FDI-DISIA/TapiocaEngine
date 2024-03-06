@@ -13,12 +13,10 @@ bool InputManager::init() {
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
     resetText();
     initControllers();
-    clearInput();
     return true;
 }
 
 InputManager::~InputManager() {
-    clearInput();
     for (auto ctrl : controllers) removeController(ctrl.first);
     controllers.clear();
 }
@@ -67,10 +65,6 @@ void InputManager::removeController(const int i) {
 }
 
 
-void InputManager::clearInput() {
-    for (auto& e : inputEventTriggered) e.second.clear();
-}
-
 void Tapioca::InputManager::sendEvent(std::string const& event, SDL_Event const& eventInfo) { 
     // Si el origen del evento no ha sido mapeado, lo ignora
     if (iMap.find(event) == iMap.end()) return;
@@ -90,7 +84,7 @@ void Tapioca::InputManager::sendEvent(std::string const& event, SDL_Event const&
     for (auto evt : iMap[event][value]) {
         if (evt == "ev_REMOVE_LAST_CHAR") removeChar = true;
         else if (evt == "ev_TOGGLE_TEXT_INPUT") toggleTextInput = true;
-        else Game::get()->pushEvent(evt, {});
+        else Game::instance()->pushEvent(evt, {});
     }
 
 }
@@ -102,54 +96,45 @@ void InputManager::updateState(const SDL_Event& event) {
     switch (event.type) {
     // Ventana
     case SDL_WINDOWEVENT_CLOSE: case SDL_QUIT:
-        Game::get()->exit();
+        Game::instance()->exit();
         break;
     case SDL_WINDOWEVENT:
-        if (event.window.event == SDL_WINDOWEVENT_RESIZED) Game::get()->pushEvent("ev_RESIZEWINDOW", {});
+        if (event.window.event == SDL_WINDOWEVENT_RESIZED) Game::instance()->pushEvent("ev_RESIZEWINDOW", {});
         break;
     
     // Teclado
     case SDL_KEYDOWN:
         eventName = "ie_keyDown";
-        inputEventTriggered["ie_keyDown"].push_back(event);
         break;
     case SDL_KEYUP:
         eventName = "ie_keyUp";
-        inputEventTriggered["ie_keyUp"].push_back(event);
         break;
 
     // Raton
     case SDL_MOUSEMOTION:
         eventName = "ie_mouseMoving";
-        inputEventTriggered["ie_mouseMoving"].push_back(event);
         mousePos.first = event.motion.x;
         mousePos.second = event.motion.y;
         break;
     case SDL_MOUSEBUTTONDOWN:
         eventName = "ie_mouseButtonDown";
-        inputEventTriggered["ie_mouseButtonDown"].push_back(event);
         break;
     case SDL_MOUSEBUTTONUP:
         eventName = "ie_mouseButtonUp";
-        inputEventTriggered["ie_mouseButtonUp"].push_back(event);
         break;
     case SDL_MOUSEWHEEL:
         eventName = "ie_mouseWheel";
-        inputEventTriggered["ie_mouseWheel"].push_back(event);
         break;
 
     // Mando
     case SDL_CONTROLLERAXISMOTION:
         eventName = "ie_ctrlAxisMotion";
-        inputEventTriggered["ie_ctrlAxisMotion"].push_back(event);
         break;
     case SDL_CONTROLLERBUTTONDOWN:
         eventName = "ie_ctrlButtonDown";
-        inputEventTriggered["ie_ctrlButtonDown"].push_back(event);
         break;
     case SDL_CONTROLLERBUTTONUP:
         eventName = "ie_ctrlButtonUp";
-        inputEventTriggered["ie_ctrlButtonUp"].push_back(event);
         break;
     case SDL_JOYDEVICEADDED:
         addController(event.cdevice.which);
@@ -198,7 +183,6 @@ void InputManager::updateState(const SDL_Event& event) {
 
 void InputManager::handleEvents() {
     SDL_Event event;
-    clearInput();
     while (SDL_PollEvent(&event)) {
         ImGui_ImplSDL2_ProcessEvent(&event);
         updateState(event);

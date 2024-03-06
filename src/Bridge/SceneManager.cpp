@@ -35,7 +35,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
         delete scene;
         return false;
     }
-    Game::get()->pushScene(scene);
+    Game::instance()->pushScene(scene);
     lua_close(luaState);
 #ifdef _DEBUG
     std::cout << "Escena cargado correctamente\n";

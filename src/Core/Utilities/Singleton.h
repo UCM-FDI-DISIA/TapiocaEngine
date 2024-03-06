@@ -40,6 +40,7 @@ public:
         // Entonces, devuelve el puntero
         return instance_;
     }
+
 };
 
 template<typename T>

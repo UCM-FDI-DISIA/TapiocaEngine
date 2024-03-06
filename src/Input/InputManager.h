@@ -11,11 +11,8 @@ typedef _SDL_GameController SDL_GameController;
 
 namespace Tapioca {
 class TAPIOCA_API InputManager : public Singleton<InputManager>, public Module {
-    friend Singleton<InputManager>;
-
 private:
-    // Tipos de eventos (de input, no los mapeados)
-    std::unordered_map<std::string, std::vector<SDL_Event>> inputEventTriggered;
+    friend Singleton<InputManager>;
 
     // Posicion del raton
     std::pair<int32_t, int32_t> mousePos;
@@ -56,12 +53,7 @@ private:
     * @brief Elimina el mando y su deadzone del mapa de mandos
     */
     void removeController(const int i);
-
-    /*
-    * @brief Limpia el input
-    */
-    void clearInput();
-    
+  
     /*
     * @brief Envia el evento propio si alguno de los eventos mapeados coincide con el producido
     * @param evtent El nombre del evento de input
