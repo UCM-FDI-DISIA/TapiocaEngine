@@ -18,7 +18,7 @@ SceneManager::~SceneManager() { }
 
 bool SceneManager::loadScene(std::string const& sceneName) {
     luaState = luaL_newstate();
-    std::string path = "assets\\scenes\\" + sceneName;
+    std::string path = "..\\bin\\assets\\scenes\\" + sceneName;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(luaState, -1) << '\n';
