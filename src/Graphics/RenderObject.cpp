@@ -5,7 +5,8 @@
 
 namespace Tapioca {
 
-RenderObject::RenderObject(Node* node, Ogre::SceneManager* sceneManager) : movObject(nullptr), node(node), sceneManager(sceneManager) { }
+RenderObject::RenderObject(Node* node, Ogre::SceneManager* sceneManager)
+    : movObject(nullptr), node(node), sceneManager(sceneManager) { }
 
 void RenderObject::init(Ogre::MovableObject* movObject) {
     this->movObject = movObject;
@@ -27,4 +28,5 @@ RenderObject::~RenderObject() {
 
 void RenderObject::setVisible(bool enable) { movObject->setVisible(enable); }
 
+bool RenderObject::getVisible() const { return movObject->getVisible(); }
 }

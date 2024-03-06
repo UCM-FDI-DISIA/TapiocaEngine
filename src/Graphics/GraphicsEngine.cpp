@@ -303,7 +303,8 @@ LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 dir
 Mesh* GraphicsEngine::createMesh(Node* node, std::string const& meshName) { return new Mesh(scnMgr, node, meshName); }
 
 Billboard* GraphicsEngine::createBillboard(Node* node, std::string const& name, Vector3 position, Vector4 colour) {
-    return new Billboard(scnMgr, node, name, position, colour);
+    Tapioca::BillboardSet* set = new BillboardSet(scnMgr, node, name, 1);
+    return set->addBillboard(position, colour);
 }
 
 BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& name, unsigned int poolSize) {

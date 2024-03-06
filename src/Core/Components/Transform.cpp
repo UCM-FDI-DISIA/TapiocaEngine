@@ -3,7 +3,7 @@
 #include "Utilities/INode.h"
 
 namespace Tapioca {
-Transform::Transform(): Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
+Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
 
 Transform::~Transform() {
     object->die();
@@ -18,8 +18,7 @@ Transform::~Transform() {
 
 bool Transform::initComponent(const CompMap& variables) {
     bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
-                       setValueFromMap(position.y, "positionY", variables) && 
-                       setValueFromMap(position.z, "positionZ", variables);
+        setValueFromMap(position.y, "positionY", variables) && setValueFromMap(position.z, "positionZ", variables);
     if (!positionSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la posicion.\n";
@@ -29,8 +28,7 @@ bool Transform::initComponent(const CompMap& variables) {
     moved();
 
     bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
-                       setValueFromMap(rotation.y, "rotationY", variables) && 
-                       setValueFromMap(rotation.z, "rotationZ", variables);
+        setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
     if (!rotationSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la rotacion.\n";
@@ -39,9 +37,8 @@ bool Transform::initComponent(const CompMap& variables) {
     }
     rotated();
 
-    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) &&
-                    setValueFromMap(scale.y, "scaleY", variables) &&
-                    setValueFromMap(scale.z, "scaleZ", variables);
+    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
+        setValueFromMap(scale.z, "scaleZ", variables);
     if (!scaleSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
@@ -152,9 +149,7 @@ void Transform::clearConnection() {
     children.clear();
 }
 
-void Transform::addChild(Transform* child) {
-    children.insert(child); 
-}
+void Transform::addChild(Transform* child) { children.insert(child); }
 
 void Transform::fixedUpdate() { }
 }

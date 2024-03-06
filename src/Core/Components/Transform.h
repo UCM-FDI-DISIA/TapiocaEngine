@@ -17,11 +17,11 @@ class TAPIOCA_API Transform : public Component {
 
 private:
     Vector3 position;
-    void moved() { };
+    void moved() {};
     Vector3 rotation;
-    void rotated() { };
+    void rotated() {};
     Vector3 scale;
-    void scaled() { };
+    void scaled() {};
 
     Transform* parent;
     std::unordered_set<Transform*> children;

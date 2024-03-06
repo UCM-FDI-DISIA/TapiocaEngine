@@ -1,17 +1,16 @@
 #pragma once
 #include "RenderObject.h"
+#include "Utilities/Vector3.h"
+#include "Utilities/Vector4.h"
 
 namespace Ogre {
 class SceneManager;
 class BillboardSet;
-class Billboard;
 }
 
 namespace Tapioca {
 class Node;
 class GraphicsEngine;
-class Vector3;
-class Vector4;
 class Billboard;
 
 class TAPIOCA_API BillboardSet : public RenderObject {
@@ -22,39 +21,39 @@ protected:
     //BillboardSet de Ogre
     Ogre::BillboardSet* mBillboardSet;
     //UnorderedSet de Billboards de Tapioca
-    std::unordered_map<Ogre::Billboard*, Tapioca::Billboard*> mBillboardUnorderedMap;
+    std::vector<Tapioca::Billboard*> billboards;
     //Nombre identificador
     std::string mName;
 
-    //Crea un BillboardSet con nombre a partir de un número de elementos
+    //Crea un BillboardSet con nombre a partir de un nï¿½mero de elementos
     BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize);
 
 public:
     //Destructora de la clase
     virtual ~BillboardSet();
-    
+
     //Devuelve el nombre del Billboard
     const std::string getName() const;
-    //Ajusta el tamaño del BillboardSet al indicado
+    //Ajusta el tamaï¿½o del BillboardSet al indicado
     void setPoolSize(size_t size);
-    //Devuelve el tamaño del BillboardSet
+    //Devuelve el tamaï¿½o del BillboardSet
     int getPoolSize() const;
-    //Devuelve el número de Billboards del BillboardSet
+    //Devuelve el nï¿½mero de Billboards del BillboardSet
     int getNumBillboards() const;
     //Cambia la visibilidad del BillboardSet
-    void setVisible(bool v);
-    //Comprueba si el Billboard es visible o no
-    bool getVisible() const;
-    //Vacía el BillboardSet
+    //void setVisible(bool v);
+    ////Comprueba si el Billboard es visible o no
+    //bool getVisible() const;
+    //Vacï¿½a el BillboardSet
     void clear();
-    //Elimina el Billboard según su índice
-    void removeBillboard(unsigned int index);
+    //Elimina el Billboard segï¿½n su ï¿½ndice
+    void removeBillboard(int index);
     //Elimina el Billboard proporcionado
     void removeBillboard(Billboard* bb);
-    //Añade un Billboard al BillboardSet con la posición y color proporcionados (blanco por defecto)
-    Tapioca::Billboard* createBillboard(const Vector3& position, const Vector4& colour);
-    //Devuelve un puntero al Billboard que corresponde con el índice indicado
-    Tapioca::Billboard* getBillboard(unsigned int index) const;
-
+    //Aï¿½ade un Billboard al BillboardSet con la posiciï¿½n y color proporcionados (blanco por defecto)
+    Tapioca::Billboard* addBillboard(const Vector3& position,
+                                        const Vector4& colour = Vector4(255.0f, 255.0f, 255.0f, 255.0f));
+    //Devuelve un puntero al Billboard que corresponde con el ï¿½ndice indicado
+    Tapioca::Billboard* getBillboard(int index) const;
 };
 }

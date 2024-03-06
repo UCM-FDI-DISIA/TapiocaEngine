@@ -31,5 +31,7 @@ public:
     virtual ~RenderObject();
 
     void setVisible(bool enable);
+
+    bool getVisible() const;
 };
 }

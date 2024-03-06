@@ -35,6 +35,8 @@ static void createModules(Tapioca::Game*);
 #include "Mesh.h"
 #include "Viewport.h"
 #include "Utilities/Vector3.h"
+#include "BillboardSet.h"
+#include "Billboard.h"
 
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -48,6 +50,9 @@ int main(int argc, char** argv) {
         //Tapioca::createGameBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
+
+            // IMPORTANTE: NO PREOCUPARSE POR SI NO SE PUEDE ACCEDER A UN OBJETO PARA BORRAR
+            // LUEGO, EL NODO VA A BORRAR TODO
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
             auto camera = graphics->createCamera(nodeCamera, "MainCamera");
             auto viewport = graphics->createViewport(camera, 0);
@@ -57,14 +62,21 @@ int main(int argc, char** argv) {
             auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
             //auto plane = graphics->createPlane(node, 0.f, 1.f, 1.f, 0.f, "abc", 5, 5, 1, 1, 0, -1, -5);
 
-            node->setParent(nodeCamera);
+            auto nodeBil = graphics->createNode();
+            auto bil = graphics->createBillboardSet(nodeBil, "Holaaa", 2);
+            bil->addBillboard(Tapioca::Vector3(0, 0, 0));
+            bil->removeBillboard(0);
+
+            //node->setParent(nodeCamera);
             //*/
 
             game->run();
 
             //*
-            delete node;
+            delete nodeBil;
+            delete bil;
 
+            delete node;
             delete nodeCamera;
             delete camera;
             delete viewport;
