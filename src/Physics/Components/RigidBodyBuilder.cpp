@@ -1,5 +1,5 @@
 #include "RigidBodyBuilder.h"
-#include "Components/RigidBody.h"
+#include "RigidBody.h"
 
 namespace Tapioca {
 Component* RigidBodyBuilder::createComponent() { return new RigidBody(); }

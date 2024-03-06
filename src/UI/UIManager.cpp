@@ -1,5 +1,4 @@
 #include "UIManager.h"
-
 #include <SDL.h>
 #include <Ogre.h>
 #include <OgreImGuiOverlay.h>
@@ -7,8 +6,10 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 
+#include "Structure/FactoryManager.h"
+
 namespace Tapioca {
-UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr) { }
+UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr), button("Play") { }
 
 UIManager::~UIManager() {
     imguiOverlay = nullptr;
@@ -48,6 +49,22 @@ bool UIManager::init() {
 
 void UIManager::render() {
     Ogre::ImGuiOverlay::NewFrame();
+
+    // PRUEBA
+    ImGui::Begin("Tapioca Engine");
+
+    if (ImGui::Button(button, ImVec2(120, 40))) {
+#ifdef _DEBUG
+    std::cout << "Pulsado el boton de jugar\n";
+#endif
+        // Cargar la .dll
+        if (!FactoryManager::instance()->initGame()) {
+			button = "Couldn't run game :(";
+		}
+    }
     ImGui::ShowDemoWindow();
+
+    ImGui::End();
+    // PRUEBA
 }
 }

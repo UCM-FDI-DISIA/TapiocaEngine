@@ -1,6 +1,5 @@
 #pragma once
 #include "Utilities/checkML.h"
-#include "DynamicLibraryLoader.h"
 #include "Structure/Game.h"
 
 #include "GraphicsEngine.h"
@@ -8,16 +7,12 @@
 #include "Structure/FactoryManager.h"
 #include "SceneManager.h"
 #include "PhysicsManager.h"
-// #include "AudioManager.h" Descomentar cuando se implemente
 #include "UIManager.h"
-
-#include "CreateBuilders.h"
+// #include "AudioManager.h" Descomentar cuando se implemente
 
 #ifdef _DEBUG
 #include <iostream>
 #endif
-
-// IMPORTANTE: METERLO EN UN NAMESPACE CAUSA ERRORES DE COMPILACION
 
 Tapioca::InputManager* input;
 Tapioca::FactoryManager* factories;
@@ -41,60 +36,49 @@ static void createModules(Tapioca::Game*);
 int main(int argc, char** argv) {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    Tapioca::DynamicLibraryLoader* loader = new Tapioca::DynamicLibraryLoader();
+    Tapioca::Game* game = new Tapioca::Game();
+    createModules(game);
+    if (game->init()) {
+        //* Prueba
 
-    //if (loader->load()) {
-        Tapioca::Game* game = new Tapioca::Game();
-        createModules(game);
-        Tapioca::createEngineBuilders();
-        //Tapioca::createGameBuilders(loader->getModule());
-        if (game->init()) {
-            //* Prueba
+        // IMPORTANTE: NO PREOCUPARSE POR SI NO SE PUEDE ACCEDER A UN OBJETO PARA BORRAR
+        // LUEGO, EL NODO VA A BORRAR TODO
+        auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
+        auto camera = graphics->createCamera(nodeCamera, "MainCamera");
+        auto viewport = graphics->createViewport(camera, 0);
+        viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
 
-            // IMPORTANTE: NO PREOCUPARSE POR SI NO SE PUEDE ACCEDER A UN OBJETO PARA BORRAR
-            // LUEGO, EL NODO VA A BORRAR TODO
-            auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
-            auto camera = graphics->createCamera(nodeCamera, "MainCamera");
-            auto viewport = graphics->createViewport(camera, 0);
-            viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
+        auto node = graphics->createNode();
+        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+        //auto plane = graphics->createPlane(node, 0.f, 1.f, 1.f, 0.f, "abc", 5, 5, 1, 1, 0, -1, -5);
 
-            auto node = graphics->createNode();
-            auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-            //auto plane = graphics->createPlane(node, 0.f, 1.f, 1.f, 0.f, "abc", 5, 5, 1, 1, 0, -1, -5);
+        auto nodeBil = graphics->createNode();
+        auto bil = graphics->createBillboardSet(nodeBil, "Holaaa", 2);
+        bil->addBillboard(Tapioca::Vector3(0, 0, 0));
+        bil->removeBillboard(0);
 
-            auto nodeBil = graphics->createNode();
-            auto bil = graphics->createBillboardSet(nodeBil, "Holaaa", 2);
-            bil->addBillboard(Tapioca::Vector3(0, 0, 0));
-            bil->removeBillboard(0);
+        //node->setParent(nodeCamera);
+        //*/
 
-            //node->setParent(nodeCamera);
-            //*/
+        game->run();
 
-            game->run();
+        //*
+        delete nodeBil;
+        delete bil;
 
-            //*
-            delete nodeBil;
-            delete bil;
-
-            delete node;
-            delete nodeCamera;
-            delete camera;
-            delete viewport;
-            delete light;
-            //*/
-        }
+        delete node;
+        delete nodeCamera;
+        delete camera;
+        delete viewport;
+        delete light;
+        //*/
+    }
 #ifdef _DEBUG
-        else
-            std::cerr << "Error al inicializar un modulo\n";
-#endif
-        delete game;
-    //}
-#ifdef _DEBUG
-    //else
-    //    std::cerr << "Error al cargar la libreria dinamica\n";
+    else
+        std::cerr << "Error al inicializar un modulo\n";
 #endif
 
-    delete loader;
+    delete game;
 
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     return 0;

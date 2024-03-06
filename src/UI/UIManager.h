@@ -11,6 +11,8 @@ class ImGuiOverlay;
 }
 
 namespace Tapioca {
+class FactoryManager;
+
 /**
 * @brief Clase que se encarga de la interfaz de usuario
 */
@@ -20,6 +22,7 @@ private:
 
     Ogre::RenderWindow* myOgreWindow;   // Referencia a la ventana de Ogre
     Ogre::ImGuiOverlay* imguiOverlay;   // Overlay de ImGui
+    const char* button;                 // Boton de prueba
 
     /**
     * @brief Inicializa a nulo los punteros

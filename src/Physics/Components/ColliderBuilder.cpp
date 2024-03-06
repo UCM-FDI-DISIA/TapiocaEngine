@@ -1,5 +1,5 @@
 #include "ColliderBuilder.h"
-#include "Components/Collider.h"
+#include "Collider.h"
 
 namespace Tapioca {
 Component* ColliderBuilder::createComponent() {

@@ -86,8 +86,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp" />
+    <ClCompile Include="..\..\src\Core\Components\TransformBuilder.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
@@ -99,10 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Components\Transform.h" />
+    <ClInclude Include="..\..\src\Core\Components\TransformBuilder.h" />
     <ClInclude Include="..\..\src\Core\Core.h" />
     <ClInclude Include="..\..\src\Core\Structure\BasicBuilder.h" />
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
     <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h" />
+    <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h" />
     <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h" />
     <ClInclude Include="..\..\src\Core\Structure\Game.h" />
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />

@@ -45,6 +45,12 @@
     <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Components\TransformBuilder.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
@@ -101,6 +107,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\Concepts.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Components\TransformBuilder.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h">
+      <Filter>Structure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
