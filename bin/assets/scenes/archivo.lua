@@ -1,12 +1,12 @@
 scene = {
         Hola={
             components = {
-                EjemploComponent = { -- Prueba de un componente de juego
-                    a = 1,
-                    b = 2.0,
-                    c = true,
-                    d = "ejemplo"
-                },
+                -- EjemploComponent = { -- Prueba de un componente de juego
+                --     a = 1,
+                --     b = 2.0,
+                --     c = true,
+                --     d = "ejemplo"
+                -- },
                 Transform = {
                     positionX = 0.0,
                     positionY = 0.0,

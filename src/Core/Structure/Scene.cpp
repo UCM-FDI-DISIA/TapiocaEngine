@@ -9,16 +9,17 @@ namespace Tapioca {
 Scene::Scene() { }
 
 Scene::~Scene() {
-    for (auto obj : objects) delete obj;
+    for (auto obj : objects)
+        delete obj;
 }
 
 bool Scene::addObject(GameObject* object, std::string const& handler) {
     if (handler != "") {
         if (handlers.contains(handler)) {
 #ifdef _DEBUG
-			std::cerr << "Ya existe ese nombre de handler, por favor elige otro.\n";
+            std::cerr << "Ya existe ese nombre de handler, por favor elige otro.\n";
 #endif
-			return false;
+            return false;
         }
         object->handler = handler;
         handlers[handler] = object;
@@ -30,20 +31,22 @@ bool Scene::addObject(GameObject* object, std::string const& handler) {
 
 void Scene::refresh() {
     objects.erase(std::remove_if(objects.begin(), objects.end(),
-        [this](GameObject* obj) {
-            if (obj->isAlive()) return false;
-            else {
-                // eliminar el objeto del handler
-                if (handlers.find(obj->handler) != handlers.end()) handlers.erase(obj->handler);
+                                 [this](GameObject* obj) {
+                                     if (obj->isAlive()) return false;
+                                     else {
+                                         // eliminar el objeto del handler
+                                         if (handlers.find(obj->handler) != handlers.end())
+                                             handlers.erase(obj->handler);
 
-                delete obj;
-                obj = nullptr;
-                return true;
-            }
-        }),
-        objects.end());
+                                         delete obj;
+                                         obj = nullptr;
+                                         return true;
+                                     }
+                                 }),
+                  objects.end());
 
-    for (auto& obj : objects) obj->refresh();
+    for (auto& obj : objects)
+        obj->refresh();
 }
 
 void Scene::pushEvent(std::string const& id, void* info) {
@@ -57,7 +60,8 @@ std::vector<GameObject*> Scene::getObjects() const { return objects; }
 GameObject* Scene::getHandler(const std::string& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;
-    else return nullptr;
+    else
+        return nullptr;
 }
 
 void Scene::update(const uint64_t deltaTime) {
@@ -72,7 +76,8 @@ void Scene::fixedUpdate() {
     }
 }
 void Scene::start() {
-    for (auto obj : objects) obj->start();
+    for (auto obj : objects)
+        obj->start();
 }
 
 

@@ -92,6 +92,6 @@ public:
     * @param nombre de escena
     * @return Devuelve true si se ha cargado correctamente
 	*/
-    bool loadScene(const std::string& scenesPath);
+    bool loadScene(const std::string& sceneName);
 };
 }

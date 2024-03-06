@@ -6,11 +6,6 @@
 #include "Utilities/Vector3.h"
 #include "Utilities/Quaternion.h"
 
-#ifdef _DEBUG
-#include <iostream>
-#endif
-#include "Utilities/checkML.h"
-
 namespace Tapioca {
 
 Ogre::SceneNode* Node::createChild(Node* child) {

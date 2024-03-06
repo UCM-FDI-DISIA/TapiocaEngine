@@ -3,10 +3,6 @@
 #include "Module.h"
 #include <chrono>
 
-#ifdef _DEBUG
-#include <iostream>
-#endif
-
 namespace Tapioca {
 
 Game::Game() : finish(false), deltaTime(0) {

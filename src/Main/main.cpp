@@ -41,11 +41,11 @@ int main(int argc, char** argv) {
 
     Tapioca::DynamicLibraryLoader* loader = new Tapioca::DynamicLibraryLoader();
 
-    if (loader->load()) {
+    //if (loader->load()) {
         Tapioca::Game* game = new Tapioca::Game();
         createModules(game);
         Tapioca::createEngineBuilders();
-        Tapioca::createGameBuilders(loader->getModule());
+        //Tapioca::createGameBuilders(loader->getModule());
         if (game->init()) {
             //* Prueba
             auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
@@ -76,10 +76,10 @@ int main(int argc, char** argv) {
             std::cerr << "Error al inicializar un modulo\n";
 #endif
         delete game;
-    }
+    //}
 #ifdef _DEBUG
-    else
-        std::cerr << "Error al cargar la libreria dinamica\n";
+    //else
+    //    std::cerr << "Error al cargar la libreria dinamica\n";
 #endif
 
     delete loader;

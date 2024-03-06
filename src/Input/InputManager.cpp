@@ -7,12 +7,6 @@
 #include "Structure/Game.h"
 //#include "GraphicsEngine.h"
 
-#include "Utilities/checkML.h"
-#ifdef _DEBUG
-#include <iostream>
-#endif
-
-
 namespace Tapioca {
 
 InputManager::InputManager() : inputText(""), luaState(nullptr) {

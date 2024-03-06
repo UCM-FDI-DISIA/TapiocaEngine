@@ -33,13 +33,6 @@
 #include <imgui_impl_opengl3.h>
 #include <OgreImGuiOverlay.h>
 
-// C++
-#include <iostream>
-#include <Windows.h>
-
-// Utilidades
-#include "Utilities/checkML.h"
-
 namespace Tapioca {
 
 GraphicsEngine::GraphicsEngine(std::string const& windowName, uint32_t w, uint32_t h)

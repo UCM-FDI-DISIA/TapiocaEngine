@@ -8,7 +8,6 @@
 
 #undef new DBG_NEW
 #ifdef _DEBUG
-#include <iostream>   //PRUEBA
 #include "PhysicsDebugDrawer.h"
 #endif
 

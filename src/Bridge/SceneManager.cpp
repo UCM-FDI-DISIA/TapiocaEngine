@@ -10,12 +10,6 @@
 #include "Structure/FactoryManager.h"
 #include "Structure/Scene.h"
 
-#include "Utilities/checkML.h"
-
-#ifdef _DEBUG
-#include <iostream>
-#endif
-
 namespace Tapioca {
 
 SceneManager::SceneManager() : luaState(nullptr) { }
@@ -24,13 +18,12 @@ SceneManager::~SceneManager() { }
 
 bool SceneManager::init() {
     //TODO: llamar esto en otro sitio
-    loadScene("archivo.lua");
-    return true;
+    return loadScene("archivo.lua");
 }
 
-bool SceneManager::loadScene(const std::string& scenesPath) {
+bool SceneManager::loadScene(const std::string& sceneName) {
     luaState = luaL_newstate();
-    std::string path = "assets\\scenes\\" + scenesPath;
+    std::string path = "assets\\scenes\\" + sceneName;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(luaState, -1) << '\n';
@@ -72,7 +65,6 @@ bool SceneManager::loadGameObjects(Scene* scene) {
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
         if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject)) {
-            delete gameObject;
             return false;
         }
 

@@ -7,10 +7,6 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 
-#ifdef _DEBUG
-#include <iostream>
-#endif
-
 namespace Tapioca {
 UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr) { }
 
