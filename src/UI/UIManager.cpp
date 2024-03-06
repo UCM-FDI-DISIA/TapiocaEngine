@@ -53,13 +53,13 @@ void UIManager::render() {
     // PRUEBA
     ImGui::Begin("Tapioca Engine");
 
-    if (ImGui::Button(button, ImVec2(120, 40))) {
+    if (ImGui::Button(button, ImVec2(130, 40))) {
 #ifdef _DEBUG
     std::cout << "Pulsado el boton de jugar\n";
 #endif
         // Cargar la .dll
         if (!FactoryManager::instance()->initGame()) {
-			button = "Couldn't run game :(";
+			button = "Couldn't run game";
 		}
     }
     ImGui::ShowDemoWindow();

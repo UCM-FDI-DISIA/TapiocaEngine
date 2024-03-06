@@ -114,5 +114,8 @@
     <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h">
       <Filter>Structure</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Utilities\componentDefs.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

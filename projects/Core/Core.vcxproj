@@ -113,6 +113,7 @@
     <ClInclude Include="..\..\src\Core\Structure\Module.h" />
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
     <ClInclude Include="..\..\src\Core\Utilities\checkML.h" />
+    <ClInclude Include="..\..\src\Core\Utilities\componentDefs.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Concepts.h" />
     <ClInclude Include="..\..\src\Core\Utilities\defs.h" />
     <ClInclude Include="..\..\src\Core\Utilities\INode.h" />

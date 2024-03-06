@@ -2,6 +2,7 @@
 #include <Utilities/Singleton.h>
 #include <Structure/Module.h>
 #include <vector>
+#include <unordered_map>
 
 class SDL_Window;
 union SDL_Event;

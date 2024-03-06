@@ -2,6 +2,7 @@
 #include <vector>
 #include "Utilities/Concepts.h"
 #include "Utilities/defs.h"
+#include "Utilities/componentDefs.h"
 
 namespace Tapioca {
 class Component;

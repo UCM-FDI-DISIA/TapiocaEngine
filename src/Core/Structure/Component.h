@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_set>
 #include "Utilities/defs.h"
+#include "Utilities/componentDefs.h"
 
 namespace Tapioca {
 class GameObject;
@@ -20,10 +21,6 @@ protected:
     static std::unordered_set<Component*> listeners;
 
 public:
-    using CompMap = std::unordered_map<std::string, std::variant<char, int, float, bool, std::string>>;
-// Para convertir el nombre de la variable en un string
-#define VAR_NAME_TO_STRING(var) #var
-
     Component();
     virtual ~Component() { }
 
