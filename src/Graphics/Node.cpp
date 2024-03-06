@@ -166,11 +166,28 @@ void Node::setRotation(Vector3 rot) {
     Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
     node->setOrientation(oq);
 }
-void Node::rotate(Vector3 r) { }
+void Node::rotate(Vector3 r) { 
+    Quaternion q = Quaternion(r);
+    Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
+    node->rotate(oq);
+
+}
+
+void Node::roll(float angle) { 
+
+ node->roll(Ogre::Degree(angle), Ogre::Node::TS_WORLD);
+
+}
 
 void Node::yaw(float angle) { 
     //TODO cambiar el espacio para comprobar que desde blender se exporta con los ejese bien (parece qeu si)
     node->yaw(Ogre::Degree(angle),Ogre::Node::TS_WORLD); 
+}
+
+void Node::pitch(float angle) { 
+
+node->pitch(Ogre::Degree(angle), Ogre::Node::TS_WORLD); 
+
 }
 
 std::vector<INode*> Node::getAllChildren() {
