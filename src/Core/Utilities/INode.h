@@ -29,9 +29,14 @@ public:
     virtual void setPosition(Vector3 position) = 0;
     virtual void translate(Vector3 movement) = 0;
     virtual void setRotation(Vector3 rotation) = 0;
+    virtual void rotate(Vector3 r)=0;
+
+   
     virtual void setScale(Vector3 scale) = 0;
     virtual void scale(Vector3 scale) = 0;
+    virtual void roll(float angle)=0;
     virtual void yaw(float angle)=0;
+    virtual void pitch(float angle) = 0;
     virtual std::vector<INode*> getChildren() = 0;
     virtual void getAllChildrenAux(std::vector<INode*>& allChildren) = 0;
     virtual std::vector<INode*> getAllChildren() = 0;
