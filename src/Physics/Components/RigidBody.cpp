@@ -62,6 +62,14 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
     movementType = (MovementType)movementTypeAux;
 
+    bool massSet = setValueFromMap(mass, "mass", variables);
+    if (!massSet) {
+#ifdef _DEBUG
+        std::cerr << "Error: RigidBody: no se pudo inicializar mass.\n";
+#endif
+        return false;
+    }
+
     bool frictionSet = setValueFromMap(friction, "friction", variables);
     if (!frictionSet) {
 #ifdef _DEBUG
@@ -70,13 +78,14 @@ bool RigidBody::initComponent(const CompMap& variables) {
         return false;
     }
 
-    bool massSet = setValueFromMap(mass, "mass", variables);
-    if (!massSet) {
+      bool dampingSet = setValueFromMap(damping, "damping", variables);
+    if (!dampingSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar mass.\n";
+        std::cerr << "Error: RigidBody: no se pudo inicializar damping.\n";
 #endif
         return false;
     }
+
     bool bouncinessSet = setValueFromMap(bounciness, "bounciness", variables);
     if (!bouncinessSet) {
 #ifdef _DEBUG
@@ -111,7 +120,7 @@ void RigidBody::start() {
 
     rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
                                                             colliderScale, colShape, movementType, mass,
-                                                            friction, bounciness, isTrigger, group, mask);
+                                                            friction, damping, bounciness, isTrigger, group, mask);
 
     collider = object->getComponent<Collider>();
 
@@ -153,6 +162,12 @@ void RigidBody::setFriction(const float f) {
     friction = f;
     if (rigidBody == nullptr) return;
     rigidBody->setFriction(f);
+}
+
+void RigidBody::setDamping(const float d) { 
+    damping = d;
+    if (rigidBody == nullptr) return;
+    rigidBody->setDamping(d,d);
 }
 
 void RigidBody::setBounciness(const float b) {
@@ -209,6 +224,8 @@ Vector3 RigidBody::getColliderScale() const { return colliderScale; }
 float RigidBody::getMass() const { return mass; }
 
 float RigidBody::getFriction() const { return friction; }
+
+float RigidBody::getDamping() const { return damping; }
 
 float RigidBody::getBounciness() const { return bounciness; }
 

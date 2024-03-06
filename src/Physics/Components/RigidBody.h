@@ -33,6 +33,7 @@ private:
 
     float mass;
     float friction;
+    float damping;
     float bounciness;
 
 
@@ -56,6 +57,7 @@ public:
 
     void setMass(const float m);
     void setFriction(const float f);
+    void setDamping(const float f);
     void setBounciness(const float b);
     void setVelocity(const Vector3 v);
     void setGravity(const Vector3 g);
@@ -75,6 +77,7 @@ public:
 
     float getMass() const;
     float getFriction() const;
+    float getDamping() const;
     float getBounciness() const;
     Vector3 getVelocity() const;
     Vector3 getGravity() const;

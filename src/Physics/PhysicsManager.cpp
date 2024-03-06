@@ -93,16 +93,16 @@ bool PhysicsManager::init() {
     constraintSolver = new btSequentialImpulseConstraintSolver();
     dynamicsWorld = new btDiscreteDynamicsWorld(colDispatch, broadphase, constraintSolver, colConfig);
 
-    dynamicsWorld->setGravity(btVector3(0, 0, 0));
+    dynamicsWorld->setGravity(btVector3(0, -10.0, 0));
 
     gContactStartedCallback = onCollisionEnter;
     gContactAddedCallback = onCollisionStay;
     gContactEndedCallback = onCollisionExit;
 
-    //createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 1,
-    //    (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
-    //createRigidBody(
-    //    Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 10, 0, 4, 1);   //PRUEBA
+    createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4,10, 0, 1,
+        (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
+    createRigidBody(
+        Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 4, 1);   //PRUEBA
 
 #ifdef _DEBUG
     pdd = new PhysicsDebugDrawer();
@@ -119,7 +119,7 @@ void PhysicsManager::update(const uint64_t deltaTime) {
 #ifdef _DEBUG
     dynamicsWorld->debugDrawWorld();
     //PRUEBA: printear las pos de los rb
-    for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {
+    /*for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {
         btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];
         btRigidBody* body = btRigidBody::upcast(obj);
         btTransform tr;
@@ -130,7 +130,7 @@ void PhysicsManager::update(const uint64_t deltaTime) {
             tr = obj->getWorldTransform();
         std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
                   << tr.getOrigin().getZ() << "\n";
-    }
+    }*/
 #endif
 }
 
@@ -139,7 +139,8 @@ void PhysicsManager::fixedUpdate(const float deltaTime) { dynamicsWorld->stepSim
 
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
                                              const ColliderShape colliderShape, const MovementType type, float mass,
-                                             const float friction, const float bounciness, const bool isTrigger,
+                                             const float friction, const float damping, const float bounciness,
+                                             const bool isTrigger,
                                              const int group, const int mask) {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
@@ -186,6 +187,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     if (isTrigger) rb->setCollisionFlags(rb->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 
     rb->setFriction(friction);
+    rb->setDamping(damping,damping);
     rb->setRestitution(bounciness);
     dynamicsWorld->addRigidBody(rb, group, mask);
 

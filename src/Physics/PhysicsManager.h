@@ -87,7 +87,8 @@ public:
     btRigidBody* createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
                                  const ColliderShape colliderShape = BOX_SHAPE, 
                                  const MovementType type = STATIC_OBJECT,
-                                 float mass = 0, const float friction = 0, const float bounciness = 0, 
+                                 float mass = 0, const float friction = 0,
+                                 const float damping = 0,const float bounciness = 0, 
                                  const bool isTrigger = false, const int group = 1, const int mask = -1);
 
     /*
