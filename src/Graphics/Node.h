@@ -32,7 +32,7 @@ private:
     //Ogre::SceneNode* node;
 
     // AGREGAR HIJO
-    Ogre::SceneNode* createChild(Node* child);
+    Ogre::SceneNode* createChild(Node* const child);
 
     void removeParent();
 
@@ -47,44 +47,44 @@ private:
     //void removeFromTree(std::unordered_set<Node*>* nodes);
 
     // PARA OBJETOS
-    void attachObject(RenderObject* object);
-    void attachObject(Ogre::MovableObject* object);   // solo para ManualObject
-    void detachObject(RenderObject* object);
+    void attachObject(RenderObject* const object);
+    void attachObject(Ogre::MovableObject* const object);   // solo para ManualObject
+    void detachObject(RenderObject* const object);
 
-    void lookAt(Vector3 target);
-    void setDirection(Vector3 dir);
+    void lookAt(const Vector3 target);
+    void setDirection(const Vector3 dir);
 
-    Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent = nullptr);
+    Node(Ogre::SceneManager* const sceneManager, const Vector3 pos, const Vector3 scale, Node* const parent = nullptr);
 
 public:
     virtual ~Node();
 
-    void removeChild(INode* node) override;
+    void removeChild(INode* const node) override;
     void removeAttachedParent() override;
-    void addChild(INode* child) override;
+    void addChild(INode* const child) override;
 
     // mover, rotar y escalar
-    void setPosition(Vector3 pos) override;
-    void translate(Vector3 t) override;
-    void setScale(Vector3 sc) override;
+    void setPosition(const Vector3 pos) override;
+    void translate(const Vector3 t) override;
+    void setScale(const Vector3 sc) override;
     /*Combina la escala actual con la ya existente (sumando)
     Por ejemplo, si el object tiene una escala de Vector3(2,2,2) y se llama a este
     metodo con una escala de Vector3(3,3,3), la escala resultante del objeto seria
     Vector3(5,5,5)*/
-    void scale(Vector3 s) override;
-    void setRotation(Vector3 rot) override;
-    // TODO: terminar rotate y rotaciones en los ejes basicos (roll, yaw, pitch)
-    void rotate(Vector3 r) override;
+    void scale(const Vector3 s) override;
+    void setRotation(const Vector3 rot) override;
+    // TODO: terminar rotate y rotaciones en los ejes basicos (pitch, yaw, roll)
+    void rotate(const Vector3 r);
 
-    void roll(float angle) override;
-    void yaw(float angle) override;
-    void pitch(float angle) override;
+    void roll(const float angle) override;
+    void yaw(const float angle) override;
+    void pitch(const float angle) override;
 
     std::vector<INode*> getChildren() override;
     void getAllChildrenAux(std::vector<INode*>& allChildren) override;
     std::vector<INode*> getAllChildren() override;
 
-    void setParent(INode* parent) override;
+    void setParent(INode* const parent) override;
 
     virtual inline INode* getParent() const override { return parent; }
 };

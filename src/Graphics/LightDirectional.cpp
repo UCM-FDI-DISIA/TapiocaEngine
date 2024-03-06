@@ -5,13 +5,14 @@
 
 namespace Tapioca {
 
-LightDirectional::LightDirectional(Ogre::SceneManager* sceneManager, Node* node, Vector4 color, Vector3 direction)
+LightDirectional::LightDirectional(Ogre::SceneManager* const sceneManager, Node* const node, const Vector4 color,
+                                   const Vector3 direction)
     : Light(sceneManager, node, color) 
 {
     mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
     node->setDirection(direction);
 }
 
-void LightDirectional::setDirection(Vector3 direction) { node->setDirection(direction); }
+void LightDirectional::setDirection(const Vector3 direction) { node->setDirection(direction); }
 
 }

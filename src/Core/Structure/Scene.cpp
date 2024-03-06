@@ -13,7 +13,7 @@ Scene::~Scene() {
         delete obj;
 }
 
-bool Scene::addObject(GameObject* object, std::string const& handler) {
+bool Scene::addObject(GameObject* const object, std::string const& handler) {
     if (handler != "") {
         if (handlers.contains(handler)) {
 #ifdef _DEBUG
@@ -57,7 +57,7 @@ void Scene::pushEvent(std::string const& id, void* info) {
 
 std::vector<GameObject*> Scene::getObjects() const { return objects; }
 
-GameObject* Scene::getHandler(const std::string& handler) const {
+GameObject* Scene::getHandler(std::string const& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;
     else

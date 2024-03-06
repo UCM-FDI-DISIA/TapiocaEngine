@@ -24,17 +24,17 @@ public:
 
     //para rotar un punto se multiplica por el cuatrenion y lueg por su conjugado pr = q*p*qc
 
-    Quaternion(float q0, float q1, float q2, float q3);
+    Quaternion(const float q0, const float q1, const float q2, const float q3);
     /*
     * @brief  Quaternion que describe la rotacion de alfa grados en el eje vec
     *@params alfa en grados sexagesimales!!!! 
     */
-    Quaternion(float alfa, Vector3 vec);
+    Quaternion(const float alfa, const Vector3 vec);
 
     /*
     * @brief construye un cuaternion a partir de rotaciones en los 3 ejes globales (x y z) en grados SEXAGESIMALES
     */
-    Quaternion( Vector3 euler);
+    Quaternion(const Vector3 euler);
     /*
     * @brief devuelve el quaternion inverso que es el conjugado entre la magnitud 
     */
@@ -73,7 +73,7 @@ public:
     /*
     * @brief multiplicacion "vectorizada"  "Formula Rodrigues" 
     */
-    Vector3 rotatePoint(Vector3 point);
+    Vector3 rotatePoint(const Vector3 point);
 };
 }
 

@@ -25,11 +25,11 @@ private:
 
     Transform* parent;
     std::unordered_set<Transform*> children;
-    void deleteChild(Transform* child);
+    void deleteChild(Transform* const child);
     void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
 
     void clearConnection();
-    void addChild(Transform* child);
+    void addChild(Transform* const child);
 
 public:
     COMPONENT_ID("Transform")
@@ -43,14 +43,14 @@ public:
     inline Vector3 getRotation() const { return rotation; }
     inline Vector3 getScale() const { return scale; }
 
-    void setPosition(Vector3 p);
-    void setRotation(Vector3);
-    void setScale(Vector3 s);
+    void setPosition(const Vector3 p);
+    void setRotation(const Vector3);
+    void setScale(const Vector3 s);
 
     // Mueve el objeto tanto como el vector dado indica.
-    void translate(Vector3 p);
+    void translate(const Vector3 p);
     // Rota el objeto sobre los ejes tanto como el vector dado indica.
-    void rotate(Vector3 r);
+    void rotate(const Vector3 r);
 
     // Devuelve el eje X de coordenadas locales en coordenadas globales.
     Vector3 right();
@@ -60,7 +60,7 @@ public:
     Vector3 forward();
 
     // Hace que el Transform dado sea padre de este.
-    void setParent(Transform* transform);
+    void setParent(Transform* const transform);
     // Devuelve el padre de este Transform.
     Transform* getParent() const;
 

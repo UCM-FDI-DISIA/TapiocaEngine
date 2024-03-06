@@ -19,7 +19,7 @@ void createEngineBuilders() {
     manager->addFactory("RigidBody", new BasicBuilder<RigidBody>());
 }
 
-void createGameBuilders(HMODULE module) {
+void createGameBuilders(const HMODULE module) {
     EntryPoint eP = (EntryPoint)GetProcAddress(module, "init");
     eP(FactoryManager::instance());
 }

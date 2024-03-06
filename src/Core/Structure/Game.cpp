@@ -112,9 +112,9 @@ void Game::refresh() {
     if (!scenes.empty()) scenes.top()->refresh();
 }
 
-void Game::addModule(Module* m) { modules.push_back(m); }
+void Game::addModule(Module* const m) { modules.push_back(m); }
 
-void Game::pushScene(Scene* sc) {
+void Game::pushScene(Scene* const sc) {
     scenes.push(sc);
     // TODO: mejorar start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->start();
@@ -126,7 +126,7 @@ void Game::popScene() {
     else finish = true;
 }
 
-void Game::changeScene(Scene* sc) {
+void Game::changeScene(Scene* const sc) {
     toDelete.push_back(scenes.top());
     scenes.pop();
     scenes.push(sc);

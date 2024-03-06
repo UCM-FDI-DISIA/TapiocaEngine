@@ -15,11 +15,11 @@ protected:
     Ogre::Light* mLight;
     Vector4 mColor;
 
-    Light(Ogre::SceneManager* scnMgr, Node* node, Vector4 color);
+    Light(Ogre::SceneManager* const scnMgr, Node* const node, const Vector4 color);
 
 public:
     virtual ~Light() { }
 
-    void setColor(Vector4 color);
+    void setColor(const Vector4 color);
 };
 }

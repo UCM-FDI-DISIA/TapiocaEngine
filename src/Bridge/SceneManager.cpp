@@ -21,7 +21,7 @@ bool SceneManager::init() {
     return loadScene("archivo.lua");
 }
 
-bool SceneManager::loadScene(const std::string& sceneName) {
+bool SceneManager::loadScene(std::string const& sceneName) {
     luaState = luaL_newstate();
     std::string path = "assets\\scenes\\" + sceneName;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
@@ -48,14 +48,14 @@ bool SceneManager::loadScene(const std::string& sceneName) {
     return true;
 }
 
-bool SceneManager::loadScene(Scene* scene) {
+bool SceneManager::loadScene(Scene* const scene) {
     lua_getglobal(luaState, "scene");
     if (!lua_istable(luaState, -1)) return false;
     lua_pushnil(luaState);
     return loadGameObjects(scene);
 }
 
-bool SceneManager::loadGameObjects(Scene* scene) {
+bool SceneManager::loadGameObjects(Scene* const scene) {
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
         std::string gameObjectName = "";
@@ -73,7 +73,7 @@ bool SceneManager::loadGameObjects(Scene* scene) {
     return true;
 }
 
-bool SceneManager::loadGameObject(GameObject* gameObject) {
+bool SceneManager::loadGameObject(GameObject* const gameObject) {
     lua_pushnil(luaState);
     std::string name = "";
 
@@ -103,7 +103,7 @@ bool SceneManager::loadGameObject(GameObject* gameObject) {
     return true;
 }
 
-bool SceneManager::loadGameObjects(Scene* scene, std::vector<GameObject*>& gameObjects) {
+bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects) {
 
 #ifdef _DEBUG
     std::cout << "Children: start\n";
@@ -128,7 +128,7 @@ bool SceneManager::loadGameObjects(Scene* scene, std::vector<GameObject*>& gameO
     return true;
 }
 
-bool SceneManager::loadComponents(GameObject* gameObject) {
+bool SceneManager::loadComponents(GameObject* const gameObject) {
     Component* component = nullptr;
     std::string componentName = "";
     while (lua_next(luaState, -2) != 0) {

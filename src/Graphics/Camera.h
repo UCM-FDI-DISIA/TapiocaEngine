@@ -21,8 +21,9 @@ private:
     bool autoAspectRatio;
 
     // aspectRatio = width/height   1.3 es el por defecto de Ogre
-    Camera(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, Vector3 targetToLook = Vector3(0, 0, 0),
-           float nearDist = 1, float farDist = 1000, bool autoAspectRatio = true, float aspectRatio = 1.33333333333333f);
+    Camera(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+           const Vector3 targetToLook = Vector3(0, 0, 0), const float nearDist = 1, const float farDist = 1000,
+           const bool autoAspectRatio = true, const float aspectRatio = 1.33333333333333f);
 
     inline Ogre::Camera* getCamera() { return mCam; };
 
@@ -33,8 +34,8 @@ public:
     Por debajo funciona como un setDirection, por lo tanto, rota la camara
     (en este caso en torno al espacio mundial, pero se podria cambiar)
     */
-    void lookAt(Vector3 targetToLook);
-    void setDirection(Vector3 dir);
+    void lookAt(const Vector3 targetToLook);
+    void setDirection(const Vector3 dir);
 
     /*
     el frustum representa el espacio en el mundo al alcance de nuestra vision
@@ -48,7 +49,7 @@ public:
     Se indica la distancia. Cuanto mas lejos este el near plane y mayor sea la distancia entre el near plane y el far plane,
     menos preciso sera el buffer Z de profundidad
     */
-    void setNearClipDistance(float dist);
+    void setNearClipDistance(const float dist);
     /*
     2 forma de definir el near plane
     Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos,
@@ -57,16 +58,16 @@ public:
     X ej, un angulo de 90º corresponde con que tenemos una vision de 90º en el eje vertical (el horizontal se calcula solo,
     a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane)
     */
-    void setFOVYRadians(float radians);
-    void setFOVYDegrees(float degrees);
+    void setFOVYRadians(const float radians);
+    void setFOVYDegrees(const float degrees);
 
     /*
     Se indica la distancia. Si es 0 es infinita.
     Si es muy grande la distancia, puede haber problemas de tartamudeo (por precision), 
     por ejemplo con las luces o sombras si se encuentran muy lejos
     */
-    void setFarClipDistance(float dist);
+    void setFarClipDistance(const float dist);
 
-    void setAspectRatio(float aspectRatio);
+    void setAspectRatio(const float aspectRatio);
 };
 }

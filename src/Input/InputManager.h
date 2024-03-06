@@ -58,12 +58,12 @@ private:
     /*
     * @brief Añade el mando con su deadzone por defecto al mapa de mandos
     */
-    void addController(int i);
+    void addController(const int i);
 
     /*
     * @brief Elimina el mando y su deadzone del mapa de mandos
     */
-    void removeController(int i);
+    void removeController(const int i);
 
     /*
     * @brief Limpia el input

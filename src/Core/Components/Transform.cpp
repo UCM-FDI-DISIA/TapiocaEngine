@@ -50,24 +50,24 @@ bool Transform::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Transform::setPosition(Vector3 p) {
+void Transform::setPosition(const Vector3 p) {
     position = p;
     moved();
 }
-void Transform::setRotation(Vector3 r) {
+void Transform::setRotation(const Vector3 r) {
     rotation = r;
     rotated();
 }
-void Transform::setScale(Vector3 s) {
+void Transform::setScale(const Vector3 s) {
     scale = s;
     scaled();
 }
 
-void Transform::translate(Vector3 p) {
+void Transform::translate(const Vector3 p) {
     position += p;
     moved();
 }
-void Transform::rotate(Vector3 r) {
+void Transform::rotate(const Vector3 r) {
     rotation += r;
     rotated();
 }
@@ -109,12 +109,12 @@ Vector3 Transform::forward() {
     return v;
 }
 
-void Transform::deleteChild(Transform* child) {
+void Transform::deleteChild(Transform* const child) {
     auto it = children.find(child);
     if (it != children.end()) children.erase(it);
 }
 
-void Transform::setParent(Transform* transform) {
+void Transform::setParent(Transform* const transform) {
     if (parent != nullptr) parent->deleteChild(this);
     parent = transform;
     parent->addChild(this);
@@ -149,7 +149,7 @@ void Transform::clearConnection() {
     children.clear();
 }
 
-void Transform::addChild(Transform* child) { children.insert(child); }
+void Transform::addChild(Transform* const child) { children.insert(child); }
 
 void Transform::fixedUpdate() { }
 }

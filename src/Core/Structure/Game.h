@@ -40,11 +40,11 @@ public:
     bool init();
     void run();
 
-    void pushScene(Scene*);
+    void pushScene(Scene* const sc);
     void popScene();
-    void changeScene(Scene*);
+    void changeScene(Scene* const sc);
 
     
-    void addModule(Module*);
+    void addModule(Module* const m);
 };
 }

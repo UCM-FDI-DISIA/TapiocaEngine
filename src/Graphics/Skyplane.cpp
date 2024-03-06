@@ -4,9 +4,9 @@
 
 namespace Tapioca {
 
-Skyplane::Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string const& materialName, bool enable,
-    Vector3 rkNormal, float fConstant, float scale, float tiling, bool drawFirst, float bow,
-    int xsegments, int ysegments)
+Skyplane::Skyplane(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& materialName,
+                   const bool enable, const Vector3 rkNormal, const float fConstant, const float scale,
+                   const float tiling, const bool drawFirst, const float bow, const int xsegments, const int ysegments)
     : RenderObject(node, scnMgr), scnM(scnMgr), material(materialName), rkNormal(rkNormal), fConstant(fConstant), 
     scale(scale), tiling(tiling), drawFirst(drawFirst), bow(bow), xSegments(xsegments), ySegments(ysegments) 
 {
@@ -15,9 +15,9 @@ Skyplane::Skyplane(Ogre::SceneManager* scnMgr, Node* node, std::string const& ma
                       drawFirst, bow, xsegments, ysegments);
 }
 
-void Skyplane::setEnable(bool enable) { scnM->setSkyPlaneEnabled(enable); }
+void Skyplane::setEnable(const bool enable) { scnM->setSkyPlaneEnabled(enable); }
 
-bool Skyplane::isEnable() { return scnM->isSkyPlaneEnabled(); }
+bool Skyplane::isEnabled() { return scnM->isSkyPlaneEnabled(); }
 }
 
 

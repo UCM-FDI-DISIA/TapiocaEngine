@@ -185,7 +185,7 @@ void InputManager::initControllers() {
 #endif
 }
 
-void InputManager::addController(int i) {
+void InputManager::addController(const int i) {
     SDL_GameController* ctrl = SDL_GameControllerOpen(i);
     if (ctrl != nullptr) {
         controllers.insert({i, ctrl});
@@ -200,7 +200,7 @@ void InputManager::addController(int i) {
 #endif
 }
 
-void InputManager::removeController(int i) {
+void InputManager::removeController(const int i) {
     SDL_GameController* ctrl = controllers.at(i);
     if (ctrl != nullptr) {
         deadZones.erase(i);

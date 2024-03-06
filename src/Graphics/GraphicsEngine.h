@@ -25,9 +25,9 @@ class ManualObject;
 class Viewport;
 class OverlaySystem;
 
-    namespace RTShader {
+namespace RTShader {
     class ShaderGenerator;
-    }
+}
 }
 
 namespace Tapioca {
@@ -53,7 +53,8 @@ private:
     Ogre::SceneManager* scnMgr;                          // gestor de escenas
     Ogre::MeshManager* mshMgr;                           // gestor de mallas
     Ogre::RenderSystem* renderSys;                       // sistema de render usado
-    SGTechniqueResolverListener* mMaterialMgrListener;   // listener para crear shaders para los materiales que vienen sin ellos
+    SGTechniqueResolverListener*
+        mMaterialMgrListener;         // listener para crear shaders para los materiales que vienen sin ellos
     std::string mwindowName;          // nombre de la ventana
     Ogre::RenderWindow* ogreWindow;   // ventana de ogre (solo para render)
 
@@ -85,7 +86,7 @@ private:
     */
     void loadShaders();
 
-    GraphicsEngine(std::string const& windowName = "TapiocaEngine", uint32_t w = 680, uint32_t h = 480);
+    GraphicsEngine(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
 
 public:
     GraphicsEngine(GraphicsEngine&) = delete;
@@ -112,50 +113,55 @@ public:
 
 
     // CREAR OBJETOS
-    Node* createNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+    Node* createNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     // solo para manual object
-    Node* createSelfManagedNode(Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+    Node* createSelfManagedNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
+                                const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
-    Node* createChildNode(Node* parent, Vector3 relativePos = Vector3(0.0f, 0.0f, 0.0f), Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+    Node* createChildNode(Node* const parent, const Vector3 relativePos = Vector3(0.0f, 0.0f, 0.0f),
+                          const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     // eliminar un nodo por completo
     // esto quiere decir: delete del nodo y sus hijos, quitar objetos y nodos del propio nodo y de sus hijos del grafo de la escena
     //void removeNode(Node* node);
 
-    
+
     /*
     * @brief devuelve a una camara que se podra manipular
     */
-    Camera* createCamera(Node* node, std::string const& name);
+    Camera* createCamera(Node* const node, std::string const& name);
 
-    Viewport* createViewport(Camera* camera, int zOrder);
+    Viewport* createViewport(Camera* const camera, const int zOrder);
 
-    LightDirectional* createLightDirectional(Node* node, Vector3 direction, Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+    LightDirectional* createLightDirectional(Node* const node, const Vector3 direction,
+                                             const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    Mesh* createMesh(Node* node, std::string const& meshName);
+    Mesh* createMesh(Node* const node, std::string const& meshName);
 
-    Billboard* createBillboard(Node* node, std::string const& name, Vector3 position, Vector4 colour);
+    Billboard* createBillboard(Node* const node, std::string const& name, const Vector3 position, const Vector4 colour);
 
-    BillboardSet* createBillboardSet(Node* node, std::string const& name, unsigned int poolSize);
+    BillboardSet* createBillboardSet(Node* const node, std::string const& name, unsigned int poolSize);
 
-    ParticleSystem* createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
-                                         std::string const& templateName,
-                                         bool emitting);
+    ParticleSystem* createParticleSystem(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+                                         std::string const& templateName, const bool emitting);
 
     //Plane* createPlane(Node* node, std::string name, float width, float height, int xSegments, int ySegments, float x,
     //                   float y, float z, std::string material = "");
 
-    Plane* createPlane(Node* node, const Vector3& rkNormal,
-                       float fConstant, std::string name, float width, float height, int xSegments, int ySegments, float x, float y, float z,
-                       std::string material = "");
+    Plane* createPlane(Node* const node, const Vector3& rkNormal, const float fConstant, std::string const& name,
+                       const float width, const float height, const int xSegments, const int ySegments, const float x,
+                       const float y, const float z,
+                       std::string const& material = "");
 
-    Plane* createPlane(Node* node, float a, float b, float c,
-                       float _d, std::string name, float width, float height, int xSegments, int ySegments, float x, float y, float z, std::string material = "");
+    Plane* createPlane(Node* const node, const float a, const float b, const float c, const float _d,
+                       std::string const& name, const float width, const float height, const int xSegments,
+                       const int ySegments, const float x, const float y, const float z,
+                       std::string const& material = "");
 
-    Ogre::ManualObject* createManualObject(Node* node);
+    Ogre::ManualObject* createManualObject(Node* const node);
 
-    void destroyManualObject(Ogre::ManualObject* object);
+    void destroyManualObject(Ogre::ManualObject* const object);
 
     SDL_Window* getSDLWindow();
     Ogre::RenderWindow* getOgreWindow();

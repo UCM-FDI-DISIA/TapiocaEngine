@@ -21,16 +21,16 @@ protected:
     Ogre::SceneManager* sceneManager;
     Node* node;
 
-    RenderObject(Node* node, Ogre::SceneManager* sceneManager);
+    RenderObject(Node* const node, Ogre::SceneManager* const sceneManager);
 
-    void init(Ogre::MovableObject* movObject);
+    void init(Ogre::MovableObject* const movObject);
 
     void detachFromNode();
 
 public:
     virtual ~RenderObject();
 
-    void setVisible(bool enable);
+    void setVisible(const bool enable);
 
     bool getVisible() const;
 };

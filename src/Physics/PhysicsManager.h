@@ -72,7 +72,7 @@ public:
 
     void update(const uint64_t deltaTime) override;
 
-    void fixedUpdate(float deltaTime) ;
+    void fixedUpdate(const float deltaTime);
 
 
     /*
@@ -84,15 +84,17 @@ public:
     /// @params mass masa del rb
     /// @return puntero al rb creado
     */
-    btRigidBody* createRigidBody(Vector3 position, Vector3 rotation, Vector3 shapeScale, ColliderShape colliderShape = BOX_SHAPE, 
-                                 MovementType type = STATIC_OBJECT, float mass = 0, float friction = 0, float bounciness = 0, 
-                                 bool isTrigger = false, int group = 1, int mask = -1);
+    btRigidBody* createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
+                                 const ColliderShape colliderShape = BOX_SHAPE, 
+                                 const MovementType type = STATIC_OBJECT,
+                                 float mass = 0, const float friction = 0, const float bounciness = 0, 
+                                 const bool isTrigger = false, const int group = 1, const int mask = -1);
 
     /*
     /// @brief  destruir rigidBody
     /// @params rb puntero al rb que se quiere destruir
     */
-    void destroyRigidBody(btRigidBody* rb);
+    void destroyRigidBody(btRigidBody* const rb);
 
     //destruir el mundo
     void destroy();

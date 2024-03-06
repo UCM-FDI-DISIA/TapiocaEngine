@@ -15,8 +15,8 @@ public:
 
     bool initComponent(const CompMap& variables) override { return true; };
 
-    void onCollisionEnter(GameObject* other);
-    void onCollisionExit(GameObject* other);
-    void onCollisionStay(GameObject* other);
+    void onCollisionEnter(GameObject* const other);
+    void onCollisionExit(GameObject* const other);
+    void onCollisionStay(GameObject* const other);
 };
 }

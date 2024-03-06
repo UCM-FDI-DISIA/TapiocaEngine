@@ -11,7 +11,7 @@ namespace Tapioca {
 //      mBillboard(new Ogre::Billboard(Ogre::Vector3(position.x, position.y, position.z), new Ogre::BillboardSet(name),
 //                                     Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w))) { }
 
-Billboard::Billboard(Ogre::Billboard* oBillboard) : mBillboard(oBillboard) { }
+Billboard::Billboard(Ogre::Billboard* const oBillboard) : mBillboard(oBillboard) { }
 
 Ogre::Billboard* Tapioca::Billboard::getBillboard() { return mBillboard; }
 

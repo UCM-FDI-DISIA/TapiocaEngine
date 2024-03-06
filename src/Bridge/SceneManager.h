@@ -40,34 +40,34 @@ private:
     * @brief Carga una escena
     * @return Devuelve la escena cargada
     */
-    bool loadScene(Scene* scene);
+    bool loadScene(Scene* const scene);
 
     /**
     * @brief Carga los gameobjects de una escena
     * @param scene Escena a la que se le van a cargar los gameobjects
     * @return Devuelve true si se ha cargado correctamente
     */
-    bool loadGameObjects(Scene* scene);
+    bool loadGameObjects(Scene* const scene);
 
     /**
     * @brief Carga los gameobjects de una escena con un padre
     * @return Devuelve true si se ha cargado correctamente
     */
-    bool loadGameObjects(Scene* scene, std::vector<GameObject*>& gameObjectList);
+    bool loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjectList);
 
     /**
     * @brief Carga un gameobject
     * @param scene Escena a la que pertenece el gameobject
     * @return Devuelve el gameobject cargado
 	*/
-    bool loadGameObject(GameObject* gameObject);
+    bool loadGameObject(GameObject* const gameObject);
 
     /**
     * @brief Carga los componentes de un gameobject
     * @param gameObject Gameobject al que se le van a cargar los componentes
     * @return Devuelve true si se ha cargado correctamente
 	*/
-    bool loadComponents(GameObject* gameObject);
+    bool loadComponents(GameObject* const gameObject);
     /**
     * @brief Carga un componente
     * @param name Nombre del componente
@@ -92,6 +92,6 @@ public:
     * @param nombre de escena
     * @return Devuelve true si se ha cargado correctamente
 	*/
-    bool loadScene(const std::string& sceneName);
+    bool loadScene(std::string const& sceneName);
 };
 }

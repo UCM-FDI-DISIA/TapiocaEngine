@@ -5,21 +5,21 @@ namespace Tapioca {
 
 Collider::Collider() : Component() { }
 
-void Collider::onCollisionEnter(GameObject* other) {
+void Collider::onCollisionEnter(GameObject* const other) {
 #ifdef _DEBUG
     std::cout << "Entro en collision\n";
 #endif
     pushEvent("onCollisionEnter", other, false);
 }
 
-void Collider::onCollisionExit(GameObject* other) {
+void Collider::onCollisionExit(GameObject* const other) {
 #ifdef _DEBUG
     std::cout << "Salgo de collision\n";
 #endif
     pushEvent("onCollisionExit", other, false);
 }
 
-void Collider::onCollisionStay(GameObject* other) {
+void Collider::onCollisionStay(GameObject* const other) {
 #ifdef _DEBUG
     std::cout << "Estoy en collision\n";
 #endif

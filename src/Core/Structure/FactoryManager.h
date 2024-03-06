@@ -21,7 +21,7 @@ private:
     * @brief Inicializa el modulo
     */
     FactoryManager();
-    FactoryManager(HMODULE module);
+    FactoryManager(const HMODULE module);
 
 public:
     FactoryManager(FactoryManager&) = delete;
@@ -42,6 +42,6 @@ public:
     /**
     * @brief Añade una factoria al mapa de factorias
     */
-    void addFactory(std::string const& name, ComponentBuilder* builder);
+    void addFactory(std::string const& name, ComponentBuilder* const builder);
 };
 }

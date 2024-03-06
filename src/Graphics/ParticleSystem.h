@@ -23,12 +23,12 @@ public:
     * @param templateName Nombre del sistema de particulas definido en el .particle 
     * @param emitting Si el sistema comienza emitiendo por defecto o no
     */
-    ParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
-                   std::string const& templateName, bool emitting = false);
+    ParticleSystem(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+                   std::string const& templateName, const bool emitting = false);
 
     virtual ~ParticleSystem() { }
 
-    void setEmitting(bool emitting);
+    void setEmitting(const bool emitting);
     bool isEmitting();
 
     /* 
@@ -37,6 +37,6 @@ public:
     * @param time Tiempo en segundos que se adelantan
     * @param interval Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso)
     */
-    void fastForward(float time, float interval);
+    void fastForward(const float time, const float interval);
 };
 }

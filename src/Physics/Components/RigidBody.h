@@ -45,25 +45,25 @@ public:
     void update(const uint64_t deltaTime) override;
     void start() override;
 
-    void setActive(bool b) override;
+    void setActive(const bool b) override;
 
-    void setMomeventType(MovementType t);
-    void setTrigger(bool t);
-    void setColliderScale(Vector3 s);
-    void setColliderShape(ColliderShape s);
-    void setMask(int m);
-    void setGroup(int g);
+    void setMomeventType(const MovementType t);
+    void setTrigger(const bool t);
+    void setColliderScale(const Vector3 s);
+    void setColliderShape(const ColliderShape s);
+    void setMask(const int m);
+    void setGroup(const int g);
 
-    void setMass(float m);
-    void setFriction(float f);
-    void setBounciness(float b);
-    void setVelocity(Vector3 v);
-    void setGravity(Vector3 g);
+    void setMass(const float m);
+    void setFriction(const float f);
+    void setBounciness(const float b);
+    void setVelocity(const Vector3 v);
+    void setGravity(const Vector3 g);
 
     //fuerza gradual
-    void addForce(Vector3 f);
+    void addForce(const Vector3 f);
     //aplica solo una fuerza instantanea (golpes,explosiones)
-    void addImpulse(Vector3 f);
+    void addImpulse(const Vector3 f);
 
 
     bool getTrigger() const;

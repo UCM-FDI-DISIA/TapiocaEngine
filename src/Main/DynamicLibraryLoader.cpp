@@ -5,7 +5,7 @@
 #endif
 
 namespace Tapioca {
-DynamicLibraryLoader::DynamicLibraryLoader(const std::string& gameName) : gameName(gameName), module(nullptr) { }
+DynamicLibraryLoader::DynamicLibraryLoader(std::string const& gameName) : gameName(gameName), module(nullptr) { }
 
 DynamicLibraryLoader::~DynamicLibraryLoader() { freeModule(); }
 

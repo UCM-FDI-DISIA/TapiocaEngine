@@ -17,9 +17,10 @@ private:
 
     // SOLO NECESITA UNA DIRECCION, PERO NO UNA POSICION (LA POSICION NO AFECTA PARA NADA)
     // SIMULA RAYOS DE LUZ DESDE UNA POSICION LEJANA (COMO EL SOL)
-    LightDirectional(Ogre::SceneManager* sceneManager, Node* node, Vector4 color, Vector3 direction);
+    LightDirectional(Ogre::SceneManager* const sceneManager, Node* const node, const Vector4 color,
+                     const Vector3 direction);
 
 public:
-    void setDirection(Vector3 direction);
+    void setDirection(const Vector3 direction);
 };
 }

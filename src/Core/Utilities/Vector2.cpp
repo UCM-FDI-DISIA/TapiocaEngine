@@ -2,9 +2,9 @@
 #include <cmath>
 
 namespace Tapioca {
-Vector2::Vector2(float xy) : x(xy), y(xy) { }
+Vector2::Vector2(const float xy) : x(xy), y(xy) { }
 
-Vector2::Vector2(float x, float y) : x(x), y(y) { }
+Vector2::Vector2(const float x, const float y) : x(x), y(y) { }
 
 Vector2::Vector2(const Vector2& other) : x(other.x), y(other.y) { }
 

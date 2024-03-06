@@ -26,7 +26,7 @@ public:
     void draw3dText(const btVector3& location, const char* textString) override;
     void drawTransform(const btTransform& transform, btScalar orthoLen) override;
     void clearLines() override;
-    inline void setDebugMode(int debugMode) override { mode = DebugDrawModes(debugMode); }
+    inline void setDebugMode(const int debugMode) override { mode = DebugDrawModes(debugMode); }
     inline int getDebugMode() const override { return mode; }
 };
 

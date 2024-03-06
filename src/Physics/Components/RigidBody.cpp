@@ -118,19 +118,19 @@ void RigidBody::start() {
     rigidBody->setUserPointer(collider);
 }
 
-void RigidBody::setActive(bool b) {
+void RigidBody::setActive(const bool b) {
     Component::setActive(b);
     rigidBody->activate(b);
 }
 
-void RigidBody::setMomeventType(MovementType t) {
+void RigidBody::setMomeventType(const MovementType t) {
     if (rigidBody == nullptr) return;
     rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~movementType);
     rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | t);
     movementType = t;
 }
 
-void RigidBody::setTrigger(bool t) {
+void RigidBody::setTrigger(const bool t) {
     isTrigger = t;
     if (isTrigger)
         rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
@@ -138,58 +138,58 @@ void RigidBody::setTrigger(bool t) {
         rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 
-void RigidBody::setColliderShape(ColliderShape s) { colShape = s; }
+void RigidBody::setColliderShape(const ColliderShape s) { colShape = s; }
 
-void RigidBody::setColliderScale(Vector3 s) {
+void RigidBody::setColliderScale(const Vector3 s) {
     colliderScale = s;
     if (rigidBody == nullptr) return;
     rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s));
 }
 
 
-void RigidBody::setMass(float m) { mass = m; }
+void RigidBody::setMass(const float m) { mass = m; }
 
-void RigidBody::setFriction(float f) {
+void RigidBody::setFriction(const float f) {
     friction = f;
     if (rigidBody == nullptr) return;
     rigidBody->setFriction(f);
 }
 
-void RigidBody::setBounciness(float b) {
+void RigidBody::setBounciness(const float b) {
     rigidBody->setRestitution(b);
     if (rigidBody == nullptr) return;
     bounciness = b;
 }
 
-void RigidBody::setVelocity(Vector3 v) {
+void RigidBody::setVelocity(const Vector3 v) {
     //rigidBody->activate(true);
     if (rigidBody == nullptr) return;
     rigidBody->setLinearVelocity(toBtVector3(v));
 }
 
-void RigidBody::setGravity(Vector3 g) {
+void RigidBody::setGravity(const Vector3 g) {
     if (rigidBody == nullptr) return;
     rigidBody->setGravity(toBtVector3(g));
 }
 
-void RigidBody::addForce(Vector3 f) {
+void RigidBody::addForce(const Vector3 f) {
     if (rigidBody == nullptr) return;
     rigidBody->applyCentralForce(toBtVector3(f));
 }
 
-void RigidBody::addImpulse(Vector3 f) {
+void RigidBody::addImpulse(const Vector3 f) {
     if (rigidBody == nullptr) return;
     rigidBody->applyCentralImpulse(toBtVector3(f));
 }
 
-void RigidBody::setMask(int m) {
+void RigidBody::setMask(const int m) {
     mask = m;
     if (rigidBody == nullptr) return;
     btBroadphaseProxy* bdProxy = rigidBody->getBroadphaseProxy();
     bdProxy->m_collisionFilterMask = m;
 }
 
-void RigidBody::setGroup(int g) {
+void RigidBody::setGroup(const int g) {
     group = g;
     if (rigidBody == nullptr) return;
     btBroadphaseProxy* bdProxy = rigidBody->getBroadphaseProxy();

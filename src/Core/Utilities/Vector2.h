@@ -9,9 +9,9 @@ class TAPIOCA_API Vector2 {
 public:
     // Genera un vector que inicializa "x" e "y" al numero dado.
     // Si no se da un numero, este se considera cero.
-    Vector2(float xy = 0);
+    Vector2(const float xy = 0);
     // Genera un vector que inicializa "x" e "y" a sus valores correspondientes.
-    Vector2(float x, float y);
+    Vector2(const float x, const float y);
     // Genera una copia del vector dado.
     Vector2(const Vector2& other);
 

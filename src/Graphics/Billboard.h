@@ -21,7 +21,7 @@ protected:
     //Billboard(Ogre::SceneManager* scnMgr, Node* node, std::string name, const Vector3& position, const Vector4& colour);
 
     //Crea un �nico Billboard si se le proporciona un puntero a Ogre::Billboard (a partir de un BillboardSet)
-    Billboard(Ogre::Billboard* oBillboard);
+    Billboard(Ogre::Billboard* const oBillboard);
 
     Ogre::Billboard* getBillboard();
 

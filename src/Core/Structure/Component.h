@@ -35,7 +35,7 @@ public:
     // Devuelve si el componente esta activo (si es 'false' no se llama a ningun metodo excepto 'receiveEvent').
     inline bool isActive() const { return active; }
     // Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent').
-    inline virtual void setActive(bool b) { active = b; }
+    inline virtual void setActive(const bool b) { active = b; }
 
     // Metodo que se usa para recibir los parametros iniciales y guardarlos.
     // No garantiza que todos los componentes iniciales esten creados.
@@ -54,7 +54,7 @@ public:
     // TODO: Incluir cuando se llama.
     virtual void handleEvent(std::string const& id, void* info) { }
 
-    void pushEvent(std::string const& id, void* info, bool global = true);
+    void pushEvent(std::string const& id, void* info, const bool global = true);
 
     template<typename T>
     inline bool setValueFromMap(T& var, std::string const& varName, const CompMap& map) {

@@ -10,7 +10,7 @@ GameObject::~GameObject() {
         delete i.second;
 }
 
-void GameObject::addComponent(Component* comp, std::string const& id) {
+void GameObject::addComponent(Component* const comp, std::string const& id) {
     components.insert(std::pair<std::string, Component*>(id, comp));
     cmpOrder.push_back(comp);
     comp->object = this;
@@ -41,16 +41,16 @@ std::vector<Component*> GameObject::getComponents(std::string const& id) {
     return out;
 }
 
-void GameObject::pushEvent(std::string const& id, void* info, bool global) {
+void GameObject::pushEvent(std::string const& id, void* info, const bool global) {
     if (global) scene->pushEvent(id, info);
     else handleEvent(id, info);
 }
 
-void GameObject::deleteCompVector(Component* comp) {
+void GameObject::deleteCompVector(Component* const comp) {
     cmpOrder.erase(std::remove(cmpOrder.begin(), cmpOrder.end(), comp), cmpOrder.end());
 }
 
-void GameObject::setScene(Scene* sc) { scene = sc; }
+void GameObject::setScene(Scene* const sc) { scene = sc; }
 
 void GameObject::refresh() {
     auto it = components.begin();

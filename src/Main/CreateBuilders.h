@@ -3,5 +3,5 @@
 
 namespace Tapioca {
 	void createEngineBuilders();
-	void createGameBuilders(HMODULE module);
+	void createGameBuilders(const HMODULE module);
 }

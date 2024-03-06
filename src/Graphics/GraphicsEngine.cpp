@@ -35,10 +35,10 @@
 
 namespace Tapioca {
 
-GraphicsEngine::GraphicsEngine(std::string const& windowName, uint32_t w, uint32_t h)
-    : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), renderSys(nullptr),
-      mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr), mwindowName(windowName), windowWidth(w),
-      windowHeight(h) { }
+GraphicsEngine::GraphicsEngine(const std::string const& windowName, const uint32_t w, const uint32_t h)
+    : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
+      renderSys(nullptr), mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr),
+      mwindowName(windowName), windowWidth(w), windowHeight(h) { }
 
 GraphicsEngine::~GraphicsEngine() {
     /*for (auto& object : objects) {
@@ -219,7 +219,7 @@ void GraphicsEngine::shutDown() {
         delete overSys;
         overSys = nullptr;
     }
-    
+
     // ELIMINAR EL SISTEMA DE SHADERS
 
     // (Un material puede tener varias Techniques
@@ -270,15 +270,15 @@ void GraphicsEngine::shutDown() {
     fsLayer = nullptr;
 }
 
-Node* GraphicsEngine::createNode(Vector3 pos, Vector3 scale) { return new Node(scnMgr, pos, scale); }
+Node* GraphicsEngine::createNode(const Vector3 pos, const Vector3 scale) { return new Node(scnMgr, pos, scale); }
 
-Node* GraphicsEngine::createSelfManagedNode(Vector3 pos, Vector3 scale) {
+Node* GraphicsEngine::createSelfManagedNode(const Vector3 pos, const Vector3 scale) {
     Node* node = new Node(scnMgr, pos, scale);
     selfManagedNodes.insert(node);
     return node;
 }
 
-Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3 scale) {
+Node* GraphicsEngine::createChildNode(Node* const parent, const Vector3 relativePos, const Vector3 scale) {
     return new Node(scnMgr, relativePos, scale, parent);
 }
 
@@ -290,29 +290,37 @@ Node* GraphicsEngine::createChildNode(Node* parent, Vector3 relativePos, Vector3
 //    }
 //}
 
-Camera* GraphicsEngine::createCamera(Node* node, std::string const& name) { return new Camera(scnMgr, node, name); }
+Camera* GraphicsEngine::createCamera(Node* const node, std::string const& name) {
+    return new Camera(scnMgr, node, name);
+}
 
-Viewport* GraphicsEngine::createViewport(Camera* camera, int zOrder) {
+Viewport* GraphicsEngine::createViewport(Camera* const camera, const int zOrder) {
     return new Viewport(ogreWindow, camera, zOrder);
 }
 
-LightDirectional* GraphicsEngine::createLightDirectional(Node* node, Vector3 direction, Vector4 color) {
+LightDirectional* GraphicsEngine::createLightDirectional(Node* const node, const Vector3 direction,
+                                                         const Vector4 color) {
     return new LightDirectional(scnMgr, node, color, direction);
 }
 
-Mesh* GraphicsEngine::createMesh(Node* node, std::string const& meshName) { return new Mesh(scnMgr, node, meshName); }
+Mesh* GraphicsEngine::createMesh(Node* const node, std::string const& meshName) {
+    return new Mesh(scnMgr, node, meshName);
+}
 
-Billboard* GraphicsEngine::createBillboard(Node* node, std::string const& name, Vector3 position, Vector4 colour) {
+Billboard* GraphicsEngine::createBillboard(Node* const node, std::string const& name, const Vector3 position,
+                                           const Vector4 colour) {
     Tapioca::BillboardSet* set = new BillboardSet(scnMgr, node, name, 1);
     return set->addBillboard(position, colour);
 }
 
-BillboardSet* GraphicsEngine::createBillboardSet(Node* node, std::string const& name, unsigned int poolSize) {
+BillboardSet* GraphicsEngine::createBillboardSet(Node* const node, std::string const& name,
+                                                 const unsigned int poolSize) {
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
-ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr, Node* node, std::string const& name,
-                                                     std::string const& templateName, bool emitting) {
+ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* const scnMgr, Node* const node,
+                                                     std::string const& name, std::string const& templateName,
+                                                     const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
@@ -321,26 +329,28 @@ ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* scnMgr,
 //    return new Plane(scnMgr, node, mshMgr, name, width, height, xSegments, ySegments, x, y, z, material);
 //}
 
-Plane* GraphicsEngine::createPlane(Node* node, const Vector3& rkNormal, float fConstant, std::string name, float width,
-                                   float height, int xSegments, int ySegments, float x, float y, float z,
-                                   std::string material) {
+Plane* GraphicsEngine::createPlane(Node* const node, const Vector3& rkNormal, const float fConstant,
+                                   std::string const& name, const float width, const float height, const int xSegments,
+                                   const int ySegments, const float x, const float y, const float z,
+                                   std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments, x, y, z,
                      material);
 }
 
-Plane* GraphicsEngine::createPlane(Node* node, float a, float b, float c, float _d, std::string name, float width,
-                                   float height, int xSegments, int ySegments, float x, float y, float z,
-                                   std::string material) {
+Plane* GraphicsEngine::createPlane(Node* const node, const float a, const float b, const float c, const float _d,
+                                   std::string const& name, const float width, const float height, const int xSegments,
+                                   const int ySegments, const float x, const float y, const float z,
+                                   std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments, x, y, z, material);
 }
 
-Ogre::ManualObject* GraphicsEngine::createManualObject(Node* node) {
+Ogre::ManualObject* GraphicsEngine::createManualObject(Node* const node) {
     Ogre::ManualObject* manualObject = scnMgr->createManualObject();
     node->attachObject(manualObject);
     return manualObject;
 }
 
-void GraphicsEngine::destroyManualObject(Ogre::ManualObject* object) { scnMgr->destroyManualObject(object); }
+void GraphicsEngine::destroyManualObject(Ogre::ManualObject* const object) { scnMgr->destroyManualObject(object); }
 
 SDL_Window* GraphicsEngine::getSDLWindow() { return sdlWindow; }
 

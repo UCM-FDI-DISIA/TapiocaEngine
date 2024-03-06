@@ -1,13 +1,15 @@
 #include "SGTechniqueResolverListener.h"
 #include <OgreTechnique.h>
 
-SGTechniqueResolverListener::SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* pShaderGenerator) {
+SGTechniqueResolverListener::SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* const pShaderGenerator) {
     mShaderGenerator = pShaderGenerator;
 }
 
-Ogre::Technique* SGTechniqueResolverListener::handleSchemeNotFound(unsigned short schemeIndex,
-    const Ogre::String& schemeName, Ogre::Material* originalMaterial, unsigned short lodIndex,
-    const Ogre::Renderable* rend) {
+Ogre::Technique* SGTechniqueResolverListener::handleSchemeNotFound(const unsigned short schemeIndex,
+                                                                   const Ogre::String& schemeName,
+                                                                   Ogre::Material* const originalMaterial,
+                                                                   const unsigned short lodIndex,
+                                                                   const Ogre::Renderable* const rend) {
     if (!mShaderGenerator->hasRenderState(schemeName)) {
         return NULL;
     }
@@ -35,7 +37,7 @@ Ogre::Technique* SGTechniqueResolverListener::handleSchemeNotFound(unsigned shor
     return NULL;
 }
 
-bool SGTechniqueResolverListener::afterIlluminationPassesCreated(Ogre::Technique* tech) {
+bool SGTechniqueResolverListener::afterIlluminationPassesCreated(Ogre::Technique* const tech) {
     if (mShaderGenerator->hasRenderState(tech->getSchemeName())) {
         Ogre::Material* mat = tech->getParent();
         mShaderGenerator->validateMaterialIlluminationPasses(tech->getSchemeName(), mat->getName(), mat->getGroup());
@@ -44,7 +46,7 @@ bool SGTechniqueResolverListener::afterIlluminationPassesCreated(Ogre::Technique
     return false;
 }
 
-bool SGTechniqueResolverListener::beforeIlluminationPassesCleared(Ogre::Technique* tech) {
+bool SGTechniqueResolverListener::beforeIlluminationPassesCleared(Ogre::Technique* const tech) {
     if (mShaderGenerator->hasRenderState(tech->getSchemeName())) {
         Ogre::Material* mat = tech->getParent();
         mShaderGenerator->invalidateMaterialIlluminationPasses(tech->getSchemeName(), mat->getName(), mat->getGroup());

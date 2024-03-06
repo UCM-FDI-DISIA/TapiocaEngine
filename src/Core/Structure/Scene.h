@@ -16,9 +16,9 @@ public:
     ~Scene();
 
     std::vector<GameObject*> getObjects() const;
-    GameObject* getHandler(const std::string& handler) const;
+    GameObject* getHandler(std::string const& handler) const;
 
-    bool addObject(GameObject* object, std::string const& handler = "");
+    bool addObject(GameObject* const object, std::string const& handler = "");
     void start();
     void update(const uint64_t deltaTime);
     //void handleEvents();

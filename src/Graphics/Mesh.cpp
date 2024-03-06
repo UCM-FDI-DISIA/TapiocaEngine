@@ -4,7 +4,7 @@
 
 namespace Tapioca {
 
-Mesh::Mesh(Ogre::SceneManager* sceneManager, Node* node, std::string const& meshName)
+Mesh::Mesh(Ogre::SceneManager* const sceneManager, Node* const node, std::string const& meshName)
     : RenderObject(node, sceneManager) , mesh(sceneManager->createEntity(meshName)) 
 {
     init(mesh);

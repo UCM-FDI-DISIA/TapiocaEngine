@@ -22,7 +22,7 @@ public:
     * @brief Constructor: Inicializa el nombre del juego y el modulo
     * @param gameName: Nombre del juego
     */
-    DynamicLibraryLoader(const std::string& gameName = "game");
+    DynamicLibraryLoader(std::string const& gameName = "game");
     /**
     * @brief Libera la memoria usada del modulo si el modulo esta cargado
     */

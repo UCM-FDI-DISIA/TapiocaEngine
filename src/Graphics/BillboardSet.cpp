@@ -5,7 +5,8 @@
 
 namespace Tapioca {
 
-BillboardSet::BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize)
+BillboardSet::BillboardSet(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+                           const unsigned int poolSize)
     : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)), mName(name) {
     init(mBillboardSet);
 }
@@ -26,7 +27,7 @@ void Tapioca::BillboardSet::clear() {
     mBillboardSet->clear();
 }
 
-void Tapioca::BillboardSet::removeBillboard(int index) {
+void Tapioca::BillboardSet::removeBillboard(const int index) {
     if (index < billboards.size()) {
         //Elimina el Tapioca::Billboard del UnorderedMap
         Tapioca::Billboard* billboard = billboards[index];
@@ -37,7 +38,7 @@ void Tapioca::BillboardSet::removeBillboard(int index) {
     }
 }
 
-void Tapioca::BillboardSet::removeBillboard(Billboard* bb) {
+void Tapioca::BillboardSet::removeBillboard(Billboard* const bb) {
     auto it = std::find(billboards.begin(), billboards.end(), bb);
     if (it != billboards.end()) {
         //Elimina el Tapioca::Billboard del UnorderedMap
@@ -59,7 +60,7 @@ Tapioca::Billboard* Tapioca::BillboardSet::addBillboard(const Vector3& position,
     return mBillboard;
 }
 
-Tapioca::Billboard* Tapioca::BillboardSet::getBillboard(int index) const {
+Tapioca::Billboard* Tapioca::BillboardSet::getBillboard(const int index) const {
     if (index < billboards.size()) {
         return billboards[index];
     }
@@ -67,7 +68,7 @@ Tapioca::Billboard* Tapioca::BillboardSet::getBillboard(int index) const {
 
 const std::string BillboardSet::getName() const { return mBillboardSet->getName(); }
 
-void BillboardSet::setPoolSize(size_t size) { mBillboardSet->setPoolSize(size); }
+void BillboardSet::setPoolSize(const size_t size) { mBillboardSet->setPoolSize(size); }
 
 int BillboardSet::getPoolSize() const { return mBillboardSet->getPoolSize(); }
 

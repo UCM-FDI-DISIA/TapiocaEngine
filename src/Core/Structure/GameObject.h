@@ -10,7 +10,7 @@ class Scene;
 class TAPIOCA_API GameObject {
 private:
     friend class Scene;
-    void setScene(Scene*);
+    void setScene(Scene* const sc);
 
     void refresh();
     void update(const uint64_t deltaTime);
@@ -23,7 +23,7 @@ private:
     bool alive;
     std::string handler;
 
-    void deleteCompVector(Component* comp);
+    void deleteCompVector(Component* const comp);
     std::unordered_multimap<std::string, Component*> components;
     std::vector<Component*> cmpOrder;   // TODO: Hace falta??????
 
@@ -37,7 +37,7 @@ public:
     inline void die() { alive = false; }
     inline virtual Scene* getScene() const { return scene; }
 
-    void addComponent(Component* comp, std::string const& id);
+    void addComponent(Component* const comp, std::string const& id);
     template<IsComponent TComp> inline TComp* addComponent() {
         TComp* comp = new TComp();
         addComponent(comp, TComp::id);
@@ -61,6 +61,6 @@ public:
         return out;
     }
 
-    void pushEvent(std::string const& id, void* info, bool global = true);
+    void pushEvent(std::string const& id, void* info, const bool global = true);
 };
 }

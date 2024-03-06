@@ -16,7 +16,7 @@ private:
     friend GraphicsEngine;
 
     // SOLO NECESITA UNA POSICION, ILUMINA IGUAL EN TODAS DIRECCIONES
-    LightPoint(Ogre::SceneManager* sceneManager, Node* node, Vector4 color);
+    LightPoint(Ogre::SceneManager* const sceneManager, Node* const node, const Vector4 color);
 
 public:
 };

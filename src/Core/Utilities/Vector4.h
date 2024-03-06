@@ -12,18 +12,18 @@ class TAPIOCA_API Vector4 {
 public:
     // Genera un vector que inicializa "x", "y", "z" y "w" al numero dado.
     // Si no se da un numero, este se considera cero.
-    Vector4(float xyzw = 0);
+    Vector4(const float xyzw = 0);
     // Genera un vector que inicializa "x", "y", "z" y "w" a sus valores correspondientes.
     // Si no se da un valor a "z" o a "w", se considera cero.
-    Vector4(float x, float y, float z = 0, float w = 0);
+    Vector4(const float x, const float y, const float z = 0, const float w = 0);
     // Genera una copia del vector dado.
     Vector4(const Vector4& other);
     // Genera un vector con "x", "y" y "z" tal como estan en el vector dado.
     // "w" se inicializa segun el numero dado. Si no se da un numero, este se considera cero.
-    Vector4(const Vector3& other, float w = 0);
+    Vector4(const Vector3& other, const float w = 0);
     // Genera un vector con "x" e "y" tal como estan en el vector dado.
     // "z" y "w" se inicializan segun el numero dado. Si no se da algun numero, este se considera cero.
-    Vector4(const Vector2& other, float z = 0, float w = 0);
+    Vector4(const Vector2& other, const float z = 0, const float w = 0);
 
     float x;
     float y;

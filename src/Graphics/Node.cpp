@@ -8,7 +8,7 @@
 
 namespace Tapioca {
 
-Ogre::SceneNode* Node::createChild(Node* child) {
+Ogre::SceneNode* Node::createChild(Node* const child) {
     children.insert(child);
     return node->createChildSceneNode();
 }
@@ -81,7 +81,7 @@ void Node::getAllChildrenAux(std::vector<INode*>& allChildren) {
     }
 }
 
-void Node::attachObject(RenderObject* object) {
+void Node::attachObject(RenderObject* const object) {
     auto movObject = object->getMovObject();
     if (!movObject->isAttached() && !objects.contains(object)) {
         node->attachObject(movObject);
@@ -89,11 +89,11 @@ void Node::attachObject(RenderObject* object) {
     }
 }
 
-void Node::attachObject(Ogre::MovableObject* object) {
+void Node::attachObject(Ogre::MovableObject* const object) {
     if (!object->isAttached()) node->attachObject(object);
 }
 
-void Node::detachObject(RenderObject* object) {
+void Node::detachObject(RenderObject* const object) {
     auto movObject = object->getMovObject();
     if (movObject->isAttached() && objects.contains(object)) {
         node->detachObject(movObject);
@@ -102,14 +102,14 @@ void Node::detachObject(RenderObject* object) {
 }
 
 // ESTA EN GLOBALES, PERO SE PODRIA PERSONALZIAR
-void Node::lookAt(Vector3 target) {
+void Node::lookAt(const Vector3 target) {
     node->lookAt(Ogre::Vector3(target.x, target.y, target.z), Ogre::Node::TS_WORLD);
 }
 
 // ESTA EN LOCALES, PERO SE PODRIA PERSONALIZAR
-void Node::setDirection(Vector3 dir) { node->setDirection(dir.x, dir.y, dir.z, Ogre::Node::TS_LOCAL); }
+void Node::setDirection(const Vector3 dir) { node->setDirection(dir.x, dir.y, dir.z, Ogre::Node::TS_LOCAL); }
 
-Node::Node(Ogre::SceneManager* sceneManager, Vector3 pos, Vector3 scale, Node* parent)
+Node::Node(Ogre::SceneManager* const sceneManager, const Vector3 pos, const Vector3 scale, Node* const parent)
     : parent(parent), sceneManager(sceneManager), children(), objects() 
 {
     if (parent == nullptr) node = sceneManager->getRootSceneNode()->createChildSceneNode();
@@ -138,7 +138,7 @@ Node::~Node() {
     node = nullptr;
 }
 
-void Node::removeChild(INode* child) {
+void Node::removeChild(INode* const child) {
     if (children.contains(child)) {
         children.erase(child);
         node->removeChild(child->getSceneNode());
@@ -150,41 +150,41 @@ void Node::removeAttachedParent() {
     parent = nullptr;
 }
 
-void Node::addChild(INode* child) {
+void Node::addChild(INode* const child) {
     if (!children.contains(child)) {
         children.insert(child);
         node->addChild(child->getSceneNode());
     }
 }
 
-void Node::setPosition(Vector3 newPos) { node->setPosition(newPos.x, newPos.y, newPos.z); }
-void Node::setScale(Vector3 newScale) { node->setScale(newScale.x, newScale.y, newScale.z); }
-void Node::translate(Vector3 mov) { node->translate(mov.x, mov.y, mov.z); }
-void Node::scale(Vector3 scale) { node->scale(scale.x, scale.y, scale.z); }
-void Node::setRotation(Vector3 rot) { 
+void Node::setPosition(const Vector3 newPos) { node->setPosition(newPos.x, newPos.y, newPos.z); }
+void Node::setScale(const Vector3 newScale) { node->setScale(newScale.x, newScale.y, newScale.z); }
+void Node::translate(const Vector3 mov) { node->translate(mov.x, mov.y, mov.z); }
+void Node::scale(const Vector3 scale) { node->scale(scale.x, scale.y, scale.z); }
+void Node::setRotation(const Vector3 rot) { 
     Quaternion q = Quaternion(rot);
     Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
     node->setOrientation(oq);
 }
-void Node::rotate(Vector3 r) { 
+void Node::rotate(const Vector3 r) { 
     Quaternion q = Quaternion(r);
     Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
     node->rotate(oq);
 
 }
 
-void Node::roll(float angle) { 
+void Node::roll(const float angle) { 
 
  node->roll(Ogre::Degree(angle), Ogre::Node::TS_WORLD);
 
 }
 
-void Node::yaw(float angle) { 
+void Node::yaw(const float angle) { 
     //TODO cambiar el espacio para comprobar que desde blender se exporta con los ejese bien (parece qeu si)
     node->yaw(Ogre::Degree(angle),Ogre::Node::TS_WORLD); 
 }
 
-void Node::pitch(float angle) { 
+void Node::pitch(const float angle) { 
 
 node->pitch(Ogre::Degree(angle), Ogre::Node::TS_WORLD); 
 
@@ -203,7 +203,7 @@ std::vector<INode*> Node::getChildren() {
 }
 
 
-void Node::setParent(INode* parent) {
+void Node::setParent(INode* const parent) {
     removeParent();
     parent->addChild(this);
     this->parent = parent;

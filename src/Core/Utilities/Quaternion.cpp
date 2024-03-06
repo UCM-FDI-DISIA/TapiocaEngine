@@ -4,13 +4,13 @@
 
 namespace Tapioca {
 
-Quaternion::Quaternion(float q0, float q1, float q2, float q3) {
+Quaternion::Quaternion(const float q0, const float q1, const float q2, const float q3) {
     scalar = q0;
     vector = Vector3(q1, q2, q3);
     angle = 2 * acosf(q0);
 }
 
-Quaternion::Quaternion(float alfa, Vector3 vec) {
+Quaternion::Quaternion(const float alfa, const Vector3 vec) {
     //primero hay que convertir vec en un vector unitario
     Vector3 uvec = vec / vec.magnitude();
     float alfarad = alfa * (PI / 180);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
@@ -20,7 +20,7 @@ Quaternion::Quaternion(float alfa, Vector3 vec) {
     vector = Vector3(alfasin * uvec.x, alfasin * uvec.y, alfasin * uvec.z);
 }
 
-Quaternion::Quaternion(Vector3 euler) { 
+Quaternion::Quaternion(const Vector3 euler) { 
     //la libreria math opera en radianes
     float roll = euler.x * (PI / 180);
     float cosroll = cosf(roll / 2);
@@ -95,7 +95,7 @@ Quaternion Quaternion::operator/(const float s) {
     return Quaternion(scalar / s, vector.x / s, vector.y / s, vector.z / s);
 }
 
-Vector3 Quaternion::rotatePoint(Vector3 point) {
+Vector3 Quaternion::rotatePoint(const Vector3 point) {
 
     //Vector3 v2 = vector * 2.0;
     //Vector3 vs = vector * scalar;

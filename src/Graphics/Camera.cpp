@@ -6,10 +6,9 @@
 
 namespace Tapioca {
 
-Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, Vector3 targetToLook, float nearDist, 
-    float farDist, bool autoAspectRatio, float aspectRatio)
-    : RenderObject(node, scnMgr), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio) 
-{
+Camera::Camera(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name, const Vector3 targetToLook,
+               const float nearDist, const float farDist, const bool autoAspectRatio, const float aspectRatio)
+    : RenderObject(node, scnMgr), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio) {
     init(mCam);
 
     lookAt(targetToLook);
@@ -19,19 +18,19 @@ Camera::Camera(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, 
     else mCam->setAspectRatio(aspectRatio);
 }
 
-void Camera::lookAt(Vector3 targetToLook) { node->lookAt(targetToLook); }
+void Camera::lookAt(const Vector3 targetToLook) { node->lookAt(targetToLook); }
 
-void Camera::setDirection(Vector3 dir) { node->setDirection(dir); }
+void Camera::setDirection(const Vector3 dir) { node->setDirection(dir); }
 
-void Camera::setNearClipDistance(float dist) { mCam->setNearClipDistance(dist); }
+void Camera::setNearClipDistance(const float dist) { mCam->setNearClipDistance(dist); }
 
-void Camera::setFOVYRadians(float radians) { mCam->setFOVy(Ogre::Radian(radians)); }
+void Camera::setFOVYRadians(const float radians) { mCam->setFOVy(Ogre::Radian(radians)); }
 
-void Camera::setFOVYDegrees(float degrees) { mCam->setFOVy(Ogre::Radian(Ogre::Degree(degrees))); }
+void Camera::setFOVYDegrees(const float degrees) { mCam->setFOVy(Ogre::Radian(Ogre::Degree(degrees))); }
 
-void Camera::setFarClipDistance(float dist) { mCam->setFarClipDistance(dist); }
+void Camera::setFarClipDistance(const float dist) { mCam->setFarClipDistance(dist); }
 
-void Camera::setAspectRatio(float aspectRatio) {
+void Camera::setAspectRatio(const float aspectRatio) {
     if (!autoAspectRatio) mCam->setAspectRatio(aspectRatio);
 }
 

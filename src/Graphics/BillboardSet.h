@@ -26,7 +26,8 @@ protected:
     std::string mName;
 
     //Crea un BillboardSet con nombre a partir de un n�mero de elementos
-    BillboardSet(Ogre::SceneManager* scnMgr, Node* node, std::string const& name, unsigned int poolSize);
+    BillboardSet(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+                 const unsigned int poolSize);
 
 public:
     //Destructora de la clase
@@ -35,7 +36,7 @@ public:
     //Devuelve el nombre del Billboard
     const std::string getName() const;
     //Ajusta el tama�o del BillboardSet al indicado
-    void setPoolSize(size_t size);
+    void setPoolSize(const size_t size);
     //Devuelve el tama�o del BillboardSet
     int getPoolSize() const;
     //Devuelve el n�mero de Billboards del BillboardSet
@@ -47,13 +48,13 @@ public:
     //Vac�a el BillboardSet
     void clear();
     //Elimina el Billboard seg�n su �ndice
-    void removeBillboard(int index);
+    void removeBillboard(const int index);
     //Elimina el Billboard proporcionado
-    void removeBillboard(Billboard* bb);
+    void removeBillboard(Billboard* const bb);
     //A�ade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
     Tapioca::Billboard* addBillboard(const Vector3& position,
                                         const Vector4& colour = Vector4(255.0f, 255.0f, 255.0f, 255.0f));
     //Devuelve un puntero al Billboard que corresponde con el �ndice indicado
-    Tapioca::Billboard* getBillboard(int index) const;
+    Tapioca::Billboard* getBillboard(const int index) const;
 };
 }

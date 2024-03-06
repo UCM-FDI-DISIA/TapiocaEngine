@@ -8,13 +8,13 @@
 
 namespace Tapioca {
 
-Vector3::Vector3(float xyz) : x(xyz) , y(xyz), z(xyz) { }
+Vector3::Vector3(const float xyz) : x(xyz), y(xyz), z(xyz) { }
 
-Vector3::Vector3(float x, float y, float z) : x(x) , y(y), z(z) { }
+Vector3::Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) { }
 
 Vector3::Vector3(const Vector3& other) : x(other.x) , y(other.y) , z(other.z) { }
 
-Vector3::Vector3(const Vector2& other, float z) : x(other.x), y(other.y), z(z) { }
+Vector3::Vector3(const Vector2& other, const float z) : x(other.x), y(other.y), z(z) { }
 
 float Vector3::magnitudeSquared() const { return x * x + y * y + z * z; }
 
@@ -35,19 +35,19 @@ float Vector3::normalize() {
     return mag;
 }
 
-Vector3 Vector3::rotateX(float degrees) {
+Vector3 Vector3::rotateX(const float degrees) {
     return Vector3(x, cos(degrees) * y - sin(degrees) * z, sin(degrees) * y + cos(degrees) * z);
 }
 
-Vector3 Vector3::rotateY(float degrees) {
+Vector3 Vector3::rotateY(const float degrees) {
     return Vector3(cos(degrees) * x + sin(degrees) * z, y, -sin(degrees) * x + cos(degrees) * z);
 }
 
-Vector3 Vector3::rotateZ(float degrees) {
+Vector3 Vector3::rotateZ(const float degrees) {
     return Vector3(cos(degrees) * x - sin(degrees) * y, sin(degrees) * x + cos(degrees) * y, z);
 }
 
-Vector3 Vector3::cross(Vector3 other) { 
+Vector3 Vector3::cross(const Vector3 other) { 
    // float cosalfa = dot(other) / (magnitude() * other.magnitude());
    // float alfa =  acos(cosalfa);//pero esto lo da en radianes
     //alfa *= (180 /PI );
@@ -56,7 +56,7 @@ Vector3 Vector3::cross(Vector3 other) {
 
 }
 
-float Vector3::dot(Vector3 other) { 
+float Vector3::dot(const Vector3 other) { 
     return x * other.x + y * other.y + z * other.z; 
 
 }
