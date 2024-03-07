@@ -42,8 +42,8 @@ void MeshRenderer::start() {
 void MeshRenderer::update(uint64_t delt) {
     node->setPosition(transform->getGlobalPosition());
     // TODO: como hacemos para que gire respecto de su padre y no de si mismo
-    //node->setRotation(transform->getGlobalRotation());
+    node->setRotation(transform->getGlobalRotation());
     // es tan grande que no se ve
-    //node->setScale(transform->getGlobalScale());
+    node->setScale(transform->getGlobalScale());
 }
 }
