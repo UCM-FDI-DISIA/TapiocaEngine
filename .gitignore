@@ -12,6 +12,7 @@
 .vs
 temp
 lib
+doc
 
 # Ignora todas los directorios que se llamen 'build'
 build/

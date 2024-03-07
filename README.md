@@ -30,11 +30,14 @@ El motor de videojuegos <strong>Tapioca Engine</strong> es un proyecto de softwa
 
 El motor se divide en varios módulos que se encargan de diferentes aspectos del desarrollo de videojuegos. Estos módulos son:
 
-- <strong>Core</strong>: Módulo encargado de la gestión de la memoria, la creación de entidades y la gestión de eventos
+- <strong>Bridge</strong>: Módulo encargado de la creación de escenas, entidades y componentes cargados desde archivos .lua
+- <strong>Core</strong>: Módulo encargado de la creación de las factorías, la gestión de eventos y bucle principal
 - <strong>Graphics</strong>: Módulo encargado del renderizado de los gráficos
+- <strong>Input</strong>: Módulo encargado de la gestión de la entrada
 - <strong>Physics</strong>: Módulo encargado de la simulación física
-- <strong>Audio</strong>: Módulo encargado de la gestión del audio
-- <strong>TapiocaEngine</strong>: Módulo encargado de la gestión de los módulos anteriores
+- <strong>Audio</strong>: Módulo encargado de la gestión del audio (sin implementar aún)
+- <strong>UI</strong>: Módulo encargado de la gestión de la interfaz gráfica
+- <strong>Main</strong>: Módulo encargado de crear los módulos anteriores
 
 Los motores de tecnología hacen uso de diferentes bibliotecas para su funcionamiento. <strong>Tapioca Engine</strong> se hace uso de las siguientes:
 
@@ -55,7 +58,7 @@ El proceso de desarrollo del motor sigue una metodología ágil, concretamente <
 ### Motor
 
 <p align="justify">
-Los distintos módulos que componen el motor se desarrollarán en ramas separadas y se irán incorporando versiones funcionales de los distintos proyectos con sus respectivas bibliotecas a una rama principal desde la que se creará una versión ejecutable estable cada cierto tiempo para poder probar la correcta funcionalidad de todos los módulos en conjunto e ir desarrollando partes del juego en paralelo al motor.
+Los distintos módulos que componen el motor se desarrollarán en la rama main y se crearán ramas separadas únicamente para la implementación que en el momento no se pueda compilar.
 </p>
 
 ### Juegos
@@ -102,12 +105,7 @@ En el caso de encontrar assets en otros formatos como mp3 será sencillo usar pr
 <div align="center">
 <h3>¡Síguenos en nuestras redes sociales!</h3>
 
-<a href="https://www.youtube.com/channel/UCsvZMJ8wfEXIIFbLuvrqQ-g" target="_blank">
-    <img src="https://img.shields.io/youtube/channel/subscribers/UCsvZMJ8wfEXIIFbLuvrqQ-g?label=Bubble Studios&logo=youtube&style=plastic" alt="YouTube Badge"/>
-</a>
-<a href="https://twitter.com/BubbleStudios24" target="_blank">
-    <img src="https://img.shields.io/twitter/follow/BubbleStudios24?color=blue&label=Bubble Studios&logo=twitter&style=plastic" alt="Twitter Badge"/>
-</a>
+<a href="https://www.youtube.com/channel/UCsvZMJ8wfEXIIFbLuvrqQ-g" target="_blank"><img src="https://img.shields.io/youtube/channel/subscribers/UCsvZMJ8wfEXIIFbLuvrqQ-g?label=Bubble Studios&logo=youtube&style=plastic" alt="YouTube Badge"/></a><a href="https://twitter.com/BubbleStudios24" target="_blank"><img src="https://img.shields.io/twitter/follow/BubbleStudios24?color=blue&label=Bubble Studios&logo=twitter&style=plastic" alt="Twitter Badge"/></a>
 
 <h3>¡Contáctanos por correo!</h3>
 <a href="mailto:contactbubblestudios@gmail.com" target="_blank">
