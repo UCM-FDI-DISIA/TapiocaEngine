@@ -81,7 +81,7 @@ public:
     /*
     * @brief Devuelve la posicion del raton
     */
-    inline const std::pair<int32_t, int32_t>& getMousePos() { return mousePos; }
+    inline const std::pair<int32_t, int32_t>& getMousePos();
 
     /*
     * @brief Devuelve true si hay al menos 1 mando conectado

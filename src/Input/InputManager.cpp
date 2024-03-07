@@ -7,7 +7,7 @@
 namespace Tapioca {
 
 InputManager::InputManager()
-    : inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false) { }
+    : inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false), mousePos({ 0, 0 }) { }
 
 bool InputManager::init() {
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
@@ -26,6 +26,14 @@ void InputManager::mapInput(std::string const& evt, std::string const& src, int 
     int control = ctrl;
     if (src == "ie_mouseMoving") control = 0;
     inputMap[src][control].push_back(evt);
+}
+
+inline const std::pair<int32_t, int32_t>& InputManager::getMousePos() {
+#ifdef _DEBUG
+    std::cout << mousePos.first << ' ' << mousePos.second << '\n';
+#endif
+
+    return mousePos; 
 }
 
 
@@ -188,6 +196,8 @@ void InputManager::sendEvents() {
         ImGui_ImplSDL2_ProcessEvent(&event);
         updateState(event);
     }
+
+    getMousePos();
 }
 
 
