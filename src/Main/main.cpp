@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     createModules(game);
     if (game->init()) {
         //* Prueba
-        scenes->loadScene("archivo.lua", factories);
+        //scenes->loadScene("archivo.lua", factories);
 
         // IMPORTANTE: NO PREOCUPARSE POR SI NO SE PUEDE ACCEDER A UN OBJETO PARA BORRAR
         // LUEGO, EL NODO VA A BORRAR TODO

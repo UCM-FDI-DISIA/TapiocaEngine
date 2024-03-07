@@ -1,6 +1,5 @@
 #include "Transform.h"
 #include "Structure/GameObject.h"
-#include "Utilities/INode.h"
 
 namespace Tapioca {
 void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
