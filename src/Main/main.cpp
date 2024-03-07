@@ -182,7 +182,7 @@ void mapInput() {
 
                         // Si la variable es "src", el valor es la clave
                         // del evento de inputEventTriggered. Si es "control",
-                        // el valor es la tecla/boton/eje/etc mapeado al evento
+                        // el valor es la tecla/boton/eje/etc. mapeado al evento
                         if (key == "src") src = value;
                         else if (key == "control") ctrl = stoi(value);
                     }

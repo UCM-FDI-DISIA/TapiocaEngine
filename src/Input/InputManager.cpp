@@ -25,7 +25,7 @@ InputManager::~InputManager() {
 void InputManager::mapInput(std::string const& evt, std::string const& src, int const& ctrl) {
     int control = ctrl;
     if (src == "ie_mouseMoving") control = 0;
-    iMap[src][control].push_back(evt);
+    inputMap[src][control].push_back(evt);
 }
 
 
@@ -65,38 +65,39 @@ void InputManager::removeController(const int i) {
 }
 
 
-void Tapioca::InputManager::sendEvent(std::string const& event, SDL_Event const& eventInfo) { 
+void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event const& event, int const& value) { 
     // Si el origen del evento no ha sido mapeado, lo ignora
-    if (iMap.find(event) == iMap.end()) return;
+    if (inputMap.find(eventName) != inputMap.end()) return;
 
-    // Asigna el valor de la tecla/boton/etc que haya generado el evento
-    int value = -1;
-    if (event == "ie_keyDown" || event == "ie_keyUp") value = eventInfo.key.keysym.sym;
-    else if (event == "ie_mouseMoving") value = 0;
-    else if (event == "ie_mouseButtonUp" || event == "ie_mouseButtonDown") value = eventInfo.button.button;
-    else if (event == "ie_ctrlAxisMotion") value = eventInfo.caxis.axis;
-    else if (event == "ie_ctrlButtonUp" || event == "ie_ctrlButtonDown") value = eventInfo.cbutton.button;
-
-    // Si no ha sido mapeado, lo ignora
-    if (iMap[event].find(value) == iMap[event].end()) return;
-
-    // Si ha sido mapeado, envia todos los eventos que se originen por event asociados al control value
-    for (auto evt : iMap[event][value]) {
-        if (evt == "ev_REMOVE_LAST_CHAR") removeChar = true;
-        else if (evt == "ev_TOGGLE_TEXT_INPUT") toggleTextInput = true;
-        else Game::instance()->pushEvent(evt, {});
+    // Si se ha movido el raton o la rueda del raton, se envian todos los eventos asociados
+    if (value == MOUSE_MOTION_VALUE || value == MOUSE_WHEEL_VALUE) {
+        for (auto ctrl : inputMap[eventName]) {
+            for (auto evt : ctrl.second) Game::instance()->pushEvent(evt, {});
+        }
     }
+    // Si no, si la tecla/boton/etc no ha sido mapeado, lo ignora
+    else if (inputMap[eventName].find(value) != inputMap[eventName].end()) return;
 
+    // Si no, envia todos los eventos que origine eventName y esten asociados a value
+    else {
+        for (auto evt : inputMap[eventName][value]) {
+            if (evt == "ev_REMOVE_LAST_CHAR") removeChar = true;
+            else if (evt == "ev_TOGGLE_TEXT_INPUT") toggleTextInput = true;
+            else Game::instance()->pushEvent(evt, {});
+        }
+    }
 }
 
 void InputManager::updateState(const SDL_Event& event) {
     std::string eventName = "";
+    int value = -1;
 
     // Eventos de input
     switch (event.type) {
     // Ventana
     case SDL_WINDOWEVENT_CLOSE: case SDL_QUIT:
         Game::instance()->exit();
+        //Game::instance()->pushEvent("ev_QUIT", {});
         break;
     case SDL_WINDOWEVENT:
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) Game::instance()->pushEvent("ev_RESIZEWINDOW", {});
@@ -105,9 +106,11 @@ void InputManager::updateState(const SDL_Event& event) {
     // Teclado
     case SDL_KEYDOWN:
         eventName = "ie_keyDown";
+        value = event.key.keysym.sym;
         break;
     case SDL_KEYUP:
         eventName = "ie_keyUp";
+        value = event.key.keysym.sym;
         break;
 
     // Raton
@@ -115,26 +118,33 @@ void InputManager::updateState(const SDL_Event& event) {
         eventName = "ie_mouseMoving";
         mousePos.first = event.motion.x;
         mousePos.second = event.motion.y;
+        value = MOUSE_MOTION_VALUE;
         break;
     case SDL_MOUSEBUTTONDOWN:
         eventName = "ie_mouseButtonDown";
+        value = event.button.button;
         break;
     case SDL_MOUSEBUTTONUP:
         eventName = "ie_mouseButtonUp";
+        value = event.button.button;
         break;
     case SDL_MOUSEWHEEL:
         eventName = "ie_mouseWheel";
+        value = MOUSE_WHEEL_VALUE;
         break;
 
     // Mando
     case SDL_CONTROLLERAXISMOTION:
         eventName = "ie_ctrlAxisMotion";
+        value = event.caxis.axis;
         break;
     case SDL_CONTROLLERBUTTONDOWN:
         eventName = "ie_ctrlButtonDown";
+        value = event.cbutton.button;
         break;
     case SDL_CONTROLLERBUTTONUP:
         eventName = "ie_ctrlButtonUp";
+        value = event.cbutton.button;
         break;
     case SDL_JOYDEVICEADDED:
         addController(event.cdevice.which);
@@ -177,8 +187,7 @@ void InputManager::updateState(const SDL_Event& event) {
         }
     }
 
-
-    sendEvent(eventName, event);
+    sendEvent(eventName, event, value);
 }
 
 void InputManager::handleEvents() {

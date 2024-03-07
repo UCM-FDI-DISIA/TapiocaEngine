@@ -32,9 +32,10 @@ private:
 
     // Mapeo de los controles
     // (se agrupan por tipo de evento de SDL que los produce. Luego, segun el evento, se agrupan
-    // por valor de la tecla/boton/etc, y ya cada uno guarda un vector con todos los eventos que envia)
-    std::unordered_map<std::string, std::unordered_map<int, std::vector<std::string>>> iMap;
-    const int MOUSE_MOTION_VALUE = 0;
+    // por valor de la tecla/boton/etc., y ya cada uno guarda un vector con todos los eventos que envia)
+    std::unordered_map<std::string, std::unordered_map<int, std::vector<std::string>>> inputMap;
+    const int MOUSE_MOTION_VALUE = -2;
+    const int MOUSE_WHEEL_VALUE = -3;
 
 
     InputManager();
@@ -59,7 +60,7 @@ private:
     * @param evtent El nombre del evento de input
     * @param eventInfo Informacion del evento producido por SDL
     */
-    void sendEvent(std::string const& event, SDL_Event const& eventInfo);
+    void sendEvent(std::string const& eventName, SDL_Event const& event, int const& value);
 
 public:
     bool init();
@@ -72,7 +73,7 @@ public:
     * @brief Asociar eventos propios a eventos de input
     * @param evt El nombre del evento propio
     * @param src El nombre del evento de input
-    * @param ctrl El valor del botón/tecla/etc en los enums de SDL
+    * @param ctrl El valor del botón/tecla/etc. en los enums de SDL
     */
     void mapInput(std::string const& evt, std::string const& src, int const& ctrl);
 
