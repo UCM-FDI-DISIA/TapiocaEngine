@@ -13,6 +13,7 @@ class Component;
 class GameObject;
 class Transform;
 class FactoryManager;
+class Game;
 
 /**
 * @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
@@ -22,7 +23,8 @@ private:
     friend Singleton<SceneManager>;
     friend class Scene;
     lua_State* luaState;   // Estado de lua
-
+    FactoryManager* factMngr;
+    Game* game;
     /*
     * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
     */
@@ -31,46 +33,46 @@ private:
     /**
     * @brief Inicializa las escenas, gameobjects y componentes
     */
-    void start() override {};
+    bool init() override;
 
     /**
     * @brief Carga una escena
     * @return Devuelve la escena cargada
     */
-    bool loadScene(Scene* const scene, FactoryManager* factMngr);
+    bool loadScene(Scene* const scene);
 
     /**
     * @brief Carga los gameobjects de una escena
     * @param scene Escena a la que se le van a cargar los gameobjects
     * @return Devuelve true si se ha cargado correctamente
     */
-    bool loadGameObjects(Scene* const scene, FactoryManager* factMngr);
+    bool loadGameObjects(Scene* const scene);
 
     /**
     * @brief Carga los gameobjects de una escena con un padre
     * @return Devuelve true si se ha cargado correctamente
     */
-    bool loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjectList, FactoryManager* factMngr);
+    bool loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjectList);
 
     /**
     * @brief Carga un gameobject
     * @param scene Escena a la que pertenece el gameobject
     * @return Devuelve el gameobject cargado
 	*/
-    bool loadGameObject(GameObject* const gameObject, FactoryManager* factMngr);
+    bool loadGameObject(GameObject* const gameObject);
 
     /**
     * @brief Carga los componentes de un gameobject
     * @param gameObject Gameobject al que se le van a cargar los componentes
     * @return Devuelve true si se ha cargado correctamente
 	*/
-    bool loadComponents(GameObject* const gameObject, FactoryManager* factMngr);
+    bool loadComponents(GameObject* const gameObject);
     /**
     * @brief Carga un componente
     * @param name Nombre del componente
     * @return Devuelve el componente cargado
 	*/
-    Component* loadComponent(std::string const& name, FactoryManager* factMngr);
+    Component* loadComponent(std::string const& name);
 
 
 public:
@@ -89,6 +91,6 @@ public:
     * @param nombre de escena
     * @return Devuelve true si se ha cargado correctamente
 	*/
-    bool loadScene(std::string const& sceneName, FactoryManager* factMngr);
+    bool loadScene(std::string const& sceneName);
 };
 }

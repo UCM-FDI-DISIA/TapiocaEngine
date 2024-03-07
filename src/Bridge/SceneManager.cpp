@@ -12,15 +12,22 @@
 
 namespace Tapioca {
 
-SceneManager::SceneManager() : luaState(nullptr) { }
+SceneManager::SceneManager() : luaState(nullptr), factMngr(nullptr), game(nullptr) { }
+
+bool SceneManager::init() {
+    game = Game::instance();
+    factMngr = FactoryManager::instance();
+    return true;
+}
 
 SceneManager::~SceneManager() { }
 
-bool SceneManager::loadScene(std::string const& sceneName, FactoryManager* factMngr) {
-    if (factMngr == nullptr) {
+bool SceneManager::loadScene(std::string const& sceneName) {
+    if (factMngr == nullptr || game == nullptr) {
 #ifdef _DEBUG
         std::cerr << "FactoryManager invalido\n";
 #endif
+        return false;
     }
 
     luaState = luaL_newstate();
@@ -33,7 +40,7 @@ bool SceneManager::loadScene(std::string const& sceneName, FactoryManager* factM
         return false;
     }
     Scene* scene = new Scene();
-    if (!loadScene(scene, factMngr)) {
+    if (!loadScene(scene)) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar de escena, gameobjects y componentes\n";
 #endif
@@ -41,7 +48,7 @@ bool SceneManager::loadScene(std::string const& sceneName, FactoryManager* factM
         delete scene;
         return false;
     }
-    Game::instance()->pushScene(scene);
+    game->pushScene(scene);
     lua_close(luaState);
 #ifdef _DEBUG
     std::cout << "Escena cargado correctamente\n";
@@ -49,14 +56,14 @@ bool SceneManager::loadScene(std::string const& sceneName, FactoryManager* factM
     return true;
 }
 
-bool SceneManager::loadScene(Scene* const scene, FactoryManager* factMngr) {
+bool SceneManager::loadScene(Scene* const scene) {
     lua_getglobal(luaState, "scene");
     if (!lua_istable(luaState, -1)) return false;
     lua_pushnil(luaState);
-    return loadGameObjects(scene, factMngr);
+    return loadGameObjects(scene);
 }
 
-bool SceneManager::loadGameObjects(Scene* const scene, FactoryManager* factMngr) {
+bool SceneManager::loadGameObjects(Scene* const scene) {
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
         std::string gameObjectName = "";
@@ -65,7 +72,7 @@ bool SceneManager::loadGameObjects(Scene* const scene, FactoryManager* factMngr)
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject, factMngr)) {
+        if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject)) {
             return false;
         }
 
@@ -74,7 +81,7 @@ bool SceneManager::loadGameObjects(Scene* const scene, FactoryManager* factMngr)
     return true;
 }
 
-bool SceneManager::loadGameObject(GameObject* const gameObject, FactoryManager* factMngr) {
+bool SceneManager::loadGameObject(GameObject* const gameObject) {
     lua_pushnil(luaState);
     std::string name = "";
 
@@ -84,11 +91,11 @@ bool SceneManager::loadGameObject(GameObject* const gameObject, FactoryManager* 
         if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
         if (name == "components") {
             lua_pushnil(luaState);
-            if (!loadComponents(gameObject, factMngr)) return false;
+            if (!loadComponents(gameObject)) return false;
         }
         else if (name == "children") {
             lua_pushnil(luaState);
-            if (!loadGameObjects(gameObject->getScene(), children, factMngr)) {
+            if (!loadGameObjects(gameObject->getScene(), children)) {
 
                 return false;
             }
@@ -104,8 +111,7 @@ bool SceneManager::loadGameObject(GameObject* const gameObject, FactoryManager* 
     return true;
 }
 
-bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects,
-                                   FactoryManager* factMngr) {
+bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects) {
 
 #ifdef _DEBUG
     std::cout << "Children: start\n";
@@ -119,7 +125,7 @@ bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>&
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        if (!loadGameObject(gameObject, factMngr)) return false;
+        if (!loadGameObject(gameObject)) return false;
 
         lua_pop(luaState, 1);
     }
@@ -130,7 +136,7 @@ bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>&
     return true;
 }
 
-bool SceneManager::loadComponents(GameObject* const gameObject, FactoryManager* factMngr) {
+bool SceneManager::loadComponents(GameObject* const gameObject) {
     Component* component = nullptr;
     std::string componentName = "";
     while (lua_next(luaState, -2) != 0) {
@@ -139,7 +145,7 @@ bool SceneManager::loadComponents(GameObject* const gameObject, FactoryManager* 
 #ifdef _DEBUG
         std::cout << "\t\tComponent: " << componentName << "\n";
 #endif
-        component = loadComponent(componentName, factMngr);
+        component = loadComponent(componentName);
         if (component == nullptr) return false;
         // Si no tengo creado componente
         gameObject->addComponent(component, componentName);
@@ -151,7 +157,7 @@ bool SceneManager::loadComponents(GameObject* const gameObject, FactoryManager* 
     return true;
 }
 
-Component* SceneManager::loadComponent(std::string const& name, FactoryManager* factMngr) {
+Component* SceneManager::loadComponent(std::string const& name) {
     if (!lua_istable(luaState, -1)) return nullptr;
 
     lua_pushnil(luaState);
