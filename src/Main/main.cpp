@@ -56,8 +56,8 @@ int main(int argc, char** argv) {
 
         auto nodeBil = graphics->createNode();
         auto bil = graphics->createBillboardSet(nodeBil, "Holaaa", 2);
-        bil->addBillboard(Tapioca::Vector3(0, 0, 0));
-        bil->removeBillboard(0);
+        bil->addBillboard(Tapioca::Vector3(50.0f, 0.0f, -230.0f), Tapioca::Vector4(1.0f, 0.0f, 0.0f, 1.0f));
+        //bil->removeBillboard(0);
 
         game->run();
 

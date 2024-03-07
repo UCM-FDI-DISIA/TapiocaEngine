@@ -15,6 +15,14 @@ class RenderNode;
 class GraphicsEngine;
 class Billboard;
 
+enum BillboardType {
+    BBT_POINT,
+    BBT_ORIENTED_COMMON,
+    BBT_ORIENTED_SELF,
+    BBT_PERPENDICULAR_COMMON,
+    BBT_PERPENDICULAR_SELF
+};
+
 class TAPIOCA_API BillboardSet : public RenderObject {
 private:
     friend GraphicsEngine;
@@ -27,7 +35,7 @@ protected:
     //Nombre identificador
     std::string mName;
 
-    //Crea un BillboardSet con nombre a partir de un n�mero de elementos
+    //Crea un BillboardSet con nombre a partir de un número de elementos
     BillboardSet(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                  const unsigned int poolSize);
 
@@ -37,26 +45,29 @@ public:
 
     //Devuelve el nombre del Billboard
     const std::string getName() const;
-    //Ajusta el tama�o del BillboardSet al indicado
+    //Ajusta el tamaño del BillboardSet al indicado
     void setPoolSize(const size_t size);
-    //Devuelve el tama�o del BillboardSet
+    //Devuelve el tamaño del BillboardSet
     int getPoolSize() const;
     //Devuelve el n�mero de Billboards del BillboardSet
     int getNumBillboards() const;
-    //Cambia la visibilidad del BillboardSet
-    //void setVisible(bool v);
-    ////Comprueba si el Billboard es visible o no
-    //bool getVisible() const;
-    //Vac�a el BillboardSet
+    //Vacía el BillboardSet
     void clear();
-    //Elimina el Billboard seg�n su �ndice
+    //Elimina el Billboard según su índice
     void removeBillboard(const int index);
     //Elimina el Billboard proporcionado
     void removeBillboard(Billboard* const bb);
-    //A�ade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
-    Tapioca::Billboard* addBillboard(const Vector3& position,
-                                        const Vector4& colour = Vector4(255.0f, 255.0f, 255.0f, 255.0f));
-    //Devuelve un puntero al Billboard que corresponde con el �ndice indicado
+    //Añade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
+    Tapioca::Billboard* addBillboard(const Vector3& position, const Vector4& colour = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+    //Devuelve un puntero al Billboard que corresponde con el índice indicado
     Tapioca::Billboard* getBillboard(const int index) const;
+    //Cambia el tipo de Billboard
+    void setBillboardType(BillboardType billboardType);
+    //Devuelve el tipo de Billboard
+    BillboardType getBillboardType();
+    //Establece el nombre del material del BillboardSet
+    void setMaterialName(const std::string& name);
+    //Devuelve el nombre del material del BillboardSet
+    const std::string& getMaterialName(void) const;
 };
 }

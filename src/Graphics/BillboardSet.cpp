@@ -64,13 +64,41 @@ Tapioca::Billboard* Tapioca::BillboardSet::getBillboard(const int index) const {
     if (index < billboards.size()) {
         return billboards[index];
     }
+
+    return nullptr;
 }
 
-const std::string BillboardSet::getName() const { return mBillboardSet->getName(); }
+const std::string Tapioca::BillboardSet::getName() const { return mBillboardSet->getName(); }
 
-void BillboardSet::setPoolSize(const size_t size) { mBillboardSet->setPoolSize(size); }
+void Tapioca::BillboardSet::setPoolSize(const size_t size) { mBillboardSet->setPoolSize(size); }
 
-int BillboardSet::getPoolSize() const { return mBillboardSet->getPoolSize(); }
+int Tapioca::BillboardSet::getPoolSize() const { return mBillboardSet->getPoolSize(); }
 
-int BillboardSet::getNumBillboards() const { return mBillboardSet->getNumBillboards(); }
+int Tapioca::BillboardSet::getNumBillboards() const { return mBillboardSet->getNumBillboards(); }
+
+void Tapioca::BillboardSet::setBillboardType(BillboardType billboardType) {
+    switch (billboardType) {
+    case Tapioca::BBT_POINT: mBillboardSet->setBillboardType(Ogre::BBT_POINT); break;
+    case Tapioca::BBT_ORIENTED_COMMON: mBillboardSet->setBillboardType(Ogre::BBT_ORIENTED_COMMON); break;
+    case Tapioca::BBT_ORIENTED_SELF: mBillboardSet->setBillboardType(Ogre::BBT_ORIENTED_SELF); break;
+    case Tapioca::BBT_PERPENDICULAR_COMMON: mBillboardSet->setBillboardType(Ogre::BBT_PERPENDICULAR_COMMON); break;
+    case Tapioca::BBT_PERPENDICULAR_SELF: mBillboardSet->setBillboardType(Ogre::BBT_PERPENDICULAR_SELF); break;
+    default: break;
+    }
+}
+
+BillboardType Tapioca::BillboardSet::getBillboardType() {
+    switch (mBillboardSet->getBillboardType()) {
+    case Ogre::BillboardType::BBT_POINT: return BBT_POINT; break;
+    case Ogre::BillboardType::BBT_ORIENTED_COMMON: return BBT_ORIENTED_COMMON; break;
+    case Ogre::BillboardType::BBT_ORIENTED_SELF: return BBT_ORIENTED_SELF; break;
+    case Ogre::BillboardType::BBT_PERPENDICULAR_COMMON: return BBT_PERPENDICULAR_COMMON; break;
+    case Ogre::BillboardType::BBT_PERPENDICULAR_SELF: return BBT_PERPENDICULAR_SELF; break;
+    default: return BBT_POINT; break;
+    }
+}
+
+void Tapioca::BillboardSet::setMaterialName(const std::string& name) { mBillboardSet->setMaterialName(name); }
+
+const std::string& Tapioca::BillboardSet::getMaterialName(void) const { return mBillboardSet->getMaterialName(); }
 };
