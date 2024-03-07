@@ -78,7 +78,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
         return false;
     }
 
-      bool dampingSet = setValueFromMap(damping, "damping", variables);
+    bool dampingSet = setValueFromMap(damping, "damping", variables);
     if (!dampingSet) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar damping.\n";
@@ -101,8 +101,8 @@ void RigidBody::fixedUpdate() {
     if (movementType == KINEMATIC_OBJECT) {
 
         btTransform btTr = rigidBody->getWorldTransform();
-        btTr.setOrigin(toBtVector3(transform->getPosition()));
-        btTr.setRotation(toBtQuaternion(transform->getRotation()));
+        btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+        btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
         rigidBody->setWorldTransform(btTr);
     }
 
@@ -113,22 +113,21 @@ void RigidBody::fixedUpdate() {
         //transform->setVelocity(rigidBody->getLinearVelocity());
     }
 }
-void RigidBody::handleEvent(std::string const& id, void* info) { 
+void RigidBody::handleEvent(std::string const& id, void* info) {
 
-     if (id == "transformChanged") {
+    if (id == "transformChanged") {
         btTransform btTr = rigidBody->getWorldTransform();
-        btTr.setOrigin(toBtVector3(transform->getPosition()));
-        btTr.setRotation(toBtQuaternion(transform->getRotation()));
+        btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+        btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
     }
-
 }
 void RigidBody::start() {
 
     transform = object->getComponent<Transform>();
 
-    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getPosition(), transform->getRotation(),
-                                                            colliderScale, colShape, movementType, mass,
-                                                            friction, damping, bounciness, isTrigger, group, mask);
+    rigidBody = PhysicsManager::instance()->createRigidBody(
+        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderScale, colShape, movementType, mass,
+        friction, damping, bounciness, isTrigger, group, mask);
 
     collider = object->getComponent<Collider>();
 
@@ -172,10 +171,10 @@ void RigidBody::setFriction(const float f) {
     rigidBody->setFriction(f);
 }
 
-void RigidBody::setDamping(const float d) { 
+void RigidBody::setDamping(const float d) {
     damping = d;
     if (rigidBody == nullptr) return;
-    rigidBody->setDamping(d,d);
+    rigidBody->setDamping(d, d);
 }
 
 void RigidBody::setBounciness(const float b) {
