@@ -7,11 +7,11 @@
 namespace Tapioca {
 
 InputManager::InputManager()
-    : inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false), mousePos({ 0, 0 }) { }
+    : /*inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false),*/ mousePos({ 0, 0 }) { }
 
 bool InputManager::init() {
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
-    resetText();
+    /*resetText();*/
     initControllers();
     return true;
 }
@@ -24,16 +24,9 @@ InputManager::~InputManager() {
 
 void InputManager::mapInput(std::string const& evt, std::string const& src, int const& ctrl) {
     int control = ctrl;
-    if (src == "ie_mouseMoving") control = 0;
+    if (src == "ie_mouseMoving") control = MOUSE_MOTION_VALUE;
+    else if (src == "ie_mouseWheel") control = MOUSE_WHEEL_VALUE;
     inputMap[src][control].push_back(evt);
-}
-
-inline const std::pair<int32_t, int32_t>& InputManager::getMousePos() {
-#ifdef _DEBUG
-    std::cout << mousePos.first << ' ' << mousePos.second << '\n';
-#endif
-
-    return mousePos; 
 }
 
 
@@ -76,20 +69,14 @@ void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event co
     // Si el origen del evento no ha sido mapeado, lo ignora
     if (inputMap.find(eventName) == inputMap.end()) return;
 
-    // Si se ha movido el raton o la rueda del raton, se envian todos los eventos asociados
-    if (value == MOUSE_MOTION_VALUE || value == MOUSE_WHEEL_VALUE) {
-        for (auto ctrl : inputMap[eventName]) {
-            for (auto evt : ctrl.second) Game::instance()->pushEvent(evt, {});
-        }
-    }
     // Si no, si la tecla/boton/etc no ha sido mapeado, lo ignora
     else if (inputMap[eventName].find(value) == inputMap[eventName].end()) return;
     // Si no, envia todos los eventos que origine eventName y esten asociados a value
     else {
         for (auto evt : inputMap[eventName][value]) {
-            if (evt == "ev_REMOVE_LAST_CHAR") removeChar = true;
+            /*if (evt == "ev_REMOVE_LAST_CHAR") removeChar = true;
             else if (evt == "ev_TOGGLE_TEXT_INPUT") toggleTextInput = true;
-            else Game::instance()->pushEvent(evt, {});
+            else*/ Game::instance()->pushEvent(evt, {});
         }
     }
 }
@@ -156,36 +143,36 @@ void InputManager::updateState(const SDL_Event& event) {
     case SDL_JOYDEVICEADDED: addController(event.cdevice.which); break;
     case SDL_JOYDEVICEREMOVED: removeController(event.cdevice.which); break;
 
-    // Input de texto
-    case SDL_TEXTINPUT: inputText += event.text.text; break;
-    case SDL_TEXTEDITING:
-        compositionText = event.edit.text;
-        cursor = event.edit.start;
-        selectionLen = event.edit.length;
-        break;
+    //// Input de texto
+    //case SDL_TEXTINPUT: inputText += event.text.text; break;
+    //case SDL_TEXTEDITING:
+    //    compositionText = event.edit.text;
+    //    cursor = event.edit.start;
+    //    selectionLen = event.edit.length;
+    //    break;
 
     default: break;
     }
 
 
-    // Si esta activa la entrada de texto
-    if (SDL_IsTextInputActive()) {
-        // Borra el ultimo char
-        if (removeChar) {
-            removeLastChar();
-            removeChar = false;
-        }
-        // Desactiva la entrada de texto y limpia el texto introducido
-        else if (toggleTextInput) {
-            toggleTextInput = false;
-            SDL_StopTextInput();
-            resetText();
-            sendEvents();
-#ifdef _DEBUG
-            std::cout << "Entrada de texto finalizada\n";
-#endif
-        }
-    }
+//    // Si esta activa la entrada de texto
+//    if (SDL_IsTextInputActive()) {
+//        // Borra el ultimo char
+//        if (removeChar) {
+//            removeLastChar();
+//            removeChar = false;
+//        }
+//        // Desactiva la entrada de texto y limpia el texto introducido
+//        else if (toggleTextInput) {
+//            toggleTextInput = false;
+//            SDL_StopTextInput();
+//            resetText();
+//            sendEvents();
+//#ifdef _DEBUG
+//            std::cout << "Entrada de texto finalizada\n";
+//#endif
+//        }
+//    }
 
     sendEvent(eventName, event, value);
 }
@@ -193,10 +180,9 @@ void InputManager::updateState(const SDL_Event& event) {
 void InputManager::sendEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (!ImGui_ImplSDL2_ProcessEvent(&event))
-            updateState(event);
+        ImGui_ImplSDL2_ProcessEvent(&event);
+        updateState(event);
     }
 
-    getMousePos();
 }
 }

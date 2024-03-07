@@ -24,12 +24,12 @@ private:
     std::unordered_map<int, SDL_GameController*> controllers;
 
     // Input de texo
-    std::string inputText;
+    /*std::string inputText;
     const char* compositionText;
     int32_t cursor;
     int32_t selectionLen;
     bool removeChar;
-    bool toggleTextInput;
+    bool toggleTextInput;*/
 
     // Mapeo de los controles
     // (se agrupan por tipo de evento de SDL que los produce. Luego, segun el evento, se agrupan
@@ -81,28 +81,28 @@ public:
     /*
     * @brief Devuelve la posicion del raton
     */
-    inline const std::pair<int32_t, int32_t>& getMousePos();
+    inline const std::pair<int32_t, int32_t>& getMousePos() { return mousePos; };
 
     /*
     * @brief Devuelve true si hay al menos 1 mando conectado
     */
     inline bool isControllerConnected() { return !controllers.empty(); }
 
-    /*
-    * @brief Devuelve el texto introducido
-    */
-    inline std::string getInputText() { return inputText; }
-    
-    /*
-    * @brief Limpia el texto introducido
-    */
-    inline void resetText() { inputText.clear(); }
+    ///*
+    //* @brief Devuelve el texto introducido
+    //*/
+    //inline std::string getInputText() { return inputText; }
+    //
+    ///*
+    //* @brief Limpia el texto introducido
+    //*/
+    //inline void resetText() { inputText.clear(); }
 
-    
-    /*
-    * @brief Borra el ultimo char del texto introducido
-    */
-    inline void removeLastChar() { if (!inputText.empty()) inputText.pop_back(); }
+    //
+    ///*
+    //* @brief Borra el ultimo char del texto introducido
+    //*/
+    //inline void removeLastChar() { if (!inputText.empty()) inputText.pop_back(); }
 
 };
 

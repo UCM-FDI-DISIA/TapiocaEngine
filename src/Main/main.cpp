@@ -146,8 +146,7 @@ void mapInput() {
                 std::stringstream ss(evt);
                 std::string token = "";
                 char delimiter = '_';
-                while (std::getline(ss, token, delimiter))
-                    tokens.push_back(token);
+                while (std::getline(ss, token, delimiter)) tokens.push_back(token);
 
                 // Obtiene el nombre del evento ("ev" + "_" + "nombre")
                 evt = tokens[0] + "_" + tokens[1];
@@ -177,8 +176,7 @@ void mapInput() {
                         // del evento de inputEventTriggered. Si es "control",
                         // el valor es la tecla/boton/eje/etc. mapeado al evento
                         if (key == "src") src = value;
-                        else if (key == "control")
-                            ctrl = stoi(value);
+                        else if (key == "control") ctrl = stoi(value);
                     }
                     // Añade el evento al mapa de input
 
