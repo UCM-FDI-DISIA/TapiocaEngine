@@ -43,7 +43,9 @@ public:
     ~RigidBody();
 
     bool initComponent(const CompMap& variables) override;
-    void update(const uint64_t deltaTime) override;
+    void fixedUpdate() override;
+    void handleEvent(std::string const& id, void* info) override;
+
     void start() override;
 
     void setActive(const bool b) override;

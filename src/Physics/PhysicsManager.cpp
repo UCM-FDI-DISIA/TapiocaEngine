@@ -5,7 +5,7 @@
 #include "Utilities/Vector3.h"
 #include "Components/Collider.h"
 #include "Utilities/checkML.h"
-
+#include "Structure/Game.h"
 #undef new DBG_NEW
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
@@ -99,10 +99,10 @@ bool PhysicsManager::init() {
     gContactAddedCallback = onCollisionStay;
     gContactEndedCallback = onCollisionExit;
 
-    createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4,10, 0, 1,
-        (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
-    createRigidBody(
-        Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 4, 1);   //PRUEBA
+    //createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 1,
+    //                (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
+    //createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 4,
+    //                1);   //PRUEBA
 
 #ifdef _DEBUG
     pdd = new PhysicsDebugDrawer();
@@ -112,12 +112,20 @@ bool PhysicsManager::init() {
     return true;
 }
 
-void PhysicsManager::update(const uint64_t deltaTime) {
-    //simulacion fisica y deteccion de colision
-    dynamicsWorld->stepSimulation(deltaTime, 1);
+
+void PhysicsManager:: update(const uint64_t deltaTime) {
+  // dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 10);
 
 #ifdef _DEBUG
     dynamicsWorld->debugDrawWorld();
+
+#endif }
+}
+void PhysicsManager::fixedUpdate() {
+   dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 1);
+
+#ifdef _DEBUG
+    //dynamicsWorld->debugDrawWorld();
     //PRUEBA: printear las pos de los rb
     /*for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {
         btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];
@@ -131,17 +139,12 @@ void PhysicsManager::update(const uint64_t deltaTime) {
         std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
                   << tr.getOrigin().getZ() << "\n";
     }*/
-#endif
+#endif }
 }
-
-void PhysicsManager::fixedUpdate(const float deltaTime) { dynamicsWorld->stepSimulation(deltaTime); }
-
-
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
                                              const ColliderShape colliderShape, const MovementType type, float mass,
                                              const float friction, const float damping, const float bounciness,
-                                             const bool isTrigger,
-                                             const int group, const int mask) {
+                                             const bool isTrigger, const int group, const int mask) {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btVector3 rot = toBtVector3(rotation);
@@ -187,7 +190,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     if (isTrigger) rb->setCollisionFlags(rb->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 
     rb->setFriction(friction);
-    rb->setDamping(damping,damping);
+    rb->setDamping(damping, damping);
     rb->setRestitution(bounciness);
     dynamicsWorld->addRigidBody(rb, group, mask);
 

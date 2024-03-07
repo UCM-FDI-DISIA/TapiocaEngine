@@ -70,9 +70,10 @@ public:
     PhysicsManager& operator=(PhysicsManager&) = delete;
     PhysicsManager& operator=(PhysicsManager&&) = delete;
 
-    void update(const uint64_t deltaTime) override;
 
-    void fixedUpdate(const float deltaTime);
+
+    void fixedUpdate()override;
+    void update(const uint64_t deltaTime);
 
 
     /*

@@ -97,7 +97,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
     return true;
 }
 
-void RigidBody::update(const uint64_t deltaTime) {
+void RigidBody::fixedUpdate() {
     if (movementType == KINEMATIC_OBJECT) {
 
         btTransform btTr = rigidBody->getWorldTransform();
@@ -113,7 +113,15 @@ void RigidBody::update(const uint64_t deltaTime) {
         //transform->setVelocity(rigidBody->getLinearVelocity());
     }
 }
+void RigidBody::handleEvent(std::string const& id, void* info) { 
 
+     if (id == "transformChanged") {
+        btTransform btTr = rigidBody->getWorldTransform();
+        btTr.setOrigin(toBtVector3(transform->getPosition()));
+        btTr.setRotation(toBtQuaternion(transform->getRotation()));
+    }
+
+}
 void RigidBody::start() {
 
     transform = object->getComponent<Transform>();
