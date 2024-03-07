@@ -61,7 +61,6 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    changed();
 
     bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
         setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
@@ -71,7 +70,6 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    changed();
 
     bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
         setValueFromMap(scale.z, "scaleZ", variables);
@@ -81,7 +79,6 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    changed();
 
     return true;
 }
