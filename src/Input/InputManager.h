@@ -68,7 +68,7 @@ public:
     virtual ~InputManager();
 
     void updateState(const SDL_Event& event);
-    void handleEvents();
+    void sendEvents() override;
 
     /*
     * @brief Asociar eventos propios a eventos de input

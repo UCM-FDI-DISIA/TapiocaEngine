@@ -1,15 +1,15 @@
 #include "InputManager.h"
 
 #include <SDL.h>
-#include <imgui_impl_sdl2.h>      // Para gestionar los eventos de la interfaz
+#include <imgui_impl_sdl2.h>   // Para gestionar los eventos de la interfaz
 #include "Structure/Game.h"
 
 namespace Tapioca {
 
-InputManager::InputManager() 
+InputManager::InputManager()
     : inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false) { }
 
-bool InputManager::init() { 
+bool InputManager::init() {
     if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
     resetText();
     initControllers();
@@ -17,7 +17,8 @@ bool InputManager::init() {
 }
 
 InputManager::~InputManager() {
-    for (auto ctrl : controllers) removeController(ctrl.first);
+    for (auto ctrl : controllers)
+        removeController(ctrl.first);
     controllers.clear();
 }
 
@@ -32,7 +33,8 @@ void InputManager::mapInput(std::string const& evt, std::string const& src, int 
 void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
 #ifdef _DEBUG
-    else std::cout << "No hay joysticks conectados\n";
+    else
+        std::cout << "No hay joysticks conectados\n";
 #endif
 }
 
@@ -44,8 +46,9 @@ void InputManager::addController(const int i) {
 
 #ifdef _DEBUG
         std::cout << "Mando conectado (" << SDL_GameControllerName(ctrl) << ")\n";
-    } 
-    else std::cerr << "No se pudo abrir mando, " << SDL_GetError() << "\n";
+    }
+    else
+        std::cerr << "No se pudo abrir mando, " << SDL_GetError() << "\n";
 #else
     }
 #endif
@@ -64,26 +67,29 @@ void InputManager::removeController(const int i) {
     }
 }
 
-
-void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event const& event, int const& value) { 
+void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event const& event, int const& value) {
     // Si el origen del evento no ha sido mapeado, lo ignora
     if (inputMap.find(eventName) != inputMap.end()) return;
 
     // Si se ha movido el raton o la rueda del raton, se envian todos los eventos asociados
     if (value == MOUSE_MOTION_VALUE || value == MOUSE_WHEEL_VALUE) {
         for (auto ctrl : inputMap[eventName]) {
-            for (auto evt : ctrl.second) Game::instance()->pushEvent(evt, {});
+            for (auto evt : ctrl.second)
+                Game::instance()->pushEvent(evt, {});
         }
     }
     // Si no, si la tecla/boton/etc no ha sido mapeado, lo ignora
-    else if (inputMap[eventName].find(value) != inputMap[eventName].end()) return;
+    else if (inputMap[eventName].find(value) != inputMap[eventName].end())
+        return;
 
     // Si no, envia todos los eventos que origine eventName y esten asociados a value
     else {
         for (auto evt : inputMap[eventName][value]) {
             if (evt == "ev_REMOVE_LAST_CHAR") removeChar = true;
-            else if (evt == "ev_TOGGLE_TEXT_INPUT") toggleTextInput = true;
-            else Game::instance()->pushEvent(evt, {});
+            else if (evt == "ev_TOGGLE_TEXT_INPUT")
+                toggleTextInput = true;
+            else
+                Game::instance()->pushEvent(evt, {});
         }
     }
 }
@@ -95,14 +101,15 @@ void InputManager::updateState(const SDL_Event& event) {
     // Eventos de input
     switch (event.type) {
     // Ventana
-    case SDL_WINDOWEVENT_CLOSE: case SDL_QUIT:
+    case SDL_WINDOWEVENT_CLOSE:
+    case SDL_QUIT:
         Game::instance()->exit();
         //Game::instance()->pushEvent("ev_QUIT", {});
         break;
     case SDL_WINDOWEVENT:
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) Game::instance()->pushEvent("ev_RESIZEWINDOW", {});
         break;
-    
+
     // Teclado
     case SDL_KEYDOWN:
         eventName = "ie_keyDown";
@@ -146,25 +153,18 @@ void InputManager::updateState(const SDL_Event& event) {
         eventName = "ie_ctrlButtonUp";
         value = event.cbutton.button;
         break;
-    case SDL_JOYDEVICEADDED:
-        addController(event.cdevice.which);
-        break;
-    case SDL_JOYDEVICEREMOVED:
-        removeController(event.cdevice.which);
-        break;
+    case SDL_JOYDEVICEADDED: addController(event.cdevice.which); break;
+    case SDL_JOYDEVICEREMOVED: removeController(event.cdevice.which); break;
 
     // Input de texto
-    case SDL_TEXTINPUT:
-        inputText += event.text.text;
-        break;
+    case SDL_TEXTINPUT: inputText += event.text.text; break;
     case SDL_TEXTEDITING:
         compositionText = event.edit.text;
         cursor = event.edit.start;
         selectionLen = event.edit.length;
         break;
 
-    default:
-        break;
+    default: break;
     }
 
 
@@ -180,7 +180,7 @@ void InputManager::updateState(const SDL_Event& event) {
             toggleTextInput = false;
             SDL_StopTextInput();
             resetText();
-            handleEvents();
+            sendEvents();
 #ifdef _DEBUG
             std::cout << "Entrada de texto finalizada\n";
 #endif
@@ -190,13 +190,11 @@ void InputManager::updateState(const SDL_Event& event) {
     sendEvent(eventName, event, value);
 }
 
-void InputManager::handleEvents() {
+void InputManager::sendEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         ImGui_ImplSDL2_ProcessEvent(&event);
         updateState(event);
     }
 }
-
-
 }
