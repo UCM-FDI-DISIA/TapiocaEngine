@@ -8,36 +8,27 @@ namespace Tapioca {
 */
 class DynamicLibraryLoader {
 private:
-    std::string gameName;   // Nombre del juego
-    std::string gamePath;   // Ruta del juego con formato
-    HMODULE module; // Modulo cargado en la memoria del proceso
+    /**
+    * @brief Carga el modulo desde la ruta especificada (gamePath) a partir del nombre del juego (gameName)
+    * @param module Modulo cargado en la memoria del proceso
+    * @param gameName Nombre del juego
+    * @return Si se ha podido cargar correctamente o no
+    */
+    static bool load(HMODULE& module, std::string const& gameName);
 
     /**
     * @brief Libera el modulo
     */
-    void freeModule();
+    static void freeModule(HMODULE module);
 
 public:
-    /**
-    * @brief Constructor: Inicializa el nombre del juego y el modulo
-    * @param gameName: Nombre del juego
-    */
-    DynamicLibraryLoader(std::string const& gameName = "game");
-    /**
-    * @brief Libera la memoria usada del modulo si el modulo esta cargado
-    */
-    ~DynamicLibraryLoader();
+    DynamicLibraryLoader() = delete;
+    ~DynamicLibraryLoader() = delete;
 
     /**
-    * @brief Devuelve el modulo
-    * @return module
-    */
-    inline HMODULE getModule() const { return module; }
-
-    /**
-    * @brief Carga el modulo desde la ruta especificada (gamePath) a partir del nombre del juego (gameName)
+    * @brief Carga la dll del juego y llama a su funcion de inicializacion
     * @return Si se ha podido cargar correctamente o no
     */
-    bool load();
+    static bool initGame(std::string const& gameName = "game");
 };
 }

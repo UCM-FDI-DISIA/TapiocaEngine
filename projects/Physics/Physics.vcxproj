@@ -12,18 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Physics\Components\Collider.cpp" />
-    <ClCompile Include="..\..\src\Physics\Components\ColliderBuilder.cpp" />
     <ClCompile Include="..\..\src\Physics\Components\RigidBody.cpp" />
-    <ClCompile Include="..\..\src\Physics\Components\RigidBodyBuilder.cpp" />
     <ClCompile Include="..\..\src\Physics\PhysicsDebugDrawer.cpp" />
     <ClCompile Include="..\..\src\Physics\PhysicsManager.cpp" />
     <ClCompile Include="..\..\src\Physics\Physics_Def.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Physics\Components\Collider.h" />
-    <ClInclude Include="..\..\src\Physics\Components\ColliderBuilder.h" />
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h" />
-    <ClInclude Include="..\..\src\Physics\Components\RigidBodyBuilder.h" />
     <ClInclude Include="..\..\src\Physics\PhysicsDebugDrawer.h" />
     <ClInclude Include="..\..\src\Physics\PhysicsManager.h" />
     <ClInclude Include="..\..\src\Physics\Physics_Def.h" />

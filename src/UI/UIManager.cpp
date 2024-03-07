@@ -7,6 +7,7 @@
 #include <imgui_impl_opengl3.h>
 
 #include "Structure/FactoryManager.h"
+#include "Structure/DynamicLibraryLoader.h"
 #include "Utilities/checkML.h"
 
 namespace Tapioca {
@@ -59,13 +60,13 @@ void UIManager::render() {
     std::cout << "Pulsado el boton de jugar\n";
 #endif
         // Cargar la .dll
-        if (!FactoryManager::instance()->initGame()) {
+        if (!DynamicLibraryLoader::initGame()) {
 			button = "Couldn't run game";
 		}
     }
-    ImGui::ShowDemoWindow();
-
     ImGui::End();
+
+    ImGui::ShowDemoWindow();
     // PRUEBA
 }
 }

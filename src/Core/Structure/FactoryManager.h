@@ -1,14 +1,12 @@
 #pragma once
 #include <unordered_map>
 #include <string>
-#include <Windows.h>
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 
 namespace Tapioca {
 class Component;
 class ComponentBuilder;
-class DynamicLibraryLoader;
 
 /**
 * @brief Clase Singleton y Modulo que se encarga de gestionar las factorias de componentes
@@ -18,7 +16,6 @@ private:
     friend Singleton<FactoryManager>;
 
     std::unordered_map<std::string, ComponentBuilder*> builders;   // Mapa de factorias de componentes
-    DynamicLibraryLoader* loader;                           // Cargador de bibliotecas dinamicas
 
     /**
     * @brief Inicializa el modulo
@@ -45,12 +42,6 @@ public:
     * @brief Libera la memoria usada por las factorias
     */
     ~FactoryManager();
-
-    /**
-    * @brief Carga la dll del juego y llama a su funcion de inicializacion
-    * @return Si se ha podido cargar correctamente o no
-    */
-    bool initGame();
 
     /**
     * @brief Crea un componente a partir de su nombre

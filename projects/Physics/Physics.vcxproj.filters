@@ -33,12 +33,6 @@
     <ClCompile Include="..\..\src\Physics\Components\RigidBody.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Physics\Components\ColliderBuilder.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Physics\Components\RigidBodyBuilder.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Physics\PhysicsManager.h">
@@ -54,12 +48,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Physics\Components\ColliderBuilder.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Physics\Components\RigidBodyBuilder.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -42,9 +42,6 @@
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp">
-      <Filter>Structure</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp">
       <Filter>Structure</Filter>
     </ClCompile>

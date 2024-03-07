@@ -87,7 +87,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />

@@ -1,15 +1,12 @@
 #include "DynamicLibraryLoader.h"
-
-#ifdef _DEBUG
-#include <iostream>
-#endif
+#include "Utilities/componentDefs.h"
+#include "Utilities/defs.h"
+#include "FactoryManager.h"
+#include "SceneManager.h"
 
 namespace Tapioca {
-DynamicLibraryLoader::DynamicLibraryLoader(std::string const& gameName) : gameName(gameName), module(nullptr) { }
-
-DynamicLibraryLoader::~DynamicLibraryLoader() { freeModule(); }
-
-bool DynamicLibraryLoader::load() {
+bool DynamicLibraryLoader::load(HMODULE& module, std::string const& gameName) {
+    std::string gamePath;   // Ruta del juego con formato
 #ifdef _DEBUG
     gamePath = "./" + gameName + "_d.dll";
 #else
@@ -30,10 +27,27 @@ bool DynamicLibraryLoader::load() {
 #ifdef _DEBUG
     std::cout << "Se ha cargado \"" << gameName << "\" correctamente\n";
 #endif
+
     return true;
 }
 
-void DynamicLibraryLoader::freeModule() {
+bool DynamicLibraryLoader::initGame(std::string const& gameName) {
+    HMODULE module;   // Modulo cargado en la memoria del proceso
+    if (load(module, gameName)) {
+        EntryPoint eP = (EntryPoint)GetProcAddress(module, "init");
+        eP(FactoryManager::instance(), SceneManager::instance());
+        freeModule(module);
+    }
+    else {
+#ifdef _DEBUG
+        std::cerr << "Error al cargar la DLL del juego\n";
+#endif
+        return false;
+    }
+    return true;
+}
+
+void DynamicLibraryLoader::freeModule(HMODULE module) {
     if (module != nullptr) {
         FreeLibrary(module);
     }

@@ -1,5 +1,4 @@
 #include "FactoryManager.h"
-#include "DynamicLibraryLoader.h"
 #include "SceneManager.h"
 
 #include "Component.h"
@@ -8,27 +7,20 @@
 
 #include "Components/Transform.h"
 #include "Components/Collider.h"
-#include "Components/ColliderBuilder.h"
 #include "Components/RigidBody.h"
-#include "Components/RigidBodyBuilder.h"
 #include "Components/MeshRenderer.h"
 
 namespace Tapioca {
-
-FactoryManager::FactoryManager() { loader = new DynamicLibraryLoader(); }
+FactoryManager::FactoryManager() { }
 
 FactoryManager::~FactoryManager() {
     for (auto& f : builders)
         delete f.second;
     builders.clear();
-
-    delete loader;
 }
 
 bool FactoryManager::init() {
-
     createEngineBuilders();
-
     return true;
 }
 
@@ -39,22 +31,8 @@ void FactoryManager::createEngineBuilders() {
     FactoryManager* manager = FactoryManager::instance();
     manager->addFactory("Transform", new BasicBuilder<Transform>());
     manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
-    manager->addFactory("Collider", new ColliderBuilder());
+    manager->addFactory("Collider", new BasicBuilder<Collider>());
     manager->addFactory("RigidBody", new BasicBuilder<RigidBody>());
-}
-
-bool FactoryManager::initGame() {
-    if (loader->load()) {
-        EntryPoint eP = (EntryPoint)GetProcAddress(loader->getModule(), "init");
-        eP(FactoryManager::instance(), SceneManager::instance());
-    }
-    else {
-#ifdef _DEBUG
-        std::cerr << "Error al cargar la DLL del juego\n";
-#endif
-        return false;
-    }
-    return true;
 }
 
 Component* FactoryManager::createComponent(std::string const& name) {

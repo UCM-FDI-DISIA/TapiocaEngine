@@ -193,12 +193,10 @@ void InputManager::updateState(const SDL_Event& event) {
 void InputManager::sendEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        ImGui_ImplSDL2_ProcessEvent(&event);
-        updateState(event);
+        if (!ImGui_ImplSDL2_ProcessEvent(&event))
+            updateState(event);
     }
 
     getMousePos();
 }
-
-
 }
