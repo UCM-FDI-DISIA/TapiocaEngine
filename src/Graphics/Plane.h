@@ -10,7 +10,7 @@ class Plane;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 class Vector3;
 
 class TAPIOCA_API Plane : public RenderObject {
@@ -24,17 +24,17 @@ public:
     //Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, std::string name, float width, float height,
     //      int xSegments, int ySegments, float x, float y, float z, std::string material);
     //Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
-    Plane(Ogre::SceneManager* const scnMgr, Node* const node, Ogre::MeshManager* const mshMgr, const Vector3& rkNormal,
-          const float fConstant, std::string const& name, const float width, const float height, const int xSegments,
-          const int ySegments, const float x, const float y, const float z,
+    Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
+          const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
+          const float height, const int xSegments, const int ySegments, const float x, const float y, const float z,
           std::string const& material);
     //Construye un plano usando 4 constantes
-    Plane(Ogre::SceneManager* const scnMgr, Node* const node, Ogre::MeshManager* const mshMgr, const float a,
+    Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
           const float b, const float c, const float _d, std::string const& name, const float width, const float height,
           const int xSegments, const int ySegments, const float x, const float y, const float z,
           std::string const& material);
 
-    virtual ~Plane() { };
+    virtual ~Plane() {};
     //Devuelve la normal que forma el plano
     Vector3 getNormal() const;
     //Devuelve la distancia desde el plano al origen

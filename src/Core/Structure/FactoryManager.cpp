@@ -7,7 +7,6 @@
 #include "Structure/BasicBuilder.h"
 
 #include "Components/Transform.h"
-#include "Components/TransformBuilder.h"
 #include "Components/Collider.h"
 #include "Components/ColliderBuilder.h"
 #include "Components/RigidBody.h"
@@ -38,7 +37,7 @@ void FactoryManager::createEngineBuilders() {
     std::cout << "Anadiendo factorias del motor\n";
 #endif
     FactoryManager* manager = FactoryManager::instance();
-    manager->addFactory("Transform", new TransformBuilder());
+    manager->addFactory("Transform", new BasicBuilder<Transform>());
     manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
     manager->addFactory("Collider", new ColliderBuilder());
     manager->addFactory("RigidBody", new BasicBuilder<RigidBody>());
@@ -47,8 +46,8 @@ void FactoryManager::createEngineBuilders() {
 bool FactoryManager::initGame() {
     if (loader->load()) {
         EntryPoint eP = (EntryPoint)GetProcAddress(loader->getModule(), "init");
-		eP(FactoryManager::instance(), SceneManager::instance());
-	}
+        eP(FactoryManager::instance(), SceneManager::instance());
+    }
     else {
 #ifdef _DEBUG
         std::cerr << "Error al cargar la DLL del juego\n";

@@ -25,11 +25,12 @@ private:
 
     Transform* parent;
     std::unordered_set<Transform*> children;
-    void deleteChild(Transform* const child);
-    void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
 
-    void clearConnection();
+    void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
     void addChild(Transform* const child);
+    void removeChild(Transform* const child);
+    void removeConnections();
+    void removeParent();
 
 public:
     COMPONENT_ID("Transform")
@@ -40,17 +41,20 @@ public:
     bool initComponent(const CompMap& variables) override;
 
     inline Vector3 getPosition() const { return position; }
+    Vector3 getGlobalPosition() const;
     inline Vector3 getRotation() const { return rotation; }
+    Vector3 getGlobalRotation() const;
     inline Vector3 getScale() const { return scale; }
+    Vector3 getGlobalScale() const;
 
-    void setPosition(const Vector3 p);
-    void setRotation(const Vector3);
-    void setScale(const Vector3 s);
+    void setPosition(const Vector3& p);
+    void setRotation(const Vector3& r);
+    void setScale(const Vector3& s);
 
     // Mueve el objeto tanto como el vector dado indica.
-    void translate(const Vector3 p);
+    void translate(const Vector3& p);
     // Rota el objeto sobre los ejes tanto como el vector dado indica.
-    void rotate(const Vector3 r);
+    void rotate(const Vector3& r);
 
     // Devuelve el eje X de coordenadas locales en coordenadas globales.
     Vector3 right();
@@ -68,6 +72,5 @@ public:
     std::vector<Transform*> getChildren() const;
     // Devuelve tanto los hijos directos como los indirectos de este Transform.
     std::vector<Transform*> getAllChildren() const;
-    virtual void fixedUpdate() override;
 };
 }

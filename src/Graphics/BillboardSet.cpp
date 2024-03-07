@@ -1,11 +1,11 @@
 #include "BillboardSet.h"
 #include <Ogre.h>
-#include "Node.h"
+#include "RenderNode.h"
 #include "Billboard.h"
 
 namespace Tapioca {
 
-BillboardSet::BillboardSet(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+BillboardSet::BillboardSet(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                            const unsigned int poolSize)
     : RenderObject(node, scnMgr), mBillboardSet(scnMgr->createBillboardSet(name, poolSize)), mName(name) {
     init(mBillboardSet);

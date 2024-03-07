@@ -3,7 +3,7 @@
 #include "Camera.h"
 #include "Utilities/Vector4.h"
 
-namespace Tapioca { 
+namespace Tapioca {
 
 Viewport::Viewport(Ogre::RenderWindow* const renderWindow, Camera* const camera, const int zOrder) {
     // el render target hace referencia a dodne se renderiza, en este caso, la ventana de Ogre

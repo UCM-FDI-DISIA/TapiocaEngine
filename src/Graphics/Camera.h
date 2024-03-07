@@ -8,7 +8,7 @@ class SceneManager;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 class GraphicsEngine;
 class Viewport;
 
@@ -21,7 +21,7 @@ private:
     bool autoAspectRatio;
 
     // aspectRatio = width/height   1.3 es el por defecto de Ogre
-    Camera(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+    Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
            const Vector3 targetToLook = Vector3(0, 0, 0), const float nearDist = 1, const float farDist = 1000,
            const bool autoAspectRatio = true, const float aspectRatio = 1.33333333333333f);
 

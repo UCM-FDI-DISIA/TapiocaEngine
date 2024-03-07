@@ -18,9 +18,6 @@ scene = {
                     rotationY = 0.0,
                     rotationZ = 0.0
                 },
-                MeshRenderer = {
-                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
-                },
                 RigidBody = {    
                     colShape=0, --0 BOX, 1 SPHERE, 2 PLANE, 3 CAPSULE
                     colliderScaleX=2.0,
@@ -62,6 +59,9 @@ scene = {
                                     rotationX = 25.0,
                                     rotationY = 25.0,
                                     rotationZ = 25.0
+                                },
+                                MeshRenderer = {
+                                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
                                 }
                             }
                         },

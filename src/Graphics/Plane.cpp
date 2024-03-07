@@ -1,6 +1,6 @@
 #include "Plane.h"
 #include <Ogre.h>
-#include "Node.h"
+#include "RenderNode.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/checkML.h"
 
@@ -23,7 +23,7 @@ namespace Tapioca {
 //    node->setPosition(Vector3(x, y, z));
 //}
 
-Plane::Plane(Ogre::SceneManager* const scnMgr, Node* const node, Ogre::MeshManager* const mshMgr,
+Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
              const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
              const float height, const int xSegments, const int ySegments, const float x, const float y, const float z,
              std::string const& material)
@@ -40,7 +40,7 @@ Plane::Plane(Ogre::SceneManager* const scnMgr, Node* const node, Ogre::MeshManag
     node->setPosition(Vector3(x, y, z));
 }
 
-Plane::Plane(Ogre::SceneManager* const scnMgr, Node* const node, Ogre::MeshManager* const mshMgr, const float a,
+Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
              const float b, const float c, const float _d, std::string const& name, const float width,
              const float height, const int xSegments, const int ySegments, const float x, const float y, const float z,
              std::string const& material)

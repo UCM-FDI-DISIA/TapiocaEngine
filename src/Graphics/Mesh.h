@@ -7,7 +7,7 @@ class Entity;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 class GraphicsEngine;
 
 class TAPIOCA_API Mesh : public RenderObject {
@@ -17,7 +17,7 @@ private:
     Ogre::Entity* mesh;
 
 public:
-    Mesh(Ogre::SceneManager* const sceneManager, Node* const node, std::string const& meshName);
+    Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::string const& meshName);
 
     void setMaterial(std::string const& materialName);
 };

@@ -2,11 +2,11 @@
 #include <Ogre.h>
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
-#include "Node.h"
+#include "RenderNode.h"
 
 namespace Tapioca {
 
-Camera::Camera(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name, const Vector3 targetToLook,
+Camera::Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name, const Vector3 targetToLook,
                const float nearDist, const float farDist, const bool autoAspectRatio, const float aspectRatio)
     : RenderObject(node, scnMgr), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio) {
     init(mCam);

@@ -3,17 +3,50 @@
 #include "Utilities/INode.h"
 
 namespace Tapioca {
+void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
+    for (auto child : children) {
+        allChildren.push_back(child);
+        child->getAllChildrenAux(allChildren);
+    }
+}
+
+void Transform::addChild(Transform* const child) {
+    if (!children.contains(child)) children.insert(child);
+}
+
+void Transform::removeChild(Transform* const child) {
+    auto it = children.find(child);
+    if (it != children.end()) children.erase(it);
+}
+
+void Transform::removeConnections() {
+    removeParent();
+    // eliminar todos los hijos directos
+    for (auto it = children.begin(), itAnt = children.begin(); it != children.end();) {
+        ++itAnt;
+        (*it)->removeParent();
+        it = itAnt;
+    }
+    children.clear();
+}
+
+void Transform::removeParent() {
+    if (parent != nullptr) {
+        parent->removeChild(this);
+    }
+    parent = nullptr;
+}
+
 Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
 
 Transform::~Transform() {
-    object->die();
-
-    for (auto childNode : getAllChildren()) {
-        GameObject* childGameObject = childNode->getObject();
+    for (Transform* child : getAllChildren()) {
+        GameObject* childGameObject = child->getObject();
         childGameObject->die();
-        childNode->clearConnection();
     }
-    clearConnection();
+
+    removeConnections();
+    object->die();
 }
 
 bool Transform::initComponent(const CompMap& variables) {
@@ -50,24 +83,49 @@ bool Transform::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Transform::setPosition(const Vector3 p) {
+Vector3 Transform::getGlobalPosition() const {
+    Vector3 aux = position;
+    if (parent != nullptr) {
+        aux = aux + parent->getGlobalPosition();
+    }
+    return aux;
+}
+
+Vector3 Transform::getGlobalRotation() const {
+    Vector3 aux = rotation;
+    if (parent != nullptr) {
+        aux = aux + parent->getGlobalRotation();
+    }
+    return aux;
+}
+
+Vector3 Transform::getGlobalScale() const {
+    Vector3 aux = scale;
+    if (parent != nullptr) {
+        Vector3 parentScale = parent->getGlobalScale();
+        aux = Vector3(aux.x * parentScale.x, aux.y * parentScale.y, aux.z * parentScale.z);
+    }
+    return aux;
+}
+
+void Transform::setPosition(const Vector3& p) {
     position = p;
     moved();
 }
-void Transform::setRotation(const Vector3 r) {
+void Transform::setRotation(const Vector3& r) {
     rotation = r;
     rotated();
 }
-void Transform::setScale(const Vector3 s) {
+void Transform::setScale(const Vector3& s) {
     scale = s;
     scaled();
 }
 
-void Transform::translate(const Vector3 p) {
+void Transform::translate(const Vector3& p) {
     position += p;
     moved();
 }
-void Transform::rotate(const Vector3 r) {
+void Transform::rotate(const Vector3& r) {
     rotation += r;
     rotated();
 }
@@ -109,13 +167,8 @@ Vector3 Transform::forward() {
     return v;
 }
 
-void Transform::deleteChild(Transform* const child) {
-    auto it = children.find(child);
-    if (it != children.end()) children.erase(it);
-}
-
 void Transform::setParent(Transform* const transform) {
-    if (parent != nullptr) parent->deleteChild(this);
+    removeParent();
     parent = transform;
     parent->addChild(this);
 }
@@ -123,33 +176,14 @@ void Transform::setParent(Transform* const transform) {
 Transform* Transform::getParent() const { return parent; }
 
 std::vector<Transform*> Transform::getChildren() const {
-    std::vector<Transform*> aux;
+    std::vector<Transform*> aux(children.size());
     std::copy(children.begin(), children.end(), aux.begin());
     return aux;
 }
 
 std::vector<Transform*> Transform::getAllChildren() const {
     std::vector<Transform*> allChildren;
-
     getAllChildrenAux(allChildren);
-
     return allChildren;
 }
-
-void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
-    for (auto child : children) {
-        allChildren.push_back(child);
-        child->getAllChildrenAux(allChildren);
-    }
-}
-
-void Transform::clearConnection() {
-    if (parent != nullptr) parent->deleteChild(this);
-    parent = nullptr;
-    children.clear();
-}
-
-void Transform::addChild(Transform* const child) { children.insert(child); }
-
-void Transform::fixedUpdate() { }
 }

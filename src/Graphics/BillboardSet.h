@@ -10,7 +10,7 @@ class BillboardSet;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 class GraphicsEngine;
 class Billboard;
 
@@ -27,7 +27,7 @@ protected:
     std::string mName;
 
     //Crea un BillboardSet con nombre a partir de un n�mero de elementos
-    BillboardSet(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+    BillboardSet(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                  const unsigned int poolSize);
 
 public:

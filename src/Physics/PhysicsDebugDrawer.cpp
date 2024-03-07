@@ -1,11 +1,10 @@
 #include "PhysicsDebugDrawer.h"
 #include <Ogre.h>
 #include "GraphicsEngine.h"
-#include "Node.h"
+#include "RenderNode.h"
 #include "Utilities/checkML.h"
 
 namespace Tapioca {
-
 	
 PhysicsDebugDrawer::PhysicsDebugDrawer() : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
 

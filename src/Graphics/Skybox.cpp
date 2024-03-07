@@ -3,10 +3,8 @@
 
 namespace Tapioca {
 
-Skybox::Skybox(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& texture, const float distC,
-               const bool orderC)
-    : RenderObject(node, scnMgr), texture(texture), distC(distC), orderC(orderC) 
-{
+Skybox::Skybox(Ogre::SceneManager* const scnMgr, std::string const& texture, const float distC, const bool orderC)
+    : texture(texture), distC(distC), orderC(orderC) {
     scnM = scnMgr;
     scnMgr->setSkyBox(true, texture, distC, orderC);
 }

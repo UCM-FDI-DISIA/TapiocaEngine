@@ -2,9 +2,6 @@
 #include "GameObject.h"
 #include "Game.h"
 
-// TODO: solo para prueba
-#include "Components/Transform.h"
-
 namespace Tapioca {
 Scene::Scene() { }
 

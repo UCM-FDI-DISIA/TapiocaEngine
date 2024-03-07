@@ -25,7 +25,7 @@ Tapioca::UIManager* ui;
 static void createModules(Tapioca::Game*);
 
 // TODO: solo para pruebas, borrar
-#include "Node.h"
+#include "RenderNode.h"
 #include "LightDirectional.h"
 #include "Mesh.h"
 #include "Viewport.h"
@@ -41,6 +41,7 @@ int main(int argc, char** argv) {
     createModules(game);
     if (game->init()) {
         //* Prueba
+        scenes->loadScene("archivo.lua", factories);
 
         // IMPORTANTE: NO PREOCUPARSE POR SI NO SE PUEDE ACCEDER A UN OBJETO PARA BORRAR
         // LUEGO, EL NODO VA A BORRAR TODO
@@ -58,21 +59,12 @@ int main(int argc, char** argv) {
         bil->addBillboard(Tapioca::Vector3(0, 0, 0));
         bil->removeBillboard(0);
 
-        //node->setParent(nodeCamera);
-        //*/
-
         game->run();
 
-        //*
         delete nodeBil;
-        delete bil;
-
         delete node;
         delete nodeCamera;
-        delete camera;
         delete viewport;
-        delete light;
-        //*/
     }
 #ifdef _DEBUG
     else
@@ -93,20 +85,20 @@ static void createModules(Tapioca::Game* game) {
 
     ui = Tapioca::UIManager::create();
     game->addModule(ui);
-    
+
     input = Tapioca::InputManager::create();
     game->addModule(input);
     mapInput();
 
     factories = Tapioca::FactoryManager::create();
     game->addModule(factories);
-    
+
     physics = Tapioca::PhysicsManager::create();
     game->addModule(physics);
-    
+
     scenes = Tapioca::SceneManager::create();
     game->addModule(scenes);
-    
+
     // audio = AudioManager::create();
     // game->addModule(audio);
 }
@@ -154,7 +146,8 @@ void mapInput() {
                 std::stringstream ss(evt);
                 std::string token = "";
                 char delimiter = '_';
-                while (std::getline(ss, token, delimiter)) tokens.push_back(token);
+                while (std::getline(ss, token, delimiter))
+                    tokens.push_back(token);
 
                 // Obtiene el nombre del evento ("ev" + "_" + "nombre")
                 evt = tokens[0] + "_" + tokens[1];
@@ -184,7 +177,8 @@ void mapInput() {
                         // del evento de inputEventTriggered. Si es "control",
                         // el valor es la tecla/boton/eje/etc. mapeado al evento
                         if (key == "src") src = value;
-                        else if (key == "control") ctrl = stoi(value);
+                        else if (key == "control")
+                            ctrl = stoi(value);
                     }
                     // Añade el evento al mapa de input
 

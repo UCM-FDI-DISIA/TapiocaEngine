@@ -7,7 +7,7 @@ class ParticleSystem;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 
 class TAPIOCA_API ParticleSystem : public RenderObject {
 private:
@@ -23,7 +23,7 @@ public:
     * @param templateName Nombre del sistema de particulas definido en el .particle 
     * @param emitting Si el sistema comienza emitiendo por defecto o no
     */
-    ParticleSystem(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+    ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                    std::string const& templateName, const bool emitting = false);
 
     virtual ~ParticleSystem() { }

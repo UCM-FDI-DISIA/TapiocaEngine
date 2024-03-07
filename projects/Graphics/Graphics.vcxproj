@@ -20,7 +20,7 @@
     <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightPoint.cpp" />
     <ClCompile Include="..\..\src\Graphics\Mesh.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Node.cpp" />
+    <ClCompile Include="..\..\src\Graphics\RenderNode.cpp" />
     <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\Graphics\Plane.cpp" />
     <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
@@ -39,7 +39,7 @@
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />
     <ClInclude Include="..\..\src\Graphics\LightPoint.h" />
     <ClInclude Include="..\..\src\Graphics\Mesh.h" />
-    <ClInclude Include="..\..\src\Graphics\Node.h" />
+    <ClInclude Include="..\..\src\Graphics\RenderNode.h" />
     <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\src\Graphics\Plane.h" />
     <ClInclude Include="..\..\src\Graphics\RenderObject.h" />

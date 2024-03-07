@@ -7,11 +7,11 @@ class SceneManager;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 
 class TAPIOCA_API RenderObject {
 private:
-    friend Node;
+    friend RenderNode;
 
     Ogre::MovableObject* movObject;
 
@@ -19,9 +19,9 @@ private:
 
 protected:
     Ogre::SceneManager* sceneManager;
-    Node* node;
+    RenderNode* node;
 
-    RenderObject(Node* const node, Ogre::SceneManager* const sceneManager);
+    RenderObject(RenderNode* const node, Ogre::SceneManager* const sceneManager);
 
     void init(Ogre::MovableObject* const movObject);
 

@@ -1,11 +1,11 @@
 #include "RenderObject.h"
 #include "OgreMovableObject.h"
-#include "Node.h"
+#include "RenderNode.h"
 #include "Ogre.h"
 
 namespace Tapioca {
 
-RenderObject::RenderObject(Node* const node, Ogre::SceneManager* const sceneManager)
+RenderObject::RenderObject(RenderNode* const node, Ogre::SceneManager* const sceneManager)
     : movObject(nullptr), node(node), sceneManager(sceneManager) { }
 
 void RenderObject::init(Ogre::MovableObject* const movObject) {
@@ -14,8 +14,8 @@ void RenderObject::init(Ogre::MovableObject* const movObject) {
 }
 
 void RenderObject::detachFromNode() {
-    if (node != nullptr) {
-        node->detachObject(this);
+    if (node != nullptr) {  // por precaucion
+        node->detachObject();
         node = nullptr;
     }
 }

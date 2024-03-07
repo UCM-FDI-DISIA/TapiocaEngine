@@ -31,7 +31,7 @@ namespace RTShader {
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 class Camera;
 class LightDirectional;
 class Mesh;
@@ -64,12 +64,8 @@ private:
 
     // UI
     Ogre::OverlaySystem* overSys;
-    std::unordered_set<Node*> selfManagedNodes;
+    std::unordered_set<RenderNode*> selfManagedNodes;
     void* glContext;
-
-    // TODO: se puede borrar
-    /*std::unordered_map<RenderObject*, Node*> objects;
-    Ogre::Viewport* viewport;*/
 
     // carga plugIns especificados desde codigo
     // TODO: se carga de archivo, se puede borrar
@@ -111,62 +107,49 @@ public:
     */
     void shutDown();
 
-
-    // CREAR OBJETOS
-    Node* createNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f), const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
-
-    // solo para manual object
-    Node* createSelfManagedNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
-                                const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
-
-    Node* createChildNode(Node* const parent, const Vector3 relativePos = Vector3(0.0f, 0.0f, 0.0f),
-                          const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
-
-    // eliminar un nodo por completo
-    // esto quiere decir: delete del nodo y sus hijos, quitar objetos y nodos del propio nodo y de sus hijos del grafo de la escena
-    //void removeNode(Node* node);
-
-
-    /*
-    * @brief devuelve a una camara que se podra manipular
-    */
-    Camera* createCamera(Node* const node, std::string const& name);
-
-    Viewport* createViewport(Camera* const camera, const int zOrder);
-
-    LightDirectional* createLightDirectional(Node* const node, const Vector3 direction,
-                                             const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
-
-    Mesh* createMesh(Node* const node, std::string const& meshName);
-
-    Billboard* createBillboard(Node* const node, std::string const& name, const Vector3 position, const Vector4 colour);
-
-    BillboardSet* createBillboardSet(Node* const node, std::string const& name, unsigned int poolSize);
-
-    ParticleSystem* createParticleSystem(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
-                                         std::string const& templateName, const bool emitting);
-
-    //Plane* createPlane(Node* node, std::string name, float width, float height, int xSegments, int ySegments, float x,
-    //                   float y, float z, std::string material = "");
-
-    Plane* createPlane(Node* const node, const Vector3& rkNormal, const float fConstant, std::string const& name,
-                       const float width, const float height, const int xSegments, const int ySegments, const float x,
-                       const float y, const float z,
-                       std::string const& material = "");
-
-    Plane* createPlane(Node* const node, const float a, const float b, const float c, const float _d,
-                       std::string const& name, const float width, const float height, const int xSegments,
-                       const int ySegments, const float x, const float y, const float z,
-                       std::string const& material = "");
-
-    Ogre::ManualObject* createManualObject(Node* const node);
-
-    void destroyManualObject(Ogre::ManualObject* const object);
-
     SDL_Window* getSDLWindow();
     Ogre::RenderWindow* getOgreWindow();
     void* getGLContext();
 
-    //void removeObject(RenderObject* object);
+    // CREAR OBJETOS
+    RenderNode* createNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
+                           const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+
+    // solo para manual object
+    RenderNode* createSelfManagedNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
+                                      const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+
+    /*
+    * @brief devuelve a una camara que se podra manipular
+    */
+    Camera* createCamera(RenderNode* const node, std::string const& name);
+
+    Viewport* createViewport(Camera* const camera, const int zOrder);
+
+    LightDirectional* createLightDirectional(RenderNode* const node, const Vector3 direction,
+                                             const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+
+    Mesh* createMesh(RenderNode* const node, std::string const& meshName);
+
+    Billboard* createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,
+                               const Vector4 colour);
+
+    BillboardSet* createBillboardSet(RenderNode* const node, std::string const& name, unsigned int poolSize);
+
+    ParticleSystem* createParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node,
+                                         std::string const& name, std::string const& templateName, const bool emitting);
+
+    Plane* createPlane(RenderNode* const node, const Vector3& rkNormal, const float fConstant, std::string const& name,
+                       const float width, const float height, const int xSegments, const int ySegments, const float x,
+                       const float y, const float z, std::string const& material = "");
+
+    Plane* createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
+                       std::string const& name, const float width, const float height, const int xSegments,
+                       const int ySegments, const float x, const float y, const float z,
+                       std::string const& material = "");
+
+    Ogre::ManualObject* createManualObject(RenderNode* const node);
+
+    void destroyManualObject(Ogre::ManualObject* const object);
 };
 }

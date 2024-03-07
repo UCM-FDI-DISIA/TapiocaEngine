@@ -3,10 +3,9 @@
 
 namespace Tapioca {
 
-ParticleSystem::ParticleSystem(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& name,
+ParticleSystem::ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                                std::string const& templateName, const bool emitting)
-    : RenderObject(node, scnMgr), mParticleSystem(scnMgr->createParticleSystem(name, templateName))
-{
+    : RenderObject(node, scnMgr), mParticleSystem(scnMgr->createParticleSystem(name, templateName)) {
     init(mParticleSystem);
     mParticleSystem->setEmitting(emitting);
 }

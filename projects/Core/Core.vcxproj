@@ -86,7 +86,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\Components\Transform.cpp" />
-    <ClCompile Include="..\..\src\Core\Components\TransformBuilder.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp" />
@@ -101,7 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Components\Transform.h" />
-    <ClInclude Include="..\..\src\Core\Components\TransformBuilder.h" />
     <ClInclude Include="..\..\src\Core\Core.h" />
     <ClInclude Include="..\..\src\Core\Structure\BasicBuilder.h" />
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
@@ -116,7 +114,6 @@
     <ClInclude Include="..\..\src\Core\Utilities\componentDefs.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Concepts.h" />
     <ClInclude Include="..\..\src\Core\Utilities\defs.h" />
-    <ClInclude Include="..\..\src\Core\Utilities\INode.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Singleton.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h" />

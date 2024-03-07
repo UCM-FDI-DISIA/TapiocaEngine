@@ -7,9 +7,8 @@ class Skybox;
 }
 
 namespace Tapioca {
-class Node;
 
-class TAPIOCA_API Skybox : public RenderObject {
+class TAPIOCA_API Skybox {
 protected:
     std::string texture;
     float distC;
@@ -20,11 +19,10 @@ protected:
     * @brief Construye un skybox con la textura texture a una distancia distC de la cámara
     * e indicando si se pinta antes o después del resto de elementos en función de orderC
     */
-    Skybox(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& texture, const float distC = 5000,
+    Skybox(Ogre::SceneManager* const scnMgr, std::string const& texture, const float distC = 5000,
            const bool orderC = true);
 
 public:
-    virtual ~Skybox() {/*if (mSkybox != nullptr) delete mSkybox;*/};
     void setEnable(const bool enable);
     bool isEnabled();
 };

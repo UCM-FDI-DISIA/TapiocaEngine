@@ -7,7 +7,7 @@
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Node.cpp">
+    <ClCompile Include="..\..\src\Graphics\RenderNode.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Graphics\Light.cpp">
@@ -60,7 +60,7 @@
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Node.h">
+    <ClInclude Include="..\..\src\Graphics\RenderNode.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Camera.h">

@@ -2,15 +2,13 @@
 #include "GraphicsEngine.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "Node.h"
+#include "RenderNode.h"
 #include "Mesh.h"
 
 namespace Tapioca {
-MeshRenderer::MeshRenderer() : mesh(nullptr) { }
+MeshRenderer::MeshRenderer() : mesh(nullptr), node(nullptr), transform(nullptr) { }
 
-MeshRenderer::~MeshRenderer() {
-	delete mesh;
-}
+MeshRenderer::~MeshRenderer() { delete node; }
 
 bool MeshRenderer::initComponent(const CompMap& variables) {
     // No se ha podido establecer o No hay nombre de mesh
@@ -32,11 +30,20 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 }
 
 void MeshRenderer::start() {
-    Transform* trans = object->getComponent<Transform>();
-    //mesh = GraphicsEngine::instance()->createMesh(static_cast<Node*>(trans->getNode()), meshName);
+    GameObject* gameobject = getObject();
+    transform = gameobject->getComponent<Transform>();
+    GraphicsEngine* g = GraphicsEngine::instance();
+    node = g->createNode();
+    mesh = g->createMesh(node, meshName);
 
-    //if (materialName != "") mesh->setMaterial(materialName);
+    if (materialName != "") mesh->setMaterial(materialName);
 }
 
-void MeshRenderer::update(const uint64_t deltaTime) { }
+void MeshRenderer::update(uint64_t delt) {
+    node->setPosition(transform->getGlobalPosition());
+    // TODO: como hacemos para que gire respecto de su padre y no de si mismo
+    //node->setRotation(transform->getGlobalRotation());
+    // es tan grande que no se ve
+    //node->setScale(transform->getGlobalScale());
+}
 }

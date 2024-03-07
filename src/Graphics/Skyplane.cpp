@@ -1,15 +1,14 @@
 #include "Skyplane.h"
 #include <Ogre.h>
 
-
 namespace Tapioca {
 
-Skyplane::Skyplane(Ogre::SceneManager* const scnMgr, Node* const node, std::string const& materialName,
-                   const bool enable, const Vector3 rkNormal, const float fConstant, const float scale,
-                   const float tiling, const bool drawFirst, const float bow, const int xsegments, const int ysegments)
-    : RenderObject(node, scnMgr), scnM(scnMgr), material(materialName), rkNormal(rkNormal), fConstant(fConstant), 
-    scale(scale), tiling(tiling), drawFirst(drawFirst), bow(bow), xSegments(xsegments), ySegments(ysegments) 
-{
+Skyplane::Skyplane(Ogre::SceneManager* const scnMgr, std::string const& materialName, const bool enable,
+                   const Vector3 rkNormal, const float fConstant, const float scale, const float tiling,
+                   const bool drawFirst, const float bow, const int xsegments, const int ysegments)
+    : scnM(scnMgr), material(materialName), rkNormal(rkNormal), fConstant(fConstant), scale(scale), tiling(tiling),
+      drawFirst(drawFirst), bow(bow), xSegments(xsegments), ySegments(ysegments) {
+
     scnM = scnMgr;
     scnM->setSkyPlane(enable, Ogre::Plane({rkNormal.x, rkNormal.y, rkNormal.z}, fConstant), material, scale, tiling,
                       drawFirst, bow, xsegments, ysegments);
@@ -19,5 +18,3 @@ void Skyplane::setEnable(const bool enable) { scnM->setSkyPlaneEnabled(enable); 
 
 bool Skyplane::isEnabled() { return scnM->isSkyPlaneEnabled(); }
 }
-
-

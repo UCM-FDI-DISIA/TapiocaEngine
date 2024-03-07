@@ -8,12 +8,12 @@ class ManualObject;
 }
 
 namespace Tapioca {
-class Node;
+class RenderNode;
 
 class TAPIOCA_API PhysicsDebugDrawer : public btIDebugDraw {
     int mode;
     std::list<Ogre::ManualObject*> lines;
-    Node* node;
+    RenderNode* node;
 
 public:
     PhysicsDebugDrawer();

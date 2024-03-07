@@ -45,9 +45,6 @@
     <ClCompile Include="..\..\src\Core\Structure\ComponentBuilder.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Components\TransformBuilder.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
     <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h">
       <Filter>Structure</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Utilities\INode.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h">
       <Filter>Structure</Filter>
     </ClInclude>
@@ -107,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\Concepts.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Components\TransformBuilder.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h">
       <Filter>Structure</Filter>
