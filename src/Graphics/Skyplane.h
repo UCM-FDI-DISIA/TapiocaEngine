@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "RenderObject.h"
 #include "Utilities/Vector3.h"
 

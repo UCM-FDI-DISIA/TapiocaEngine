@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <string>
 #include "RenderObject.h"
 
 namespace Ogre {

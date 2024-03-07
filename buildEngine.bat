@@ -19,8 +19,8 @@ if not exist %BAT_DIR%Dependencies\Lua\build\x64\Debug (
 
 echo ~~Dependencias compiladas. Compilando motor...~~
 echo.
-msbuild %SLN_PATH% /p:configuration=Debug /t:Main /p:Platform=x64 /p:PlatformToolset=v143
-msbuild %SLN_PATH% /p:configuration=Release /t:Main /p:Platform=x64 /p:PlatformToolset=v143
+msbuild %SLN_PATH% /p:configuration=Debug /p:Platform=x64 /p:PlatformToolset=v143
+msbuild %SLN_PATH% /p:configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
 
 echo ~~Todo compilado. :YIPEEE:~~
 pause

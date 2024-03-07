@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <stack>
+#include <string>
 #include "Utilities/Singleton.h"
 #include "Utilities/defs.h"
 
