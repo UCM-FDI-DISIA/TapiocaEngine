@@ -17,11 +17,9 @@ class TAPIOCA_API Transform : public Component {
 
 private:
     Vector3 position;
-    void moved() {};
     Vector3 rotation;
-    void rotated() {};
     Vector3 scale;
-    void scaled() {};
+    void changed();
 
     Transform* parent;
     std::unordered_set<Transform*> children;
@@ -39,6 +37,7 @@ public:
     ~Transform();
 
     bool initComponent(const CompMap& variables) override;
+    void handleEvent(std::string const& id, void* info) override;
 
     inline Vector3 getPosition() const { return position; }
     Vector3 getGlobalPosition() const;
@@ -47,6 +46,7 @@ public:
     inline Vector3 getScale() const { return scale; }
     Vector3 getGlobalScale() const;
 
+    // Todos estos metodos generan el evento "transformChanged"
     void setPosition(const Vector3& p);
     void setRotation(const Vector3& r);
     void setScale(const Vector3& s);

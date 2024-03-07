@@ -76,7 +76,7 @@ void Game::update() {
 }
 
 void Game::handleEvents() {
-    for (auto mod : modules) mod->handleEvents();
+    for (auto mod : modules) mod->sendEvents();
 
     //if (!scenes.empty()) scenes.top()->handleEvents();
 }
@@ -106,7 +106,9 @@ void Game::pushEvent(std::string const& id, void* info) {
 #ifdef _DEBUG
     if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
 #endif
-    if (!scenes.empty()) scenes.top()->pushEvent(id, info);
+    for (auto mod : modules) mod->handleEvent(id, info);
+
+    if (!scenes.empty()) scenes.top()->handleEvent(id, info);
 }
 
 void Game::pushScene(Scene* const sc) {

@@ -46,11 +46,13 @@ void Scene::refresh() {
         obj->refresh();
 }
 
-void Scene::pushEvent(std::string const& id, void* info) {
+void Scene::handleEvent(std::string const& id, void* info) {
     for (auto obj : objects) {
         if (obj->isAlive()) obj->handleEvent(id, info);
     }
 }
+
+void Scene::pushEvent(std::string const& id, void* info) { Game::instance()->pushEvent(id, info); }
 
 std::vector<GameObject*> Scene::getObjects() const { return objects; }
 

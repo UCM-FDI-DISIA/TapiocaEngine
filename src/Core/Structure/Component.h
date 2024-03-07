@@ -48,7 +48,7 @@ public:
     // asi que no tiene parametro para indicar cuanto tiempo ha pasado desde la ultima llamada.
     virtual void fixedUpdate() { }
     // Metodo que se usa para recibir eventos. El parametro 'info' se usa para pasar informacion si hace falta.
-    // TODO: Incluir cuando se llama.
+    // Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
     virtual void handleEvent(std::string const& id, void* info) { }
 
     void pushEvent(std::string const& id, void* info, const bool global = true);

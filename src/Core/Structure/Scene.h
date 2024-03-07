@@ -26,6 +26,7 @@ public:
     //void handleEvents();
     void fixedUpdate();
     void refresh();
+    void handleEvent(std::string const& id, void* info);
     void pushEvent(std::string const& id, void* info);
 };
 }
