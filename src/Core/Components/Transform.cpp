@@ -2,6 +2,10 @@
 #include "Structure/GameObject.h"
 
 namespace Tapioca {
+void Transform::changed() {
+    pushEvent("transformChanged", nullptr, false);
+}
+
 void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
     for (auto child : children) {
         allChildren.push_back(child);
@@ -57,7 +61,7 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    moved();
+    changed();
 
     bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
         setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
@@ -67,7 +71,7 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    rotated();
+    changed();
 
     bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
         setValueFromMap(scale.z, "scaleZ", variables);
@@ -77,9 +81,17 @@ bool Transform::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
-    scaled();
+    changed();
 
     return true;
+}
+
+void Transform::handleEvent(std::string const& id, void* info) {
+    if (id == "transformChanged") {
+        for (Transform* child : children) {
+            child->pushEvent("transformChanged", info, false);
+        }
+    }
 }
 
 Vector3 Transform::getGlobalPosition() const {
@@ -109,24 +121,24 @@ Vector3 Transform::getGlobalScale() const {
 
 void Transform::setPosition(const Vector3& p) {
     position = p;
-    moved();
+    changed();
 }
 void Transform::setRotation(const Vector3& r) {
     rotation = r;
-    rotated();
+    changed();
 }
 void Transform::setScale(const Vector3& s) {
     scale = s;
-    scaled();
+    changed();
 }
 
 void Transform::translate(const Vector3& p) {
     position += p;
-    moved();
+    changed();
 }
 void Transform::rotate(const Vector3& r) {
     rotation += r;
-    rotated();
+    changed();
 }
 
 Vector3 Transform::right() {
