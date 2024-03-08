@@ -5,7 +5,9 @@
 #include "SceneManager.h"
 
 namespace Tapioca {
-bool DynamicLibraryLoader::load(HMODULE& module, std::string const& gameName) {
+HMODULE DynamicLibraryLoader::module = nullptr;
+
+bool DynamicLibraryLoader::load(std::string const& gameName) {
     std::string gamePath;   // Ruta del juego con formato
 #ifdef _DEBUG
     gamePath = "./" + gameName + "_d.dll";
@@ -32,11 +34,9 @@ bool DynamicLibraryLoader::load(HMODULE& module, std::string const& gameName) {
 }
 
 bool DynamicLibraryLoader::initGame(std::string const& gameName) {
-    HMODULE module;   // Modulo cargado en la memoria del proceso
-    if (load(module, gameName)) {
+    if (load(gameName)) {
         EntryPoint eP = (EntryPoint)GetProcAddress(module, "init");
         eP(FactoryManager::instance(), SceneManager::instance());
-        freeModule(module);
     }
     else {
 #ifdef _DEBUG
@@ -47,7 +47,7 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
     return true;
 }
 
-void DynamicLibraryLoader::freeModule(HMODULE module) {
+void DynamicLibraryLoader::freeModule() {
     if (module != nullptr) {
         FreeLibrary(module);
     }

@@ -14,14 +14,11 @@ private:
     * @param gameName Nombre del juego
     * @return Si se ha podido cargar correctamente o no
     */
-    static bool load(HMODULE& module, std::string const& gameName);
-
-    /**
-    * @brief Libera el modulo
-    */
-    static void freeModule(HMODULE module);
+    static bool load(std::string const& gameName);
 
 public:
+    static HMODULE module;   // Modulo cargado en la memoria del proceso
+    
     DynamicLibraryLoader() = delete;
     ~DynamicLibraryLoader() = delete;
 
@@ -30,5 +27,10 @@ public:
     * @return Si se ha podido cargar correctamente o no
     */
     static bool initGame(std::string const& gameName = "game");
+
+    /**
+    * @brief Libera el modulo
+    */
+    static void freeModule();
 };
 }

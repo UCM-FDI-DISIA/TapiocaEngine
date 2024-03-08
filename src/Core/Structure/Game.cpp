@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Module.h"
+#include "DynamicLibraryLoader.h"
 #include <chrono>
 
 namespace Tapioca {
@@ -12,6 +13,8 @@ Game::~Game() {
         delete scenes.top();
         scenes.pop();
     }
+
+    DynamicLibraryLoader::freeModule();
 
     for (Module* mod : modules) delete mod;
 }
