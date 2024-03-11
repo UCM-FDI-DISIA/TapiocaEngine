@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "PhysicsManager.h"
 #include "UIManager.h"
+#include "SoundEngine.h"
 // #include "AudioManager.h" Descomentar cuando se implemente
 
 #include "Utilities/checkML.h"
@@ -20,6 +21,7 @@ Tapioca::SceneManager* scenes;
 Tapioca::GraphicsEngine* graphics;
 Tapioca::PhysicsManager* physics;
 Tapioca::UIManager* ui;
+Tapioca::SoundEngine* sound;
 //Tapioca::AudioManager* audio;
 
 static void createModules(Tapioca::Game*);
@@ -58,7 +60,8 @@ int main(int argc, char** argv) {
         auto bil = graphics->createBillboardSet(nodeBil, "Holaaa", 2);
         bil->addBillboard(Tapioca::Vector3(50.0f, 0.0f, -230.0f), Tapioca::Vector4(1.0f, 0.0f, 0.0f, 1.0f));
         //bil->removeBillboard(0);
-
+        //COMENTAD ESTA LINEA PARA QUE EL MOTOR SE CALLE
+        sound->testsample();
         game->run();
 
         delete nodeBil;
@@ -99,6 +102,8 @@ static void createModules(Tapioca::Game* game) {
     scenes = Tapioca::SceneManager::create();
     game->addModule(scenes);
 
+    sound = Tapioca::SoundEngine::create();
+    game->addModule(sound);
     // audio = AudioManager::create();
     // game->addModule(audio);
 }

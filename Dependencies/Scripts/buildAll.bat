@@ -12,6 +12,7 @@ rem Construye las dependencias
 call %BAT_DIR%buildOgre.bat
 call %BAT_DIR%buildBullet.bat
 call %BAT_DIR%buildLua.bat
+call %BAT_DIR%buildIrrKlang.bat
 rem builds del resto de dependencias
 
 pause
