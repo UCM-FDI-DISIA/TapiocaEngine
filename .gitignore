@@ -7,6 +7,9 @@
 *.exp
 *.log
 *.vcxproj.user
+*.obj
+*.tlog
+*.recipe
 
 # Ignora los siguientes directorios
 .vs

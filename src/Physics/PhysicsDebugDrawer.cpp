@@ -25,7 +25,11 @@ void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, co
                                            const btVector3& toColor) { 
 }
 
-void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) { std::cout << warningString << '\n'; }
+void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
+#ifdef _DEBUG
+    std::cout << warningString << '\n';
+#endif
+}
 
 void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB,
                                                    btScalar distance, int lifeTime, const btVector3& color) {
