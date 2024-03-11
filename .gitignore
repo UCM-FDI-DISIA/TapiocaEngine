@@ -6,6 +6,8 @@
 !/Dependencies/IrrKlang/libs/irrKlang.lib
 *.idb
 *.dll
+#excepto las dlls que no construimos 
+!/Dependencies/IrrKlang/dlls/*
 *.exp
 *.log
 *.vcxproj.user
