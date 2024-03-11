@@ -23,9 +23,9 @@ private:
     friend Camera;
     friend LightDirectional;
 
-    Ogre::SceneManager* sceneManager;
-    Ogre::SceneNode* node;
-    RenderObject* object;
+    Ogre::SceneManager* sceneManager;       // Puntero al manager de escenas de ogre
+    Ogre::SceneNode* node;                  // Nodo para renderizado
+    RenderObject* object;                   // Objecto para renderizar
 
     // si es nullptr, quiere decir que el padre es el nodo root
     //RenderNode* parent;

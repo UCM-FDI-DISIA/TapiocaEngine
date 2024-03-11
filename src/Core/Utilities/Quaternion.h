@@ -4,18 +4,20 @@
 // q = x + yi + zj +wk
 //donde x y z w son numeros reales y ddone i j k son 
 //numeros complejos , vectores unitarios ortogonales entre si. i^2 = j^2 = k^2 = -1
-/// usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html
 namespace Tapioca {
+/*
+    * @brief Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html.
+    * Cualquier rotacion en un espacio tridimensional se puede definir
+    * con un vector unitario y una cantidad de giro sobre ese vector
+*/
 class TAPIOCA_API Quaternion {
 public:
-    //cualquier rotacion en un espacio tridimensional se puede definir
-    // con un vector unitario y una cantidad de giro sobre ese vector
     float scalar;//(W)
 
     Vector3 vector;//(X,Y,Z)
     // las componentes individuales seran W X Y Z Q(WXYZ)
     
-    float angle;// se almacenara en radianes
+    float angle;// Angulo en radianes
 
     //para pasar de  eje + angulo  a quaternion
     // 0 + (x,y,z )
@@ -23,55 +25,78 @@ public:
     // q0 = cos(0/2), q1 = xsin(0/2), q2 = ysin(0/2), q3 = zsin(0/2)
 
     //para rotar un punto se multiplica por el cuatrenion y lueg por su conjugado pr = q*p*qc
-
+    /*
+    * @brief Constructora de la clase Quaternion.
+    * Se contruye un a partir de 4 floats que describen el angulo y vector que definen el quaternion
+    * @param q0 Cantidad de giro que se aplica sobre el vector
+    * @param q1 Valor de la componente x del vector
+    * @param q2 Valor de la componente y del vector
+    * @param q3 Valor de la componente z del vector
+    */
     Quaternion(const float q0, const float q1, const float q2, const float q3);
     /*
-    * @brief  Quaternion que describe la rotacion de alfa grados en el eje vec
-    *@params alfa en grados sexagesimales!!!! 
+    * @brief Constructora de la clase Quaternion. 
+    * Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec
+    * @params alfa Rotacion del vector en grados sexagesimales
+    * @params vec Vector que define el giro
     */
     Quaternion(const float alfa, const Vector3 vec);
 
     /*
-    * @brief construye un cuaternion a partir de rotaciones en los 3 ejes globales (x y z) en grados SEXAGESIMALES
+    * @brief Constructora de la clase Quaternion. 
+    * Se construye a partir de rotaciones en los 3 ejes globales (x y z) en grados sexagesimales
+    * @param euler Rotacion en los 3 ejes globales
     */
     Quaternion(const Vector3 euler);
     /*
-    * @brief devuelve el quaternion inverso que es el conjugado entre la magnitud 
+    * @brief Devuelve el quaternion inverso (el conjugado entre la magnitud)
+    * @return Inverso del quaternion
     */
     Quaternion inverse();
     /*
-    * @brief devuelve el cuaternion conjugado que es el mismo con la parte compleja negada
+    * @brief Devuelve el cuaternion conjugado
+    * @return Quaternion conjugado
     */
     Quaternion conjugate();
     /*
     * @brief devuelve la magnitud del quaternion 
+    * @return Magnitud del quaternion 
     */
     float norm();
     /*
-    * @brief devuelve un vector con la rotacion en angulos sexadecimales  pitch , yaw, roll (x,y,z) en unsistema y up
+    * @brief Devuelve un vector con la rotacion en angulos sexadecimales  pitch , yaw, roll (x,y,z) en un sistema y up
+    * @return Vector con la rotacion en angulos sexadecimales
     */
     Vector3 euler();
 
-    /*La multiplicacion NO esc onmutativa, multiplcar por la derecha o por la izquierda no es lo mismo
-    * @brief  multiplica el cuaternion por rhs;Para rotar un punto se puede hacer q * p * q(conjugado).
-    * @param rhs elemento diestro de la multiplicacion
+    /*
+    * @brief Multiplica el cuaternion por rhs.
+    * Para rotar un punto se puede hacer q * p * q(conjugado).
+    * @param rhs Elemento diestro de la multiplicacion
+    * @return Resultado de multiplicar el quaternion por rhs
     */
     Quaternion operator*(const Quaternion rhs);//right hand side
 
     /*
-    * @brief multiplicacio por un escalar
-    * @param s escalar por el que se multiplican todos los miembros del quaternion
+    * @brief Multiplicacio por un escalar
+    * @param s Escalar por el que se multiplican todos los miembros del quaternion
+    * @return Resultado de multiplicar el quaternion por s
     */
     Quaternion operator*(const float s);
 
     /*
-    * @divide todos los componentes del quaternion por el escalar s
+    * @brief Divide el cuaternion por un escalar
+    * Para rotar un punto se puede hacer q * p * q(conjugado).
+    * @param s Escalar por el que se dividen todos los miembros del quaternion
+    * @return Resultado de multiplicar el quaternion por rhs
     */
-    
     Quaternion operator/(const float s);
 
     /*
-    * @brief multiplicacion "vectorizada"  "Formula Rodrigues" 
+    * @brief multiplicacion "vectorizada" con la "Formula Rodrigues" 
+    * Para rotar un punto se puede hacer q * p * q(conjugado).
+    * @param point Punto por el que se multiplica
+    * @return Resultado de multiplicar el quaternion por el punto 
     */
     Vector3 rotatePoint(const Vector3 point);
 };

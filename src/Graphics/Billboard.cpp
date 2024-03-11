@@ -27,16 +27,8 @@ float Tapioca::Billboard::getHeight() const { return mBillboard->getOwnHeight();
 
 float Tapioca::Billboard::getWidth() const { return mBillboard->getOwnWidth(); }
 
-void Tapioca::Billboard::setColour(Vector4 colour) {
-    mBillboard->setColour(Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
-}
-
 void Tapioca::Billboard::setDimensions(float width, float height) {
     mBillboard->setDimensions(Ogre::Real(width), Ogre::Real(height));
-}
-
-void Tapioca::Billboard::setPosition(const Vector3& position) {
-    mBillboard->setPosition(Ogre::Vector3(position.x, position.y, position.z));
 }
 
 void Tapioca::Billboard::setRotation(const float rotation) { mBillboard->setRotation(Ogre::Radian(rotation)); }

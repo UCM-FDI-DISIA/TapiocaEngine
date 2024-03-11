@@ -3,14 +3,14 @@
 
 namespace Tapioca {
 
-Light::Light(Ogre::SceneManager* const scnMgr, RenderNode* const node, const Vector4 color)
-    : RenderObject(node, scnMgr), mLight(scnMgr->createLight()), mColor(color) {
+Light::Light(Ogre::SceneManager* const scnMgr, RenderNode* const node, const Vector4 colour)
+    : RenderObject(node, scnMgr), mLight(scnMgr->createLight()), mColour(colour) {
     init(mLight);
-    mLight->setDiffuseColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
+    mLight->setDiffuseColour(Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
 }
 
-void Light::setColor(const Vector4 color) {
-    mLight->setDiffuseColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
-    mColor = color;
+void Light::setColor(const Vector4 colour) {
+    mLight->setDiffuseColour(Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
+    mColour = colour;
 }
 }

@@ -2,31 +2,56 @@
 #include "defs.h"
 
 namespace Tapioca {
-/**
+/*
 * Clase que implementa un vector geometrico de dos dimensiones.
 */
 class TAPIOCA_API Vector2 {
 public:
-    // Genera un vector que inicializa "x" e "y" al numero dado.
-    // Si no se da un numero, este se considera cero.
+    /*
+    * @brief Constructora de la clase Vector2.
+    * Genera un vector que inicializa "x" e "y" al numero dado. 
+    * Si no se da un numero, este se considera cero.
+    * @param xy Valor al que se inicializan "x" e "y"
+    */
     Vector2(const float xy = 0);
-    // Genera un vector que inicializa "x" e "y" a sus valores correspondientes.
+    /*
+    * @brief Constructora de la clase Vector2.
+    * Genera un vector que inicializa "x" e "y" a sus valores correspondientes.
+    * @param x Valor al que se inicializa "x"
+    * @param y Valor al que se inicializa "y"
+    */
     Vector2(const float x, const float y);
-    // Genera una copia del vector dado.
+    /*
+    * @brief Constructora de la clase Vector2.
+    * Genera una copia del vector dado.
+    * @param other Vector que se quiere copiar
+    */
     Vector2(const Vector2& other);
 
     float x;
     float y;
 
-    // Devuelve la magnitud al cuadrado del vector.
+    /*
+    * @brief Devuelve la magnitud al cuadrado del vector
+    * @return Magnitud al cuadrado del vector
+    */
     float magnitudeSquared() const;
-    // Devuelve la magnitud del vector.
+    /*
+    * @brief Devuelve la magnitud del vector
+    * @return Magnitud del vector
+    */
     float magnitude() const;
-    // Devuelve este vector, pero normalizado.
-    // Si este vector tiene magnitud cero, devuelve un vector de magnitud cero.
+    /*
+    * @brief Devuelve este vector, pero normalizado.
+    * Si este vector tiene magnitud cero, devuelve un vector de magnitud cero.
+    * @return Vector normalizado
+    */
     Vector2 getNormalized() const;
-    // Normaliza este vector y devuelve la magnitud que tenia anteriormente.
-    // Si este vector tenia magnitud cero, no cambia.
+    /*
+    * @brief Normaliza este vector y devuelve la magnitud que tenia anteriormente.
+    * No ocurre nada si su magnitud es 0
+    * @return Magnitud del vector antes de ser normalizado
+    */
     float normalize();
 
     inline Vector2 operator+(const Vector2& other) const { return Vector2(x + other.x, y + other.y); }

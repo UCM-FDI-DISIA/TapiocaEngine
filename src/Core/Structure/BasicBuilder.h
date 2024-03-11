@@ -6,6 +6,10 @@ namespace Tapioca {
 template<IsComponent TComp>
 class TAPIOCA_API BasicBuilder : public ComponentBuilder {
 public:
+    /*
+    * @brief Crea una componente
+    * @return Puntero al componente creado
+    */
 	inline Component* createComponent() override { return new TComp(); }
 };
 }

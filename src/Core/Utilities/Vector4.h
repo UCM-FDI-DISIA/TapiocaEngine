@@ -10,19 +10,42 @@ class Vector2;
 */
 class TAPIOCA_API Vector4 {
 public:
-    // Genera un vector que inicializa "x", "y", "z" y "w" al numero dado.
-    // Si no se da un numero, este se considera cero.
+    /*
+    * @brief Constructora de la clase Vector4.
+    * Genera un vector que inicializa "x", "y", "z" y "w" al numero dado.
+    * Si no se da un numero, este se considera cero.
+    * @param xyz Valor al que se inicializan "x", "y", "z" y "w"
+    */
     Vector4(const float xyzw = 0);
-    // Genera un vector que inicializa "x", "y", "z" y "w" a sus valores correspondientes.
-    // Si no se da un valor a "z" o a "w", se considera cero.
+    /*
+    * @brief Constructora de la clase Vector4.
+    * Genera un vector que inicializa "x", "y", "z" y "w" a sus valores correspondientes.
+    * Si no se da un numero, este se considera cero.
+    * @param x Valor al que se inicializa "x"
+    * @param y Valor al que se inicializa "y"
+    * @param z Valor al que se inicializa "z"
+    * @param w Valor al que se inicializa "w"
+    */
     Vector4(const float x, const float y, const float z = 0, const float w = 0);
-    // Genera una copia del vector dado.
+    /*
+    * @brief Constructora de la clase Vector4.
+    * Genera una copia del vector dado.
+    * @param other Vector que se quiere copiar
+    */
     Vector4(const Vector4& other);
-    // Genera un vector con "x", "y" y "z" tal como estan en el vector dado.
-    // "w" se inicializa segun el numero dado. Si no se da un numero, este se considera cero.
+    /*
+    * @brief Genera un vector con "x", "y" y "z" tal como estan en el vector dado.
+    * "w" se inicializa segun el numero dado. Si no se da un numero, este se considera cero.
+    * @param other Vector3 del que se quiere copiar "x", "y" y "z"
+    */
     Vector4(const Vector3& other, const float w = 0);
-    // Genera un vector con "x" e "y" tal como estan en el vector dado.
-    // "z" y "w" se inicializan segun el numero dado. Si no se da algun numero, este se considera cero.
+    /*
+    * @brief Genera un vector con "x" e "y" tal como estan en el vector dado.
+    * "z" y "w" se inicializan segun el numero dado. Si no se da algun numero, este se considera cero.
+    * @param other Vector2 del que se quiere copiar "x" e "y"
+    * @param z Valor al que se inicializa "z"
+    * @param w Valor al que se inicializa "w"
+    */
     Vector4(const Vector2& other, const float z = 0, const float w = 0);
 
     float x;
@@ -30,15 +53,27 @@ public:
     float z;
     float w;
 
-    // Devuelve la magnitud al cuadrado del vector.
+    /*
+    * @brief Devuelve la magnitud al cuadrado del vector
+    * @return Magnitud al cuadrado del vector
+    */
     float magnitudeSquared() const;
-    // Devuelve la magnitud del vector.
+    /*
+    * @brief Devuelve la magnitud del vector
+    * @return Magnitud del vector
+    */
     float magnitude() const;
-    // Devuelve este vector, pero normalizado.
-    // Si este vector tiene magnitud cero, devuelve un vector de magnitud cero.
+    /*
+    * @brief Devuelve este vector, pero normalizado.
+    * Si este vector tiene magnitud cero, devuelve un vector de magnitud cero.
+    * @return Vector normalizado
+    */
     Vector4 getNormalized() const;
-    // Normaliza este vector y devuelve la magnitud que tenia anteriormente.
-    // Si este vector tenia magnitud cero, no cambia.
+    /*
+    * @brief Normaliza este vector y devuelve la magnitud que tenia anteriormente.
+    * No ocurre nada si su magnitud es 0
+    * @return Magnitud del vector antes de ser normalizado
+    */
     float normalize();
 
     inline Vector4 operator+(const Vector4& other) const { return Vector4(x + other.x, y + other.y, z + other.z, w + other.w); }

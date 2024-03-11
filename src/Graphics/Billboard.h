@@ -10,6 +10,9 @@ class Vector3;
 class Vector4;
 class BillboardSet;
 
+/*
+* @brief Wrapper de la clase Billboard de Ogre.
+*/
 class TAPIOCA_API Billboard {
 private:
     friend BillboardSet;
@@ -18,25 +21,43 @@ protected:
     //Billboard de Ogre
     Ogre::Billboard* mBillboard;
 
-    //Crea un �nico Billboard si se le proporciona un puntero a Ogre::Billboard (a partir de un BillboardSet)
+    /*
+    * @brief Constructora de la clase Billboard.
+    * Crea un unico Billboard si se le proporciona un puntero a Ogre::Billboard (a partir de un BillboardSet)
+    * @param oBillboard puntero a un billboard de ogre
+    */
     Billboard(Ogre::Billboard* const oBillboard);
 
+    /*
+    * @brief Devuelve el billboard al que esta asociado
+    * @return puntero al billboard de ogre al que esta asociado
+    */
     Ogre::Billboard* getBillboard();
 
 public:
-    //Destructora de la clase
+    /*
+    * @brief Destructora de la clase Billboard.
+    */
     virtual ~Billboard();
-    //Devuelve la posici�n del Billboard
+    /*
+    * @brief Devuelve la posicion del billboard
+    * @param Posicion del billboard
+    */
     Vector3 getPosition() const;
-    //Define la posición del Billboard
-    void setPosition(const Vector3& position);
-    //Devuelve el color del Billboard
+    /*
+    * @brief Devuelve el color del billboard
+    * @param Color del billboard
+    */
     Vector4 getColour() const;
-    //Define el color del Billboard
-    void setColour(Vector4 colour);
-    //Devuelve la altura del Billboard
+    /*
+    * @brief Devuelve la altura del billboard
+    * @param Altura del billboard
+    */
     float getHeight() const;
-    //Devuelve la anchura del Billboard
+    /*
+    * @brief Devuelve la anchura del billboard
+    * @param Anchura del billboard
+    */
     float getWidth() const;
     //Define las dimensiones del Billboard
     void setDimensions(float width, float height);

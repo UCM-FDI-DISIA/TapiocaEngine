@@ -5,7 +5,7 @@
 
 namespace Tapioca {
 
-std::unordered_set<Component*> Component::listeners = std::unordered_set<Component*>();
+//std::unordered_set<Component*> Component::listeners = std::unordered_set<Component*>();
 
 Component::Component() : object(nullptr), alive(true), active(true), id("") { }
 

@@ -91,6 +91,10 @@ Quaternion Quaternion::operator*(const Quaternion rhs) {
     return Quaternion(newScalar, newVector.x, newVector.y, newVector.z);
 }
 
+Quaternion Quaternion::operator*(const float s) {
+    return Quaternion(scalar * s, vector.x * s, vector.y * s, vector.z * s);
+}
+
 Quaternion Quaternion::operator/(const float s) {
     return Quaternion(scalar / s, vector.x / s, vector.y / s, vector.z / s);
 }

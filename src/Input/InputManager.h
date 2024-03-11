@@ -38,7 +38,9 @@ private:
     const int MOUSE_MOTION_VALUE = -2;
     const int MOUSE_WHEEL_VALUE = -3;
 
-
+    /*
+    * @brief Constructora de la clase InputManager.
+    */
     InputManager();
     
     /*
@@ -48,23 +50,32 @@ private:
 
     /*
     * @brief Añade el mando con su deadzone por defecto al mapa de mandos
+    * @param i Indice del controller
     */
     void addController(const int i);
 
     /*
     * @brief Elimina el mando y su deadzone del mapa de mandos
+    * @param i Indice del controller
     */
     void removeController(const int i);
   
     /*
     * @brief Envia el evento propio si alguno de los eventos mapeados coincide con el producido
-    * @param evtent El nombre del evento de input
+    * @param eventName El nombre del evento de input
+    * @param event Evento del input
     * @param eventInfo Informacion del evento producido por SDL
     */
     void sendEvent(std::string const& eventName, SDL_Event const& event, int const& value);
 
 public:
+    /*
+    * @brief Inicializa el inputManager
+    */
     bool init();
+    /*
+    * @brief Destructora de la clase InputManager
+    */
     virtual ~InputManager();
 
     void updateState(const SDL_Event& event);

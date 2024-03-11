@@ -23,43 +23,84 @@ enum BillboardType {
     BBT_PERPENDICULAR_SELF
 };
 
+/*
+* @brief Wrapper de la clase BillboardSet de Ogre.
+*/
 class TAPIOCA_API BillboardSet : public RenderObject {
 private:
     friend GraphicsEngine;
 
 protected:
-    //BillboardSet de Ogre
-    Ogre::BillboardSet* mBillboardSet;
-    //UnorderedSet de Billboards de Tapioca
-    std::vector<Tapioca::Billboard*> billboards;
-    //Nombre identificador
-    std::string mName;
+    Ogre::BillboardSet* mBillboardSet;                  // BillboardSet de Ogre
+    std::vector<Tapioca::Billboard*> billboards;        // UnorderedSet de Billboards de Tapioca
+    std::string mName;                                  // Nombre identificador
 
-    //Crea un BillboardSet con nombre a partir de un número de elementos
+    /*
+    * @brief Constructora de la clase BillboardSet.
+    * @param scnMgr Puntero al manager de escenas de ogre
+    * @param node Nodo para renderizado
+    * @param name Nombre del billboardSet
+    * @param poolSize Numero maximo de billboards que puede tener
+    */
     BillboardSet(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                  const unsigned int poolSize);
 
 public:
-    //Destructora de la clase
+    /*
+    * @brief Desstructora de la clase BillboardSet.
+    */
     virtual ~BillboardSet();
 
-    //Devuelve el nombre del Billboard
+    /*
+    * @brief Devuelve el nombre del billboardSet
+    * @return Nombre del billboardSet
+    */
     const std::string getName() const;
-    //Ajusta el tamaño del BillboardSet al indicado
+    /*
+    * @brief Ajusta el tamanio del BillboardSet al indicado
+    * @param size Tamanio al que se quiere cambiar
+    */
     void setPoolSize(const size_t size);
-    //Devuelve el tamaño del BillboardSet
+    /*
+    * @brief Devuelve el tamanio del BillboardSet
+    * @return Tamanio del BillboardSet
+    */
     int getPoolSize() const;
-    //Devuelve el n�mero de Billboards del BillboardSet
+    /*
+    * @brief Devuelve el numero de billboards en el BillboardSet
+    * @return Numero de billboards en el BillboardSet
+    */
     int getNumBillboards() const;
-    //Vacía el BillboardSet
+    //Cambia la visibilidad del BillboardSet
+    //void setVisible(bool v);
+    ////Comprueba si el Billboard es visible o no
+    //bool getVisible() const;
+    /*
+    * @brief Vacia el BillboardSet
+    */
     void clear();
-    //Elimina el Billboard según su índice
+    /*
+    * @brief Elimina un billboard segun su indice
+    * @param index Indice del billboard que se quiere eliminar
+    */
     void removeBillboard(const int index);
-    //Elimina el Billboard proporcionado
+    /*
+    * @brief Elimina un billboard segun su puntero
+    * @param bb Puntero del billboard que se quiere eliminar
+    */
     void removeBillboard(Billboard* const bb);
-    //Añade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
-    Tapioca::Billboard* addBillboard(const Vector3& position, const Vector4& colour = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
-    //Devuelve un puntero al Billboard que corresponde con el índice indicado
+    /*
+    * @brief Aniade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
+    * @param position Posicion del billboard
+    * @param colour Color del billboard
+    */
+    Tapioca::Billboard* addBillboard(const Vector3& position,
+                                        const Vector4& colour = Vector4(255.0f, 255.0f, 255.0f, 255.0f));
+    /*
+    * @brief Devuelve el billboard con el indice proporcionado
+    * @param index Indice del billboard que se quiere devover
+    * @return Puntero al billboard con indice index
+    */
     Tapioca::Billboard* getBillboard(const int index) const;
     //Cambia el tipo de Billboard
     void setBillboardType(BillboardType billboardType);

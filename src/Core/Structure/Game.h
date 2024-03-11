@@ -13,41 +13,86 @@ class TAPIOCA_API Game : public Singleton<Game> {
 private:
     friend Singleton<Game>;
 
-    std::vector<Module*> modules;
-    std::stack<Scene*> scenes;
-    std::vector<Scene*> toDelete;
+    std::vector<Module*> modules;                           // Modulos del motor
+    std::stack<Scene*> scenes;                              // Escenas del motor
+    std::vector<Scene*> toDelete;                           // Escenas que se van a eliminar
 
-    uint64_t deltaTime;
-    static const uint64_t MAX_NUM_FIXED_UDPATES = 150;
-    bool finish;
+    uint64_t deltaTime;                                     // Tiempo transcurrido desde el ultimo tick
+    static const uint64_t MAX_NUM_FIXED_UDPATES = 150;      // Numero maximo de fixedUpdates
+    bool finish;                                            // True si va a terminar la ejecucion, false en caso contrario
 
-
+    /*
+    * @brief Comienza los modulos
+    */
     void start();
+    /*
+    * @brief Llama al update de los modulos y escenas
+    */
     void update();
+    /*
+    * @brief Envia eventos a los modulos
+    */
     void handleEvents();
+    /*
+    * @brief Llama al fixedUpdate de los modulos y escenas
+    */
     void fixedUpdate();
+    /*
+    * @brief Renderiza los objetos que contienen 
+    */
     void render();
+    /*
+    * @brief Borra los objetos y componentes muertos y borra las escenas q se han marcado como pendientes de eliminar
+    */
     void refresh();
-
+    /*
+    * @brief Constructora de la clase Game
+    */
     Game();
 
 public:
+    /*
+    * @brief Destructora de la clase Game
+    */
     ~Game();
 
     static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps (62.5)
-
+    /*
+    * @brief Detiene el bucle principal
+    */
     inline void exit() { finish = true; }
-
+    /*
+    * @brief Inicializa los modulos
+    */
     bool init();
+    /*
+    * @brief Metodo que contiene el bucle principal del juego
+    */
     void run();
 
+    /*
+    * @brief Aniade una escena al stack
+    * @param sc Escena que se quiere aniadir
+    */
     void pushScene(Scene* const sc);
+    /*
+    * @brief Elimina la escena que se esta ejecutando del stack
+    */
     void popScene();
+    /*
+    * @brief Cambia la escena
+    * @param sc Escena a la que se quiere cambiar
+    */
     void changeScene(Scene* const sc);
-
     
+    /*
+    * @brief Aniade un modulo al vector
+    * @param m Modulo que se quiere aniadir
+    */
     void addModule(Module* const m);
-
+    /*
+    * @brief Envia un evento a todos los modulos y escenas
+    */
     void pushEvent(std::string const& id, void* info);
 };
 }

@@ -152,11 +152,11 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     btCollisionShape* shape;
 
     switch (colliderShape) {
-    case BOX_SHAPE: shape = new btBoxShape(scale); break;
-    case SPHERE_SHAPE: shape = new btSphereShape(scale.getX()); break;
-    case PLANE_SHAPE: shape = new btStaticPlaneShape(scale, 0); break;
-    case CAPSULE_SHAPE: shape = new btCapsuleShape(scale.getX(), scale.getY()); break;
-    default: shape = new btBoxShape(scale); break;
+        case BOX_SHAPE: shape = new btBoxShape(scale); break;
+        case SPHERE_SHAPE: shape = new btSphereShape(scale.getX()); break;
+        case PLANE_SHAPE: shape = new btStaticPlaneShape(scale, 0); break;
+        case CAPSULE_SHAPE: shape = new btCapsuleShape(scale.getX(), scale.getY()); break;
+        default: shape = new btBoxShape(scale); break;
     }
 
     btVector3 inertia;

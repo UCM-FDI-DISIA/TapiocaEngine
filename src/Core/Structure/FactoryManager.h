@@ -8,7 +8,7 @@ namespace Tapioca {
 class Component;
 class ComponentBuilder;
 
-/**
+/*
 * @brief Clase Singleton y Modulo que se encarga de gestionar las factorias de componentes
 */
 class TAPIOCA_API FactoryManager : public Singleton<FactoryManager>, public Module {
@@ -17,17 +17,17 @@ private:
 
     std::unordered_map<std::string, ComponentBuilder*> builders;   // Mapa de factorias de componentes
 
-    /**
+    /*
     * @brief Inicializa el modulo
     */
     FactoryManager();
 
-    /**
+    /*
     * @brief Crea las factorias de los componentes del motor
     */
     bool init() override;
 
-    /**
+    /*
     * @brief Crea las factorias de los componentes del juego
     */
     void createEngineBuilders();
@@ -38,7 +38,7 @@ public:
     FactoryManager& operator=(FactoryManager&) = delete;
     FactoryManager& operator=(FactoryManager&&) = delete;
 
-    /**
+    /*
     * @brief Libera la memoria usada por las factorias
     */
     ~FactoryManager();
@@ -48,7 +48,7 @@ public:
     */
     Component* createComponent(std::string const& name);
 
-    /**
+    /*
     * @brief Añade una factoria al mapa de factorias
     */
     void addFactory(std::string const& name, ComponentBuilder* const builder);

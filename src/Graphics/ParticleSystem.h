@@ -11,26 +11,41 @@ class ParticleSystem;
 namespace Tapioca {
 class RenderNode;
 
+/*
+* @brief Wrapper de la clase ParticleSystem de Ogre.
+*/
 class TAPIOCA_API ParticleSystem : public RenderObject {
 private:
-    Ogre::ParticleSystem* mParticleSystem;
+    Ogre::ParticleSystem* mParticleSystem;      // ParticleSystem de Ogre
 
 public:
 
     /*
-    * @brief Constructora. Solo se podra crear un ParticleSystem a partir de un sistema ya creado en un .particle
+    * @brief Constructora de la clase ParticleSystem.
+    * Se crea a partir de un sistema ya creado en un .particle
     * @param scnMgr SceneManager de ogre
-    * @param node Nodo que contiene el ParticleSystem
+    * @param node Nodo para renderizado
     * @param name Nombre del ParticleSystem
     * @param templateName Nombre del sistema de particulas definido en el .particle 
-    * @param emitting Si el sistema comienza emitiendo por defecto o no
+    * @param emitting True si el sistema comienza emitiendo por defecto, false en caso contrario
     */
     ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                    std::string const& templateName, const bool emitting = false);
 
+    /*
+    * @brief Destructora de la clase ParticleSystem
+    */
     virtual ~ParticleSystem() { }
 
+    /*
+    * @brief Comienza o para el sistema de particulas
+    * @param emitting True para que emita particulas, false en caso contrario
+    */
     void setEmitting(const bool emitting);
+    /*
+    * @brief Devuelve si el sistema de particulas esta emitiendo o no
+    * @return True si emite particulas, false en caso contrario
+    */
     bool isEmitting();
 
     /* 
