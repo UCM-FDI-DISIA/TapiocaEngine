@@ -2,6 +2,8 @@
 *.exe
 *.pdb
 *.lib
+#excepto las libs que no construimos
+!/Dependencies/IrrKlang/libs/irrKlang.lib
 *.idb
 *.dll
 *.exp
