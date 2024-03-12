@@ -5,8 +5,9 @@
 #include "Utilities/checkML.h"
 
 namespace Tapioca {
-	
-PhysicsDebugDrawer::PhysicsDebugDrawer() : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
+
+PhysicsDebugDrawer::PhysicsDebugDrawer()
+    : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
 
 PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
 
@@ -22,8 +23,7 @@ void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, co
 }
 
 void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& fromColor,
-                                           const btVector3& toColor) { 
-}
+                                  const btVector3& toColor) { }
 
 void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
 #ifdef _DEBUG
@@ -31,8 +31,8 @@ void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
 #endif
 }
 
-void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB,
-                                                   btScalar distance, int lifeTime, const btVector3& color) {
+void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance,
+                                          int lifeTime, const btVector3& color) {
     auto g = GraphicsEngine::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
     line->begin("white", Ogre::RenderOperation::OT_POINT_LIST);
@@ -42,7 +42,6 @@ void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVec
     line->colour(color.x(), color.y(), color.z());
     line->end();
     lines.push_back(line);
-
 }
 
 //void PhysicsDebugDrawer::drawTransform(const btTransform& transform, btScalar orthoLen) { }
