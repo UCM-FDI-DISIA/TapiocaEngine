@@ -49,7 +49,7 @@ void runEngine() {
         bil->addBillboard(Tapioca::Vector3(50.0f, 0.0f, -230.0f), Tapioca::Vector4(1.0f, 0.0f, 0.0f, 1.0f));
         bil->removeBillboard(0);
         //COMENTAD ESTA LINEA PARA QUE EL MOTOR SE CALLE
-        sound->testsample();
+        //sound->testsample();
         game->run();
 
         delete nodeBil;

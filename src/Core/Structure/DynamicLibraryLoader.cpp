@@ -36,7 +36,7 @@ bool DynamicLibraryLoader::load(std::string const& gameName) {
 bool DynamicLibraryLoader::initGame(std::string const& gameName) {
     if (load(gameName)) {
         EntryPoint eP = (EntryPoint)GetProcAddress(module, "init");
-        eP(FactoryManager::instance(), SceneManager::instance());
+        eP();
     }
     else {
 #ifdef _DEBUG
