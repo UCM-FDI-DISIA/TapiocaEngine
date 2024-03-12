@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include "Utilities/Concepts.h"
-#include "Utilities/defs.h"
-#include "Utilities/componentDefs.h"
+#include "defs.h"
+#include "componentDefs.h"
 
 namespace Tapioca {
 class Component;

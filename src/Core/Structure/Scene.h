@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Tapioca {
 class GameObject;

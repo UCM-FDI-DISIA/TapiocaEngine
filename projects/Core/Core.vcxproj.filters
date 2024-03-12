@@ -75,16 +75,10 @@
     <ClInclude Include="..\..\src\Core\Components\Transform.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Utilities\checkML.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\Vector4.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Utilities\defs.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h">
@@ -101,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h">
       <Filter>Structure</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Utilities\componentDefs.h">
-      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

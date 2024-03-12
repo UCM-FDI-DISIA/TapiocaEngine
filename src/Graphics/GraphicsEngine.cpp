@@ -41,15 +41,6 @@ GraphicsEngine::GraphicsEngine(const std::string const& windowName, const uint32
       mwindowName(windowName), windowWidth(w), windowHeight(h), glContext(), overSys(nullptr) { }
 
 GraphicsEngine::~GraphicsEngine() {
-    /*for (auto& object : objects) {
-        delete object.first;
-    }
-    objects.clear();
-    for (auto& node : nodes) {
-        delete node;
-    }
-    nodes.clear();*/
-
     for (auto& node : selfManagedNodes)
         delete node;
     selfManagedNodes.clear();
@@ -58,8 +49,6 @@ GraphicsEngine::~GraphicsEngine() {
 }
 
 bool GraphicsEngine::init() {
-    // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
-
     // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)

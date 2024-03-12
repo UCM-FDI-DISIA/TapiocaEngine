@@ -3,7 +3,7 @@
 #include <stack>
 #include <string>
 #include "Utilities/Singleton.h"
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Tapioca {
 class Scene;

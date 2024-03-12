@@ -22,7 +22,7 @@ public:
 
     // Inicializa la instancia con los parametros deseados (... args)
     template<typename... T_args>
-    inline static T* create(T_args&&... args) {
+    static T* create(T_args&&... args) {
         //assert(instance_.get() == nullptr, "Instance already exists");
         if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
 #ifdef _DEBUG
@@ -33,7 +33,7 @@ public:
     }
 
     // Obtener el puntero a la instancia
-    inline static T* instance() {
+    static T* instance() {
         // Si no existe, se crea
         if (instance_ == nullptr) create();
 

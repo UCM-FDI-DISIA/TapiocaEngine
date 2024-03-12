@@ -6,7 +6,9 @@
 #include <OgreRenderTargetListener.h>
 
 class SDL_Window;
+
 namespace Ogre {
+class RenderWindow;
 class ImGuiOverlay;
 }
 
@@ -20,9 +22,11 @@ class TAPIOCA_API UIManager : public Singleton<UIManager>, public Module, public
 private:
     friend Singleton<UIManager>;
 
+    SDL_Window* mySDLWindow;            // Referencia a la ventana de SDL
     Ogre::RenderWindow* myOgreWindow;   // Referencia a la ventana de Ogre
+    void* myGLContext;                  // Referencia al contexto de OpenGL
     Ogre::ImGuiOverlay* imguiOverlay;   // Overlay de ImGui
-    const char* button;                 // Boton de prueba
+    const char* button;                 // Texto de Boton de Play
 
     /**
     * @brief Inicializa a nulo los punteros

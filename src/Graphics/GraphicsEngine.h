@@ -1,13 +1,8 @@
 #pragma once
 #include <string>
 #include <unordered_set>
-
-// Includes de Core
-// Herencia
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
-
-// Includes de Core para parametros con valores por defecto
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 
@@ -27,7 +22,7 @@ class Viewport;
 class OverlaySystem;
 
 namespace RTShader {
-    class ShaderGenerator;
+class ShaderGenerator;
 }
 }
 
@@ -61,13 +56,13 @@ private:
     // Ventana
     uint32_t windowWidth, windowHeight;                  // Anchura y altura de la ventana, respectivamente
     SDL_Window* sdlWindow;                               // Ventana de SDL
+    void* glContext;									 // Contexto de OpenGL
 
+    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por graphicsEngine
+    
     // UI
     Ogre::OverlaySystem* overSys;                        // Systema de overlays de Ogre
-    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por graphicsEngine
-    void* glContext;
 
-    // 
     // TODO: se carga de archivo, se puede borrar
     /*
     * @brief Carga plugIns especificados desde codigo
@@ -129,6 +124,9 @@ public:
     * @return Puntero a la ventana de Ogre
     */
     Ogre::RenderWindow* getOgreWindow();
+    /*
+    * @brief Devuelve un puntero al contexto de OpenGL
+    */
     void* getGLContext();
 
     /*

@@ -1,5 +1,5 @@
 #pragma once
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Ogre {
 class RenderWindow;

@@ -1,7 +1,7 @@
 #pragma once
 #include <LinearMath/btIDebugDraw.h>
 #include <list>
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Ogre {
 class ManualObject;

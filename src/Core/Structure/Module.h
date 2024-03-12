@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Tapioca {
 class TAPIOCA_API Module {

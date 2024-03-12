@@ -2,7 +2,7 @@
 #include <unordered_set>
 #include "../Structure/Component.h"
 #include "../Utilities/Vector3.h"
-#include "../Utilities/defs.h"
+#include "defs.h"
 
 namespace Tapioca {
 class INode;

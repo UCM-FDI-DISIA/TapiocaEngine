@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{2564eff6-7cce-477d-a287-f1b452cd392b}</ProjectGuid>
+    <RootNamespace>Exports</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Lua\src\;$(SolutionDir)Dependencies\LuaBridge\Source\LuaBridge\;$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Input\;$(SolutionDir)src\Sound;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Lua\build\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\IrrKlang\libs\;$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Graphics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\UI\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Physics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Bridge\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Input\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Sound\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Window\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;OgreGLSupport_d.lib;OgreMeshLodGenerator_d.lib;OgreOverlay_d.lib;OgrePaging_d.lib;OgreProperty_d.lib;OgreRTShaderSystem_d.lib;Plugin_ParticleFX_d.lib;RenderSystem_GL3Plus_d.lib;Bullet2FileLoader_Debug.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletFileLoader_Debug.lib;BulletInverseDynamicsUtils_Debug.lib;BulletInverseDynamics_Debug.lib;BulletSoftBody_Debug.lib;BulletWorldImporter_Debug.lib;BulletXmlWorldImporter_Debug.lib;ConvexDecomposition_Debug.lib;GIMPACTUtils_Debug.lib;HACD_Debug.lib;LinearMath_Debug.lib;SDL2.lib;SDL2main.lib;lua.lib;irrKlang.lib;Core_d.lib;Graphics_d.lib;Physics_d.lib;UI_d.lib;Bridge_d.lib;Input_d.lib;Sound_d.lib;Window_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\Lua\src\;$(SolutionDir)Dependencies\LuaBridge\Source\LuaBridge\;$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Input\;$(SolutionDir)src\Sound\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\Dependencies\lib\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)Dependencies\Lua\build\$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\IrrKlang\libs\;$(SolutionDir)lib\Core\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Graphics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\UI\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Physics\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Bridge\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Input\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Sound\$(Platform)\$(Configuration)\;$(SolutionDir)lib\Window\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;OgreGLSupport.lib;OgreMeshLodGenerator.lib;OgreOverlay.lib;OgrePaging.lib;OgreProperty.lib;OgreRTShaderSystem.lib;Plugin_ParticleFX.lib;RenderSystem_GL3Plus.lib;Bullet2FileLoader.lib;Bullet3Collision.lib;Bullet3Common.lib;Bullet3Dynamics.lib;Bullet3Geometry.lib;Bullet3OpenCL_clew.lib;BulletCollision.lib;BulletDynamics.lib;BulletFileLoader.lib;BulletInverseDynamics.lib;BulletInverseDynamicsUtils.lib;BulletSoftBody.lib;BulletWorldImporter.lib;BulletXmlWorldImporter.lib;ConvexDecomposition.lib;GIMPACTUtils.lib;HACD.lib;LinearMath.lib;SDL2.lib;SDL2main.lib;lua.lib;irrKlang.lib;Core.lib;Graphics.lib;Physics.lib;UI.lib;Bridge.lib;Input.lib;Sound.lib;Window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bridge\Bridge.vcxproj">
+      <Project>{e0adcffa-eb53-44dd-b200-55fc3989ef12}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
+      <Project>{41b70f84-8525-46cb-b0ae-a461780aec77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Input\Input.vcxproj">
+      <Project>{e3f8c2c9-6137-4434-999c-b6e8958260f5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Physics\Physics.vcxproj">
+      <Project>{4d51ad06-e3f2-480d-92f8-d0a63c2b60e6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Sound\Sound.vcxproj">
+      <Project>{b28cc5e6-fff5-4196-a780-0b0fd266d2d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UI\UI.vcxproj">
+      <Project>{5864a0d2-29e9-4bd7-9db3-f51b12c19737}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Window\Window.vcxproj">
+      <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Exports\Exports.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Exports\checkML.h" />
+    <ClInclude Include="..\..\src\Exports\componentDefs.h" />
+    <ClInclude Include="..\..\src\Exports\defs.h" />
+    <ClInclude Include="..\..\src\Exports\Exports.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

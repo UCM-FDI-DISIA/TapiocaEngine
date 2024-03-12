@@ -1,6 +1,6 @@
 #pragma once
 #include "Light.h"
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Ogre {
 class SceneManager;

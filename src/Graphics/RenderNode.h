@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_set>
 #include <vector>
-#include "Utilities/defs.h"
+#include "defs.h"
 
 namespace Ogre {
 class SceneManager;

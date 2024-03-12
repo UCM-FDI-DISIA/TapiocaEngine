@@ -8,14 +8,17 @@
 
 #include "Structure/FactoryManager.h"
 #include "Structure/DynamicLibraryLoader.h"
-#include "Utilities/checkML.h"
+#include "checkML.h"
 
 namespace Tapioca {
-UIManager::UIManager() : myOgreWindow(nullptr), imguiOverlay(nullptr), button("Play") { }
+UIManager::UIManager()
+    : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), imguiOverlay(nullptr), button("Play") { }
 
 UIManager::~UIManager() {
-    imguiOverlay = nullptr;
+    mySDLWindow = nullptr;
     myOgreWindow = nullptr;
+    myGLContext = nullptr;
+    imguiOverlay = nullptr;
 }
 
 bool UIManager::init() {
@@ -25,14 +28,16 @@ bool UIManager::init() {
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
     GraphicsEngine* graphics = GraphicsEngine::instance();
-    ImGui_ImplSDL2_InitForOpenGL(graphics->getSDLWindow(), (SDL_GLContext)graphics->getGLContext());
+    mySDLWindow = graphics->getSDLWindow();
+    myGLContext = graphics->getGLContext();
+    ImGui_ImplSDL2_InitForOpenGL(mySDLWindow, myGLContext);
     ImGui_ImplOpenGL3_Init("#version 130");
 
     Ogre::OverlayManager* overlayManager = Ogre::OverlayManager::getSingletonPtr();
     if (auto overlay = overlayManager->getByName("ImGuiOverlay"))
         imguiOverlay = static_cast<Ogre::ImGuiOverlay*>(overlay);
     else {
-        imguiOverlay = new Ogre::ImGuiOverlay(); // <- Aqui se producen los memory leaks
+        imguiOverlay = new Ogre::ImGuiOverlay();   // <- Aqui se producen los memory leaks
         overlayManager->addOverlay(imguiOverlay);
     }
 
@@ -42,7 +47,7 @@ bool UIManager::init() {
     imguiOverlay->setZOrder(300);
     imguiOverlay->show();
 
-    myOgreWindow = GraphicsEngine::instance()->getOgreWindow();
+    myOgreWindow = graphics->getOgreWindow();
     myOgreWindow->addListener(this);
     Ogre::ImGuiOverlay::NewFrame();
 
@@ -57,16 +62,13 @@ void UIManager::render() {
 
     if (ImGui::Button(button, ImVec2(130, 40))) {
 #ifdef _DEBUG
-    std::cout << "Pulsado el boton de jugar\n";
+        std::cout << "Pulsado el boton de jugar\n";
 #endif
         // Cargar la .dll
         if (!DynamicLibraryLoader::initGame()) {
-			button = "Couldn't run game";
-		}
+            button = "Couldn't run game";
+        }
     }
     ImGui::End();
-
-    ImGui::ShowDemoWindow();
-    // PRUEBA
 }
 }

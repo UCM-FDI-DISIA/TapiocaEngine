@@ -1,8 +1,8 @@
 #include "Game.h"
+#include <chrono>
 #include "Scene.h"
 #include "Module.h"
 #include "DynamicLibraryLoader.h"
-#include <chrono>
 
 namespace Tapioca {
 
@@ -132,5 +132,4 @@ void Game::changeScene(Scene* const sc) {
     scenes.push(sc);
     sc->start();
 }
-
 }

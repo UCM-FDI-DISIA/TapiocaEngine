@@ -1,6 +1,6 @@
 #include "DynamicLibraryLoader.h"
-#include "Utilities/componentDefs.h"
-#include "Utilities/defs.h"
+#include "componentDefs.h"
+#include "defs.h"
 #include "FactoryManager.h"
 #include "SceneManager.h"
 
