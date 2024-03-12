@@ -1,6 +1,7 @@
 #pragma once
 #include "Structure/Game.h"
 
+#include "WindowManager.h"
 #include "GraphicsEngine.h"
 #include "InputManager.h"
 #include "Structure/FactoryManager.h"
@@ -15,6 +16,7 @@
 #include <iostream>
 #endif
 
+Tapioca::WindowManager* window;
 Tapioca::InputManager* input;
 Tapioca::FactoryManager* factories;
 Tapioca::SceneManager* scenes;
@@ -83,6 +85,9 @@ int main(int argc, char** argv) {
 void mapInput();
 
 static void createModules(Tapioca::Game* game) {
+    /*window = Tapioca::WindowManager::create();
+    game->addModule(window);*/
+
     graphics = Tapioca::GraphicsEngine::create();
     game->addModule(graphics);
 

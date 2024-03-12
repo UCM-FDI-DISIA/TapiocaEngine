@@ -72,7 +72,7 @@ public:
     /*
     * @brief Inicializa el inputManager
     */
-    bool init();
+    bool init() override;
     /*
     * @brief Destructora de la clase InputManager
     */
