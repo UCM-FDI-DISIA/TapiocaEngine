@@ -29,6 +29,9 @@ scene = {
                     friction=1.0,
                     damping=0.4,
                     bounciness=0.0
+                },
+                MeshRenderer = {
+                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
                 }
             },
             children ={
@@ -59,9 +62,6 @@ scene = {
                                     rotationX = 25.0,
                                     rotationY = 25.0,
                                     rotationZ = 25.0
-                                },
-                                MeshRenderer = {
-                                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh"
                                 }
                             }
                         },
