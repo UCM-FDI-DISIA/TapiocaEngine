@@ -2,22 +2,23 @@
 
 rem Directorios
 set BAT_DIR=%~dp0
-set SCRIPTS_DIR=%BAT_DIR%Dependencies\Scripts\
-set SLN_PATH=%BAT_DIR%TapiocaEngine.sln
-set BIN_DIR=%BAT_DIR%..\bin
+set SCRIPTS_DIR=%BAT_DIR%\Dependencies\Scripts\
+set SLN_PATH=%BAT_DIR%\TapiocaEngine.sln
+set BIN_DIR=%BAT_DIR%\bin
+
 echo ~~Compilando dependencias...~~
 echo.
-if not exist %BAT_DIR%Dependencies\Ogre\build\x64\bin (
-	call %SCRIPTS_DIR%buildOgre.bat
+if not exist %BAT_DIR%\Dependencies\Ogre\build\x64\bin (
+	call %SCRIPTS_DIR%\buildOgre.bat
 )
-if not exist %BAT_DIR%Dependencies\Bullet\build\x64\x64 (
-	call %SCRIPTS_DIR%buildBullet.bat
+if not exist %BAT_DIR%\Dependencies\Bullet\build\x64\x64 (
+	call %SCRIPTS_DIR%\buildBullet.bat
 )
-if not exist %BAT_DIR%Dependencies\Lua\build\x64\Debug (
-	call %SCRIPTS_DIR%buildLua.bat
+if not exist %BAT_DIR%\Dependencies\Lua\build\x64\Debug (
+	call %SCRIPTS_DIR%\buildLua.bat
 )
 
-XCOPY %BAT_DIR%..\IrrKlang\dlls\*.dll %BIN_DIR% /Y
+XCOPY %BAT_DIR%\Dependencies\IrrKlang\dlls\*.dll %BIN_DIR% /Y
 
 echo ~~Dependencias compiladas. Compilando motor...~~
 echo.
