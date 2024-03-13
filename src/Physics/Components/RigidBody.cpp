@@ -118,6 +118,10 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
     if (id == "transformChanged") {
+#ifdef _DEBUG
+        std::cout << "received " <<transform->getGlobalRotation().x << " " << transform->getGlobalRotation().y << " "
+                  << transform->getGlobalRotation().z << " \n ";
+#endif
         btTransform btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
@@ -127,9 +131,9 @@ void RigidBody::start() {
 
     transform = object->getComponent<Transform>();
 
-    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getGlobalPosition(), Vector3(0,0,0), colliderScale,
-                                                            colShape, movementType, mass,
-        friction, damping, bounciness, isTrigger, group, mask);
+    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getGlobalPosition(), Vector3(0, 0, 0),
+                                                            colliderScale, colShape, movementType, mass, friction,
+                                                            damping, bounciness, isTrigger, group, mask);
 
     collider = object->getComponent<Collider>();
 
