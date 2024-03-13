@@ -1,20 +1,15 @@
 #pragma once
-#include "GraphicsEngine.h"
-#include "Structure/Module.h"
 #include "Utilities/Singleton.h"
-#include <OgreFrameListener.h>
+#include "Structure/Module.h"
 #include <OgreRenderTargetListener.h>
 
 class SDL_Window;
 
 namespace Ogre {
 class RenderWindow;
-class ImGuiOverlay;
 }
 
 namespace Tapioca {
-class FactoryManager;
-
 /**
 * @brief Clase que se encarga de la interfaz de usuario
 */
@@ -25,7 +20,8 @@ private:
     SDL_Window* mySDLWindow;            // Referencia a la ventana de SDL
     Ogre::RenderWindow* myOgreWindow;   // Referencia a la ventana de Ogre
     void* myGLContext;                  // Referencia al contexto de OpenGL
-    Ogre::ImGuiOverlay* imguiOverlay;   // Overlay de ImGui
+
+    // PRUEBA
     const char* button;                 // Texto de Boton de Play
 
     /**
@@ -43,12 +39,14 @@ public:
     UIManager(UIManager&&) = delete;
     UIManager& operator=(UIManager&) = delete;
     UIManager& operator=(UIManager&&) = delete;
+
     /*
-    * @brief cuando Ogre termine de renderizar en el viewport al que hemos asignado el uiManager como listener , ejecutara este callback
+    * @brief Se llama cuando Ogre termine de renderizar en el viewport al que hemos asignado el UIManager como listener
     */
     void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) override;
+
     /**
-    * @brief Inicializa ImGui con SDL y OpenGL, y crea el overlay con la interfaz
+    * @brief Inicializa ImGui con SDL y OpenGL, y anade el UIManager como listener de la ventana de Ogre
     */
     bool init() override;
 

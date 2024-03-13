@@ -75,6 +75,6 @@ public:
     * @brief Cambia el color de fondo
     * @param color Color al que se quiere cambiar
     */
-    void setBackground(const Vector3 color);
+    void setBackground(const Vector4 color);
 };
 }

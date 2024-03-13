@@ -15,11 +15,7 @@
 
 // OGRE
 #include <Ogre.h>
-#include <OgreFileSystem.h>
-#include <OgreFileSystemLayer.h>
-#include <OgreRTShaderSystem.h>
 #include "SGTechniqueResolverListener.h"
-#include <OgreGL3PlusRenderSystem.h>
 #include <OgreOverlaySystem.h>
 
 // SDL
@@ -27,13 +23,10 @@
 #include <SDL_syswm.h>
 #undef main
 
-// ImGui
-#include <imgui_impl_sdl2.h>
-#include <imgui_impl_sdl2.cpp>
-#include <imgui_impl_opengl3.h>
-#include <OgreImGuiOverlay.h>
-
 namespace Tapioca {
+template class TAPIOCA_API Singleton<GraphicsEngine>;
+template<>
+GraphicsEngine* Singleton<GraphicsEngine>::instance_ = nullptr;
 
 GraphicsEngine::GraphicsEngine(const std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
@@ -154,7 +147,14 @@ bool GraphicsEngine::init() {
     renderSys->_initRenderTargets();
     loadResources();
 
-    glContext = SDL_GL_GetCurrentContext();
+    ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
+    if (glContext == nullptr) {
+#ifdef _DEBUG
+    	std::cerr << "Error al obtener el contexto de OpenGL\n";
+#endif
+        return false;
+    }
+
     SDL_GL_SetSwapInterval(1);
 
     return true;
@@ -200,10 +200,6 @@ void GraphicsEngine::shutDown() {
     scnMgr->removeRenderQueueListener(overSys);
     mShaderGenerator->removeSceneManager(scnMgr);
     mRoot->destroySceneManager(scnMgr);
-
-  //  ImGui_ImplOpenGL3_Shutdown();
- //   ImGui_ImplSDL2_Shutdown();
-    //ImGui::DestroyContext();
 
     if (overSys != nullptr) {
         delete overSys;

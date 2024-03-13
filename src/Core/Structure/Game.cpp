@@ -5,6 +5,9 @@
 #include "DynamicLibraryLoader.h"
 
 namespace Tapioca {
+template class TAPIOCA_API Singleton<Game>;
+template<>
+Game* Singleton<Game>::instance_ = nullptr;
 
 Game::Game() : finish(false), deltaTime(0) { }
 

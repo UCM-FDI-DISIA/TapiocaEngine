@@ -11,6 +11,9 @@
 #include "Structure/Scene.h"
 
 namespace Tapioca {
+template class TAPIOCA_API Singleton<SceneManager>;
+template<>
+SceneManager* Singleton<SceneManager>::instance_ = nullptr;
 
 SceneManager::SceneManager() : luaState(nullptr), factMngr(nullptr), game(nullptr) { }
 

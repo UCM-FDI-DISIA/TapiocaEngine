@@ -5,6 +5,9 @@
 #include "Structure/Game.h"
 
 namespace Tapioca {
+template class TAPIOCA_API Singleton<InputManager>;
+template<>
+InputManager* Singleton<InputManager>::instance_ = nullptr;
 
 InputManager::InputManager()
     : /*inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false),*/ mousePos({ 0, 0 }) { }

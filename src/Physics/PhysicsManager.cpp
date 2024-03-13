@@ -12,6 +12,10 @@
 #endif
 
 namespace Tapioca {
+template class TAPIOCA_API Singleton<PhysicsManager>;
+template<>
+PhysicsManager* Singleton<PhysicsManager>::instance_ = nullptr;
+
 void onCollisionEnter(btPersistentManifold* const& manifold) {
 
     const btCollisionObject* obj1 = manifold->getBody0();

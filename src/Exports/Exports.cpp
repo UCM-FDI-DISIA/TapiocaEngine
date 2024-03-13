@@ -11,15 +11,6 @@
 #include "UIManager.h"
 #include "SoundEngine.h"
 
-// TODO: solo para pruebas, borrar
-#include "RenderNode.h"
-#include "LightDirectional.h"
-#include "Mesh.h"
-#include "Viewport.h"
-#include "Utilities/Vector3.h"
-#include "BillboardSet.h"
-#include "Billboard.h"
-
 namespace Tapioca {
 void initEngine() {
     game = Tapioca::Game::create();
@@ -30,32 +21,7 @@ void deleteEngine() { delete game; }
 
 void runEngine() { 
     if (game->init()) {
-        //* Prueba
-        //scenes->loadScene("archivo.lua");
-
-        // IMPORTANTE: NO PREOCUPARSE POR SI NO SE PUEDE ACCEDER A UN OBJETO PARA BORRAR
-        // LUEGO, EL NODO VA A BORRAR TODO
-        auto nodeCamera = graphics->createNode(Tapioca::Vector3(0.0f, 0.0f, 20.0f));
-        auto camera = graphics->createCamera(nodeCamera, "MainCamera");
-        auto viewport = graphics->createViewport(camera, 0);
-        viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
-
-        auto node = graphics->createNode();
-        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-        //auto plane = graphics->createPlane(node, 0.f, 1.f, 1.f, 0.f, "abc", 5, 5, 1, 1, 0, -1, -5);
-
-        /*auto nodeBil = graphics->createNode();
-        auto bil = graphics->createBillboardSet(nodeBil, "Holaaa", 2);
-        bil->addBillboard(Tapioca::Vector3(50.0f, 0.0f, -230.0f), Tapioca::Vector4(1.0f, 0.0f, 0.0f, 1.0f));
-        bil->removeBillboard(0);*/
-        //COMENTAD ESTA LINEA PARA QUE EL MOTOR SE CALLE
-        //sound->testsample();
         game->run();
-
-        //delete nodeBil;
-        delete node;
-        delete nodeCamera;
-        delete viewport;
     }
 #ifdef _DEBUG
     else

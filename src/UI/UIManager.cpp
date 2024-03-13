@@ -1,23 +1,27 @@
 #include "UIManager.h"
-#include <SDL.h>
-#include <Ogre.h>
-#include <OgreImGuiOverlay.h>
-#include <OgreOverlayManager.h>
+
+#include <OgreRenderWindow.h>
+
 #include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdl2.cpp>
 #include <imgui_impl_opengl3.h>
 
-#include "Structure/FactoryManager.h"
 #include "Structure/DynamicLibraryLoader.h"
+#include "GraphicsEngine.h"
 #include "checkML.h"
 
 namespace Tapioca {
-UIManager::UIManager()
-    : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), imguiOverlay(nullptr), button("Slay") { }
+template class TAPIOCA_API Singleton<UIManager>;
+template<>
+UIManager* Singleton<UIManager>::instance_ = nullptr;
+
+UIManager::UIManager() : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), button("Slay") { }
 
 UIManager::~UIManager() {
     mySDLWindow = nullptr;
     myOgreWindow = nullptr;
     myGLContext = nullptr;
+
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
@@ -38,7 +42,6 @@ bool UIManager::init() {
     ImGui_ImplOpenGL3_Init("#version 130");
     myOgreWindow = graphics->getOgreWindow();
     myOgreWindow->addListener(this);
- 
 
     return true;
 }
@@ -47,6 +50,7 @@ void UIManager::render() {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
+
     // PRUEBA
     ImGui::Begin("Tapioca Engine");
 
@@ -60,6 +64,7 @@ void UIManager::render() {
         }
     }
     ImGui::End();
+
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }

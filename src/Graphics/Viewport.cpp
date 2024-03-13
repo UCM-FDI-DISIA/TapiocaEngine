@@ -38,7 +38,7 @@ int Viewport::getWidthInPixels() { return viewport->getActualWidth(); }
 
 int Viewport::getHeightInPixels() { return viewport->getActualHeight(); }
 
-void Viewport::setBackground(const Vector3 color) {
-    viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z));
+void Viewport::setBackground(const Vector4 color) {
+    viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
 }
 }
