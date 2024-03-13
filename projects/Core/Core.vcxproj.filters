@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Utilities\Singleton.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">

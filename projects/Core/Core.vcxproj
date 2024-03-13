@@ -58,7 +58,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Input\;$(SolutionDir)src\Sound\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -74,7 +74,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\x64\SDL2-build\include\SDL2\;$(SolutionDir)Dependencies\Bullet\src\;$(SolutionDir)Dependencies\Bullet\src\src\;$(SolutionDir)Dependencies\Bullet\src\Extras\;$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\UI\;$(SolutionDir)src\Physics\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Input\;$(SolutionDir)src\Sound\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -93,6 +93,7 @@
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp" />
+    <ClCompile Include="..\..\src\Core\Utilities\Singleton.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp" />
