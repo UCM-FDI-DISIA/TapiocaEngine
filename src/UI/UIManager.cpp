@@ -12,14 +12,18 @@
 
 namespace Tapioca {
 UIManager::UIManager()
-    : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), imguiOverlay(nullptr), button("Play") { }
+    : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), imguiOverlay(nullptr), button("Slay") { }
 
 UIManager::~UIManager() {
     mySDLWindow = nullptr;
     myOgreWindow = nullptr;
     myGLContext = nullptr;
-    imguiOverlay = nullptr;
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
 }
+
+void UIManager::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) { render(); }
 
 bool UIManager::init() {
     IMGUI_CHECKVERSION();
@@ -32,31 +36,17 @@ bool UIManager::init() {
     myGLContext = graphics->getGLContext();
     ImGui_ImplSDL2_InitForOpenGL(mySDLWindow, myGLContext);
     ImGui_ImplOpenGL3_Init("#version 130");
-
-    Ogre::OverlayManager* overlayManager = Ogre::OverlayManager::getSingletonPtr();
-    if (auto overlay = overlayManager->getByName("ImGuiOverlay"))
-        imguiOverlay = static_cast<Ogre::ImGuiOverlay*>(overlay);
-    else {
-        imguiOverlay = new Ogre::ImGuiOverlay();   // <- Aqui se producen los memory leaks
-        overlayManager->addOverlay(imguiOverlay);
-    }
-
-    float vpScale = overlayManager->getPixelRatio();
-    ImGui::GetStyle().ScaleAllSizes(vpScale);
-    io.FontGlobalScale = std::round(vpScale);
-    imguiOverlay->setZOrder(300);
-    imguiOverlay->show();
-
     myOgreWindow = graphics->getOgreWindow();
     myOgreWindow->addListener(this);
-    Ogre::ImGuiOverlay::NewFrame();
+ 
 
     return true;
 }
 
 void UIManager::render() {
-    Ogre::ImGuiOverlay::NewFrame();
-
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame();
+    ImGui::NewFrame();
     // PRUEBA
     ImGui::Begin("Tapioca Engine");
 
@@ -70,5 +60,7 @@ void UIManager::render() {
         }
     }
     ImGui::End();
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 }

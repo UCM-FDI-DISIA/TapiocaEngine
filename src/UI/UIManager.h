@@ -43,7 +43,10 @@ public:
     UIManager(UIManager&&) = delete;
     UIManager& operator=(UIManager&) = delete;
     UIManager& operator=(UIManager&&) = delete;
-
+    /*
+    * @brief cuando Ogre termine de renderizar en el viewport al que hemos asignado el uiManager como listener , ejecutara este callback
+    */
+    void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) override;
     /**
     * @brief Inicializa ImGui con SDL y OpenGL, y crea el overlay con la interfaz
     */
