@@ -12,4 +12,6 @@ Mesh::Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::
 
 void Mesh::setMaterial(std::string const& materialName) { mesh->setMaterialName(materialName); }
 
+Ogre::Entity* Mesh::getMesh() const { return mesh; }
+
 }

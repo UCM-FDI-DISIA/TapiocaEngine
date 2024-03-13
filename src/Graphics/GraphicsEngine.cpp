@@ -12,6 +12,7 @@
 #include "Billboard.h"
 #include "ParticleSystem.h"
 #include "Plane.h"
+#include "AnimationHelper.h"
 
 // OGRE
 #include <Ogre.h>
@@ -319,6 +320,10 @@ Plane* GraphicsEngine::createPlane(RenderNode* const node, const float a, const 
                                    const int ySegments, const float x, const float y, const float z,
                                    std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments, x, y, z, material);
+}
+
+AnimationHelper* GraphicsEngine::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
+    return new AnimationHelper(scnMgr, object, autoPlay, loop);
 }
 
 Ogre::ManualObject* GraphicsEngine::createManualObject(RenderNode* const node) {
