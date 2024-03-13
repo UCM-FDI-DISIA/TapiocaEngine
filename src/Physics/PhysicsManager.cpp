@@ -123,23 +123,6 @@ void PhysicsManager:: update(const uint64_t deltaTime) {
 }
 void PhysicsManager::fixedUpdate() {
    dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 1);
-
-#ifdef _DEBUG
-    //dynamicsWorld->debugDrawWorld();
-    //PRUEBA: printear las pos de los rb
-    /*for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {
-        btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];
-        btRigidBody* body = btRigidBody::upcast(obj);
-        btTransform tr;
-        if (body && body->getMotionState()) {
-            body->getMotionState()->getWorldTransform(tr);
-        }
-        else
-            tr = obj->getWorldTransform();
-        std::cout << "Object: " << i << " Transform: " << tr.getOrigin().getX() << " " << tr.getOrigin().getY() << " "
-                  << tr.getOrigin().getZ() << "\n";
-    }*/
-#endif }
 }
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
                                              const ColliderShape colliderShape, const MovementType type, float mass,

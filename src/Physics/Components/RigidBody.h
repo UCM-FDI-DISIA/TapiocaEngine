@@ -61,6 +61,11 @@ public:
     */
     void fixedUpdate() override;
     /*
+    * @brief Metodo que se usa para actualizar el estado de un componente
+    * Se llama cada cierto tiempo ,
+    */
+    void update(const uint64_t deltaTime) override;
+    /*
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
     * @param Id indica el tipo de mensaje

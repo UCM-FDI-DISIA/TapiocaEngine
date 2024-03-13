@@ -97,7 +97,8 @@ bool RigidBody::initComponent(const CompMap& variables) {
     return true;
 }
 
-void RigidBody::fixedUpdate() {
+
+void RigidBody::update(const uint64_t deltaTime) {
     if (movementType == KINEMATIC_OBJECT) {
 
         btTransform btTr = rigidBody->getWorldTransform();
@@ -105,8 +106,9 @@ void RigidBody::fixedUpdate() {
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
         rigidBody->setWorldTransform(btTr);
     }
-
-    else if (movementType == DYNAMIC_OBJECT) {
+}
+void RigidBody::fixedUpdate() {
+    if (movementType == DYNAMIC_OBJECT) {
         transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()));
         transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()));
         // btVector3 vel = rigidBody->getLinearVelocity();
@@ -125,8 +127,8 @@ void RigidBody::start() {
 
     transform = object->getComponent<Transform>();
 
-    rigidBody = PhysicsManager::instance()->createRigidBody(
-        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderScale, colShape, movementType, mass,
+    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getGlobalPosition(), Vector3(0,0,0), colliderScale,
+                                                            colShape, movementType, mass,
         friction, damping, bounciness, isTrigger, group, mask);
 
     collider = object->getComponent<Collider>();

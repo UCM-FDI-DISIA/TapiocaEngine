@@ -2,9 +2,7 @@
 #include "Structure/GameObject.h"
 
 namespace Tapioca {
-void Transform::changed() {
-    pushEvent("transformChanged", nullptr, false);
-}
+void Transform::changed() { pushEvent("transformChanged", nullptr, false); }
 
 void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
     for (auto child : children) {
@@ -80,6 +78,8 @@ bool Transform::initComponent(const CompMap& variables) {
         return false;
     }
 
+    initialRotation = rotation;
+
     return true;
 }
 
@@ -142,9 +142,9 @@ Vector3 Transform::right() {
 
     Vector3 v(1, 0, 0);   //X
 
-    v = v.rotateX(rotation.x);
-    v = v.rotateY(rotation.y);
-    v = v.rotateZ(rotation.z);
+    Quaternion relativeRotationQuaternion = Quaternion(initialRotation).inverse() * Quaternion(rotation);
+
+    v = Quaternion(relativeRotationQuaternion * Quaternion((v))).euler();
 
     v.normalize();
 
@@ -154,9 +154,9 @@ Vector3 Transform::up() {
 
     Vector3 v(0, 1, 0);   //Y
 
-    v = v.rotateX(rotation.x);
-    v = v.rotateY(rotation.y);
-    v = v.rotateZ(rotation.z);
+    Quaternion relativeRotationQuaternion = Quaternion(initialRotation).inverse() * Quaternion(rotation);
+
+    v = Quaternion(relativeRotationQuaternion * Quaternion((v))).euler();
 
     v.normalize();
 
@@ -166,9 +166,9 @@ Vector3 Transform::forward() {
 
     Vector3 v(0, 0, 1);   //Z
 
-    v = v.rotateX(rotation.x);
-    v = v.rotateY(rotation.y);
-    v = v.rotateZ(rotation.z);
+    Quaternion relativeRotationQuaternion = Quaternion(initialRotation).inverse() * Quaternion(rotation);
+
+    v = Quaternion(relativeRotationQuaternion * Quaternion((v))).euler();
 
     v.normalize();
 

@@ -1,7 +1,8 @@
 #pragma once
 #include <unordered_set>
-#include "../Structure/Component.h"
-#include "../Utilities/Vector3.h"
+#include "Structure/Component.h"
+#include "Utilities/Vector3.h"
+#include "Utilities/Quaternion.h"
 #include "defs.h"
 
 namespace Tapioca {
@@ -21,6 +22,7 @@ private:
     Vector3 position;
     Vector3 rotation;
     Vector3 scale;
+    Vector3 initialRotation; //rotación inicial del transform
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */
@@ -137,17 +139,17 @@ public:
     void rotate(const Vector3& r);
 
     /*
-    * @brief Devuelve el eje X de coordenadas locales en coordenadas globales
+    * @brief Devuelve el eje X de coordenadas locales en coordenadas globales, inicialmente su eje X es 1,0,0
     * @return Eje X de coordenadas locales en coordenadas globales
     */
     Vector3 right();
     /*
-    * @brief Devuelve el eje Y de coordenadas locales en coordenadas globales
+    * @brief Devuelve el eje Y de coordenadas locales en coordenadas globales, inicialmente su eje Y es 0,1,0
     * @return Eje Y de coordenadas locales en coordenadas globales
     */
     Vector3 up();
     /*
-    * @brief Devuelve el eje Z de coordenadas locales en coordenadas globales
+    * @brief Devuelve el eje Z de coordenadas locales en coordenadas globales, inicialmente su eje Z es 0,0,1
     * @return Eje Z de coordenadas locales en coordenadas globales
     */
     Vector3 forward();
