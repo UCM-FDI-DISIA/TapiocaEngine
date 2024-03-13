@@ -93,7 +93,6 @@
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp" />
-    <ClCompile Include="..\..\src\Core\Utilities\Singleton.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector3.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp" />
