@@ -118,13 +118,13 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
     if (id == "transformChanged") {
-#ifdef _DEBUG
-        std::cout << "received " <<transform->getGlobalRotation().x << " " << transform->getGlobalRotation().y << " "
-                  << transform->getGlobalRotation().z << " \n ";
-#endif
         btTransform btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+#ifdef _DEBUG
+        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
+                  << toEuler(btTr.getRotation()).z << " \n ";
+#endif
     }
 }
 void RigidBody::start() {
@@ -170,6 +170,8 @@ void RigidBody::setColliderScale(const Vector3 s) {
 
 
 void RigidBody::setMass(const float m) { mass = m; }
+
+void RigidBody::setTensor(const Vector3 t) { rigidBody->setMassProps(mass, toBtVector3(t)); };
 
 void RigidBody::setFriction(const float f) {
     friction = f;
@@ -224,7 +226,6 @@ void RigidBody::setGroup(const int g) {
     bdProxy->m_collisionFilterGroup = g;
 }
 
-
 int RigidBody::getMovementType() const { return movementType; }
 
 bool RigidBody::getTrigger() const { return isTrigger; }
@@ -235,6 +236,8 @@ Vector3 RigidBody::getColliderScale() const { return colliderScale; }
 
 
 float RigidBody::getMass() const { return mass; }
+
+Vector3 RigidBody::getTensor() const { return toVector3(rigidBody->getLocalInertia()); }
 
 float RigidBody::getFriction() const { return friction; }
 

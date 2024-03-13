@@ -120,6 +120,11 @@ public:
     */
     void setMass(const float m);
     /*
+    * @brief Cambia el tensor
+    * @param t Valor del tensor
+    */
+    void setTensor(const Vector3 t);
+    /*
     * @brief Cambia la friccion
     * @param f Valor que se le quiere dar a la friccion
     */
@@ -144,7 +149,6 @@ public:
     * @param g Valor que se le quiere dar a la gravedad
     */
     void setGravity(const Vector3 g);
-
     /*
     * @brief Aplica fuerza de forma gradual
     * @param f Valor de la fuerza que se quiere aplicar 
@@ -192,6 +196,11 @@ public:
     * @return Masa del rigidbody
     */
     float getMass() const;
+    /*
+    * @brief Devuelve el tensor de inercia 
+    * @return tensor de inercia 
+    */
+    Vector3 getTensor() const;
     /*
     * @brief Devuelve la friccion
     * @return Friccion del rigidbody
