@@ -36,6 +36,7 @@ class BillboardSet;
 class Billboard;
 class ParticleSystem;
 class Plane;
+class AnimationHelper;
 
 class TAPIOCA_API GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
@@ -256,6 +257,8 @@ public:
                        std::string const& name, const float width, const float height, const int xSegments,
                        const int ySegments, const float x, const float y, const float z,
                        std::string const& material = "");
+
+    AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
 
     Ogre::ManualObject* createManualObject(RenderNode* const node);
 
