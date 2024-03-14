@@ -140,11 +140,19 @@ void Transform::rotate(const Vector3& r) {
 
 Vector3 Transform::right() {
 
-    Vector3 v(1, 0, 0);   //X
+    Vector3 right(1, 0, 0);   //X
 
-    Quaternion relativeRotationQuaternion = Quaternion(initialRotation).inverse() * Quaternion(rotation);
+    // Crear cuaterniones para las rotaciones en cada eje
+    Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
+    Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
+    Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
 
-    v = Quaternion(relativeRotationQuaternion * Quaternion((v))).euler();
+    // Multiplicar los cuaterniones en orden (Z * Y * X)
+    Quaternion combinedRotation = q_z * q_y * q_x;
+
+
+    // Rotar el vector forward utilizando el cuaternion combinado
+    Vector3 v = combinedRotation.rotatePoint(right);
 
     v.normalize();
 
@@ -152,11 +160,19 @@ Vector3 Transform::right() {
 }
 Vector3 Transform::up() {
 
-    Vector3 v(0, 1, 0);   //Y
+    Vector3 up(0, 1, 0);   //Y
 
-    Quaternion relativeRotationQuaternion = Quaternion(initialRotation).inverse() * Quaternion(rotation);
+    // Crear cuaterniones para las rotaciones en cada eje
+    Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
+    Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
+    Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
 
-    v = Quaternion(relativeRotationQuaternion * Quaternion((v))).euler();
+    // Multiplicar los cuaterniones en orden (Z * Y * X)
+    Quaternion combinedRotation = q_z * q_y * q_x;
+
+
+    // Rotar el vector forward utilizando el cuaternion combinado
+    Vector3 v = combinedRotation.rotatePoint(up);
 
     v.normalize();
 
@@ -164,11 +180,19 @@ Vector3 Transform::up() {
 }
 Vector3 Transform::forward() {
 
-    Vector3 v(0, 0, 1);   //Z
+    Vector3 forward(0, 0, 1);   //Z
 
-    Quaternion relativeRotationQuaternion = Quaternion(initialRotation).inverse() * Quaternion(rotation);
+    // Crear cuaterniones para las rotaciones en cada eje
+    Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
+    Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
+    Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
 
-    v = Quaternion(relativeRotationQuaternion * Quaternion((v))).euler();
+    // Multiplicar los cuaterniones en orden (Z * Y * X)
+    Quaternion combinedRotation = q_z * q_y * q_x;
+
+
+    // Rotar el vector forward utilizando el cuaternion combinado
+    Vector3 v = combinedRotation.rotatePoint(forward);
 
     v.normalize();
 
