@@ -3,11 +3,16 @@
 #include <Ogre.h>
 
 namespace Tapioca {
-AnimationHelper::AnimationHelper(Ogre::SceneManager* const scnMgr, Mesh* const object, const bool autoPlay = true,
+AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true,
                                  const bool loop = true)
-    : animState(nullptr), playing(autoPlay), looping(loop) {
-    //animStateSet = scnMgr->getEntity(object->getHandler())->getAllAnimationStates();
-    animStateSet = object->getMesh()->getAllAnimationStates();
+    : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()),
+      playing(autoPlay), looping(loop) {
+//#ifdef _DEBUG
+//    auto aux = object->getMesh()->getAllAnimationStates();
+//    for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
+//        std::cout << it->first << '\n';
+//    }
+//#endif   // _DEBUG
 }
 
 AnimationHelper::~AnimationHelper() { }

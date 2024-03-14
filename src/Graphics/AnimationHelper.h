@@ -3,7 +3,6 @@
 #include "defs.h"
 
 namespace Ogre {
-class SceneManager;
 class AnimationState;
 class AnimationStateSet;
 }
@@ -21,7 +20,7 @@ private:
     bool looping;
 
 public:
-    AnimationHelper(Ogre::SceneManager* const scnMgr, Mesh* const object, const bool autoPlay, const bool loop);
+    AnimationHelper(Mesh* const object, const bool autoPlay, const bool loop);
     ~AnimationHelper();
 
     void updateAnim(const uint64_t delt, const float speed);

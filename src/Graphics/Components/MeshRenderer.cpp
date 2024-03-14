@@ -29,7 +29,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
     return true;
 }
 
-void MeshRenderer::start() {
+void MeshRenderer::awake() {
     GameObject* gameobject = getObject();
     transform = gameobject->getComponent<Transform>();
     GraphicsEngine* g = GraphicsEngine::instance();
@@ -46,4 +46,5 @@ void MeshRenderer::update(uint64_t delt) {
     // es tan grande que no se ve
     node->setScale(transform->getGlobalScale());
 }
+Mesh* MeshRenderer::getMesh() const { return mesh; }
 }

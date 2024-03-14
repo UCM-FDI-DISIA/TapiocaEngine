@@ -87,6 +87,11 @@ void GameObject::fixedUpdate() {
     }
 }
 
+void GameObject::awake() {
+    for (auto comp : cmpOrder)
+        comp->awake();
+}
+
 void GameObject::start() {
     for (auto comp : cmpOrder)
         comp->start();

@@ -3,6 +3,7 @@
 #include "RenderNode.h"
 
 namespace Tapioca {
+Ogre::Entity* const Mesh::getMesh() const { return mesh; }
 
 Mesh::Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::string const& meshName)
     : RenderObject(node, sceneManager) , mesh(sceneManager->createEntity(meshName)) 
@@ -11,7 +12,5 @@ Mesh::Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::
 }
 
 void Mesh::setMaterial(std::string const& materialName) { mesh->setMaterialName(materialName); }
-
-Ogre::Entity* Mesh::getMesh() const { return mesh; }
 
 }

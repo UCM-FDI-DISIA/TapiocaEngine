@@ -10,6 +10,7 @@ class Entity;
 namespace Tapioca {
 class RenderNode;
 class GraphicsEngine;
+class AnimationHelper;
 
 /*
 * @brief Wrapper de la clase Mesh de Ogre.
@@ -17,8 +18,11 @@ class GraphicsEngine;
 class TAPIOCA_API Mesh : public RenderObject {
 private:
     friend GraphicsEngine;
+    friend AnimationHelper;
 
     Ogre::Entity* mesh;         // Mesh de Ogre
+
+    Ogre::Entity* const getMesh() const;
 
 public:
     /*
@@ -34,6 +38,5 @@ public:
     * @param materialName Nombre del material que se quiere asignar a la malla
     */
     void setMaterial(std::string const& materialName);
-    Ogre::Entity* getMesh() const;
 };
 }

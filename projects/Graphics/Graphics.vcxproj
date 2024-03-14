@@ -11,9 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Graphics\AnimationHelper.cpp" />
     <ClCompile Include="..\..\src\Graphics\Billboard.cpp" />
     <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />
     <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsEngine.cpp" />
     <ClCompile Include="..\..\src\Graphics\Light.cpp" />
@@ -30,9 +32,11 @@
     <ClCompile Include="..\..\src\Graphics\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Graphics\AnimationHelper.h" />
     <ClInclude Include="..\..\src\Graphics\Billboard.h" />
     <ClInclude Include="..\..\src\Graphics\BillboardSet.h" />
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\Animator.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />

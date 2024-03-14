@@ -9,6 +9,7 @@
 #include "Components/Collider.h"
 #include "Components/RigidBody.h"
 #include "Components/MeshRenderer.h"
+#include "Components/Animator.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<FactoryManager>;
@@ -37,6 +38,7 @@ void FactoryManager::createEngineBuilders() {
     manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
     manager->addFactory("Collider", new BasicBuilder<Collider>());
     manager->addFactory("RigidBody", new BasicBuilder<RigidBody>());
+    manager->addFactory("Animator", new BasicBuilder<Animator>());
 }
 
 Component* FactoryManager::createComponent(std::string const& name) {

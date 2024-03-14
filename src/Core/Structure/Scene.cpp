@@ -73,6 +73,13 @@ void Scene::fixedUpdate() {
         if (obj->isAlive()) obj->fixedUpdate();
     }
 }
+
+void Scene::awake() {
+    for (auto obj : objects)
+        obj->awake();
+}
+
+
 void Scene::start() {
     for (auto obj : objects)
         obj->start();

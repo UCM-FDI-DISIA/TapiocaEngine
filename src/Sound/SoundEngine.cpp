@@ -14,7 +14,7 @@ SoundEngine::~SoundEngine() {
 bool SoundEngine::init() {
     soundEngine = irrklang::createIrrKlangDevice();
     if (!soundEngine) {
-#ifdef DEBUG
+#ifdef _DEBUG
         std::cout << "Error al inciar el motor de audio\n";
 #endif
         return false;

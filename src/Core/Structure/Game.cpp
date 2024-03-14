@@ -119,7 +119,8 @@ void Game::pushEvent(std::string const& id, void* info) {
 
 void Game::pushScene(Scene* const sc) {
     scenes.push(sc);
-    // TODO: mejorar start para que se ejecute para componentes que se crean en tiempo de ejecucion
+    // TODO: mejorar awake y start para que se ejecute para componentes que se crean en tiempo de ejecucion
+    sc->awake();
     sc->start();
 }
 

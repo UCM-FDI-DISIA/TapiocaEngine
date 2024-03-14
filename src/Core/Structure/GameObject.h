@@ -45,6 +45,11 @@ private:
     */
     void fixedUpdate();
     /*
+    * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
+    * Garantiza que todas las componentes iniciales esten creados
+    */
+    void awake();
+    /*
     * @brief Inicializa las componentes del objeto
     * Garantiza que todas las componentes iniciales esten creados
     */
@@ -110,12 +115,12 @@ public:
     /*
     * @brief Devuelve un puntero a una componente del objeto
     * @param id Id de la componente que se quiere conseguir del objeto
-    * @return Puntero al componente. nillptr si el objeto no contiene la componente
+    * @return Puntero al componente. nullptr si el objeto no contiene la componente
     */
     Component* getComponent(std::string const& id);
     /*
     * @brief Devuelve un puntero a una componente del objeto
-    * @return Puntero al componente. nillptr si el objeto no contiene la componente
+    * @return Puntero al componente. nullptr si el objeto no contiene la componente
     */
     template<IsComponent TComp> inline TComp* getComponent() {
         auto it = components.find(TComp::id);

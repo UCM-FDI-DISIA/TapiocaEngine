@@ -12,20 +12,20 @@
 namespace Tapioca {
 
 Animator::Animator()
-    : meshRenderer(nullptr), speed(1.f) { }
+    : meshRenderer(nullptr), anim(nullptr), speed(1.f) { }
 
 Animator::~Animator() { }
 
 bool Animator::initComponent(const CompMap& variables) {
     if (!setValueFromMap(speed, "playbackSpeed", variables)) speed = 1.f;
-
     return true;
 }
 
 void Animator::start() {
     meshRenderer = object->getComponent<MeshRenderer>();
-    if (meshRenderer != nullptr) 
-        anim = GraphicsEngine::instance()->createAnimationHelper(meshRenderer->getMesh(), true, true);
+    anim = GraphicsEngine::instance()->createAnimationHelper(meshRenderer->getMesh(), true, true);
+
+    //anim->playAnim("CatMouth2");
 }
 
 void Animator::update(uint64_t delt) { anim->updateAnim(delt, speed); }

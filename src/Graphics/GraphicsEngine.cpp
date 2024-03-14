@@ -323,7 +323,7 @@ Plane* GraphicsEngine::createPlane(RenderNode* const node, const float a, const 
 }
 
 AnimationHelper* GraphicsEngine::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
-    return new AnimationHelper(scnMgr, object, autoPlay, loop);
+    return new AnimationHelper(object, autoPlay, loop);
 }
 
 Ogre::ManualObject* GraphicsEngine::createManualObject(RenderNode* const node) {

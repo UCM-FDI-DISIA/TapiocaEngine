@@ -42,6 +42,10 @@ public:
     */
     bool addObject(GameObject* const object, std::string const& handler = "");
     /*
+    * @brief Inicializa los objetos de la escena. Se ejecuta antes del start
+    */
+    void awake();
+    /*
     * @brief Inicializa los objetos de la escena
     */
     void start();

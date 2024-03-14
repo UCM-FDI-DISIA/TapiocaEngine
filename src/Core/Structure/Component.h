@@ -57,6 +57,11 @@ public:
     */
     virtual bool initComponent(const CompMap& variables) = 0;
     /*
+    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * Garantiza que todos los componentes iniciales esten creados
+    */
+    virtual void awake() { }
+    /*
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
@@ -88,11 +93,11 @@ public:
 
     template<typename T>
     /*
-    * @brief Metodo que se usa para actualizar el valor de una variable en un CompMap
+    * @brief Metodo que se usa para dar valor a una variable declarada en un CompMap
     * @param var Tipo de variable que se quiere actualizar
     * @param varName Nombre de la variable que se quiere actualizar
     * @param map Unordered_map en el que se que se quiere actualizar
-    * @return Devuelve true si se ha actualizado correctamente, false en caso contrario
+    * @return Devuelve true si se ha ejecutado correctamente, false en caso contrario
     */
     inline bool setValueFromMap(T& var, std::string const& varName, const CompMap& map) {
         auto v = map.find(varName);
