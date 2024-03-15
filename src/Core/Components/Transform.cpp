@@ -100,11 +100,11 @@ Vector3 Transform::getGlobalPosition() const {
 }
 
 Vector3 Transform::getGlobalRotation() const {
-    Vector3 aux = rotation;
+    Quaternion aux = Quaternion(rotation);
     if (parent != nullptr) {
-        aux = aux + parent->getGlobalRotation();
+        aux = aux * Quaternion(parent->getGlobalRotation());
     }
-    return aux;
+    return aux.euler();
 }
 
 Vector3 Transform::getGlobalScale() const {
