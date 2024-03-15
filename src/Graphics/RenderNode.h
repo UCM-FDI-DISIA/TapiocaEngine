@@ -12,13 +12,13 @@ class MovableObject;
 namespace Tapioca {
 class Vector3;
 class RenderObject;
-class GraphicsEngine;
+class GraphicsManager;
 class Camera;
 class LightDirectional;
 
 class TAPIOCA_API RenderNode {
 private:
-    friend GraphicsEngine;
+    friend GraphicsManager;
     friend RenderObject;
     friend Camera;
     friend LightDirectional;

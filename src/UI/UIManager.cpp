@@ -7,7 +7,7 @@
 #include <imgui_impl_opengl3.h>
 
 #include "Structure/DynamicLibraryLoader.h"
-#include "GraphicsEngine.h"
+#include "GraphicsManager.h"
 #include "checkML.h"
 
 namespace Tapioca {
@@ -35,7 +35,7 @@ bool UIManager::init() {
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
-    GraphicsEngine* graphics = GraphicsEngine::instance();
+    GraphicsManager* graphics = GraphicsManager::instance();
     mySDLWindow = graphics->getSDLWindow();
     myGLContext = graphics->getGLContext();
     ImGui_ImplSDL2_InitForOpenGL(mySDLWindow, myGLContext);

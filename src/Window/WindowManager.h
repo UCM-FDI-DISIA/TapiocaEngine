@@ -1,18 +1,23 @@
 #pragma once
 #include <Utilities/Singleton.h>
-#include <Structure/Module.h>
+#include "WindowModule.h"
 
-
+#include <vector>
 class SDL_Window;
 
 namespace Tapioca {
+class Game;
+
 class TAPIOCA_API WindowManager : public Singleton<WindowManager>, public Module {
     friend Singleton<WindowManager>;
-private:
-    std::string windowName;              // Nombre de la ventana
-    uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
-    SDL_Window* sdlWindow;                // Ventana de SDL
 
+private:
+    std::string windowName;                 // Nombre de la ventana
+    uint32_t windowWidth, windowHeight;     // Anchura y altura de la ventana, respectivamente
+    SDL_Window* sdlWindow;                  // Ventana de SDL
+    std::vector<WindowModule*> modules;     // Modulos suscritos a los eventos de ventana
+    Game* game;
+    
     /*
     * @brief Constructora de la clase WindowManager.
     */
@@ -32,6 +37,9 @@ public:
     inline SDL_Window* getWindow() { return sdlWindow; }
     inline uint32_t getWindowW() { return windowWidth; }
     inline uint32_t getWindowH() { return windowHeight; }
+
+    void update(const uint64_t deltaTime) override;
+    void subscribeModule(WindowModule* mod);
 };
 
 /*

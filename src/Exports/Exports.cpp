@@ -6,7 +6,7 @@
 #include "InputManager.h"
 #include "Structure/FactoryManager.h"
 #include "SceneManager.h"
-#include "GraphicsEngine.h"
+#include "GraphicsManager.h"
 #include "PhysicsManager.h"
 #include "UIManager.h"
 #include "SoundEngine.h"
@@ -21,6 +21,7 @@ void deleteEngine() { delete game; }
 
 void runEngine() { 
     if (game->init()) {
+        scenes->loadScene("archivo.lua");
         game->run();
     }
 #ifdef _DEBUG
@@ -30,10 +31,10 @@ void runEngine() {
 }
 
 static void createModules(Tapioca::Game* game) {
-    /*window = Tapioca::WindowManager::create();
-    game->addModule(window);*/
+    window = Tapioca::WindowManager::create();
+    game->addModule(window);
 
-    graphics = Tapioca::GraphicsEngine::create();
+    graphics = Tapioca::GraphicsManager::create();
     game->addModule(graphics);
 
     ui = Tapioca::UIManager::create();
@@ -54,6 +55,8 @@ static void createModules(Tapioca::Game* game) {
 
     sound = Tapioca::SoundEngine::create();
     game->addModule(sound);
+
+    window->subscribeModule(input);
 }
 
 void mapInput() {

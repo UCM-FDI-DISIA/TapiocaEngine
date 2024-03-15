@@ -11,7 +11,7 @@ class SceneManager;
 
 namespace Tapioca {
 class RenderNode;
-class GraphicsEngine;
+class GraphicsManager;
 class Viewport;
 
 /*
@@ -19,7 +19,7 @@ class Viewport;
 */
 class TAPIOCA_API Camera : public RenderObject {
 private:
-    friend GraphicsEngine;
+    friend GraphicsManager;
     friend Viewport;
 
     Ogre::Camera* mCam;         // Camara de Ogre

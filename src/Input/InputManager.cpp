@@ -9,12 +9,9 @@ template class TAPIOCA_API Singleton<InputManager>;
 template<>
 InputManager* Singleton<InputManager>::instance_ = nullptr;
 
-InputManager::InputManager()
-    : /*inputText(""), compositionText(nullptr), cursor(0), selectionLen(0), removeChar(false), toggleTextInput(false),*/ mousePos({ 0, 0 }) { }
+InputManager::InputManager() : mousePos({ 0, 0 }) { }
 
 bool InputManager::init() {
-    if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
-    /*resetText();*/
     initControllers();
     return true;
 }
@@ -84,22 +81,11 @@ void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event co
     }
 }
 
-void InputManager::updateState(const SDL_Event& event) {
+bool InputManager::handleEvents(const SDL_Event& event) {
     std::string eventName = "";
     int value = -1;
 
-    // Eventos de input
     switch (event.type) {
-    // Ventana
-    case SDL_WINDOWEVENT_CLOSE:
-    case SDL_QUIT:
-        Game::instance()->exit();
-        //Game::instance()->pushEvent("ev_QUIT", {});
-        break;
-    case SDL_WINDOWEVENT:
-        if (event.window.event == SDL_WINDOWEVENT_RESIZED) Game::instance()->pushEvent("ev_RESIZEWINDOW", {});
-        break;
-
     // Teclado
     case SDL_KEYDOWN:
         eventName = "ie_keyDown";
@@ -146,46 +132,12 @@ void InputManager::updateState(const SDL_Event& event) {
     case SDL_JOYDEVICEADDED: addController(event.cdevice.which); break;
     case SDL_JOYDEVICEREMOVED: removeController(event.cdevice.which); break;
 
-    //// Input de texto
-    //case SDL_TEXTINPUT: inputText += event.text.text; break;
-    //case SDL_TEXTEDITING:
-    //    compositionText = event.edit.text;
-    //    cursor = event.edit.start;
-    //    selectionLen = event.edit.length;
-    //    break;
-
     default: break;
     }
 
-
-//    // Si esta activa la entrada de texto
-//    if (SDL_IsTextInputActive()) {
-//        // Borra el ultimo char
-//        if (removeChar) {
-//            removeLastChar();
-//            removeChar = false;
-//        }
-//        // Desactiva la entrada de texto y limpia el texto introducido
-//        else if (toggleTextInput) {
-//            toggleTextInput = false;
-//            SDL_StopTextInput();
-//            resetText();
-//            sendEvents();
-//#ifdef _DEBUG
-//            std::cout << "Entrada de texto finalizada\n";
-//#endif
-//        }
-//    }
-
     sendEvent(eventName, event, value);
+
+    return true;
 }
 
-void InputManager::sendEvents() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        ImGui_ImplSDL2_ProcessEvent(&event);
-        updateState(event);
-    }
-
-}
 }

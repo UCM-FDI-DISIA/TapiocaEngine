@@ -2,7 +2,7 @@
 #include <string>
 #include <unordered_set>
 #include "Utilities/Singleton.h"
-#include "Structure/Module.h"
+#include "WindowModule.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 
@@ -38,9 +38,11 @@ class ParticleSystem;
 class Plane;
 class AnimationHelper;
 
-class TAPIOCA_API GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
+class WindowManager;
+
+class TAPIOCA_API GraphicsManager : public Singleton<GraphicsManager>, public WindowModule {
 private:
-    friend Singleton<GraphicsEngine>;
+    friend Singleton<GraphicsManager>;
 
     // Ogre
     Ogre::FileSystemLayer* fsLayer;                      // Sistema de busqueda de archivos de configuracion
@@ -55,11 +57,11 @@ private:
     Ogre::RenderWindow* ogreWindow;                      // Ventana de ogre (solo para render)
 
     // Ventana
-    uint32_t windowWidth, windowHeight;                  // Anchura y altura de la ventana, respectivamente
+    WindowManager* window;
     SDL_Window* sdlWindow;                               // Ventana de SDL
     void* glContext;									 // Contexto de OpenGL
 
-    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por graphicsEngine
+    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por GraphicsManager
     
     // UI
     Ogre::OverlaySystem* overSys;                        // Systema de overlays de Ogre
@@ -82,23 +84,23 @@ private:
     void loadShaders();
 
     /*
-    * @brief Constructora de la clase GraphicsEngine.
+    * @brief Constructora de la clase GraphicsManager.
     * @param windowName Nombre de la ventana
     * @param w Anchura de la ventana
     * @param h Altura de la ventana
     */
-    GraphicsEngine(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
+    GraphicsManager(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
 
 public:
-    GraphicsEngine(GraphicsEngine&) = delete;
-    GraphicsEngine(GraphicsEngine&&) = delete;
-    GraphicsEngine& operator=(GraphicsEngine&) = delete;
-    GraphicsEngine& operator=(GraphicsEngine&&) = delete;
+    GraphicsManager(GraphicsManager&) = delete;
+    GraphicsManager(GraphicsManager&&) = delete;
+    GraphicsManager& operator=(GraphicsManager&) = delete;
+    GraphicsManager& operator=(GraphicsManager&&) = delete;
 
     /*
-    * @brief Destructora de la clase GraphicsEngine.
+    * @brief Destructora de la clase GraphicsManager.
     */
-    virtual ~GraphicsEngine();
+    virtual ~GraphicsManager();
 
     /*
     * @brief Crea el root de Ogre y prepara los recursos para empezar a renderizar
@@ -111,7 +113,12 @@ public:
     void render() override;
 
     /*
-    * @brief Libera la memoria que usa GraphicsEngine
+    * @brief Gestiona eventos de ventana
+    */
+    bool handleEvents(const SDL_Event& event) override;
+
+    /*
+    * @brief Libera la memoria que usa GraphicsManager
     */
     void shutDown();
 

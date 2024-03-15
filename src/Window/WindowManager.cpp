@@ -1,10 +1,12 @@
 #include "WindowManager.h"
 
+#include <Structure/Game.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
 #undef main
+#ifdef _DEBUG
 #include <iostream>
-
+#endif
 #include "checkML.h"
 
 namespace Tapioca {
@@ -13,7 +15,8 @@ template<>
 WindowManager* Singleton<WindowManager>::instance_ = nullptr;
 
 WindowManager::WindowManager(const std::string const& windowName, const uint32_t w, const uint32_t h)
-    : sdlWindow(nullptr), windowWidth(w), windowHeight(h) { }
+    : sdlWindow(nullptr), windowWidth(w), windowHeight(h), modules(), game(nullptr) {
+}
 
 bool WindowManager::init() {
     // Iniciar SDL
@@ -29,6 +32,8 @@ bool WindowManager::init() {
 #endif
         return false;
     }
+
+    game = Game::instance();
 }
 
 WindowManager::~WindowManager() { 
@@ -41,6 +46,22 @@ WindowManager::~WindowManager() {
 
 
 }
+
+void WindowManager::update(const uint64_t deltaTime) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_WINDOWEVENT_CLOSE || event.type == SDL_QUIT) Game::instance()->exit();
+        else if (event.type == SDL_WINDOWEVENT) {
+            if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+                SDL_GetWindowSize(sdlWindow, (int*)(&windowWidth), (int*)(&windowHeight));
+            }
+        }
+        else for (auto mod : modules) mod->handleEvents(event);
+    }
+}
+
+void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
+
 
 
 }
