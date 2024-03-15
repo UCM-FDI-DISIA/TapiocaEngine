@@ -13,6 +13,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exports\Exports.vcxproj">
+      <Project>{2564eff6-7cce-477d-a287-f1b452cd392b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

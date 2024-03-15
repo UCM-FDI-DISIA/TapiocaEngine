@@ -3,7 +3,7 @@
 #include "Structure/Module.h"
 #include <OgreRenderTargetListener.h>
 
-class SDL_Window;
+struct SDL_Window;
 
 namespace Ogre {
 class RenderWindow;

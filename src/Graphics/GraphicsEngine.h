@@ -7,7 +7,7 @@
 #include "Utilities/Vector4.h"
 
 class SGTechniqueResolverListener;
-class SDL_Window;
+struct SDL_Window;
 
 namespace Ogre {
 class FileSystemLayer;

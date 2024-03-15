@@ -15,7 +15,17 @@ class TAPIOCA_API FactoryManager : public Singleton<FactoryManager>, public Modu
 private:
     friend Singleton<FactoryManager>;
 
+    // warning C4251 'Tapioca::FactoryManager::builders' :
+    // class 'std::unordered_map<std::string,Tapioca::ComponentBuilder *,std::hash<std::string>,
+    // std::equal_to<std::string>,std::allocator<std::pair<const std::string,Tapioca::ComponentBuilder *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::FactoryManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_map<std::string, ComponentBuilder*> builders;   // Mapa de factorias de componentes
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
     /*
     * @brief Inicializa el modulo
