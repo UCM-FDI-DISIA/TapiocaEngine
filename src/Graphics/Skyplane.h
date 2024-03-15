@@ -12,7 +12,7 @@ namespace Tapioca {
 /*
 * @brief Wrapper de la clase Skyplane de Ogre.
 */
-class TAPIOCA_API Skyplane {
+class TAPIOCA_API Skyplane : public RenderObject {
 protected:
     Ogre::SceneManager* scnM;
     std::string material;
@@ -25,6 +25,7 @@ protected:
     int xSegments;
     int ySegments;
 
+public:
     /*
     * @brief Constructora de la clase Skyplane.
     * @param scnMgr Puntero al manager de escenas de ogre
@@ -34,12 +35,10 @@ protected:
     * @param fConstant Distancia que se desplaza el plano en la direccion de la normal
     * @param scale Escala del skyplane
     */
-    Skyplane(Ogre::SceneManager* const scnMgr, std::string const& materialName, const bool enable = true,
-             const Vector3 rkNormal = {0.0f, 0.0f, 1.0f}, const float fConstant = -20.0f, const float scale = 0.3f,
-             const float tiling = 1.0f, const bool drawFirst = true, const float bow = 1.0f, const int xsegments = 100,
-             const int ysegments = 100);
-
-public:
+    Skyplane(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& materialName,
+             const bool enable = true, const Vector3 rkNormal = {0.0f, 0.0f, 1.0f}, const float fConstant = -20.0f,
+             const float scale = 0.3f, const float tiling = 1.0f, const bool drawFirst = true, const float bow = 1.0f,
+             const int xsegments = 100, const int ysegments = 100);
     /*
     * @brief Activa o desactiva el Skybox
     * @param enable True si se quiere activar, false en caso contrario

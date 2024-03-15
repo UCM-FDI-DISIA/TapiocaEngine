@@ -12,13 +12,13 @@ namespace Tapioca {
 /*
 * @brief Wrapper de la clase Skybox de Ogre.
 */
-class TAPIOCA_API Skybox {
+class TAPIOCA_API Skybox : public RenderObject {
 protected:
     std::string texture;            // Nombre de la textura
     float distC;                    // 
     bool orderC;
-    Ogre::SceneManager* scnM;
-
+    Ogre::SceneManager* scnM; 
+public:
     /*
     * @brief Construye un skybox con la textura texture a una distancia distC de la cámara
     * e indicando si se pinta antes o después del resto de elementos en función de orderC
@@ -27,10 +27,9 @@ protected:
     * @param distC Distancia del plano a la camara
     * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
     */
-    Skybox(Ogre::SceneManager* const scnMgr, std::string const& texture, const float distC = 5000,
-           const bool orderC = true);
+    Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& texture,
+           const float distC = 5000, const bool orderC = true);
 
-public:
     /*
     * @brief Activa o desactiva el Skybox
     * @param enable True si se quiere activar, false en caso contrario

@@ -37,6 +37,8 @@ class Billboard;
 class ParticleSystem;
 class Plane;
 class AnimationHelper;
+class Skybox;
+class Skyplane;
 
 class TAPIOCA_API GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
 private:
@@ -259,6 +261,13 @@ public:
                        std::string const& material = "");
 
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
+
+    Skybox* createSkybox(RenderNode* const node, std::string const& texture, const float distC = 5000,
+                         const bool orderC = true);
+
+    Skyplane* createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
+                             const Vector3 rkNormal, const float fConstant, const float scale, const float tiling,
+                             const bool drawFirst, const float bow, const int xsegments, const int ysegments);
 
     Ogre::ManualObject* createManualObject(RenderNode* const node);
 

@@ -1,12 +1,14 @@
 #include "Skyplane.h"
 #include <Ogre.h>
+#include "checkML.h"
 
 namespace Tapioca {
 
-Skyplane::Skyplane(Ogre::SceneManager* const scnMgr, std::string const& materialName, const bool enable,
+Skyplane::Skyplane(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& materialName,
+                   const bool enable,
                    const Vector3 rkNormal, const float fConstant, const float scale, const float tiling,
                    const bool drawFirst, const float bow, const int xsegments, const int ysegments)
-    : scnM(scnMgr), material(materialName), rkNormal(rkNormal), fConstant(fConstant), scale(scale), tiling(tiling),
+    : RenderObject(node, scnMgr), scnM(scnMgr), material(materialName), rkNormal(rkNormal), fConstant(fConstant), scale(scale), tiling(tiling),
       drawFirst(drawFirst), bow(bow), xSegments(xsegments), ySegments(ysegments) {
 
     scnM = scnMgr;

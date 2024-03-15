@@ -13,6 +13,8 @@
 #include "ParticleSystem.h"
 #include "Plane.h"
 #include "AnimationHelper.h"
+#include "Skybox.h"
+#include "Skyplane.h"
 
 // OGRE
 #include <Ogre.h>
@@ -325,6 +327,20 @@ Plane* GraphicsEngine::createPlane(RenderNode* const node, const float a, const 
 AnimationHelper* GraphicsEngine::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
     return new AnimationHelper(object, autoPlay, loop);
 }
+
+Skybox* GraphicsEngine::createSkybox(RenderNode* const node, std::string const& texture, const float distC,
+                                     const bool orderC) {
+    return new Skybox(scnMgr, node, texture, distC, orderC);
+}
+
+Skyplane* GraphicsEngine::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
+                                         const Vector3 rkNormal, const float fConstant, const float scale,
+                                         const float tiling, const bool drawFirst, const float bow, const int xsegments,
+                                         const int ysegments) {
+    return new Skyplane(scnMgr, node, materialName, enable, rkNormal, fConstant, scale, tiling, drawFirst, bow,
+                        xsegments, ysegments);
+}
+
 
 Ogre::ManualObject* GraphicsEngine::createManualObject(RenderNode* const node) {
     Ogre::ManualObject* manualObject = scnMgr->createManualObject();

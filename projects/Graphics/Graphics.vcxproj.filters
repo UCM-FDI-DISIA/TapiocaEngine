@@ -58,6 +58,12 @@
     <ClCompile Include="..\..\src\Graphics\AnimationHelper.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h">
@@ -116,6 +122,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\AnimationHelper.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
