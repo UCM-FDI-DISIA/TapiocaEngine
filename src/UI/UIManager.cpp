@@ -60,7 +60,7 @@ void UIManager::render() {
 #endif
         // Cargar la .dll
         if (!DynamicLibraryLoader::initGame()) {
-            button = "Couldn't run game";
+            button = "Couldn't init game";
         }
     }
     ImGui::End();

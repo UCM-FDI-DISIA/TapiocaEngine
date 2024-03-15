@@ -83,7 +83,6 @@ PhysicsManager::PhysicsManager()
 
 PhysicsManager::~PhysicsManager() { destroy(); }
 
-
 bool PhysicsManager::init() {
     // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
 
@@ -117,7 +116,7 @@ bool PhysicsManager::init() {
 }
 
 
-void PhysicsManager:: update(const uint64_t deltaTime) {
+void PhysicsManager::update(const uint64_t deltaTime) {
   // dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 10);
 
 #ifdef _DEBUG

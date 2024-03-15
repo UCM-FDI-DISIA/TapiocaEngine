@@ -12,7 +12,7 @@ template class TAPIOCA_API Singleton<WindowManager>;
 template<>
 WindowManager* Singleton<WindowManager>::instance_ = nullptr;
 
-WindowManager::WindowManager(const std::string const& windowName, const uint32_t w, const uint32_t h)
+WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : sdlWindow(nullptr), windowWidth(w), windowHeight(h) { }
 
 bool WindowManager::init() {
@@ -29,6 +29,8 @@ bool WindowManager::init() {
 #endif
         return false;
     }
+
+    return true;
 }
 
 WindowManager::~WindowManager() { 

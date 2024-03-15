@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma region includes
 #include <unordered_set>
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
@@ -19,18 +17,36 @@ class btCollisionShape;
 class btDiscreteDynamicsWorld;
 class btRigidBody;
 class Collider;
-#pragma endregion
-
 
 namespace Tapioca {
 class Vector3;
 class PhysicsDebugDrawer;
-class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager> , public Module {
 
+class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager> , public Module {
     friend Singleton<PhysicsManager>;
 
 private:
-#pragma region metodos
+    btDefaultCollisionConfiguration* colConfig;                 // configuracion predeterminada para la deteccion de colisiones
+    btBroadphaseInterface* broadphase;                          // detectar pares de objetos de la misma region
+    btCollisionDispatcher* colDispatch;                         // confirmar la colision, notificar a los objetos que se colisionan y callbacks
+    btSequentialImpulseConstraintSolver* constraintSolver;      // resolver la interaccion de colisiones y calculos de fuerzas resultantes
+    btDiscreteDynamicsWorld* dynamicsWorld;                     // el mundo
+
+// warning C4251: 'Tapioca::PhysicsManager::rigidBodies':
+// class ' std::unordered_set<btRigidBody*, std::hash<btRigidBody*>, std::equal_to<btRigidBody*>,
+// std::allocator<btRigidBody*>>' necesita tener una interfaz DLL para que la
+// utilicen los clientes de class 'Tapioca::PhysicsManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::unordered_set<btRigidBody*> rigidBodies;   // almacenado todos los rigidbodies del mundo
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
+#ifdef _DEBUG                                                      
+    PhysicsDebugDrawer* pdd;                                    // para dibujar las fisicas
+#endif
 
     /*
     * @brief Constructora de la clase PhysicsManager.
@@ -42,24 +58,7 @@ private:
     */
     bool init() override;
 
-#pragma endregion
-
-#pragma region parametros
-    btDefaultCollisionConfiguration* colConfig;                 // configuracion predeterminada para la deteccion de colisiones
-    btBroadphaseInterface* broadphase;                          // detectar pares de objetos de la misma region
-    btCollisionDispatcher* colDispatch;                         // confirmar la colision, notificar a los objetos que se colisionan y callbacks
-    btSequentialImpulseConstraintSolver* constraintSolver;      // resolver la interaccion de colisiones y calculos de fuerzas resultantes
-    btDiscreteDynamicsWorld* dynamicsWorld;                     // el mundo
-    std::unordered_set<btRigidBody*> rigidBodies;               // almacenado todos los rigidbodies del mundo
-#ifdef _DEBUG                                                      
-    PhysicsDebugDrawer* pdd;                                    // para dibujar las fisicas
-#endif   // _DEBUG
-
-#pragma endregion
-
 public:
-#pragma region metodos
-
     /*
     * @brief Destructora de la clase InputManager.
     */
@@ -72,10 +71,8 @@ public:
     PhysicsManager& operator=(PhysicsManager&&) = delete;
 
 
-
-    void fixedUpdate()override;
+    void fixedUpdate() override;
     void update(const uint64_t deltaTime);
-
 
     /*
     * @brief  Crea un rigidbody
@@ -108,7 +105,5 @@ public:
     * @brief Destruye el mundo
     */
     void destroy();
-
-#pragma endregion
 };
 }

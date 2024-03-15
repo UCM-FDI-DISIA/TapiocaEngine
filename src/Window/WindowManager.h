@@ -2,12 +2,12 @@
 #include <Utilities/Singleton.h>
 #include <Structure/Module.h>
 
-
 class SDL_Window;
 
 namespace Tapioca {
 class TAPIOCA_API WindowManager : public Singleton<WindowManager>, public Module {
     friend Singleton<WindowManager>;
+
 private:
     std::string windowName;              // Nombre de la ventana
     uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente

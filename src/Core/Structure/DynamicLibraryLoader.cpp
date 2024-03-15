@@ -36,7 +36,7 @@ bool DynamicLibraryLoader::load(std::string const& gameName) {
 bool DynamicLibraryLoader::initGame(std::string const& gameName) {
     if (load(gameName)) {
         EntryPoint eP = (EntryPoint)GetProcAddress(module, "init");
-        eP();
+        return eP();
     }
     else {
 #ifdef _DEBUG
@@ -44,7 +44,6 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
 #endif
         return false;
     }
-    return true;
 }
 
 void DynamicLibraryLoader::freeModule() {
