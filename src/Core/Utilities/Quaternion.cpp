@@ -21,6 +21,9 @@ Quaternion::Quaternion(const float alfa, const Vector3 vec) {
 }
 
 Quaternion::Quaternion(const Vector3 euler) { 
+   
+    
+    
     //la libreria math opera en radianes
     float roll = euler.x * (PI / 180);
     float cosroll = cosf(roll / 2);
@@ -112,7 +115,14 @@ Vector3 Quaternion::rotatePoint(const Vector3 point) {
     //degrees = degrees * (PI / 180);
     // return( point * cos(degrees)) + (axis.cross(point)) * sin(degrees) + axis * ((axis.dot(point)*(1-cos(degrees))));
     //return point + axis.cross(axis.cross(point)) * (1 - cos(degrees)) + axis.cross(point) * sin(degrees);
+    
+    //El elemento neutro  es 1 0i 0k 0j 
+    //En este caso el punto no rota 
+   if (!(vector.x || vector.y || vector.z) ) {
+        return point;
+    }
     Vector3 axis = vector / sinf(angle / 2);
+
     return point + axis.cross(axis.cross(point) * (1 - cosf(angle))) + axis.cross(point) * sinf(angle);
 }
 
