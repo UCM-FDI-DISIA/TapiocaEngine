@@ -1,5 +1,6 @@
 #pragma once
 #include "Structure/Component.h"
+#include "Utilities/Vector3.h"
 
 namespace Tapioca {
 class Mesh;
@@ -16,6 +17,7 @@ private:
     Transform* transform;
     std::string meshName, materialName;
     Mesh* getMesh() const;
+    Vector3 initialRotation;
 
 public:
     COMPONENT_ID("MeshRenderer")

@@ -38,7 +38,8 @@ void Transform::removeParent() {
     parent = nullptr;
 }
 
-Transform::Transform() : Component(), position(Vector3(0)), rotation(Vector3(0)), scale(Vector3(1)), parent(nullptr) { }
+Transform::Transform()
+    : Component(), position(Vector3(0)), rotation(Vector3(0.0f)), scale(Vector3(1.0f)), parent(nullptr) { }
 
 Transform::~Transform() {
     for (Transform* child : getAllChildren()) {
@@ -100,11 +101,16 @@ Vector3 Transform::getGlobalPosition() const {
 }
 
 Vector3 Transform::getGlobalRotation() const {
-    Quaternion aux = Quaternion(rotation);
+    Vector3 aux = rotation;
+    if (parent != nullptr) {
+        aux = parent->getGlobalRotation() + aux;
+    }
+    return aux;
+    /*Quaternion aux = Quaternion(rotation);
     if (parent != nullptr) {
         aux = Quaternion(parent->getGlobalRotation()) * aux;
     }
-    return aux.euler();
+    return aux.euler();*/
 }
 
 Vector3 Transform::getGlobalScale() const {

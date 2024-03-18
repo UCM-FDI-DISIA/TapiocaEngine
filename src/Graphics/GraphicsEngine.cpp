@@ -172,6 +172,9 @@ void GraphicsEngine::loadPlugIns() {
 }
 
 void GraphicsEngine::loadResources() {
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "/assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
     // todos los assets deben estar en la carpeta assets
 #ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(

@@ -6,7 +6,7 @@
 #include "Mesh.h"
 
 namespace Tapioca {
-MeshRenderer::MeshRenderer() : mesh(nullptr), node(nullptr), transform(nullptr) { }
+MeshRenderer::MeshRenderer() : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)) { }
 
 MeshRenderer::~MeshRenderer() { delete node; }
 
@@ -26,6 +26,15 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 #endif
     }
 
+    bool rotationSet = setValueFromMap(initialRotation.x, "initRotationX", variables) &&
+        setValueFromMap(initialRotation.y, "initRotationY", variables) &&
+        setValueFromMap(initialRotation.z, "initRotationZ", variables);
+    if (!rotationSet) {
+#ifdef _DEBUG
+        std::cerr << "La rotacion inicial es Vector3(0,0,0).\n";
+#endif
+    }
+
     return true;
 }
 
@@ -42,7 +51,7 @@ void MeshRenderer::awake() {
 void MeshRenderer::update(uint64_t delt) {
     node->setPosition(transform->getGlobalPosition());
     // TODO: como hacemos para que gire respecto de su padre y no de si mismo
-    node->setRotation(transform->getGlobalRotation());
+    node->setRotation(initialRotation + transform->getGlobalRotation());
     // es tan grande que no se ve
     node->setScale(transform->getGlobalScale());
 }
