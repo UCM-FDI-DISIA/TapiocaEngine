@@ -11,9 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Sound\AudioListener.cpp" />
+    <ClCompile Include="..\..\src\Sound\AudioSource.cpp" />
+    <ClCompile Include="..\..\src\Sound\Sound.cpp" />
     <ClCompile Include="..\..\src\Sound\SoundEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Sound\AudioListener.h" />
+    <ClInclude Include="..\..\src\Sound\AudioSource.h" />
+    <ClInclude Include="..\..\src\Sound\Sound.h" />
     <ClInclude Include="..\..\src\Sound\SoundEngine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
