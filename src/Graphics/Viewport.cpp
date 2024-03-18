@@ -5,10 +5,13 @@
 
 namespace Tapioca {
 
-Viewport::Viewport(Ogre::RenderWindow* const renderWindow, Camera* const camera, const int zOrder) {
+Viewport::Viewport(Ogre::RenderWindow* const renderWindow, Camera* const camera, const int zOrder)
+    : renderWindow(renderWindow), zOrder(zOrder), camera(camera) {
     // el render target hace referencia a dodne se renderiza, en este caso, la ventana de Ogre
     viewport = renderWindow->addViewport(camera->getCamera(), zOrder);
 }
+
+Viewport::~Viewport() { renderWindow->removeViewport(zOrder); }
 
 void Viewport::setDimensions(const Vector4 dimensions) {
     viewport->setDimensions(dimensions.x, dimensions.y, dimensions.z, dimensions.w);
@@ -40,5 +43,11 @@ int Viewport::getHeightInPixels() { return viewport->getActualHeight(); }
 
 void Viewport::setBackground(const Vector4 color) {
     viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
+}
+
+void Viewport::setZOrder(int zOrder) {
+    renderWindow->removeViewport(this->zOrder);
+    viewport = renderWindow->addViewport(camera->getCamera(), zOrder);
+    this->zOrder = zOrder;
 }
 }

@@ -48,12 +48,15 @@ void MeshRenderer::awake() {
     if (materialName != "") mesh->setMaterial(materialName);
 }
 
-void MeshRenderer::update(uint64_t delt) {
-    node->setPosition(transform->getGlobalPosition());
-    // TODO: como hacemos para que gire respecto de su padre y no de si mismo
-    node->setRotation(initialRotation + transform->getGlobalRotation());
-    // es tan grande que no se ve
-    node->setScale(transform->getGlobalScale());
+void MeshRenderer::handleEvent(std::string const& id, void* info) {
+    if (id == "transformChanged") {
+        node->setPosition(transform->getGlobalPosition());
+        // TODO: hacer que gire respecto de su padre y no de si mismo
+        node->setRotation(initialRotation + transform->getGlobalRotation());
+        // es tan grande que no se ve
+        node->setScale(transform->getGlobalScale());
+    }
 }
+
 Mesh* MeshRenderer::getMesh() const { return mesh; }
 }

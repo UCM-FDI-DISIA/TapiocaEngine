@@ -7,37 +7,7 @@
 #include "Utilities/Quaternion.h"
 
 namespace Tapioca {
-//Ogre::SceneNode* RenderNode::createChild(RenderNode* const child) {
-//    children.insert(child);
-//    return node->createChildSceneNode();
-//}
-
-//void RenderNode::removeParent() {
-//    if (this->parent != nullptr) {
-//        removeAttachedParent();
-//    }
-//    else {
-//        Ogre::SceneNode* parentNode = node->getParentSceneNode();
-//        if (parentNode != nullptr) {
-//            parentNode->removeChild(node);
-//        }
-//    }
-//}
-
-//void RenderNode::getAllChildrenAux(std::vector<RenderNode*>& allChildren) {
-//    for (auto child : children) {
-//        allChildren.push_back(child);
-//        child->getAllChildrenAux(allChildren);
-//    }
-//}
-
 void RenderNode::attachObject(RenderObject* const object) {
-    /*auto movObject = object->getMovObject();
-    if (!movObject->isAttached() && !objects.contains(object)) {
-        node->attachObject(movObject);
-        objects.insert(object);
-    }*/
-
     if (this->object != object) {
         // eliminar el objeto si ya hay una colgando para poder meter uno nuevo
         if (this->object != nullptr) {
@@ -54,12 +24,6 @@ void RenderNode::attachObject(Ogre::MovableObject* const object) {
 }
 
 void RenderNode::detachObject() {
-    /*auto movObject = object->getMovObject();
-    if (movObject->isAttached() && objects.contains(object)) {
-        node->detachObject(movObject);
-        objects.erase(object);
-    }*/
-
     if (object != nullptr) {   // por precaucion
         node->detachObject(object->getMovObject());
         object = nullptr;
@@ -88,23 +52,6 @@ RenderNode::~RenderNode() {
     object = nullptr;   // por precaucion
     sceneManager->destroySceneNode(node);
     node = nullptr;
-
-    /*removeParent();
-
-    for (auto it = objects.begin(), itAnt = objects.begin(); it != objects.end();) {
-        ++itAnt;
-        (*it)->detachFromNode();
-        it = itAnt;
-    }
-    for (auto it = children.begin(), itAnt = children.begin(); it != children.end();) {
-        ++itAnt;
-        (*it)->removeAttachedParent();
-        it = itAnt;
-    }
-    objects.clear();
-    children.clear();
-    sceneManager->destroySceneNode(node);
-    node = nullptr;*/
 }
 
 //void RenderNode::removeChild(RenderNode* const child) {
@@ -147,22 +94,4 @@ void RenderNode::yaw(const float angle) {
     node->yaw(Ogre::Degree(angle), Ogre::Node::TS_WORLD);
 }
 void RenderNode::pitch(const float angle) { node->pitch(Ogre::Degree(angle), Ogre::Node::TS_WORLD); }
-
-//std::vector<RenderNode*> RenderNode::getAllChildren() {
-//    std::vector<RenderNode*> allChildren;
-//    getAllChildrenAux(allChildren);
-//    return allChildren;
-//}
-
-//std::vector<RenderNode*> RenderNode::getChildren() {
-//    std::vector<RenderNode*> childrenAux(children.size());
-//    std::copy(children.begin(), children.end(), childrenAux.begin());
-//    return childrenAux;
-//}
-
-//void RenderNode::setParent(INode* const parent) {
-//    removeParent();
-//    parent->addChild(this);
-//    this->parent = parent;
-//}
 }

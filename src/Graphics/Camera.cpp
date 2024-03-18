@@ -33,5 +33,4 @@ void Camera::setFarClipDistance(const float dist) { mCam->setFarClipDistance(dis
 void Camera::setAspectRatio(const float aspectRatio) {
     if (!autoAspectRatio) mCam->setAspectRatio(aspectRatio);
 }
-
 }

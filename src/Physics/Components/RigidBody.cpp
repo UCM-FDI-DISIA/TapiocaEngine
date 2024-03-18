@@ -121,13 +121,13 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
         btTransform btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-//#ifdef _DEBUG
-//        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
-//                  << toEuler(btTr.getRotation()).z << " \n ";
-//#endif
+        //#ifdef _DEBUG
+        //        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
+        //                  << toEuler(btTr.getRotation()).z << " \n ";
+        //#endif
     }
 }
-void RigidBody::start() {
+void RigidBody::awake() {
 
     transform = object->getComponent<Transform>();
 

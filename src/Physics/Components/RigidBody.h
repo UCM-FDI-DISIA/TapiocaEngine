@@ -76,7 +76,7 @@ public:
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
-    void start() override;
+    void awake() override;
     /*
     * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
     * @param b true si se quiere activar, false en caso contrario

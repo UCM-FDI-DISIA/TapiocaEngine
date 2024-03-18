@@ -7,18 +7,21 @@ class Viewport;
 }
 
 namespace Tapioca {
-    class Camera;
-    class Vector4;
-    class Vector3;
+class Camera;
+class Vector4;
+class Vector3;
 
 /*
 * @brief Wrapper de la clase Mesh de Ogre.
 * Se utiliza para indicar al render target (la ventana de Ogre), que trozo de la ventana
 * usar para renderizar lo que muestra la camara
 */
-    class TAPIOCA_API Viewport {
+class TAPIOCA_API Viewport {
 private:
-    Ogre::Viewport* viewport;       // Viewport de Ogre
+    Ogre::Viewport* viewport;   // Viewport de Ogre
+    Ogre::RenderWindow* renderWindow;
+    int zOrder;
+    Camera* camera;
 
 public:
     /*
@@ -28,6 +31,8 @@ public:
     * @param name Nombre del mesh
     */
     Viewport(Ogre::RenderWindow* const renderWindow, Camera* const camera, const int zOrder);
+
+    virtual ~Viewport();
 
     /*
     * @brief Cambia las dimensiones del viewport
@@ -58,7 +63,7 @@ public:
     * @param height Valor que se quiere asignar 
     */
     void setHeight(const float height);
-    
+
     /*
     * @brief Devuelve la anchura del viewport en pixeles
     * @return height Valor que se quiere asignar 
@@ -76,5 +81,7 @@ public:
     * @param color Color al que se quiere cambiar
     */
     void setBackground(const Vector4 color);
+
+    void setZOrder(int zOrder);
 };
 }

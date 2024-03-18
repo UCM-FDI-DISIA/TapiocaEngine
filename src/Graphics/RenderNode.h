@@ -27,13 +27,6 @@ private:
     Ogre::SceneNode* node;                  // Nodo para renderizado
     RenderObject* object;                   // Objecto para renderizar
 
-    // si es nullptr, quiere decir que el padre es el nodo root
-    //RenderNode* parent;
-    //std::unordered_set<RenderNode*> children;
-    //std::unordered_set<RenderObject*> objects;
-
-    //void removeParent();
-
     // PARA OBJETOS
     void attachObject(RenderObject* const object);
     void attachObject(Ogre::MovableObject* const object);   // solo para ManualObject
@@ -46,10 +39,6 @@ private:
 
 public:
     virtual ~RenderNode();
-
-    /*void removeChild(RenderNode* const node);
-    void removeAttachedParent();
-    void addChild(RenderNode* const child);*/
 
     // mover, rotar y escalar
     void setPosition(const Vector3 pos);
@@ -66,13 +55,5 @@ public:
     void roll(const float angle);
     void yaw(const float angle);
     void pitch(const float angle);
-
-    /*std::vector<RenderNode*> getChildren();
-    void getAllChildrenAux(std::vector<RenderNode*>& allChildren);
-    std::vector<RenderNode*> getAllChildren();
-
-    void setParent(RenderNode* const parent);
-
-    inline RenderNode* getParent() const override { return parent; }*/
 };
 }

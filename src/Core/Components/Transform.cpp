@@ -79,10 +79,12 @@ bool Transform::initComponent(const CompMap& variables) {
         return false;
     }
 
-    initialRotation = rotation;
+    //initialRotation = rotation;
 
     return true;
 }
+
+void Transform::start() { changed(); }
 
 void Transform::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {

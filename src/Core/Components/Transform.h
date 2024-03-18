@@ -22,7 +22,8 @@ private:
     Vector3 position;
     Vector3 rotation;
     Vector3 scale;
-    Vector3 initialRotation; //rotación inicial del transform
+    // TODO: PREGUNTAR??
+    /*Vector3 initialRotation;*/ //rotación inicial del transform
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */
@@ -72,6 +73,9 @@ public:
     * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
     */
     bool initComponent(const CompMap& variables) override;
+
+    void start() override;
+
     /*
     * @brief Procesa un evento recibido
     * @param id String que indica el tipo de evento
