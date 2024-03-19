@@ -148,7 +148,7 @@ void Transform::rotate(const Vector3& r) {
 
 Vector3 Transform::right() {
 
-    Vector3 right(1, 0, 0);   //X
+    Vector3 r(1, 0, 0);   //X
 
     // Crear cuaterniones para las rotaciones en cada eje
     Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
@@ -160,7 +160,7 @@ Vector3 Transform::right() {
 
 
     // Rotar el vector forward utilizando el cuaternion combinado
-    Vector3 v = combinedRotation.rotatePoint(right);
+    Vector3 v = combinedRotation.rotatePoint(r);
 
     v.normalize();
 
@@ -168,7 +168,7 @@ Vector3 Transform::right() {
 }
 Vector3 Transform::up() {
 
-    Vector3 up(0, 1, 0);   //Y
+    Vector3 u(0, 1, 0);   //Y
 
     // Crear cuaterniones para las rotaciones en cada eje
     Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
@@ -180,7 +180,7 @@ Vector3 Transform::up() {
 
 
     // Rotar el vector forward utilizando el cuaternion combinado
-    Vector3 v = combinedRotation.rotatePoint(up);
+    Vector3 v = combinedRotation.rotatePoint(u);
 
     v.normalize();
 
@@ -188,7 +188,7 @@ Vector3 Transform::up() {
 }
 Vector3 Transform::forward() {
 
-    Vector3 forward(0, 0, 1);   //Z
+    Vector3 f(0, 0, 1);   //Z
 
     // Crear cuaterniones para las rotaciones en cada eje
     Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
@@ -200,7 +200,12 @@ Vector3 Transform::forward() {
 
 
     // Rotar el vector forward utilizando el cuaternion combinado
-    Vector3 v = combinedRotation.rotatePoint(forward);
+    Vector3 v = combinedRotation.rotatePoint(f);
+    std::cout << combinedRotation.vector.x << " " << combinedRotation.vector.y << " " << combinedRotation.vector.z
+              << " " << combinedRotation.scalar
+              << "\n ";
+
+    std::cout << v.x << " " << v.y << " " << v.z << "\n";
 
     v.normalize();
 
