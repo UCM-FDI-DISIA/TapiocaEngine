@@ -118,9 +118,16 @@ Vector3 Quaternion::rotatePoint(const Vector3 point) {
     
     //El elemento neutro  es 1 0i 0k 0j 
     //En este caso el punto no rota 
-   if (!(vector.x || vector.y || vector.z) ) {
+   if (!(vector.x || vector.y || vector.z)||!angle ) {
         return point;
     }
+   
+   /* angle = 1;
+     float s = sinf(angle / 2); 
+   double x = vector.x / sinf(angle / 2);
+    double y = vector.y / sinf(angle / 2);
+   double z = vector.z/ sinf(angle / 2);
+   */
     Vector3 axis = vector / sinf(angle / 2);
 
     return point + axis.cross(axis.cross(point) * (1 - cosf(angle))) + axis.cross(point) * sinf(angle);
