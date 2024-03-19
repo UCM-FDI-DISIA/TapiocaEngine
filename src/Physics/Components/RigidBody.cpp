@@ -5,16 +5,17 @@
 #include "../../Physics/PhysicsManager.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
-#include "Collider.h"
+//#include "Collider.h"
 
 
 namespace Tapioca {
 RigidBody::RigidBody()
-    : transform(nullptr), collider(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1),
-      friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)) { }
+    : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
+      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)),activeRigidBody(true) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
+        activeRigidBody = false;
         PhysicsManager::instance()->destroyRigidBody(rigidBody);
         rigidBody = nullptr;
     }
@@ -127,17 +128,38 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
         //#endif
     }
 }
+void RigidBody::onCollisionEnter(GameObject* const other) {
+#ifdef _DEBUG
+    std::cout << "Entro en collision\n";
+#endif
+    pushEvent("onCollisionEnter", other, false);
+}
+
+void RigidBody::onCollisionExit(GameObject* const other) {
+#ifdef _DEBUG
+    std::cout << "Salgo de collision\n";
+#endif
+    pushEvent("onCollisionExit", other, false);
+}
+
+void RigidBody::onCollisionStay(GameObject* const other) {
+#ifdef _DEBUG
+    std::cout << "Estoy en collision\n";
+#endif
+    pushEvent("onCollisionStay", other, false);
+}
+
 void RigidBody::awake() {
 
     transform = object->getComponent<Transform>();
 
-    rigidBody = PhysicsManager::instance()->createRigidBody(transform->getGlobalPosition(), Vector3(0, 0, 0),
-                                                            colliderScale, colShape, movementType, mass, friction,
-                                                            damping, bounciness, isTrigger, group, mask);
+    rigidBody = PhysicsManager::instance()->createRigidBody(
+        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderScale, colShape, movementType, mass,
+        friction, damping, bounciness, isTrigger, group, mask);
 
-    collider = object->getComponent<Collider>();
+    // collider = object->getComponent<Collider>();
 
-    rigidBody->setUserPointer(collider);
+    rigidBody->setUserPointer(this);
 }
 
 void RigidBody::setActive(const bool b) {
@@ -236,6 +258,8 @@ Vector3 RigidBody::getColliderScale() const { return colliderScale; }
 
 
 float RigidBody::getMass() const { return mass; }
+
+bool RigidBody::getActiveRB() const { return activeRigidBody; }
 
 Vector3 RigidBody::getTensor() const { return toVector3(rigidBody->getLocalInertia()); }
 

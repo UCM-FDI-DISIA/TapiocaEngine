@@ -3,7 +3,7 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 #include "Utilities/Vector3.h"
-#include "Components/Collider.h"
+#include "Components/RigidBody.h"
 #include "checkML.h"
 #include "Structure/Game.h"
 #undef new
@@ -25,9 +25,9 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
 #endif
 
     if (obj1 != nullptr && obj2 != nullptr) {
-        Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
-        Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
-        if (col2 != nullptr && col1 != nullptr) {
+        RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
+        RigidBody* col2 = static_cast<RigidBody*>(obj2->getUserPointer());
+        if (col2->getActiveRB() && col1->getActiveRB()) {
             col1->onCollisionEnter(col2->getObject());
             col2->onCollisionEnter(col1->getObject());
         }
@@ -42,9 +42,9 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
     std::cout << "Salgo\n";
 #endif
     if (obj1 != nullptr && obj2 != nullptr) {
-        Collider* col1 = static_cast<Collider*>(obj1->getUserPointer());
-        Collider* col2 = static_cast<Collider*>(obj2->getUserPointer());
-        if (col2 != nullptr && col1 != nullptr) {
+        RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
+        RigidBody* col2 = static_cast<RigidBody*>(obj2->getUserPointer());
+        if (col2->getActiveRB() && col1->getActiveRB()) {
             col1->onCollisionExit(col2->getObject());
             col2->onCollisionExit(col1->getObject());
         }
@@ -61,9 +61,9 @@ bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrap
     std::cout << "A\n";
 #endif
     if (obj1 != nullptr && obj2 != nullptr) {
-        Collider* col1 = static_cast<Collider*>(obj1);
-        Collider* col2 = static_cast<Collider*>(obj2);
-        if (col1 != nullptr && col2 != nullptr) {
+        RigidBody* col1 = static_cast<RigidBody*>(obj1);
+        RigidBody* col2 = static_cast<RigidBody*>(obj2);
+        if (col2->getActiveRB() && col1->getActiveRB()) {
             col1->onCollisionStay(col2->getObject());
             col2->onCollisionStay(col1->getObject());
         }
