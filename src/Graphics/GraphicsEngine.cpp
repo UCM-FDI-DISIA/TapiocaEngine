@@ -275,6 +275,8 @@ Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
 
 void* GraphicsEngine::getGLContext() { return glContext; }
 
+Ogre::SceneManager* GraphicsEngine::getSceneManager() { return scnMgr; }
+
 RenderNode* GraphicsEngine::createNode(const Vector3 pos, const Vector3 scale) {
     return new RenderNode(scnMgr, pos, scale);
 }

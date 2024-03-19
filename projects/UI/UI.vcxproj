@@ -13,11 +13,13 @@
   <ItemGroup>
     <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.cpp" />
+    <ClCompile Include="..\..\src\UI\Button.cpp" />
     <ClCompile Include="..\..\src\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h" />
+    <ClInclude Include="..\..\src\UI\Button.h" />
     <ClInclude Include="..\..\src\UI\UIManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +78,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\src\OgreMain\src\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\misc\cpp\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\misc\single_file\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\misc\freetype\;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -94,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\src;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\misc\cpp\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\misc\single_file\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\misc\freetype\;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

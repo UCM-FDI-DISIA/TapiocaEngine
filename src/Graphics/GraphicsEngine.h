@@ -155,6 +155,11 @@ public:
     void* getGLContext();
 
     /*
+    * @brief Devuelve un puntero al gestor de escenas de Ogre
+    */
+    Ogre::SceneManager* getSceneManager();
+
+    /*
     * @brief Crea un nodo
     * @param pos Posicion inicial del nodo. Se crea en el origen (0, 0, 0) si no se especifica
     * @param scale Escala inicial del nodo. Se inicia con escala "normal" (1, 1, 1) si no se especifica
