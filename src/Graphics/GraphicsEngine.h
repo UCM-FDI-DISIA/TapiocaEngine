@@ -47,13 +47,25 @@ private:
     // Ogre
     Ogre::FileSystemLayer* fsLayer;                      // Sistema de busqueda de archivos de configuracion
     Ogre::RTShader::ShaderGenerator* mShaderGenerator;   // Generador de shaders
-    std::string cfgPath;                                 // Ruta donde se guardar los archivos de config (bin)
     Ogre::Root* mRoot;                                   // Root de Ogre
     Ogre::SceneManager* scnMgr;                          // Gestor de escenas
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
     SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
+    // warning C4251 'Tapioca::GraphicsEngine::cfgPath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsEngine'
+    // warning C4251 'Tapioca::GraphicsEngine::mwindowName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsEngine'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string cfgPath;                                 // Ruta donde se guardar los archivos de config (bin)
     std::string mwindowName;                             // Nombre de la ventana
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     Ogre::RenderWindow* ogreWindow;                      // Ventana de ogre (solo para render)
 
     // Ventana
@@ -61,7 +73,17 @@ private:
     SDL_Window* sdlWindow;                               // Ventana de SDL
     void* glContext;									 // Contexto de OpenGL
 
+    // warning C4251 'Tapioca::GraphicsEngine::selfManagedNodes' :
+    // class 'std::unordered_set<Tapioca::RenderNode *,std::hash<Tapioca::RenderNode *>,
+    // std::equal_to<Tapioca::RenderNode *>,std::allocator<Tapioca::RenderNode *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsEngine'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por graphicsEngine
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     
     // UI
     Ogre::OverlaySystem* overSys;                        // Systema de overlays de Ogre

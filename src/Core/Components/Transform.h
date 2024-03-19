@@ -30,7 +30,17 @@ private:
     void changed();
 
     Transform* parent;
+    // warning C4251 'Tapioca::Transform::children' :
+    // class 'std::unordered_set<Tapioca::Transform *,std::hash<Tapioca::Transform *>,
+    // std::equal_to<Tapioca::Transform *>,std::allocator<Tapioca::Transform *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Transform'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_set<Transform*> children;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
     /*
     * @brief Devuelve en el vector que se pasa como parametro los hijos de este transfom

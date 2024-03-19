@@ -1,5 +1,12 @@
 #include "Camera.h"
+// warnings de ogre
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 #include <Ogre.h>
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 #include "RenderNode.h"

@@ -10,9 +10,21 @@ class GameObject;
 class TAPIOCA_API Scene {
 private:
     friend class GameObject;
+    // warning C4251 'Tapioca::Scene::objects' :
+    // class 'std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Scene'
+    // warning C4251 'Tapioca::Scene::handlers' :
+    // class 'std::unordered_map<std::string,Tapioca::GameObject *,std::hash<std::string>,std::equal_to<std::string>,
+    // std::allocator<std::pair<const std::string,Tapioca::GameObject *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Scene'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::vector<GameObject*> objects;                           // Objetos que tiene la escena
     std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
-
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 public:
     /*
     * @brief Constructora de la clase Scene

@@ -8,7 +8,7 @@ class GameObject;
 
 class TAPIOCA_API Component {
 private:
-    std::string id;
+    //std::string id;
 
     friend class GameObject;
 protected:
@@ -123,5 +123,5 @@ public:
     /*
     * @brief Id de la componente
     */
-#define COMPONENT_ID(_id) inline static const std::string id = _id;
+#define COMPONENT_ID(_id) inline static const char* id = _id;
 }

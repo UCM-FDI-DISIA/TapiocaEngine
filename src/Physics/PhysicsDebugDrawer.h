@@ -10,9 +10,26 @@ class ManualObject;
 namespace Tapioca {
 class RenderNode;
 
+// warning C4275 se ha utilizado una interfaz no de DLL class 'btIDebugDraw'
+// como base para la interfaz DLL class 'Tapioca::PhysicsDebugDrawer'
+#ifdef _MSC_VER
+#pragma warning(disable : 4275)
+#endif
 class TAPIOCA_API PhysicsDebugDrawer : public btIDebugDraw {
+#ifdef _MSC_VER
+#pragma warning(default : 4275)
+#endif
     int mode;
+    // warning C4251 'Tapioca::PhysicsDebugDrawer::lines' :
+    // class 'std::list<Ogre::ManualObject *,std::allocator<Ogre::ManualObject *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::PhysicsDebugDrawer'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::list<Ogre::ManualObject*> lines;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     RenderNode* node;
 
 public:

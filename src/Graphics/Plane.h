@@ -20,8 +20,16 @@ class TAPIOCA_API Plane : public RenderObject {
 private:
     Ogre::Entity* mPlane;       // Entidad con la malla del plano
     Ogre::Plane mPlaneAux;      // Plano de Ogre
+    // warning C4251 'Tapioca::Plane::name' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Plane'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string name;           // Nombre del plano
-
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 public:
     //Construye un plano con todo inicializado a 0
     //Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, std::string name, float width, float height,

@@ -32,8 +32,20 @@ private:
 
 protected:
     Ogre::BillboardSet* mBillboardSet;                  // BillboardSet de Ogre
+    // warning C4251 'Tapioca::BillboardSet::billboards' :
+    // class 'std::vector<Tapioca::Billboard *,std::allocator<Tapioca::Billboard *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::BillboardSet'
+    // warning C4251 'Tapioca::BillboardSet::mName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::BillboardSet'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::vector<Tapioca::Billboard*> billboards;        // UnorderedSet de Billboards de Tapioca
     std::string mName;                                  // Nombre identificador
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
     /*
     * @brief Constructora de la clase BillboardSet.

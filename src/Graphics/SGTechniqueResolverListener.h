@@ -1,6 +1,13 @@
 #pragma once
+// warnings de ogre
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 #include <OgreRTShaderSystem.h>
 #include <OgreMaterialManager.h>
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
 /*
 // @brief  Clase encargada de generar Shaders para los materiales que no tengan

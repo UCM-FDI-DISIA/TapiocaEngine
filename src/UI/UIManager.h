@@ -1,7 +1,14 @@
 #pragma once
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
+// warnings de ogre
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 #include <OgreRenderTargetListener.h>
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
 struct SDL_Window;
 

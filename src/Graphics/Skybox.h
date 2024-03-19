@@ -14,7 +14,16 @@ namespace Tapioca {
 */
 class TAPIOCA_API Skybox : public RenderObject {
 protected:
+    // warning C4251 'Tapioca::Skybox::texture' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string texture;            // Nombre de la textura
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     float distC;                    // 
     bool orderC;
     Ogre::SceneManager* scnM; 

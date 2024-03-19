@@ -57,16 +57,37 @@ private:
 
     Scene* scene;           // Escena a la que pertenece el objeto
     bool alive;             // Indica si se deberia borrar la componente
+    // warning C4251 'Tapioca::GameObject::handler' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string handler;    // Handler del objeto
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
     /*
     * @brief Elimina una componente del objeto
     * @param comp Componente que se quiere eliminar
     */
     void deleteCompVector(Component* const comp);
+    // warning C4251 'Tapioca::GameObject::components' :
+    // class 'std::unordered_multimap<std::string,Tapioca::Component *,std::hash<std::string>,
+    // std::equal_to<std::string>,std::allocator<std::pair<const std::string,Tapioca::Component *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
+    // warning C4251 'Tapioca::GameObject::cmpOrder' :
+    // class 'std::vector<Tapioca::Component *,std::allocator<Tapioca::Component *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_multimap<std::string, Component*> components;    // Componentes que tiene el objeto, cada una asociada a una id
     std::vector<Component*> cmpOrder;   // TODO: Hace falta??????
-
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 public:
     /*
     * @brief Constructora de la clase GameObject
@@ -109,7 +130,7 @@ public:
     */
     template<IsComponent TComp> inline TComp* addComponent() {
         TComp* comp = new TComp();
-        addComponent(comp, TComp::id);
+        addComponent(comp, TComp::id); 
         return comp;
     }
     /*

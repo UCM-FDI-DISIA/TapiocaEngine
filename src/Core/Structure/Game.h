@@ -12,11 +12,24 @@ class Module;
 class TAPIOCA_API Game : public Singleton<Game> {
 private:
     friend Singleton<Game>;
-
+    // warning C4251 'Tapioca::Game::modules' :
+    // class 'std::vector<Tapioca::Module *,std::allocator<Tapioca::Module *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Game'
+    // warning C4251 'Tapioca::Game::scenes' :
+    // class 'std::stack<Tapioca::Scene *,std::deque<Tapioca::Scene *,std::allocator<Tapioca::Scene *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Game'
+    // warning C4251 'Tapioca::Game::toDelete' :
+    // class 'std::vector<Tapioca::Scene *,std::allocator<Tapioca::Scene *>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Game'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::vector<Module*> modules;                           // Modulos del motor
     std::stack<Scene*> scenes;                              // Escenas del motor
     std::vector<Scene*> toDelete;                           // Escenas que se van a eliminar
-
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     uint64_t deltaTime;                                     // Tiempo transcurrido desde el ultimo tick
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;      // Numero maximo de fixedUpdates
     bool finish;                                            // True si va a terminar la ejecucion, false en caso contrario

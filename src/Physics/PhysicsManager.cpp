@@ -6,7 +6,7 @@
 #include "Components/Collider.h"
 #include "checkML.h"
 #include "Structure/Game.h"
-#undef new DBG_NEW
+#undef new
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif

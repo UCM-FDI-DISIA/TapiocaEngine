@@ -50,7 +50,7 @@ void SoundEngine::testsample() {
     irrklang::vec3df velPerSecond(0, 0, 0);      // only relevant for doppler effects ojoooo que te calcula el doppler
     irrklang::vec3df upVector(0, 1, 0);
     soundEngine->setListenerPosition(position, lookDirection, velPerSecond, upVector);
-    au->setSpeed(1.2);
+    au->setSpeed(1.2f);
     al = new AudioListener(Vector3(10, 0, 0), Vector3(0, 0, 1), Vector3(0, 0, 0), Vector3(0, 1, 0));
     setListener(*al);
     //au->setPan(0);

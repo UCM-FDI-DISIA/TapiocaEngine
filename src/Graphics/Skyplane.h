@@ -15,7 +15,16 @@ namespace Tapioca {
 class TAPIOCA_API Skyplane : public RenderObject {
 protected:
     Ogre::SceneManager* scnM;
+    // warning C4251 'Tapioca::Skyplane::material' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skyplane'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string material;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     Vector3 rkNormal;
     float fConstant;
     float scale;

@@ -5,7 +5,7 @@
 #include <string>
 #include <unordered_map>
 
-class SDL_Window;
+struct SDL_Window;
 union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
@@ -16,12 +16,35 @@ private:
     friend Singleton<InputManager>;
 
     // Posicion del raton
+    // TODO: Cambiar para que no sea std::pair (para quitar la warning)
+    // warning C4251 'Tapioca::InputManager::mousePos' :
+    // struct 'std::pair<int32_t,int32_t>' necesita tener una interfaz DLL para que la utilicen
+    // los clientes de class 'Tapioca::InputManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::pair<int32_t, int32_t> mousePos;
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 
     // Mandos
     const int DEFAULT_DEADZONE = 1000;
+    // warning C4251 'Tapioca::InputManager::deadZones' :
+    // class 'std::unordered_map<int,int,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,int>>>'
+    // necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::InputManager'
+    // warning C4251 'Tapioca::InputManager::controllers' :
+    // class 'std::unordered_map<int,SDL_GameController *,std::hash<int>,std::equal_to<int>,
+    // std::allocator<std::pair<const int,SDL_GameController *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::InputManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_map<int, int> deadZones;
     std::unordered_map<int, SDL_GameController*> controllers;
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 
     // Input de texo
     /*std::string inputText;
@@ -34,7 +57,22 @@ private:
     // Mapeo de los controles
     // (se agrupan por tipo de evento de SDL que los produce. Luego, segun el evento, se agrupan
     // por valor de la tecla/boton/etc., y ya cada uno guarda un vector con todos los eventos que envia)
+
+    // warning C4251 'Tapioca::InputManager::inputMap' :
+    // class 'std::unordered_map<std::string,std::unordered_map<int,std::vector<std::string,
+    // std::allocator<std::string>>,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,
+    // std::vector<std::string,std::allocator<std::string>>>>>,std::hash<std::string>,std::equal_to<std::string>,
+    // std::allocator<std::pair<const std::string,std::unordered_map<int,std::vector<std::string,
+    // std::allocator<std::string>>,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,
+    // std::vector<std::string,std::allocator<std::string>>>>>>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::InputManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_map<std::string, std::unordered_map<int, std::vector<std::string>>> inputMap;
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     const int MOUSE_MOTION_VALUE = -2;
     const int MOUSE_WHEEL_VALUE = -3;
 

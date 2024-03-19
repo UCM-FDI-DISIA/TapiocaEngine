@@ -17,9 +17,16 @@
 #include "Skyplane.h"
 
 // OGRE
+// warnings de ogre
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 #include <Ogre.h>
 #include "SGTechniqueResolverListener.h"
 #include <OgreOverlaySystem.h>
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
 // SDL
 #include <SDL.h>
@@ -31,7 +38,7 @@ template class TAPIOCA_API Singleton<GraphicsEngine>;
 template<>
 GraphicsEngine* Singleton<GraphicsEngine>::instance_ = nullptr;
 
-GraphicsEngine::GraphicsEngine(const std::string const& windowName, const uint32_t w, const uint32_t h)
+GraphicsEngine::GraphicsEngine(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr),
       mwindowName(windowName), windowWidth(w), windowHeight(h), glContext(), overSys(nullptr) { }

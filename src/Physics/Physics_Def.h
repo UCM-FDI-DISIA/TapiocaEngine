@@ -1,5 +1,5 @@
 #pragma once
-#define PI 3.14159265359
+#define PI 3.14159265359f
 
 class btVector3;
 class btQuaternion;

@@ -1,6 +1,13 @@
 #include "RenderNode.h"
 // OGRE
+// warnings de ogre
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 #include <Ogre.h>
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 // TAPIOCA
 #include "RenderObject.h"
 #include "Utilities/Vector3.h"
