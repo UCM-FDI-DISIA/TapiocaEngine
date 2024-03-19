@@ -13,7 +13,7 @@ namespace Tapioca {
 //class RigidBodyBuilder;
 class Vector3;
 class Transform;
-class Collider;
+//class Collider;
 
 class TAPIOCA_API RigidBody : public Component {
     //friend RigidBodyBuilder;
@@ -21,7 +21,7 @@ class TAPIOCA_API RigidBody : public Component {
 private:
     btRigidBody* rigidBody;
     Transform* transform;
-    Collider* collider;
+    // Collider* collider;
     ColliderShape colShape;
     Vector3 colliderScale;
     MovementType movementType;
@@ -36,6 +36,7 @@ private:
     float damping;
     float bounciness;
 
+    bool activeRigidBody;
 
 public:
     COMPONENT_ID("RigidBody");
@@ -47,6 +48,7 @@ public:
     * @brief Destructora de la clase RigidBody.
     */
     ~RigidBody();
+
 
     /*
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
@@ -76,6 +78,22 @@ public:
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
+    /*
+    * @brief Se llama cuando otro objeto colisiona con este
+    * @param other El objeto con el que ha colisionado
+    */
+    void onCollisionEnter(GameObject* const other);
+    /*
+    * @brief Se llama cuando otro objeto deja de colisionar con este
+    * @param other El objeto con el que se ha dejado de colisionar
+    */
+    void onCollisionExit(GameObject* const other);
+    /*
+    * @brief Se llama mientras los objetos estan colisionando
+    * @param other El objeto con el que se esta colisionando
+    */
+    void onCollisionStay(GameObject* const other);
+
     void awake() override;
     /*
     * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
@@ -226,6 +244,9 @@ public:
     * @return Gravedad que se aplcia al rigidbody
     */
     Vector3 getGravity() const;
+
+
+    bool getActiveRB() const;
 };
 
 
