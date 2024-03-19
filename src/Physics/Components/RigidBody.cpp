@@ -118,7 +118,7 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
     if (id == "transformChanged") {
-        btTransform btTr = rigidBody->getWorldTransform();
+        btTransform& btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
         //#ifdef _DEBUG
