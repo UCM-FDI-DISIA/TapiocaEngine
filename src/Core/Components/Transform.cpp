@@ -201,6 +201,7 @@ Vector3 Transform::forward() {
 
     // Rotar el vector forward utilizando el cuaternion combinado
     Vector3 v = combinedRotation.rotatePoint(f);
+    std::cout << v.x << " " << v.y << " " << v.z << "\n";
 
     v.normalize();
 
