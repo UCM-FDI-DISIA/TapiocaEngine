@@ -23,7 +23,7 @@ template<>
 UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
-    : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), mySceneManager(nullptr), button("Slay") { }
+    : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), mySceneManager(nullptr) { }
 
 UIManager::~UIManager() {
     mySDLWindow = nullptr;
