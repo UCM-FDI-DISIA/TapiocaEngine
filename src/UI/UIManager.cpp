@@ -31,6 +31,11 @@ UIManager::~UIManager() {
     myGLContext = nullptr;
     mySceneManager = nullptr;
 
+    for (auto button : buttons) {
+        delete button.second;
+    }
+    buttons.clear();
+
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
@@ -62,37 +67,38 @@ void UIManager::render() {
     ImGui::NewFrame();
 
     for (auto button : buttons) {
-        ImGui::SetCursorPos(button->getPosition());
-        std::string textStr = button->getText();
+        std::string textStr = button.second->getText();
         const char* text = textStr.c_str();
-        ImGui::Begin(text, button->getCanCloseWindow(), button->getFlags());
-        if (ImGui::Button(text, button->getSize())) {
-            button->getOnClick()();
+        ImGui::Begin(text, button.second->getCanCloseWindow(), button.second->getFlags());
+        if (ImGui::Button(text, button.second->getSize())) {
+            button.second->getOnClick()();
         }
         ImGui::End();
     }
-
-    // PRUEBA
-    ImGui::Begin("Tapioca Engine");
-
-    if (ImGui::Button(button, ImVec2(130, 40))) {
-#ifdef _DEBUG
-        std::cout << "Pulsado el boton de jugar\n";
-#endif
-        // Cargar la .dll
-        if (!DynamicLibraryLoader::initGame()) {
-            button = "Couldn't init game";
-        }
-    }
-    ImGui::End();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-Button* UIManager::createButton(RenderNode* const node, const ImVec2 position, const std::string& text,
-                                std::function<void()> onClick, const ImVec2 size, bool* canCloseWindow,
-                                ImGuiWindowFlags flags) {
-    return new Button(mySceneManager, node, position, text, onClick, size, canCloseWindow, flags);
+Button* UIManager::createButton(const std::string& name, RenderNode* const node, const ImVec2 position,
+                                const std::string& text, std::function<void()> onClick, const ImVec2 size,
+                                bool* canCloseWindow, ImGuiWindowFlags flags) {
+    if (!buttons.contains(name)) {
+        Button* button = new Button(mySceneManager, node, position, text, onClick, size, canCloseWindow, flags);
+        buttons.insert({name, button});
+        return button;
+    }
+    else {
+#ifdef _DEBUG
+        std::cout << "Ya existe el botón con el nombre " << name << '\n';
+#endif
+        return nullptr;
+    }
+}
+
+Button* UIManager::getButton(const std::string& name) {
+    if (buttons.contains(name)) return buttons[name];
+    else
+        return nullptr;
 }
 }

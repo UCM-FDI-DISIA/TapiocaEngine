@@ -11,6 +11,10 @@
 #include "UIManager.h"
 #include "SoundEngine.h"
 
+// PRUEBA BOTON
+#include "Structure/DynamicLibraryLoader.h"
+#include "Button.h"
+
 namespace Tapioca {
 void initEngine() {
     game = Tapioca::Game::create();
@@ -21,7 +25,22 @@ void deleteEngine() { delete game; }
 
 void runEngine() { 
     if (game->init()) {
+        
+        // PRUEBA BOTON
+        auto node = graphics->createNode();
+        auto button = ui->createButton("Boton1", node, ImVec2(0, 0), "Play", []() {
+            if (!DynamicLibraryLoader::initGame()) {
+#ifdef _DEBUG
+                std::cout << "Pulsado el boton de jugar\n";
+#endif
+                Button* button = ui->getButton("Boton1");
+                if (button != nullptr) button->setText("Couldn't init game");
+            }
+        });
+
         game->run();
+
+        delete node;
     }
 #ifdef _DEBUG
     else

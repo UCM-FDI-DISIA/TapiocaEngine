@@ -13,14 +13,14 @@ namespace Tapioca {
 /*
 * @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
-class TAPIOCA_API Button : public RenderObject {
+class TAPIOCA_API Button {
 private:
-    ImVec2 position;                // Posicion del boton
-    std::string text;               // Texto que se muestra en el boton
-    std::function<void()> onClick;  // Funcion que se ejecuta cuando se hace click en el boton
-    ImVec2 size;    	            // Tamano del boton
-    bool* canCloseWindow;           // Puntero a booleano que indica si se puede cerrar la ventana
-    ImGuiWindowFlags flags;		    // Flags de la ventana
+    ImVec2 position;                 // Posicion del boton
+    std::string text;                // Texto que se muestra en el boton
+    std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
+    ImVec2 size;                     // Tamano del boton
+    bool* canCloseWindow;            // Puntero a booleano que indica si se puede cerrar la ventana
+    ImGuiWindowFlags flags;          // Flags de la ventana
 
 public:
     /*
@@ -36,7 +36,8 @@ public:
     */
     Button(Ogre::SceneManager* const scnMgr, RenderNode* const node, const ImVec2 position, const std::string& text,
            std::function<void()> onClick, const ImVec2 size = ImVec2(130, 40), bool* canCloseWindow = nullptr,
-           ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove);
+           ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize |
+               ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings);
     virtual ~Button() { }
 
     /*

@@ -56,7 +56,7 @@ RenderNode::RenderNode(Ogre::SceneManager* const sceneManager, const Vector3 pos
 
 RenderNode::~RenderNode() {
     delete object;
-    object = nullptr;   // por precaucion
+    object = nullptr;
     sceneManager->destroySceneNode(node);
     node = nullptr;
 }

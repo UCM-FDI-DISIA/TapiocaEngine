@@ -37,10 +37,7 @@ private:
     Ogre::SceneManager* mySceneManager;   // Referencia al SceneManager de Ogre
 
     // TEMPORAL?
-    std::vector<Button*> buttons;   // Botones de la interfaz de usuario
-
-    // PRUEBA
-    const char* button;   // Texto de Boton de Play
+    std::unordered_map<std::string, Button*> buttons;   // Botones de la interfaz de usuario
 
     /*
     * @brief Inicializa a nulo los punteros
@@ -84,9 +81,17 @@ public:
     * @param flags Flags de la ventana de ImGui
     * @return Puntero al boton creado
 	*/
-    Button* createButton(RenderNode* const node, const ImVec2 position, const std::string& text,
-                      std::function<void()> onClick, const ImVec2 size = ImVec2(130, 40),
-                      bool* canCloseWindow = nullptr,
-                      ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove);
+    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2 position,
+                         const std::string& text, std::function<void()> onClick, const ImVec2 size = ImVec2(130, 40),
+                         bool* canCloseWindow = nullptr,
+                         ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                             ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings);
+
+    /*
+    * @brief Devuelve el boton a partir de un nombre
+    * @param name Nombre del boton
+    * @return Puntero al boton solicitado
+    */
+    Button* getButton(const std::string& name);
 };
 }
