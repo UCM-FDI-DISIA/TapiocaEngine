@@ -11,7 +11,8 @@
 namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
-      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)),activeRigidBody(true) { }
+      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)),
+      activeRigidBody(true) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -102,7 +103,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 void RigidBody::update(const uint64_t deltaTime) {
     if (movementType == KINEMATIC_OBJECT) {
 
-        btTransform& btTr = rigidBody->getWorldTransform();
+        btTransform btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
         rigidBody->setWorldTransform(btTr);
@@ -119,22 +120,13 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
     if (id == "transformChanged") {
-        if (movementType == DYNAMIC_OBJECT) {
-            btTransform& btTr = rigidBody->getWorldTransform();
-            btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-            btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-            //#ifdef _DEBUG
-            //        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
-            //                  << toEuler(btTr.getRotation()).z << " \n ";
-            //#endif
-        }
-        else if (movementType == KINEMATIC_OBJECT) {
-            btTransform btTr;
-            rigidBody->getMotionState()->getWorldTransform(btTr);
-            btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-            btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-            rigidBody->getMotionState()->setWorldTransform(btTr);
-        }
+        btTransform& btTr = rigidBody->getWorldTransform();
+        btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+        btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+        //#ifdef _DEBUG
+        //        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
+        //                  << toEuler(btTr.getRotation()).z << " \n ";
+        //#endif
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) {
