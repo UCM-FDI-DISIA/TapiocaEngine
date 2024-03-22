@@ -76,16 +76,41 @@ public:
     * @param position Posicion del boton
     * @param text Texto del boton
     * @param onClick Funcion que se llama cuando se pulsa el boton
-    * @param size Tamano del boton
+    * @param constSize Tamano constante del boton, si no se especifica (-1, -1) se calcula a partir del texto
+    * @param padding Padding del boton
+    * @param normalColor Color del boton para el estado "normal"
+    * @param hoverColor Color del boton para el estado "hover"
+    * @param activeColor Color del boton para el estado "active"
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
     * @param flags Flags de la ventana de ImGui
     * @return Puntero al boton creado
 	*/
-    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2 position,
-                         const std::string& text, std::function<void()> onClick, const ImVec2 size = ImVec2(130, 40),
+    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
+                         const std::string& text, std::function<void()> onClick,
+                         const ImVec2& constSize = ImVec2(-1, -1), const ImVec2& padding = ImVec2(10, 5),
+                         const ImVec4& normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button],
+                         const ImVec4& hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered],
+                         const ImVec4& activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive],
                          bool* canCloseWindow = nullptr,
                          ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
-                             ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings);
+                             ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
+    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
+                         const std::string& text, std::function<void()> onClick,
+                         const ImVec2& constSize,
+                         const ImVec4& normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button],
+                         const ImVec4& hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered],
+                         const ImVec4& activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive],
+                         bool* canCloseWindow = nullptr,
+                         ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                             ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
+    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
+                         const std::string& text, std::function<void()> onClick,
+                         const ImVec4& normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button],
+                         const ImVec4& hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered],
+                         const ImVec4& activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive],
+                         bool* canCloseWindow = nullptr,
+                         ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                             ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
 
     /*
     * @brief Devuelve el boton a partir de un nombre
@@ -93,5 +118,11 @@ public:
     * @return Puntero al boton solicitado
     */
     Button* getButton(const std::string& name);
+
+    /*
+    * @brief Elimina un boton
+    * @param name Nombre del boton
+    */
+    bool deleteButton(const std::string& name);
 };
 }

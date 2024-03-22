@@ -12,6 +12,7 @@
 #include "SoundEngine.h"
 
 // PRUEBA BOTON
+#include <SDL.h>
 #include "Structure/DynamicLibraryLoader.h"
 #include "Button.h"
 
@@ -23,20 +24,27 @@ void initEngine() {
 
 void deleteEngine() { delete game; }
 
-void runEngine() { 
+void runEngine() {
     if (game->init()) {
-        
+
         // PRUEBA BOTON
         auto node = graphics->createNode();
-        auto button = ui->createButton("Boton1", node, ImVec2(0, 0), "Play", []() {
-            if (!DynamicLibraryLoader::initGame()) {
+        int windowWidth, windowHeight;
+        SDL_GetWindowSize(graphics->getSDLWindow(), &windowWidth, &windowHeight);
+        ImVec2 buttonSize(130, 40);
+        ImVec2 buttonPos((windowWidth - buttonSize.x) / 2, (windowHeight - buttonSize.y) / 2);
+        auto button = ui->createButton(
+            "Boton1", node, buttonPos, "Play",
+            []() {
+                if (!DynamicLibraryLoader::initGame()) {
 #ifdef _DEBUG
-                std::cout << "Pulsado el boton de jugar\n";
+                    std::cout << "Pulsado el boton de jugar\n";
 #endif
-                Button* button = ui->getButton("Boton1");
-                if (button != nullptr) button->setText("Couldn't init game");
-            }
-        });
+                    Button* button = ui->getButton("Boton1");
+                    if (button != nullptr) button->setText("Couldn't init game");
+                }
+            },
+            buttonSize, ImVec4(1.0f, 0.0, 0.0, 1.0), ImVec4(0.5f, 0.0, 0.0, 1.0), ImVec4(0.2f, 0.0, 0.0, 1.0));
 
         game->run();
 
