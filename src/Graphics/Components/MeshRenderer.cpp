@@ -45,7 +45,6 @@ void MeshRenderer::awake() {
     node = g->createNode();
     mesh = g->createMesh(node, meshName);
 
-    if (materialName != "") mesh->setMaterial(materialName);
 }
 
 void MeshRenderer::handleEvent(std::string const& id, void* info) {

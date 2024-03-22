@@ -32,36 +32,29 @@ namespace Tapioca {
 
 Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
              const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
-             const float height, const int xSegments, const int ySegments, const float x, const float y, const float z,
-             std::string const& material)
+             const float height, const int xSegments, const int ySegments)
     : RenderObject(node, scnMgr) {
     mPlaneAux = Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant);
     mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
                         xSegments, ySegments);
 
     mPlane = scnMgr->createEntity(name);
-    if (material != "") mPlane->setMaterialName(material);
 
     init(mPlane);
-
-    node->setPosition(Vector3(x, y, z));
 }
 
 Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
              const float b, const float c, const float _d, std::string const& name, const float width,
-             const float height, const int xSegments, const int ySegments, const float x, const float y, const float z,
-             std::string const& material)
+             const float height, const int xSegments, const int ySegments)
     : RenderObject(node, scnMgr) {
     mPlaneAux = Ogre::Plane(Ogre::Vector3(a, b, c), _d);
     mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
                         xSegments, ySegments);
 
     mPlane = scnMgr->createEntity(name);
-    if (material != "") mPlane->setMaterialName(material);
 
     init(mPlane);
 
-    node->setPosition(Vector3(x, y, z));
 }
 
 Vector3 Plane::getNormal() const { return Vector3(mPlaneAux.normal.x, mPlaneAux.normal.y, mPlaneAux.normal.z); }
@@ -89,6 +82,8 @@ Vector3 Plane::projectVector(const Vector3& v) const {
 }
 
 float Plane::normalise(void) { return mPlaneAux.normalise(); }
+
+void Plane::setMaterial(std::string const& material) { mPlane->setMaterialName(material); }
 
 bool Plane::operator==(const Plane& rhs) const {
     return (rhs.getD() == mPlaneAux.d &&

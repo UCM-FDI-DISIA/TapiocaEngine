@@ -321,19 +321,16 @@ ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* const s
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
-Plane* GraphicsEngine::createPlane(RenderNode* const node, const Vector3& rkNormal, const float fConstant,
+Plane* GraphicsEngine::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                    std::string const& name, const float width, const float height, const int xSegments,
-                                   const int ySegments, const float x, const float y, const float z,
-                                   std::string const& material) {
-    return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments, x, y, z,
-                     material);
+                                   const int ySegments, std::string const& material) {
+    return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments);
 }
 
 Plane* GraphicsEngine::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
                                    std::string const& name, const float width, const float height, const int xSegments,
-                                   const int ySegments, const float x, const float y, const float z,
-                                   std::string const& material) {
-    return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments, x, y, z, material);
+                                   const int ySegments, std::string const& material) {
+    return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments);
 }
 
 AnimationHelper* GraphicsEngine::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {

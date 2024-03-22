@@ -246,7 +246,6 @@ public:
     /*
     * @brief Crea un plane
     * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
-    * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param mshMgr Puntero al manager de mallas de ogre
     * @param rkNormal Normal del plano
@@ -256,17 +255,14 @@ public:
     * @param height Altura del plano
     * @param xSegments Numero de segmentos del plano en la direccion x
     * @param ySegments Numero de segmentos del plano en la direccion y
-    * @param normals Las normales se crean perpendiculares al plano si se pone en True
-    * @param numTexCoordSets Numero de texCoordSets creados
+    * @param material Nombre del material
     */
-    Plane* createPlane(RenderNode* const node, const Vector3& rkNormal, const float fConstant, std::string const& name,
-                       const float width, const float height, const int xSegments, const int ySegments, const float x,
-                       const float y, const float z, std::string const& material = "");
+    Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, std::string const& name,
+                       const float width, const float height, const int xSegments, const int ySegments, std::string const& material = "");
 
     /*
     * @brief Crea un plane
     * Construye un plano usando 4 constantes
-    * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param mshMgr Puntero al manager de mallas de ogre
     * @param a Componente x del vector normal
@@ -279,13 +275,11 @@ public:
     * @param height Altura del plano
     * @param xSegments Numero de segmentos del plano en la direccion x
     * @param ySegments Numero de segmentos del plano en la direccion y
-    * @param normals Las normales se crean perpendiculares al plano si se pone en True
-    * @param numTexCoordSets Numero de texCoordSets creados
+    * @param material Nombre del material
     */
     Plane* createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
                        std::string const& name, const float width, const float height, const int xSegments,
-                       const int ySegments, const float x, const float y, const float z,
-                       std::string const& material = "");
+                       const int ySegments, std::string const& material = "");
 
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
 
