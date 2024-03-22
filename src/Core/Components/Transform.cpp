@@ -107,6 +107,7 @@ Vector3 Transform::getGlobalRotation() const {
     if (parent != nullptr) {
         aux = parent->getGlobalRotation() + aux;
     }
+
     return aux;
     /*Quaternion aux = Quaternion(rotation);
     if (parent != nullptr) {
@@ -188,23 +189,32 @@ Vector3 Transform::up() {
 }
 Vector3 Transform::forward() {
 
+    //Vector3 f(0, 0, 1);   //Z
+
+    //// Crear cuaterniones para las rotaciones en cada eje
+    //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
+    //Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
+    //Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
+
+    //// Multiplicar los cuaterniones en orden (Z * Y * X)
+    //Quaternion combinedRotation = q_z * q_y * q_x;
+
+
+    //// Rotar el vector forward utilizando el cuaternion combinado
+    //Vector3 v = combinedRotation.rotatePoint(f);
+
+    //v.normalize();
+
     Vector3 f(0, 0, 1);   //Z
 
-    // Crear cuaterniones para las rotaciones en cada eje
-    Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
-    Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
-    Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
+    f.x = cosf(rotation.x) * sin(rotation.y);
+    f.y = -sinf(rotation.x);
+    f.z = cosf(rotation.x) * cos(rotation.y);
 
-    // Multiplicar los cuaterniones en orden (Z * Y * X)
-    Quaternion combinedRotation = q_z * q_y * q_x;
+    // v.normalize();
+    return f;
 
-
-    // Rotar el vector forward utilizando el cuaternion combinado
-    Vector3 v = combinedRotation.rotatePoint(f);
-
-    v.normalize();
-
-    return v;
+    /* return v;*/
 }
 
 void Transform::setParent(Transform* const transform) {
