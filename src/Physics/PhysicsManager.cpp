@@ -168,7 +168,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     rigidBodies.insert(rb);
 
     //si es un cuerpo dinamico, tiene que estar siempre activo para actualizar su movimiento y detectar colision
-    if (type != STATIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
+    if (type == DYNAMIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
 
     rb->setCollisionFlags(rb->getCollisionFlags() | type);
 
