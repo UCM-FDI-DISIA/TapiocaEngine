@@ -119,13 +119,22 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
     if (id == "transformChanged") {
-        btTransform& btTr = rigidBody->getWorldTransform();
-        btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-        btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-        //#ifdef _DEBUG
-        //        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
-        //                  << toEuler(btTr.getRotation()).z << " \n ";
-        //#endif
+        if (movementType == DYNAMIC_OBJECT) {
+            btTransform& btTr = rigidBody->getWorldTransform();
+            btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+            btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+            //#ifdef _DEBUG
+            //        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
+            //                  << toEuler(btTr.getRotation()).z << " \n ";
+            //#endif
+        }
+        else if (movementType == KINEMATIC_OBJECT) {
+            btTransform btTr;
+            rigidBody->getMotionState()->getWorldTransform(btTr);
+            btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+            btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+            rigidBody->getMotionState()->setWorldTransform(btTr);
+        }
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) {
