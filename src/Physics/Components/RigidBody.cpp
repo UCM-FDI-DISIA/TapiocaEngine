@@ -100,16 +100,16 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
 
 void RigidBody::update(const uint64_t deltaTime) {
-    if (movementType == KINEMATIC_OBJECT) {
+   /* if (movementType == KINEMATIC_OBJECT) {
 
-        btTransform btTr = rigidBody->getWorldTransform();
+        btTransform& btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
         btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
         rigidBody->setWorldTransform(btTr);
-    }
+    }*/
 }
 void RigidBody::fixedUpdate() {
-    if (movementType == DYNAMIC_OBJECT) {
+    if (movementType !=STATIC_OBJECT) {
         transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()));
         transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()));
         // btVector3 vel = rigidBody->getLinearVelocity();
