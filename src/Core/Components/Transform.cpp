@@ -207,13 +207,17 @@ Vector3 Transform::forward() {
 
     Vector3 f(0, 0, 1);   //Z
 
-    f.x = cosf(rotation.x) * sin(rotation.y);
+    /*  f.x = cosf(rotation.x) * sin(rotation.y);
     f.y = -sinf(rotation.x);
-    f.z = cosf(rotation.x) * cos(rotation.y);
+    f.z = cosf(rotation.x) * cos(rotation.y);*/
 
     // v.normalize();
-    return f;
 
+    f.rotateX(rotation.x);
+    f.rotateY(rotation.y);
+    f.rotateZ(rotation.z);
+
+    return f;
     /* return v;*/
 }
 

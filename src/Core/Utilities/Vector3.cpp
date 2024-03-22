@@ -3,7 +3,7 @@
 #include "Vector2.h"
 #include <cmath>
 #include <math.h>
-#define PI 3.14159265358979323846 
+#define PI 3.14159265358979323846
 
 
 namespace Tapioca {
@@ -12,7 +12,7 @@ Vector3::Vector3(const float xyz) : x(xyz), y(xyz), z(xyz) { }
 
 Vector3::Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) { }
 
-Vector3::Vector3(const Vector3& other) : x(other.x) , y(other.y) , z(other.z) { }
+Vector3::Vector3(const Vector3& other) : x(other.x), y(other.y), z(other.z) { }
 
 Vector3::Vector3(const Vector2& other, const float z) : x(other.x), y(other.y), z(z) { }
 
@@ -36,29 +36,28 @@ float Vector3::normalize() {
 }
 
 Vector3 Vector3::rotateX(const float degrees) {
-    return Vector3(x, cos(degrees) * y - sin(degrees) * z, sin(degrees) * y + cos(degrees) * z);
+    float rad_angle = degrees * PI / 180.0f;   
+    return Vector3(x, cos(rad_angle) * y - sin(rad_angle) * z, sin(rad_angle) * y + cos(rad_angle) * z);
 }
 
 Vector3 Vector3::rotateY(const float degrees) {
-    return Vector3(cos(degrees) * x + sin(degrees) * z, y, -sin(degrees) * x + cos(degrees) * z);
+    float rad_angle = degrees * PI / 180.0f;  
+    return Vector3(cos(rad_angle) * x + sin(rad_angle) * z, y, -sin(rad_angle) * x + cos(rad_angle) * z);
 }
 
 Vector3 Vector3::rotateZ(const float degrees) {
-    return Vector3(cos(degrees) * x - sin(degrees) * y, sin(degrees) * x + cos(degrees) * y, z);
+    float rad_angle = degrees * PI / 180.0f;  
+    return Vector3(cos(rad_angle) * x - sin(rad_angle) * y, sin(rad_angle) * x + cos(rad_angle) * y, z);
 }
 
-Vector3 Vector3::cross(const Vector3 other) { 
-   // float cosalfa = dot(other) / (magnitude() * other.magnitude());
-   // float alfa =  acos(cosalfa);//pero esto lo da en radianes
+Vector3 Vector3::cross(const Vector3 other) {
+    // float cosalfa = dot(other) / (magnitude() * other.magnitude());
+    // float alfa =  acos(cosalfa);//pero esto lo da en radianes
     //alfa *= (180 /PI );
-    //return magnitude() * other.magnitude() * sin(alfa); 
+    //return magnitude() * other.magnitude() * sin(alfa);
     return Vector3((y * other.z - z * other.y), (z * other.x - x * other.z), (x * other.y - y * other.x));
-
 }
 
-float Vector3::dot(const Vector3 other) { 
-    return x * other.x + y * other.y + z * other.z; 
-
-}
+float Vector3::dot(const Vector3 other) { return x * other.x + y * other.y + z * other.z; }
 
 }
