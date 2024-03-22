@@ -53,8 +53,7 @@ public:
     */
     Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
           const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
-          const float height, const int xSegments, const int ySegments, const float x, const float y, const float z,
-          std::string const& material);
+          const float height, const int xSegments, const int ySegments);
     /*
     * @brief Constructora de la clase Plane.
     * Construye un plano usando 4 constantes
@@ -76,8 +75,7 @@ public:
     */
     Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
           const float b, const float c, const float _d, std::string const& name, const float width, const float height,
-          const int xSegments, const int ySegments, const float x, const float y, const float z,
-          std::string const& material);
+          const int xSegments, const int ySegments);
 
     /*
     * @brief Destructora de la clase Plane.
@@ -111,6 +109,13 @@ public:
     * @brief Normaliza la normal y la distancia d del plano. Devuelve la longitud de la normal antes de ser normalizada
     */
     float normalise(void);
+
+    /*
+    * @brief Cambia el material del plano
+    * @params material Nombre del material al que se quiere cambiar
+    */
+    void setMaterial(std::string const& material);
+
 
     //Comparadores del plano
     bool operator==(const Plane& rhs) const;
