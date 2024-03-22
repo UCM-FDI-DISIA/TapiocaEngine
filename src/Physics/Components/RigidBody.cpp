@@ -109,12 +109,12 @@ void RigidBody::update(const uint64_t deltaTime) {
     }*/
 }
 void RigidBody::fixedUpdate() {
-    if (movementType !=STATIC_OBJECT) {
-        transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()));
-        transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()));
-        // btVector3 vel = rigidBody->getLinearVelocity();
-        //transform->setVelocity(rigidBody->getLinearVelocity());
-    }
+    //if (movementType !=STATIC_OBJECT) {
+    //    transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()));
+    //    transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()));
+    //    // btVector3 vel = rigidBody->getLinearVelocity();
+    //    //transform->setVelocity(rigidBody->getLinearVelocity());
+    //}
 }
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
