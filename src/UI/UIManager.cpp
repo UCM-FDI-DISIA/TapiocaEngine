@@ -1,5 +1,6 @@
 #include "UIManager.h"
 
+#include <filesystem>
 // warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
@@ -8,7 +9,6 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 
@@ -55,6 +55,8 @@ bool UIManager::init() {
     myOgreWindow = graphics->getOgreWindow();
     myOgreWindow->addListener(this);
     mySceneManager = graphics->getSceneManager();
+
+    loadFonts(io, 16.0f);
 
     return true;
 }
@@ -110,6 +112,31 @@ void UIManager::render() {
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
+
+bool UIManager::loadFonts(ImGuiIO& io, float pixelSize) {
+    std::string fontsPath = "assets/fonts/";
+
+    for (const auto& entry : std::filesystem::directory_iterator(fontsPath)) {
+        if (entry.is_regular_file()) {
+            auto path = entry.path();
+            if (path.extension() == ".ttf" || path.extension() == ".TTF" || path.extension() == ".otf" ||
+                path.extension() == ".OFT") {
+                ImFont* font = io.Fonts->AddFontFromFileTTF(path.string().c_str(), pixelSize);
+                if (font == nullptr) {
+#ifdef _DEBUG
+                    std::cerr << "Error al cargar la fuente: " << path << "\n";
+#endif
+                    return false;
+                }
+#ifdef _DEBUG
+                std::cout << "Se ha cargado la fuente: " << path << "\n";
+#endif
+            }
+        }
+    }
+    return true;
+}
+
 
 Button* UIManager::createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
                                 const std::string& text, std::function<void()> onClick, const ImVec2& constSize,

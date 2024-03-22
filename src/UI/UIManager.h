@@ -71,6 +71,13 @@ public:
     void render() override;
 
     /*
+    * @brief Carga todas las fuentes de letra de la carpeta de fuentes
+    * @param io Estructura de ImGui
+    * @return True si se han cargado todas las fuentes, false en caso contrario
+    */
+    bool loadFonts(ImGuiIO& io, float pixelSize);
+
+    /*
     * @brief Crea un boton
     * @param node Nodo de renderizado al que se asocia el boton
     * @param position Posicion del boton
