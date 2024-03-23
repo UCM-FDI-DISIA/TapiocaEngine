@@ -3,9 +3,9 @@
 
 namespace Tapioca {
 Button::Button(const ButtonOptions& options) {
-    Button(options.position, options.text, options.onClick, options.constSize, options.padding,
-           options.textFont, options.textColor, options.normalColor, options.hoverColor, options.activeColor,
-           options.canCloseWindow, options.windowFlags);
+    Button(options.position, options.text, options.onClick, options.constSize, options.padding, options.textFont,
+           options.textColor, options.normalColor, options.hoverColor, options.activeColor, options.canCloseWindow,
+           options.windowFlags);
 }
 
 Button::Button(const ImVec2& position, const std::string& text, std::function<void()> onClick, const ImVec2& constSize,

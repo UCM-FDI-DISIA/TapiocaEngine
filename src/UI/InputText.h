@@ -87,8 +87,9 @@ public:
     */
     InputText(const ImVec2& position, const std::string& placeHolderText, const size_t bufferSize,
               std::function<void()> onTextEntered, const float constWidth, ImFont* const textFont,
-              const ImVec4& textColor, const ImVec4& bgColor, const ImGuiInputTextFlags& flags, const ImGuiInputTextCallback& callback,
-              void* userData, bool* canCloseWindow, ImGuiWindowFlags windowFlags);
+              const ImVec4& textColor, const ImVec4& bgColor, const ImGuiInputTextFlags& flags,
+              const ImGuiInputTextCallback& callback, void* userData, bool* canCloseWindow,
+              ImGuiWindowFlags windowFlags);
 
     virtual ~InputText();
 

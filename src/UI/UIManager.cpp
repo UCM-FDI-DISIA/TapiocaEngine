@@ -253,7 +253,6 @@ Button* UIManager::createButton(const std::string& name, const ImVec2& position,
                                 ImFont* const textFont, const ImVec4& textColor, const ImVec4& normalColor,
                                 const ImVec4& hoverColor, const ImVec4& activeColor, bool* canCloseWindow,
                                 ImGuiWindowFlags windowFlags) {
-
     if (!buttons.contains(name)) {
         Button* button = new Button(position, text, onClick, constSize, padding, textFont, textColor, normalColor,
                                     hoverColor, activeColor, canCloseWindow, windowFlags);
@@ -299,8 +298,7 @@ bool UIManager::deleteButton(const std::string& name) {
 InputText* UIManager::createInputText(const std::string& name, const InputText::InputTextOptions& options) {
     return createInputText(name, options.position, options.placeHolderText, options.bufferSize, options.onTextEntered,
                            options.constWidth, options.textFont, options.textColor, options.bgColor, options.flags,
-                           options.callback,
-                           options.userData, options.canCloseWindow, options.windowFlags);
+                           options.callback, options.userData, options.canCloseWindow, options.windowFlags);
 }
 
 InputText* UIManager::createInputText(const std::string& name, const ImVec2& position,
