@@ -119,8 +119,8 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
 #ifdef _DEBUG
         bool b = *((bool*)info);
-#endif
         std::cout << b << "\n";
+#endif
         if (!b)
             if (movementType == DYNAMIC_OBJECT) {
                 btTransform& btTr = rigidBody->getWorldTransform();
