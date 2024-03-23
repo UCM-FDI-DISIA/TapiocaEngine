@@ -14,6 +14,7 @@
 #endif
 
 #include "Button.h"
+#include "InputText.h"
 
 struct SDL_Window;
 
@@ -37,6 +38,7 @@ struct pair_hash {
         return hash1 ^ hash2;
     }
 };
+
 /*
 * @brief Clase que se encarga de la interfaz de usuario
 */
@@ -51,8 +53,9 @@ private:
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
 
     // TEMPORAL?
-    std::unordered_map<std::string, Button*> buttons;                              // Botones de la interfaz de usuario
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
+    std::unordered_map<std::string, Button*> buttons;                              // Botones de la interfaz de usuario
+    std::unordered_map<std::string, InputText*> inputTexts;   // Campos de texto de la interfaz de usuario
 
     /*
     * @brief Inicializa a nulo los punteros
@@ -77,6 +80,7 @@ public:
 
     /*
     * @brief Inicializa ImGui con SDL y OpenGL, y anade el UIManager como listener de la ventana de Ogre
+    * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
 
@@ -86,12 +90,25 @@ public:
     void render() override;
 
     /*
+    * @brief Renderiza los botones
+    */
+    void renderButtons();
+
+    /*
+    * @brief Renderiza las cajas de texto
+    */
+    void renderInputTexts();
+
+    /*
     * @brief Maneja los eventos de SDL
+    * @param event Evento de SDL
+    * @return true si se ha manejado el evento, false si no
     */
     bool handleEvents(const SDL_Event& event) override;
 
     /*
     * @brief Devuelve si existe o no la carpeta de fuentes
+    * @return true si existe, false si no
     */
     bool fontsFolderExists();
 
@@ -99,7 +116,7 @@ public:
     * @brief Carga todas las fuentes de letra de la carpeta de fuentes
     * @param pixelSize Tamano de la fuente, por defecto 16.0f
     */
-    bool loadFonts(float pixelSize = fontDefaultSize);
+    void loadFonts(float pixelSize = fontDefaultSize);
 
     /*
     * @brief Carga una fuente de la carpeta de fuentes
@@ -112,7 +129,7 @@ public:
     * @brief Devuelve la fuente a partir de un nombre, si no existe la intenta cargar
     * @param name Nombre de la fuente con extension
     * @param pixelSize Tamano de la fuente, por defecto 16.0f
-    * @return Puntero a la fuente solicitada, nullptr si no se ha podido cargar
+    * @return Puntero a la fuente solicitada, defaultFont si no se ha podido cargar
     */
     ImFont* getFont(const std::string& name, float pixelSize = fontDefaultSize);
 
@@ -120,12 +137,12 @@ public:
     * @brief Crea un boton
     * @param name Nombre del boton
     * @param options Opciones del boton
+    * @return Puntero al boton creado
     */
     Button* createButton(const std::string& name, const Button::ButtonOptions& options);
 
     /*
     * @brief Crea un boton
-    * @param node Nodo de renderizado al que se asocia el boton
     * @param position Posicion del boton
     * @param text Texto del boton
     * @param onClick Funcion que se llama cuando se pulsa el boton
@@ -137,23 +154,22 @@ public:
     * @param hoverColor Color del boton para el estado "hover"
     * @param activeColor Color del boton para el estado "active"
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-    * @param flags Flags de la ventana de ImGui
+    * @param windowFlags Flags de la ventana de ImGui
     * @return Puntero al boton creado
 	*/
-    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
-                         const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
-                         const ImVec2& padding, ImFont* const textFont = ImGui::GetIO().FontDefault,
+    Button* createButton(const std::string& name, const ImVec2& position, const std::string& text,
+                         std::function<void()> onClick, const ImVec2& constSize, const ImVec2& padding,
+                         ImFont* const textFont = ImGui::GetIO().FontDefault,
                          const ImVec4& textColor = ImGui::GetStyle().Colors[ImGuiCol_Text],
                          const ImVec4& normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button],
                          const ImVec4& hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered],
                          const ImVec4& activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive],
                          bool* canCloseWindow = nullptr,
-                         ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                         ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                              ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
 
     /*
     * @brief Crea un boton
-    * @param node Nodo de renderizado al que se asocia el boton
     * @param position Posicion del boton
     * @param text Texto del boton
     * @param onClick Funcion que se llama cuando se pulsa el boton
@@ -164,18 +180,18 @@ public:
     * @param hoverColor Color del boton para el estado "hover"
     * @param activeColor Color del boton para el estado "active"
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-    * @param flags Flags de la ventana de ImGui
+    * @param windowFlags Flags de la ventana de ImGui
     * @return Puntero al boton creado
 	*/
-    Button* createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
-                         const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
+    Button* createButton(const std::string& name, const ImVec2& position, const std::string& text,
+                         std::function<void()> onClick, const ImVec2& constSize,
                          ImFont* const textFont = ImGui::GetIO().FontDefault,
                          const ImVec4& textColor = ImGui::GetStyle().Colors[ImGuiCol_Text],
                          const ImVec4& normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button],
                          const ImVec4& hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered],
                          const ImVec4& activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive],
                          bool* canCloseWindow = nullptr,
-                         ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                         ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                              ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
 
     /*
@@ -188,7 +204,58 @@ public:
     /*
     * @brief Elimina un boton
     * @param name Nombre del boton
+    * @return true si se ha eliminado, false si no existe
     */
     bool deleteButton(const std::string& name);
+
+    /*
+    * @brief Crea una caja de texto
+    * @param name Nombre de la caja de texto
+    * @param options Opciones de la caja de texto
+    * @return Puntero a la caja de texto creada
+    */
+    InputText* createInputText(const std::string& name, const InputText::InputTextOptions& options);
+
+    /*
+    * @brief Crea una caja de texto
+    * @param position Posicion de la caja de texto
+    * @param text Texto de la caja de texto
+    * @param onTextChanged Funcion que se llama cuando hay un cambio en la caja de texto
+    * @param constWidth Ancho constante de la caja de texto
+    * @param textFont Fuente del texto de la caja de texto
+    * @param textColor Color del texto de la caja de texto
+    * @param bgColor Color de fondo de la caja de texto
+    * @param flags Flags de la caja de texto
+    * @param callback Callback de la caja de texto
+    * @param userData Datos del callback de la caja de texto
+    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
+    * @param windowFlags Flags de la ventana de ImGui
+    * @return Puntero a la caja de texto creada
+	*/
+    InputText* createInputText(const std::string& name, const ImVec2& position, const std::string& placeHolderText,
+                               const size_t bufferSize, std::function<void()> onTextEntered, const float constWidth,
+                               ImFont* const textFont = ImGui::GetIO().FontDefault,
+                               const ImVec4& textColor = ImGui::GetStyle().Colors[ImGuiCol_Text],
+                               const ImVec4& bgColor = ImGui::GetStyle().Colors[ImGuiCol_FrameBg],
+                               const ImGuiInputTextFlags& flags = ImGuiInputTextFlags_AutoSelectAll |
+                                   ImGuiInputTextFlags_EnterReturnsTrue,
+                               const ImGuiInputTextCallback& callback = ImGuiInputTextCallback(),
+                               void* userData = nullptr, bool* canCloseWindow = nullptr,
+                               ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                                   ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
+
+    /*
+    * @brief Devuelve la caja de texto a partir de un nombre
+    * @param name Nombre de la caja de texto
+    * @return Puntero a la caja de texto solicitada
+    */
+    InputText* getInputText(const std::string& name);
+
+    /*
+    * @brief Elimina una caja de texto
+    * @param name Nombre de la caja de texto
+    * @return true si se ha eliminado, false si no existe
+    */
+    bool deleteInputText(const std::string& name);
 };
 }

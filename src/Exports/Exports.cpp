@@ -11,10 +11,11 @@
 #include "UIManager.h"
 #include "SoundManager.h"
 
-// PRUEBA BOTON
+// PRUEBAS DE UI
 #include <SDL.h>
 #include "Structure/DynamicLibraryLoader.h"
 #include "Button.h"
+#include "InputText.h"
 
 namespace Tapioca {
 void initEngine() {
@@ -26,16 +27,13 @@ void deleteEngine() { delete game; }
 
 void runEngine() {
     if (game->init()) {
-        // PRUEBA BOTON
-        auto node = graphics->createNode();
-
-        Button::ButtonOptions options;
-        options.node = node;
-        options.constSize = ImVec2(130, 40);
-        options.position =
-            ImVec2((window->getWindowW() - options.constSize.x) / 2, (window->getWindowH() - options.constSize.y) / 2);
-        options.text = "Play";
-        options.onClick = []() {
+        // PRUEBAS DE UI
+        Button::ButtonOptions buttonOptions;
+        buttonOptions.constSize = ImVec2(130, 40);
+        buttonOptions.position = ImVec2((window->getWindowW() - buttonOptions.constSize.x) / 2,
+                                        (window->getWindowH() - buttonOptions.constSize.y) / 2);
+        buttonOptions.text = "Play";
+        buttonOptions.onClick = []() {
             if (!DynamicLibraryLoader::initGame()) {
                 Button* button = ui->getButton("Boton1");
                 if (button != nullptr) {
@@ -44,13 +42,30 @@ void runEngine() {
                 }
             }
         };
-        options.textFont = ui->getFont("impact.ttf", 20.0f);
+        buttonOptions.textFont = ui->getFont("impact.ttf");
+        auto button = ui->createButton("Boton1", buttonOptions);
 
-        auto button = ui->createButton("Boton1", options);
+        InputText::InputTextOptions inputOptions;
+        inputOptions.position = ImVec2(0, 0);
+        inputOptions.placeHolderText = "Inserta nombre";
+        inputOptions.onTextEntered = []() {
+            InputText* input = ui->getInputText("Input1");
+            if (input != nullptr) {
+#ifdef _DEBUG
+                std::cout << "Se ha hecho ENTER en la caja de texto\n";
+#endif
+                input->setPlaceHolderText("Se ha hecho ENTER");
+                input->setTextColor(ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+                input->setBgColor(ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
+            }
+        };
+        inputOptions.constWidth = 500;
+        inputOptions.bufferSize = 100;
+        inputOptions.textFont = ui->getFont("arial.ttf", 20.0f);
+        inputOptions.textColor = ImVec4(1.0f, 0.0f, 1.0f, 1.0f);
+        auto input = ui->createInputText("Input1", inputOptions);
 
         game->run();
-
-        delete node;
     }
 #ifdef _DEBUG
     else

@@ -117,8 +117,8 @@ void RigidBody::fixedUpdate() {
 }
 void RigidBody::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
-#ifdef _DEBUG
         bool b = *((bool*)info);
+#ifdef _DEBUG
         std::cout << b << "\n";
 #endif
         if (!b)
