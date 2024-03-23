@@ -109,7 +109,7 @@ void RigidBody::update(const uint64_t deltaTime) {
     }*/
 }
 void RigidBody::fixedUpdate() {
-    if (movementType != STATIC_OBJECT) {
+    if (movementType == DYNAMIC_OBJECT) {
         transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()),true);
         transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()), true);
     }
