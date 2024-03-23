@@ -2,7 +2,7 @@
 #include "Structure/GameObject.h"
 
 namespace Tapioca {
-void Transform::changed() { pushEvent("transformChanged", nullptr, false); }
+void Transform::changed(bool rb) { pushEvent("transformChanged", &rb, false); }
 
 void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
     for (auto child : children) {
@@ -125,11 +125,11 @@ Vector3 Transform::getGlobalScale() const {
     return aux;
 }
 
-void Transform::setPosition(const Vector3& p) {
+void Transform::setPosition(const Vector3& p, bool rb) {
     position = p;
     changed();
 }
-void Transform::setRotation(const Vector3& r) {
+void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = r;
     changed();
 }
@@ -205,7 +205,7 @@ Vector3 Transform::forward() {
     //return f;
     ///* return v;*/
 
-    
+
     //Vector3 u(0, 0, 1);   //Z
 
     //// Crear cuaterniones para las rotaciones en cada eje
@@ -223,7 +223,7 @@ Vector3 Transform::forward() {
     //v.normalize();
 
     //return v;
-    
+
     Vector3 r = right();
     Vector3 u = up();
     Vector3 v = u.cross(r);

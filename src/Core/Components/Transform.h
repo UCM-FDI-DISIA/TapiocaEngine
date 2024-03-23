@@ -23,11 +23,11 @@ private:
     Vector3 rotation;
     Vector3 scale;
     // TODO: PREGUNTAR??
-    /*Vector3 initialRotation;*/ //rotación inicial del transform
+    /*Vector3 initialRotation;*/   //rotación inicial del transform
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */
-    void changed();
+    void changed(bool rb = false);
 
     Transform* parent;
     // warning C4251 'Tapioca::Transform::children' :
@@ -127,14 +127,16 @@ public:
     // Todos estos metodos generan el evento "transformChanged"
     /*
     * @brief Cambia la posicion del transform
-    * @param Posicion a la que se quiere mover el transform
+    * @param p Posicion a la que se quiere mover el transform
+    * @param rb Indica si es movido por físicas
     */
-    void setPosition(const Vector3& p);
+    void setPosition(const Vector3& p, bool rb = false);
     /*
     * @brief Cambia la rotacion del transform
     * @param Rotacion a la que se quiere rotar el transform
+    * @param rb Indica si es movido por físicas
     */
-    void setRotation(const Vector3& r);
+    void setRotation(const Vector3& r, bool rb = false);
     /*
     * @brief Cambia la escala del transform
     * @param Tamanio al que se quiere escalar el transform

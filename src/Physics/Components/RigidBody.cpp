@@ -110,23 +110,18 @@ void RigidBody::update(const uint64_t deltaTime) {
 }
 void RigidBody::fixedUpdate() {
     if (movementType != STATIC_OBJECT) {
-        transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()));
-        transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()));
-        // btVector3 vel = rigidBody->getLinearVelocity();
-        //transform->setVelocity(rigidBody->getLinearVelocity());
+        transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()),true);
+        transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()), true);
     }
 }
 void RigidBody::handleEvent(std::string const& id, void* info) {
 
-    if (id == "transformChanged") {
+    if (id == "transformChanged" &&  !(*(bool*)info)) {
+
         if (movementType == DYNAMIC_OBJECT) {
             btTransform& btTr = rigidBody->getWorldTransform();
             btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
             btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-            //#ifdef _DEBUG
-            //        std::cout << "received " <<toEuler(btTr.getRotation()).x << " " << toEuler(btTr.getRotation()).y << " "
-            //                  << toEuler(btTr.getRotation()).z << " \n ";
-            //#endif
         }
         else if (movementType == KINEMATIC_OBJECT) {
             btTransform btTr;
