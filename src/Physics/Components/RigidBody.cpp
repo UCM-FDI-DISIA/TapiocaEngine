@@ -11,7 +11,8 @@
 namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
-      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)),activeRigidBody(true) { }
+      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)),
+      activeRigidBody(true) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -100,7 +101,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
 
 void RigidBody::update(const uint64_t deltaTime) {
-   /* if (movementType == KINEMATIC_OBJECT) {
+    /* if (movementType == KINEMATIC_OBJECT) {
 
         btTransform& btTr = rigidBody->getWorldTransform();
         btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
@@ -110,28 +111,29 @@ void RigidBody::update(const uint64_t deltaTime) {
 }
 void RigidBody::fixedUpdate() {
     if (movementType == DYNAMIC_OBJECT) {
-        transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()),true);
+        transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()), true);
         transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()), true);
     }
 }
 void RigidBody::handleEvent(std::string const& id, void* info) {
-    
-    bool b=*(bool*)info;
-    std::cout << b << "\n";
-    if (id == "transformChanged" &&  !b) {
-
-        if (movementType == DYNAMIC_OBJECT) {
-            btTransform& btTr = rigidBody->getWorldTransform();
-            btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-            btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-        }
-        else if (movementType == KINEMATIC_OBJECT) {
-            btTransform btTr;
-            rigidBody->getMotionState()->getWorldTransform(btTr);
-            btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-            btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-            rigidBody->getMotionState()->setWorldTransform(btTr);
-        }
+    if (id == "transformChanged") {
+#ifdef _DEBUG
+        bool b = *((bool*)info);
+#endif
+        std::cout << b << "\n";
+        if (!b)
+            if (movementType == DYNAMIC_OBJECT) {
+                btTransform& btTr = rigidBody->getWorldTransform();
+                btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+                btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+            }
+            else if (movementType == KINEMATIC_OBJECT) {
+                btTransform btTr;
+                rigidBody->getMotionState()->getWorldTransform(btTr);
+                btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+                btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+                rigidBody->getMotionState()->setWorldTransform(btTr);
+            }
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) {
