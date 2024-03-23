@@ -29,24 +29,32 @@ void runEngine() {
         // PRUEBA BOTON
         auto node = graphics->createNode();
 
-        ImVec2 buttonSize(130, 40);
-        ImVec2 buttonPos((window->getWindowW() - buttonSize.x) / 2, (window->getWindowH() - buttonSize.y) / 2);
-        auto button = ui->createButton(
-            "Boton1", node, buttonPos, "Play",
-            []() {                
-                if (!DynamicLibraryLoader::initGame()) {
-                    Button* button = ui->getButton("Boton1");
-                    if (button != nullptr) button->setText("Couldn't init game");
+        Button::ButtonOptions options;
+        options.node = node;
+        options.constSize = ImVec2(130, 40);
+        options.position =
+            ImVec2((window->getWindowW() - options.constSize.x) / 2, (window->getWindowH() - options.constSize.y) / 2);
+        options.text = "Play";
+        options.onClick = []() {
+            if (!DynamicLibraryLoader::initGame()) {
+                Button* button = ui->getButton("Boton1");
+                if (button != nullptr) {
+                    button->setText("Couldn't init game");
+                    button->setTextColor(ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
                 }
-            },
-            buttonSize, ImVec4(1.0f, 0.0, 0.0, 1.0), ImVec4(0.5f, 0.0, 0.0, 1.0), ImVec4(0.2f, 0.0, 0.0, 1.0));
+            }
+        };
+        options.textFont = ui->getFont("impact.ttf", 20.0f);
+
+        auto button = ui->createButton("Boton1", options);
 
         game->run();
 
         delete node;
     }
 #ifdef _DEBUG
-    else std::cerr << "Error al inicializar un modulo\n";
+    else
+        std::cerr << "Error al inicializar un modulo\n";
 #endif
 }
 

@@ -20,6 +20,8 @@ private:
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
     ImVec2 constSize;                // Tamano constante del boton
     ImVec2 padding;                  // Tamano del padding del boton
+    ImFont* textFont;                // Fuente del texto del boton incluyendo tamano
+    ImVec4 textColor;                // Color del texto del boton
     ImVec4 normalColor;              // Color del boton para el estado "normal"
     ImVec4 hoverColor;               // Color del boton para el estado "hover"
     ImVec4 activeColor;              // Color del boton para el estado "active"
@@ -27,6 +29,30 @@ private:
     ImGuiWindowFlags flags;          // Flags de la ventana
 
 public:
+    struct ButtonOptions {
+        RenderNode* node;
+        ImVec2 position;
+        std::string text;
+        std::function<void()> onClick;
+        ImVec2 constSize;
+        ImVec2 padding = ImVec2(10, 5);
+        ImFont* textFont = ImGui::GetIO().FontDefault;
+        ImVec4 textColor = ImGui::GetStyle().Colors[ImGuiCol_Text];
+        ImVec4 normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button];
+        ImVec4 hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered];
+        ImVec4 activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive];
+        bool* canCloseWindow = nullptr;
+        ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings;
+    };
+
+    /*
+    * @brief Inicializa un boton con los parametros dados
+    * @param scnMgr Puntero al SceneManager de Ogre
+    * @param options Opciones del boton
+    */
+    Button(Ogre::SceneManager* const scnMgr, const ButtonOptions& options);
+
     /*
     * @brief Inicializa un boton con los parametros dados
     * @param scnMgr Puntero al SceneManager de Ogre
@@ -34,13 +60,17 @@ public:
     * @param position Posicion del boton
     * @param text Texto que se muestra en el boton
     * @param onClick Funcion que se ejecuta cuando se hace click en el boton
-    * @param size Tamano del boton
+    * @param constSize Tamano del boton
+    * @param padding Padding del boton
+    * @param textFont Fuente del texto del boton
+    * @param textColor Color del texto del boton
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
     * @param flags Flags de la ventana
     */
     Button(Ogre::SceneManager* const scnMgr, RenderNode* const node, const ImVec2& position, const std::string& text,
-           std::function<void()> onClick, const ImVec2& constSize, const ImVec2& padding, const ImVec4& normalColor,
-           const ImVec4& hoverColor, const ImVec4& activeColor, bool* canCloseWindow, ImGuiWindowFlags flags);
+           std::function<void()> onClick, const ImVec2& constSize, const ImVec2& padding, ImFont* const textFont,
+           const ImVec4& textColor, const ImVec4& normalColor, const ImVec4& hoverColor, const ImVec4& activeColor,
+           bool* canCloseWindow, ImGuiWindowFlags flags);
 
     virtual ~Button() { }
 
@@ -68,6 +98,16 @@ public:
     * @brief Establece el tamano del padding del boton
     */
     inline void setPadding(const ImVec2& padding) { this->padding = padding; }
+
+    /*
+    * @brief Establece la fuente del texto del boton
+    */
+    inline void setFont(ImFont* font) { this->textFont = font; }
+
+    /*
+    * @brief Establece el color del texto del boton
+    */
+    inline void setTextColor(const ImVec4& textColor) { this->textColor = textColor; }
 
     /*
     * @brief Establece el color del boton para el estado "normal"
@@ -123,6 +163,16 @@ public:
     * @return Tamano del padding del boton
     */
     inline ImVec2 getPadding() const { return padding; }
+
+    /*
+    * @brief Devuelve la fuente del texto del boton
+    */
+    inline ImFont* getFont() const { return textFont; }
+
+    /*
+    * @brief Devuelve el color del texto del boton
+    */
+    inline ImVec4 getTextColor() const { return textColor; }
 
     /*
     * @brief Devuelve el color del boton para el estado "normal"

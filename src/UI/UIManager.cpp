@@ -14,14 +14,13 @@
 
 #include "WindowManager.h"
 
-#include "Button.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<UIManager>;
 template<>
 UIManager* Singleton<UIManager>::instance_ = nullptr;
 
-UIManager::UIManager() : sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr) { }
+UIManager::UIManager() : sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr), fontsPath("assets/fonts/") { }
 
 UIManager::~UIManager() {
     sdlWindow = nullptr;
@@ -32,6 +31,7 @@ UIManager::~UIManager() {
         delete button.second;
     }
     buttons.clear();
+    fonts.clear();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -53,7 +53,7 @@ bool UIManager::init() {
 
     //sceneManager = graphics->getSceneManager();
 
-    loadFonts(io, 16.0f);
+    loadFonts();
 
     return true;
 }
@@ -80,12 +80,17 @@ void UIManager::render() {
 
         // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
 
         ImGui::Begin(text, button.second->getCanCloseWindow(), button.second->getFlags());
 
         ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
+
+        // Establece la fuente del texto
+        ImGui::PushFont(button.second->getFont());
+        // Establece el color del texto
+        ImGui::PushStyleColor(ImGuiCol_Text, button.second->getTextColor());
         // Establece los colores del boton en los diferentes estados
         ImGui::PushStyleColor(ImGuiCol_Button, button.second->getNormalColor());
         ImGui::PushStyleColor(ImGuiCol_ButtonHovered, button.second->getHoverColor());
@@ -101,7 +106,9 @@ void UIManager::render() {
         ImGui::PopTextWrapPos();
 
         // Pop para WindowBg y los colores del boton
-        ImGui::PopStyleColor(4);
+        ImGui::PopStyleColor(5);
+        // Pop para la fuente del texto
+        ImGui::PopFont();
 
         ImGui::End();
     }
@@ -112,39 +119,79 @@ void UIManager::render() {
 
 bool UIManager::handleEvents(const SDL_Event& event) { return ImGui_ImplSDL2_ProcessEvent(&event); }
 
-bool UIManager::loadFonts(ImGuiIO& io, float pixelSize) {
-    std::string fontsPath = "assets/fonts/";
+bool UIManager::fontsFolderExists() {
+    if (!std::filesystem::exists(fontsPath)) {
+#ifdef _DEBUG
+        std::cout << "La carpeta " << fontsPath << " no existe\n";
+#endif
+        return false;
+    }
+    return true;
+}
+
+bool UIManager::loadFonts(float pixelSize) {
+
+    if (!fontsFolderExists()) return false;
 
     for (const auto& entry : std::filesystem::directory_iterator(fontsPath)) {
         if (entry.is_regular_file()) {
             auto path = entry.path();
-            if (path.extension() == ".ttf" || path.extension() == ".TTF" || path.extension() == ".otf" ||
-                path.extension() == ".OFT") {
-                ImFont* font = io.Fonts->AddFontFromFileTTF(path.string().c_str(), pixelSize);
-                if (font == nullptr) {
-#ifdef _DEBUG
-                    std::cerr << "Error al cargar la fuente: " << path << "\n";
-#endif
-                    return false;
-                }
-#ifdef _DEBUG
-                std::cout << "Se ha cargado la fuente: " << path << "\n";
-#endif
+            std::string extension = path.extension().string();
+            std::transform(extension.begin(), extension.end(), extension.begin(),
+                           [](unsigned char c) { return std::tolower(c); });
+
+            if (extension == ".ttf" || extension == ".otf") {
+                loadFont(path.stem().string() + extension, pixelSize);
             }
         }
     }
     return true;
 }
 
+void UIManager::loadFont(const std::string& name, float pixelSize) {
+    std::string path = fontsPath + name;
+    ImGuiIO& io = ImGui::GetIO();
+    ImFont* font = io.Fonts->AddFontFromFileTTF(path.c_str(), pixelSize);
+    fonts.insert({{name, pixelSize}, font});
+}
+
+ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
+    // Si el tamano de la fuente es la que hay por defecto y ya se ha cargado, se devuelve
+    if (pixelSize == fontDefaultSize && fonts.contains({name, pixelSize})) return fonts[{name, pixelSize}];
+    // Si el tamano de la fuente es la que hay por defecto y no se ha cargado, se devuelve nullptr
+    else if (pixelSize == fontDefaultSize && !fonts.contains({name, pixelSize})) {
+#ifdef _DEBUG
+        std::cout << "No existe la fuente con el nombre " << name << " con el tamano predeterminado de "
+                  << fontDefaultSize << '\n';
+#endif
+        return nullptr;
+    }
+    // Si no es el tamano de fuente por defecto, se intenta cargar
+    else {
+        // Se comprueba si existe la carpeta de fuentes
+        if (!fontsFolderExists()) return nullptr;
+
+        // Se intenta cargar la fuente
+        loadFont(name, pixelSize);
+        return fonts[{name, pixelSize}];
+    }
+}
+
+Button* UIManager::createButton(const std::string& name, const Button::ButtonOptions& options) {
+    return createButton(name, options.node, options.position, options.text, options.onClick, options.constSize,
+                        options.textFont, options.textColor, options.normalColor, options.hoverColor,
+                        options.activeColor, options.canCloseWindow, options.flags);
+}
 
 Button* UIManager::createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
                                 const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
-                                const ImVec2& padding, const ImVec4& normalColor, const ImVec4& hoverColor,
-                                const ImVec4& activeColor, bool* canCloseWindow, ImGuiWindowFlags flags) {
+                                const ImVec2& padding, ImFont* const textFont, const ImVec4& textColor,
+                                const ImVec4& normalColor, const ImVec4& hoverColor, const ImVec4& activeColor,
+                                bool* canCloseWindow, ImGuiWindowFlags flags) {
 
     if (!buttons.contains(name)) {
-        Button* button = new Button(sceneManager, node, position, text, onClick, constSize, padding, normalColor,
-                                    hoverColor, activeColor, canCloseWindow, flags);
+        Button* button = new Button(sceneManager, node, position, text, onClick, constSize, padding, textFont,
+                                    textColor, normalColor, hoverColor, activeColor, canCloseWindow, flags);
         buttons.insert({name, button});
         return button;
     }
@@ -158,18 +205,11 @@ Button* UIManager::createButton(const std::string& name, RenderNode* const node,
 
 Button* UIManager::createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
                                 const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
-                                const ImVec4& normalColor, const ImVec4& hoverColor, const ImVec4& activeColor,
-                                bool* canCloseWindow, ImGuiWindowFlags flags) {
-    return createButton(name, node, position, text, onClick, constSize, ImVec2(10, 5), normalColor, hoverColor,
-                        activeColor, canCloseWindow, flags);
-}
-
-Button* UIManager::createButton(const std::string& name, RenderNode* const node, const ImVec2& position,
-                                const std::string& text, std::function<void()> onClick,
-                                const ImVec4& normalColor, const ImVec4& hoverColor, const ImVec4& activeColor,
-                                bool* canCloseWindow, ImGuiWindowFlags flags) {
-    return createButton(name, node, position, text, onClick, ImVec2(-1, -1), ImVec2(10, 5), normalColor, hoverColor,
-                        activeColor, canCloseWindow, flags);
+                                ImFont* const textFont, const ImVec4& textColor, const ImVec4& normalColor,
+                                const ImVec4& hoverColor, const ImVec4& activeColor, bool* canCloseWindow,
+                                ImGuiWindowFlags flags) {
+    return createButton(name, node, position, text, onClick, constSize, ImVec2(10, 5), textFont, textColor, normalColor,
+                        hoverColor, activeColor, canCloseWindow, flags);
 }
 
 Button* UIManager::getButton(const std::string& name) {
