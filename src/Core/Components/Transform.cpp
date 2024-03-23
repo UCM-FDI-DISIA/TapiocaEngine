@@ -127,11 +127,11 @@ Vector3 Transform::getGlobalScale() const {
 
 void Transform::setPosition(const Vector3& p, bool rb) {
     position = p;
-    changed();
+    changed(rb);
 }
 void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = r;
-    changed();
+    changed(rb);
 }
 void Transform::setScale(const Vector3& s) {
     scale = s;
