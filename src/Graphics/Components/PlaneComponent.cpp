@@ -1,9 +1,9 @@
 #include "PlaneComponent.h"
-#include "GraphicsEngine.h"
+#include "../GraphicsManager.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "RenderNode.h"
-#include "Plane.h"
+#include "../RenderNode.h"
+#include "../Plane.h"
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent() : plane(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)) { }
@@ -85,7 +85,7 @@ bool PlaneComponent::initComponent(const CompMap& variables) {  // No se ha podi
 void PlaneComponent::start() {
     GameObject* gameobject = getObject();
     transform = gameobject->getComponent<Transform>();
-    GraphicsEngine* g = GraphicsEngine::instance();
+    GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     plane = g->createPlane(node, rkNormal, fConstant, planeName, width, height, xSegments, ySegments, materialName);
 

@@ -1,17 +1,16 @@
 #pragma once
 #include <Utilities/Singleton.h>
-#include <Structure/Module.h>
+#include <WindowModule.h>
 #include <vector>
 #include <string>
 #include <unordered_map>
 
-struct SDL_Window;
 union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
 
 namespace Tapioca {
-class TAPIOCA_API InputManager : public Singleton<InputManager>, public Module {
+class TAPIOCA_API InputManager : public Singleton<InputManager>, public WindowModule {
 private:
     friend Singleton<InputManager>;
 
@@ -45,14 +44,6 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-
-    // Input de texo
-    /*std::string inputText;
-    const char* compositionText;
-    int32_t cursor;
-    int32_t selectionLen;
-    bool removeChar;
-    bool toggleTextInput;*/
 
     // Mapeo de los controles
     // (se agrupan por tipo de evento de SDL que los produce. Luego, segun el evento, se agrupan
@@ -116,8 +107,7 @@ public:
     */
     virtual ~InputManager();
 
-    void updateState(const SDL_Event& event);
-    void sendEvents() override;
+    bool handleEvents(const SDL_Event& event) override;
 
     /*
     * @brief Asociar eventos propios a eventos de input
@@ -136,22 +126,6 @@ public:
     * @brief Devuelve true si hay al menos 1 mando conectado
     */
     inline bool isControllerConnected() { return !controllers.empty(); }
-
-    ///*
-    //* @brief Devuelve el texto introducido
-    //*/
-    //inline std::string getInputText() { return inputText; }
-    //
-    ///*
-    //* @brief Limpia el texto introducido
-    //*/
-    //inline void resetText() { inputText.clear(); }
-
-    //
-    ///*
-    //* @brief Borra el ultimo char del texto introducido
-    //*/
-    //inline void removeLastChar() { if (!inputText.empty()) inputText.pop_back(); }
 
 };
 

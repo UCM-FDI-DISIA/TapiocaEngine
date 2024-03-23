@@ -6,10 +6,10 @@
 #include "InputManager.h"
 #include "Structure/FactoryManager.h"
 #include "SceneManager.h"
-#include "GraphicsEngine.h"
+#include "GraphicsManager.h"
 #include "PhysicsManager.h"
 #include "UIManager.h"
-#include "SoundEngine.h"
+#include "SoundManager.h"
 
 // PRUEBA BOTON
 #include <SDL.h>
@@ -26,20 +26,15 @@ void deleteEngine() { delete game; }
 
 void runEngine() {
     if (game->init()) {
-
         // PRUEBA BOTON
         auto node = graphics->createNode();
-        int windowWidth, windowHeight;
-        SDL_GetWindowSize(graphics->getSDLWindow(), &windowWidth, &windowHeight);
+
         ImVec2 buttonSize(130, 40);
-        ImVec2 buttonPos((windowWidth - buttonSize.x) / 2, (windowHeight - buttonSize.y) / 2);
+        ImVec2 buttonPos((window->getWindowW() - buttonSize.x) / 2, (window->getWindowH() - buttonSize.y) / 2);
         auto button = ui->createButton(
             "Boton1", node, buttonPos, "Play",
-            []() {
+            []() {                
                 if (!DynamicLibraryLoader::initGame()) {
-#ifdef _DEBUG
-                    std::cout << "Pulsado el boton de jugar\n";
-#endif
                     Button* button = ui->getButton("Boton1");
                     if (button != nullptr) button->setText("Couldn't init game");
                 }
@@ -51,16 +46,15 @@ void runEngine() {
         delete node;
     }
 #ifdef _DEBUG
-    else
-        std::cerr << "Error al inicializar un modulo\n";
+    else std::cerr << "Error al inicializar un modulo\n";
 #endif
 }
 
 static void createModules(Tapioca::Game* game) {
-    /*window = Tapioca::WindowManager::create();
-    game->addModule(window);*/
+    window = Tapioca::WindowManager::create();
+    game->addModule(window);
 
-    graphics = Tapioca::GraphicsEngine::create();
+    graphics = Tapioca::GraphicsManager::create();
     game->addModule(graphics);
 
     ui = Tapioca::UIManager::create();
@@ -79,8 +73,12 @@ static void createModules(Tapioca::Game* game) {
     scenes = Tapioca::SceneManager::create();
     game->addModule(scenes);
 
-    sound = Tapioca::SoundEngine::create();
+    sound = Tapioca::SoundManager::create();
     game->addModule(sound);
+
+    window->subscribeModule(input);
+    window->subscribeModule(graphics);
+    window->subscribeModule(ui);
 }
 
 void mapInput() {

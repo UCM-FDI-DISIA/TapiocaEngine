@@ -9,7 +9,7 @@ class Entity;
 
 namespace Tapioca {
 class RenderNode;
-class GraphicsEngine;
+class GraphicsManager;
 class AnimationHelper;
 
 /*
@@ -17,7 +17,7 @@ class AnimationHelper;
 */
 class TAPIOCA_API Mesh : public RenderObject {
 private:
-    friend GraphicsEngine;
+    friend GraphicsManager;
     friend AnimationHelper;
 
     Ogre::Entity* mesh;         // Mesh de Ogre

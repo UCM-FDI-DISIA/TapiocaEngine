@@ -2,11 +2,11 @@
 #include "defs.h"
 #include "../Core/Utilities/Vector3.h"
 namespace Tapioca {
-class SoundEngine;
+class SoundManager;
 class TAPIOCA_API AudioListener {
 //const vec3df &pos, const vec3df &lookdir, const vec3df &velPerSecond=vec3df(0, 0, 0), const vec3df &upVector=vec3df(0, 1, 0))=0
 private:
-friend SoundEngine;
+friend SoundManager;
 Vector3 position;
 Vector3 look;
 Vector3 velocity;//en metros por segundo

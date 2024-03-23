@@ -3,7 +3,7 @@
 #include <functional>
 #include "Utilities/Vector2.h"
 #include "Utilities/Singleton.h"
-#include "Structure/Module.h"
+#include "WindowModule.h"
 // warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
@@ -27,14 +27,13 @@ class Button;
 /*
 * @brief Clase que se encarga de la interfaz de usuario
 */
-class TAPIOCA_API UIManager : public Singleton<UIManager>, public Module, public Ogre::RenderTargetListener {
+class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule, public Ogre::RenderTargetListener {
 private:
     friend Singleton<UIManager>;
 
-    SDL_Window* mySDLWindow;              // Referencia a la ventana de SDL
-    Ogre::RenderWindow* myOgreWindow;     // Referencia a la ventana de Ogre
-    void* myGLContext;                    // Referencia al contexto de OpenGL
-    Ogre::SceneManager* mySceneManager;   // Referencia al SceneManager de Ogre
+    SDL_Window* sdlWindow;              // Referencia a la ventana de SDL
+    void* glContext;                    // Referencia al contexto de OpenGL
+    Ogre::SceneManager* sceneManager;   // Referencia al SceneManager de Ogre
 
     // TEMPORAL?
     std::unordered_map<std::string, Button*> buttons;   // Botones de la interfaz de usuario
@@ -69,6 +68,9 @@ public:
     * @brief Renderiza la interfaz de usuario
     */
     void render() override;
+
+    bool handleEvents(const SDL_Event& event) override;
+
 
     /*
     * @brief Carga todas las fuentes de letra de la carpeta de fuentes

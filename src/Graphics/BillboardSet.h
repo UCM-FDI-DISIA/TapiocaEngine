@@ -12,7 +12,7 @@ class BillboardSet;
 
 namespace Tapioca {
 class RenderNode;
-class GraphicsEngine;
+class GraphicsManager;
 class Billboard;
 
 enum BillboardType {
@@ -28,7 +28,7 @@ enum BillboardType {
 */
 class TAPIOCA_API BillboardSet : public RenderObject {
 private:
-    friend GraphicsEngine;
+    friend GraphicsManager;
 
 protected:
     Ogre::BillboardSet* mBillboardSet;                  // BillboardSet de Ogre

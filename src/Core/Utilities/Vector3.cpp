@@ -3,7 +3,7 @@
 #include "Vector2.h"
 #include <cmath>
 #include <math.h>
-#define PI 3.14159265358979323846
+#define PI 3.14159265358979323846f
 
 
 namespace Tapioca {

@@ -1,17 +1,17 @@
-#include "SoundEngine.h"
+#include "SoundManager.h"
 //prueba 
 #include "Sound.h"
 #include "AudioSource.h"
 #include "AudioListener.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<SoundEngine>;
+template class TAPIOCA_API Singleton<SoundManager>;
 template<>
-SoundEngine* Singleton<SoundEngine>::instance_ = nullptr;
+SoundManager* Singleton<SoundManager>::instance_ = nullptr;
 
-SoundEngine::SoundEngine() { }
+SoundManager::SoundManager() : al(nullptr), au(nullptr), snd(nullptr), soundEngine(nullptr) { }
 
-void SoundEngine::setListener(AudioListener al) {
+void SoundManager::setListener(AudioListener al) {
    
     soundEngine->setListenerPosition(irrklang::vec3df(al.position.x, al.position.y, al.position.z),
                                      irrklang::vec3df(al.look.x, al.look.y, al.look.z),
@@ -20,13 +20,13 @@ void SoundEngine::setListener(AudioListener al) {
 
 }
 
-SoundEngine::~SoundEngine() {
+SoundManager::~SoundManager() {
     delete snd;
     delete au;
     if (soundEngine != nullptr) soundEngine->drop();
 }
 
-bool SoundEngine::init() {
+bool SoundManager::init() {
     soundEngine = irrklang::createIrrKlangDevice();
     if (!soundEngine) {
 #ifdef _DEBUG
@@ -37,13 +37,13 @@ bool SoundEngine::init() {
     return true;
 }
 
-void SoundEngine::testsample() {
+void SoundManager::testsample() {
     irrklang::vec3df position(0, 0, 0);
     //por defecto se parte de la ruta de la solucion
-    //irrklang::ISound* snd = soundEngine->play3D("../bin/assets/audio/BadBlood.mp3", position, true,true);   //tienes que crearlo pausado si luego quieres acceder al el
+    //irrklang::ISound* snd = SoundManager->play3D("../bin/assets/audio/BadBlood.mp3", position, true,true);   //tienes que crearlo pausado si luego quieres acceder al el
      snd = new Sound("../bin/assets/audio/BadBlood.mp3 ");
    // snd->setIsPaused(false);
-   // soundEngine->play2D(snd->mysource);
+   // SoundManager->play2D(snd->mysource);
      au = new AudioSource(*snd, Vector3(1,1,1), false, true);
     //parameros para el listener
     irrklang::vec3df lookDirection(10, 0, 10);   // the direction the listener looks into
@@ -60,7 +60,7 @@ void SoundEngine::testsample() {
     while (i<100023203) {
         i++;
     }
-    soundEngine->play2D(snd->mysource);
+    SoundManager->play2D(snd->mysource);
     */
 }
 }

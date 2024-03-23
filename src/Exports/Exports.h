@@ -7,20 +7,20 @@ class WindowManager;
 class InputManager;
 class FactoryManager;
 class SceneManager;
-class GraphicsEngine;
+class GraphicsManager;
 class PhysicsManager;
 class UIManager;
-class SoundEngine;
+class SoundManager;
 
 Game* game;
 WindowManager* window;
 InputManager* input;
 FactoryManager* factories;
 SceneManager* scenes;
-GraphicsEngine* graphics;
+GraphicsManager* graphics;
 PhysicsManager* physics;
 UIManager* ui;
-SoundEngine* sound;
+SoundManager* sound;
 
 TAPIOCA_API void initEngine();
 TAPIOCA_API void deleteEngine();

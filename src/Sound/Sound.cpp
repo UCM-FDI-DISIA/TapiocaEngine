@@ -1,5 +1,5 @@
 #include "Sound.h"
-#include "SoundEngine.h"
+#include "SoundManager.h"
 Tapioca::Sound::Sound(std::string source) { 
 	
 	
@@ -8,7 +8,7 @@ Tapioca::Sound::Sound(std::string source) {
         //is3D = load3D; ira al audio source
 
 		//irrKlang se asegura de solo cargar los arvhivos con un mismo nombre 1 sola vez
-		mysource = Tapioca::SoundEngine::instance()->soundEngine->addSoundSourceFromFile(source.c_str(), irrklang::ESM_AUTO_DETECT, true);
+		mysource = Tapioca::SoundManager::instance()->soundEngine->addSoundSourceFromFile(source.c_str(), irrklang::ESM_AUTO_DETECT, true);
         length= mysource->getPlayLength();
     
 	}

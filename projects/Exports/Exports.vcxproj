@@ -101,14 +101,8 @@
     <ProjectReference Include="..\Input\Input.vcxproj">
       <Project>{e3f8c2c9-6137-4434-999c-b6e8958260f5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Physics\Physics.vcxproj">
-      <Project>{4d51ad06-e3f2-480d-92f8-d0a63c2b60e6}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Sound\Sound.vcxproj">
       <Project>{b28cc5e6-fff5-4196-a780-0b0fd266d2d0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\UI\UI.vcxproj">
-      <Project>{5864a0d2-29e9-4bd7-9db3-f51b12c19737}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Window\Window.vcxproj">
       <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>

@@ -8,7 +8,7 @@ class SceneManager;
 
 namespace Tapioca {
 class RenderNode;
-class GraphicsEngine;
+class GraphicsManager;
 class Vector4;
 
 /*
@@ -16,7 +16,7 @@ class Vector4;
 */
 class TAPIOCA_API LightPoint : public Light {
 private:
-    friend GraphicsEngine;
+    friend GraphicsManager;
 
     /*
     * @brief Constructora de la clase LightPoint.

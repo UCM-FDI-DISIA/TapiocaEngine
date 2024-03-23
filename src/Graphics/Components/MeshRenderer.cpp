@@ -1,9 +1,9 @@
 #include "MeshRenderer.h"
-#include "GraphicsEngine.h"
+#include "../GraphicsManager.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "RenderNode.h"
-#include "Mesh.h"
+#include "../RenderNode.h"
+#include "../Mesh.h"
 
 namespace Tapioca {
 MeshRenderer::MeshRenderer() : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)) { }
@@ -41,7 +41,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 void MeshRenderer::awake() {
     GameObject* gameobject = getObject();
     transform = gameobject->getComponent<Transform>();
-    GraphicsEngine* g = GraphicsEngine::instance();
+    GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     mesh = g->createMesh(node, meshName);
 

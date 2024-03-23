@@ -10,7 +10,7 @@ namespace Tapioca {
 class Sound;
 class AudioSource;
 class AudioListener;
-class TAPIOCA_API SoundEngine : public Singleton<SoundEngine>, public Module {
+class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
 
 private:
     friend Sound;
@@ -23,19 +23,19 @@ private:
 
 public:
     /*
-    * @brief Constructora de la clase SoundEngine
+    * @brief Constructora de la clase SoundManager
     */
-    SoundEngine();
+    SoundManager();
     /*
     * @brief crea un irrKlang device para gestionarlo todo
     */
     bool init() override;
     /*
-    * @brief Destructora de la clase SoundEngine
+    * @brief Destructora de la clase SoundManager
     */
 
     void setListener(AudioListener al);
-    ~SoundEngine();
+    ~SoundManager();
 
 
 

@@ -2,7 +2,7 @@
 #include <string>
 #include <unordered_set>
 #include "Utilities/Singleton.h"
-#include "Structure/Module.h"
+#include "WindowModule.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 
@@ -40,9 +40,11 @@ class AnimationHelper;
 class Skybox;
 class Skyplane;
 
-class TAPIOCA_API GraphicsEngine : public Singleton<GraphicsEngine>, public Module {
+class WindowManager;
+
+class TAPIOCA_API GraphicsManager : public Singleton<GraphicsManager>, public WindowModule {
 private:
-    friend Singleton<GraphicsEngine>;
+    friend Singleton<GraphicsManager>;
 
     // Ogre
     Ogre::FileSystemLayer* fsLayer;                      // Sistema de busqueda de archivos de configuracion
@@ -52,12 +54,12 @@ private:
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
     SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
-    // warning C4251 'Tapioca::GraphicsEngine::cfgPath' :
+    // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsEngine'
-    // warning C4251 'Tapioca::GraphicsEngine::mwindowName' :
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
+    // warning C4251 'Tapioca::GraphicsManager::mwindowName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsEngine'
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -69,22 +71,22 @@ private:
     Ogre::RenderWindow* ogreWindow;                      // Ventana de ogre (solo para render)
 
     // Ventana
-    uint32_t windowWidth, windowHeight;                  // Anchura y altura de la ventana, respectivamente
+    WindowManager* windowManager;
     SDL_Window* sdlWindow;                               // Ventana de SDL
     void* glContext;									 // Contexto de OpenGL
 
-    // warning C4251 'Tapioca::GraphicsEngine::selfManagedNodes' :
+    // warning C4251 'Tapioca::GraphicsManager::selfManagedNodes' :
     // class 'std::unordered_set<Tapioca::RenderNode *,std::hash<Tapioca::RenderNode *>,
     // std::equal_to<Tapioca::RenderNode *>,std::allocator<Tapioca::RenderNode *>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsEngine'
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por graphicsEngine
+    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por GraphicsManager
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    
+
     // UI
     Ogre::OverlaySystem* overSys;                        // Systema de overlays de Ogre
 
@@ -106,23 +108,23 @@ private:
     void loadShaders();
 
     /*
-    * @brief Constructora de la clase GraphicsEngine.
+    * @brief Constructora de la clase GraphicsManager.
     * @param windowName Nombre de la ventana
     * @param w Anchura de la ventana
     * @param h Altura de la ventana
     */
-    GraphicsEngine(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
+    GraphicsManager(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
 
 public:
-    GraphicsEngine(GraphicsEngine&) = delete;
-    GraphicsEngine(GraphicsEngine&&) = delete;
-    GraphicsEngine& operator=(GraphicsEngine&) = delete;
-    GraphicsEngine& operator=(GraphicsEngine&&) = delete;
+    GraphicsManager(GraphicsManager&) = delete;
+    GraphicsManager(GraphicsManager&&) = delete;
+    GraphicsManager& operator=(GraphicsManager&) = delete;
+    GraphicsManager& operator=(GraphicsManager&&) = delete;
 
     /*
-    * @brief Destructora de la clase GraphicsEngine.
+    * @brief Destructora de la clase GraphicsManager.
     */
-    virtual ~GraphicsEngine();
+    virtual ~GraphicsManager();
 
     /*
     * @brief Crea el root de Ogre y prepara los recursos para empezar a renderizar
@@ -135,24 +137,14 @@ public:
     void render() override;
 
     /*
-    * @brief Libera la memoria que usa GraphicsEngine
+    * @brief Gestiona eventos de ventana
     */
-    void shutDown();
+    bool handleEvents(const SDL_Event& event) override;
 
     /*
-    * @brief Devuelve un puntero a la ventana de SDL
-    * @return Puntero a la ventana de SDL
+    * @brief Libera la memoria que usa GraphicsManager
     */
-    SDL_Window* getSDLWindow();
-    /*
-    * @brief Devuelve un puntero a la ventana de Ogre
-    * @return Puntero a la ventana de Ogre
-    */
-    Ogre::RenderWindow* getOgreWindow();
-    /*
-    * @brief Devuelve un puntero al contexto de OpenGL
-    */
-    void* getGLContext();
+    void shutDown();
 
     /*
     * @brief Devuelve un puntero al gestor de escenas de Ogre

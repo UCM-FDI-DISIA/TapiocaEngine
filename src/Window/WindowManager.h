@@ -1,27 +1,46 @@
 #pragma once
 #include <Utilities/Singleton.h>
-#include <Structure/Module.h>
+#include "WindowModule.h"
 
+#include <vector>
 struct SDL_Window;
 
 namespace Tapioca {
+class Game;
+
 class TAPIOCA_API WindowManager : public Singleton<WindowManager>, public Module {
     friend Singleton<WindowManager>;
 
 private:
-    // warning C4251 'Tapioca::WindowManager::windowName' :
-    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::WindowManager'
+    
+    // C4251 'Tapioca::WindowManager::windowName'
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::WindowManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string windowName;              // Nombre de la ventana
+    std::string windowName;                 // Nombre de la ventana
 #ifdef _MSC_VER
-#pragma warning(default : 4251)
+#pragma warning(disable : 4251)
 #endif
-    uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
-    SDL_Window* sdlWindow;                // Ventana de SDL
+    uint32_t windowWidth, windowHeight;     // Anchura y altura de la ventana, respectivamente
+    SDL_Window* sdlWindow;                  // Ventana de SDL
+    void* glContext;                        // Contexto de OpenGL
 
+
+    // warning C4251 'Tapioca::WindowManager::modules' :
+    // class 'std::vector<Tapioca::WindowModule *,std::allocator<Tapioca::WindowModule *>>' necesita tener una
+    // interfaz DLL para que la utilicen los clientes de class 'Tapioca::WindowManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::vector<WindowModule*> modules;     // Modulos suscritos a los eventos de ventana
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+
+    Game* game;
+    
     /*
     * @brief Constructora de la clase WindowManager.
     */
@@ -37,10 +56,41 @@ public:
     */
     virtual ~WindowManager();
 
+    inline void setGLContext(void* context) { glContext = context; }
+    /*
+    * @brief Devuelve un puntero al contexto de OpenGL
+    */
+    inline void* getGLContext() { return glContext; }
+
+
+    /*
+    * @brief Devuelve el nombre de la ventana de SDL
+    * @return String con el nombre de la ventana de SDL
+    */
     inline std::string const& getWindowName() { return windowName; } 
+
+    /*
+    * @brief Devuelve un puntero a la ventana de SDL
+    * @return Puntero a la ventana de SDL
+    */
     inline SDL_Window* getWindow() { return sdlWindow; }
+
+    /*
+    * @brief Devuelve el ancho de ventana de SDL
+    * @return ancho de la ventana de SDL
+    */
     inline uint32_t getWindowW() { return windowWidth; }
+
+    /*
+    * @brief Devuelve el alto de ventana de SDL
+    * @return alto de la ventana de SDL
+    */
     inline uint32_t getWindowH() { return windowHeight; }
+
+
+    void update(const uint64_t deltaTime) override;
+    void subscribeModule(WindowModule* mod);
+    void sendEvent(std::string const& id, void* info);
 };
 
 /*

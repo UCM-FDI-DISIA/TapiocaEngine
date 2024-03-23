@@ -1,13 +1,13 @@
 #include "Animator.h"
-#include "GraphicsEngine.h"
+#include "../GraphicsManager.h"
 #include "Components/Transform.h"
-#include "Components/MeshRenderer.h"
+#include "../Components/MeshRenderer.h"
 #include "Structure/GameObject.h"
 #include "OgreSceneManager.h"
 #include "OgreEntity.h"
-#include "RenderNode.h"
-#include "Mesh.h"
-#include "AnimationHelper.h"
+#include "../RenderNode.h"
+#include "../Mesh.h"
+#include "../AnimationHelper.h"
 
 namespace Tapioca {
 
@@ -23,7 +23,7 @@ bool Animator::initComponent(const CompMap& variables) {
 
 void Animator::start() {
     meshRenderer = object->getComponent<MeshRenderer>();
-    anim = GraphicsEngine::instance()->createAnimationHelper(meshRenderer->getMesh(), true, true);
+    anim = GraphicsManager::instance()->createAnimationHelper(meshRenderer->getMesh(), true, true);
 
     //anim->playAnim("CatMouth2");
 }

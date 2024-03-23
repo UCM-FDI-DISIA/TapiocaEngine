@@ -47,8 +47,6 @@ void Game::run() {
 
         lag += deltaTime;
 
-        handleEvents();
-
         uint64_t numFixedUpdates = 0;
         // Se realiza el update cada cierto tiempo determinado
         // Se va acumulando el tiempo sobrante (lag) --> varios updates en el mismo frame
@@ -81,12 +79,6 @@ void Game::update() {
     if (!scenes.empty()) scenes.top()->update(deltaTime);
 }
 
-void Game::handleEvents() {
-    for (auto mod : modules) mod->sendEvents();
-
-    //if (!scenes.empty()) scenes.top()->handleEvents();
-}
-
 void Game::fixedUpdate() {
     for (auto mod : modules) mod->fixedUpdate();
 
@@ -112,7 +104,6 @@ void Game::pushEvent(std::string const& id, void* info) {
 #ifdef _DEBUG
     if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
 #endif
-    for (auto mod : modules) mod->handleEvent(id, info);
 
     if (!scenes.empty()) scenes.top()->handleEvent(id, info);
 }

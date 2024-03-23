@@ -8,11 +8,11 @@ class ISoundSource;
 
 namespace Tapioca {
 class AudioSource;
-class SoundEngine;
+class SoundManager;
 class TAPIOCA_API Sound {
 private:
     friend AudioSource;
-    friend SoundEngine;
+    friend SoundManager;
 
 protected:
    // irrklang::ISound* mysound;

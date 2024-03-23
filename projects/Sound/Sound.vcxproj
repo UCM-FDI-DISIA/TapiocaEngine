@@ -14,13 +14,13 @@
     <ClCompile Include="..\..\src\Sound\AudioListener.cpp" />
     <ClCompile Include="..\..\src\Sound\AudioSource.cpp" />
     <ClCompile Include="..\..\src\Sound\Sound.cpp" />
-    <ClCompile Include="..\..\src\Sound\SoundEngine.cpp" />
+    <ClCompile Include="..\..\src\Sound\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Sound\AudioListener.h" />
     <ClInclude Include="..\..\src\Sound\AudioSource.h" />
     <ClInclude Include="..\..\src\Sound\Sound.h" />
-    <ClInclude Include="..\..\src\Sound\SoundEngine.h" />
+    <ClInclude Include="..\..\src\Sound\SoundManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -12,7 +12,7 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 
-#include "GraphicsEngine.h"
+#include "WindowManager.h"
 
 #include "Button.h"
 
@@ -21,13 +21,12 @@ template class TAPIOCA_API Singleton<UIManager>;
 template<>
 UIManager* Singleton<UIManager>::instance_ = nullptr;
 
-UIManager::UIManager() : mySDLWindow(nullptr), myOgreWindow(nullptr), myGLContext(nullptr), mySceneManager(nullptr) { }
+UIManager::UIManager() : sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr) { }
 
 UIManager::~UIManager() {
-    mySDLWindow = nullptr;
-    myOgreWindow = nullptr;
-    myGLContext = nullptr;
-    mySceneManager = nullptr;
+    sdlWindow = nullptr;
+    glContext = nullptr;
+    sceneManager = nullptr;
 
     for (auto button : buttons) {
         delete button.second;
@@ -47,14 +46,12 @@ bool UIManager::init() {
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
-    GraphicsEngine* graphics = GraphicsEngine::instance();
-    mySDLWindow = graphics->getSDLWindow();
-    myGLContext = graphics->getGLContext();
-    ImGui_ImplSDL2_InitForOpenGL(mySDLWindow, myGLContext);
+    sdlWindow = WindowManager::instance()->getWindow();
+    glContext = WindowManager::instance()->getGLContext();
+    ImGui_ImplSDL2_InitForOpenGL(sdlWindow, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
-    myOgreWindow = graphics->getOgreWindow();
-    myOgreWindow->addListener(this);
-    mySceneManager = graphics->getSceneManager();
+
+    //sceneManager = graphics->getSceneManager();
 
     loadFonts(io, 16.0f);
 
@@ -113,6 +110,8 @@ void UIManager::render() {
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
+bool UIManager::handleEvents(const SDL_Event& event) { return ImGui_ImplSDL2_ProcessEvent(&event); }
+
 bool UIManager::loadFonts(ImGuiIO& io, float pixelSize) {
     std::string fontsPath = "assets/fonts/";
 
@@ -144,7 +143,7 @@ Button* UIManager::createButton(const std::string& name, RenderNode* const node,
                                 const ImVec4& activeColor, bool* canCloseWindow, ImGuiWindowFlags flags) {
 
     if (!buttons.contains(name)) {
-        Button* button = new Button(mySceneManager, node, position, text, onClick, constSize, padding, normalColor,
+        Button* button = new Button(sceneManager, node, position, text, onClick, constSize, padding, normalColor,
                                     hoverColor, activeColor, canCloseWindow, flags);
         buttons.insert({name, button});
         return button;

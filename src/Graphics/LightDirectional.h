@@ -7,7 +7,7 @@ class SceneManager;
 
 namespace Tapioca {
 class RenderNode;
-class GraphicsEngine;
+class GraphicsManager;
 class Vector4;
 class Vector3;
 
@@ -16,7 +16,7 @@ class Vector3;
 */
 class TAPIOCA_API LightDirectional : public Light {
 private:
-    friend GraphicsEngine;
+    friend GraphicsManager;
 
     // SOLO NECESITA UNA DIRECCION, PERO NO UNA POSICION (LA POSICION NO AFECTA PARA NADA)
     // SIMULA RAYOS DE LUZ DESDE UNA POSICION LEJANA (COMO EL SOL)

@@ -43,10 +43,6 @@ private:
     */
     void update();
     /*
-    * @brief Envia eventos a los modulos
-    */
-    void handleEvents();
-    /*
     * @brief Llama al fixedUpdate de los modulos y escenas
     */
     void fixedUpdate();
@@ -104,7 +100,7 @@ public:
     */
     void addModule(Module* const m);
     /*
-    * @brief Envia un evento a todos los modulos y escenas
+    * @brief Envia un evento a las escenas
     */
     void pushEvent(std::string const& id, void* info);
 };

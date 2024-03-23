@@ -1,4 +1,4 @@
-#include "GraphicsEngine.h"
+#include "GraphicsManager.h"
 
 // PROPIOS
 #include "LightPoint.h"
@@ -7,7 +7,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Viewport.h"
-#include "GraphicsEngine.h"
+#include "GraphicsManager.h"
 #include "BillboardSet.h"
 #include "Billboard.h"
 #include "ParticleSystem.h"
@@ -33,25 +33,32 @@
 #include <SDL_syswm.h>
 #undef main
 
+#include "WindowManager.h"
+#include "GraphicsManager.h"
+
 namespace Tapioca {
-template class TAPIOCA_API Singleton<GraphicsEngine>;
+template class TAPIOCA_API Singleton<GraphicsManager>;
 template<>
-GraphicsEngine* Singleton<GraphicsEngine>::instance_ = nullptr;
+GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 
-GraphicsEngine::GraphicsEngine(std::string const& windowName, const uint32_t w, const uint32_t h)
+GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
-      renderSys(nullptr), mMaterialMgrListener(nullptr), ogreWindow(nullptr), sdlWindow(nullptr),
-      mwindowName(windowName), windowWidth(w), windowHeight(h), glContext(), overSys(nullptr) { }
+      renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr), sdlWindow(nullptr),
+      mwindowName(windowName), glContext(), overSys(nullptr) { }
 
-GraphicsEngine::~GraphicsEngine() {
-    for (auto& node : selfManagedNodes)
-        delete node;
+GraphicsManager::~GraphicsManager() {
+    for (auto& node : selfManagedNodes) delete node;
     selfManagedNodes.clear();
 
     shutDown();
 }
 
-bool GraphicsEngine::init() {
+bool GraphicsManager::init() {
+    windowManager = WindowManager::instance();
+    sdlWindow = windowManager->getWindow();
+    uint32_t windowWidth = windowManager->getWindowW();
+    uint32_t windowHeight = windowManager->getWindowH();
+
     // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
@@ -98,8 +105,6 @@ bool GraphicsEngine::init() {
     // Inicializa ogre sin crear la ventana, siempre se hace despues de asignar el sistema de render
     mRoot->initialise(false);
 
-    // Iniciar SDL si no se ha inicializado antes
-    if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_Init(SDL_INIT_EVERYTHING);
 
     // informacion de la ventana
     Ogre::NameValuePairList miscParams;
@@ -117,21 +122,8 @@ bool GraphicsEngine::init() {
     miscParams["vsync"] = ropts["VSync"].currentValue;
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
-    // Iniciar ventana SDL2
-    Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
-    if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_ALLOW_HIGHDPI;
-    // else flags = SDL_WINDOW_RESIZABLE;
 
-    // Crear ventana SDL2
-    sdlWindow = SDL_CreateWindow(mwindowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
-                                 windowHeight, flags);
-    if (sdlWindow == nullptr) {
-#ifdef _DEBUG
-        std::cerr << "Error al crear la ventana de SDL: " << SDL_GetError() << '\n';
-#endif
-        return false;
-    }
-
+    
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
     SDL_SysWMinfo wmInfo;
@@ -157,6 +149,7 @@ bool GraphicsEngine::init() {
     renderSys->_initRenderTargets();
     loadResources();
 
+
     ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
     if (glContext == nullptr) {
 #ifdef _DEBUG
@@ -164,13 +157,14 @@ bool GraphicsEngine::init() {
 #endif
         return false;
     }
+    windowManager->setGLContext(glContext);
 
     SDL_GL_SetSwapInterval(1);
 
     return true;
 }
 
-void GraphicsEngine::loadPlugIns() {
+void GraphicsManager::loadPlugIns() {
 #ifdef _DEBUG
     mRoot->loadPlugin("Codec_STBI_d.dll");   // Necesario para tener codec de archivos png jpg ...
 #else
@@ -178,7 +172,7 @@ void GraphicsEngine::loadPlugIns() {
 #endif
 }
 
-void GraphicsEngine::loadResources() {
+void GraphicsManager::loadResources() {
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         cfgPath + "/assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
@@ -193,7 +187,7 @@ void GraphicsEngine::loadResources() {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void GraphicsEngine::loadShaders() {
+void GraphicsManager::loadShaders() {
     if (Ogre::RTShader::ShaderGenerator::initialize()) {
         mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
         mShaderGenerator->addSceneManager(scnMgr);
@@ -204,9 +198,23 @@ void GraphicsEngine::loadShaders() {
     }
 }
 
-void GraphicsEngine::render() { mRoot->renderOneFrame(); }
+void GraphicsManager::render() { mRoot->renderOneFrame(); }
 
-void GraphicsEngine::shutDown() {
+bool GraphicsManager::handleEvents(const SDL_Event& event) { 
+    if (event.type == SDL_WINDOWEVENT) {
+        if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+#ifdef _DEBUG
+            std::cout << "Resized\n";
+#endif
+            ogreWindow->resize(windowManager->getWindowW(), windowManager->getWindowH());
+        }
+    }    
+    return true; 
+}
+
+
+
+void GraphicsManager::shutDown() {
     if (mRoot == nullptr) return;
 
     // ELIMINAR EL SCENE MANAGER
@@ -253,12 +261,6 @@ void GraphicsEngine::shutDown() {
         glContext = nullptr;
     }
 
-    // eliminar la ventana de sdl
-    if (sdlWindow != nullptr) {
-        SDL_DestroyWindow(sdlWindow);
-        SDL_Quit();
-        sdlWindow = nullptr;
-    }
 
     // ELIMINAR EL ROOT
     delete mRoot;
@@ -269,80 +271,74 @@ void GraphicsEngine::shutDown() {
     fsLayer = nullptr;
 }
 
-SDL_Window* GraphicsEngine::getSDLWindow() { return sdlWindow; }
+Ogre::SceneManager* GraphicsManager::getSceneManager() { return nullptr; }
 
-Ogre::RenderWindow* GraphicsEngine::getOgreWindow() { return ogreWindow; }
-
-void* GraphicsEngine::getGLContext() { return glContext; }
-
-Ogre::SceneManager* GraphicsEngine::getSceneManager() { return scnMgr; }
-
-RenderNode* GraphicsEngine::createNode(const Vector3 pos, const Vector3 scale) {
+RenderNode* GraphicsManager::createNode(const Vector3 pos, const Vector3 scale) {
     return new RenderNode(scnMgr, pos, scale);
 }
 
-RenderNode* GraphicsEngine::createSelfManagedNode(const Vector3 pos, const Vector3 scale) {
+RenderNode* GraphicsManager::createSelfManagedNode(const Vector3 pos, const Vector3 scale) {
     RenderNode* node = new RenderNode(scnMgr, pos, scale);
     selfManagedNodes.insert(node);
     return node;
 }
 
-Camera* GraphicsEngine::createCamera(RenderNode* const node, std::string const& name) {
+Camera* GraphicsManager::createCamera(RenderNode* const node, std::string const& name) {
     return new Camera(scnMgr, node, name);
 }
 
-Viewport* GraphicsEngine::createViewport(Camera* const camera, const int zOrder) {
+Viewport* GraphicsManager::createViewport(Camera* const camera, const int zOrder) {
     return new Viewport(ogreWindow, camera, zOrder);
 }
 
-LightDirectional* GraphicsEngine::createLightDirectional(RenderNode* const node, const Vector3 direction,
+LightDirectional* GraphicsManager::createLightDirectional(RenderNode* const node, const Vector3 direction,
                                                          const Vector4 color) {
     return new LightDirectional(scnMgr, node, color, direction);
 }
 
-Mesh* GraphicsEngine::createMesh(RenderNode* const node, std::string const& meshName) {
+Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& meshName) {
     return new Mesh(scnMgr, node, meshName);
 }
 
-Billboard* GraphicsEngine::createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,
+Billboard* GraphicsManager::createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,
                                            const Vector4 colour) {
     Tapioca::BillboardSet* set = new BillboardSet(scnMgr, node, name, 1);
     return set->addBillboard(position, colour);
 }
 
-BillboardSet* GraphicsEngine::createBillboardSet(RenderNode* const node, std::string const& name,
+BillboardSet* GraphicsManager::createBillboardSet(RenderNode* const node, std::string const& name,
                                                  const unsigned int poolSize) {
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
-ParticleSystem* GraphicsEngine::createParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node,
+ParticleSystem* GraphicsManager::createParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node,
                                                      std::string const& name, std::string const& templateName,
                                                      const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
-Plane* GraphicsEngine::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
+Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                    std::string const& name, const float width, const float height, const int xSegments,
-                                   const int ySegments, std::string const& material) {
+                                    const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments);
 }
 
-Plane* GraphicsEngine::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
+Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
                                    std::string const& name, const float width, const float height, const int xSegments,
                                    const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments);
 }
 
-AnimationHelper* GraphicsEngine::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
+AnimationHelper* GraphicsManager::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
     return new AnimationHelper(object, autoPlay, loop);
 }
 
-Skybox* GraphicsEngine::createSkybox(RenderNode* const node, std::string const& texture, const float distC,
+Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& texture, const float distC,
                                      const bool orderC) {
     return new Skybox(scnMgr, node, texture, distC, orderC);
 }
 
-Skyplane* GraphicsEngine::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
+Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
                                          const Vector3 rkNormal, const float fConstant, const float scale,
                                          const float tiling, const bool drawFirst, const float bow, const int xsegments,
                                          const int ysegments) {
@@ -350,12 +346,11 @@ Skyplane* GraphicsEngine::createSkyplane(RenderNode* const node, std::string con
                         xsegments, ysegments);
 }
 
-
-Ogre::ManualObject* GraphicsEngine::createManualObject(RenderNode* const node) {
+Ogre::ManualObject* GraphicsManager::createManualObject(RenderNode* const node) {
     Ogre::ManualObject* manualObject = scnMgr->createManualObject();
     node->attachObject(manualObject);
     return manualObject;
 }
 
-void GraphicsEngine::destroyManualObject(Ogre::ManualObject* const object) { scnMgr->destroyManualObject(object); }
+void GraphicsManager::destroyManualObject(Ogre::ManualObject* const object) { scnMgr->destroyManualObject(object); }
 }

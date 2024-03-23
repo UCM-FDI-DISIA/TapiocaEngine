@@ -11,6 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Window\Window.vcxproj">
+      <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\..\src\Graphics\AnimationHelper.cpp" />
     <ClCompile Include="..\..\src\Graphics\Billboard.cpp" />
     <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />
@@ -20,14 +25,14 @@
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp" />
-    <ClCompile Include="..\..\src\Graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="..\..\src\Graphics\GraphicsManager.cpp" />
     <ClCompile Include="..\..\src\Graphics\Light.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightPoint.cpp" />
     <ClCompile Include="..\..\src\Graphics\Mesh.cpp" />
-    <ClCompile Include="..\..\src\Graphics\RenderNode.cpp" />
     <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\Graphics\Plane.cpp" />
+    <ClCompile Include="..\..\src\Graphics\RenderNode.cpp" />
     <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
     <ClCompile Include="..\..\src\Graphics\Skybox.cpp" />
@@ -44,14 +49,15 @@
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h" />
-    <ClInclude Include="..\..\src\Graphics\GraphicsEngine.h" />
+    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h" />
+    <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />
     <ClInclude Include="..\..\src\Graphics\LightPoint.h" />
     <ClInclude Include="..\..\src\Graphics\Mesh.h" />
-    <ClInclude Include="..\..\src\Graphics\RenderNode.h" />
     <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\src\Graphics\Plane.h" />
+    <ClInclude Include="..\..\src\Graphics\RenderNode.h" />
     <ClInclude Include="..\..\src\Graphics\RenderObject.h" />
     <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
     <ClInclude Include="..\..\src\Graphics\Skybox.h" />
@@ -106,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;_RESOURCES_DIR;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Window\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -128,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;_RESOURCES_DIR;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Window\;$(SolutionDir)src\Exports\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

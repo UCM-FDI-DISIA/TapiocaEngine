@@ -7,19 +7,19 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-#include "GraphicsEngine.h"
+#include "GraphicsManager.h"
 #include "RenderNode.h"
 #include "checkML.h"
 
 namespace Tapioca {
 
 PhysicsDebugDrawer::PhysicsDebugDrawer()
-    : mode(DBG_DrawWireframe), node(GraphicsEngine::instance()->createSelfManagedNode()) { }
+    : mode(DBG_DrawWireframe), node(GraphicsManager::instance()->createSelfManagedNode()) { }
 
 PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
 
 void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) {
-    auto g = GraphicsEngine::instance();
+    auto g = GraphicsManager::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
     line->begin("white", Ogre::RenderOperation::OT_LINE_LIST);
     line->position(from.x(), from.y(), from.z());
@@ -40,7 +40,7 @@ void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
 
 void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance,
                                           int lifeTime, const btVector3& color) {
-    auto g = GraphicsEngine::instance();
+    auto g = GraphicsManager::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
     line->begin("white", Ogre::RenderOperation::OT_POINT_LIST);
     line->position(PointOnB.x(), PointOnB.y(), PointOnB.z());
@@ -54,7 +54,7 @@ void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVec
 //void PhysicsDebugDrawer::drawTransform(const btTransform& transform, btScalar orthoLen) { }
 
 void PhysicsDebugDrawer::clearLines() {
-    auto g = GraphicsEngine::instance();
+    auto g = GraphicsManager::instance();
     for (std::list<Ogre::ManualObject*>::iterator it = lines.begin(); it != lines.end();) {
         g->destroyManualObject(*it);
         it = lines.erase(it);
