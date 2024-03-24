@@ -1,4 +1,5 @@
 #pragma once
+#include "BaseWidget.h"
 #include <string>
 #include <functional>
 #include <imgui.h>
@@ -12,10 +13,8 @@ namespace Tapioca {
 /*
 * @brief Clase que representa una caja de texto en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
-class TAPIOCA_API InputText {
+class TAPIOCA_API InputText : public BaseWidget {
 private:
-    std::string name;					  // Nombre de la caja de texto
-    ImVec2 position;                       // Posicion de la caja de texto
     std::string placeHolderText;           // Texto que se muestra en la caja de texto
     char* buffer;                          // Buffer de la caja de texto
     size_t bufferSize;                     // Tamano del buffer de la caja de texto
@@ -27,8 +26,6 @@ private:
     ImGuiInputTextFlags flags;             // Flags de la caja de texto
     ImGuiInputTextCallback callback;       // Callback de la caja de texto
     void* userData;                        // Datos del callback de la caja de texto
-    bool* canCloseWindow;                  // Puntero a booleano que indica si se puede cerrar la ventana
-    ImGuiWindowFlags windowFlags;          // Flags de la ventana
 
 public:
     /*
@@ -89,9 +86,9 @@ public:
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
     * @param windowFlags Flags de la ventana
     */
-    InputText(const std::string& name, const ImVec2& position, const std::string& placeHolderText, const size_t bufferSize,
-              std::function<void()> onTextEntered, const float constWidth, ImFont* const textFont,
-              const ImVec4& textColor, const ImVec4& bgColor, const ImGuiInputTextFlags& flags,
+    InputText(const std::string& name, const ImVec2& position, const std::string& placeHolderText,
+              const size_t bufferSize, std::function<void()> onTextEntered, const float constWidth,
+              ImFont* const textFont, const ImVec4& textColor, const ImVec4& bgColor, const ImGuiInputTextFlags& flags,
               const ImGuiInputTextCallback& callback, void* userData, bool* canCloseWindow,
               ImGuiWindowFlags windowFlags);
 
@@ -101,18 +98,6 @@ public:
     * @brief Inicializa el buffer de la caja de texto con el texto del placeholder
     */
     void startBuffer();
-
-    /*
-    * @brief Establece el nombre de la caja de texto
-    * @param name Nombre de la caja de texto
-    */
-    inline void setName(const std::string& name) { this->name = name; }
-
-    /*
-    * @brief Establece la posicion de la caja de texto
-    * @param position Posicion de la caja de texto
-    */
-    inline void setPosition(const ImVec2 position) { this->position = position; }
 
     /*
     * @brief Establece el texto de la caja de texto
@@ -184,30 +169,6 @@ public:
     inline void setUserData(void* userData) { this->userData = userData; }
 
     /*
-    * @brief Establece el puntero a booleano que indica si se puede cerrar la ventana
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-	*/
-    inline void setCanCloseWindow(bool* canCloseWindow) { this->canCloseWindow = canCloseWindow; }
-
-    /*
-    * @brief Establece los flags de la ventana
-    * @param windowFlags Flags de la ventana
-	*/
-    inline void setWindowFlags(ImGuiWindowFlags windowFlags) { this->windowFlags = windowFlags; }
-
-    /*
-    * @brief Devuelve el nombre de la caja de texto
-    * @return Nombre de la caja de texto
-    */
-    inline std::string getName() const { return name; }
-
-    /*
-    * @brief Devuelve la posicion de la caja de texto
-    * @return Posicion del boton
-	*/
-    inline ImVec2 getPosition() const { return position; }
-
-    /*
     * @brief Devuelve el texto de la caja de texto
     * @return Texto de la caja de texto
     */
@@ -272,17 +233,5 @@ public:
     * @return Datos del callback de la caja de texto
     */
     inline void* getUserData() const { return userData; }
-
-    /*
-    * @brief Devuelve el puntero a booleano que indica si se puede cerrar la ventana
-    * @return Puntero a booleano que indica si se puede cerrar la ventana
-    */
-    inline bool* getCanCloseWindow() const { return canCloseWindow; }
-
-    /*
-    * @brief Devuelve los flags de la ventana
-    * @return Flags de la ventana
-	*/
-    inline ImGuiWindowFlags getWindowFlags() const { return windowFlags; }
 };
 }

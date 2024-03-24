@@ -1,4 +1,5 @@
 #pragma once
+#include "BaseWidget.h"
 #include <string>
 #include <functional>
 #include <imgui.h>
@@ -10,22 +11,18 @@ class SceneManager;
 
 namespace Tapioca {
 /*
-* @brief Clase que representa una caja de texto en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
+* @brief Clase que representa un texto en la interfaz grafica
 */
-class TAPIOCA_API Text {
+class TAPIOCA_API Text : public BaseWidget {
 private:
-    std::string name;               // Nombre del texto
-    ImVec2 position;                // Posicion del texto
     std::string text;               // Texto
     ImVec2 constSize;               // Tamano constante del texto
     ImFont* textFont;               // Fuente del texto
     ImVec4 textColor;               // Color del texto
-    bool* canCloseWindow;           // Puntero a booleano que indica si se puede cerrar la ventana
-    ImGuiWindowFlags windowFlags;   // Flags de la ventana
 
 public:
     /*
-    * @brief Estructura que contiene las opciones para inicializar una caja de texto
+    * @brief Estructura que contiene las opciones para inicializar un texto
     * @param name Nombre del texto
     * @param position Posicion del texto
     * @param text Texto
@@ -70,18 +67,6 @@ public:
     virtual ~Text() { }
 
     /*
-    * @brief Establece el nombre del texto
-    * @param name Nombre del texto
-    */
-    inline void setName(const std::string& name) { this->name = name; }
-
-    /*
-    * @brief Establece la posicion del texto
-    * @param position Posicion del texto
-    */
-    inline void setPosition(const ImVec2 position) { this->position = position; }
-
-    /*
     * @brief Establece el texto
     * @param text Texto
     */
@@ -103,30 +88,6 @@ public:
     * @param textColor Color del texto
     */
     inline void setTextColor(const ImVec4& textColor) { this->textColor = textColor; }
-
-    /*
-    * @brief Establece el puntero a booleano que indica si se puede cerrar la ventana
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-	*/
-    inline void setCanCloseWindow(bool* canCloseWindow) { this->canCloseWindow = canCloseWindow; }
-
-    /*
-    * @brief Establece los flags de la ventana
-    * @param windowFlags Flags de la ventana
-	*/
-    inline void setWindowFlags(ImGuiWindowFlags windowFlags) { this->windowFlags = windowFlags; }
-
-    /*
-    * @brief Devuelve el nombre del texto
-    * @return Nombre del texto
-    */
-    inline std::string getName() const { return name; }
-
-    /*
-    * @brief Devuelve la posicion del texto
-    * @return Posicion del texto
-	*/
-    inline ImVec2 getPosition() const { return position; }
 
     /*
     * @brief Devuelve el texto
@@ -151,17 +112,5 @@ public:
     * @return Color del texto
     */
     inline ImVec4 getTextColor() const { return textColor; }
-
-    /*
-    * @brief Devuelve el puntero a booleano que indica si se puede cerrar la ventana
-    * @return Puntero a booleano que indica si se puede cerrar la ventana
-    */
-    inline bool* getCanCloseWindow() const { return canCloseWindow; }
-
-    /*
-    * @brief Devuelve los flags de la ventana
-    * @return Flags de la ventana
-	*/
-    inline ImGuiWindowFlags getWindowFlags() const { return windowFlags; }
 };
 }

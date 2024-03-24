@@ -1,4 +1,5 @@
 #pragma once
+#include "BaseWidget.h"
 #include <string>
 #include <functional>
 #include <imgui.h>
@@ -12,10 +13,8 @@ namespace Tapioca {
 /*
 * @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
-class TAPIOCA_API Button {
+class TAPIOCA_API Button : public BaseWidget {
 private:
-    std::string name;                // Nombre del boton
-    ImVec2 position;                 // Posicion del boton
     std::string text;                // Texto que se muestra en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
     ImVec2 constSize;                // Tamano constante del boton
@@ -25,8 +24,6 @@ private:
     ImVec4 normalColor;              // Color del boton para el estado "normal"
     ImVec4 hoverColor;               // Color del boton para el estado "hover"
     ImVec4 activeColor;              // Color del boton para el estado "active"
-    bool* canCloseWindow;            // Puntero a booleano que indica si se puede cerrar la ventana
-    ImGuiWindowFlags windowFlags;    // Flags de la ventana
 
 public:
     /*
@@ -88,18 +85,6 @@ public:
     virtual ~Button() { }
 
     /*
-    * @brief Establece el nombre del boton
-    * @param name Nombre del boton
-    */
-    inline void setName(const std::string& name) { this->name = name; }
-
-    /*
-    * @brief Establece la posicion del boton
-    * @param position Posicion del boton
-    */
-    inline void setPosition(const ImVec2 position) { this->position = position; }
-
-    /*
     * @brief Establece el texto del boton
     * @param text Texto del boton
     */
@@ -154,30 +139,6 @@ public:
     inline void setActiveColor(const ImVec4& activeColor) { this->activeColor = activeColor; }
 
     /*
-    * @brief Establece el puntero a booleano que indica si se puede cerrar la ventana
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-	*/
-    inline void setCanCloseWindow(bool* canCloseWindow) { this->canCloseWindow = canCloseWindow; }
-
-    /*
-    * @brief Establece los flags de la ventana
-    * @param windowFlags Flags de la ventana
-	*/
-    inline void setWindowFlags(ImGuiWindowFlags windowFlags) { this->windowFlags = windowFlags; }
-
-    /*
-    * @brief Devuelve el nombre del boton
-    * @return Nombre del boton
-    */
-    inline std::string getName() const { return name; }
-
-    /*
-    * @brief Devuelve la posicion del boton
-    * @return Posicion del boton
-	*/
-    inline ImVec2 getPosition() const { return position; }
-
-    /*
     * @brief Devuelve el texto del boton
     * @return Texto del boton
     */
@@ -230,17 +191,5 @@ public:
     * @return Color del boton para el estado "active"
     */
     inline ImVec4 getActiveColor() const { return activeColor; }
-
-    /*
-    * @brief Devuelve el puntero a booleano que indica si se puede cerrar la ventana
-    * @return Puntero a booleano que indica si se puede cerrar la ventana
-    */
-    inline bool* getCanCloseWindow() const { return canCloseWindow; }
-
-    /*
-    * @brief Devuelve los flags de la ventana
-    * @return Flags de la ventana
-	*/
-    inline ImGuiWindowFlags getWindowFlags() const { return windowFlags; }
 };
 }

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.cpp" />
+    <ClCompile Include="..\..\src\UI\BaseWidget.cpp" />
     <ClCompile Include="..\..\src\UI\Button.cpp" />
     <ClCompile Include="..\..\src\UI\InputText.cpp" />
     <ClCompile Include="..\..\src\UI\Text.cpp" />
@@ -21,6 +22,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h" />
+    <ClInclude Include="..\..\src\UI\BaseWidget.h" />
     <ClInclude Include="..\..\src\UI\Button.h" />
     <ClInclude Include="..\..\src\UI\InputText.h" />
     <ClInclude Include="..\..\src\UI\Text.h" />
