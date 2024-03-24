@@ -113,8 +113,10 @@ static void createModules(Tapioca::Game* game) {
 
     // Importante: UI tiene que suscribirse antes que input
     // para ignorar eventos de input que interactuen con la UI
-    window->subscribeModule(ui);
+    // y ambos deberian ser los ultimos para que el resto de
+    // eventos de ventana no se ignoren por los eventos de UI
     window->subscribeModule(graphics);
+    window->subscribeModule(ui);
     window->subscribeModule(input);
 }
 

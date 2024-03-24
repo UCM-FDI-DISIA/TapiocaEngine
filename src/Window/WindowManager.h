@@ -87,10 +87,20 @@ public:
     */
     inline uint32_t getWindowH() { return windowHeight; }
 
+    /*
+    * @brief Agrega un modulo al vector de modulos
+    * @param mod Modulo a agregar en el vector
+    */
+    void subscribeModule(WindowModule* mod);
+
+    /*
+    * @brief Envia el evento recibido a Game
+    * @param id Nombre del evento
+    * @param info Informacion sobre el evento
+    */
+    void sendEvent(std::string const& id, void* info);
 
     void update(const uint64_t deltaTime) override;
-    void subscribeModule(WindowModule* mod);
-    void sendEvent(std::string const& id, void* info);
 };
 
 /*

@@ -46,29 +46,36 @@ WindowManager::~WindowManager() {
         SDL_Quit();
         sdlWindow = nullptr;
     }
-
-
 }
+
+void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
+
+void WindowManager::sendEvent(std::string const& id, void* info) {
+    if (id == "ev_CLOSE") game->exit();
+    else game->pushEvent(id, info);
+}
+
 
 void WindowManager::update(const uint64_t deltaTime) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
+        // Si es un evento de cerrar la venetana, llama a que se cierre el juego
         if (event.type == SDL_WINDOWEVENT_CLOSE || event.type == SDL_QUIT) game->exit();
+
+        // Si es un evento de redimensionar la ventana, actualiza sus dimensiones
         else if (event.type == SDL_WINDOWEVENT) {
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 SDL_GetWindowSize(sdlWindow, (int*)(&windowWidth), (int*)(&windowHeight));
             }
         }
 
+        // Gestiona los eventos de modulos si no se ha producido un evento de UI
+        // Se asume que la UI va antes que el input y que estos 2 modulos son los ultimos del 
+        // vector para que el resto de eventos de ventana no se ignoren por los eventos de UI
         bool UIEvent = false;
         for (int i = 0; i < modules.size() && !UIEvent; i++) UIEvent = modules[i]->handleEvents(event);
     }
 }
-
-void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
-
-void WindowManager::sendEvent(std::string const& id, void* info) { game->pushEvent(id, info); }
-
 
 
 }
