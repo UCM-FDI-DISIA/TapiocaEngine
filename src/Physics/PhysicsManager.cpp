@@ -117,16 +117,14 @@ bool PhysicsManager::init() {
 
 
 void PhysicsManager::update(const uint64_t deltaTime) {
-  // dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 10);
+    // dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 10);
 
 #ifdef _DEBUG
     dynamicsWorld->debugDrawWorld();
 
 #endif }
 }
-void PhysicsManager::fixedUpdate() {
-   dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 1);
-}
+void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 1); }
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
                                              const ColliderShape colliderShape, const MovementType type, float mass,
                                              const float friction, const float damping, const float bounciness,
@@ -138,19 +136,19 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     btCollisionShape* shape;
 
     switch (colliderShape) {
-        case BOX_SHAPE: shape = new btBoxShape(scale); break;
-        case SPHERE_SHAPE: shape = new btSphereShape(scale.getX()); break;
-        case PLANE_SHAPE: shape = new btStaticPlaneShape(scale, 0); break;
-        case CAPSULE_SHAPE: shape = new btCapsuleShape(scale.getX(), scale.getY()); break;
-        default: shape = new btBoxShape(scale); break;
+    case BOX_SHAPE: shape = new btBoxShape(scale); break;
+    case SPHERE_SHAPE: shape = new btSphereShape(scale.getX()); break;
+    case PLANE_SHAPE: shape = new btStaticPlaneShape(scale, 0); break;
+    case CAPSULE_SHAPE: shape = new btCapsuleShape(scale.getX(), scale.getY()); break;
+    default: shape = new btBoxShape(scale); break;
     }
 
     btVector3 inertia;
     inertia.setZero();
 
     // El rigidbody es dinamico si la masa !=0, de lo contrario es estatico
-    if (type != STATIC_OBJECT) shape->calculateLocalInertia(mass, inertia);
-    else 
+    if (type == DYNAMIC_OBJECT) shape->calculateLocalInertia(mass, inertia);
+    else
         mass = 0;
 
     //settear Transform (posicion y rotacion)
@@ -169,7 +167,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     rigidBodies.insert(rb);
 
     //si es un cuerpo dinamico, tiene que estar siempre activo para actualizar su movimiento y detectar colision
-    if (type ==DYNAMIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
+    if (type != STATIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
 
     rb->setCollisionFlags(rb->getCollisionFlags() | type);
 
@@ -214,6 +212,8 @@ void PhysicsManager::destroy() {
 #endif
 }
 
+btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return dynamicsWorld; }
+
 void PhysicsManager::destroyRigidBody(btRigidBody* const rb) {
     rigidBodies.erase(rb);
     if (rb && rb->getMotionState()) delete rb->getMotionState();
@@ -222,5 +222,9 @@ void PhysicsManager::destroyRigidBody(btRigidBody* const rb) {
     delete rb;
 }
 
+void PhysicsManager::removeRigidBody(btRigidBody* const rb) { dynamicsWorld->removeCollisionObject(rb); }
+
+
+void PhysicsManager::addRigidBody(btRigidBody* const rb) { dynamicsWorld->addRigidBody(rb); }
 
 }

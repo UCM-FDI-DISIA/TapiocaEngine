@@ -101,9 +101,23 @@ public:
     */
     void destroyRigidBody(btRigidBody* const rb);
 
+     /*
+    * @brief  quitar del mundo
+    * @param rb puntero al rb que se quiere quitar
+    */
+    void removeRigidBody(btRigidBody* const rb);
+ 
+    /*
+    * @brief  añadirlo del mundo
+    * @param rb puntero al rb que se quiere añadir
+    */
+    void addRigidBody(btRigidBody* const rb);
+
     /*
     * @brief Destruye el mundo
     */
     void destroy();
+
+    btDiscreteDynamicsWorld* getWorld();
 };
 }

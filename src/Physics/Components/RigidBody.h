@@ -143,6 +143,12 @@ public:
     */
     void setTensor(const Vector3 t);
     /*
+    * @brief Añade un constraint/unión alrededor de un eje
+    * @parama a eje sobre la que se quiere fijar la rotar
+    */
+    void addHingeConstraint(const Vector3 a);
+
+    /*
     * @brief Cambia la friccion
     * @param f Valor que se le quiere dar a la friccion
     */

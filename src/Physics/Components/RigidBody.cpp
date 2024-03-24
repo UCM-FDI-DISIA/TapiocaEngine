@@ -201,7 +201,25 @@ void RigidBody::setColliderScale(const Vector3 s) {
 
 void RigidBody::setMass(const float m) { mass = m; }
 
-void RigidBody::setTensor(const Vector3 t) { rigidBody->setMassProps(mass, toBtVector3(t)); };
+void RigidBody::setTensor(const Vector3 t) {
+
+    PhysicsManager::instance()->destroyRigidBody(rigidBody);
+    btVector3 inertia = toBtVector3(t);
+    rigidBody->getCollisionShape()->calculateLocalInertia(mass, inertia);
+    rigidBody->setMassProps(mass, inertia);
+    PhysicsManager::instance()->addRigidBody(rigidBody);
+};
+
+
+void RigidBody::addHingeConstraint(const Vector3 a) {
+
+    btTransform frameInA(btQuaternion::getIdentity(), btVector3(0, 0, 0));   
+    btTransform frameInB( btQuaternion::getIdentity(),btVector3(0, 0, 0));  
+    btHingeConstraint* hingeConstraint = new btHingeConstraint(*rigidBody, frameInA,toBtVector3(a));
+    hingeConstraint->setFrames(frameInA, frameInB);     
+    PhysicsManager::instance()->getWorld()->addConstraint(hingeConstraint, true);  
+};
+
 
 void RigidBody::setFriction(const float f) {
     friction = f;
