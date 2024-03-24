@@ -107,6 +107,11 @@ public:
     */
     virtual ~InputManager();
 
+    /*
+    * @brief Maneja los eventos de SDL
+    * @param event Evento de SDL
+    * @return true si se ha manejado el evento, false si no
+    */
     bool handleEvents(const SDL_Event& event) override;
 
     /*

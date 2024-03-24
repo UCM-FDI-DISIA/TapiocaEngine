@@ -79,6 +79,7 @@ void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event co
 bool InputManager::handleEvents(const SDL_Event& event) {
     std::string eventName = "";
     int value = -1;
+    bool happened = true;
 
     switch (event.type) {
     // Teclado
@@ -127,12 +128,14 @@ bool InputManager::handleEvents(const SDL_Event& event) {
     case SDL_JOYDEVICEADDED: addController(event.cdevice.which); break;
     case SDL_JOYDEVICEREMOVED: removeController(event.cdevice.which); break;
 
-    default: break;
+    default:
+        happened = false;
+        break;
     }
 
     sendEvent(eventName, event, value);
 
-    return true;
+    return happened;
 }
 
 }

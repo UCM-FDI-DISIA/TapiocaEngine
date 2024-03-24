@@ -26,6 +26,7 @@ class SceneManager;
 
 namespace Tapioca {
 class RenderNode;
+class WindowManager;
 
 /* 
 * @brief Funcion hash para pares para poder usarlos como clave en unordered_map
@@ -47,6 +48,7 @@ class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule, 
 private:
     friend Singleton<UIManager>;
 
+    WindowManager* windowManager;
     SDL_Window* sdlWindow;                            // Referencia a la ventana de SDL
     void* glContext;                                  // Referencia al contexto de OpenGL
     Ogre::SceneManager* sceneManager;                 // Referencia al SceneManager de Ogre

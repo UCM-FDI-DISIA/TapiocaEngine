@@ -111,9 +111,11 @@ static void createModules(Tapioca::Game* game) {
     sound = Tapioca::SoundManager::create();
     game->addModule(sound);
 
-    window->subscribeModule(input);
-    window->subscribeModule(graphics);
+    // Importante: UI tiene que suscribirse antes que input
+    // para ignorar eventos de input que interactuen con la UI
     window->subscribeModule(ui);
+    window->subscribeModule(graphics);
+    window->subscribeModule(input);
 }
 
 void mapInput() {

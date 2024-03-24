@@ -9,8 +9,11 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+#include <SDL.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
+#include "SDL_opengl.h"
+
 
 #include "WindowManager.h"
 
@@ -52,15 +55,15 @@ bool UIManager::init() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-    (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
-    sdlWindow = WindowManager::instance()->getWindow();
-    glContext = WindowManager::instance()->getGLContext();
+    io.WantCaptureKeyboard = true;
+    io.WantCaptureMouse = true;
+    windowManager = WindowManager::instance();
+    sdlWindow = windowManager->getWindow();
+    glContext = windowManager->getGLContext();
     ImGui_ImplSDL2_InitForOpenGL(sdlWindow, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
-
-    //sceneManager = graphics->getSceneManager();
-
+    
     loadFonts();
 
     return true;
@@ -208,7 +211,21 @@ void UIManager::renderInputTexts() {
     }
 }
 
-bool UIManager::handleEvents(const SDL_Event& event) { return ImGui_ImplSDL2_ProcessEvent(&event); }
+bool UIManager::handleEvents(const SDL_Event& event) {
+/*    if (event.type == SDL_WINDOWEVENT) {
+        if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+            
+        }
+    }  */  
+    if (ImGui_ImplSDL2_ProcessEvent(&event) && 
+        (ImGui::IsAnyItemHovered() || ImGui::IsAnyItemActive() || ImGui::IsAnyItemFocused())) {
+//#ifdef _DEBUG
+//        std::cout << "Interactuando con UI\n";
+//#endif
+        return true;
+    }
+    return false;
+}
 
 bool UIManager::fontsFolderExists() {
     if (!std::filesystem::exists(fontsPath)) {
