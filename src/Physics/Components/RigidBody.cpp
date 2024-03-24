@@ -118,9 +118,6 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         bool b = *((bool*)info);
-#ifdef _DEBUG
-        std::cout << b << "\n";
-#endif
         if (!b)
             if (movementType == DYNAMIC_OBJECT) {
                 btTransform& btTr = rigidBody->getWorldTransform();
@@ -203,7 +200,7 @@ void RigidBody::setMass(const float m) { mass = m; }
 
 void RigidBody::setTensor(const Vector3 t) {
 
-    PhysicsManager::instance()->destroyRigidBody(rigidBody);
+    PhysicsManager::instance()->removeRigidBody(rigidBody);
     btVector3 inertia = toBtVector3(t);
     rigidBody->getCollisionShape()->calculateLocalInertia(mass, inertia);
     rigidBody->setMassProps(mass, inertia);
@@ -213,11 +210,11 @@ void RigidBody::setTensor(const Vector3 t) {
 
 void RigidBody::addHingeConstraint(const Vector3 a) {
 
-    btTransform frameInA(btQuaternion::getIdentity(), btVector3(0, 0, 0));   
+   /* btTransform frameInA(btQuaternion::getIdentity(), btVector3(0, 0, 0));   
     btTransform frameInB( btQuaternion::getIdentity(),btVector3(0, 0, 0));  
     btHingeConstraint* hingeConstraint = new btHingeConstraint(*rigidBody, frameInA,toBtVector3(a));
     hingeConstraint->setFrames(frameInA, frameInB);     
-    PhysicsManager::instance()->getWorld()->addConstraint(hingeConstraint, true);  
+    PhysicsManager::instance()->getWorld()->addConstraint(hingeConstraint, true);  */
 };
 
 
