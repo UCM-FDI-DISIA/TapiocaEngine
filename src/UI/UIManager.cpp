@@ -28,6 +28,10 @@ UIManager::~UIManager() {
     sceneManager = nullptr;
 
     fonts.clear();
+    for (auto text : texts) {
+        delete text.second;
+    }
+    texts.clear();
     for (auto button : buttons) {
         delete button.second;
     }
@@ -67,11 +71,45 @@ void UIManager::render() {
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
 
+    renderTexts();
     renderButtons();
     renderInputTexts();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void UIManager::renderTexts() {
+    for (auto myText : texts) {
+        Text* text = myText.second;
+
+        // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del texto
+        ImGui::SetNextWindowPos(text->getPosition());
+        ImGui::SetNextWindowSize(text->getConstSize());
+
+        // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
+
+        ImGui::Begin(text->getName().c_str(), text->getCanCloseWindow(), text->getWindowFlags());
+
+        ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
+
+        // Establece la fuente del texto
+        ImGui::PushFont(text->getFont());
+        // Establece el color del texto
+        ImGui::PushStyleColor(ImGuiCol_Text, text->getTextColor());
+        // Imprime el texto
+        ImGui::Text(text->getText().c_str());
+
+        // Pop para WindowBg, el color del texto
+        ImGui::PopStyleColor(2);
+        // Pop para la fuente del texto
+        ImGui::PopFont();
+
+        ImGui::End();
+    }
 }
 
 void UIManager::renderButtons() {
@@ -96,7 +134,7 @@ void UIManager::renderButtons() {
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
         ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
 
-        ImGui::Begin(text, button->getCanCloseWindow(), button->getWindowFlags());
+        ImGui::Begin(button->getName().c_str(), button->getCanCloseWindow(), button->getWindowFlags());
 
         ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
 
@@ -138,7 +176,8 @@ void UIManager::renderInputTexts() {
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
         ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
 
-        ImGui::Begin(" ", inputText->getCanCloseWindow(), inputText->getWindowFlags());
+        ImGui::Begin(inputText->getName().c_str(), inputText->getCanCloseWindow(),
+                     inputText->getWindowFlags());
 
         ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
 
@@ -242,8 +281,8 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
     }
 }
 
-Button* UIManager::createButton(const std::string& name, const Button::ButtonOptions& options) {
-    return createButton(name, options.position, options.text, options.onClick, options.constSize, options.textFont,
+Button* UIManager::createButton(const Button::ButtonOptions& options) {
+    return createButton(options.name, options.position, options.text, options.onClick, options.constSize, options.textFont,
                         options.textColor, options.normalColor, options.hoverColor, options.activeColor,
                         options.canCloseWindow, options.windowFlags);
 }
@@ -254,7 +293,7 @@ Button* UIManager::createButton(const std::string& name, const ImVec2& position,
                                 const ImVec4& hoverColor, const ImVec4& activeColor, bool* canCloseWindow,
                                 ImGuiWindowFlags windowFlags) {
     if (!buttons.contains(name)) {
-        Button* button = new Button(position, text, onClick, constSize, padding, textFont, textColor, normalColor,
+        Button* button = new Button(name, position, text, onClick, constSize, padding, textFont, textColor, normalColor,
                                     hoverColor, activeColor, canCloseWindow, windowFlags);
         buttons.insert({name, button});
         return button;
@@ -295,8 +334,8 @@ bool UIManager::deleteButton(const std::string& name) {
     }
 }
 
-InputText* UIManager::createInputText(const std::string& name, const InputText::InputTextOptions& options) {
-    return createInputText(name, options.position, options.placeHolderText, options.bufferSize, options.onTextEntered,
+InputText* UIManager::createInputText(const InputText::InputTextOptions& options) {
+    return createInputText(options.name, options.position, options.placeHolderText, options.bufferSize, options.onTextEntered,
                            options.constWidth, options.textFont, options.textColor, options.bgColor, options.flags,
                            options.callback, options.userData, options.canCloseWindow, options.windowFlags);
 }
@@ -310,7 +349,7 @@ InputText* UIManager::createInputText(const std::string& name, const ImVec2& pos
 
     if (!inputTexts.contains(name)) {
         InputText* inputText =
-            new InputText(position, placeHolderText, bufferSize, onTextEntered, constWidth, textFont, textColor,
+            new InputText(name, position, placeHolderText, bufferSize, onTextEntered, constWidth, textFont, textColor,
                           bgColor, flags, callback, userData, canCloseWindow, windowFlags);
         inputTexts.insert({name, inputText});
         return inputText;
@@ -339,6 +378,47 @@ bool UIManager::deleteInputText(const std::string& name) {
     else {
 #ifdef _DEBUG
         std::cout << "No existe la caja de texto con el nombre " << name << '\n';
+#endif
+        return false;
+    }
+}
+
+Text* UIManager::createText(const Text::TextOptions& options) {
+    return createText(options.name, options.position, options.text, options.constSize, options.textFont, options.textColor,
+                      options.canCloseWindow, options.windowFlags);
+}
+
+Text* UIManager::createText(const std::string& name, const ImVec2& position, const std::string& text,
+                            const ImVec2& constSize, ImFont* textFont, const ImVec4& textColor, bool* canCloseWindow,
+                            ImGuiWindowFlags windowFlags) {
+    if (!texts.contains(name)) {
+        Text* textObj = new Text(name, position, text, constSize, textFont, textColor, canCloseWindow, windowFlags);
+        texts.insert({name, textObj});
+        return textObj;
+    }
+    else {
+#ifdef _DEBUG
+        std::cout << "Ya existe el texto con el nombre " << name << '\n';
+#endif
+        return nullptr;
+    }
+}
+
+Text* UIManager::getText(const std::string& name) {
+    if (texts.contains(name)) return texts[name];
+    else
+        return nullptr;
+}
+
+bool UIManager::deleteText(const std::string& name) {
+    if (texts.contains(name)) {
+        delete texts[name];
+        texts.erase(name);
+        return true;
+    }
+    else {
+#ifdef _DEBUG
+        std::cout << "No existe el texto con el nombre " << name << '\n';
 #endif
         return false;
     }

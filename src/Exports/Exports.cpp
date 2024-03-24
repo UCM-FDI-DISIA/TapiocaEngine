@@ -14,6 +14,7 @@
 // PRUEBAS DE UI
 #include <SDL.h>
 #include "Structure/DynamicLibraryLoader.h"
+#include "Text.h"
 #include "Button.h"
 #include "InputText.h"
 
@@ -29,13 +30,14 @@ void runEngine() {
     if (game->init()) {
         // PRUEBAS DE UI
         Button::ButtonOptions buttonOptions;
+        buttonOptions.name = "Boton1";
         buttonOptions.constSize = ImVec2(130, 40);
         buttonOptions.position = ImVec2((window->getWindowW() - buttonOptions.constSize.x) / 2,
                                         (window->getWindowH() - buttonOptions.constSize.y) / 2);
         buttonOptions.text = "Play";
-        buttonOptions.onClick = []() {
+        buttonOptions.onClick = [&]() {
             if (!DynamicLibraryLoader::initGame()) {
-                Button* button = ui->getButton("Boton1");
+                Button* button = ui->getButton(buttonOptions.name);
                 if (button != nullptr) {
                     button->setText("Couldn't init game");
                     button->setTextColor(ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
@@ -43,13 +45,14 @@ void runEngine() {
             }
         };
         buttonOptions.textFont = ui->getFont("impact.ttf");
-        auto button = ui->createButton("Boton1", buttonOptions);
+        auto button = ui->createButton(buttonOptions);
 
         InputText::InputTextOptions inputOptions;
+        inputOptions.name = "Input1";
         inputOptions.position = ImVec2(0, 0);
         inputOptions.placeHolderText = "Inserta nombre";
-        inputOptions.onTextEntered = []() {
-            InputText* input = ui->getInputText("Input1");
+        inputOptions.onTextEntered = [&]() {
+            InputText* input = ui->getInputText(inputOptions.name);
             if (input != nullptr) {
 #ifdef _DEBUG
                 std::cout << "Se ha hecho ENTER en la caja de texto\n";
@@ -63,7 +66,16 @@ void runEngine() {
         inputOptions.bufferSize = 100;
         inputOptions.textFont = ui->getFont("arial.ttf", 20.0f);
         inputOptions.textColor = ImVec4(1.0f, 0.0f, 1.0f, 1.0f);
-        auto input = ui->createInputText("Input1", inputOptions);
+        auto input = ui->createInputText(inputOptions);
+
+        Text::TextOptions textOptions;
+        textOptions.name = "Texto1"; 
+        textOptions.position = ImVec2(500, 400.0f);
+        textOptions.text = "Tapioca Engine";
+        textOptions.constSize = ImVec2(100, 100);
+        textOptions.textFont = ui->getFont("AGENCYB.TTF", 30.0f);
+        textOptions.textColor = ImVec4(0.0f, 0.0f, 1.0f, 1.0f);
+        auto text = ui->createText(textOptions);
 
         game->run();
     }

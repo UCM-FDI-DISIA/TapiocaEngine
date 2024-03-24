@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\src\UI\InputText.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\UI\Text.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h">
@@ -42,6 +45,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\InputText.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UI\Text.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

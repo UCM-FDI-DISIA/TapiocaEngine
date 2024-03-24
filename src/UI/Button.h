@@ -14,6 +14,7 @@ namespace Tapioca {
 */
 class TAPIOCA_API Button {
 private:
+    std::string name;                // Nombre del boton
     ImVec2 position;                 // Posicion del boton
     std::string text;                // Texto que se muestra en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
@@ -30,6 +31,7 @@ private:
 public:
     /*
     * @brief Estructura que contiene las opciones para inicializar un boton
+    * @param name Nombre del boton
     * @param position Posicion del boton
     * @param text Texto que se muestra en el boton
     * @param onClick Funcion que se ejecuta cuando se hace click en el boton
@@ -44,6 +46,7 @@ public:
     * @param windowFlags Flags de la ventana
     */
     struct ButtonOptions {
+        std::string name;
         ImVec2 position = ImVec2(0, 0);
         std::string text = "Button";
         std::function<void()> onClick = []() {};
@@ -67,6 +70,7 @@ public:
 
     /*
     * @brief Inicializa un boton con los parametros dados
+    * @param name Nombre del boton
     * @param position Posicion del boton
     * @param text Texto que se muestra en el boton
     * @param onClick Funcion que se ejecuta cuando se hace click en el boton
@@ -77,11 +81,17 @@ public:
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
     * @param windowFlags Flags de la ventana
     */
-    Button(const ImVec2& position, const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
+    Button(const std::string& name, const ImVec2& position, const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
            const ImVec2& padding, ImFont* const textFont, const ImVec4& textColor, const ImVec4& normalColor,
            const ImVec4& hoverColor, const ImVec4& activeColor, bool* canCloseWindow, ImGuiWindowFlags windowFlags);
 
     virtual ~Button() { }
+
+    /*
+    * @brief Establece el nombre del boton
+    * @param name Nombre del boton
+    */
+    inline void setName(const std::string& name) { this->name = name; }
 
     /*
     * @brief Establece la posicion del boton
@@ -154,6 +164,12 @@ public:
     * @param windowFlags Flags de la ventana
 	*/
     inline void setWindowFlags(ImGuiWindowFlags windowFlags) { this->windowFlags = windowFlags; }
+
+    /*
+    * @brief Devuelve el nombre del boton
+    * @return Nombre del boton
+    */
+    inline std::string getName() const { return name; }
 
     /*
     * @brief Devuelve la posicion del boton

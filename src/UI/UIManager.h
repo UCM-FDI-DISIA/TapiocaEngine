@@ -13,6 +13,7 @@
 #pragma warning(default : 4251)
 #endif
 
+#include "Text.h"
 #include "Button.h"
 #include "InputText.h"
 
@@ -54,6 +55,7 @@ private:
 
     // TEMPORAL?
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
+    std::unordered_map<std::string, Text*> texts;                                  // Textos de la interfaz de usuario
     std::unordered_map<std::string, Button*> buttons;                              // Botones de la interfaz de usuario
     std::unordered_map<std::string, InputText*> inputTexts;   // Campos de texto de la interfaz de usuario
 
@@ -88,6 +90,11 @@ public:
     * @brief Renderiza la interfaz de usuario
     */
     void render() override;
+
+    /*
+    * @brief Renderiza los textos
+    */
+    void renderTexts();
 
     /*
     * @brief Renderiza los botones
@@ -135,14 +142,14 @@ public:
 
     /*
     * @brief Crea un boton
-    * @param name Nombre del boton
     * @param options Opciones del boton
     * @return Puntero al boton creado
     */
-    Button* createButton(const std::string& name, const Button::ButtonOptions& options);
+    Button* createButton(const Button::ButtonOptions& options);
 
     /*
     * @brief Crea un boton
+    * @param name Nombre del boton
     * @param position Posicion del boton
     * @param text Texto del boton
     * @param onClick Funcion que se llama cuando se pulsa el boton
@@ -170,6 +177,7 @@ public:
 
     /*
     * @brief Crea un boton
+    * @param name Nombre del boton
     * @param position Posicion del boton
     * @param text Texto del boton
     * @param onClick Funcion que se llama cuando se pulsa el boton
@@ -210,14 +218,14 @@ public:
 
     /*
     * @brief Crea una caja de texto
-    * @param name Nombre de la caja de texto
     * @param options Opciones de la caja de texto
     * @return Puntero a la caja de texto creada
     */
-    InputText* createInputText(const std::string& name, const InputText::InputTextOptions& options);
+    InputText* createInputText(const InputText::InputTextOptions& options);
 
     /*
     * @brief Crea una caja de texto
+    * @param name Nombre de la caja de texto
     * @param position Posicion de la caja de texto
     * @param text Texto de la caja de texto
     * @param onTextChanged Funcion que se llama cuando hay un cambio en la caja de texto
@@ -257,5 +265,45 @@ public:
     * @return true si se ha eliminado, false si no existe
     */
     bool deleteInputText(const std::string& name);
+
+    /*
+    * @brief Crea un texto
+    * @param name Nombre del texto
+    * @param options Opciones del texto
+    * @return Puntero al texto creado
+    */
+    Text* createText(const Text::TextOptions& options);
+
+    /*
+    * @brief Crea un texto
+    * @param name Nombre del texto
+    * @param position Posicion del texto
+    * @param text Texto
+    * @param constSize Tamano constante del texto
+    * @param textFont Fuente del texto
+    * @param textColor Color del texto
+    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
+    * @param windowFlags Flags de la ventana
+    * @return Puntero al texto creado
+    */
+    Text* createText(const std::string& name, const ImVec2& position, const std::string& text, const ImVec2& constSize,
+                     ImFont* const textFont = ImGui::GetIO().FontDefault,
+                     const ImVec4& textColor = ImGui::GetStyle().Colors[ImGuiCol_Text], bool* canCloseWindow = nullptr,
+                     ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
+                         ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
+
+    /*
+    * @brief Devuelve el texto a partir de un nombre
+    * @param name Nombre del texto
+    * @return Puntero al texto solicitado
+    */
+    Text* getText(const std::string& name);
+
+    /*
+    * @brief Elimina un texto
+    * @param name Nombre del texto
+    * @return true si se ha eliminado, false si no existe
+	*/
+    bool deleteText(const std::string& name);
 };
 }

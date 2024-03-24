@@ -14,6 +14,7 @@ namespace Tapioca {
 */
 class TAPIOCA_API InputText {
 private:
+    std::string name;					  // Nombre de la caja de texto
     ImVec2 position;                       // Posicion de la caja de texto
     std::string placeHolderText;           // Texto que se muestra en la caja de texto
     char* buffer;                          // Buffer de la caja de texto
@@ -32,6 +33,7 @@ private:
 public:
     /*
     * @brief Estructura que contiene las opciones para inicializar una caja de texto
+    * @param name Nombre de la caja de texto
     * @param position Posicion de la caja de texto
     * @param placeHolderText Texto que se muestra en la caja de texto
     * @param bufferSize Tamano del buffer de la caja de texto
@@ -47,6 +49,7 @@ public:
     * @param windowFlags Flags de la ventana
     */
     struct InputTextOptions {
+        std::string name;
         ImVec2 position = ImVec2(0, 0);
         std::string placeHolderText = "Inserta texto...";
         size_t bufferSize = 256;
@@ -71,6 +74,7 @@ public:
 
     /*
     * @brief Inicializa una caja de texto con los parametros dados
+    * @param name Nombre de la caja de texto
     * @param position Posicion de la caja de texto
     * @param placeHolderText Texto que se muestra al principio en la caja de texto
     * @param bufferSize Tamano del buffer de la caja de texto
@@ -85,7 +89,7 @@ public:
     * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
     * @param windowFlags Flags de la ventana
     */
-    InputText(const ImVec2& position, const std::string& placeHolderText, const size_t bufferSize,
+    InputText(const std::string& name, const ImVec2& position, const std::string& placeHolderText, const size_t bufferSize,
               std::function<void()> onTextEntered, const float constWidth, ImFont* const textFont,
               const ImVec4& textColor, const ImVec4& bgColor, const ImGuiInputTextFlags& flags,
               const ImGuiInputTextCallback& callback, void* userData, bool* canCloseWindow,
@@ -97,6 +101,12 @@ public:
     * @brief Inicializa el buffer de la caja de texto con el texto del placeholder
     */
     void startBuffer();
+
+    /*
+    * @brief Establece el nombre de la caja de texto
+    * @param name Nombre de la caja de texto
+    */
+    inline void setName(const std::string& name) { this->name = name; }
 
     /*
     * @brief Establece la posicion de la caja de texto
@@ -184,6 +194,12 @@ public:
     * @param windowFlags Flags de la ventana
 	*/
     inline void setWindowFlags(ImGuiWindowFlags windowFlags) { this->windowFlags = windowFlags; }
+
+    /*
+    * @brief Devuelve el nombre de la caja de texto
+    * @return Nombre de la caja de texto
+    */
+    inline std::string getName() const { return name; }
 
     /*
     * @brief Devuelve la posicion de la caja de texto
