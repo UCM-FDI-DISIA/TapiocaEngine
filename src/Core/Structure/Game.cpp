@@ -19,7 +19,8 @@ Game::~Game() {
 
     DynamicLibraryLoader::freeModule();
 
-    for (Module* mod : modules) delete mod;
+    for (Module* mod : modules)
+        delete mod;
 }
 
 bool Game::init() {
@@ -70,29 +71,35 @@ void Game::run() {
 }
 
 void Game::start() {
-    for (auto mod : modules) mod->start();
+    for (auto mod : modules)
+        mod->start();
 }
 
 void Game::update() {
-    for (auto mod : modules) mod->update(deltaTime);
+    for (auto mod : modules)
+        mod->update(deltaTime);
 
     if (!scenes.empty()) scenes.top()->update(deltaTime);
 }
 
 void Game::fixedUpdate() {
-    for (auto mod : modules) mod->fixedUpdate();
+    for (auto mod : modules)
+        mod->fixedUpdate();
 
     if (!scenes.empty()) scenes.top()->fixedUpdate();
 }
 
 void Game::render() {
-    for (auto mod : modules) mod->render();
+    for (auto mod : modules)
+        mod->render();
 }
 
 void Game::refresh() {
-    for (auto mod : modules) mod->refresh();
+    for (auto mod : modules)
+        mod->refresh();
 
-    for (Scene* sc : toDelete) delete sc;
+    for (Scene* sc : toDelete)
+        delete sc;
     toDelete.clear();
 
     if (!scenes.empty()) scenes.top()->refresh();
@@ -100,13 +107,15 @@ void Game::refresh() {
 
 void Game::addModule(Module* const m) { modules.push_back(m); }
 
-void Game::pushEvent(std::string const& id, void* info) { 
+void Game::pushEvent(std::string const& id, void* info) {
 #ifdef _DEBUG
     if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
 #endif
 
     if (!scenes.empty()) scenes.top()->handleEvent(id, info);
 }
+
+Scene* Game::getTopScene() const { return scenes.top(); }
 
 void Game::pushScene(Scene* const sc) {
     scenes.push(sc);
@@ -118,7 +127,8 @@ void Game::pushScene(Scene* const sc) {
 void Game::popScene() {
     toDelete.push_back(scenes.top());
     if (!scenes.empty()) scenes.pop();
-    else finish = true;
+    else
+        finish = true;
 }
 
 void Game::changeScene(Scene* const sc) {

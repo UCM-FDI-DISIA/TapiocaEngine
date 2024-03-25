@@ -10,6 +10,9 @@
     <Filter Include="Archivos de recursos">
       <UniqueIdentifier>{12e5f373-9b42-4ce0-947a-2c3f33010588}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{3c3ede5b-07e3-4d69-b1ed-895ff3610afd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_opengl3.cpp">
@@ -21,17 +24,17 @@
     <ClCompile Include="..\..\src\UI\UIManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\Button.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\..\src\UI\Components\BaseWidget.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\InputText.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\..\src\UI\Components\Button.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\Text.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\..\src\UI\Components\InputText.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\BaseWidget.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\..\src\UI\Components\Text.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,17 +47,17 @@
     <ClInclude Include="..\..\src\UI\UIManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UI\Button.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\..\src\UI\Components\BaseWidget.h">
+      <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UI\InputText.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\..\src\UI\Components\Button.h">
+      <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UI\Text.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\..\src\UI\Components\InputText.h">
+      <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UI\BaseWidget.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\..\src\UI\Components\Text.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

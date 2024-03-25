@@ -3,53 +3,35 @@
 #include <functional>
 #include <imgui.h>
 #include "Utilities/Vector2.h"
+#include "Utilities/Vector3.h"
+#include "Components/Transform.h"
 
 namespace Ogre {
 class SceneManager;
 }
 
 namespace Tapioca {
+class Transform;
+
 /*
 * @brief Clase que representa la base de un widget en la interfaz grafica
 */
 class TAPIOCA_API BaseWidget {
-private:
+protected:
     std::string name;               // Nombre del widget
-    ImVec2 position;                // Posicion del widget
+    Transform* transform;           // Puntero al transform del widget
     bool* canCloseWindow;           // Puntero a booleano que indica si se puede cerrar la ventana
     ImGuiWindowFlags windowFlags;   // Flags de la ventana
 
 public:
     /*
-    * @brief Estructura que contiene las opciones para inicializar un widget
-    * @param name Nombre del widget
-    * @param position Posicion del widget
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-    * @param windowFlags Flags de la ventana
+    * @brief Constructor por defecto
     */
-    struct WidgetOptions {
-        std::string name;
-        ImVec2 position = ImVec2(0, 0);
-        bool* canCloseWindow = nullptr;
-        ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
-            ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings;
-    };
+    BaseWidget();
 
     /*
-    * @brief Inicializa el widget con los parametros dados
-    * @param options Opciones del widget
+    * @brief Destructor por defecto
     */
-    BaseWidget(const WidgetOptions& options);
-
-    /*
-    * @brief Inicializa un widget
-    * @param name Nombre del widget
-    * @param position Posicion del widget
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-    * @param windowFlags Flags de la ventana
-    */
-    BaseWidget(const std::string& name, const ImVec2& position, bool* canCloseWindow, ImGuiWindowFlags windowFlags);
-
     virtual ~BaseWidget() { }
 
     /*
@@ -59,10 +41,22 @@ public:
     inline void setName(const std::string& name) { this->name = name; }
 
     /*
-    * @brief Establece la posicion del widget
-    * @param position Posicion del widget
+    * @brief Establece el puntero al transform del widget
+    * @param transform Puntero al transform del widget
     */
-    inline void setPosition(const ImVec2 position) { this->position = position; }
+    inline void setTransform(Transform* transform) { this->transform = transform; }
+
+    /*
+    * @brief Establece la posicion del boton
+    * @param position Posicion del boton
+    */
+    inline void setPosition(const ImVec2& position) { transform->setPosition(Vector3(position.x, position.y, 0)); }
+
+    /*
+    * @brief Establece el tamano del boton
+    * @param size Tamano del boton
+    */
+    inline void setSize(const ImVec2& size) { transform->setScaleXY(Vector2(size.x, size.y)); }
 
     /*
     * @brief Establece el puntero a booleano que indica si se puede cerrar la ventana
@@ -83,10 +77,22 @@ public:
     inline std::string getName() const { return name; }
 
     /*
+    * @brief Devuelve el puntero al transform del widget
+    * @return Puntero al transform del widget
+	*/
+    inline Transform* getTransform() const { return transform; }
+
+    /*
     * @brief Devuelve la posicion del widget
     * @return Posicion del widget
-	*/
-    inline ImVec2 getPosition() const { return position; }
+    */
+    inline ImVec2 getPosition() const { return ImVec2(transform->getPosition().x, transform->getPosition().y); }
+
+    /*
+    * @brief Devuelve el tamano del widget
+    * @return Tamano del widget
+    */
+    inline ImVec2 getSize() const { return ImVec2(transform->getScale().x, transform->getScale().y); }
 
     /*
     * @brief Devuelve el puntero a booleano que indica si se puede cerrar la ventana

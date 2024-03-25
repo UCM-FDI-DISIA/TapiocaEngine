@@ -129,11 +129,19 @@ void Transform::setPosition(const Vector3& p, bool rb) {
     position = p;
     changed(rb);
 }
+void Transform::setPositionXY(const Vector2& p, bool rb) {
+    position = p;
+    changed(rb);
+}
 void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = r;
     changed(rb);
 }
 void Transform::setScale(const Vector3& s) {
+    scale = s;
+    changed();
+}
+void Transform::setScaleXY(const Vector2& s) {
     scale = s;
     changed();
 }

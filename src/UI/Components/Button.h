@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseWidget.h"
+#include "Structure/Component.h"
 #include <string>
 #include <functional>
 #include <imgui.h>
@@ -13,12 +14,13 @@ namespace Tapioca {
 /*
 * @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
-class TAPIOCA_API Button : public BaseWidget {
+class TAPIOCA_API Button : public BaseWidget, public Component {
 private:
     std::string text;                // Texto que se muestra en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
-    ImVec2 constSize;                // Tamano constante del boton
     ImVec2 padding;                  // Tamano del padding del boton
+    std::string textFontName;        // Nombre de la fuente del texto del boton
+    float textSize;                  // Tamano de la fuente del texto del boton
     ImFont* textFont;                // Fuente del texto del boton incluyendo tamano
     ImVec4 textColor;                // Color del texto del boton
     ImVec4 normalColor;              // Color del boton para el estado "normal"
@@ -26,63 +28,32 @@ private:
     ImVec4 activeColor;              // Color del boton para el estado "active"
 
 public:
-    /*
-    * @brief Estructura que contiene las opciones para inicializar un boton
-    * @param name Nombre del boton
-    * @param position Posicion del boton
-    * @param text Texto que se muestra en el boton
-    * @param onClick Funcion que se ejecuta cuando se hace click en el boton
-    * @param constSize Tamano del boton
-    * @param padding Padding del boton
-    * @param textFont Fuente del texto del boton
-    * @param textColor Color del texto del boton
-    * @param normalColor Color del boton para el estado "normal"
-    * @param hoverColor Color del boton para el estado "hover"
-    * @param activeColor Color del boton para el estado "active"
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-    * @param windowFlags Flags de la ventana
-    */
-    struct ButtonOptions {
-        std::string name;
-        ImVec2 position = ImVec2(0, 0);
-        std::string text = "Button";
-        std::function<void()> onClick = []() {};
-        ImVec2 constSize = ImVec2(130, 40);
-        ImVec2 padding = ImVec2(10, 5);
-        ImFont* textFont;
-        ImVec4 textColor = ImGui::GetStyle().Colors[ImGuiCol_Text];
-        ImVec4 normalColor = ImGui::GetStyle().Colors[ImGuiCol_Button];
-        ImVec4 hoverColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered];
-        ImVec4 activeColor = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive];
-        bool* canCloseWindow = nullptr;
-        ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
-            ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings;
-    };
+    COMPONENT_ID("Button")
 
     /*
-    * @brief Inicializa un boton con los parametros dados
-    * @param options Opciones del boton
+    * @brief Constructor por defecto
     */
-    Button(const ButtonOptions& options);
+    Button();
 
     /*
-    * @brief Inicializa un boton con los parametros dados
-    * @param name Nombre del boton
-    * @param position Posicion del boton
-    * @param text Texto que se muestra en el boton
-    * @param onClick Funcion que se ejecuta cuando se hace click en el boton
-    * @param constSize Tamano del boton
-    * @param padding Padding del boton
-    * @param textFont Fuente del texto del boton
-    * @param textColor Color del texto del boton
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-    * @param windowFlags Flags de la ventana
+    * @brief Destructor por defecto
     */
-    Button(const std::string& name, const ImVec2& position, const std::string& text, std::function<void()> onClick, const ImVec2& constSize,
-           const ImVec2& padding, ImFont* const textFont, const ImVec4& textColor, const ImVec4& normalColor,
-           const ImVec4& hoverColor, const ImVec4& activeColor, bool* canCloseWindow, ImGuiWindowFlags windowFlags);
+    ~Button() { }
 
-    virtual ~Button() { }
+    /*
+    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * @param variables unordered_map con los parametros iniciales
+    */
+    bool initComponent(const CompMap& variables) override;
+
+    /*
+    * @brief Asigna el transform del objeto al boton
+    */
+    void awake() override;
+    /*
+    * @brief Metodo que se usa para renderizar el boton
+    */
+    void render() const override;
 
     /*
     * @brief Establece el texto del boton
@@ -97,10 +68,9 @@ public:
     inline void setOnClick(std::function<void()> onClick) { this->onClick = onClick; }
 
     /*
-    * @brief Establece el tamano constante del boton
-    * @param constSize Tamano constante del boton
+    * @brief Establece el tamano del texto del boton
     */
-    inline void setConstSize(const ImVec2& constSize) { this->constSize = constSize; }
+    inline void setTextSize(float textSize) { this->textSize = textSize; }
 
     /*
     * @brief Establece el tamano del padding del boton
@@ -149,12 +119,6 @@ public:
     * @return Funcion que se ejecuta cuando se hace click en el boton
 	*/
     inline std::function<void()> getOnClick() const { return onClick; }
-
-    /*
-    * @brief Devuelve el tamano constante del boton
-    * @return Tamano constante del boton
-    */
-    inline ImVec2 getConstSize() const { return constSize; }
 
     /*
     * @brief Devuelve el tamano del padding del boton

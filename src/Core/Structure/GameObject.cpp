@@ -81,9 +81,16 @@ void GameObject::initComponents(const CompMap& variables) {
     for (auto comp : cmpOrder)
         comp->initComponent(variables);
 }
+
 void GameObject::fixedUpdate() {
     for (auto comp : cmpOrder) {
         if (comp->isActive()) comp->fixedUpdate();
+    }
+}
+
+void GameObject::render() const {
+    for (auto comp : cmpOrder) {
+        if (comp->isActive()) comp->render();
     }
 }
 

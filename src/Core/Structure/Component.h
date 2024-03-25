@@ -8,9 +8,8 @@ class GameObject;
 
 class TAPIOCA_API Component {
 private:
-    //std::string id;
-
     friend class GameObject;
+
 protected:
     GameObject* object;                                 // Gameobject al que esta adjunto esta componente
     bool alive;                                         // Indica si se deberia borrar la componente
@@ -26,29 +25,7 @@ public:
     * @brief Destructora de la clase Component
     */
     virtual ~Component() { }
-
-    /*
-    * @brief Devuelve el objeto donde esta este componente
-    * @return Objeto al que esta adjunto esta componente
-    */
-    inline GameObject* getObject() const { return object; }
-
-    /*
-    * @brief Devuelve si el componente esta "vivo" (si se actualizan update,handleEvents,...)
-    * @return True si esta "vivo", false en caso contrario
-    */
-    inline bool isAlive() const { return alive; }
-    /*
-    * @brief Devuelve si el componente esta activo (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
-    * @return True si esta activo, false en caso contrario
-    */
-    inline bool isActive() const { return active; }
-    /*
-    * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
-    * @param b true si se quiere activar, false en caso contrario
-    */
-    inline virtual void setActive(const bool b) { active = b; }
-
+    
     /*
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
     * No garantiza que todos los componentes iniciales esten creados
@@ -77,6 +54,10 @@ public:
     */
     virtual void fixedUpdate() { }
     /*
+    * @brief Metodo que se usa para render un componente
+    */
+    virtual void render() const { }
+    /*
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
     * @param Id indica el tipo de mensaje
@@ -91,7 +72,6 @@ public:
     */
     void pushEvent(std::string const& id, void* info, const bool global = true);
 
-    template<typename T>
     /*
     * @brief Metodo que se usa para dar valor a una variable declarada en un CompMap
     * @param var Tipo de variable que se quiere actualizar
@@ -99,6 +79,7 @@ public:
     * @param map Unordered_map en el que se que se quiere actualizar
     * @return Devuelve true si se ha ejecutado correctamente, false en caso contrario
     */
+    template<typename T>
     inline bool setValueFromMap(T& var, std::string const& varName, const CompMap& map) {
         auto v = map.find(varName);
         if (v == map.end()) {
@@ -119,9 +100,31 @@ public:
         var = std::get<T>(v->second);
         return true;
     }
-};
+
     /*
-    * @brief Id de la componente
+    * @brief Devuelve el objeto donde esta este componente
+    * @return Objeto al que esta adjunto esta componente
     */
+    inline GameObject* getObject() const { return object; }
+
+    /*
+    * @brief Devuelve si el componente esta "vivo" (si se actualizan update,handleEvents,...)
+    * @return True si esta "vivo", false en caso contrario
+    */
+    inline bool isAlive() const { return alive; }
+    /*
+    * @brief Devuelve si el componente esta activo (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
+    * @return True si esta activo, false en caso contrario
+    */
+    inline bool isActive() const { return active; }
+    /*
+    * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
+    * @param b true si se quiere activar, false en caso contrario
+    */
+    inline virtual void setActive(const bool b) { active = b; }
+};
+/*
+* @brief Id de la componente
+*/
 #define COMPONENT_ID(_id) inline static const char* id = _id;
 }

@@ -18,32 +18,12 @@ private:
     void setScene(Scene* const sc);
 
     /*
-    * @brief Elimina las componentes muertas del objeto
-=   */
-    void refresh();
-    /*
-    * @brief Actualiza las componentes activas del objeto
-    * @param deltaTime Tiempo que ha pasado desde el ultimo update
-=   */
-    void update(const uint64_t deltaTime);
-    /*
-    * @brief Procesa un evento recibido
-    * @param id String que indica el tipo de evento
-    * @param info Parametros del mensaje, cada evento gestiona sus propios parametros
-    */
-    void handleEvent(std::string const& id, void* info);
-    /*
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
     * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
     */
     void initComponents(const CompMap& variables);
-    /*
-    * @brief Actualiza las componentes activas del objeto.
-    * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
-    */
-    void fixedUpdate();
     /*
     * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
     * Garantiza que todas las componentes iniciales esten creados
@@ -54,6 +34,31 @@ private:
     * Garantiza que todas las componentes iniciales esten creados
     */
     void start();
+    /*
+    * @brief Actualiza las componentes activas del objeto
+    * @param deltaTime Tiempo que ha pasado desde el ultimo update
+=   */
+    void update(const uint64_t deltaTime);
+    /*
+    * @brief Actualiza las componentes activas del objeto.
+    * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
+    */
+    void fixedUpdate();
+    /*
+    * @brief Renderiza las componentes del objeto
+    */
+    void render() const;
+    /*
+    * @brief Procesa un evento recibido
+    * @param id String que indica el tipo de evento
+    * @param info Parametros del mensaje, cada evento gestiona sus propios parametros
+    */
+    void handleEvent(std::string const& id, void* info);
+    /*
+    * @brief Elimina las componentes muertas del objeto
+=   */
+    void refresh();
+    
 
     Scene* scene;           // Escena a la que pertenece el objeto
     bool alive;             // Indica si se deberia borrar la componente

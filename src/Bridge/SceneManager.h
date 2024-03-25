@@ -25,6 +25,7 @@ private:
     lua_State* luaState;   // Estado de lua
     FactoryManager* factMngr;
     Game* game;
+
     /*
     * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
     */
@@ -74,6 +75,10 @@ private:
 	*/
     Component* loadComponent(std::string const& name);
 
+    /**
+    * @brief Expone los flags de la interfaz grafica
+    */
+    void exposeUIFlags();
 
 public:
     SceneManager(SceneManager&) = delete;

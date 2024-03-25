@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_set>
 #include "Structure/Component.h"
+#include "Utilities/Vector2.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/Quaternion.h"
 #include "defs.h"
@@ -10,10 +11,10 @@ class INode;
 class TransformBuilder;
 
 /*
-    * @brief Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
-    * Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
-    * @param scene Escena a la que se le van a cargar los gameobjects
-    * @return Devuelve true si se ha cargado correctamente
+* @brief Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
+* Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
+* @param scene Escena a la que se le van a cargar los gameobjects
+* @return Devuelve true si se ha cargado correctamente
 */
 class TAPIOCA_API Transform : public Component {
     friend TransformBuilder;
@@ -23,7 +24,7 @@ private:
     Vector3 rotation;
     Vector3 scale;
     // TODO: PREGUNTAR??
-    /*Vector3 initialRotation;*/   //rotación inicial del transform
+    /*Vector3 initialRotation;*/   //rotaciï¿½n inicial del transform
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */
@@ -69,7 +70,7 @@ private:
 public:
     COMPONENT_ID("Transform")
     /*
-    * @brief Constructora de la clase Transform. Se inicializa con posicion y rotacion 0 y escala 1
+    * @brief Constructor de la clase Transform. Se inicializa con posicion y rotacion 0 y escala 1
     */
     Transform();
     /*
@@ -98,6 +99,19 @@ public:
     * @return La posicion local del transform
     */
     inline Vector3 getPosition() const { return position; }
+
+    /*
+    * @brief Devuelve la posicion XY local del transform
+    * @return La posicion XY local del transform
+    */
+    inline Vector2 getPositionXY() const { return Vector2(position.x, position.y); }
+
+    /*
+    * @brief Devuelve la posicion XY local del transform
+    * @return La posicion XY local del transform
+    */
+    //inline ImVec2 getImPositionXY() const { return ImVec2(position.x, position.y); }
+
     /*
     * @brief Devuelve la posicion global del transform
     * @return La posicion global del transform
@@ -119,6 +133,16 @@ public:
     */
     inline Vector3 getScale() const { return scale; }
     /*
+    * @brief Devuelve la escala XY local del transform
+    * @return La escala XY local del transform
+    */
+    inline Vector2 getScaleXY() const { return Vector2(scale.x, scale.y); }
+    /*
+    * @brief Devuelve la escala XY local del transform
+    * @return La escala XY local del transform
+    */
+    //inline ImVec2 getImScaleXY() const { return ImVec2(scale.x, scale.y); }
+    /*
     * @brief Devuelve la escala global del transform
     * @return La escala global del transform
     */
@@ -128,20 +152,31 @@ public:
     /*
     * @brief Cambia la posicion del transform
     * @param p Posicion a la que se quiere mover el transform
-    * @param rb Indica si es movido por físicas
+    * @param rb Indica si es movido por fï¿½sicas
     */
     void setPosition(const Vector3& p, bool rb = false);
     /*
+    * @brief Cambia la posicion XY del transform
+    * @param pXY Posicion XY a la que se quiere mover el transform
+    * @param rb Indica si es movido por fï¿½sicas
+    */
+    void setPositionXY(const Vector2& pXY, bool rb = false);
+    /*
     * @brief Cambia la rotacion del transform
-    * @param Rotacion a la que se quiere rotar el transform
-    * @param rb Indica si es movido por físicas
+    * @param r Rotacion a la que se quiere rotar el transform
+    * @param rb Indica si es movido por fï¿½sicas
     */
     void setRotation(const Vector3& r, bool rb = false);
     /*
     * @brief Cambia la escala del transform
-    * @param Tamanio al que se quiere escalar el transform
+    * @param s Tamanio al que se quiere escalar el transform
     */
     void setScale(const Vector3& s);
+    /*
+    * @brief Cambia la escala XY del transform
+    * @param s Tamanio XY al que se quiere escalar el transform
+    */
+    void setScaleXY(const Vector2& s);
 
     /*
     * @brief Mueve el objeto tanto como el vector dado indica

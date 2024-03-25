@@ -214,8 +214,6 @@ bool GraphicsManager::handleEvents(const SDL_Event& event) {
     return false;
 }
 
-
-
 void GraphicsManager::shutDown() {
     if (mRoot == nullptr) return;
 

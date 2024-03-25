@@ -80,6 +80,11 @@ public:
     void run();
 
     /*
+    * @brief Devuelve la escena que se esta ejecutando
+    * @return Escena que se esta ejecutando
+    */
+    Scene* getTopScene() const;
+    /*
     * @brief Aniade una escena al stack
     * @param sc Escena que se quiere aniadir
     */

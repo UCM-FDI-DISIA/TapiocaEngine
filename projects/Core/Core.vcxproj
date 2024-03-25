@@ -58,7 +58,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\Exports\;$(SolutionDir)src\Core\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Physics\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Core\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Physics\;$(SolutionDir)src\UI\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -74,7 +74,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\Exports\;$(SolutionDir)src\Core\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Physics\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Core\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Physics\;$(SolutionDir)src\UI\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

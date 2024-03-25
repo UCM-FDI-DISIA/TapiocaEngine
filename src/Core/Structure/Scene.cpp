@@ -74,16 +74,18 @@ void Scene::fixedUpdate() {
     }
 }
 
+void Scene::render() const {
+    for (auto obj : objects)
+        obj->render();
+}
+
 void Scene::awake() {
     for (auto obj : objects)
         obj->awake();
 }
 
-
 void Scene::start() {
     for (auto obj : objects)
         obj->start();
 }
-
-
 }

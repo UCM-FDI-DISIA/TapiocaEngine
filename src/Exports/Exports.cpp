@@ -14,9 +14,9 @@
 // PRUEBAS DE UI
 #include <SDL.h>
 #include "Structure/DynamicLibraryLoader.h"
-#include "Text.h"
-#include "Button.h"
-#include "InputText.h"
+//#include "Components/Text.h"
+#include "Components/Button.h"
+//#include "Components/InputText.h"
 
 // PRUEBAS GRAPHICS
 #include "Viewport.h"
@@ -41,8 +41,10 @@ void runEngine() {
 
         //scenes->loadScene("archivo.lua");
         
+        scenes->loadScene("startScene.lua");
+
         // PRUEBAS DE UI
-        Button::ButtonOptions buttonOptions;
+        /*Button::ButtonOptions buttonOptions;
         buttonOptions.name = "Boton1";
         buttonOptions.constSize = ImVec2(130, 40);
         buttonOptions.position = ImVec2((window->getWindowW() - buttonOptions.constSize.x) / 2,
@@ -88,7 +90,7 @@ void runEngine() {
         textOptions.constSize = ImVec2(100, 100);
         textOptions.textFont = ui->getFont("AGENCYB.TTF", 30.0f);
         textOptions.textColor = ImVec4(0.0f, 0.0f, 1.0f, 1.0f);
-        auto text = ui->createText(textOptions);
+        auto text = ui->createText(textOptions);*/
 
         game->run();
     }

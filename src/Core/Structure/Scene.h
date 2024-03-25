@@ -66,12 +66,15 @@ public:
     * @param deltaTime Tiempo que ha pasado desde el ultimo update
 =   */
     void update(const uint64_t deltaTime);
-    //void handleEvents();
     /*
     * @brief Actualiza las componentes activas del objeto.
     * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
     */
     void fixedUpdate();
+    /*
+    * @brief Renderiza los objetos de la escena
+    */
+    void render() const;
     /*
     * @brief Elimina los objetos muertos de la escena ademas de todas sus componentes
 =   */
