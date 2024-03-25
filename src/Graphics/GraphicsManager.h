@@ -22,7 +22,7 @@ class Viewport;
 class OverlaySystem;
 
 namespace RTShader {
-class ShaderGenerator;
+    class ShaderGenerator;
 }
 }
 
@@ -53,7 +53,8 @@ private:
     Ogre::SceneManager* scnMgr;                          // Gestor de escenas
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
-    SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
+    SGTechniqueResolverListener*
+        mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
     // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
@@ -63,17 +64,17 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string cfgPath;                                 // Ruta donde se guardar los archivos de config (bin)
-    std::string mwindowName;                             // Nombre de la ventana
+    std::string cfgPath;       // Ruta donde se guardar los archivos de config (bin)
+    std::string mwindowName;   // Nombre de la ventana
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    Ogre::RenderWindow* ogreWindow;                      // Ventana de ogre (solo para render)
+    Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
 
     // Ventana
     WindowManager* windowManager;
-    SDL_Window* sdlWindow;                               // Ventana de SDL
-    void* glContext;									 // Contexto de OpenGL
+    SDL_Window* sdlWindow;   // Ventana de SDL
+    void* glContext;         // Contexto de OpenGL
 
     // warning C4251 'Tapioca::GraphicsManager::selfManagedNodes' :
     // class 'std::unordered_set<Tapioca::RenderNode *,std::hash<Tapioca::RenderNode *>,
@@ -82,14 +83,13 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por GraphicsManager
-    int numberCameras;                                   // Numero de cameras en total (aunque hayan sido borradas)
+    std::unordered_set<RenderNode*> selfManagedNodes;   // Nodos gestionados por GraphicsManager
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
 
     // UI
-    Ogre::OverlaySystem* overSys;                        // Systema de overlays de Ogre
+    Ogre::OverlaySystem* overSys;   // Systema de overlays de Ogre
 
     // TODO: se carga de archivo, se puede borrar
     /*
@@ -173,13 +173,6 @@ public:
                                       const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
     /*
-    * @brief Crea una camara con nombre
-    * @param node Nodo para renderizado
-    * @return Puntero a la camara creada
-    */
-    Camera* createCameraWithName(RenderNode* const node);
-
-    /*
     * @brief Crea una camara 
     * @param node Nodo para renderizado
     * @param name Nombre de la camara
@@ -260,7 +253,8 @@ public:
     * @param material Nombre del material
     */
     Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, std::string const& name,
-                       const float width, const float height, const int xSegments, const int ySegments, std::string const& material = "");
+                       const float width, const float height, const int xSegments, const int ySegments,
+                       std::string const& material = "");
 
     /*
     * @brief Crea un plane

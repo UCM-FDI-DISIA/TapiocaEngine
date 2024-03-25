@@ -44,7 +44,7 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext(), overSys(nullptr), numberCameras(0) { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext(), overSys(nullptr) { }
 
 GraphicsManager::~GraphicsManager() {
     for (auto& node : selfManagedNodes) delete node;
@@ -283,12 +283,6 @@ RenderNode* GraphicsManager::createSelfManagedNode(const Vector3 pos, const Vect
     RenderNode* node = new RenderNode(scnMgr, pos, scale);
     selfManagedNodes.insert(node);
     return node;
-}
-
-Camera* GraphicsManager::createCameraWithName(RenderNode* const node) {
-    Camera* camera = createCamera(node, "Camera " + numberCameras);
-    ++numberCameras;
-    return camera;
 }
 
 Camera* GraphicsManager::createCamera(RenderNode* const node, std::string const& name) {

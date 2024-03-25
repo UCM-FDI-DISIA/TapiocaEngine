@@ -32,16 +32,17 @@ void deleteEngine() { delete game; }
 void runEngine() {
     if (game->init()) {
         // PRUEBAS GRAPHICS
-        auto nodeCamera = graphics->createNode(Tapioca::Vector3(50.0f, 50.0f, 50.0f));
+        /*auto nodeCamera = graphics->createNode(Tapioca::Vector3(50.0f, 50.0f, 50.0f));
         auto camera = graphics->createCamera(nodeCamera, "Hola");
         auto viewport = graphics->createViewport(camera, 1);
         viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
         auto node = graphics->createNode();
-        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));*/
 
-        scenes->loadScene("archivo.lua");
+        //scenes->loadScene("archivo.lua");
+        
         // PRUEBAS DE UI
-        /*Button::ButtonOptions buttonOptions;
+        Button::ButtonOptions buttonOptions;
         buttonOptions.name = "Boton1";
         buttonOptions.constSize = ImVec2(130, 40);
         buttonOptions.position = ImVec2((window->getWindowW() - buttonOptions.constSize.x) / 2,
@@ -87,7 +88,7 @@ void runEngine() {
         textOptions.constSize = ImVec2(100, 100);
         textOptions.textFont = ui->getFont("AGENCYB.TTF", 30.0f);
         textOptions.textColor = ImVec4(0.0f, 0.0f, 1.0f, 1.0f);
-        auto text = ui->createText(textOptions);*/
+        auto text = ui->createText(textOptions);
 
         game->run();
     }

@@ -63,7 +63,7 @@ void CameraComponent::awake() {
 
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     node = graphicsManager->createNode();
-    camera = graphicsManager->createCameraWithName(node);
+    camera = graphicsManager->createCamera(node, "Camera " + zOrder);
     viewport = graphicsManager->createViewport(camera, zOrder);
 
     // Viewport
