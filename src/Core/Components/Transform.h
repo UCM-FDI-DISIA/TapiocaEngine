@@ -73,7 +73,7 @@ public:
     */
     Transform();
     /*
-    * @brief Destrucora de transform. Se elimina la relacion de parentesco y se eliminan los hijos
+    * @brief Destructora de transform. Se elimina la relacion de parentesco y se eliminan los hijos
     */
     ~Transform();
     /*

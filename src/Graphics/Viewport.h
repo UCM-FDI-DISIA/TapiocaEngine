@@ -82,6 +82,6 @@ public:
     */
     void setBackground(const Vector4 color);
 
-    void setZOrder(int zOrder);
+    void setZOrder(const int zOrder);
 };
 }

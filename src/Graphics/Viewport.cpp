@@ -52,7 +52,7 @@ void Viewport::setBackground(const Vector4 color) {
     viewport->setBackgroundColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
 }
 
-void Viewport::setZOrder(int zOrder) {
+void Viewport::setZOrder(const int zOrder) {
     renderWindow->removeViewport(this->zOrder);
     viewport = renderWindow->addViewport(camera->getCamera(), zOrder);
     this->zOrder = zOrder;

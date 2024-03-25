@@ -7,6 +7,12 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{6881f59e-b1dd-4acc-94d1-8d628122b0ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{fd2a2e56-3724-42de-96ed-9c9fec8c4c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{33b3b2d3-f9ae-433e-b64d-adfec146ae3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -29,23 +35,60 @@
     <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Light.cpp" />
-    <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp" />
-    <ClCompile Include="..\..\src\Graphics\LightPoint.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Mesh.cpp" />
-    <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Plane.cpp" />
-    <ClCompile Include="..\..\src\Graphics\RenderNode.cpp" />
-    <ClCompile Include="..\..\src\Graphics\RenderObject.cpp" />
-    <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Skybox.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Skyplane.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Viewport.cpp" />
-    <ClCompile Include="..\..\src\Graphics\AnimationHelper.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Billboard.cpp" />
-    <ClCompile Include="..\..\src\Graphics\GraphicsManager.cpp" />
+    <ClCompile Include="..\..\src\Graphics\AnimationHelper.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Billboard.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Camera.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\GraphicsManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Light.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\LightPoint.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Mesh.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Plane.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\RenderNode.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\RenderObject.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Skybox.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Skyplane.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Viewport.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\CameraComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -63,23 +106,59 @@
     <ClInclude Include="..\..\src\Graphics\Components\Animator.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\BillboardSet.h" />
-    <ClInclude Include="..\..\src\Graphics\Camera.h" />
-    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h" />
-    <ClInclude Include="..\..\src\Graphics\Light.h" />
-    <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />
-    <ClInclude Include="..\..\src\Graphics\LightPoint.h" />
-    <ClInclude Include="..\..\src\Graphics\Mesh.h" />
-    <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
-    <ClInclude Include="..\..\src\Graphics\Plane.h" />
-    <ClInclude Include="..\..\src\Graphics\RenderNode.h" />
-    <ClInclude Include="..\..\src\Graphics\RenderObject.h" />
-    <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
-    <ClInclude Include="..\..\src\Graphics\Skybox.h" />
-    <ClInclude Include="..\..\src\Graphics\Skyplane.h" />
-    <ClInclude Include="..\..\src\Graphics\Viewport.h" />
-    <ClInclude Include="..\..\src\Graphics\AnimationHelper.h" />
-    <ClInclude Include="..\..\src\Graphics\Billboard.h" />
-    <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
+    <ClInclude Include="..\..\src\Graphics\AnimationHelper.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Billboard.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\BillboardSet.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Camera.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\GraphicsManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Light.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\LightDirectional.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\LightPoint.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Mesh.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\ParticleSystem.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Plane.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\RenderNode.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\RenderObject.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Skybox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Skyplane.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Viewport.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\CameraComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

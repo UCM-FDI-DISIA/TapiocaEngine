@@ -83,6 +83,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::unordered_set<RenderNode*> selfManagedNodes;    // Nodos gestionados por GraphicsManager
+    int numberCameras;                                   // Numero de cameras en total (aunque hayan sido borradas)
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -170,6 +171,13 @@ public:
     */
     RenderNode* createSelfManagedNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
                                       const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
+
+    /*
+    * @brief Crea una camara con nombre
+    * @param node Nodo para renderizado
+    * @return Puntero a la camara creada
+    */
+    Camera* createCameraWithName(RenderNode* const node);
 
     /*
     * @brief Crea una camara 

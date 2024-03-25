@@ -21,6 +21,7 @@
     <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />
     <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\CameraComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp" />
@@ -45,11 +46,11 @@
     <ClInclude Include="..\..\src\Graphics\BillboardSet.h" />
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
     <ClInclude Include="..\..\src\Graphics\Components\Animator.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\CameraComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h" />
-    <ClInclude Include="..\..\src\Graphics\Graphicsdef.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />

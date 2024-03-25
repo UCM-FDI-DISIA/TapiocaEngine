@@ -22,7 +22,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
 #ifdef _DEBUG
-        std::cout << "No existe nombre para el material: se coloca el predefinido por la mesh.\n";
+        std::cout << "MeshRenderer: no existe nombre para el material: se coloca el predefinido por la mesh.\n";
 #endif
     }
 
@@ -31,7 +31,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
         setValueFromMap(initialRotation.z, "initRotationZ", variables);
     if (!rotationSet) {
 #ifdef _DEBUG
-        std::cerr << "La rotacion inicial es Vector3(0,0,0).\n";
+        std::cerr << "MeshRenderer: la rotacion inicial es Vector3(0,0,0).\n";
 #endif
     }
 
