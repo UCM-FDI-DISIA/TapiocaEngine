@@ -173,6 +173,7 @@ void RigidBody::setActive(const bool b) {
 }
 
 void RigidBody::setMomeventType(const MovementType t) {
+    movementType = t;
     if (rigidBody == nullptr) return;
     rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~movementType);
     rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | t);
@@ -181,6 +182,7 @@ void RigidBody::setMomeventType(const MovementType t) {
 
 void RigidBody::setTrigger(const bool t) {
     isTrigger = t;
+    if (rigidBody == nullptr) return;
     if (isTrigger)
         rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     else

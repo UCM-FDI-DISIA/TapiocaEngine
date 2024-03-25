@@ -40,5 +40,8 @@ public:
     // se necesita una awake para que el animator puede obtener el mesh
     void awake() override;
     void handleEvent(std::string const& id, void* info) override;
+
+    void setMeshName(const std::string& n);
+    void setMaterialName(const std::string& n);
 };
 }

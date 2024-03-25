@@ -25,19 +25,9 @@ private:
     */
     void initComponents(const CompMap& variables);
     /*
-    * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
-    * Garantiza que todas las componentes iniciales esten creados
-    */
-    void awake();
-    /*
-    * @brief Inicializa las componentes del objeto
-    * Garantiza que todas las componentes iniciales esten creados
-    */
-    void start();
-    /*
     * @brief Actualiza las componentes activas del objeto
     * @param deltaTime Tiempo que ha pasado desde el ultimo update
-=   */
+    */
     void update(const uint64_t deltaTime);
     /*
     * @brief Actualiza las componentes activas del objeto.
@@ -56,7 +46,7 @@ private:
     void handleEvent(std::string const& id, void* info);
     /*
     * @brief Elimina las componentes muertas del objeto
-=   */
+    */
     void refresh();
     
 
@@ -102,6 +92,17 @@ public:
     * @brief Destructora de la clase GameObject
     */
     ~GameObject();
+
+    /*
+    * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
+    * Garantiza que todas las componentes iniciales esten creados
+    */
+    void awake();
+    /*
+    * @brief Inicializa las componentes del objeto
+    * Garantiza que todas las componentes iniciales esten creados
+    */
+    void start();
 
     /*
     * @brief Devuelve el handler del objeto
