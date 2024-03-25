@@ -44,16 +44,7 @@ private:
     * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
     */
     void fixedUpdate();
-    /*
-    * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
-    * Garantiza que todas las componentes iniciales esten creados
-    */
-    void awake();
-    /*
-    * @brief Inicializa las componentes del objeto
-    * Garantiza que todas las componentes iniciales esten creados
-    */
-    void start();
+    
 
     Scene* scene;           // Escena a la que pertenece el objeto
     bool alive;             // Indica si se deberia borrar la componente
@@ -97,6 +88,17 @@ public:
     * @brief Destructora de la clase GameObject
     */
     ~GameObject();
+
+    /*
+    * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
+    * Garantiza que todas las componentes iniciales esten creados
+    */
+    void awake();
+    /*
+    * @brief Inicializa las componentes del objeto
+    * Garantiza que todas las componentes iniciales esten creados
+    */
+    void start();
 
     /*
     * @brief Devuelve el handler del objeto
