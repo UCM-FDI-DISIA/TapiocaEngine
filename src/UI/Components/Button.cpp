@@ -1,5 +1,4 @@
 #include "Button.h"
-#include <OgreSceneManager.h>
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "UIManager.h"

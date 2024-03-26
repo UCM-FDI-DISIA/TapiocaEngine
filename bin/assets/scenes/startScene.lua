@@ -41,7 +41,7 @@ scene = {
             }
         }
     },
-    InputText={
+    StartInputText={
         components = {
             Transform = {
                 positionX = 0.0,
@@ -55,7 +55,7 @@ scene = {
                 rotationZ = 0.0
             },
             InputText = {
-                name = "InputText",
+                name = "StartInputText",
                 text = "Dime tu nombre...",
                 bufferSize = 100,
                 onTextEnteredId = 1, -- Identificador de la funcion de la caja de texto, esta un poco feo
@@ -70,6 +70,31 @@ scene = {
                 -- bgColorB = 0.0,
                 -- bgColorA = 1.0,
                 -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
+            }
+        }
+    },
+    StartText={
+        components = {
+            Transform = {
+                positionX = 450.0,
+                positionY = 350.0,
+                positionZ = 0.0, -- No importa
+                scaleX = 0.0,
+                scaleY = 0.0,
+                scaleZ = 0.0, -- No importa
+                rotationX = 0.0,
+                rotationY = 0.0,
+                rotationZ = 0.0
+            },
+            Text = {
+                name = "StartText",
+                text = "Tapioca Engine",
+                textSize = 36.0,
+                textFontName = "AGENCYB.TTF",
+                textColorR = 0.0,
+                textColorG = 0.0,
+                textColorB = 1.0,
+                textColorA = 1.0
             }
         }
     }

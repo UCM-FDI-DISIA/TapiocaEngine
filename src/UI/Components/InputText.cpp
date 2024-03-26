@@ -1,6 +1,4 @@
 #include "InputText.h"
-#include <cstring>
-#include <OgreSceneManager.h>
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "UIManager.h"
@@ -88,20 +86,6 @@ bool InputText::initComponent(const CompMap& variables) {
         std::cout << "Input Text: no se encontro el valor de flags. Se inicializo al valor predefinido\n ";
 #endif
     }
-
-    /*bool callbackSet = setValueFromMap(callback, "callback", variables);
-    if (!callbackSet) {
-#ifdef _DEBUG
-        std::cout << "Input Text : no se encontro el valor de callback. Se inicializo al valor predefinido\n ";
-#endif
-    }*/
-
-    /*bool userDataSet = setValueFromMap(userData, "userData", variables);
-    if (!userDataSet) {
-#ifdef _DEBUG
-        std::cout << "Input Text : no se encontro el valor de userData. Se inicializo al valor predefinido\n ";
-#endif
-    }*/
 
     bool windowFlagsSet = setValueFromMap(windowFlags, "windowFlags", variables);
     if (!windowFlagsSet) {

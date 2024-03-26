@@ -13,10 +13,6 @@
 #pragma warning(default : 4251)
 #endif
 
-//#include "Components/Text.h"
-#include "Components/Button.h"
-//#include "Components/InputText.h"
-
 struct SDL_Window;
 
 namespace Ogre {

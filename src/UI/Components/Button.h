@@ -1,10 +1,10 @@
 #pragma once
 #include "BaseWidget.h"
 #include "Structure/Component.h"
+#include "Utilities/Vector2.h"
 #include <string>
 #include <functional>
 #include <imgui.h>
-#include "Utilities/Vector2.h"
 
 namespace Ogre {
 class SceneManager;
@@ -56,6 +56,7 @@ public:
     * @brief Asigna el transform del objeto al boton
     */
     void awake() override;
+
     /*
     * @brief Metodo que se usa para renderizar el boton
     */

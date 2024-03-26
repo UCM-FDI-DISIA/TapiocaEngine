@@ -72,41 +72,6 @@ void UIManager::render() {
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-//void UIManager::renderTexts() {
-//for (auto myText : texts) {
-//    Text* text = myText.second;
-
-//    // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del texto
-//    Vector3 position = text->getTransform()->getPosition();
-//    ImVec2 ImPosition = ImVec2(position.x, position.y);
-//    ImGui::SetNextWindowPos(ImPosition);
-//    ImGui::SetNextWindowSize(text->getConstSize());
-
-//    // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
-//    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
-//    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
-//    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
-
-//    ImGui::Begin(text->getName().c_str(), text->getCanCloseWindow(), text->getWindowFlags());
-
-//    ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
-
-//    // Establece la fuente del texto
-//    ImGui::PushFont(text->getFont());
-//    // Establece el color del texto
-//    ImGui::PushStyleColor(ImGuiCol_Text, text->getTextColor());
-//    // Imprime el texto
-//    ImGui::Text(text->getText().c_str());
-
-//    // Pop para WindowBg, el color del texto
-//    ImGui::PopStyleColor(2);
-//    // Pop para la fuente del texto
-//    ImGui::PopFont();
-
-//    ImGui::End();
-//}
-//}
-
 bool UIManager::handleEvents(const SDL_Event& event) {
     /*    if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {

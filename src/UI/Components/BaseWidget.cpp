@@ -1,5 +1,4 @@
 #include "BaseWidget.h"
-#include <OgreSceneManager.h>
 
 namespace Tapioca {
 BaseWidget::BaseWidget()

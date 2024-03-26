@@ -11,13 +11,6 @@
 #include "UIManager.h"
 #include "SoundManager.h"
 
-// PRUEBAS DE UI
-#include <SDL.h>
-#include "Structure/DynamicLibraryLoader.h"
-//#include "Components/Text.h"
-#include "Components/Button.h"
-//#include "Components/InputText.h"
-
 // PRUEBAS GRAPHICS
 #include "Viewport.h"
 
@@ -40,57 +33,8 @@ void runEngine() {
         auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));*/
 
         //scenes->loadScene("archivo.lua");
-        
-        scenes->loadScene("startScene.lua");
-
         // PRUEBAS DE UI
-        /*Button::ButtonOptions buttonOptions;
-        buttonOptions.name = "Boton1";
-        buttonOptions.constSize = ImVec2(130, 40);
-        buttonOptions.position = ImVec2((window->getWindowW() - buttonOptions.constSize.x) / 2,
-                                        (window->getWindowH() - buttonOptions.constSize.y) / 2);
-        buttonOptions.text = "Play";
-        buttonOptions.onClick = [&]() {
-            if (!DynamicLibraryLoader::initGame()) {
-                Button* button = ui->getButton(buttonOptions.name);
-                if (button != nullptr) {
-                    button->setText("Couldn't init game");
-                    button->setTextColor(ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-                }
-            }
-        };
-        buttonOptions.textFont = ui->getFont("impact.ttf");
-        auto button = ui->createButton(buttonOptions);
-
-        InputText::InputTextOptions inputOptions;
-        inputOptions.name = "Input1";
-        inputOptions.position = ImVec2(0, 0);
-        inputOptions.placeHolderText = "Inserta nombre";
-        inputOptions.onTextEntered = [&]() {
-            InputText* input = ui->getInputText(inputOptions.name);
-            if (input != nullptr) {
-#ifdef _DEBUG
-                std::cout << "Se ha hecho ENTER en la caja de texto\n";
-#endif
-                input->setPlaceHolderText("Se ha hecho ENTER");
-                input->setTextColor(ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-                input->setBgColor(ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
-            }
-        };
-        inputOptions.constWidth = 500;
-        inputOptions.bufferSize = 100;
-        inputOptions.textFont = ui->getFont("arial.ttf", 20.0f);
-        inputOptions.textColor = ImVec4(1.0f, 0.0f, 1.0f, 1.0f);
-        auto input = ui->createInputText(inputOptions);
-
-        Text::TextOptions textOptions;
-        textOptions.name = "Texto1"; 
-        textOptions.position = ImVec2(500, 400.0f);
-        textOptions.text = "Tapioca Engine";
-        textOptions.constSize = ImVec2(100, 100);
-        textOptions.textFont = ui->getFont("AGENCYB.TTF", 30.0f);
-        textOptions.textColor = ImVec4(0.0f, 0.0f, 1.0f, 1.0f);
-        auto text = ui->createText(textOptions);*/
+        scenes->loadScene("startScene.lua");
 
         game->run();
     }

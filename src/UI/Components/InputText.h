@@ -1,10 +1,10 @@
 #pragma once
 #include "BaseWidget.h"
+#include "Structure/Component.h"
+#include "Utilities/Vector2.h"
 #include <string>
 #include <functional>
 #include <imgui.h>
-#include "Utilities/Vector2.h"
-#include "Structure/Component.h"
 
 namespace Ogre {
 class SceneManager;
@@ -26,8 +26,8 @@ private:
     unsigned int bufferSize;               // Tamano del buffer de la caja de texto
     int onTextEnteredId;                   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     std::function<void()> onTextEntered;   // Funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    std::string textFontName;              // Nombre de la fuente del texto de la caja de texto
     float textSize;                        // Tamano de la fuente del texto de la caja de texto
+    std::string textFontName;              // Nombre de la fuente del texto de la caja de texto
     ImFont* textFont;                      // Fuente del texto de la caja de texto incluyendo tamano
     ImVec4 textColor;                      // Color del texto de la caja de texto
     ImVec4 bgColor;                        // Color de fondo de la caja de texto
@@ -58,9 +58,10 @@ public:
     bool initComponent(const CompMap& variables) override;
 
     /*
-    * @brief Asigna el transform del objeto a la caja de texto
+    * @brief Asigna el transform del objeto a la caja de texto, inicializa el buffer y la fuente del texto
     */
     void awake() override;
+
     /*
     * @brief Metodo que se usa para renderizar la caja de texto
     */
@@ -100,20 +101,20 @@ public:
     inline void setOnTextEnter(std::function<void()> onTextEnter) { this->onTextEntered = onTextEnter; }
 
     /*
-    * @brief Establece el nombre de la fuente del texto de la caja de texto
-    * @param textFontName Nombre de la fuente del texto de la caja de texto
-    */
-    inline void setTextFontName(std::string textFontName) { this->textFontName = textFontName; }
-
-    /*
     * @brief Establece el tamano del texto del boton
     * @param textSize Tamano del texto del boton
     */
     inline void setTextSize(float textSize) { this->textSize = textSize; }
 
     /*
+    * @brief Establece el nombre de la fuente del texto de la caja de texto
+    * @param textFontName Nombre de la fuente del texto de la caja de texto
+    */
+    inline void setTextFontName(std::string textFontName) { this->textFontName = textFontName; }
+
+    /*
     * @brief Establece la fuente del texto de la caja de texto
-    * @param font Fuente del texto de la caja de texto
+    * @param textFont Fuente del texto de la caja de texto
     */
     inline void setFont(ImFont* textFont) { this->textFont = textFont; }
 
@@ -125,7 +126,7 @@ public:
 
     /*
     * @brief Establece el color de fondo de la caja de texto
-    * @param textColor Color de fondo de la caja de texto
+    * @param bgColor Color de fondo de la caja de texto
     */
     inline void setBgColor(const ImVec4& bgColor) { this->bgColor = bgColor; }
 
