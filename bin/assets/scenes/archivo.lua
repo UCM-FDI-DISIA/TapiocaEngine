@@ -1,4 +1,28 @@
 scene = {
+        {
+            components = {
+                Transform = {
+                    positionX = 50.0,
+                    positionY = 50.0,
+                    positionZ = 50.0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0,
+                    rotationX = 0.0,
+                    rotationY = 0.0,
+                    rotationZ = 0.0
+                },
+                CameraComponent = {
+                    targetToLookX = 0.0,
+                    targetToLookY = 0.0,
+                    targetToLookZ = 0.0,
+                    zOrder = 0,
+                    bgColorR = 0.925,
+                    bgColorG = 0.698,
+                    bgColorB = 0.94
+                }
+            }
+        },
         Hola={
             components = {
                 -- EjemploComponent = { -- Prueba de un componente de juego

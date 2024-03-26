@@ -79,8 +79,6 @@ bool Transform::initComponent(const CompMap& variables) {
         return false;
     }
 
-    //initialRotation = rotation;
-
     return true;
 }
 

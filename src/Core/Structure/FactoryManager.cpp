@@ -5,11 +5,16 @@
 #include "ComponentBuilder.h"
 #include "Structure/BasicBuilder.h"
 
+// Core
 #include "Components/Transform.h"
+// Physics
 #include "Components/Collider.h"
 #include "Components/RigidBody.h"
+// Graphics
 #include "Components/MeshRenderer.h"
+#include "Components/CameraComponent.h"
 #include "Components/Animator.h"
+// UI
 #include "Components/Button.h"
 #include "Components/InputText.h"
 #include "Components/Text.h"
@@ -37,11 +42,16 @@ void FactoryManager::createEngineBuilders() {
     std::cout << "Anadiendo factorias del motor\n";
 #endif
     FactoryManager* manager = FactoryManager::instance();
+    // Core
     manager->addFactory("Transform", new BasicBuilder<Transform>());
-    manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
+    // Physiscs
     manager->addFactory("Collider", new BasicBuilder<Collider>());
     manager->addFactory("RigidBody", new BasicBuilder<RigidBody>());
+    // Graphics
+    manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
+    manager->addFactory("CameraComponent", new BasicBuilder<CameraComponent>());
     manager->addFactory("Animator", new BasicBuilder<Animator>());
+    // UI
     manager->addFactory("Button", new BasicBuilder<Button>());
     manager->addFactory("InputText", new BasicBuilder<InputText>());
     manager->addFactory("Text", new BasicBuilder<Text>());

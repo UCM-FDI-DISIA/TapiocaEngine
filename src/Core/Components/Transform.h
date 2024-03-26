@@ -7,9 +7,6 @@
 #include "defs.h"
 
 namespace Tapioca {
-class INode;
-class TransformBuilder;
-
 /*
 * @brief Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
 * Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
@@ -17,14 +14,10 @@ class TransformBuilder;
 * @return Devuelve true si se ha cargado correctamente
 */
 class TAPIOCA_API Transform : public Component {
-    friend TransformBuilder;
-
 private:
     Vector3 position;
     Vector3 rotation;
     Vector3 scale;
-    // TODO: PREGUNTAR??
-    /*Vector3 initialRotation;*/   //rotaci�n inicial del transform
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */

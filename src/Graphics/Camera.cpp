@@ -13,8 +13,9 @@
 
 namespace Tapioca {
 
-Camera::Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name, const Vector3 targetToLook,
-               const float nearDist, const float farDist, const bool autoAspectRatio, const float aspectRatio)
+Camera::Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
+               const Vector3 targetToLook, const float nearDist, const float farDist, const bool autoAspectRatio,
+               const float aspectRatio)
     : RenderObject(node, scnMgr), mCam(scnMgr->createCamera(name)), autoAspectRatio(autoAspectRatio) {
     init(mCam);
 
@@ -22,7 +23,8 @@ Camera::Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
     setNearClipDistance(nearDist);
     setFarClipDistance(farDist);
     if (autoAspectRatio) mCam->setAutoAspectRatio(true);
-    else mCam->setAspectRatio(aspectRatio);
+    else
+        mCam->setAspectRatio(aspectRatio);
 }
 
 void Camera::lookAt(const Vector3 targetToLook) { node->lookAt(targetToLook); }
@@ -40,4 +42,8 @@ void Camera::setFarClipDistance(const float dist) { mCam->setFarClipDistance(dis
 void Camera::setAspectRatio(const float aspectRatio) {
     if (!autoAspectRatio) mCam->setAspectRatio(aspectRatio);
 }
+
+float Camera::getNearClipDistance() const { return mCam->getNearClipDistance(); }
+
+float Camera::getFarClipDistance() const { return mCam->getFarClipDistance(); }
 }

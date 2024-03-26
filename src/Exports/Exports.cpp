@@ -13,6 +13,8 @@
 
 // PRUEBAS GRAPHICS
 #include "Viewport.h"
+#include "Camera.h"
+#include "RenderNode.h"
 
 namespace Tapioca {
 void initEngine() {
@@ -25,16 +27,12 @@ void deleteEngine() { delete game; }
 void runEngine() {
     if (game->init()) {
         // PRUEBAS GRAPHICS
-        /*auto nodeCamera = graphics->createNode(Tapioca::Vector3(50.0f, 50.0f, 50.0f));
-        auto camera = graphics->createCamera(nodeCamera, "Hola");
-        auto viewport = graphics->createViewport(camera, 1);
-        viewport->setBackground(Tapioca::Vector3(0.925f, 0.698f, 0.941f));
-        auto node = graphics->createNode();
-        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));*/
+        /*auto node = graphics->createNode();
+        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+        scenes->loadScene("archivo.lua");*/
 
-        //scenes->loadScene("archivo.lua");
         // PRUEBAS DE UI
-        scenes->loadScene("startScene.lua");
+        //scenes->loadScene("startScene.lua");
 
         game->run();
     }

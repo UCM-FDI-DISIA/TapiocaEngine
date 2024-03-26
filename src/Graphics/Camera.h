@@ -98,5 +98,9 @@ public:
     * @param aspectRatio Relacion de aspecto a la que se quiere poner de la camara
     */
     void setAspectRatio(const float aspectRatio);
+
+    float getNearClipDistance() const;
+
+    float getFarClipDistance() const;
 };
 }

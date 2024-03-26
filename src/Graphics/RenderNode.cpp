@@ -37,21 +37,21 @@ void RenderNode::detachObject() {
     }
 }
 
-// ESTA EN GLOBALES, PERO SE PODRIA PERSONALZIAR
+// Globales porque la posicion de los nodos siempre es en globales
+// (todos cuelgan del root)
 void RenderNode::lookAt(const Vector3 target) {
-    node->lookAt(Ogre::Vector3(target.x, target.y, target.z), Ogre::Node::TS_WORLD);
+    node->lookAt(Ogre::Vector3(target.x, target.y, target.z), Ogre::Node::TransformSpace::TS_WORLD);
 }
 
-// ESTA EN LOCALES, PERO SE PODRIA PERSONALIZAR
-void RenderNode::setDirection(const Vector3 dir) { node->setDirection(dir.x, dir.y, dir.z, Ogre::Node::TS_LOCAL); }
+void RenderNode::setDirection(const Vector3 dir) { node->setDirection(dir.x, dir.y, dir.z, Ogre::Node::TS_WORLD); }
 
 RenderNode::RenderNode(Ogre::SceneManager* const sceneManager, const Vector3 pos, const Vector3 scale)
     : sceneManager(sceneManager), object(nullptr) {
 
     node = sceneManager->getRootSceneNode()->createChildSceneNode();
 
-    node->setPosition(pos.x, pos.y, pos.z);
-    node->setScale(scale.x, scale.y, scale.z);
+    setPosition(pos);
+    setScale(scale);
 }
 
 RenderNode::~RenderNode() {
@@ -60,25 +60,6 @@ RenderNode::~RenderNode() {
     sceneManager->destroySceneNode(node);
     node = nullptr;
 }
-
-//void RenderNode::removeChild(RenderNode* const child) {
-//    if (children.contains(child)) {
-//        children.erase(child);
-//        node->removeChild(child->getSceneNode());
-//    }
-//}
-
-//void RenderNode::removeAttachedParent() {
-//    parent->removeChild(this);
-//    parent = nullptr;
-//}
-
-//void RenderNode::addChild(RenderNode* const child) {
-//    if (!children.contains(child)) {
-//        children.insert(child);
-//        node->addChild(child->getSceneNode());
-//    }
-//}
 
 void RenderNode::setPosition(const Vector3 newPos) { node->setPosition(newPos.x, newPos.y, newPos.z); }
 void RenderNode::setScale(const Vector3 newScale) { node->setScale(newScale.x, newScale.y, newScale.z); }

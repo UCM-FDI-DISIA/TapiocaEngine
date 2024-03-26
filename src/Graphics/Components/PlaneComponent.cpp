@@ -95,9 +95,7 @@ void PlaneComponent::start() {
 void PlaneComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
-        // TODO: hacer que gire respecto de su padre y no de si mismo
         node->setRotation(initialRotation + transform->getGlobalRotation());
-        // es tan grande que no se ve
         node->setScale(transform->getGlobalScale());
     }
 }

@@ -31,7 +31,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
         setValueFromMap(initialRotation.z, "initRotationZ", variables);
     if (!rotationSet) {
 #ifdef _DEBUG
-        std::cerr << "MeshRenderer: la rotacion inicial es Vector3(0,0,0).\n";
+        std::cout << "MeshRenderer: la rotacion inicial es Vector3(0,0,0).\n";
 #endif
     }
 
@@ -50,9 +50,7 @@ void MeshRenderer::awake() {
 void MeshRenderer::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
-        // TODO: hacer que gire respecto de su padre y no de si mismo
         node->setRotation(initialRotation + transform->getGlobalRotation());
-        // es tan grande que no se ve
         node->setScale(transform->getGlobalScale());
     }
 }
