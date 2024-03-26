@@ -58,9 +58,6 @@ private:
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
 
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
-    //std::unordered_map<std::string, Text*> texts;                                  // Textos de la interfaz de usuario
-    std::unordered_map<std::string, Button*> buttons;                              // Botones de la interfaz de usuario
-    //std::unordered_map<std::string, InputText*> inputTexts;   // Cajas de texto de la interfaz de usuario
 
     /*
     * @brief Inicializa a nulo los punteros
@@ -125,47 +122,5 @@ public:
     * @return Puntero a la fuente solicitada, defaultFont si no se ha podido cargar
     */
     ImFont* getFont(const std::string& name, float pixelSize = fontDefaultSize);
-
-    /*
-    * @brief Devuelve el boton a partir de un nombre
-    * @param name Nombre del boton
-    * @return Puntero al boton solicitado
-    */
-    Button* getButton(const std::string& name);
-
-    /*
-    * @brief Elimina un boton
-    * @param name Nombre del boton
-    * @return true si se ha eliminado, false si no existe
-    */
-    bool deleteButton(const std::string& name);
-
-    /*
-    * @brief Devuelve la caja de texto a partir de un nombre
-    * @param name Nombre de la caja de texto
-    * @return Puntero a la caja de texto solicitado
-    */
-    //InputText* getInputText(const std::string& name);
-
-    /*
-    * @brief Elimina una caja de texto
-    * @param name Nombre de la caja de texto
-    * @return true si se ha eliminado, false si no existe
-    */
-    //bool deleteInputText(const std::string& name);
-
-    /*
-    * @brief Devuelve el texto a partir de un nombre
-    * @param name Nombre del texto
-    * @return Puntero al texto solicitado
-    */
-    //Text* getText(const std::string& name);
-
-    /*
-    * @brief Elimina un texto
-    * @param name Nombre del texto
-    * @return true si se ha eliminado, false si no existe
-	*/
-    //bool deleteText(const std::string& name);
 };
 }

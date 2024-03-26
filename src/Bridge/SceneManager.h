@@ -76,9 +76,9 @@ private:
     Component* loadComponent(std::string const& name);
 
     /**
-    * @brief Expone los flags de la interfaz grafica
+    * @brief Expone los valores de la interfaz grafica
     */
-    void exposeUIFlags();
+    void exposeUIvalues();
 
 public:
     SceneManager(SceneManager&) = delete;

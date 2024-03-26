@@ -115,7 +115,7 @@ void Game::pushEvent(std::string const& id, void* info) {
     if (!scenes.empty()) scenes.top()->handleEvent(id, info);
 }
 
-Scene* Game::getTopScene() const { return scenes.top(); }
+Scene* Game::getTopScene() const { return (!scenes.empty()) ? scenes.top() : nullptr; }
 
 void Game::pushScene(Scene* const sc) {
     scenes.push(sc);

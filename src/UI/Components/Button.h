@@ -12,11 +12,17 @@ class SceneManager;
 
 namespace Tapioca {
 /*
+* @brief Enumeracion que representa las funciones que puede realizar un boton
+*/
+enum ButtonFunction { BUTTON_NONE, BUTTON_INIT_GAME };
+
+/*
 * @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
 private:
     std::string text;                // Texto que se muestra en el boton
+    int onClickId;                   // Identificador de la funcion que se ejecuta cuando se hace click en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
     ImVec2 padding;                  // Tamano del padding del boton
     std::string textFontName;        // Nombre de la fuente del texto del boton
@@ -62,15 +68,16 @@ public:
     inline void setText(const std::string& text) { this->text = text; }
 
     /*
+    * @brief Establece el identificador de la funcion que se ejecuta cuando se hace click en el boton
+    * @param id Identificador de la funcion que se ejecuta cuando se hace click en el boton
+    */
+    inline void setOnClickId(int id) { this->onClickId = id; }
+
+    /*
     * @brief Establece la funcion que se ejecuta cuando se hace click en el boton
     * @param onClick Funcion que se ejecuta cuando se hace click en el boton
     */
     inline void setOnClick(std::function<void()> onClick) { this->onClick = onClick; }
-
-    /*
-    * @brief Establece el tamano del texto del boton
-    */
-    inline void setTextSize(float textSize) { this->textSize = textSize; }
 
     /*
     * @brief Establece el tamano del padding del boton
@@ -79,10 +86,20 @@ public:
     inline void setPadding(const ImVec2& padding) { this->padding = padding; }
 
     /*
+    * @brief Establece el tamano del texto del boton
+    */
+    inline void setTextSize(float textSize) { this->textSize = textSize; }
+
+    /*
+    * @brief Establece el tamano del texto del boton
+    */
+    inline void setTextFontName(std::string textFontName) { this->textFontName = textFontName; }
+
+    /*
     * @brief Establece la fuente del texto del boton
     * @param textFont Fuente del texto del boton
     */
-    inline void setFont(ImFont* textFont) { this->textFont = textFont; }
+    inline void setTextFont(ImFont* textFont) { this->textFont = textFont; }
 
     /*
     * @brief Establece el color del texto del boton
@@ -115,6 +132,12 @@ public:
     inline std::string getText() const { return text; }
 
     /*
+    * @brief Devuelve el identificador de la funcion que se ejecuta cuando se hace click en el boton
+    * @return Identificador de la funcion que se ejecuta cuando se hace click en el boton
+	*/
+    inline int getOnClickId() const { return onClickId; }
+
+    /*
     * @brief Devuelve la funcion que se ejecuta cuando se hace click en el boton
     * @return Funcion que se ejecuta cuando se hace click en el boton
 	*/
@@ -127,10 +150,22 @@ public:
     inline ImVec2 getPadding() const { return padding; }
 
     /*
+    * @brief Devuelve el tamano de la fuente del texto del boton
+    * @return Tamano de la fuente del texto del boton
+    */
+    inline float getTextSize() const { return textSize; }
+
+    /*
+    * @brief Devuelve el nombre de la fuente del texto del boton
+    * @return Nombre de la fuente del texto del boton
+    */
+    inline std::string getTextFontName() const { return textFontName; }
+
+    /*
     * @brief Devuelve la fuente del texto del boton
     * @return Fuente del texto del boton
     */
-    inline ImFont* getFont() const { return textFont; }
+    inline ImFont* getTextFont() const { return textFont; }
 
     /*
     * @brief Devuelve el color del texto del boton

@@ -3,11 +3,12 @@
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "UIManager.h"
+#include "Structure/DynamicLibraryLoader.h"
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), text(""), onClick([]() {}), padding(ImVec2(10, 5)), textFont(nullptr),
-      textFontName(""), textSize(0.0f), textColor(ImGui::GetStyle().Colors[ImGuiCol_Text]),
+    : BaseWidget(), Component(), text("Button"), onClickId(ButtonFunction::BUTTON_NONE), onClick([]() {}), padding(ImVec2(10, 5)),
+      textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f), textColor(ImGui::GetStyle().Colors[ImGuiCol_Text]),
       normalColor(ImGui::GetStyle().Colors[ImGuiCol_Button]),
       hoverColor(ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered]),
       activeColor(ImGui::GetStyle().Colors[ImGuiCol_ButtonActive]) { }
@@ -24,35 +25,37 @@ bool Button::initComponent(const CompMap& variables) {
     bool textSet = setValueFromMap(text, "text", variables);
     if (!textSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el texto.\n";
+        std::cout << "Button: no se encontro el valor de text. Se inicializo al valor predefinido\n";
 #endif
-        return false;
     }
 
-    //bool onClickSet = setValueFromMap(onClick, "onClick", variables);
+    bool onClickIdSet = setValueFromMap(onClickId, "onClickId", variables);
+    if (!onClickIdSet) {
+#ifdef _DEBUG
+        std::cout << "Button: no se encontro el valor de onClickId. Se inicializo al valor predefinido\n";
+#endif
+    }
 
     bool paddingSet =
         setValueFromMap(padding.x, "paddingX", variables) && setValueFromMap(padding.y, "paddingY", variables);
     if (!paddingSet) {
-#ifdef _DEBUG std::cerr << "Error: Button: no se pudo inicializar el padding.\n";
+#ifdef _DEBUG
+        std::cout << "Button: no se encontro el valor de padding. Se inicializo a los valores predefinidos\n";
 #endif
-        return false;
     }
 
     bool textFontNameSet = setValueFromMap(textFontName, "textFontName", variables);
     if (!textFontNameSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el nombre de la fuente del texto.\n";
+        std::cout << "Button: no se encontro el valor de textFontName. Se inicializo al valor predefinido\n";
 #endif
-        return false;
     }
 
     bool textSizeSet = setValueFromMap(textSize, "textSize", variables);
     if (!textSizeSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el tamano de la fuente del texto.\n";
+        std::cout << "Button: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
 #endif
-        return false;
     }
 
     bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
@@ -60,9 +63,8 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
     if (!textColorSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el color del texto.\n";
+        std::cout << "Button: no se encontro el valor de textColor. Se inicializo a los valores predefinidos\n";
 #endif
-        return false;
     }
 
     bool normalColorSet = setValueFromMap(normalColor.x, "normalColorR", variables) &&
@@ -71,9 +73,8 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(normalColor.w, "normalColorA", variables);
     if (!normalColorSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el color del estado normal.\n";
+        std::cout << "Button: no se encontro el valor de normalColor. Se inicializo a los valores predefinidos\n";
 #endif
-        return false;
     }
 
     bool hoverColorSet = setValueFromMap(hoverColor.x, "hoverColorR", variables) &&
@@ -82,9 +83,8 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(hoverColor.w, "hoverColorA", variables);
     if (!hoverColorSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el color del estado hover.\n";
+        std::cout << "Button: no se encontro el valor de hoverColor. Se inicializo a los valores predefinidos\n";
 #endif
-        return false;
     }
 
     bool activeColorSet = setValueFromMap(activeColor.x, "activeColorR", variables) &&
@@ -93,17 +93,15 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(activeColor.w, "activeColorA", variables);
     if (!activeColorSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el color del estado active.\n";
+        std::cout << "Button: no se encontro el valor de activeColor. Se inicializo a los valores predefinidos\n";
 #endif
-        return false;
     }
 
     bool windowFlagsSet = setValueFromMap(windowFlags, "windowFlags", variables);
     if (!windowFlagsSet) {
 #ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar windowFlags.\n";
+        std::cout << "Button: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
 #endif
-        return false;
     }
 
     return true;
@@ -111,6 +109,26 @@ bool Button::initComponent(const CompMap& variables) {
 
 void Button::awake() {
     setTransform(object->getComponent<Transform>());
+
+    // ESTA FEO
+    switch (onClickId) {
+    case ButtonFunction::BUTTON_INIT_GAME:
+        onClick = [this]() {
+            if (!DynamicLibraryLoader::initGame()) {
+                setText("Couldn't init game");
+                setTextColor(ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+            }
+        };
+        break;
+    default:
+    case ButtonFunction::BUTTON_NONE:
+        onClick = []() {
+#ifdef _DEBUG
+            std::cout << "No se ha asignado ninguna funcion especial al boton\n";
+#endif
+        };
+        break;
+    }
 
     textFont = UIManager::instance()->getFont(textFontName, textSize);
 }
@@ -135,12 +153,12 @@ void Button::render() const {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
 
-    ImGui::Begin(getName().c_str(), getCanCloseWindow(), getWindowFlags());
+    ImGui::Begin(getName().c_str(), nullptr, getWindowFlags());
 
     ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
 
     // Establece la fuente del texto
-    ImGui::PushFont(getFont());
+    ImGui::PushFont(getTextFont());
     // Establece el color del texto
     ImGui::PushStyleColor(ImGuiCol_Text, getTextColor());
     // Establece los colores del boton en los diferentes estados

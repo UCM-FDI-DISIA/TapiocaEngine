@@ -11,8 +11,6 @@ class SceneManager;
 }
 
 namespace Tapioca {
-class Transform;
-
 /*
 * @brief Clase que representa la base de un widget en la interfaz grafica
 */
@@ -20,7 +18,6 @@ class TAPIOCA_API BaseWidget {
 protected:
     std::string name;               // Nombre del widget
     Transform* transform;           // Puntero al transform del widget
-    bool* canCloseWindow;           // Puntero a booleano que indica si se puede cerrar la ventana
     ImGuiWindowFlags windowFlags;   // Flags de la ventana
 
 public:
@@ -59,12 +56,6 @@ public:
     inline void setSize(const ImVec2& size) { transform->setScaleXY(Vector2(size.x, size.y)); }
 
     /*
-    * @brief Establece el puntero a booleano que indica si se puede cerrar la ventana
-    * @param canCloseWindow Puntero a booleano que indica si se puede cerrar la ventana
-	*/
-    inline void setCanCloseWindow(bool* canCloseWindow) { this->canCloseWindow = canCloseWindow; }
-
-    /*
     * @brief Establece los flags de la ventana
     * @param windowFlags Flags de la ventana
 	*/
@@ -93,12 +84,6 @@ public:
     * @return Tamano del widget
     */
     inline ImVec2 getSize() const { return ImVec2(transform->getScale().x, transform->getScale().y); }
-
-    /*
-    * @brief Devuelve el puntero a booleano que indica si se puede cerrar la ventana
-    * @return Puntero a booleano que indica si se puede cerrar la ventana
-    */
-    inline bool* getCanCloseWindow() const { return canCloseWindow; }
 
     /*
     * @brief Devuelve los flags de la ventana

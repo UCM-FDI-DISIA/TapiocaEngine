@@ -10,6 +10,7 @@
 #include "Structure/FactoryManager.h"
 #include "Structure/Scene.h"
 
+// UI
 #include <imgui.h>
 
 namespace Tapioca {
@@ -38,7 +39,7 @@ bool SceneManager::init() {
 		return false;
     }
 
-    exposeUIFlags();
+    exposeUIvalues();
 
     return true;
 }
@@ -242,7 +243,7 @@ Component* SceneManager::loadComponent(std::string const& name) {
     return comp;
 }
 
-void SceneManager::exposeUIFlags() {
+void SceneManager::exposeUIvalues() {
     
     luaL_openlibs(luaState);
 
