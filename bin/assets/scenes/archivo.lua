@@ -13,9 +13,6 @@ scene = {
                     rotationZ = 0.0
                 },
                 CameraComponent = {
-                    targetToLookX = 0.0,
-                    targetToLookY = 0.0,
-                    targetToLookZ = 0.0,
                     zOrder = 0,
                     bgColorR = 0.925,
                     bgColorG = 0.698,

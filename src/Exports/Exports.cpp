@@ -27,12 +27,12 @@ void deleteEngine() { delete game; }
 void runEngine() {
     if (game->init()) {
         // PRUEBAS GRAPHICS
-        /*auto node = graphics->createNode();
-        auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-        scenes->loadScene("archivo.lua");*/
+        //auto node = graphics->createNode();
+        //auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
+        //scenes->loadScene("archivo.lua");
 
         // PRUEBAS DE UI
-        //scenes->loadScene("startScene.lua");
+        scenes->loadScene("startScene.lua");
 
         game->run();
     }
