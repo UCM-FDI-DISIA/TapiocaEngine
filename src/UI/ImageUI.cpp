@@ -20,7 +20,10 @@ namespace Tapioca {
               delete image_textureid;
 		  }  
 		  catch (Ogre::Exception oe) {
-                std::cout << "ERROR AL CARGAR" << file << " IMAGEN PARA INTERFAZ: \n " << oe.getDescription();
+#ifdef _DEBUG
+              std::cout << "ERROR AL CARGAR" << file << " IMAGEN PARA INTERFAZ: \n " << oe.getDescription();
+#endif   // _DEBUG
+
    
 		  }    
 		  myflags = flags;
