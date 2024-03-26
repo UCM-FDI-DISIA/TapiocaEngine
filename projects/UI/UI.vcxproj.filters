@@ -36,6 +36,10 @@
     <ClCompile Include="..\..\src\UI\Components\Text.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\UI\DropBoxUI.cpp" />
+    <ClCompile Include="..\..\src\UI\ImageUI.cpp" />
+    <ClCompile Include="..\..\src\UI\ProgressBarrUI.cpp" />
+    <ClCompile Include="..\..\src\UI\SliderUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h">
@@ -59,5 +63,12 @@
     <ClInclude Include="..\..\src\UI\Components\Text.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\UI\DropBoxUI.h" />
+    <ClInclude Include="..\..\src\UI\ImageUI.h" />
+    <ClInclude Include="..\..\src\UI\ProgressBarrUI.h" />
+    <ClInclude Include="..\..\src\UI\SliderUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\UI\imgui.ini" />
   </ItemGroup>
 </Project>

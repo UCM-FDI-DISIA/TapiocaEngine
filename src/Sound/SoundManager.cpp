@@ -23,6 +23,7 @@ void SoundManager::setListener(AudioListener al) {
 SoundManager::~SoundManager() {
     delete snd;
     delete au;
+    delete al;
     if (soundEngine != nullptr) soundEngine->drop();
 }
 

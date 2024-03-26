@@ -17,6 +17,10 @@
     <ClCompile Include="..\..\src\UI\Components\Button.cpp" />
     <ClCompile Include="..\..\src\UI\Components\InputText.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Text.cpp" />
+    <ClCompile Include="..\..\src\UI\DropBoxUI.cpp" />
+    <ClCompile Include="..\..\src\UI\ImageUI.cpp" />
+    <ClCompile Include="..\..\src\UI\ProgressBarrUI.cpp" />
+    <ClCompile Include="..\..\src\UI\SliderUI.cpp" />
     <ClCompile Include="..\..\src\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -26,6 +30,10 @@
     <ClInclude Include="..\..\src\UI\Components\Button.h" />
     <ClInclude Include="..\..\src\UI\Components\InputText.h" />
     <ClInclude Include="..\..\src\UI\Components\Text.h" />
+    <ClInclude Include="..\..\src\UI\DropBoxUI.h" />
+    <ClInclude Include="..\..\src\UI\ImageUI.h" />
+    <ClInclude Include="..\..\src\UI\ProgressBarrUI.h" />
+    <ClInclude Include="..\..\src\UI\SliderUI.h" />
     <ClInclude Include="..\..\src\UI\UIManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +43,9 @@
     <ProjectReference Include="..\Window\Window.vcxproj">
       <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\UI\imgui.ini" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -84,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Window\;$(SolutionDir)src\UI\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Window\;$(SolutionDir)src\UI\;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3plus\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -102,7 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Window\;$(SolutionDir)src\UI\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Window\;$(SolutionDir)src\UI\;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3plus\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

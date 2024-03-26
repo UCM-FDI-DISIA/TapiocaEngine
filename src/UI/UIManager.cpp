@@ -18,6 +18,16 @@
 #include "Structure/Scene.h"
 #include "WindowManager.h"
 
+
+#include "Components/Button.h"
+#include "ImageUI.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+#include "OgreGLTextureCommon.h"
+#include "OgreGLTexture.h"
+#include "OgreTextureManager.h"
+
+
 namespace Tapioca {
 template class TAPIOCA_API Singleton<UIManager>;
 template<>
@@ -33,6 +43,13 @@ UIManager::~UIManager() {
     sceneManager = nullptr;
 
     fonts.clear();
+    for (auto button : buttons) {
+        delete button.second;
+    }
+    for (auto image : images) {
+        delete image.second;
+    }
+    buttons.clear();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -58,15 +75,120 @@ bool UIManager::init() {
 
     loadFonts();
 
+   
+  createImage("imagetest.PNG", Tapioca::Vector2(300, 300), Tapioca::Vector2(200, 0));
+    
+    /*//pruebas de la imagen
+    //sceneManager = graphics->getSceneManager();
+    int w = 200;
+    int h = 200;
+    //el filename dpende del working directory al parecer
+    //unsigned char* image_data = stbi_load("./imagetest.PNG", &w, &h, NULL, 4);//carga los datos de la imagen en bruto
+    //pero luego para convertirloa una textura de opengl con esto daba errores de linkado muy turbios
+    /* if (image_data == NULL) 
+    {
+        std::cout << "NO SE CARGO LA IMAGEN";
+    }
+    Ogre::TexturePtr p;
+    try {
+
+         p = Ogre::TextureManager::getSingleton().load("imagetest.PNG", "General");
+    } catch (Ogre::Exception oe) {
+         std::cout <<"ERROR AL CARGAR IMAGEN PARA INTERFAZ " << oe.getDescription();
+    }
+   // Ogre::Texture* t =  p.get();
+    Ogre::GLTexture*  t = (Ogre::GLTexture*) p.get();
+    
+    GLuint* image_texture = new GLuint();// = p.getPointer().get;
+
+    t->getCustomAttribute("GLID", image_texture);
+    int imageHeigh= t->getHeight();
+    int imageWidth = t->getWidth();
+   
+    testid = *image_texture;
+    //pgetCustomAttribute("GLID", image_texture);
+    //glGenTextures(1, &image_texture);
+    //glBindTexture(GL_TEXTURE_2D, image_texture);
+     //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
+    delete image_texture;*/
+
+    loadFonts( 16.0f);
+    //lo que he usado para probar que si no deja leaks
+   // delete image_data;
+   
     return true;
 }
 
 void UIManager::render() {
+    
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
 
     if (game->getTopScene() != nullptr) game->getTopScene()->render();
+
+     /* for (auto button : buttons) {
+        std::string textStr = button.second->getText();
+        const char* text = textStr.c_str();
+        ImVec2 constSize = button.second->getConstSize();
+        ImVec2 buttonSize = constSize;
+        // Si el tamano es -1, -1, se calcula el tamano del boton en funcion del texto
+        if (constSize.x <= -1 && constSize.y <= -1) {
+            ImVec2 textSize = ImGui::CalcTextSize(text);
+            buttonSize = ImVec2(textSize.x + button.second->getPadding().x, textSize.y + button.second->getPadding().y);
+        }
+
+        // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
+        ImGui::SetNextWindowPos(button.second->getPosition());
+        ImGui::SetNextWindowSize(buttonSize);
+
+        // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+
+        ImGui::Begin(text,false);
+
+        ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
+        // Establece los colores del boton en los diferentes estados
+        ImGui::PushStyleColor(ImGuiCol_Button, button.second->getNormalColor());
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, button.second->getHoverColor());
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, button.second->getActiveColor());
+
+        // Establece el ancho de envoltura para el texto del boton
+        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + buttonSize.x);
+
+        // -1, -1 para que el boton se ajuste al tamano de la ventana
+        if (ImGui::Button(text, ImVec2(-1, -1))) button.second->getOnClick()();
+
+        // Pop para el ancho de envoltura
+        ImGui::PopTextWrapPos();
+
+        // Pop para WindowBg y los colores del boton
+        ImGui::PopStyleColor(4);
+      //  ImGui::ShowDemoWindow();
+        
+        ImGui::End();
+     //   ImGui::Image((void*)(intptr_t)testid, ImVec2(804, 499));
+    }*/
+    for (auto image : images) {
+        ImGui::SetNextWindowPos(ImVec2(image.second->getPosition().x, image.second->getPosition().y));
+        ImGui::SetNextWindowSize(ImVec2(image.second->getSize().x, image.second->getSize().y ));
+       ImGui::Begin(image.first.c_str(), image.second->getCanCloseWindow(), image.second->getFlags());
+       // int* testid2 =new int( 1);
+      
+      
+       //El tama�o de la ventana del mismo tama�o qeu laimagen para qeu se vea entera y no se corte 
+      
+       ImVec2 offset = ImGui::GetContentRegionMax(); // las dimensiones de la ventana no son las mismas qeu las del espacion donde se muestra contenido cuidado
+       ImGui::Image((void*)(intptr_t)image.second->getID(),
+                    ImVec2(image.second->getSize().x - (image.second->getSize().x - offset.x),
+                           image.second->getSize().y - (image.second->getSize().y - offset.y)));
+            
+      //de esta manera siempre se ajusta la imagen al las dimensiones de la ventana
+       ImGui::End();
+    }
+   
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -157,5 +279,12 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
         loadFont(name, pixelSize);
         return fonts[{name, pixelSize}];
     }
+}
+ImageUI* UIManager::createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
+                                ImGuiWindowFlags flags) {
+    ImageUI* image = new ImageUI(file, widthandheigth, xandy, flags);
+
+    images.insert({file, image});
+    return image;
 }
 }

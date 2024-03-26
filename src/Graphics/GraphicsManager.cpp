@@ -36,6 +36,7 @@
 #include "WindowManager.h"
 #include "GraphicsManager.h"
 
+
 namespace Tapioca {
 template class TAPIOCA_API Singleton<GraphicsManager>;
 template<>
@@ -46,6 +47,7 @@ GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
       sdlWindow(nullptr), mwindowName(windowName), glContext(), overSys(nullptr) { }
 
+        
 GraphicsManager::~GraphicsManager() {
     for (auto& node : selfManagedNodes) delete node;
     selfManagedNodes.clear();
@@ -58,7 +60,7 @@ bool GraphicsManager::init() {
     sdlWindow = windowManager->getWindow();
     uint32_t windowWidth = windowManager->getWindowW();
     uint32_t windowHeight = windowManager->getWindowH();
-
+    
     // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)

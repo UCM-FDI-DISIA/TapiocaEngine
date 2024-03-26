@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "Module.h"
 #include "DynamicLibraryLoader.h"
+#include "../Sound/SoundManager.h"
+
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<Game>;
@@ -37,7 +39,7 @@ void Game::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
-
+    Tapioca::SoundManager::instance()->testsample();
     auto currentTime = std::chrono::high_resolution_clock::now();
     uint64_t lag = 0;
 
