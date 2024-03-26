@@ -23,7 +23,7 @@ class TAPIOCA_API InputText : public BaseWidget, public Component {
 private:
     std::string placeHolderText;           // Texto que se muestra en la caja de texto
     char* buffer;                          // Buffer de la caja de texto
-    unsigned int bufferSize;               // Tamano del buffer de la caja de texto
+    int bufferSize;                        // Tamano del buffer de la caja de texto
     int onTextEnteredId;                   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     std::function<void()> onTextEntered;   // Funcion que se ejecuta cuando se hace ENTER en la caja de texto
     float textSize;                        // Tamano de la fuente del texto de la caja de texto
@@ -32,6 +32,11 @@ private:
     ImVec4 textColor;                      // Color del texto de la caja de texto
     ImVec4 bgColor;                        // Color de fondo de la caja de texto
     ImGuiInputTextFlags flags;             // Flags de la caja de texto
+
+    /*
+    * @brief Diccionario que contiene las funciones que se ejecutan cuando se hace ENTER en la caja de texto
+    */
+    std::unordered_map<int, std::function<void()>> inputTextFunctions;
 
 public:
     COMPONENT_ID("InputText")
@@ -201,5 +206,10 @@ public:
     * @return Flags de la caja de texto
 	*/
     inline ImGuiInputTextFlags getFlags() const { return flags; }
+
+    /*
+    * @brief Crea las funciones de la caja de texto
+    */
+    void createInputTextFunctions();
 };
 }

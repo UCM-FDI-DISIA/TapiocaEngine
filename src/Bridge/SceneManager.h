@@ -7,75 +7,74 @@
 struct lua_State;
 
 namespace Tapioca {
-class Scene;
 class Game;
-class Component;
-class GameObject;
-class Transform;
 class FactoryManager;
-class Game;
+class Scene;
+class GameObject;
+class Component;
+class Transform;
 
-/**
+/*
 * @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
 */
 class TAPIOCA_API SceneManager : public Singleton<SceneManager>, public Module {
 private:
     friend Singleton<SceneManager>;
     friend class Scene;
-    lua_State* luaState;   // Estado de lua
-    FactoryManager* factMngr;
-    Game* game;
+
+    lua_State* luaState;        // Estado de lua
+    FactoryManager* factMngr;   // Puntero a FactoryManager
+    Game* game;                 // Puntero a Game
 
     /*
-    * @brief Constructor: Inicializa el modulo, el punto de entrada y el estado de lua
+    * @brief Constructor por defecto
     */
     SceneManager();
 
-    /**
-    * @brief Inicializa las escenas, gameobjects y componentes
+    /*
+    * @brief Inicializa los punteros a Game y FactoryManager
     */
     bool init() override;
 
-    /**
+    /*
     * @brief Carga una escena
     * @return Devuelve la escena cargada
     */
     bool loadScene(Scene* const scene);
 
-    /**
+    /*
     * @brief Carga los gameobjects de una escena
     * @param scene Escena a la que se le van a cargar los gameobjects
-    * @return Devuelve true si se ha cargado correctamente
+    * @return true si se ha cargado correctamente, false si no
     */
     bool loadGameObjects(Scene* const scene);
 
-    /**
+    /*
     * @brief Carga los gameobjects de una escena con un padre
-    * @return Devuelve true si se ha cargado correctamente
+    * @return true si se ha cargado correctamente, false si no
     */
     bool loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjectList);
-
-    /**
+    /*
     * @brief Carga un gameobject
     * @param scene Escena a la que pertenece el gameobject
-    * @return Devuelve el gameobject cargado
-	*/
+    * @return true si se ha cargado correctamente, false si no
+    */
     bool loadGameObject(GameObject* const gameObject);
 
-    /**
+    /*
     * @brief Carga los componentes de un gameobject
     * @param gameObject Gameobject al que se le van a cargar los componentes
     * @return Devuelve true si se ha cargado correctamente
 	*/
     bool loadComponents(GameObject* const gameObject);
-    /**
+    /*
     * @brief Carga un componente
     * @param name Nombre del componente
     * @return Devuelve el componente cargado
 	*/
     Component* loadComponent(std::string const& name);
 
-    /**
+    /*
     * @brief Expone los valores de la interfaz grafica
     */
     void exposeUIvalues();
@@ -94,7 +93,7 @@ public:
     /**
     * @brief Carga la escena 
     * @param nombre de escena
-    * @return Devuelve true si se ha cargado correctamente
+    * @return true si se ha cargado correctamente, false si no
 	*/
     bool loadScene(std::string const& sceneName);
 };

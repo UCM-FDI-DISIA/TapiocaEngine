@@ -31,22 +31,26 @@ bool SceneManager::init() {
         return false;
     }
 
-    luaState = luaL_newstate();
-    if (luaState == nullptr) {
-#ifdef _DEBUG
-		std::cerr << "Error al crear el estado de lua\n";
-#endif
-		return false;
-    }
-
-    exposeUIvalues();
-
     return true;
 }
 
-SceneManager::~SceneManager() { }
+SceneManager::~SceneManager() { 
+    luaState = nullptr;
+    factMngr = nullptr;
+    game = nullptr;
+}
 
 bool SceneManager::loadScene(std::string const& sceneName) {
+
+    luaState = luaL_newstate();
+    if (luaState == nullptr) {
+#ifdef _DEBUG
+        std::cerr << "Error al crear el estado de lua\n";
+#endif
+        return false;
+    }
+
+    exposeUIvalues();
 
     std::string path = "assets\\scenes\\" + sceneName;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
@@ -89,9 +93,7 @@ bool SceneManager::loadGameObjects(Scene* const scene) {
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject)) {
-            return false;
-        }
+        if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject)) return false;
 
         lua_pop(luaState, 1);
     }
@@ -112,14 +114,12 @@ bool SceneManager::loadGameObject(GameObject* const gameObject) {
         }
         else if (name == "children") {
             lua_pushnil(luaState);
-            if (!loadGameObjects(gameObject->getScene(), children)) {
-
-                return false;
-            }
+            if (!loadGameObjects(gameObject->getScene(), children)) return false;
         }
         lua_pop(luaState, 1);
     }
-    //relacionar padre hijo
+
+    // Relaciona los hijos con el padre
     Transform* tr = gameObject->getComponent<Transform>();
     for (GameObject* obj : children) {
         obj->getComponent<Transform>()->setParent(tr);
@@ -244,7 +244,7 @@ Component* SceneManager::loadComponent(std::string const& name) {
 }
 
 void SceneManager::exposeUIvalues() {
-    
+
     luaL_openlibs(luaState);
 
     // Window flags

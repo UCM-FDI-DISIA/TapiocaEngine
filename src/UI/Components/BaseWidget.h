@@ -28,7 +28,7 @@ public:
     /*
     * @brief Destructor por defecto
     */
-    virtual ~BaseWidget() { }
+    ~BaseWidget() { }
 
     /*
     * @brief Establece el nombre del widget

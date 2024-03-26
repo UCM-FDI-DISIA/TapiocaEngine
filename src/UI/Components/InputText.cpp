@@ -9,7 +9,9 @@ InputText::InputText()
       onTextEnteredId(InputTextFunction::INPUT_TEXT_NONE), onTextEntered([]() {}), textFontName("arial.ttf"),
       textSize(16.0f), textFont(nullptr), textColor(ImGui::GetStyle().Colors[ImGuiCol_Text]),
       bgColor(ImGui::GetStyle().Colors[ImGuiCol_FrameBg]),
-      flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) { }
+      flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) {
+    createInputTextFunctions();
+}
 
 InputText::~InputText() { delete[] buffer; }
 
@@ -100,26 +102,7 @@ bool InputText::initComponent(const CompMap& variables) {
 void InputText::awake() {
     setTransform(object->getComponent<Transform>());
     startBuffer();
-
-    // ESTA FEO
-    switch (onTextEnteredId) {
-    case InputTextFunction::INPUT_TEXT_TEXT_ENTERED:
-        onTextEntered = [this]() {
-            setPlaceHolderText("Se ha hecho ENTER");
-            setTextColor(ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-            setBgColor(ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
-        };
-        break;
-    default:
-    case InputTextFunction::INPUT_TEXT_NONE:
-        onTextEntered = []() {
-#ifdef _DEBUG
-            std::cout << "No se ha asignado ninguna funcion especial a la caja de texto\n";
-#endif
-        };
-        break;
-    }
-
+    onTextEntered = inputTextFunctions[onTextEnteredId];
     textFont = UIManager::instance()->getFont(textFontName, textSize);
 }
 
@@ -162,5 +145,20 @@ void InputText::render() const {
     ImGui::PopFont();
 
     ImGui::End();
+}
+
+void InputText::createInputTextFunctions() {
+
+    inputTextFunctions[InputTextFunction::INPUT_TEXT_NONE] = []() {
+#ifdef _DEBUG
+        std::cout << "No se ha asignado ninguna funcion especial a la caja de texto\n";
+#endif
+    };
+
+    inputTextFunctions[InputTextFunction::INPUT_TEXT_TEXT_ENTERED] = [this]() {
+        setPlaceHolderText("Se ha hecho ENTER");
+        setTextColor(ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+        setBgColor(ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
+    };
 }
 }

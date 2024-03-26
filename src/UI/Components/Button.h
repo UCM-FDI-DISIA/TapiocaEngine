@@ -4,6 +4,7 @@
 #include "Utilities/Vector2.h"
 #include <string>
 #include <functional>
+#include <unordered_map>
 #include <imgui.h>
 
 namespace Ogre {
@@ -33,6 +34,11 @@ private:
     ImVec4 hoverColor;               // Color del boton para el estado "hover"
     ImVec4 activeColor;              // Color del boton para el estado "active"
 
+    /*
+    * @brief Diccionario que contiene las funciones que se ejecutan cuando se hace click en el boton
+    */
+    std::unordered_map<int, std::function<void()>> buttonFunctions;
+
 public:
     COMPONENT_ID("Button")
 
@@ -61,6 +67,11 @@ public:
     * @brief Metodo que se usa para renderizar el boton
     */
     void render() const override;
+
+    /*
+    * @brief Crea las funciones que se ejecutan cuando se hace click en el boton
+    */
+    void createButtonFunctions();
 
     /*
     * @brief Establece el texto del boton
