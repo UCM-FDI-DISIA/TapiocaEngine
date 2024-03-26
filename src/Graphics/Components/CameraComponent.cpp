@@ -81,6 +81,8 @@ bool CameraComponent::initComponent(const CompMap& variables) {
         std::cout << "CameraComponent: la altura de la camara corresponde con la de la ventana.\n";
 #endif
     }
+
+    return true;
 }
 
 void CameraComponent::awake() {
