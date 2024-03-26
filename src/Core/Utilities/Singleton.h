@@ -5,7 +5,7 @@
 namespace Tapioca {
 // Clase singleton para hacer que las clases hijas sean singleton
 template<typename T>
-class TAPIOCA_API Singleton {
+class Singleton {
 private:
     // Instancia unica
     static T* instance_;
