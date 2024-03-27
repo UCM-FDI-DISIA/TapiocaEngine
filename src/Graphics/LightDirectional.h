@@ -18,8 +18,10 @@ class TAPIOCA_API LightDirectional : public Light {
 private:
     friend GraphicsManager;
 
-    // SOLO NECESITA UNA DIRECCION, PERO NO UNA POSICION (LA POSICION NO AFECTA PARA NADA)
     // SIMULA RAYOS DE LUZ DESDE UNA POSICION LEJANA (COMO EL SOL)
+    // POR LO TANTO, SOLO NECESITA UNA DIRECCION, PERO NO UNA POSICION
+    // TIENE UN RANGO INFINITO Y UNA INTENSIDAD CONSTANTE
+
     /*
     * @brief Constructora de la clase LightDirectional.
     * @param scnMgr Puntero al manager de escenas de ogre

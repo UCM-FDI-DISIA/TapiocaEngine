@@ -41,6 +41,8 @@ Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::Mes
     mPlane = scnMgr->createEntity(name);
 
     init(mPlane);
+
+    mPlane->setCastShadows(false);
 }
 
 Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
@@ -54,7 +56,6 @@ Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::Mes
     mPlane = scnMgr->createEntity(name);
 
     init(mPlane);
-
 }
 
 Vector3 Plane::getNormal() const { return Vector3(mPlaneAux.normal.x, mPlaneAux.normal.y, mPlaneAux.normal.z); }

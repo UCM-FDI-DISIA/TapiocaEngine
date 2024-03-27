@@ -15,6 +15,10 @@
 #include "Viewport.h"
 #include "Camera.h"
 #include "RenderNode.h"
+#include "LightPoint.h"
+#include "LightRectlight.h"
+#include "LightSpotlight.h"
+#include "LightDirectional.h"
 
 namespace Tapioca {
 void initEngine() {
@@ -27,9 +31,18 @@ void deleteEngine() { delete game; }
 void runEngine() {
     if (game->init()) {
         // PRUEBAS GRAPHICS
-        //auto node = graphics->createNode();
+        /*auto nodeAux = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f));
+        auto plane1 = graphics->createPlane(nodeAux, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola1", 100, 100, 100, 100);*/
+        /*auto nodeAux2 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f));
+        auto plane2 = graphics->createPlane(nodeAux2, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola2", 50, 50, 100, 100);*/
+        /*auto node = graphics->createNode(Vector3(20.0f, 0.0f, 50.0f));
+        auto light = graphics->createLightSpotlight(node, Vector3(0, 0, -1));*/
+        //auto light = graphics->createLightPoint(node);
         //auto light = graphics->createLightDirectional(node, Tapioca::Vector3(0.0f, -1.0f, -1.0f));
-        //scenes->loadScene("archivo.lua");
+        /*auto node2 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
+        auto light2 = graphics->createLightSpotlight(node2, Vector3(0, 0, -1));*/
+        //auto light2 = graphics->createLightDirectional(node2, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
+        //scenes->loadScene("archivo2.lua");
 
         // PRUEBAS DE UI
         scenes->loadScene("startScene.lua");

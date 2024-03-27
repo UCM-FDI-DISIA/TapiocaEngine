@@ -30,6 +30,8 @@
     <ClCompile Include="..\..\src\Graphics\Light.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightPoint.cpp" />
+    <ClCompile Include="..\..\src\Graphics\LightRectlight.cpp" />
+    <ClCompile Include="..\..\src\Graphics\LightSpotlight.cpp" />
     <ClCompile Include="..\..\src\Graphics\Mesh.cpp" />
     <ClCompile Include="..\..\src\Graphics\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\Graphics\Plane.cpp" />
@@ -55,6 +57,8 @@
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />
     <ClInclude Include="..\..\src\Graphics\LightPoint.h" />
+    <ClInclude Include="..\..\src\Graphics\LightRectlight.h" />
+    <ClInclude Include="..\..\src\Graphics\LightSpotlight.h" />
     <ClInclude Include="..\..\src\Graphics\Mesh.h" />
     <ClInclude Include="..\..\src\Graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\src\Graphics\Plane.h" />

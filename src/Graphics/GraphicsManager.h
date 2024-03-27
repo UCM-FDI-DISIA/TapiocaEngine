@@ -30,6 +30,9 @@ namespace Tapioca {
 class RenderNode;
 class Camera;
 class LightDirectional;
+class LightPoint;
+class LightRectlight;
+class LightSpotlight;
 class Mesh;
 class Viewport;
 class BillboardSet;
@@ -197,6 +200,36 @@ public:
     */
     LightDirectional* createLightDirectional(RenderNode* const node, const Vector3 direction,
                                              const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+
+    /*
+    * @brief Crea una luz posicional
+    * @param node Nodo para renderizado
+    * @param color Color de la luz
+    * @return Puntero a la luz posicional creada
+    */
+    LightPoint* createLightPoint(RenderNode* const node, const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+
+    /*
+    * @brief Crea una luz rectangular
+    * @param node Nodo para renderizado
+    * @param direction Direccion a la que apunta
+    * @param width Ancho del rectangulo
+    * @param height Altura del rectangulo
+    * @param color Color de la luz
+    * @return Puntero a la luz rectangular creada
+    */
+    LightRectlight* createLightRectlight(RenderNode* const node, const Vector3 direction, const float width,
+                                     const float height, const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+
+    /*
+    * @brief Crea un foco de luz
+    * @param node Nodo para renderizado
+    * @param direction Direccion a la que apunta
+    * @param color Color de la luz
+    * @return Puntero al foco de luz creado
+    */
+    LightSpotlight* createLightSpotlight(RenderNode* const node, const Vector3 direction,
+                                     const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
     /*
     * @brief Crea una malla

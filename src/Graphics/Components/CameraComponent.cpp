@@ -8,7 +8,7 @@
 
 namespace Tapioca {
 CameraComponent::CameraComponent()
-    : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(0.0f, 0.0f, 0.0f), zOrder(),
+    : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(),
       dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(0.0f, 0.0f, 0.0f), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
       farPlane(-1.0f) { }
 
@@ -93,9 +93,6 @@ void CameraComponent::awake() {
     camera = graphicsManager->createCamera(node, "Camera " + zOrder);
     viewport = graphicsManager->createViewport(camera, zOrder);
 
-    node->setPosition(Vector3(20.0f, 50.0f, 50.0f));
-    viewport->setBackground(Tapioca::Vector4(0.925f, 0.698f, 0.94f, 0.0f));
-
     if (direction != Vector3(0.0f, 0.0f, 0.0f)) {
         camera->setDirection(direction);
     }
@@ -107,7 +104,7 @@ void CameraComponent::awake() {
     }
 
     // Viewport
-    if (color != Vector3(0.0f, 0.0f, 0.0f)) {
+    if (color != Vector3(-1.0f, -1.0f, -1.0f)) {
         viewport->setBackground(Vector4(color, 1.0f));
     }
     if (dimensions.x != 0.0f) {

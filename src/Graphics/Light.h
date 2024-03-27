@@ -15,7 +15,7 @@ class RenderNode;
 class TAPIOCA_API Light : public RenderObject {
 protected:
     Ogre::Light* mLight;        // Light de Ogre
-    Vector4 mColour;            // Color de la luz
+    Vector4 mColor;            // Color de la luz
 
     /*
     * @brief Constructora de la clase Light.
@@ -23,7 +23,7 @@ protected:
     * @param node Nodo para renderizado
     * @param colour Color de la luz
     */
-    Light(Ogre::SceneManager* const scnMgr, RenderNode* const node, const Vector4 colour);
+    Light(Ogre::SceneManager* const scnMgr, RenderNode* const node, const Vector4 color);
 
 public:
     /*
@@ -35,6 +35,12 @@ public:
     * @brief Cambia el color.
     * @param colour Color de la luz
     */
-    void setColor(const Vector4 colour);
+    void setColor(const Vector4 color);
+
+    /*
+    * @brief Cambia la potencia de la luz. Por defecto es 1.0f
+    * @param power Potencia
+    */
+    void setPowerScale(float power);
 };
 }

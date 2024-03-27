@@ -11,15 +11,12 @@
 #include "Utilities/Vector3.h"
 
 namespace Tapioca {
-
 LightDirectional::LightDirectional(Ogre::SceneManager* const scnManager, RenderNode* const node, const Vector4 color,
                                    const Vector3 direction)
-    : Light(scnManager, node, color) 
-{
+    : Light(scnManager, node, color) {
     mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
     node->setDirection(direction);
 }
 
 void LightDirectional::setDirection(const Vector3 direction) { node->setDirection(direction); }
-
 }

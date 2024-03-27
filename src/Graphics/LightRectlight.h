@@ -1,6 +1,5 @@
 #pragma once
 #include "Light.h"
-#include "defs.h"
 
 namespace Ogre {
 class SceneManager;
@@ -8,25 +7,24 @@ class SceneManager;
 
 namespace Tapioca {
 class RenderNode;
-class GraphicsManager;
 class Vector4;
+class Vector3;
+class GraphicsManager;
 
-/*
-* @brief Wrapper de la clase LightPoint de Ogre.
-*/
-class TAPIOCA_API LightPoint : public Light {
+class TAPIOCA_API LightRectlight : public Light {
 private:
     friend GraphicsManager;
 
-    // PUNTO DE LUZ QUE EMITE LA MISMA CANTIDAD DE LUZ EN TODAS LAS DIRECCIONES
+public:
+    // SIMULA UN AREA RECTANGULAR DE LUZ
+    // REQUIERE DE UNA POSICION, UNA DIRECCION Y UN TAM DEL AREA
 
-    /*
-    * @brief Constructora de la clase LightPoint.
-    * @param scnMgr Puntero al manager de escenas de ogre
-    * @param node Nodo para renderizado
-    * @param colour Color de la luz
-    */
-    LightPoint(Ogre::SceneManager* const sceneManager, RenderNode* const node, const Vector4 color);
+    LightRectlight(Ogre::SceneManager* const sceneManager, RenderNode* const node, Vector4 const color,
+                   const float width, const float height, Vector3 direction);
+
+    void setSize(float width, float height);
+
+    void setDirection(Vector3 direction);
 
     // Attenuation = Constant + Linear * Distance + Quadratic * Distance^2
     // Por ejemplo, si constant es 0,5 quiere decir que es la mitad de brillante en todas las distancias

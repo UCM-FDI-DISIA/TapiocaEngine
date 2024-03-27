@@ -89,6 +89,12 @@
     <ClCompile Include="..\..\src\Graphics\Components\CameraComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\LightRectlight.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\LightSpotlight.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -159,6 +165,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Components\CameraComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\LightRectlight.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\LightSpotlight.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

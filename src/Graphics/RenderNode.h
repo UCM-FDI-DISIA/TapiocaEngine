@@ -15,6 +15,8 @@ class RenderObject;
 class GraphicsManager;
 class Camera;
 class LightDirectional;
+class LightSpotlight;
+class LightRectlight;
 
 class TAPIOCA_API RenderNode {
 private:
@@ -22,6 +24,8 @@ private:
     friend RenderObject;
     friend Camera;
     friend LightDirectional;
+    friend LightSpotlight;
+    friend LightRectlight;
 
     Ogre::SceneManager* sceneManager;       // Puntero al manager de escenas de ogre
     Ogre::SceneNode* node;                  // Nodo para renderizado

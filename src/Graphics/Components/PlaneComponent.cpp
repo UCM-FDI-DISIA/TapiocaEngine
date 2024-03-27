@@ -6,11 +6,13 @@
 #include "../Plane.h"
 
 namespace Tapioca {
-PlaneComponent::PlaneComponent() : plane(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)) { }
+PlaneComponent::PlaneComponent()
+    : plane(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), fConstant(), height(), width(),
+      xSegments(), ySegments() { }
 
 PlaneComponent::~PlaneComponent() { delete node; }
 
-bool PlaneComponent::initComponent(const CompMap& variables) {  // No se ha podido establecer o No hay nombre de mesh
+bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha podido establecer o No hay nombre de mesh
     // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(planeName, "meshName", variables) || planeName == "") {
 #ifdef _DEBUG

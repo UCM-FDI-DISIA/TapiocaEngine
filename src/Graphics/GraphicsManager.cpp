@@ -3,6 +3,8 @@
 // PROPIOS
 #include "LightPoint.h"
 #include "LightDirectional.h"
+#include "LightRectlight.h"
+#include "LightSpotlight.h"
 #include "RenderNode.h"
 #include "Camera.h"
 #include "Mesh.h"
@@ -47,9 +49,10 @@ GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
       sdlWindow(nullptr), mwindowName(windowName), glContext(), overSys(nullptr) { }
 
-        
+
 GraphicsManager::~GraphicsManager() {
-    for (auto& node : selfManagedNodes) delete node;
+    for (auto& node : selfManagedNodes)
+        delete node;
     selfManagedNodes.clear();
 
     shutDown();
@@ -60,7 +63,7 @@ bool GraphicsManager::init() {
     sdlWindow = windowManager->getWindow();
     uint32_t windowWidth = windowManager->getWindowW();
     uint32_t windowHeight = windowManager->getWindowH();
-    
+
     // Obtenemos la ubicacion de plugins.cfg y a partir de la misma obtenemos la ruta relativa
     // de la carpeta de assets. El nombre es para crear un directorio dentro del home del usuario
     // para distinguir entre diferentes aplicaciones de Ogre (da igual el nombre)
@@ -125,7 +128,6 @@ bool GraphicsManager::init() {
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
 
-    
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
     SDL_SysWMinfo wmInfo;
@@ -151,11 +153,70 @@ bool GraphicsManager::init() {
     renderSys->_initRenderTargets();
     loadResources();
 
+    /*
+    - MODULATIVE -> primer renderiza todos los objetos que se van a sombrear,
+    luego hace un "paso" por cada luz oscureciendo las areas de cada objeto
+    que necesitan sombras y por ultimo, se renderizan los objetos que no tienen
+    sombras.
+    Son imprecisas porque oscurecen el area uniformemente. Además, el problema de
+    The Silhouette Edge se ve empeorado justo por esto mismo. Es por eso que no es recomendable
+    usar mas de dos luces en STENCIL MODULATIVE porque las transiciones no son suaves
+    y las aristas son duras, por lo tanto, quedaria un corte si se superpusieran dos sombras.
+    Sin embargo, su coste tambien es menor y dejan un acabado mucho mejor en luces estaticas precalculadas.
+    - ADDITIVE -> se renderiza la escena por cada luz que haya con la contribucion de luz (y sombras)
+    que produciria esa luz. Luego, se combinan/suman todos los renderizados. Esto produce sombras
+    y mas realistas. Sin embargo, el coste tambien es mayor.
+    */
+    /*
+    STENCIL -> se utiliza un buffer que incluye las zonas sombreadas. Luego, lo que incluya
+    este buffer no se lleva a los posteriores pasos del renderizados (por lo tanto, solo se ve "negro",
+    es decir, con sombras, pero no con color). Como el buffer solo tiene la opcion de incluir o no incluir zonas
+    se van a ver aristas "duras", es decir, lineas de division entre la luz y la sombra (The Silhouette Edge).
+    Para generar la zona de sombreado lo que se hace es extruir la silueta del objeto que ha proyectado la luz
+    (por lo tanto, se necesita una lista con sus aristas) e interseccionarla con el resto de objetos.
+    Las ventajs son que permite el autosombreado facilmente y funciona en maquinas de pocos recursos.
+    Sin embargo, las desventajas son que: el aspecto visual es mas primitivo (por ejemplo, el problema de los arista "duras")
+    y como se basa en geometria, esta tecnica comienza a tener mas coste conforme la geometria del mesh es mayor.
+    TEXTURE-BASED -> proyectan sombras desde el punto de vista de cada luz que se convierten en texturas. Luego,
+    cada una de las texturas de sombra se aplica en el objeto correspondiente. Los motores modernos funcionan de esta
+    manera. El coste no escala de forma exponencial con geometrias mayores. La desventaja mayor es que se trata de una textura, por
+    lo tanto, esta sujeto a su resolucion y se puede ver pixelado, pero se puede cambiar la resolucion/tam facilmente.
+    Directional light -> por definicion son luces infinitas que proyectan sombras en la escena entera. Sin embargo, las texturas
+    son finitas, por lo tanto, se veria de muy mala calidad porque habria que estirarla para que cabiera en toda la escena.
+    Lo que se hace es poner uan textura en el area enfrente de la camara (lo que ve el usuario) y la va moviendo conforme
+    la camara se mueve.
+    Spotlight -> se utiliza una textura para la sombra en general y otra para darle la forma redondeada (puesto que las texturas
+    son cuadradas y la primera esta rellena "completamente")
+    Point light -> como se trata de una luz que apunta en todas las direcciones se requeriria aprox. 6 texturas. Por lo tanto,
+    para reducir el coste se aproxima a un spotlight. Sin embargo el resultado no es ideal y solo queda bien si esta fuera del rango
+    de vision. Por lo que se recomienda no proyectar sombras con este tipo de luz.
+    Como no se soporta el autosombreado, se diferencia entre objetos que proyectan sombras (castShadows a true) y que reciben (castShadows a false)
+    */
+    scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE);
+    // el color por de la luz ambiental es negro, lo que quiere decir que
+    // por defecto no hay luz
+    // Por lo tanto, para que un objeto se ilumine hay que poner una luz en escena
+    scnMgr->setAmbientLight(Ogre::ColourValue(0.0f, 0.0f, 0.0f));
+    // el tam de las texturas de sombras
+    // cuanto mas alto es mayor es la calidad. Ademas, tiene que ser multiplo de 2
+    scnMgr->setShadowTextureSize(2048);
+    // distancia maxima de las sombras
+    // Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
+    // para las sombras que producen las luces direccionales
+    scnMgr->setShadowFarDistance(1000);
+    // cada luz tiene asociada su propia textura de sombra para evitar el estancamiento del pipeline
+    // grafico que supondria utilizar (y cambiar) la misma textura de sombra para cada luz
+    // Para evitar sobrecargar la memoria para las texturas, se establece cuantas texturas de sombra
+    // puede haber, lo que se traduce en cuantas luces pueden proyectar sombras a la vez
+    scnMgr->setShadowTextureCount(3);
+    // los objetos tanto proyectan como reciben sombras. Esto permite crear autosombras,
+    // pero es responsabilidad del programador crear un shader con esa funcionalidad.
+    //scnMgr->setShadowTextureSelfShadow(true);
 
     ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
     if (glContext == nullptr) {
 #ifdef _DEBUG
-    	std::cerr << "Error al obtener el contexto de OpenGL\n";
+        std::cerr << "Error al obtener el contexto de OpenGL\n";
 #endif
         return false;
     }
@@ -175,6 +236,14 @@ void GraphicsManager::loadPlugIns() {
 }
 
 void GraphicsManager::loadResources() {
+    /*Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "/assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);*/
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         cfgPath + "/assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
@@ -200,9 +269,15 @@ void GraphicsManager::loadShaders() {
     }
 }
 
-void GraphicsManager::render() { mRoot->renderOneFrame(); }
+void GraphicsManager::render() {
+    mRoot->renderOneFrame();
+    try {
+    } catch (Ogre::Exception exception) {
+        std::string hola = exception.getSource();
+    }
+}
 
-bool GraphicsManager::handleEvents(const SDL_Event& event) { 
+bool GraphicsManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
 #ifdef _DEBUG
@@ -211,7 +286,7 @@ bool GraphicsManager::handleEvents(const SDL_Event& event) {
             ogreWindow->resize(windowManager->getWindowW(), windowManager->getWindowH());
             return true;
         }
-    }    
+    }
 
     return false;
 }
@@ -294,8 +369,22 @@ Viewport* GraphicsManager::createViewport(Camera* const camera, const int zOrder
 }
 
 LightDirectional* GraphicsManager::createLightDirectional(RenderNode* const node, const Vector3 direction,
-                                                         const Vector4 color) {
+                                                          const Vector4 color) {
     return new LightDirectional(scnMgr, node, color, direction);
+}
+
+LightPoint* GraphicsManager::createLightPoint(RenderNode* const node, const Vector4 color) {
+    return new LightPoint(scnMgr, node, color);
+}
+
+LightRectlight* GraphicsManager::createLightRectlight(RenderNode* const node, const Vector3 direction,
+                                                      const float width, const float height, const Vector4 color) {
+    return new LightRectlight(scnMgr, node, color, width, height, direction);
+}
+
+LightSpotlight* GraphicsManager::createLightSpotlight(RenderNode* const node, const Vector3 direction,
+                                                      const Vector4 color) {
+    return new LightSpotlight(scnMgr, node, color, direction);
 }
 
 Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& meshName) {
@@ -303,31 +392,31 @@ Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& mes
 }
 
 Billboard* GraphicsManager::createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,
-                                           const Vector4 colour) {
+                                            const Vector4 colour) {
     Tapioca::BillboardSet* set = new BillboardSet(scnMgr, node, name, 1);
     return set->addBillboard(position, colour);
 }
 
 BillboardSet* GraphicsManager::createBillboardSet(RenderNode* const node, std::string const& name,
-                                                 const unsigned int poolSize) {
+                                                  const unsigned int poolSize) {
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
 ParticleSystem* GraphicsManager::createParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node,
-                                                     std::string const& name, std::string const& templateName,
-                                                     const bool emitting) {
+                                                      std::string const& name, std::string const& templateName,
+                                                      const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
-                                   std::string const& name, const float width, const float height, const int xSegments,
+                                    std::string const& name, const float width, const float height, const int xSegments,
                                     const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments);
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
-                                   std::string const& name, const float width, const float height, const int xSegments,
-                                   const int ySegments, std::string const& material) {
+                                    std::string const& name, const float width, const float height, const int xSegments,
+                                    const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments);
 }
 
@@ -336,14 +425,14 @@ AnimationHelper* GraphicsManager::createAnimationHelper(Mesh* const object, cons
 }
 
 Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& texture, const float distC,
-                                     const bool orderC) {
+                                      const bool orderC) {
     return new Skybox(scnMgr, node, texture, distC, orderC);
 }
 
 Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
-                                         const Vector3 rkNormal, const float fConstant, const float scale,
-                                         const float tiling, const bool drawFirst, const float bow, const int xsegments,
-                                         const int ysegments) {
+                                          const Vector3 rkNormal, const float fConstant, const float scale,
+                                          const float tiling, const bool drawFirst, const float bow,
+                                          const int xsegments, const int ysegments) {
     return new Skyplane(scnMgr, node, materialName, enable, rkNormal, fConstant, scale, tiling, drawFirst, bow,
                         xsegments, ysegments);
 }
