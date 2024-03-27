@@ -203,9 +203,10 @@ void RigidBody::setMass(const float m) { mass = m; }
 void RigidBody::setTensor(const Vector3 t) {
 
     PhysicsManager::instance()->removeRigidBody(rigidBody);
-    btVector3 inertia = toBtVector3(t);
+    btVector3 inertia;
+    btVector3 tensor = toBtVector3(t);
     rigidBody->getCollisionShape()->calculateLocalInertia(mass, inertia);
-    rigidBody->setMassProps(mass, inertia);
+    rigidBody->setMassProps(mass, inertia*tensor);
     PhysicsManager::instance()->addRigidBody(rigidBody);
 };
 
