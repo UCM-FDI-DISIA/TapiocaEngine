@@ -51,9 +51,8 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
     }
 }
 
-bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrapper* const colObj0Wrap,
-                     const int partId0, int index0, const btCollisionObjectWrapper* const colObj1Wrap,
-                     const int partId1, const int index1) {
+bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrapper* colObj0Wrap, int partId0,
+                     int index0, const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1) {
 
     void* obj1 = colObj0Wrap->getCollisionObject()->getUserPointer();
     void* obj2 = colObj1Wrap->getCollisionObject()->getUserPointer();
