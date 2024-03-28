@@ -84,7 +84,7 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
     return true;
 }
 
-void PlaneComponent::start() {
+void PlaneComponent::awake() {
     GameObject* gameobject = getObject();
     transform = gameobject->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();

@@ -53,7 +53,7 @@ public:
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
-    void start() override;
+    void awake() override;
     /*
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
