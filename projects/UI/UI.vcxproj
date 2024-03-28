@@ -17,6 +17,7 @@
     <ClCompile Include="..\..\src\UI\Components\Button.cpp" />
     <ClCompile Include="..\..\src\UI\Components\DropBox.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Image.cpp" />
+    <ClCompile Include="..\..\src\UI\Components\ImageButton.cpp" />
     <ClCompile Include="..\..\src\UI\Components\InputText.cpp" />
     <ClCompile Include="..\..\src\UI\Components\ProgressBar.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp" />
@@ -30,6 +31,7 @@
     <ClInclude Include="..\..\src\UI\Components\Button.h" />
     <ClInclude Include="..\..\src\UI\Components\DropBox.h" />
     <ClInclude Include="..\..\src\UI\Components\Image.h" />
+    <ClInclude Include="..\..\src\UI\Components\ImageButton.h" />
     <ClInclude Include="..\..\src\UI\Components\InputText.h" />
     <ClInclude Include="..\..\src\UI\Components\ProgressBar.h" />
     <ClInclude Include="..\..\src\UI\Components\Slider.h" />

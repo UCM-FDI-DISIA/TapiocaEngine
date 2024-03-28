@@ -19,6 +19,10 @@ Button::Button()
     createButtonFunctions();
 }
 
+Button::~Button() {
+    textFont = nullptr;
+}
+
 bool Button::initComponent(const CompMap& variables) {
     bool nameSet = setValueFromMap(name, "name", variables);
     if (!nameSet) {

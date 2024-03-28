@@ -97,6 +97,48 @@ scene = {
                 textColorA = 1.0
             }
         }
+    },
+    StartImageButton={
+        components = {
+            Transform = {
+                positionX = 0.0,
+                positionY = 350.0,
+                positionZ = 0.0, -- No importa
+                scaleX = 100.0,
+                scaleY = 100.0,
+                scaleZ = 0.0, -- No importa
+                rotationX = 0.0,
+                rotationY = 0.0,
+                rotationZ = 0.0
+            },
+            ImageButton = {
+                name = "StartImageButton",
+                text = "Play",
+                onClickId = 0,
+                textFontName = "impact.ttf",
+                imagePath = "imagetest.PNG",
+                imageBgColorR = 1.0,
+                imageBgColorG = 0.0,
+                imageBgColorB = 1.0,
+                imageBgColorA = 1.0,
+                imageTintR = 1.0,
+                imageTintG = 1.0,
+                imageTintB = 0.0,
+                imageTintA = 1.0,
+                normalColorR = 0.0,
+                normalColorG = 1.0,
+                normalColorB = 0.0,
+                normalColorA = 1.0,
+                hoverColorR = 0.0,
+                hoverColorG = 0.0,
+                hoverColorB = 1.0,
+                hoverColorA = 1.0,
+                activeColorR = 1.0,
+                activeColorG = 1.0,
+                activeColorB = 0.0,
+                activeColorA = 1.0
+            }
+        }
     }
 }
   

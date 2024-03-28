@@ -125,6 +125,11 @@ public:
     ImFont* getFont(const std::string& name, float pixelSize = fontDefaultSize);
 
     /*
+    * @brief Devuelve el identificador de la textura de una imagen
+    */
+    ImTextureID getTextureId(const std::string& name);
+
+    /*
     * Crea una imagen qeu se muestra en el Hud
     */
     Image* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,

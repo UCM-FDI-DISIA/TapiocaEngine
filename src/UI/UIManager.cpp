@@ -235,6 +235,19 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
     }
 }
 
+ImTextureID UIManager::getTextureId(const std::string& name) {
+	Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(name, "General");
+    if (texturePtr == nullptr) {
+		throw Ogre::Exception(Ogre::Exception::ERR_FILE_NOT_FOUND, "No se encontro la textura " + name,
+            							  "UIManager::getTextureId");
+        return 0;
+	}
+
+	GLuint glID;
+	texturePtr->getCustomAttribute("GLID", &glID);
+	return (ImTextureID) glID;
+}
+
 // TEMPORAL
 Image* UIManager::createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
                                 ImGuiWindowFlags flags) {

@@ -16,7 +16,11 @@ InputText::InputText()
     createInputTextFunctions();
 }
 
-InputText::~InputText() { delete[] buffer; }
+InputText::~InputText() {
+    delete[] buffer;
+    buffer = nullptr;
+    textFont = nullptr;
+}
 
 void InputText::startBuffer() {
     if (buffer != nullptr) {

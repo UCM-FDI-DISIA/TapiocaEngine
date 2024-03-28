@@ -19,7 +19,7 @@ enum ButtonFunction { BUTTON_NONE, BUTTON_INIT_GAME };
 * @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
-private:
+protected:
     std::string text;                // Texto que se muestra en el boton
     int onClickId;                   // Identificador de la funcion que se ejecuta cuando se hace click en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
@@ -48,23 +48,23 @@ public:
     /*
     * @brief Destructor por defecto
     */
-    ~Button() { }
+    ~Button();
 
     /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
     * @param variables unordered_map con los parametros iniciales
     */
-    bool initComponent(const CompMap& variables) override;
+    virtual bool initComponent(const CompMap& variables) override;
 
     /*
     * @brief Asigna el transform del objeto al boton, inicializa la funcion que se ejecuta cuando se hace click en el boton y la fuente del texto
     */
-    void start() override;
+    virtual void start() override;
 
     /*
     * @brief Metodo que se usa para renderizar el boton
     */
-    void render() const override;
+    virtual void render() const override;
 
     /*
     * @brief Crea las funciones que se ejecutan cuando se hace click en el boton

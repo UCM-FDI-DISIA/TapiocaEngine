@@ -29,7 +29,7 @@ public:
     /*
     * @brief Destructor por defecto
     */
-    ~Text() { }
+    ~Text();
 
     /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start

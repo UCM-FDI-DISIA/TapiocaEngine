@@ -10,6 +10,8 @@ Text::Text()
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
 }
 
+Text::~Text() { textFont = nullptr; }
+
 bool Text::initComponent(const CompMap& variables) {
     bool nameSet = setValueFromMap(name, "name", variables);
     if (!nameSet) {

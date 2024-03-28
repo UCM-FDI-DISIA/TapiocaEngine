@@ -19,6 +19,7 @@
 #include "Button.h"
 #include "InputText.h"
 #include "Text.h"
+#include "ImageButton.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<FactoryManager>;
@@ -58,6 +59,7 @@ void FactoryManager::createEngineBuilders() {
     manager->addFactory("Button", new BasicBuilder<Button>());
     manager->addFactory("InputText", new BasicBuilder<InputText>());
     manager->addFactory("Text", new BasicBuilder<Text>());
+    manager->addFactory("ImageButton", new BasicBuilder<ImageButton>());
 }
 
 Component* FactoryManager::createComponent(std::string const& name) {

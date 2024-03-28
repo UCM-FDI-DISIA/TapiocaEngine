@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\UI\Components\ImageButton.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h">
@@ -84,5 +87,8 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\UI.h" />
+    <ClInclude Include="..\..\src\UI\Components\ImageButton.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
