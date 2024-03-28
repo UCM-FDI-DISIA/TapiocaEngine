@@ -14,6 +14,7 @@
 #include "CameraComponent.h"
 #include "Animator.h"
 #include "ParticleSystemComponent.h"
+#include "Components/PlaneComponent.h"
 // UI
 #include "Button.h"
 #include "InputText.h"
@@ -52,6 +53,7 @@ void FactoryManager::createEngineBuilders() {
     manager->addFactory("CameraComponent", new BasicBuilder<CameraComponent>());
     manager->addFactory("Animator", new BasicBuilder<Animator>());
     manager->addFactory("ParticleSystemComponent", new BasicBuilder<ParticleSystemComponent>());
+    manager->addFactory("PlaneComponent", new BasicBuilder<PlaneComponent>());
     // UI
     manager->addFactory("Button", new BasicBuilder<Button>());
     manager->addFactory("InputText", new BasicBuilder<InputText>());
