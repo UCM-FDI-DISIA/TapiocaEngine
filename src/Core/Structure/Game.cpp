@@ -128,15 +128,20 @@ void Game::pushScene(Scene* const sc) {
 
 void Game::popScene() {
     toDelete.push_back(scenes.top());
-    if (!scenes.empty()) scenes.pop();
-    else
+    scenes.pop();
+    if (scenes.empty()) {
         finish = true;
+#ifdef _DEBUG
+        std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
+#endif   // _DEBUG
+    }
 }
 
 void Game::changeScene(Scene* const sc) {
     toDelete.push_back(scenes.top());
     scenes.pop();
     scenes.push(sc);
+    sc->awake();
     sc->start();
 }
 }
