@@ -37,6 +37,8 @@ UIManager::UIManager()
       fontsPath("assets/fonts/"), testid() { }
 
 UIManager::~UIManager() {
+    game = nullptr;
+    windowManager = nullptr;
     sdlWindow = nullptr;
     glContext = nullptr;
     sceneManager = nullptr;
@@ -117,7 +119,6 @@ bool UIManager::init() {
 }
 
 void UIManager::render() {
-
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
@@ -144,17 +145,16 @@ void UIManager::render() {
         ImGui::End();
     }
 
-
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 bool UIManager::handleEvents(const SDL_Event& event) {
-    /*    if (event.type == SDL_WINDOWEVENT) {
+    if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            
+            ImGui::GetIO().DisplaySize = ImVec2(windowManager->getWindowW(), windowManager->getWindowH());
         }
-    }  */
+    }
     if (ImGui_ImplSDL2_ProcessEvent(&event) &&
         (ImGui::IsAnyItemHovered() || ImGui::IsAnyItemActive() || ImGui::IsAnyItemFocused())) {
         //#ifdef _DEBUG

@@ -284,7 +284,7 @@ bool GraphicsManager::handleEvents(const SDL_Event& event) {
             std::cout << "Resized\n";
 #endif
             ogreWindow->resize(windowManager->getWindowW(), windowManager->getWindowH());
-            return true;
+            return false;
         }
     }
 
