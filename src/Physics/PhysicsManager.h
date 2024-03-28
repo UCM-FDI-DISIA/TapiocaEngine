@@ -2,7 +2,7 @@
 #include <unordered_set>
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
-#include "Physics_def.h"
+#include "physicsDefs.h"
 
 class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;

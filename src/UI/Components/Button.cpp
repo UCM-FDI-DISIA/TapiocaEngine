@@ -113,7 +113,7 @@ bool Button::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Button::awake() {
+void Button::start() {
     setTransform(object->getComponent<Transform>());
     updateOnClick();
     updateTextFont();

@@ -42,7 +42,7 @@
     <ClCompile Include="..\..\src\UI\Components\Image.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\Components\ProgressBarr.cpp">
+    <ClCompile Include="..\..\src\UI\Components\ProgressBar.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp">
@@ -77,11 +77,12 @@
     <ClInclude Include="..\..\src\UI\Components\Image.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UI\Components\ProgressBarr.h">
+    <ClInclude Include="..\..\src\UI\Components\ProgressBar.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\Components\Slider.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\UI\UI.h" />
   </ItemGroup>
 </Project>

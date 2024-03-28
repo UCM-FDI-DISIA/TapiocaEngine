@@ -57,9 +57,9 @@ public:
     bool initComponent(const CompMap& variables) override;
 
     /*
-    * @brief Asigna el transform del objeto al boton
+    * @brief Asigna el transform del objeto al boton, inicializa la funcion que se ejecuta cuando se hace click en el boton y la fuente del texto
     */
-    void awake() override;
+    void start() override;
 
     /*
     * @brief Metodo que se usa para renderizar el boton

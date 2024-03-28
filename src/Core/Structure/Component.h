@@ -11,61 +11,61 @@ private:
     friend class GameObject;
 
 protected:
-    GameObject* object;                                 // Gameobject al que esta adjunto esta componente
-    bool alive;                                         // Indica si se deberia borrar la componente
-    bool active;                                        // Indica si la componente esta activa (si se actualizan update,handleEvents,...)
-    //static std::unordered_set<Component*> listeners;    // Contiene las componentes que reciben mensajes y eventos 
+    GameObject* object;   // Gameobject al que esta adjunto esta componente
+    bool alive;           // Indica si se deberia borrar la componente
+    bool active;          // Indica si la componente esta activa (si se actualizan update,handleEvents,...)
+    //static std::unordered_set<Component*> listeners;    // Contiene las componentes que reciben mensajes y eventos
 
 public:
     /*
-    * @brief Constructora de la clase Component
+    * @brief Constructor de la clase Component
     */
     Component();
     /*
     * @brief Destructora de la clase Component
     */
     virtual ~Component() { }
-    
+
     /*
-    * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
+    * @brief Recibe los parametros iniciales y se inicializan los atributos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
-    * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
+    * @return true si se ha inicializado correctamente, false si no
     */
     virtual bool initComponent(const CompMap& variables) = 0;
     /*
-    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * @brief Inicializa el componente. Se ejecuta antes que el start
     * Garantiza que todos los componentes iniciales esten creados
     */
     virtual void awake() { }
     /*
-    * @brief Metodo que se usa para inicializar el componente.
+    * @brief Inicializa el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
     virtual void start() { }
     /*
-    * @brief Metodo que se usa para actualizar el estado de un componente. Se llama todas las veces posibles
+    * @brief Actualiza el estado de un componente. Se llama todas las veces posibles
     * @param deltaTime Tiempo que ha pasado desde la ultima llamada
     */
     virtual void update(const uint64_t deltaTime) { }
     /*
-    * @brief Metodo que se usa para actualizar el estado de un componente
+    * @brief Actualiza el estado de un componente
     * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
     */
     virtual void fixedUpdate() { }
     /*
-    * @brief Metodo que se usa para render un componente
+    * @brief Renderizado de un componente
     */
     virtual void render() const { }
     /*
-    * @brief Metodo que se usa para recibir eventos.
+    * @brief Recibe eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
-    * @param Id indica el tipo de mensaje
-    * @param info puntero a void para pasar parametros
+    * @param id Indica el tipo de mensaje
+    * @param info Puntero a void para pasar parametros
     */
     virtual void handleEvent(std::string const& id, void* info) { }
     /*
-    * @brief Metodo que se usa para enviar un evento
+    * @brief Envia un evento
     * @param id Indica el tipo de mensaje
     * @param info Puntero a void para pasar parametros
     * @param global Indica si el evento debe ser enviado glabalmente
@@ -73,11 +73,11 @@ public:
     void pushEvent(std::string const& id, void* info, const bool global = true);
 
     /*
-    * @brief Metodo que se usa para dar valor a una variable declarada en un CompMap
+    * @brief Da valor a una variable declarada en un CompMap
     * @param var Tipo de variable que se quiere actualizar
     * @param varName Nombre de la variable que se quiere actualizar
     * @param map Unordered_map en el que se que se quiere actualizar
-    * @return Devuelve true si se ha ejecutado correctamente, false en caso contrario
+    * @return true si se ha ejecutado correctamente, false si no
     */
     template<typename T>
     inline bool setValueFromMap(T& var, std::string const& varName, const CompMap& map) {
@@ -109,17 +109,17 @@ public:
 
     /*
     * @brief Devuelve si el componente esta "vivo" (si se actualizan update,handleEvents,...)
-    * @return True si esta "vivo", false en caso contrario
+    * @return true si esta "vivo", false si no
     */
     inline bool isAlive() const { return alive; }
     /*
     * @brief Devuelve si el componente esta activo (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
-    * @return True si esta activo, false en caso contrario
+    * @return true si esta activo, false si no
     */
     inline bool isActive() const { return active; }
     /*
     * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
-    * @param b true si se quiere activar, false en caso contrario
+    * @param b true si se quiere activar, false si no
     */
     inline virtual void setActive(const bool b) { active = b; }
 };

@@ -38,9 +38,6 @@
     <ClInclude Include="..\..\src\Physics\PhysicsManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Physics\Physics_Def.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Physics\PhysicsDebugDrawer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -50,5 +47,7 @@
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Physics\physicsDefs.h" />
+    <ClInclude Include="..\..\src\Physics\Physics.h" />
   </ItemGroup>
 </Project>

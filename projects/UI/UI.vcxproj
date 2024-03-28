@@ -18,7 +18,7 @@
     <ClCompile Include="..\..\src\UI\Components\DropBox.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Image.cpp" />
     <ClCompile Include="..\..\src\UI\Components\InputText.cpp" />
-    <ClCompile Include="..\..\src\UI\Components\ProgressBarr.cpp" />
+    <ClCompile Include="..\..\src\UI\Components\ProgressBar.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Text.cpp" />
     <ClCompile Include="..\..\src\UI\UIManager.cpp" />
@@ -31,9 +31,10 @@
     <ClInclude Include="..\..\src\UI\Components\DropBox.h" />
     <ClInclude Include="..\..\src\UI\Components\Image.h" />
     <ClInclude Include="..\..\src\UI\Components\InputText.h" />
-    <ClInclude Include="..\..\src\UI\Components\ProgressBarr.h" />
+    <ClInclude Include="..\..\src\UI\Components\ProgressBar.h" />
     <ClInclude Include="..\..\src\UI\Components\Slider.h" />
     <ClInclude Include="..\..\src\UI\Components\Text.h" />
+    <ClInclude Include="..\..\src\UI\UI.h" />
     <ClInclude Include="..\..\src\UI\UIManager.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
-#include <unordered_set>
 #include "Structure/Component.h"
+#include <unordered_set>
 #include "Utilities/Vector2.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/Quaternion.h"
@@ -11,19 +11,16 @@ namespace Tapioca {
 * @brief Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
 * Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
 * @param scene Escena a la que se le van a cargar los gameobjects
-* @return Devuelve true si se ha cargado correctamente
+* @return true si se ha cargado correctamente, false si no
 */
 class TAPIOCA_API Transform : public Component {
 private:
     Vector3 position;
     Vector3 rotation;
     Vector3 scale;
-    /*
-    * @brief Envia un evento para informar que se ha modificado el transform
-    */
-    void changed(bool rb = false);
 
     Transform* parent;
+
     // warning C4251 'Tapioca::Transform::children' :
     // class 'std::unordered_set<Tapioca::Transform *,std::hash<Tapioca::Transform *>,
     // std::equal_to<Tapioca::Transform *>,std::allocator<Tapioca::Transform *>>' necesita
@@ -35,20 +32,25 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+    
+    /*
+    * @brief Envia un evento para informar que se ha modificado el transform
+    */
+    void changed(bool rb = false);
 
     /*
-    * @brief Devuelve en el vector que se pasa como parametro los hijos de este transfom
-    * @param allChildren vector en el que se devuelven todos los hijos
+    * @brief Devuelve en el vector que se pasa como parametro, los hijos de este transfom
+    * @param allChildren Vector en el que se devuelven todos los hijos
     */
     void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
     /*
-    * @brief Aniade un hijo a este transform
-    * @param child puntero al hijo que de aniade a este transform
+    * @brief Anade un hijo a este transform
+    * @param child Puntero al hijo que de anade a este transform
     */
     void addChild(Transform* const child);
     /*
     * @brief Elimina un hijo de este transform
-    * @param child puntero al hijo que se elimina del transform
+    * @param child Puntero al hijo que se elimina del transform
     */
     void removeChild(Transform* const child);
     /*
@@ -62,22 +64,26 @@ private:
 
 public:
     COMPONENT_ID("Transform")
+
     /*
     * @brief Constructor de la clase Transform. Se inicializa con posicion y rotacion 0 y escala 1
     */
     Transform();
     /*
-    * @brief Destructora de transform. Se elimina la relacion de parentesco y se eliminan los hijos
+    * @brief Destructor de transform. Se elimina la relacion de parentesco y se eliminan los hijos
     */
     ~Transform();
+
     /*
-    * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
+    * @brief Recibe los parametros iniciales y se inicializan los atributos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
-    * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
+    * @return true si se ha inicializado correctamente, false si no
     */
     bool initComponent(const CompMap& variables) override;
 
+    /*
+    */
     void start() override;
 
     /*

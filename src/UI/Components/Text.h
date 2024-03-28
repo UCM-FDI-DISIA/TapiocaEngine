@@ -40,7 +40,7 @@ public:
     /*
     * @brief Asigna el transform del objeto al texto e inicializa la fuente del texto
     */
-    void awake() override;
+    void start() override;
 
     /*
     * @brief Metodo que se usa para renderizar el texto

@@ -55,6 +55,7 @@
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h" />
+    <ClInclude Include="..\..\src\Graphics\Graphics.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />

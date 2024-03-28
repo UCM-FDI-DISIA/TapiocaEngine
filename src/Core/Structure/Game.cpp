@@ -133,7 +133,7 @@ void Game::popScene() {
         finish = true;
 #ifdef _DEBUG
         std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
-#endif   // _DEBUG
+#endif 
     }
 }
 

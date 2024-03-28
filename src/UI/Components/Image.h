@@ -1,3 +1,10 @@
+// HAY QUE HACER QUE:
+// Herede de BaseWidget y Component
+// Tenga un constructor vacio por defecto
+// No hacer #include de imgui.h
+// Hacer forward declaration de GLTexture
+// Funcione desde un archivo.lua
+
 #pragma once
 #include "imgui.h"
 #include "Core.h"
@@ -31,12 +38,11 @@ public:
     Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
             ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                 ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
-    ~Image();
+    ~Image() { }
 
     uint32_t getID() { return textureID; }
     ImGuiWindowFlags getFlags() { return myflags; }
     bool*  getCanCloseWindow() { return canClose; }
-    Tapioca::Vector2 getScaledDimnsions();
     Tapioca::Vector2 getPosition() { return position; }
     Tapioca::Vector2 getSize(){return size;}
 };

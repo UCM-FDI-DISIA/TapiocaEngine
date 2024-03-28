@@ -88,6 +88,7 @@
     <ClCompile Include="..\..\src\Input\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Input\Input.h" />
     <ClInclude Include="..\..\src\Input\InputManager.h" />
   </ItemGroup>
   <ItemGroup>

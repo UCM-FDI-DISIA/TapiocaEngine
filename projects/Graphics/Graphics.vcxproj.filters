@@ -178,5 +178,6 @@
     <ClInclude Include="..\..\src\Graphics\Components\ParticleSystemComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Graphics.h" />
   </ItemGroup>
 </Project>

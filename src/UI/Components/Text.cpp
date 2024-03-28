@@ -59,7 +59,7 @@ bool Text::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Text::awake() {
+void Text::start() {
     setTransform(object->getComponent<Transform>());
     updateTextFont();
 }

@@ -3,30 +3,35 @@
 #include <lua.hpp>
 #include <LuaBridge.h>
 #include <fstream>
+#include <imgui.h>
 
 #include "Structure/Game.h"
-#include "Structure/GameObject.h"
-#include "Components/Transform.h"
 #include "Structure/FactoryManager.h"
 #include "Structure/Scene.h"
-
-// UI
-#include <imgui.h>
+#include "Structure/GameObject.h"
+#include "Components/Transform.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<SceneManager>;
 template<>
 SceneManager* Singleton<SceneManager>::instance_ = nullptr;
 
-SceneManager::SceneManager() : luaState(nullptr), factMngr(nullptr), game(nullptr) { }
+SceneManager::SceneManager() : luaState(nullptr), game(nullptr), factMngr(nullptr), scenesPath("assets\\scenes\\") { }
 
 bool SceneManager::init() {
     game = Game::instance();
     factMngr = FactoryManager::instance();
 
-    if (game == nullptr || factMngr == nullptr) {
+    if (game == nullptr) {
 #ifdef _DEBUG
-        std::cerr << "Instancia de Game o Instancia de FactoryManager invalido\n";
+        std::cerr << "Instancia de Game invalido\n";
+#endif
+        return false;
+    }
+    if (factMngr == nullptr) {
+#ifdef _DEBUG
+        std::cerr << "Instancia de FactoryManager invalido\n";
 #endif
         return false;
     }
@@ -34,14 +39,13 @@ bool SceneManager::init() {
     return true;
 }
 
-SceneManager::~SceneManager() { 
+SceneManager::~SceneManager() {
     luaState = nullptr;
-    factMngr = nullptr;
     game = nullptr;
+    factMngr = nullptr;
 }
 
 bool SceneManager::loadScene(std::string const& sceneName) {
-
     luaState = luaL_newstate();
     if (luaState == nullptr) {
 #ifdef _DEBUG
@@ -52,7 +56,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
 
     exposeUIvalues();
 
-    std::string path = "assets\\scenes\\" + sceneName;
+    std::string path = scenesPath + sceneName;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(luaState, -1) << '\n';
@@ -60,6 +64,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
         lua_close(luaState);
         return false;
     }
+
     Scene* scene = new Scene();
     if (!loadScene(scene)) {
 #ifdef _DEBUG
@@ -69,6 +74,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
         delete scene;
         return false;
     }
+
     game->pushScene(scene);
     lua_close(luaState);
 #ifdef _DEBUG
@@ -129,7 +135,6 @@ bool SceneManager::loadGameObject(GameObject* const gameObject) {
 }
 
 bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects) {
-
 #ifdef _DEBUG
     std::cout << "Children: start\n";
 #endif
@@ -164,7 +169,7 @@ bool SceneManager::loadComponents(GameObject* const gameObject) {
 #endif
         component = loadComponent(componentName);
         if (component == nullptr) return false;
-        // Si no tengo creado componente
+        // Si no tengo creado el componente
         gameObject->addComponent(component, componentName);
         lua_pop(luaState, 1);
     }
@@ -179,7 +184,6 @@ Component* SceneManager::loadComponent(std::string const& name) {
 
     lua_pushnil(luaState);
     CompMap map;
-
     std::string key = "";
     CompValue value;
     bool load = true;
@@ -221,6 +225,7 @@ Component* SceneManager::loadComponent(std::string const& name) {
             lua_pop(luaState, 1);
         }
     }
+
     Component* comp = nullptr;
     if (load) {
         comp = factMngr->createComponent(name);

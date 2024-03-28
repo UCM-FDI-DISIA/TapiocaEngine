@@ -1,13 +1,9 @@
 #pragma once
-
-#pragma region includes
 #include "Structure/Component.h"
 #include "Utilities/Vector3.h"
-#include "../Physics_def.h"
+#include "../physicsDefs.h"
 
 class btRigidBody;
-
-#pragma endregion
 
 namespace Tapioca {
 //class RigidBodyBuilder;
@@ -250,10 +246,9 @@ public:
     * @return Gravedad que se aplcia al rigidbody
     */
     Vector3 getGravity() const;
-
-
+    /*
+    * @brief
+    */
     bool getActiveRB() const;
 };
-
-
 }

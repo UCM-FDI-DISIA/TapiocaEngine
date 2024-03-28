@@ -105,7 +105,7 @@ bool InputText::initComponent(const CompMap& variables) {
     return true;
 }
 
-void InputText::awake() {
+void InputText::start() {
     setTransform(object->getComponent<Transform>());
     startBuffer();
     updateOnTextEnter();

@@ -23,5 +23,6 @@
     <ClInclude Include="..\..\src\Bridge\SceneManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Bridge\Bridge.h" />
   </ItemGroup>
 </Project>
