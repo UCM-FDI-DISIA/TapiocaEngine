@@ -14,7 +14,7 @@
 #include "CameraComponent.h"
 #include "Animator.h"
 #include "ParticleSystemComponent.h"
-#include "Components/PlaneComponent.h"
+#include "PlaneComponent.h"
 // UI
 #include "Button.h"
 #include "InputText.h"
