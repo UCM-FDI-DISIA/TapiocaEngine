@@ -1,4 +1,5 @@
 #include "BaseWidget.h"
+#include <imgui.h>
 
 namespace Tapioca {
 BaseWidget::BaseWidget()

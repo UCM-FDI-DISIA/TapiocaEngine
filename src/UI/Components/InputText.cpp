@@ -7,15 +7,21 @@ namespace Tapioca {
 InputText::InputText()
     : BaseWidget(), Component(), placeHolderText("Enter text here"), bufferSize(256), buffer(nullptr),
       onTextEnteredId(InputTextFunction::INPUT_TEXT_NONE), onTextEntered([]() {}), textFontName("arial.ttf"),
-      textSize(16.0f), textFont(nullptr), textColor(ImGui::GetStyle().Colors[ImGuiCol_Text]),
-      bgColor(ImGui::GetStyle().Colors[ImGuiCol_FrameBg]),
+      textSize(16.0f), textFont(nullptr),
       flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) {
+    ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
+    textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
+    ImVec4 bgColorImVec = ImGui::GetStyle().Colors[ImGuiCol_FrameBg];
+    bgColor = Vector4(bgColorImVec.x, bgColorImVec.y, bgColorImVec.z, bgColorImVec.w);
     createInputTextFunctions();
 }
 
 InputText::~InputText() { delete[] buffer; }
 
 void InputText::startBuffer() {
+    if (buffer != nullptr) {
+        delete[] buffer;
+    }
     buffer = new char[bufferSize];
     strcpy_s(buffer, bufferSize, placeHolderText.c_str());
 }
@@ -102,15 +108,15 @@ bool InputText::initComponent(const CompMap& variables) {
 void InputText::awake() {
     setTransform(object->getComponent<Transform>());
     startBuffer();
-    onTextEntered = inputTextFunctions[onTextEnteredId];
-    textFont = UIManager::instance()->getFont(textFontName, textSize);
+    updateOnTextEnter();
+    updateTextFont();
 }
 
 void InputText::render() const {
     ImVec2 inputTextSize(getSize().x, 0);
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del inputText
-    ImGui::SetNextWindowPos(getPosition());
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
     ImGui::SetNextWindowSize(inputTextSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
@@ -118,16 +124,16 @@ void InputText::render() const {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
 
-    ImGui::Begin(getName().c_str(), nullptr, getWindowFlags());
+    ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
     ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
 
     // Establece la fuente del texto
-    ImGui::PushFont(getTextFont());
+    ImGui::PushFont(textFont);
     // Establece el color del texto
-    ImGui::PushStyleColor(ImGuiCol_Text, getTextColor());
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));
     // Establece el color de la caja de texto
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, getBgColor());
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(bgColor.x, bgColor.y, bgColor.z, bgColor.w));
     // Establece el ancho de envoltura para el texto del inputText
     ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + inputTextSize.x);
 
@@ -157,8 +163,13 @@ void InputText::createInputTextFunctions() {
 
     inputTextFunctions[InputTextFunction::INPUT_TEXT_TEXT_ENTERED] = [this]() {
         setPlaceHolderText("Se ha hecho ENTER");
-        setTextColor(ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-        setBgColor(ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
+        setTextColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+        setBgColor(Vector4(0.0f, 1.0f, 0.0f, 1.0f));
     };
 }
+
+void InputText::updateOnTextEnter() { onTextEntered = inputTextFunctions[onTextEnteredId]; }
+
+void InputText::updateTextFont() { textFont = UIManager::instance()->getFont(textFontName, textSize); }
+
 }

@@ -76,6 +76,4 @@ void WindowManager::update(const uint64_t deltaTime) {
         for (int i = 0; i < modules.size() && !UIEvent; i++) UIEvent = modules[i]->handleEvents(event);
     }
 }
-
-
 }

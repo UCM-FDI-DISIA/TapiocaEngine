@@ -96,5 +96,8 @@
     <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h">
       <Filter>Structure</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\checkML.h" />
+    <ClInclude Include="..\..\src\Core\componentDefs.h" />
+    <ClInclude Include="..\..\src\Core\defs.h" />
   </ItemGroup>
 </Project>

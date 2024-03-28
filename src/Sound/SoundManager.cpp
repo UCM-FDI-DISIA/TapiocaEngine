@@ -1,4 +1,6 @@
 #include "SoundManager.h"
+#include "irrKlang.h"
+
 //prueba 
 #include "Sound.h"
 #include "AudioSource.h"

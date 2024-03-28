@@ -1,9 +1,9 @@
-#include "ImageUI.h"
+#include "Image.h"
 #include "OgreGLTextureCommon.h"
 #include "OgreTextureManager.h"
 namespace Tapioca { 
 
-	ImageUI::ImageUI(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy, ImGuiWindowFlags flags) {
+	Image::Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy, ImGuiWindowFlags flags) {
 	
 
 			sourcefile = file;
@@ -29,7 +29,7 @@ namespace Tapioca {
 		  myflags = flags;
 	}
 
-   ImageUI::~ImageUI() { 
+   Image::~Image() { 
   // delete textureID;
    delete canClose;
    }	  

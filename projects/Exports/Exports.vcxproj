@@ -114,9 +114,6 @@
     <ClCompile Include="..\..\src\Exports\Exports.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Exports\checkML.h" />
-    <ClInclude Include="..\..\src\Exports\componentDefs.h" />
-    <ClInclude Include="..\..\src\Exports\defs.h" />
     <ClInclude Include="..\..\src\Exports\Exports.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,15 +1,19 @@
 #pragma once
-//includes para herencia
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 
-//includes de IrrKlang
-#include "irrKlang.h"
+namespace irrklang {
+class ISoundEngine;
+}
 
 namespace Tapioca {
 class Sound;
 class AudioSource;
 class AudioListener;
+
+/*
+* @brief Clase que gestiona el audio del juego
+*/
 class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
     friend Singleton<SoundManager>;
     friend Sound;
@@ -17,10 +21,12 @@ class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
     friend AudioListener;
 
 private:
-    Sound* snd;//para probar en testsample
-    AudioSource* au; //para probar en testsample
     AudioListener* al;
     irrklang::ISoundEngine* soundEngine;
+
+    // TEMPORAL
+    Sound* snd;
+    AudioSource* au;
 
     /*
     * @brief Constructora de la clase SoundManager
@@ -44,9 +50,7 @@ public:
     */
     void setListener(AudioListener al);
 
-
-
-    //para pruebas
+    // TEMPORAL
     void testsample();
 };
 }

@@ -1,13 +1,10 @@
 #pragma once
 #include "BaseWidget.h"
 #include "Structure/Component.h"
-#include "Utilities/Vector2.h"
 #include <string>
-#include <imgui.h>
+#include "Utilities/Vector4.h"
 
-namespace Ogre {
-class SceneManager;
-}
+struct ImFont;
 
 namespace Tapioca {
 /*
@@ -19,7 +16,7 @@ private:
     float textSize;             // Tamano del texto
     std::string textFontName;   // Nombre de la fuente del texto
     ImFont* textFont;           // Fuente del texto
-    ImVec4 textColor;           // Color del texto
+    Vector4 textColor;          // Color del texto
 
 public:
     COMPONENT_ID("Text")
@@ -60,13 +57,23 @@ public:
     * @brief Establece el tamano de la fuente del texto
     * @param textSize Tamano de la fuente del texto
     */
-    inline void setTextSize(float textSize) { this->textSize = textSize; }
+    inline void setTextSize(float textSize) {
+        if (textSize != this->textSize) {
+            this->textSize = textSize;
+            updateTextFont();
+        }
+    }
 
     /*
     * @brief Establece el nombre de la fuente del texto
     * @param textFontName Nombre de la fuente del texto
     */
-    inline void setTextFontName(std::string textFontName) { this->textFontName = textFontName; }
+    inline void setTextFontName(std::string textFontName) {
+        if (textFontName != this->textFontName) {
+            this->textFontName = textFontName;
+            updateTextFont();
+        }
+    }
 
     /*
     * @brief Establece la fuente del texto
@@ -75,10 +82,15 @@ public:
     inline void setTextFont(ImFont* textFont) { this->textFont = textFont; }
 
     /*
+    * @brief Actualiza la fuente del texto
+    */
+    void updateTextFont();
+
+    /*
     * @brief Establece el color del texto
     * @param textColor Color del texto
     */
-    inline void setTextColor(const ImVec4& textColor) { this->textColor = textColor; }
+    inline void setTextColor(const Vector4& textColor) { this->textColor = textColor; }
 
     /*
     * @brief Devuelve el texto
@@ -108,6 +120,6 @@ public:
     * @brief Devuelve el color del texto
     * @return Color del texto
     */
-    inline ImVec4 getTextColor() const { return textColor; }
+    inline Vector4 getTextColor() const { return textColor; }
 };
 }

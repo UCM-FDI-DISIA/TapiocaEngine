@@ -4,7 +4,7 @@
 #include "OgreGLTexture.h"
 
 namespace Tapioca {
-class TAPIOCA_API ImageUI {
+class TAPIOCA_API Image {
 private:
     //informacion de a textura que vamos a cargar
     std::string sourcefile;
@@ -28,10 +28,10 @@ public:
     * @param widthandheigth un vector con las dimensiones con las que deseamos mostrar la imagen
     * @param xandy un vector con la posicion en pantalla de la imagen 
     */
-    ImageUI(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
+    Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
             ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                 ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
-    ~ImageUI();
+    ~Image();
 
     uint32_t getID() { return textureID; }
     ImGuiWindowFlags getFlags() { return myflags; }

@@ -18,9 +18,8 @@
 #include "Structure/Scene.h"
 #include "WindowManager.h"
 
-
-#include "Components/Button.h"
-#include "ImageUI.h"
+// TEMPORAL
+#include "Components/Image.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "OgreGLTextureCommon.h"
@@ -35,7 +34,7 @@ UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
     : game(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr),
-      fontsPath("assets/fonts/") { }
+      fontsPath("assets/fonts/"), testid() { }
 
 UIManager::~UIManager() {
     sdlWindow = nullptr;
@@ -43,13 +42,12 @@ UIManager::~UIManager() {
     sceneManager = nullptr;
 
     fonts.clear();
-    for (auto button : buttons) {
-        delete button.second;
-    }
+
+    // TEMPORAL
     for (auto image : images) {
         delete image.second;
     }
-    buttons.clear();
+    images.clear();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -74,9 +72,9 @@ bool UIManager::init() {
     ImGui_ImplOpenGL3_Init("#version 130");
 
     loadFonts();
-
-   
-  createImage("imagetest.PNG", Tapioca::Vector2(300, 300), Tapioca::Vector2(200, 0));
+    
+    // TEMPORAL
+    createImage("imagetest.PNG", Tapioca::Vector2(300, 300), Tapioca::Vector2(200, 0));
     
     /*//pruebas de la imagen
     //sceneManager = graphics->getSceneManager();
@@ -112,9 +110,8 @@ bool UIManager::init() {
      //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
     delete image_texture;*/
 
-    loadFonts( 16.0f);
     //lo que he usado para probar que si no deja leaks
-   // delete image_data;
+    // delete image_data;
    
     return true;
 }
@@ -127,50 +124,7 @@ void UIManager::render() {
 
     if (game->getTopScene() != nullptr) game->getTopScene()->render();
 
-     /* for (auto button : buttons) {
-        std::string textStr = button.second->getText();
-        const char* text = textStr.c_str();
-        ImVec2 constSize = button.second->getConstSize();
-        ImVec2 buttonSize = constSize;
-        // Si el tamano es -1, -1, se calcula el tamano del boton en funcion del texto
-        if (constSize.x <= -1 && constSize.y <= -1) {
-            ImVec2 textSize = ImGui::CalcTextSize(text);
-            buttonSize = ImVec2(textSize.x + button.second->getPadding().x, textSize.y + button.second->getPadding().y);
-        }
-
-        // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
-        ImGui::SetNextWindowPos(button.second->getPosition());
-        ImGui::SetNextWindowSize(buttonSize);
-
-        // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-
-        ImGui::Begin(text,false);
-
-        ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
-        // Establece los colores del boton en los diferentes estados
-        ImGui::PushStyleColor(ImGuiCol_Button, button.second->getNormalColor());
-        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, button.second->getHoverColor());
-        ImGui::PushStyleColor(ImGuiCol_ButtonActive, button.second->getActiveColor());
-
-        // Establece el ancho de envoltura para el texto del boton
-        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + buttonSize.x);
-
-        // -1, -1 para que el boton se ajuste al tamano de la ventana
-        if (ImGui::Button(text, ImVec2(-1, -1))) button.second->getOnClick()();
-
-        // Pop para el ancho de envoltura
-        ImGui::PopTextWrapPos();
-
-        // Pop para WindowBg y los colores del boton
-        ImGui::PopStyleColor(4);
-      //  ImGui::ShowDemoWindow();
-        
-        ImGui::End();
-     //   ImGui::Image((void*)(intptr_t)testid, ImVec2(804, 499));
-    }*/
+    // TEMPORAL
     for (auto image : images) {
         ImGui::SetNextWindowPos(ImVec2(image.second->getPosition().x, image.second->getPosition().y));
         ImGui::SetNextWindowSize(ImVec2(image.second->getSize().x, image.second->getSize().y ));
@@ -280,9 +234,11 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
         return fonts[{name, pixelSize}];
     }
 }
-ImageUI* UIManager::createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
+
+// TEMPORAL
+Image* UIManager::createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
                                 ImGuiWindowFlags flags) {
-    ImageUI* image = new ImageUI(file, widthandheigth, xandy, flags);
+    Image* image = new Image(file, widthandheigth, xandy, flags);
 
     images.insert({file, image});
     return image;

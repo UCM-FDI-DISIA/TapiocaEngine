@@ -20,6 +20,9 @@
 #include "LightSpotlight.h"
 #include "LightDirectional.h"
 
+// PRUEBAS DE CORE
+#include "Utilities/Quaternion.h"
+
 namespace Tapioca {
 void initEngine() {
     game = Tapioca::Game::create();
@@ -30,7 +33,7 @@ void deleteEngine() { delete game; }
 
 void runEngine() {
     if (game->init()) {
-        // PRUEBAS GRAPHICS
+        // PRUEBAS DE GRAPHICS
         /*auto nodeAux = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f));
         auto plane1 = graphics->createPlane(nodeAux, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola1", 100, 100, 100, 100);*/
         /*auto nodeAux2 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f));
@@ -44,7 +47,16 @@ void runEngine() {
         //auto light2 = graphics->createLightDirectional(node2, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
         //scenes->loadScene("archivo2.lua");
 
-        // PRUEBAS DE UI
+        // PRUEBAS DE CORE
+        /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
+        Quaternion q2 = Tapioca::Quaternion(0, Tapioca::Vector3(0, 0, 1));
+        Quaternion q3 = Tapioca::Quaternion(1, 0, 0, 0.0000000017);
+        Quaternion qc = q * q2 * q3;
+        Vector3 p = qc.rotatePoint(Tapioca::Vector3(0, 0, 1));*/
+
+        // PRUEBAS DE SOUND
+        //SoundManager::instance()->testsample();
+
         scenes->loadScene("startScene.lua");
 
         game->run();

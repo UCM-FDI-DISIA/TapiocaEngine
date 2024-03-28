@@ -2,7 +2,6 @@
 #include "componentDefs.h"
 #include "defs.h"
 #include "FactoryManager.h"
-#include "SceneManager.h"
 
 namespace Tapioca {
 HMODULE DynamicLibraryLoader::module = nullptr;

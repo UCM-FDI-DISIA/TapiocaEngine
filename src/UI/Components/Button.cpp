@@ -6,12 +6,17 @@
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), text("Button"), onClickId(ButtonFunction::BUTTON_NONE), onClick([]() {}), padding(ImVec2(10, 5)),
-      textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f), textColor(ImGui::GetStyle().Colors[ImGuiCol_Text]),
-      normalColor(ImGui::GetStyle().Colors[ImGuiCol_Button]),
-      hoverColor(ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered]),
-      activeColor(ImGui::GetStyle().Colors[ImGuiCol_ButtonActive]) { 
-	createButtonFunctions();
+    : BaseWidget(), Component(), text("Button"), onClickId(ButtonFunction::BUTTON_NONE), onClick([]() {}),
+      padding(Vector2(10, 5)), textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f) {
+    ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
+    textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
+    ImVec4 normalColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Button];
+    normalColor = Vector4(normalColorImVec.x, normalColorImVec.y, normalColorImVec.z, normalColorImVec.w);
+    ImVec4 hoverColorImVec = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered];
+    hoverColor = Vector4(hoverColorImVec.x, hoverColorImVec.y, hoverColorImVec.z, hoverColorImVec.w);
+    ImVec4 activeColorImVec = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive];
+    activeColor = Vector4(activeColorImVec.x, activeColorImVec.y, activeColorImVec.z, activeColorImVec.w);
+    createButtonFunctions();
 }
 
 bool Button::initComponent(const CompMap& variables) {
@@ -110,14 +115,14 @@ bool Button::initComponent(const CompMap& variables) {
 
 void Button::awake() {
     setTransform(object->getComponent<Transform>());
-    onClick = buttonFunctions[onClickId];
-    textFont = UIManager::instance()->getFont(textFontName, textSize);
+    updateOnClick();
+    updateTextFont();
 }
 
 void Button::render() const {
     std::string textStr = text;
     const char* text = textStr.c_str();
-    ImVec2 constSize = getSize();
+    ImVec2 constSize(getSize().x, getSize().y);
     ImVec2 buttonSize = constSize;
     // Si el tamano es -1, -1, se calcula el tamano del boton en funcion del texto
     if (constSize.x <= -1 && constSize.y <= -1) {
@@ -126,7 +131,7 @@ void Button::render() const {
     }
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
-    ImGui::SetNextWindowPos(getPosition());
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
     ImGui::SetNextWindowSize(buttonSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
@@ -141,11 +146,11 @@ void Button::render() const {
     // Establece la fuente del texto
     ImGui::PushFont(textFont);
     // Establece el color del texto
-    ImGui::PushStyleColor(ImGuiCol_Text, textColor);
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));
     // Establece los colores del boton en los diferentes estados
-    ImGui::PushStyleColor(ImGuiCol_Button, normalColor);
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, hoverColor);
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, activeColor);
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(normalColor.x, normalColor.y, normalColor.z, normalColor.w));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(activeColor.x, activeColor.y, activeColor.z, activeColor.w));
     // Establece el ancho de envoltura para el texto del boton
     ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + buttonSize.x);
     // -1, -1 para que el boton se ajuste al tamano de la ventana
@@ -171,8 +176,12 @@ void Button::createButtonFunctions() {
     buttonFunctions[ButtonFunction::BUTTON_INIT_GAME] = [this]() {
         if (!DynamicLibraryLoader::initGame()) {
             setText("Couldn't init game");
-            setTextColor(ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+            setTextColor(Vector4(1.0f, 0.0f, 0.0f, 1.0f));
         }
     };
 }
+
+void Button::updateOnClick() { onClick = buttonFunctions[onClickId]; }
+
+void Button::updateTextFont() { textFont = UIManager::instance()->getFont(textFontName, textSize); }
 }

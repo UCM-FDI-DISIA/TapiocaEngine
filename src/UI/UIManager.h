@@ -16,7 +16,6 @@
 struct SDL_Window;
 
 namespace Ogre {
-class RenderWindow;
 class SceneManager;
 }
 
@@ -37,8 +36,7 @@ struct pair_hash {
         return hash1 ^ hash2;
     }
 };
-class Button;
-class ImageUI;
+class Image;
 
 /*
 * @brief Clase que se encarga de la interfaz de usuario
@@ -57,14 +55,15 @@ private:
 
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
 
-    // TEMPORAL?
-    std::unordered_map<std::string, Button*> buttons;   // Botones de la interfaz de usuario
-    std::unordered_map<std::string, ImageUI*> images;  // Imagenes de la interfaz de ususario 
+    // TEMPORAL
+    std::unordered_map<std::string, Image*> images;  // Imagenes de la interfaz de ususario 
+    uint32_t  testid;
+
     /*
     * @brief Inicializa a nulo los punteros
     */
     UIManager();
-   uint32_t  testid;
+
 
 public:
     /*
@@ -124,18 +123,11 @@ public:
     * @return Puntero a la fuente solicitada, defaultFont si no se ha podido cargar
     */
     ImFont* getFont(const std::string& name, float pixelSize = fontDefaultSize);
-    Button* getButton(const std::string& name);
-
-    /*
-    * @brief Elimina un boton
-    * @param name Nombre del boton
-    */
-    bool deleteButton(const std::string& name);
 
     /*
     * Crea una imagen qeu se muestra en el Hud
     */
-    ImageUI* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
+    Image* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
                          ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                              ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
 };

@@ -1,14 +1,12 @@
 #pragma once
 #include "BaseWidget.h"
 #include "Structure/Component.h"
-#include "Utilities/Vector2.h"
 #include <string>
 #include <functional>
-#include <imgui.h>
+#include "Utilities/Vector4.h"
 
-namespace Ogre {
-class SceneManager;
-}
+struct ImFont;
+typedef int ImGuiInputTextFlags;
 
 namespace Tapioca {
 /*
@@ -21,16 +19,16 @@ enum InputTextFunction { INPUT_TEXT_NONE, INPUT_TEXT_TEXT_ENTERED };
 */
 class TAPIOCA_API InputText : public BaseWidget, public Component {
 private:
-    std::string placeHolderText;           // Texto que se muestra en la caja de texto
-    char* buffer;                          // Buffer de la caja de texto
-    int bufferSize;                        // Tamano del buffer de la caja de texto
-    int onTextEnteredId;                   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
+    std::string placeHolderText;   // Texto que se muestra en la caja de texto
+    char* buffer;                  // Buffer de la caja de texto
+    int bufferSize;                // Tamano del buffer de la caja de texto
+    int onTextEnteredId;   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     std::function<void()> onTextEntered;   // Funcion que se ejecuta cuando se hace ENTER en la caja de texto
     float textSize;                        // Tamano de la fuente del texto de la caja de texto
     std::string textFontName;              // Nombre de la fuente del texto de la caja de texto
     ImFont* textFont;                      // Fuente del texto de la caja de texto incluyendo tamano
-    ImVec4 textColor;                      // Color del texto de la caja de texto
-    ImVec4 bgColor;                        // Color de fondo de la caja de texto
+    Vector4 textColor;                     // Color del texto de la caja de texto
+    Vector4 bgColor;                       // Color de fondo de la caja de texto
     ImGuiInputTextFlags flags;             // Flags de la caja de texto
 
     /*
@@ -77,8 +75,10 @@ public:
     * @param placeHolderText Texto de la caja de texto
     */
     inline void setPlaceHolderText(const std::string& placeHolderText) {
-        this->placeHolderText = placeHolderText;
-        startBuffer();
+        if (placeHolderText != this->placeHolderText) {
+            this->placeHolderText = placeHolderText;
+            startBuffer();
+        }
     }
 
     /*
@@ -91,13 +91,23 @@ public:
     * @brief Establece el tamano del buffer de la caja de texto
     * @param bufferSize Tamano del buffer de la caja de texto
     */
-    inline void setBufferSize(size_t bufferSize) { this->bufferSize = bufferSize; }
+    inline void setBufferSize(size_t bufferSize) {
+        if (bufferSize != this->bufferSize) {
+            this->bufferSize = bufferSize;
+            startBuffer();
+        }
+    }
 
     /*
     * @brief Establece el identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    * @param id Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
+    * @param onTextEnteredId Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     */
-    inline void setOnTextEnterId(int id) { this->onTextEnteredId = id; }
+    inline void setOnTextEnterId(int onTextEnteredId) {
+        if (onTextEnteredId != this->onTextEnteredId) {
+            this->onTextEnteredId = onTextEnteredId;
+            updateOnTextEnter();
+        }
+    }
 
     /*
     * @brief Establece la funcion que se ejecuta cuando se hace ENTER en la caja de texto
@@ -106,16 +116,31 @@ public:
     inline void setOnTextEnter(std::function<void()> onTextEnter) { this->onTextEntered = onTextEnter; }
 
     /*
+    * @brief Actualiza la funcion que se ejecuta cuando se hace ENTER en la caja de texto
+    */
+    void updateOnTextEnter();
+
+    /*
     * @brief Establece el tamano del texto del boton
     * @param textSize Tamano del texto del boton
     */
-    inline void setTextSize(float textSize) { this->textSize = textSize; }
+    inline void setTextSize(float textSize) {
+        if (textSize != this->textSize) {
+            this->textSize = textSize;
+            updateTextFont();
+        }
+    }
 
     /*
     * @brief Establece el nombre de la fuente del texto de la caja de texto
     * @param textFontName Nombre de la fuente del texto de la caja de texto
     */
-    inline void setTextFontName(std::string textFontName) { this->textFontName = textFontName; }
+    inline void setTextFontName(std::string textFontName) {
+        if (textFontName != this->textFontName) {
+            this->textFontName = textFontName;
+            updateTextFont();
+        }
+    }
 
     /*
     * @brief Establece la fuente del texto de la caja de texto
@@ -124,16 +149,21 @@ public:
     inline void setFont(ImFont* textFont) { this->textFont = textFont; }
 
     /*
+    * @brief Actualiza la fuente del texto de la caja de texto
+    */
+    void updateTextFont();
+
+    /*
     * @brief Establece el color del texto de la caja de texto
     * @param textColor Color del texto de la caja de texto
     */
-    inline void setTextColor(const ImVec4& textColor) { this->textColor = textColor; }
+    inline void setTextColor(const Vector4& textColor) { this->textColor = textColor; }
 
     /*
     * @brief Establece el color de fondo de la caja de texto
     * @param bgColor Color de fondo de la caja de texto
     */
-    inline void setBgColor(const ImVec4& bgColor) { this->bgColor = bgColor; }
+    inline void setBgColor(const Vector4& bgColor) { this->bgColor = bgColor; }
 
     /*
     * @brief Establece los flags de la caja de texto
@@ -193,13 +223,13 @@ public:
     * @brief Devuelve el color del texto de la caja de texto
     * @return Color del texto de la caja de texto
     */
-    inline ImVec4 getTextColor() const { return textColor; }
+    inline Vector4 getTextColor() const { return textColor; }
 
     /*
     * @brief Devuelve el color de fondo de la caja de texto
     * @return Color de fondo de la caja de texto
     */
-    inline ImVec4 getBgColor() const { return bgColor; }
+    inline Vector4 getBgColor() const { return bgColor; }
 
     /*
     * @brief Devuelve los flags de la caja de texto

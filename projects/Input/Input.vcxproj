@@ -59,7 +59,7 @@
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)src\Core\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)src\Core\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,7 +75,7 @@
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include;$(SolutionDir)src\Core\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)src\Core\;$(SolutionDir)src\Window\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

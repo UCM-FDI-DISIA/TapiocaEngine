@@ -1,5 +1,4 @@
 #include "FactoryManager.h"
-#include "SceneManager.h"
 
 #include "Component.h"
 #include "ComponentBuilder.h"
@@ -8,17 +7,17 @@
 // Core
 #include "Components/Transform.h"
 // Physics
-#include "Components/Collider.h"
-#include "Components/RigidBody.h"
+#include "Collider.h"
+#include "RigidBody.h"
 // Graphics
-#include "Components/MeshRenderer.h"
-#include "Components/CameraComponent.h"
-#include "Components/Animator.h"
-#include "Components/ParticleSystemComponent.h"
+#include "MeshRenderer.h"
+#include "CameraComponent.h"
+#include "Animator.h"
+#include "ParticleSystemComponent.h"
 // UI
-#include "Components/Button.h"
-#include "Components/InputText.h"
-#include "Components/Text.h"
+#include "Button.h"
+#include "InputText.h"
+#include "Text.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<FactoryManager>;

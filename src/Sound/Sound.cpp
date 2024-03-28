@@ -1,5 +1,7 @@
 #include "Sound.h"
 #include "SoundManager.h"
+#include <irrKlang.h>
+
 Tapioca::Sound::Sound(std::string source) { 
 	
 	

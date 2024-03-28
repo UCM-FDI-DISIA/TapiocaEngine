@@ -1,13 +1,10 @@
 #pragma once
 #include <string>
-#include <imgui.h>
 #include "Utilities/Vector2.h"
 #include "Utilities/Vector3.h"
 #include "Components/Transform.h"
 
-namespace Ogre {
-class SceneManager;
-}
+typedef int ImGuiWindowFlags;
 
 namespace Tapioca {
 /*
@@ -46,13 +43,13 @@ public:
     * @brief Establece la posicion del boton
     * @param position Posicion del boton
     */
-    inline void setPosition(const ImVec2& position) { transform->setPosition(Vector3(position.x, position.y, 0)); }
+    inline void setPosition(const Vector2& position) { transform->setPosition(Vector3(position.x, position.y, 0)); }
 
     /*
     * @brief Establece el tamano del boton
     * @param size Tamano del boton
     */
-    inline void setSize(const ImVec2& size) { transform->setScaleXY(Vector2(size.x, size.y)); }
+    inline void setSize(const Vector2& size) { transform->setScaleXY(size); }
 
     /*
     * @brief Establece los flags de la ventana
@@ -76,13 +73,13 @@ public:
     * @brief Devuelve la posicion del widget
     * @return Posicion del widget
     */
-    inline ImVec2 getPosition() const { return ImVec2(transform->getPosition().x, transform->getPosition().y); }
+    inline Vector2 getPosition() const { return transform->getPositionXY(); }
 
     /*
     * @brief Devuelve el tamano del widget
     * @return Tamano del widget
     */
-    inline ImVec2 getSize() const { return ImVec2(transform->getScale().x, transform->getScale().y); }
+    inline Vector2 getSize() const { return transform->getScaleXY(); }
 
     /*
     * @brief Devuelve los flags de la ventana

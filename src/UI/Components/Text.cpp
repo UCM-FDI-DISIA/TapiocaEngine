@@ -5,8 +5,10 @@
 
 namespace Tapioca {
 Text::Text()
-    : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), textFontName("arial.ttf"), textFont(nullptr),
-      textColor(ImGui::GetStyle().Colors[ImGuiCol_Text]) { }
+    : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), textFontName("arial.ttf"), textFont(nullptr) {
+    ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
+    textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
+}
 
 bool Text::initComponent(const CompMap& variables) {
     bool nameSet = setValueFromMap(name, "name", variables);
@@ -57,31 +59,31 @@ bool Text::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Text::awake() { 
+void Text::awake() {
     setTransform(object->getComponent<Transform>());
-    textFont = UIManager::instance()->getFont(textFontName, textSize);
+    updateTextFont();
 }
 
 void Text::render() const {
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del texto
-    ImGui::SetNextWindowPos(getPosition());
-    ImGui::SetNextWindowSize(getSize());
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
+    ImGui::SetNextWindowSize(ImVec2(getSize().x, getSize().y));
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
 
-    ImGui::Begin(getName().c_str(), nullptr, getWindowFlags());
+    ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
     ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
 
     // Establece la fuente del texto
-    ImGui::PushFont(getTextFont());
+    ImGui::PushFont(textFont);
     // Establece el color del texto
-    ImGui::PushStyleColor(ImGuiCol_Text, getTextColor());
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));
     // Imprime el texto
-    ImGui::Text(getText().c_str());
+    ImGui::Text(text.c_str());
 
     // Pop para WindowBg, el color del texto
     ImGui::PopStyleColor(2);
@@ -90,4 +92,6 @@ void Text::render() const {
 
     ImGui::End();
 }
+
+void Text::updateTextFont() { textFont = UIManager::instance()->getFont(textFontName, textSize); }
 }

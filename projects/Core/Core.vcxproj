@@ -58,7 +58,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Core\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Physics\;$(SolutionDir)src\UI\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\Components\;$(SolutionDir)src\UI\Components\;$(SolutionDir)src\Physics\Components\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -74,7 +74,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)src\Exports\;$(SolutionDir)src\Core\;$(SolutionDir)src\Bridge\;$(SolutionDir)src\Graphics\;$(SolutionDir)src\Physics\;$(SolutionDir)src\UI\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\Core\;$(SolutionDir)src\Graphics\Components\;$(SolutionDir)src\UI\Components\;$(SolutionDir)src\Physics\Components\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -98,8 +98,11 @@
     <ClCompile Include="..\..\src\Core\Utilities\Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Core\checkML.h" />
+    <ClInclude Include="..\..\src\Core\componentDefs.h" />
     <ClInclude Include="..\..\src\Core\Components\Transform.h" />
     <ClInclude Include="..\..\src\Core\Core.h" />
+    <ClInclude Include="..\..\src\Core\defs.h" />
     <ClInclude Include="..\..\src\Core\Structure\BasicBuilder.h" />
     <ClInclude Include="..\..\src\Core\Structure\Component.h" />
     <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h" />
