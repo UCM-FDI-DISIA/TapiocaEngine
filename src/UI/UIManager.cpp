@@ -72,10 +72,10 @@ bool UIManager::init() {
     ImGui_ImplOpenGL3_Init("#version 130");
 
     loadFonts();
-    
+
     // TEMPORAL
-    createImage("imagetest.PNG", Tapioca::Vector2(300, 300), Tapioca::Vector2(200, 0));
-    
+    createImage("imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
+
     /*//pruebas de la imagen
     //sceneManager = graphics->getSceneManager();
     int w = 200;
@@ -112,12 +112,12 @@ bool UIManager::init() {
 
     //lo que he usado para probar que si no deja leaks
     // delete image_data;
-   
+
     return true;
 }
 
 void UIManager::render() {
-    
+
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
@@ -127,22 +127,23 @@ void UIManager::render() {
     // TEMPORAL
     for (auto image : images) {
         ImGui::SetNextWindowPos(ImVec2(image.second->getPosition().x, image.second->getPosition().y));
-        ImGui::SetNextWindowSize(ImVec2(image.second->getSize().x, image.second->getSize().y ));
-       ImGui::Begin(image.first.c_str(), image.second->getCanCloseWindow(), image.second->getFlags());
-       // int* testid2 =new int( 1);
-      
-      
-       //El tama�o de la ventana del mismo tama�o qeu laimagen para qeu se vea entera y no se corte 
-      
-       ImVec2 offset = ImGui::GetContentRegionMax(); // las dimensiones de la ventana no son las mismas qeu las del espacion donde se muestra contenido cuidado
-       ImGui::Image((void*)(intptr_t)image.second->getID(),
-                    ImVec2(image.second->getSize().x - (image.second->getSize().x - offset.x),
-                           image.second->getSize().y - (image.second->getSize().y - offset.y)));
-            
-      //de esta manera siempre se ajusta la imagen al las dimensiones de la ventana
-       ImGui::End();
+        ImGui::SetNextWindowSize(ImVec2(image.second->getSize().x, image.second->getSize().y));
+        ImGui::Begin(image.first.c_str(), image.second->getCanCloseWindow(), image.second->getFlags());
+        // int* testid2 =new int( 1);
+
+
+        //El tama�o de la ventana del mismo tama�o qeu laimagen para qeu se vea entera y no se corte
+
+        ImVec2 offset = ImGui::
+            GetContentRegionMax();   // las dimensiones de la ventana no son las mismas qeu las del espacion donde se muestra contenido cuidado
+        ImGui::Image((void*)(intptr_t)image.second->getID(),
+                     ImVec2(image.second->getSize().x - (image.second->getSize().x - offset.x),
+                            image.second->getSize().y - (image.second->getSize().y - offset.y)));
+
+        //de esta manera siempre se ajusta la imagen al las dimensiones de la ventana
+        ImGui::End();
     }
-   
+
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -236,21 +237,21 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
 }
 
 ImTextureID UIManager::getTextureId(const std::string& name) {
-	Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(name, "General");
+    Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(name, "General");
     if (texturePtr == nullptr) {
-		throw Ogre::Exception(Ogre::Exception::ERR_FILE_NOT_FOUND, "No se encontro la textura " + name,
-            							  "UIManager::getTextureId");
+        throw Ogre::Exception(Ogre::Exception::ERR_FILE_NOT_FOUND, "No se encontro la textura " + name,
+                              "UIManager::getTextureId");
         return 0;
-	}
+    }
 
-	GLuint glID;
-	texturePtr->getCustomAttribute("GLID", &glID);
-	return (ImTextureID) glID;
+    GLuint glID;
+    texturePtr->getCustomAttribute("GLID", &glID);
+    return (ImTextureID)glID;
 }
 
 // TEMPORAL
 Image* UIManager::createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
-                                ImGuiWindowFlags flags) {
+                              ImGuiWindowFlags flags) {
     Image* image = new Image(file, widthandheigth, xandy, flags);
 
     images.insert({file, image});

@@ -4,7 +4,7 @@
 
 namespace Tapioca {
 ImageButton::ImageButton()
-    : Button(), textureId(), uv0(Vector2(0.0f, 0.0f)), uv1(Vector2(1.0f, 1.0f)),
+    : Button(), imagePath(""), textureId(), uv0(Vector2(0.0f, 0.0f)), uv1(Vector2(1.0f, 1.0f)),
       imageBgColor(Vector4(0.0f, 0.0f, 0.0f, 0.0f)), imageTint(Vector4(1.0f, 1.0f, 1.0f, 1.0f)) { }
 
 bool ImageButton::initComponent(const CompMap& variables) {

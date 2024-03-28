@@ -7,6 +7,7 @@
 
 #include "Structure/Game.h"
 #include "Structure/FactoryManager.h"
+#include "WindowManager.h"
 #include "Structure/Scene.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
@@ -251,6 +252,11 @@ Component* SceneManager::loadComponent(std::string const& name) {
 void SceneManager::exposeUIvalues() {
 
     luaL_openlibs(luaState);
+
+    lua_pushnumber(luaState, WindowManager::instance()->getWindowW());
+    lua_setglobal(luaState, "WINDOW_WIDTH");
+    lua_pushnumber(luaState, WindowManager::instance()->getWindowH());
+    lua_setglobal(luaState, "WINDOW_HEIGHT");
 
     // Window flags
     lua_pushnumber(luaState, ImGuiWindowFlags_None);
