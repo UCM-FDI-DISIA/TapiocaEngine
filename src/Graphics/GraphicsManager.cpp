@@ -402,9 +402,8 @@ BillboardSet* GraphicsManager::createBillboardSet(RenderNode* const node, std::s
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
-ParticleSystem* GraphicsManager::createParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node,
-                                                      std::string const& name, std::string const& templateName,
-                                                      const bool emitting) {
+ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, std::string const& name, 
+                                                      std::string const& templateName, const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 

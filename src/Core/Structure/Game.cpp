@@ -111,7 +111,7 @@ void Game::addModule(Module* const m) { modules.push_back(m); }
 
 void Game::pushEvent(std::string const& id, void* info) {
 #ifdef _DEBUG
-    if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
+    //if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
 #endif
 
     if (!scenes.empty()) scenes.top()->handleEvent(id, info);

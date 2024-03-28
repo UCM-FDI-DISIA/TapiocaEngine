@@ -1,0 +1,67 @@
+#pragma once
+#include "Structure/Component.h"
+#include "Utilities/Vector3.h"
+
+namespace Tapioca {
+class RenderNode;
+class Transform;
+class ParticleSystem;
+
+class TAPIOCA_API ParticleSystemComponent : public Component {
+private:
+    RenderNode* node;
+    Transform* transform;
+    ParticleSystem* pSys;
+
+       // warning C4251 'Tapioca::ParticleSystemComponent::pSysName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent' Graphics
+    // warning C4251 'Tapioca::ParticleSystemComponent::templateName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent'
+//#ifdef _MSC_VER
+//#pragma warning(disable : 4251)
+//#endif
+    std::string pSysName;
+    std::string templateName;
+//#ifdef _MSC_VER
+//#pragma warning(default : 4251)
+//#endif
+    bool emitting;
+    Vector3 initialRotation;
+
+public:
+    COMPONENT_ID("ParticleSystemComponent")
+
+    ParticleSystemComponent();
+    ~ParticleSystemComponent();
+
+    bool initComponent(const CompMap& variables) override;
+    void awake() override;
+    void handleEvent(std::string const& id, void* info) override;
+
+    /*
+    * @brief Comienza o para el sistema de particulas
+    * @param emitting True para que emita particulas, false en caso contrario
+    */
+    void setEmitting(const bool emitting);
+    /*
+    * @brief Devuelve si el sistema de particulas esta emitiendo o no
+    * @return True si emite particulas, false en caso contrario
+    */
+    bool isEmitting();
+
+    /* 
+    * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas
+    * que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento.
+    * @param time Tiempo en segundos que se adelantan
+    * @param interval Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso)
+    */
+    void fastForward(const float time, const float interval);
+        
+    //void setSystemName(const std::string& n);
+    //void setTemplateName(const std::string& n);
+};
+
+
+}

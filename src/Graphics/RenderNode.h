@@ -59,5 +59,7 @@ public:
     void roll(const float angle);
     void yaw(const float angle);
     void pitch(const float angle);
+
+    void showBoundingBox(bool show);
 };
 }

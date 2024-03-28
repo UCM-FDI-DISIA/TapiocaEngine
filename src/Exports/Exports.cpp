@@ -50,8 +50,7 @@ void runEngine() {
         game->run();
     }
 #ifdef _DEBUG
-    else
-        std::cerr << "Error al inicializar un modulo\n";
+    else std::cerr << "Error al inicializar un modulo\n";
 #endif
 }
 
@@ -85,9 +84,9 @@ static void createModules(Tapioca::Game* game) {
     // para ignorar eventos de input que interactuen con la UI
     // y ambos deberian ser los ultimos para que el resto de
     // eventos de ventana no se ignoren por los eventos de UI
-    window->subscribeModule(graphics);
-    window->subscribeModule(ui);
-    window->subscribeModule(input);
+    if (graphics != nullptr) window->subscribeModule(graphics);
+    if (ui != nullptr) window->subscribeModule(ui);
+    if (window != nullptr) window->subscribeModule(input);
 }
 
 void mapInput() {

@@ -95,6 +95,9 @@
     <ClCompile Include="..\..\src\Graphics\LightSpotlight.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\ParticleSystemComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -171,6 +174,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\LightSpotlight.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\ParticleSystemComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

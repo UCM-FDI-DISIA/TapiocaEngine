@@ -14,6 +14,7 @@
 #include "Components/MeshRenderer.h"
 #include "Components/CameraComponent.h"
 #include "Components/Animator.h"
+#include "Components/ParticleSystemComponent.h"
 // UI
 #include "Components/Button.h"
 #include "Components/InputText.h"
@@ -51,6 +52,7 @@ void FactoryManager::createEngineBuilders() {
     manager->addFactory("MeshRenderer", new BasicBuilder<MeshRenderer>());
     manager->addFactory("CameraComponent", new BasicBuilder<CameraComponent>());
     manager->addFactory("Animator", new BasicBuilder<Animator>());
+    manager->addFactory("ParticleSystemComponent", new BasicBuilder<ParticleSystemComponent>());
     // UI
     manager->addFactory("Button", new BasicBuilder<Button>());
     manager->addFactory("InputText", new BasicBuilder<InputText>());

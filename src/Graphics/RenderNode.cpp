@@ -82,4 +82,6 @@ void RenderNode::yaw(const float angle) {
     node->yaw(Ogre::Degree(angle), Ogre::Node::TS_WORLD);
 }
 void RenderNode::pitch(const float angle) { node->pitch(Ogre::Degree(angle), Ogre::Node::TS_WORLD); }
+
+void RenderNode::showBoundingBox(bool show) { node->showBoundingBox(show); }
 }

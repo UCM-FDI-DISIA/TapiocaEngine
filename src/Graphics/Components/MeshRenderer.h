@@ -24,7 +24,8 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string meshName, materialName;
+    std::string meshName;
+    std::string materialName;
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

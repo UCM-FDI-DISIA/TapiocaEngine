@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\CameraComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\ParticleSystemComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\..\src\Graphics\Components\Animator.h" />
     <ClInclude Include="..\..\src\Graphics\Components\CameraComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\ParticleSystemComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h" />

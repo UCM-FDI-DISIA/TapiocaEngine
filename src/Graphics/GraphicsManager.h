@@ -261,15 +261,14 @@ public:
 
     /*
     * @brief Crea un particleSystem
-    * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre del particleSystem
     * @param templateName TemplateName del particleSystem
     * @param emitting Indica si esta emitiendo particulas
     * @return Puntero al particleSystem creado
     */
-    ParticleSystem* createParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node,
-                                         std::string const& name, std::string const& templateName, const bool emitting);
+    ParticleSystem* createParticleSystem(RenderNode* const node, std::string const& name, 
+                                         std::string const& templateName, const bool emitting);
 
     /*
     * @brief Crea un plane
