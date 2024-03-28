@@ -14,7 +14,7 @@ PlaneComponent::~PlaneComponent() { delete node; }
 
 bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha podido establecer o No hay nombre de mesh
     // No se ha podido establecer o No hay nombre de mesh
-    if (!setValueFromMap(planeName, "meshName", variables) || planeName == "") {
+    if (!setValueFromMap(planeName, "planeName", variables) || planeName == "") {
 #ifdef _DEBUG
         std::cerr << "Error: PlaneComponent: no se pudo inicializar el nombre del plano.\n";
 #endif
