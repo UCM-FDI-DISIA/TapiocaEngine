@@ -33,11 +33,33 @@ private:
 public:
     COMPONENT_ID("ParticleSystemComponent")
 
+    /*
+    * @brief Constructora de la clase ParticleSystemComponent
+    */
     ParticleSystemComponent();
+    /*
+    * @brief Destructora de la clase ParticleSystemComponent
+    */
     ~ParticleSystemComponent();
 
+    /*
+    * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
+    * No garantiza que todos los componentes iniciales esten creados
+    * @param variables unordered_map con los parametros iniciales
+    * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
+    */
     bool initComponent(const CompMap& variables) override;
+    /*
+    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * Garantiza que todos los componentes iniciales esten creados
+    */
     void awake() override;
+    /*
+    * @brief Metodo que se usa para recibir eventos.
+    * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
+    * @param Id indica el tipo de mensaje
+    * @param info puntero a void para pasar parametros
+    */
     void handleEvent(std::string const& id, void* info) override;
 
     /*

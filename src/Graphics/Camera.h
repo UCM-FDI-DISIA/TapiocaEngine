@@ -75,6 +75,13 @@ public:
     */
     void setNearClipDistance(const float dist);
     /*
+    * @brief Cambia el valor del rectangulo lejano que define el frustum. 
+    * Si es muy grande la distancia, puede haber problemas de tartamudeo (por precision), 
+    * por ejemplo con las luces o sombras si se encuentran muy lejos
+    * @param dist Distancia a la que se quiere poner de la camara el regtangulo. Si es 0 es infinita.
+    */
+    void setFarClipDistance(const float dist);
+    /*
     * @brief Cambia el valor del rectangulo cercano que define el frustum. 
     * Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos,
     * el angulo que forma con la posicion de la camara es mayor o menor, respectivamente
@@ -84,15 +91,16 @@ public:
     * @param radians Angulo en radianes al que se cambia el trangulo que forma la camara con el rectangulo
     */
     void setFOVYRadians(const float radians);
-    void setFOVYDegrees(const float degrees);
-
     /*
-    * @brief Cambia el valor del rectangulo lejano que define el frustum. 
-    * Si es muy grande la distancia, puede haber problemas de tartamudeo (por precision), 
-    * por ejemplo con las luces o sombras si se encuentran muy lejos
-    * @param dist Distancia a la que se quiere poner de la camara el regtangulo. Si es 0 es infinita.
+    * @brief Cambia el valor del rectangulo cercano que define el frustum. 
+    * Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos,
+    * el angulo que forma con la posicion de la camara es mayor o menor, respectivamente
+    * Se puede indicar este angulo para ajustar la distancia del near plane
+    * X ej, un angulo de 90º corresponde con que tenemos una vision de 90º en el eje vertical (el horizontal se calcula solo,
+    * a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane)
+    * @param radians Angulo en grados al que se cambia el trangulo que forma la camara con el rectangulo
     */
-    void setFarClipDistance(const float dist);
+    void setFOVYDegrees(const float degrees);
     /*
     * @brief Cambia el valor de la relacion de aspecto que tiene la camara
     * @param aspectRatio Relacion de aspecto a la que se quiere poner de la camara
