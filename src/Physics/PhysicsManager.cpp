@@ -51,25 +51,30 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
     }
 }
 
-bool onCollisionStay(btManifoldPoint& maniforlPoint, const btCollisionObjectWrapper* colObj0Wrap, int partId0,
-                     int index0, const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1) {
+bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
 
-    void* obj1 = colObj0Wrap->getCollisionObject()->getUserPointer();
-    void* obj2 = colObj1Wrap->getCollisionObject()->getUserPointer();
+    const btCollisionObject* body1 = static_cast<btCollisionObject*>(obj1);
+    const btCollisionObject* body2 = static_cast<btCollisionObject*>(obj2);
+
 #ifdef _DEBUG
-    std::cout << "A\n";
+    std::cout << "Stay\n";
 #endif
-    if (obj1 != nullptr && obj2 != nullptr) {
-        RigidBody* col1 = static_cast<RigidBody*>(obj1);
-        RigidBody* col2 = static_cast<RigidBody*>(obj2);
+
+    if (body1 != nullptr && body2 != nullptr) {
+
+        RigidBody* col1 = static_cast<RigidBody*>(body1->getUserPointer());
+        RigidBody* col2 = static_cast<RigidBody*>(body2->getUserPointer());
+
         if (col2->getActiveRB() && col1->getActiveRB()) {
             col1->onCollisionStay(col2->getObject());
             col2->onCollisionStay(col1->getObject());
         }
     }
 
-    return false;
+    return true;
 }
+
+
 PhysicsManager::PhysicsManager()
     : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), constraintSolver(nullptr), dynamicsWorld(nullptr)
 #ifdef _DEBUG
@@ -98,9 +103,8 @@ bool PhysicsManager::init() {
     dynamicsWorld->setGravity(btVector3(0, -10.0, 0));
 
     gContactStartedCallback = onCollisionEnter;
-    gContactAddedCallback = onCollisionStay;
     gContactEndedCallback = onCollisionExit;
-
+    gContactProcessedCallback = onCollisionStay;
     //createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 1,
     //                (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
     //createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 4,
