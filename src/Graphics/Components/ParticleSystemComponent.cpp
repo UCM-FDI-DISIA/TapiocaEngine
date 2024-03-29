@@ -34,14 +34,11 @@ bool ParticleSystemComponent::initComponent(const CompMap& variables) {
     return true;
 }
 
-
-
 void ParticleSystemComponent::awake() {
     GameObject* gameobject = getObject();
     transform = gameobject->getComponent<Transform>();
-    GraphicsManager* g = GraphicsManager::instance();
-    node = g->createNode();
-    pSys = g->createParticleSystem(node, pSysName, templateName, emitting);
+    node = GraphicsManager::instance()->createNode();
+    pSys = GraphicsManager::instance()->createParticleSystem(node, pSysName, templateName, emitting);
 }
 
 void ParticleSystemComponent::handleEvent(std::string const& id, void* info) {
@@ -57,11 +54,14 @@ void ParticleSystemComponent::setEmitting(const bool emitting) { pSys->setEmitti
 
 bool ParticleSystemComponent::isEmitting() { return pSys->isEmitting(); }
 
+void ParticleSystemComponent::setQuota(const int q) { pSys->setQuota(q); }
+
+int ParticleSystemComponent::getQuota() { return pSys->getQuota(); }
+
+void ParticleSystemComponent::setVisible(const bool v) { pSys->setVisible(v); }
+
+bool ParticleSystemComponent::isVisible() { return pSys->isVisible(); }
+
 void ParticleSystemComponent::fastForward(const float time, const float interval) { pSys->fastForward(time, interval); }
-
-
-//void ParticleSystemComponent::setSystemName(const std::string& n) { pSysName = n; }
-
-//void ParticleSystemComponent::setTemplateName(const std::string& n) { templateName = n; }
 
 }

@@ -39,7 +39,7 @@ public:
 
     /*
     * @brief Comienza o para el sistema de particulas
-    * @param emitting True para que emita particulas, false en caso contrario
+    * @param emitting True para que emita particulas, false para que no emita
     */
     void setEmitting(const bool emitting);
     /*
@@ -48,6 +48,28 @@ public:
     */
     bool isEmitting();
 
+    /*
+    * @brief Cambia el numero maximo de particulas que puede haber en el sistema
+    * @param q Quota nueva del sistem a de particulas
+    */
+    void setQuota(const int q);
+    /*
+    * @brief Devuelve el numero maximo de particulas que puede haber en el sistema
+    * @return Quota actual del sistema de particulas
+    */
+    int getQuota();
+
+    /*
+    * @brief Hace que el sistema de particulas sea o no visible
+    * @param v True para que sea visible, false para que no lo sea
+    */
+    void setVisible(const bool v);
+    /*
+    * @brief Devuelve si el sistema de particulas es visible o no
+    * @return True si es visible, false en caso contrario
+    */
+    bool isVisible();
+
     /* 
     * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas
     * que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento.
@@ -55,5 +77,6 @@ public:
     * @param interval Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso)
     */
     void fastForward(const float time, const float interval);
+
 };
 }

@@ -4,6 +4,9 @@
 #pragma warning(disable : 4251)
 #endif
 #include <Ogre.h>
+#include <OgreParticle.h>
+#include <OgreParticleSystem.h>
+#include <OgreParticleSystemManager.h>
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -20,10 +23,7 @@ ParticleSystem::ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* con
     else mParticleSystem = scnMgr->createParticleSystem(name);
 
     init(mParticleSystem);
-    
     mParticleSystem->setEmitting(emitting);
-    
-    node->showBoundingBox(true);
 }
 
 void ParticleSystem::setEmitting(const bool emitting) { mParticleSystem->setEmitting(emitting); }
@@ -32,6 +32,14 @@ bool ParticleSystem::isEmitting() { return mParticleSystem->getEmitting(); }
 void ParticleSystem::fastForward(const float time, const float interval) {
     mParticleSystem->fastForward(time, interval);
 }
+
+void ParticleSystem::setQuota(const int q) { mParticleSystem->setParticleQuota(q); }
+
+int ParticleSystem::getQuota() { return mParticleSystem->getParticleQuota(); }
+
+void ParticleSystem::setVisible(const bool v) { mParticleSystem->setVisible(v); }
+
+bool ParticleSystem::isVisible() { return mParticleSystem->isVisible(); }
 
 
 
