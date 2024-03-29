@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "RenderObject.h"
+#include <memory>
 
 namespace Ogre {
 class SceneManager;
@@ -14,7 +15,7 @@ namespace Tapioca {
 */
 class TAPIOCA_API Skybox : public RenderObject {
 private:
-    std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;  
+    std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;
     Ogre::SceneManager* scnM; 
     // warning C4251 'Tapioca::Skybox::texture' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita

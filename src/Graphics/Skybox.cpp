@@ -7,6 +7,7 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+#include "RenderNode.h"
 #include "checkML.h"
 
 namespace Tapioca {
@@ -15,7 +16,6 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
                const bool orderC)
     : RenderObject(node, scnMgr), texture(texture), distC(distC), orderC(orderC) {
     scnM = scnMgr;
-    scnM->setSkyBox(true, texture, distC, orderC);
 
     Ogre::MaterialPtr m = Ogre::MaterialManager::getSingleton().getByName(
         texture, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
