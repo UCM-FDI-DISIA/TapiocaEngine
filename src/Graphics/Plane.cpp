@@ -13,30 +13,20 @@
 
 namespace Tapioca {
 
-//Plane(Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant))
-
-//Plane::Plane(Ogre::SceneManager* scnMgr, Node* node, Ogre::MeshManager* mshMgr, std::string name, float width,
-//             float height, int xSegments, int ySegments, float x, float y, float z, std::string material)
-//    : RenderObject(node, scnMgr), name(name) {
-//    mPlaneAux = Ogre::Plane();
-//    mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::Plane(), width, height,
-//                        xSegments, ySegments);
-//
-//    mPlane = scnMgr->createEntity(name);
-//    if (material != "") mPlane->setMaterialName(material);
-//
-//    init(mPlane);
-//
-//    node->setPosition(Vector3(x, y, z));
-//}
-
 Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
              const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
              const float height, const int xSegments, const int ySegments)
     : RenderObject(node, scnMgr) {
-    mPlaneAux = Ogre::Plane(Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z), fConstant);
+    Ogre::Vector3 normal = Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z).normalisedCopy();
+    mPlaneAux = Ogre::Plane(normal, fConstant);
+
+    Ogre::Vector3 up =
+        Ogre::Vector3(Ogre::Vector3::UNIT_Y + (normal - Ogre::Vector3::UNIT_Z)).normalisedCopy();
+#ifdef _DEBUG
+    std::cout << up << "\n";
+#endif   //  _DEBUG
     mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
-                        xSegments, ySegments);
+                        xSegments, ySegments, true, 1, Ogre::Real(1.0F), Ogre::Real(1.0F), up);
 
     mPlane = scnMgr->createEntity(name);
 
@@ -49,9 +39,11 @@ Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::Mes
              const float b, const float c, const float _d, std::string const& name, const float width,
              const float height, const int xSegments, const int ySegments)
     : RenderObject(node, scnMgr) {
-    mPlaneAux = Ogre::Plane(Ogre::Vector3(a, b, c), _d);
+    Ogre::Vector3 normal = Ogre::Vector3(a, b, c);
+    mPlaneAux = Ogre::Plane(normal, _d);
+    Ogre::Vector3 up = Ogre::Vector3(Ogre::Vector3::UNIT_Y + (normal - Ogre::Vector3::UNIT_Z)).normalisedCopy();
     mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
-                        xSegments, ySegments);
+                        xSegments, ySegments, true, 1, Ogre::Real(1.0F), Ogre::Real(1.0F), up);
 
     mPlane = scnMgr->createEntity(name);
 

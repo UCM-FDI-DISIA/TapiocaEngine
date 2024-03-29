@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "RenderObject.h"
 #include <memory>
+#include "RenderObject.h"
 
 namespace Ogre {
 class SceneManager;
