@@ -9,6 +9,9 @@ public:
     COMPONENT_ID("Skybox")
     SkyboxComponent();
     ~SkyboxComponent();
-};
 
+    bool initComponent(const CompMap& variables) override;
+    void start() override;
+    void update(uint64_t delt) override;
+};
 }

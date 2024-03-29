@@ -1,19 +1,25 @@
 #pragma once
 #include <string>
 #include "RenderObject.h"
+#include "OgreMath.h"
+#include "OgrePlane.h"
 #include "Utilities/Vector3.h"
+
+using namespace std;
 
 namespace Ogre {
 class SceneManager;
 }
 
 namespace Tapioca {
-
+class RenderNode;
 /*
 * @brief Wrapper de la clase Skyplane de Ogre.
 */
 class TAPIOCA_API Skyplane : public RenderObject {
-protected:
+private:
+    Ogre::Entity* mSkyPlane;    // Entidad con la malla del SkyPlane
+    Ogre::Plane mSkyPlaneAux;   // Plano de Ogre
     Ogre::SceneManager* scnM;
     // warning C4251 'Tapioca::Skyplane::material' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -44,10 +50,10 @@ public:
     * @param fConstant Distancia que se desplaza el plano en la direccion de la normal
     * @param scale Escala del skyplane
     */
-    Skyplane(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& materialName,
-             const bool enable = true, const Vector3 rkNormal = {0.0f, 0.0f, 1.0f}, const float fConstant = -20.0f,
-             const float scale = 0.3f, const float tiling = 1.0f, const bool drawFirst = true, const float bow = 1.0f,
-             const int xsegments = 100, const int ysegments = 100);
+    Skyplane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
+             std::string const& materialName, const bool enable = true, const Vector3 rkNormal = {0.0f, 0.0f, 1.0f},
+             const float fConstant = -20.0f, const float scale = 0.3f, const float tiling = 1.0f,
+             const bool drawFirst = true, const float bow = 1.0f, const int xsegments = 100, const int ysegments = 100);
     /*
     * @brief Activa o desactiva el Skybox
     * @param enable True si se quiere activar, false en caso contrario

@@ -4,7 +4,7 @@
 
 namespace Ogre {
 class SceneManager;
-class Skybox;
+class ManualObject;
 }
 
 namespace Tapioca {
@@ -13,7 +13,9 @@ namespace Tapioca {
 * @brief Wrapper de la clase Skybox de Ogre.
 */
 class TAPIOCA_API Skybox : public RenderObject {
-protected:
+private:
+    std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;  
+    Ogre::SceneManager* scnM; 
     // warning C4251 'Tapioca::Skybox::texture' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
@@ -26,7 +28,6 @@ protected:
 #endif
     float distC;                    // 
     bool orderC;
-    Ogre::SceneManager* scnM; 
 public:
     /*
     * @brief Construye un skybox con la textura texture a una distancia distC de la cámara

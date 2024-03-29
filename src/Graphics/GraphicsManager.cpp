@@ -38,7 +38,6 @@
 #include "WindowManager.h"
 #include "GraphicsManager.h"
 
-
 namespace Tapioca {
 template class TAPIOCA_API Singleton<GraphicsManager>;
 template<>
@@ -428,11 +427,12 @@ Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const&
     return new Skybox(scnMgr, node, texture, distC, orderC);
 }
 
-Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
+Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName,
+                                          const bool enable,
                                           const Vector3 rkNormal, const float fConstant, const float scale,
                                           const float tiling, const bool drawFirst, const float bow,
                                           const int xsegments, const int ysegments) {
-    return new Skyplane(scnMgr, node, materialName, enable, rkNormal, fConstant, scale, tiling, drawFirst, bow,
+    return new Skyplane(scnMgr, node, mshMgr, materialName, enable, rkNormal, fConstant, scale, tiling, drawFirst, bow,
                         xsegments, ysegments);
 }
 
@@ -444,3 +444,4 @@ Ogre::ManualObject* GraphicsManager::createManualObject(RenderNode* const node) 
 
 void GraphicsManager::destroyManualObject(Ogre::ManualObject* const object) { scnMgr->destroyManualObject(object); }
 }
+
