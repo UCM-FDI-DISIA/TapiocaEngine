@@ -60,4 +60,13 @@ Vector3 Vector3::cross(const Vector3 other) {
 
 float Vector3::dot(const Vector3 other) { return x * other.x + y * other.y + z * other.z; }
 
+Vector3 Vector3::lerp(Vector3 const& start, Vector3 const& end, float t) {
+    t = clamp(t, 0, 1);
+
+    float x = (1 - t) * start.x + t * end.x;
+    float y = (1 - t) * start.y + t * end.y;
+    float z = (1 - t) * start.z + t * end.z;
+    return Vector3(x, y, z);
+}
+
 }

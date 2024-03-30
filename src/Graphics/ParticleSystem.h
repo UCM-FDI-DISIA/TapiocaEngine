@@ -59,17 +59,6 @@ public:
     */
     int getQuota();
 
-    /*
-    * @brief Hace que el sistema de particulas sea o no visible
-    * @param v True para que sea visible, false para que no lo sea
-    */
-    void setVisible(const bool v);
-    /*
-    * @brief Devuelve si el sistema de particulas es visible o no
-    * @return True si es visible, false en caso contrario
-    */
-    bool isVisible();
-
     /* 
     * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas
     * que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento.

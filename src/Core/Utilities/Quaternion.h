@@ -99,6 +99,15 @@ public:
     * @return Resultado de multiplicar el quaternion por el punto 
     */
     Vector3 rotatePoint(const Vector3 point);
+    
+    /*
+    * @brief Construye un quaternon representando la rotacion desde una direcccion 
+    * hacia otra, usando el forward por defecto de la direccion origen
+    * @param forward Forward de la direccion a la que se quiere mirar
+    * @param upwards Up de la direccion a la que se quiere mirar
+    * @return Quaternion que representa la rotacion desde el origen al destino
+    */
+    static Quaternion lookAt(const Vector3& forward, const Vector3& upwards);
 };
 }
 

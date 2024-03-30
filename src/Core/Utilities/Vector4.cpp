@@ -36,4 +36,13 @@ float Vector4::normalize() {
 	return mag;
 }
 
+Vector4 Vector4::lerp(Vector4 const& start, Vector4 const& end, float t) {
+    t = clamp(t, 0, 1);
+
+    float x = (1 - t) * start.x + t * end.x;
+    float y = (1 - t) * start.y + t * end.y;
+    float z = (1 - t) * start.z + t * end.z;
+    float w = (1 - t) * start.w + t * end.w;
+    return Vector4(x, y, z, w);
+}
 }

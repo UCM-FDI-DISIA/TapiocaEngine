@@ -25,4 +25,11 @@ float Vector2::normalize() {
 	return mag;
 }
 
+Vector2 Vector2::lerp(Vector2 const& start, Vector2 const& end, float t) {
+    t = clamp(t, 0, 1);
+
+    float x = (1 - t) * start.x + t * end.x;
+    float y = (1 - t) * start.y + t * end.y;
+    return Vector2(x, y);
+}
 }

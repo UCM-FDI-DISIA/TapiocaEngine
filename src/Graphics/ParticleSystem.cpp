@@ -37,9 +37,6 @@ void ParticleSystem::setQuota(const int q) { mParticleSystem->setParticleQuota(q
 
 int ParticleSystem::getQuota() { return mParticleSystem->getParticleQuota(); }
 
-void ParticleSystem::setVisible(const bool v) { mParticleSystem->setVisible(v); }
-
-bool ParticleSystem::isVisible() { return mParticleSystem->isVisible(); }
 
 
 
