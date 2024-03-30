@@ -59,6 +59,6 @@ public:
     * @brief Devuelve la visibilidad del objeto
     * @return Visibilidad del objeto
     */
-    bool getVisible() const;
+    bool isVisible() const;
 };
 }

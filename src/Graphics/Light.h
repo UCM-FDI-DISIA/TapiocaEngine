@@ -42,5 +42,7 @@ public:
     * @param power Potencia
     */
     void setPowerScale(float power);
+
+    void produceShadows(bool enable);
 };
 }

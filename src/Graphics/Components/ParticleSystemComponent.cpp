@@ -60,7 +60,8 @@ int ParticleSystemComponent::getQuota() { return pSys->getQuota(); }
 
 void ParticleSystemComponent::setVisible(const bool v) { pSys->setVisible(v); }
 
-bool ParticleSystemComponent::isVisible() { return pSys->getVisible(); }
+bool ParticleSystemComponent::isVisible() { return pSys->isVisible
+(); }
 
 void ParticleSystemComponent::fastForward(const float time, const float interval) { pSys->fastForward(time, interval); }
 

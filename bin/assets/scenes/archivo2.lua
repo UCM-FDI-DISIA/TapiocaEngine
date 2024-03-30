@@ -1,24 +1,4 @@
 scene = {
-    sys = {
-        components = {
-            Transform = {
-                positionX = 0.0,
-                positionY = 3.0,
-                positionZ = 0.0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0,
-                rotationX = 0.0,
-                rotationY = 0.0,
-                rotationZ = 0.0
-            },
-            ParticleSystemComponent = {
-                pSysName = "socorro",
-                templateName = "smoke",
-                emitting = true
-            }
-        }
-    },
         {
             components = {
                 Transform = {
@@ -37,27 +17,6 @@ scene = {
                     bgColorR = 0.8,
                     bgColorG = 0.8,
                     bgColorB = 0.8
-                }
-            }
-        },
-        {
-            components = {
-                Transform = {
-                    positionX = 0.0,
-                    positionY = 0.0,
-                    positionZ = 0.0,
-                    scaleX = 0.1,
-                    scaleY = 0.1,
-                    scaleZ = 0.1,
-                    rotationX = 0.0,
-                    rotationY = 0.0,
-                    rotationZ = 0.0
-                },
-                MeshRenderer = {
-                    meshName = "sphere.mesh",
-                    initRotationX = 0.0,
-                    initRotationY = 0.0,
-                    initRotationZ = 0.0
                 }
             }
         }

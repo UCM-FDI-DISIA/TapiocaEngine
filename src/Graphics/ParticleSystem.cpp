@@ -36,8 +36,4 @@ void ParticleSystem::fastForward(const float time, const float interval) {
 void ParticleSystem::setQuota(const int q) { mParticleSystem->setParticleQuota(q); }
 
 int ParticleSystem::getQuota() { return mParticleSystem->getParticleQuota(); }
-
-
-
-
 }

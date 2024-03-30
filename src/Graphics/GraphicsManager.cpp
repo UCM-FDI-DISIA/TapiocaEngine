@@ -109,7 +109,6 @@ bool GraphicsManager::init() {
     // Inicializa ogre sin crear la ventana, siempre se hace despues de asignar el sistema de render
     mRoot->initialise(false);
 
-
     // informacion de la ventana
     Ogre::NameValuePairList miscParams;
 
@@ -142,7 +141,9 @@ bool GraphicsManager::init() {
     ogreWindow = mRoot->createRenderWindow(mwindowName, windowWidth, windowHeight, false, &miscParams);
 
     scnMgr = mRoot->createSceneManager();
+
     scnMgr->addRenderQueueListener(overSys);
+
     loadShaders();
 
     // guardarse el mesh manager
@@ -150,7 +151,57 @@ bool GraphicsManager::init() {
 
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
+
+    loadConfigFiles();
     loadResources();
+
+    setUpShadows();
+
+
+      Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("Sinbad/Body");
+
+    ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
+    if (glContext == nullptr) {
+#ifdef _DEBUG
+        std::cerr << "Error al obtener el contexto de OpenGL\n";
+#endif
+        return false;
+    }
+    windowManager->setGLContext(glContext);
+
+    SDL_GL_SetSwapInterval(1);
+
+    return true;
+}
+
+void GraphicsManager::loadPlugIns() {
+#ifdef _DEBUG
+    mRoot->loadPlugin("Codec_STBI_d.dll");   // Necesario para tener codec de archivos png jpg ...
+#else
+    mRoot->loadPlugin("Codec_STBI.dll");   // Necesario para tener codec de archivos png jpg ...
+#endif
+}
+
+void GraphicsManager::loadConfigFiles() {
+    // archivos de Ogre
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "./shadowsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+    // shaders para las sombras
+}
+
+void GraphicsManager::setUpShadows() {
+    // el color por de la luz ambiental es negro, lo que quiere decir que
+    // por defecto no hay luz
+    // Por lo tanto, para que un objeto se ilumine hay que poner una luz en escena
+    scnMgr->setAmbientLight(Ogre::ColourValue(0.0f, 0.0f, 0.0f));
 
     /*
     - MODULATIVE -> primer renderiza todos los objetos que se van a sombrear,
@@ -191,70 +242,51 @@ bool GraphicsManager::init() {
     de vision. Por lo que se recomienda no proyectar sombras con este tipo de luz.
     Como no se soporta el autosombreado, se diferencia entre objetos que proyectan sombras (castShadows a true) y que reciben (castShadows a false)
     */
-    scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE);
-    // el color por de la luz ambiental es negro, lo que quiere decir que
-    // por defecto no hay luz
-    // Por lo tanto, para que un objeto se ilumine hay que poner una luz en escena
-    scnMgr->setAmbientLight(Ogre::ColourValue(0.0f, 0.0f, 0.0f));
-    // el tam de las texturas de sombras
-    // cuanto mas alto es mayor es la calidad. Ademas, tiene que ser multiplo de 2
-    scnMgr->setShadowTextureSize(2048);
-    // distancia maxima de las sombras
-    // Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
-    // para las sombras que producen las luces direccionales
-    scnMgr->setShadowFarDistance(1000);
-    // cada luz tiene asociada su propia textura de sombra para evitar el estancamiento del pipeline
-    // grafico que supondria utilizar (y cambiar) la misma textura de sombra para cada luz
-    // Para evitar sobrecargar la memoria para las texturas, se establece cuantas texturas de sombra
-    // puede haber, lo que se traduce en cuantas luces pueden proyectar sombras a la vez
-    scnMgr->setShadowTextureCount(3);
-    // los objetos tanto proyectan como reciben sombras. Esto permite crear autosombras,
-    // pero es responsabilidad del programador crear un shader con esa funcionalidad.
-    //scnMgr->setShadowTextureSelfShadow(true);
+    Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
+    Ogre::MaterialPtr receiverMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowReceiver");
+    if (casterMat && false) {
 
-    ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
-    if (glContext == nullptr) {
-#ifdef _DEBUG
-        std::cerr << "Error al obtener el contexto de OpenGL\n";
-#endif
-        return false;
+        scnMgr->setShadowCameraSetup(Ogre::LiSPSMShadowCameraSetup::create());
+        //scnMgr->setShadowCameraSetup(Ogre::FocusedShadowCameraSetup::create());
+
+        scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
+
+        scnMgr->setShadowTexturePixelFormat(Ogre::PF_DEPTH32);   // antes depth
+
+        //// tener mas precision a la hora de calcular la profundiad de la sombras (float)
+        scnMgr->setShadowTextureCasterMaterial(casterMat);
+        //scnMgr->setShadowTextureReceiverMaterial(receiverMat);
+
+        //// los objetos tanto proyectan como reciben sombras. Esto permite crear autosombras,
+        //// pero es responsabilidad del programador crear un shader con esa funcionalidad.
+        scnMgr->setShadowTextureSelfShadow(true);
+
+        //// el tam de las texturas de sombras
+        //// cuanto mas alto es mayor es la calidad. Ademas, tiene que ser multiplo de 2
+        scnMgr->setShadowTextureSize(1024);
+        //// distancia maxima de las sombras
+        //// Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
+        //// para las sombras que producen las luces direccionales
+        scnMgr->setShadowFarDistance(1000.0f);
+        //// cada luz tiene asociada su propia textura de sombra para evitar el estancamiento del pipeline
+        //// grafico que supondria utilizar (y cambiar) la misma textura de sombra para cada luz
+        //// Para evitar sobrecargar la memoria para las texturas, se establece cuantas texturas de sombra
+        //// puede haber, lo que se traduce en cuantas luces pueden proyectar sombras a la vez
+        ////scnMgr->setShadowTextureCount(1);
+        //scnMgr->setShadowTextureFadeStart(0.3f);
     }
-    windowManager->setGLContext(glContext);
-
-    SDL_GL_SetSwapInterval(1);
-
-    return true;
-}
-
-void GraphicsManager::loadPlugIns() {
-#ifdef _DEBUG
-    mRoot->loadPlugin("Codec_STBI_d.dll");   // Necesario para tener codec de archivos png jpg ...
-#else
-    mRoot->loadPlugin("Codec_STBI.dll");   // Necesario para tener codec de archivos png jpg ...
-#endif
 }
 
 void GraphicsManager::loadResources() {
-    /*Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "/assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);*/
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "/assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-    // todos los assets deben estar en la carpeta assets
 #ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 #else
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "/assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+        cfgPath + "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 #endif
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+    Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 }
 
 void GraphicsManager::loadShaders() {
@@ -268,13 +300,7 @@ void GraphicsManager::loadShaders() {
     }
 }
 
-void GraphicsManager::render() {
-    mRoot->renderOneFrame();
-    try {
-    } catch (Ogre::Exception exception) {
-        std::string hola = exception.getSource();
-    }
-}
+void GraphicsManager::render() { mRoot->renderOneFrame(); }
 
 bool GraphicsManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
@@ -401,7 +427,7 @@ BillboardSet* GraphicsManager::createBillboardSet(RenderNode* const node, std::s
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
-ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, std::string const& name, 
+ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, std::string const& name,
                                                       std::string const& templateName, const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
@@ -409,7 +435,10 @@ ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, st
 Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                     std::string const& name, const float width, const float height, const int xSegments,
                                     const int ySegments, std::string const& material) {
-    return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments);
+    auto plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments);
+    /*plane->castShadows(shadows);
+    plane->setMaterial("ShadowReceiver");*/
+    return plane;
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,

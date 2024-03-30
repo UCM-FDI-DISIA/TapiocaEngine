@@ -15,8 +15,8 @@ Light::Light(Ogre::SceneManager* const scnMgr, RenderNode* const node, const Vec
     init(mLight);
     mLight->setDiffuseColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
 
-    // elegir si la luz puede proyecta sombras o no
-    mLight->setCastShadows(true);
+    // elegir si la luz puede proyectar sombras o no
+    mLight->setCastShadows(false);
 }
 
 void Light::setColor(const Vector4 color) {
@@ -25,4 +25,6 @@ void Light::setColor(const Vector4 color) {
 }
 
 void Light::setPowerScale(float power) { mLight->setPowerScale(power); }
+
+void Light::produceShadows(bool enable) { mLight->setCastShadows(enable); }
 }

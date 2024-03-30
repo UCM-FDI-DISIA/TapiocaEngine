@@ -15,8 +15,11 @@ Ogre::Entity* const Mesh::getMesh() const { return mesh; }
 Mesh::Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::string const& meshName)
     : RenderObject(node, sceneManager), mesh(sceneManager->createEntity(meshName)) {
     init(mesh);
+
+    mesh->setCastShadows(false);
 }
 
 void Mesh::setMaterial(std::string const& materialName) { mesh->setMaterialName(materialName); }
 
+void Mesh::castShadows(const bool enable) { mesh->setCastShadows(enable); }
 }

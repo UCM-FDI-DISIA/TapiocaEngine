@@ -38,5 +38,7 @@ public:
     * @param materialName Nombre del material que se quiere asignar a la malla
     */
     void setMaterial(std::string const& materialName);
+
+    void castShadows(const bool enable);
 };
 }

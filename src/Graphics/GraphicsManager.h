@@ -100,6 +100,10 @@ private:
     */
     void loadPlugIns();
 
+    void loadConfigFiles();
+
+    void setUpShadows();
+
     /*
     * @brief cargar las rutas donde se ubican los assets para que ogre pueda encontrarlos y usarlos
     */
@@ -219,7 +223,7 @@ public:
     * @return Puntero a la luz rectangular creada
     */
     LightRectlight* createLightRectlight(RenderNode* const node, const Vector3 direction, const float width,
-                                     const float height, const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+                                         const float height, const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
     /*
     * @brief Crea un foco de luz
@@ -229,7 +233,7 @@ public:
     * @return Puntero al foco de luz creado
     */
     LightSpotlight* createLightSpotlight(RenderNode* const node, const Vector3 direction,
-                                     const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+                                         const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
     /*
     * @brief Crea una malla
@@ -267,7 +271,7 @@ public:
     * @param emitting Indica si esta emitiendo particulas
     * @return Puntero al particleSystem creado
     */
-    ParticleSystem* createParticleSystem(RenderNode* const node, std::string const& name, 
+    ParticleSystem* createParticleSystem(RenderNode* const node, std::string const& name,
                                          std::string const& templateName, const bool emitting);
 
     /*

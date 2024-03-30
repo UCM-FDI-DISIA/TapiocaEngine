@@ -78,11 +78,12 @@ float Plane::normalise(void) { return mPlaneAux.normalise(); }
 
 void Plane::setMaterial(std::string const& material) { mPlane->setMaterialName(material); }
 
+void Plane::castShadows(bool enable) { mPlane->setCastShadows(enable); }
+
 bool Plane::operator==(const Plane& rhs) const {
     return (rhs.getD() == mPlaneAux.d &&
             rhs.getNormal() == Vector3(mPlaneAux.normal.x, mPlaneAux.normal.y, mPlaneAux.normal.z));
 }
 
 bool Plane::operator!=(const Plane& rhs) const { return !(*this == rhs); }
-
 }

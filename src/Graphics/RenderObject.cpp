@@ -35,5 +35,5 @@ RenderObject::~RenderObject() {
 
 void RenderObject::setVisible(const bool enable) { movObject->setVisible(enable); }
 
-bool RenderObject::getVisible() const { return movObject->getVisible(); }
+bool RenderObject::isVisible() const { return movObject->getVisible(); }
 }
