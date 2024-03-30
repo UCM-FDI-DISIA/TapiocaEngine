@@ -11,10 +11,10 @@ private:
     friend class GameObject;
 
 protected:
-    GameObject* object;   // Gameobject al que esta adjunto esta componente
-    bool alive;           // Indica si se deberia borrar la componente
-    bool active;          // Indica si la componente esta activa (si se actualizan update,handleEvents,...)
-    //static std::unordered_set<Component*> listeners;    // Contiene las componentes que reciben mensajes y eventos
+    GameObject* object;   // Gameobject al que esta adjunto este componente
+    bool alive;           // Indica si se deberia borrar el componente
+    bool active;          // Indica si el componente esta activo (si se actualizan update,handleEvents,...)
+    //static std::unordered_set<Component*> listeners;    // Contiene los componentes que reciben mensajes y eventos
 
 public:
     /*
@@ -103,7 +103,7 @@ public:
 
     /*
     * @brief Devuelve el objeto donde esta este componente
-    * @return Objeto al que esta adjunto esta componente
+    * @return Objeto al que esta adjunto este componente
     */
     inline GameObject* getObject() const { return object; }
 
@@ -124,7 +124,7 @@ public:
     inline virtual void setActive(const bool b) { active = b; }
 };
 /*
-* @brief Id de la componente
+* @brief Id del componente
 */
 #define COMPONENT_ID(_id) inline static const char* id = _id;
 }

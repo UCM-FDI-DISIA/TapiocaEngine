@@ -11,17 +11,25 @@
 #include "UIManager.h"
 #include "SoundManager.h"
 
-// PRUEBAS GRAPHICS
-#include "RenderNode.h"
-#include "LightPoint.h"
-#include "LightRectlight.h"
-#include "LightSpotlight.h"
-#include "LightDirectional.h"
-#include "Mesh.h"
-//#include "Plane.h"
+// Componentes
+#include "Structure/BasicBuilder.h"
 
-// PRUEBAS DE CORE
-#include "Utilities/Quaternion.h"
+// Core
+#include "Components/Transform.h"
+// Physics
+#include "Components/Collider.h"
+#include "Components/RigidBody.h"
+// Graphics
+#include "Components/MeshRenderer.h"
+#include "Components/CameraComponent.h"
+#include "Components/Animator.h"
+#include "Components/ParticleSystemComponent.h"
+#include "Components/PlaneComponent.h"
+// UI
+#include "Components/Button.h"
+#include "Components/InputText.h"
+#include "Components/Text.h"
+#include "Components/ImageButton.h"
 
 namespace Tapioca {
 void initEngine() {
@@ -33,48 +41,11 @@ void deleteEngine() { delete game; }
 
 void runEngine() {
     if (game->init()) {
-        // PRUEBAS DE GRAPHICS
-        //auto plane1 = graphics->createPlane(nodeAux, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola1", 100, 100, 100, 100, false);
-        //auto nodeAux2 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f), Vector3(3.1f, 3.1f, 3.1f));
-        //auto sphere = graphics->createMesh(nodeAux2, "Sinbad.mesh");
-        ////sphere->setMaterial("ShadowReceiver");
-        //sphere->castShadows(true);
-        //auto nodeAux = graphics->createNode(Vector3(0.0f, 10.0f, -30.0f), Vector3(0.1f, 0.1f, 0.1f));
-        //auto sphere2 = graphics->createMesh(nodeAux, "sphere.mesh");
-        //sphere2->castShadows(true);
-        //auto nodeAux3 = graphics->createNode(Vector3(0.0f, 0.0f, -50.0f), Vector3(0.1f, 0.1f, 0.1f));
-        ////auto sphere3 = graphics->createMesh(nodeAux3, "sphere.mesh");
-        ////sphere3->castShadows(false);
-        //sphere2->setMaterial("ShadowReceiver");
-        //auto plane2 = graphics->createPlane(nodeAux3, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola2", 10000, 10000, 100, 100, true);
-        //auto node = graphics->createNode(Vector3(20.0f, 0.0f, 50.0f));
-        ////auto light = graphics->createLightSpotlight(node, Vector3(0, 0, -1));
-        ////auto light = graphics->createLightPoint(node);
-        ////auto light = graphics->createLightDirectional(node, Tapioca::Vector3(-1.0f, 0.0f, -1.0f));
-        ////light->produceShadows(false);
-        //auto node2 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
-        //auto light2 = graphics->createLightDirectional(node2, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
-        //light2->produceShadows(true);
-        ////auto light2 = graphics->createLightSpotlight(node2, Vector3(0, 0, -1));
-        //scenes->loadScene("archivo2.lua");
-
-        // PRUEBAS DE CORE
-        /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
-        Quaternion q2 = Tapioca::Quaternion(0, Tapioca::Vector3(0, 0, 1));
-        Quaternion q3 = Tapioca::Quaternion(1, 0, 0, 0.0000000017);
-        Quaternion qc = q * q2 * q3;
-        Vector3 p = qc.rotatePoint(Tapioca::Vector3(0, 0, 1));*/
-
-        // PRUEBAS DE SOUND
-        //SoundManager::instance()->testsample();
+        createEngineBuilders();
 
         scenes->loadScene("startScene.lua");
 
         game->run();
-
-        /*delete node2;
-        delete nodeAux;
-        delete nodeAux2;*/
     }
 #ifdef _DEBUG
     else std::cerr << "Error al inicializar un modulo\n";
@@ -114,6 +85,29 @@ static void createModules(Tapioca::Game* game) {
     if (graphics != nullptr) window->subscribeModule(graphics);
     if (ui != nullptr) window->subscribeModule(ui);
     if (window != nullptr) window->subscribeModule(input);
+}
+
+static void createEngineBuilders() {
+#ifdef _DEBUG
+    std::cout << "Anadiendo factorias del motor\n";
+#endif
+    FactoryManager* manager = FactoryManager::instance();
+    // Core
+    manager->addFactory(new BasicBuilder<Transform>());
+    // Physiscs
+    manager->addFactory(new BasicBuilder<Collider>());
+    manager->addFactory(new BasicBuilder<RigidBody>());
+    // Graphics
+    manager->addFactory(new BasicBuilder<MeshRenderer>());
+    manager->addFactory(new BasicBuilder<CameraComponent>());
+    manager->addFactory(new BasicBuilder<Animator>());
+    manager->addFactory(new BasicBuilder<ParticleSystemComponent>());
+    manager->addFactory(new BasicBuilder<PlaneComponent>());
+    // UI
+    manager->addFactory(new BasicBuilder<Button>());
+    manager->addFactory(new BasicBuilder<InputText>());
+    manager->addFactory(new BasicBuilder<Text>());
+    manager->addFactory(new BasicBuilder<ImageButton>());
 }
 
 void mapInput() {

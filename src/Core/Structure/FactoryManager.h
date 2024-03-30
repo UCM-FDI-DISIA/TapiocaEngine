@@ -37,11 +37,6 @@ private:
     */
     bool init() override;
 
-    /*
-    * @brief Crea las factorias de los componentes del juego
-    */
-    void createEngineBuilders();
-
 public:
     FactoryManager(FactoryManager&) = delete;
     FactoryManager(FactoryManager&&) = delete;
@@ -61,6 +56,6 @@ public:
     /*
     * @brief Añade una factoria al mapa de factorias
     */
-    void addFactory(std::string const& name, ComponentBuilder* const builder);
+    void addFactory(ComponentBuilder* const builder);
 };
 }

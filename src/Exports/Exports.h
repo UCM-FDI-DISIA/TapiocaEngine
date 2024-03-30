@@ -27,5 +27,6 @@ TAPIOCA_API void deleteEngine();
 TAPIOCA_API void runEngine();
 
 static void createModules(Game* game);
+static void createEngineBuilders();
 void mapInput();
 }
