@@ -22,6 +22,7 @@ private:
 #endif
     std::vector<GameObject*> objects;                           // Objetos que tiene la escena
     std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
+    std::string name;
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -29,7 +30,7 @@ public:
     /*
     * @brief Constructora de la clase Scene
     */
-    Scene();
+    Scene(std::string const& name);
     /*
     * @brief Destructora de la clase Scene
     */
@@ -92,5 +93,7 @@ public:
     * @param global Indica si el evento debe ser enviado glabalmente
     */
     void pushEvent(std::string const& id, void* info);
+
+    std::string const& getName() const;
 };
 }

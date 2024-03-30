@@ -57,7 +57,14 @@ bool SceneManager::loadScene(std::string const& sceneName) {
 
     exposeUIvalues();
 
-    std::string path = scenesPath + sceneName;
+    std::string extension = ".lua";
+    std::string name = sceneName;
+    if (sceneName.size() < extension.size()||sceneName.substr(sceneName.size()-extension.size(),sceneName.size())!=extension){
+        name = sceneName + extension;
+    }
+
+
+    std::string path = scenesPath + name;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(luaState, -1) << '\n';
@@ -66,7 +73,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
         return false;
     }
 
-    Scene* scene = new Scene();
+    Scene* scene = new Scene(name.substr(0, name.size() - extension.size()));
     if (!loadScene(scene)) {
 #ifdef _DEBUG
         std::cerr << "Error al cargar de escena, gameobjects y componentes\n";
