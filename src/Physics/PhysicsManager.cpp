@@ -20,9 +20,9 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
 
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-#ifdef _DEBUG
-    std::cout << "Entro\n";
-#endif
+//#ifdef _DEBUG
+//    std::cout << "Entro\n";
+//#endif
 
     if (obj1 != nullptr && obj2 != nullptr) {
         RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
@@ -38,9 +38,9 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
 
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-#ifdef _DEBUG
-    std::cout << "Salgo\n";
-#endif
+//#ifdef _DEBUG
+//    std::cout << "Salgo\n";
+//#endif
     if (obj1 != nullptr && obj2 != nullptr) {
         RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
         RigidBody* col2 = static_cast<RigidBody*>(obj2->getUserPointer());
@@ -56,9 +56,9 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
     const btCollisionObject* body1 = static_cast<btCollisionObject*>(obj1);
     const btCollisionObject* body2 = static_cast<btCollisionObject*>(obj2);
 
-#ifdef _DEBUG
-    std::cout << "Stay\n";
-#endif
+//#ifdef _DEBUG
+//    std::cout << "Stay\n";
+//#endif
 
     if (body1 != nullptr && body2 != nullptr) {
 

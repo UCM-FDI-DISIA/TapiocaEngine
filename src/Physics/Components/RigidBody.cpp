@@ -134,23 +134,23 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) {
-#ifdef _DEBUG
-    std::cout << "Entro en collision\n";
-#endif
+//#ifdef _DEBUG
+//    std::cout << "Entro en collision\n";
+//#endif
     pushEvent("onCollisionEnter", other, false);
 }
 
 void RigidBody::onCollisionExit(GameObject* const other) {
-#ifdef _DEBUG
-    std::cout << "Salgo de collision\n";
-#endif
+//#ifdef _DEBUG
+//    std::cout << "Salgo de collision\n";
+//#endif
     pushEvent("onCollisionExit", other, false);
 }
 
 void RigidBody::onCollisionStay(GameObject* const other) {
-#ifdef _DEBUG
-    std::cout << "Estoy en collision\n";
-#endif
+//#ifdef _DEBUG
+//    std::cout << "Estoy en collision\n";
+//#endif
     pushEvent("onCollisionStay", other, false);
 }
 
