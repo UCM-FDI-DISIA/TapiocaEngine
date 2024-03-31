@@ -25,6 +25,7 @@
 #include "Components/Animator.h"
 #include "Components/ParticleSystemComponent.h"
 #include "Components/PlaneComponent.h"
+#include "Components/SpriteRenderer.h"
 // UI
 #include "Components/Button.h"
 #include "Components/InputText.h"
@@ -140,6 +141,7 @@ static void createEngineBuilders() {
     manager->addFactory(new BasicBuilder<CameraComponent>());
     manager->addFactory(new BasicBuilder<Animator>());
     manager->addFactory(new BasicBuilder<ParticleSystemComponent>());
+    manager->addFactory(new BasicBuilder<SpriteRenderer>());
     manager->addFactory(new BasicBuilder<PlaneComponent>());
     // UI
     manager->addFactory(new BasicBuilder<Button>());
