@@ -49,6 +49,8 @@ class TAPIOCA_API GraphicsManager : public Singleton<GraphicsManager>, public Wi
 private:
     friend Singleton<GraphicsManager>;
 
+    const int NUM_TEXTURES = 3;
+
     // Ogre
     Ogre::FileSystemLayer* fsLayer;                      // Sistema de busqueda de archivos de configuracion
     Ogre::RTShader::ShaderGenerator* mShaderGenerator;   // Generador de shaders
@@ -99,8 +101,6 @@ private:
     * @brief Carga plugIns especificados desde codigo
     */
     void loadPlugIns();
-
-    void loadConfigFiles();
 
     void setUpShadows();
 

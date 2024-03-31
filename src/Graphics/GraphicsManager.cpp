@@ -152,13 +152,9 @@ bool GraphicsManager::init() {
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
 
-    loadConfigFiles();
     loadResources();
 
     setUpShadows();
-
-
-    Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("Sinbad/Body");
 
     ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
     if (glContext == nullptr) {
@@ -182,21 +178,6 @@ void GraphicsManager::loadPlugIns() {
 #endif
 }
 
-void GraphicsManager::loadConfigFiles() {
-    // archivos de Ogre
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./shadowsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-    // shaders para las sombras
-}
-
 void GraphicsManager::setUpShadows() {
     // el color por de la luz ambiental es negro, lo que quiere decir que
     // por defecto no hay luz
@@ -208,7 +189,7 @@ void GraphicsManager::setUpShadows() {
     luego hace un "paso" por cada luz oscureciendo las areas de cada objeto
     que necesitan sombras y por ultimo, se renderizan los objetos que no tienen
     sombras.
-    Son imprecisas porque oscurecen el area uniformemente. Además, el problema de
+    Son imprecisas porque oscurecen el area uniformemente. Ademï¿½s, el problema de
     The Silhouette Edge se ve empeorado justo por esto mismo. Es por eso que no es recomendable
     usar mas de dos luces en STENCIL MODULATIVE porque las transiciones no son suaves
     y las aristas son duras, por lo tanto, quedaria un corte si se superpusieran dos sombras.
@@ -243,41 +224,84 @@ void GraphicsManager::setUpShadows() {
     Como no se soporta el autosombreado, se diferencia entre objetos que proyectan sombras (castShadows a true) y que reciben (castShadows a false)
     */
     Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
-    Ogre::MaterialPtr receiverMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowReceiver");
-    if (casterMat && false) {
+    if (false) {
 
-        scnMgr->setShadowCameraSetup(Ogre::LiSPSMShadowCameraSetup::create());
+        //scnMgr->setShadowCameraSetup(Ogre::LiSPSMShadowCameraSetup::create());
         //scnMgr->setShadowCameraSetup(Ogre::FocusedShadowCameraSetup::create());
 
         scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
 
-        scnMgr->setShadowTexturePixelFormat(Ogre::PF_DEPTH32);   // antes depth
+        //scnMgr->setShadowTexturePixelFormat(Ogre::PF_DEPTH32);
+        // el tam de las texturas de sombras
+        // cuanto mas alto es mayor es la calidad. Ademas, tiene que ser multiplo de 2
+        //scnMgr->setShadowTextureSize(1024);
+        // cada luz tiene asociada su propia textura de sombra para evitar el estancamiento del pipeline
+        // grafico que supondria utilizar (y cambiar) la misma textura de sombra para cada luz
+        // Para evitar sobrecargar la memoria para las texturas, se establece cuantas texturas de sombra
+        // puede haber, lo que se traduce en cuantas luces pueden proyectar sombras a la vez
+        //scnMgr->setShadowTextureCount(1);
 
-        //// tener mas precision a la hora de calcular la profundiad de la sombras (float)
+        // tener mas precision a la hora de calcular la profundiad de la sombras (float)
         scnMgr->setShadowTextureCasterMaterial(casterMat);
-        //scnMgr->setShadowTextureReceiverMaterial(receiverMat);
 
-        //// los objetos tanto proyectan como reciben sombras. Esto permite crear autosombras,
-        //// pero es responsabilidad del programador crear un shader con esa funcionalidad.
+        // los objetos tanto proyectan como reciben sombras. Esto permite crear autosombras,
+        // pero es responsabilidad del programador crear un shader con esa funcionalidad.
         scnMgr->setShadowTextureSelfShadow(true);
 
-        //// el tam de las texturas de sombras
-        //// cuanto mas alto es mayor es la calidad. Ademas, tiene que ser multiplo de 2
-        scnMgr->setShadowTextureSize(1024);
-        //// distancia maxima de las sombras
-        //// Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
-        //// para las sombras que producen las luces direccionales
-        scnMgr->setShadowFarDistance(1000.0f);
-        //// cada luz tiene asociada su propia textura de sombra para evitar el estancamiento del pipeline
-        //// grafico que supondria utilizar (y cambiar) la misma textura de sombra para cada luz
-        //// Para evitar sobrecargar la memoria para las texturas, se establece cuantas texturas de sombra
-        //// puede haber, lo que se traduce en cuantas luces pueden proyectar sombras a la vez
-        ////scnMgr->setShadowTextureCount(1);
-        //scnMgr->setShadowTextureFadeStart(0.3f);
+        // distancia maxima de las sombras
+        // Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
+        // para las sombras que producen las luces direccionales
+        scnMgr->setShadowFarDistance(3000.0f);
+
+        scnMgr->setShadowTextureFadeStart(0.3f);
+
+        // 3 textures per directional light (PSSM)
+        scnMgr->setShadowTextureCountPerLightType(Ogre::Light::LT_DIRECTIONAL, 3);
+        scnMgr->setShadowTextureCount(3);
+        scnMgr->setShadowTextureConfig(0, 2048, 2048, Ogre::PF_DEPTH32);
+        scnMgr->setShadowTextureConfig(1, 1024, 1024, Ogre::PF_DEPTH32);
+        scnMgr->setShadowTextureConfig(2, 512, 512, Ogre::PF_DEPTH32);
+
+        Ogre::PSSMShadowCameraSetup* pssmSetup = new Ogre::PSSMShadowCameraSetup();
+        pssmSetup->setSplitPadding(1.0);
+        pssmSetup->calculateSplitPoints(NUM_TEXTURES, 1.0, scnMgr->getShadowFarDistance());
+        Ogre::Vector4 splitPoints(0.0);
+        Ogre::PSSMShadowCameraSetup::SplitPointList splitPointList = pssmSetup->getSplitPoints();
+        for (int i = 0; i <= NUM_TEXTURES; ++i) {
+            splitPoints[i] = splitPointList[i];
+        }
+        pssmSetup->setOptimalAdjustFactor(0, 2);
+        pssmSetup->setOptimalAdjustFactor(1, 1);
+        pssmSetup->setOptimalAdjustFactor(2, 0.5);
+        scnMgr->setShadowCameraSetup(Ogre::ShadowCameraSetupPtr(pssmSetup));
+
+        Ogre::ResourceManager::ResourceMapIterator it = Ogre::MaterialManager::getSingleton().getResourceIterator();
+        std::vector<Ogre::MaterialPtr> v;
+        while (it.hasMoreElements()) {
+            auto mat = Ogre::static_pointer_cast<Ogre::Material>(it.getNext());
+            if (mat) {
+                auto pass = mat->getTechnique(0)->getPass("Lighting");
+                if (pass) {
+                    pass->getFragmentProgramParameters()->setNamedConstant("pssmSplitPoints", splitPoints);
+                }
+            }
+        }
     }
 }
 
 void GraphicsManager::loadResources() {
+    // archivos de Ogre
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+    // shaders para las sombras
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "./shadowsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
 #ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
@@ -435,10 +459,7 @@ ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, st
 Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                     const Vector3& up_, std::string const& name, const float width, const float height,
                                     const int xSegments, const int ySegments, std::string const& material) {
-    auto plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
-    /*plane->castShadows(shadows);
-    plane->setMaterial("ShadowReceiver");*/
-    return plane;
+    return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
