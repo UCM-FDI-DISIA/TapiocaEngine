@@ -158,7 +158,7 @@ bool GraphicsManager::init() {
     setUpShadows();
 
 
-      Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("Sinbad/Body");
+    Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("Sinbad/Body");
 
     ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
     if (glContext == nullptr) {
@@ -433,18 +433,18 @@ ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, st
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
-                                    std::string const& name, const float width, const float height, const int xSegments,
-                                    const int ySegments, std::string const& material) {
-    auto plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, name, width, height, xSegments, ySegments);
+                                    const Vector3& up_, std::string const& name, const float width, const float height,
+                                    const int xSegments, const int ySegments, std::string const& material) {
+    auto plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
     /*plane->castShadows(shadows);
     plane->setMaterial("ShadowReceiver");*/
     return plane;
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
-                                    std::string const& name, const float width, const float height, const int xSegments,
-                                    const int ySegments, std::string const& material) {
-    return new Plane(scnMgr, node, mshMgr, a, b, c, _d, name, width, height, xSegments, ySegments);
+                                    const Vector3& up_, std::string const& name, const float width, const float height,
+                                    const int xSegments, const int ySegments, std::string const& material) {
+    return new Plane(scnMgr, node, mshMgr, a, b, c, _d, up_, name, width, height, xSegments, ySegments);
 }
 
 AnimationHelper* GraphicsManager::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
@@ -456,8 +456,7 @@ Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const&
     return new Skybox(scnMgr, node, texture, distC, orderC);
 }
 
-Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName,
-                                          const bool enable,
+Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
                                           const Vector3 rkNormal, const float fConstant, const float scale,
                                           const float tiling, const bool drawFirst, const float bow,
                                           const int xsegments, const int ysegments) {
@@ -473,4 +472,3 @@ Ogre::ManualObject* GraphicsManager::createManualObject(RenderNode* const node) 
 
 void GraphicsManager::destroyManualObject(Ogre::ManualObject* const object) { scnMgr->destroyManualObject(object); }
 }
-

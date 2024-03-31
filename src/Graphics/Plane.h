@@ -56,7 +56,8 @@ private:
     * @param numTexCoordSets Numero de texCoordSets creados
     */
     Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
-          const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
+          const Vector3& rkNormal, const float fConstant, const Vector3& up_, std::string const& name,
+          const float width,
           const float height, const int xSegments, const int ySegments);
     /*
     * @brief Constructora de la clase Plane.
@@ -78,7 +79,8 @@ private:
     * @param numTexCoordSets Numero de texCoordSets creados
     */
     Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
-          const float b, const float c, const float _d, std::string const& name, const float width, const float height,
+          const float b, const float c, const float _d, const Vector3& up_, std::string const& name, const float width,
+          const float height,
           const int xSegments, const int ySegments);
 
 public:

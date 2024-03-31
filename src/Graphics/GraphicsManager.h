@@ -288,9 +288,9 @@ public:
     * @param ySegments Numero de segmentos del plano en la direccion y
     * @param material Nombre del material
     */
-    Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, std::string const& name,
-                       const float width, const float height, const int xSegments, const int ySegments,
-                       std::string const& material = "");
+    Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, const Vector3& up_,
+                       std::string const& name, const float width, const float height, const int xSegments,
+                       const int ySegments, std::string const& material = "");
 
     /*
     * @brief Crea un plane
@@ -310,8 +310,8 @@ public:
     * @param material Nombre del material
     */
     Plane* createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
-                       std::string const& name, const float width, const float height, const int xSegments,
-                       const int ySegments, std::string const& material = "");
+                       const Vector3& up_, std::string const& name, const float width, const float height,
+                       const int xSegments, const int ySegments, std::string const& material = "");
 
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
 

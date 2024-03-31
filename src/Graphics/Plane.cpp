@@ -14,17 +14,14 @@
 namespace Tapioca {
 
 Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
-             const Vector3& rkNormal, const float fConstant, std::string const& name, const float width,
+             const Vector3& rkNormal, const float fConstant, const Vector3& up_, std::string const& name,
+             const float width,
              const float height, const int xSegments, const int ySegments)
     : RenderObject(node, scnMgr) {
     Ogre::Vector3 normal = Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z).normalisedCopy();
+    Ogre::Vector3 up = Ogre::Vector3(up_.x, up_.y, up_.z).normalisedCopy();
     mPlaneAux = Ogre::Plane(normal, fConstant);
 
-    Ogre::Vector3 up =
-        Ogre::Vector3(Ogre::Vector3::UNIT_Y + (normal - Ogre::Vector3::UNIT_Z)).normalisedCopy();
-#ifdef _DEBUG
-    std::cout << up << "\n";
-#endif   //  _DEBUG
     mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
                         xSegments, ySegments, true, 1, Ogre::Real(1.0F), Ogre::Real(1.0F), up);
 
@@ -36,12 +33,14 @@ Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::Mes
 }
 
 Plane::Plane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
-             const float b, const float c, const float _d, std::string const& name, const float width,
+             const float b, const float c, const float _d, const Vector3& up_, std::string const& name,
+             const float width,
              const float height, const int xSegments, const int ySegments)
     : RenderObject(node, scnMgr) {
     Ogre::Vector3 normal = Ogre::Vector3(a, b, c);
+    Ogre::Vector3 up = Ogre::Vector3(up_.x, up_.y, up_.z).normalisedCopy();
     mPlaneAux = Ogre::Plane(normal, _d);
-    Ogre::Vector3 up = Ogre::Vector3(Ogre::Vector3::UNIT_Y + (normal - Ogre::Vector3::UNIT_Z)).normalisedCopy();
+
     mshMgr->createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mPlaneAux, width, height,
                         xSegments, ySegments, true, 1, Ogre::Real(1.0F), Ogre::Real(1.0F), up);
 

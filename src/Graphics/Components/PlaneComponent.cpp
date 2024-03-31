@@ -44,6 +44,15 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
         fConstant = 0.f;
     }
 
+    bool upSet = setValueFromMap(up.x, "upX", variables) && setValueFromMap(up.y, "upY", variables) &&
+        setValueFromMap(up.z, "upZ", variables);
+    if (!upSet) {
+#ifdef _DEBUG
+        std::cout << "No se ha definido un up para el plano, se usara el valor por defecto (0, 1, 0).\n";
+#endif
+        up = Tapioca::Vector3(0.f, 1.f, 0.f);
+    }
+
     if (!setValueFromMap(width, "width", variables)) {
 #ifdef _DEBUG
         std::cout << "No se ha definido una anchura, se usara el valor por defecto 1.\n";
@@ -80,7 +89,7 @@ void PlaneComponent::awake() {
     transform = gameobject->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
-    plane = g->createPlane(node, rkNormal, fConstant, planeName, width, height, xSegments, ySegments, materialName);
+    plane = g->createPlane(node, rkNormal, fConstant, up, planeName, width, height, xSegments, ySegments, materialName);
 
     if (materialName != "") plane->setMaterial(materialName);
 }
