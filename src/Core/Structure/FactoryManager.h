@@ -32,11 +32,6 @@ private:
     */
     FactoryManager();
 
-    /*
-    * @brief Crea las factorias de los componentes del motor
-    */
-    bool init() override;
-
 public:
     FactoryManager(FactoryManager&) = delete;
     FactoryManager(FactoryManager&&) = delete;
