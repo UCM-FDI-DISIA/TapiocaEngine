@@ -11,12 +11,15 @@ class Transform;
 
 class TAPIOCA_API CameraComponent : public Component {
 private:
+    const Vector3 INITIAL_DIR = Vector3(0.0f, 0.0f, -1.0f);
+
     RenderNode* node;
     Camera* camera;
     Viewport* viewport;
     Transform* transform;
 
     // Camera
+    bool targetToLookSet;
     Vector3 targetToLook;   // la camara de Ogre apunta por defecto a (0,0,0) global
     Vector3 direction;
     float nearPlane;

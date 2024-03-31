@@ -9,8 +9,8 @@
 namespace Tapioca {
 CameraComponent::CameraComponent()
     : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(),
-      dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(0.0f, 0.0f, 0.0f), direction(0.0f, 0.0f, -1.0f), nearPlane(-1.0f),
-      farPlane(-1.0f) { }
+      dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
+      farPlane(-1.0f), targetToLookSet(false) { }
 
 CameraComponent::~CameraComponent() {
     delete node;
@@ -20,12 +20,11 @@ CameraComponent::~CameraComponent() {
 bool CameraComponent::initComponent(const CompMap& variables) {
     // Camera
     bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
-                        setValueFromMap(direction.y, "directionY", variables) && 
-                        setValueFromMap(direction.z, "directionZ", variables);
+        setValueFromMap(direction.y, "directionY", variables) && setValueFromMap(direction.z, "directionZ", variables);
     if (!directionSet) {
-        bool targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
-                               setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
-                               setValueFromMap(targetToLook.z, "targetToLookZ", variables);
+        targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
+            setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
+            setValueFromMap(targetToLook.z, "targetToLookZ", variables);
         if (!targetToLookSet) {
 #ifdef _DEBUG
             std::cout << "CameraComponent: la camara apunta hacia (0,0,-1) global.\n";
@@ -93,15 +92,12 @@ void CameraComponent::awake() {
     camera = graphicsManager->createCamera(node, "Camera " + zOrder);
     viewport = graphicsManager->createViewport(camera, zOrder);
 
-    if (direction != Vector3(0.0f, 0.0f, -1.0f)) {
+    if (direction != Vector3(0.0f, 0.0f, 0.0f)) {
         camera->setDirection(direction);
     }
-    else {
-        camera->setDirection(Vector3(0.0f, 0.0f, -1.0f));
+    else if (!targetToLookSet) {
+        setDirection(INITIAL_DIR);
     }
-    
-    //TODO: Poner targetToLook si se establece manualmente que hay que mirar a un punto siempre
-
 
     if (nearPlane != -1.0f) {
         camera->setNearClipDistance(nearPlane);
@@ -131,6 +127,11 @@ void CameraComponent::awake() {
 void CameraComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
+
+        if (targetToLookSet) {
+            targetToLookSet = false;
+            lookAt(targetToLook);
+        }
         // Distinguir entre si esta mirando a un punto o esta mirando en una direccion
         //if (direction == Vector3(0.0f, 0.0f, 0.0f)) {
         //    // Mirar a un punto depende de la posicion de la camara
@@ -144,7 +145,7 @@ void CameraComponent::handleEvent(std::string const& id, void* info) {
 
 void CameraComponent::lookAt(const Vector3 targetToLook) {
     // Indicar que se va a usar targetToLook y no direction
-    direction = Vector3(0.0f, 0.0f, 0.0f);
+    //direction = Vector3(0.0f, 0.0f, 0.0f);
     this->targetToLook = targetToLook;
     camera->lookAt(targetToLook);
 }
