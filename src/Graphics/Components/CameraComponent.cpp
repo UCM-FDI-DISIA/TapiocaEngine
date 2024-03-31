@@ -9,7 +9,7 @@
 namespace Tapioca {
 CameraComponent::CameraComponent()
     : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(),
-      dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(0.0f, 0.0f, 0.0f), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
+      dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(0.0f, 0.0f, 0.0f), direction(0.0f, 0.0f, -1.0f), nearPlane(-1.0f),
       farPlane(-1.0f) { }
 
 CameraComponent::~CameraComponent() {
@@ -19,16 +19,16 @@ CameraComponent::~CameraComponent() {
 
 bool CameraComponent::initComponent(const CompMap& variables) {
     // Camera
-    bool targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
-        setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
-        setValueFromMap(targetToLook.z, "targetToLookZ", variables);
-    if (!targetToLookSet) {
-        bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
-            setValueFromMap(direction.y, "directionY", variables) &&
-            setValueFromMap(direction.z, "directionZ", variables);
-        if (!directionSet) {
+    bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
+                        setValueFromMap(direction.y, "directionY", variables) && 
+                        setValueFromMap(direction.z, "directionZ", variables);
+    if (!directionSet) {
+        bool targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
+                               setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
+                               setValueFromMap(targetToLook.z, "targetToLookZ", variables);
+        if (!targetToLookSet) {
 #ifdef _DEBUG
-            std::cout << "CameraComponent: la camara apunta hacia (0,0,0) global.\n";
+            std::cout << "CameraComponent: la camara apunta hacia (0,0,-1) global.\n";
 #endif
         }
     }
@@ -93,9 +93,16 @@ void CameraComponent::awake() {
     camera = graphicsManager->createCamera(node, "Camera " + zOrder);
     viewport = graphicsManager->createViewport(camera, zOrder);
 
-    if (direction != Vector3(0.0f, 0.0f, 0.0f)) {
+    if (direction != Vector3(0.0f, 0.0f, -1.0f)) {
         camera->setDirection(direction);
     }
+    else {
+        camera->setDirection(Vector3(0.0f, 0.0f, -1.0f));
+    }
+    
+    //TODO: Poner targetToLook si se establece manualmente que hay que mirar a un punto siempre
+
+
     if (nearPlane != -1.0f) {
         camera->setNearClipDistance(nearPlane);
     }

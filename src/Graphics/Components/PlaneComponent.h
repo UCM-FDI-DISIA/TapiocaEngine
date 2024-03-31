@@ -29,7 +29,6 @@ private:
 #pragma warning(default : 4251)
 #endif
     Plane* getPlane() const;
-    Vector3 initialRotation;
 
 public:
     COMPONENT_ID("PlaneComponent")

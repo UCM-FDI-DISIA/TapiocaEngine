@@ -9,7 +9,7 @@
 namespace Tapioca {
 
 ParticleSystemComponent::ParticleSystemComponent()
-    : node(nullptr), transform(nullptr), pSys(nullptr), pSysName(""), templateName(""), emitting(false), initialRotation(Vector3(0.0f)) { }
+    : node(nullptr), transform(nullptr), pSys(nullptr), pSysName(""), templateName(""), emitting(false) { }
 
 ParticleSystemComponent::~ParticleSystemComponent() { delete node; }
 
@@ -44,7 +44,6 @@ void ParticleSystemComponent::awake() {
 void ParticleSystemComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
-        node->setRotation(initialRotation + transform->getGlobalRotation());
         node->setScale(transform->getGlobalScale());
     }
 }

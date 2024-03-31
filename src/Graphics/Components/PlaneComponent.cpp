@@ -7,7 +7,7 @@
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent()
-    : plane(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), fConstant(), height(), width(),
+    : plane(nullptr), node(nullptr), transform(nullptr), fConstant(), height(), width(),
       xSegments(), ySegments() { }
 
 PlaneComponent::~PlaneComponent() { delete node; }
@@ -72,15 +72,6 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
         ySegments = 1;
     }
 
-    bool rotationSet = setValueFromMap(initialRotation.x, "initRotationX", variables) &&
-        setValueFromMap(initialRotation.y, "initRotationY", variables) &&
-        setValueFromMap(initialRotation.z, "initRotationZ", variables);
-    if (!rotationSet) {
-#ifdef _DEBUG
-        std::cerr << "La rotacion inicial es Vector3(0,0,0).\n";
-#endif
-    }
-
     return true;
 }
 
@@ -97,7 +88,6 @@ void PlaneComponent::awake() {
 void PlaneComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
-        node->setRotation(initialRotation + transform->getGlobalRotation());
         node->setScale(transform->getGlobalScale());
     }
 }

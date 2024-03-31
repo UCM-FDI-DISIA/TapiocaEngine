@@ -1,6 +1,5 @@
 #pragma once
 #include "Structure/Component.h"
-#include "Utilities/Vector3.h"
 
 namespace Tapioca {
 class RenderNode;
@@ -28,7 +27,6 @@ private:
 //#pragma warning(default : 4251)
 //#endif
     bool emitting;
-    Vector3 initialRotation;
 
 public:
     COMPONENT_ID("ParticleSystemComponent")
