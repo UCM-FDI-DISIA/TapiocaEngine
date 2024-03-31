@@ -155,7 +155,7 @@ void Transform::rotate(const Vector3& r) {
 
 Vector3 Transform::right() {
 
-    Vector3 r(1, 0, 0);   //X
+    Vector3 r(-1, 0, 0);   //X
 
     // Crear cuaterniones para las rotaciones en cada eje
     Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
@@ -175,7 +175,7 @@ Vector3 Transform::right() {
 }
 Vector3 Transform::up() {
 
-    Vector3 u(0, -1, 0);   //Y
+    Vector3 u(0, 1, 0);   //Y
 
     // Crear cuaterniones para las rotaciones en cada eje
     Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
