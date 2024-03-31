@@ -43,9 +43,51 @@ void runEngine() {
     if (game->init()) {
         createEngineBuilders();
 
+        /*
+        // PRUEBAS DE GRAPHICS
+        auto nodeAux2 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f), Vector3(3.1f, 3.1f, 3.1f));
+        auto sphere = graphics->createMesh(nodeAux2, "Sinbad.mesh");
+        sphere->setMaterial("ShadowReceiver");
+        sphere->castShadows(true);
+        auto nodeAux = graphics->createNode(Vector3(0.0f, 10.0f, -30.0f), Vector3(0.1f, 0.1f, 0.1f));
+        auto sphere2 = graphics->createMesh(nodeAux, "sphere.mesh");
+        sphere2->castShadows(true);
+        auto nodeAux3 = graphics->createNode(Vector3(0.0f, 0.0f, -50.0f), Vector3(0.1f, 0.1f, 0.1f));
+        //auto sphere3 = graphics->createMesh(nodeAux3, "sphere.mesh");
+        //sphere3->castShadows(false);
+        sphere2->setMaterial("ShadowReceiver");
+        auto plane2 = graphics->createPlane(nodeAux3, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola2", 10000, 10000, 100, 100, true);
+        auto node = graphics->createNode(Vector3(20.0f, 0.0f, 50.0f));
+        //auto light = graphics->createLightSpotlight(node, Vector3(0, 0, -1));
+        //auto light = graphics->createLightPoint(node);
+        //auto light = graphics->createLightDirectional(node, Tapioca::Vector3(-1.0f, 0.0f, -1.0f));
+        //light->produceShadows(false);
+        auto node2 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
+        auto light2 = graphics->createLightDirectional(node2, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
+        light2->produceShadows(true);
+        //auto light2 = graphics->createLightSpotlight(node2, Vector3(0, 0, -1));
+        scenes->loadScene("archivo2.lua");
+        */
+
+        // PRUEBAS DE CORE
+        /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
+        Quaternion q2 = Tapioca::Quaternion(0, Tapioca::Vector3(0, 0, 1));
+        Quaternion q3 = Tapioca::Quaternion(1, 0, 0, 0.0000000017);
+        Quaternion qc = q * q2 * q3;
+        Vector3 p = qc.rotatePoint(Tapioca::Vector3(0, 0, 1));*/
+
+        // PRUEBAS DE SOUND
+        //SoundManager::instance()->testsample();
+
         scenes->loadScene("startScene.lua");
 
         game->run();
+
+        /*
+        delete node2;
+        delete nodeAux;
+        delete nodeAux2;
+        */
     }
 #ifdef _DEBUG
     else std::cerr << "Error al inicializar un modulo\n";
