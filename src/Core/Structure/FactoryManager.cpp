@@ -16,11 +16,6 @@ FactoryManager::~FactoryManager() {
     builders.clear();
 }
 
-bool FactoryManager::init() {
-    createEngineBuilders();
-    return true;
-}
-
 Component* FactoryManager::createComponent(std::string const& name) {
     if (builders.find(name) != builders.end()) return builders[name]->createComponent();
     return nullptr;

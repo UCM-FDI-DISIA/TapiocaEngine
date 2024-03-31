@@ -125,11 +125,11 @@ void CameraComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
         // Distinguir entre si esta mirando a un punto o esta mirando en una direccion
-        if (direction == Vector3(0.0f, 0.0f, 0.0f)) {
-            // Mirar a un punto depende de la posicion de la camara
-            // Por lo tanto, cada vez que se cambie la pos, hay que cambiarlo
-            lookAt(targetToLook);
-        }
+        //if (direction == Vector3(0.0f, 0.0f, 0.0f)) {
+        //    // Mirar a un punto depende de la posicion de la camara
+        //    // Por lo tanto, cada vez que se cambie la pos, hay que cambiarlo
+        //    lookAt(targetToLook);
+        //}
         /*node->setRotation(transform->getGlobalRotation());
         node->setScale(transform->getGlobalScale());*/
     }
