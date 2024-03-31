@@ -130,20 +130,6 @@ Vector3 Quaternion::rotatePoint(const Vector3 point) {
     return point + axis.cross(axis.cross(point) * (1 - cosf(angle))) + axis.cross(point) * sinf(angle);
 }
 
-Quaternion Quaternion::lookAt(const Vector3& forward, const Vector3& upwards) { 
-    Vector3 fw = forward.getNormalized(); 
-    Vector3 upw = upwards.getNormalized();
-
-    Vector3 right = upw.cross(fw).getNormalized();
-    
-    float w = std::sqrt(1.0f + right.x + upw.y + fw.z) / 2.0f;
-    float w4 = 4.0f * w;
-    float x = (upw.z - fw.y) / w4;
-    float y = (fw.x - right.z) / w4;
-    float z = (right.y - upw.x) / w4;
-
-    return Quaternion(w, x, y, z);
-}
 
 
 }
