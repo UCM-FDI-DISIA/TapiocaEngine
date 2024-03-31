@@ -31,6 +31,11 @@
 #include "Components/Text.h"
 #include "Components/ImageButton.h"
 
+// PRUEBAS
+#include "RenderNode.h"
+#include "Mesh.h"
+#include "LightDirectional.h"
+
 namespace Tapioca {
 void initEngine() {
     game = Tapioca::Game::create();
@@ -43,31 +48,22 @@ void runEngine() {
     if (game->init()) {
         createEngineBuilders();
 
-        /*
         // PRUEBAS DE GRAPHICS
-        auto nodeAux2 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f), Vector3(3.1f, 3.1f, 3.1f));
-        auto sphere = graphics->createMesh(nodeAux2, "Sinbad.mesh");
-        sphere->setMaterial("ShadowReceiver");
+        /*auto node1 = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f), Vector3(4.1f, 4.1f, 4.1f));
+        auto sphere = graphics->createMesh(node1, "racoon/mapache.mesh");
         sphere->castShadows(true);
-        auto nodeAux = graphics->createNode(Vector3(0.0f, 10.0f, -30.0f), Vector3(0.1f, 0.1f, 0.1f));
-        auto sphere2 = graphics->createMesh(nodeAux, "sphere.mesh");
+        auto node2 = graphics->createNode(Vector3(0.0f, 0.0f, -90.0f), Vector3(10.1f, 10.1f, 0.1f));
+        auto sphere2 = graphics->createMesh(node2, "cube.mesh");
         sphere2->castShadows(true);
-        auto nodeAux3 = graphics->createNode(Vector3(0.0f, 0.0f, -50.0f), Vector3(0.1f, 0.1f, 0.1f));
-        //auto sphere3 = graphics->createMesh(nodeAux3, "sphere.mesh");
-        //sphere3->castShadows(false);
-        sphere2->setMaterial("ShadowReceiver");
-        auto plane2 = graphics->createPlane(nodeAux3, Vector3(0.0f, 0.0f, 1.0f), 0.0f, "hola2", 10000, 10000, 100, 100, true);
-        auto node = graphics->createNode(Vector3(20.0f, 0.0f, 50.0f));
-        //auto light = graphics->createLightSpotlight(node, Vector3(0, 0, -1));
-        //auto light = graphics->createLightPoint(node);
-        //auto light = graphics->createLightDirectional(node, Tapioca::Vector3(-1.0f, 0.0f, -1.0f));
-        //light->produceShadows(false);
-        auto node2 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
-        auto light2 = graphics->createLightDirectional(node2, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
-        light2->produceShadows(true);
-        //auto light2 = graphics->createLightSpotlight(node2, Vector3(0, 0, -1));
-        scenes->loadScene("archivo2.lua");
-        */
+        sphere2->setMaterial("juan");
+        auto node3 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f));
+        auto sphere3 = graphics->createMesh(node3, "sphere.mesh");
+        sphere3->castShadows(true);
+        auto node4 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
+        auto light = graphics->createLightDirectional(node4, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
+        light->produceShadows(true);
+
+        scenes->loadScene("archivo2.lua");*/
 
         // PRUEBAS DE CORE
         /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
@@ -83,14 +79,14 @@ void runEngine() {
 
         game->run();
 
-        /*
-        delete node2;
-        delete nodeAux;
-        delete nodeAux2;
-        */
+        //delete node1;
+        //delete node2;
+        //delete node3;
+        //delete node4;
     }
 #ifdef _DEBUG
-    else std::cerr << "Error al inicializar un modulo\n";
+    else
+        std::cerr << "Error al inicializar un modulo\n";
 #endif
 }
 

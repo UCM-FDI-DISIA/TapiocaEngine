@@ -225,7 +225,6 @@ void GraphicsManager::setUpShadows() {
     */
     Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
     if (false) {
-
         //scnMgr->setShadowCameraSetup(Ogre::LiSPSMShadowCameraSetup::create());
         //scnMgr->setShadowCameraSetup(Ogre::FocusedShadowCameraSetup::create());
 

@@ -3,19 +3,34 @@
 uniform mat4 modelMat;
 uniform mat4 normalModelMat;
 uniform mat4 worldViewProjMatrix;
-uniform mat4 texViewProj;
 uniform vec4 lightPosition;
 uniform vec4 lightColour;
+
+// PSM
+uniform mat4 texViewProj0;
+uniform mat4 texViewProj1;
+uniform mat4 texViewProj2;
+
+//uniform mat4 texViewProj;
  
-in vec4 vertex;
-in vec3 normal;
+layout (location = 0) in vec4 vertex;
+layout (location = 2) in vec3 normal;
  
-out vec4 oUv;
 out vec4 outColor;
- 
+
+// PSSM
+out float depth;
+
+out vec4 oUv0;
+out vec4 oUv1;
+out vec4 oUv2;
+//out vec4 oUv;
+  
 void main()
 {
     gl_Position = worldViewProjMatrix * vertex;
+    
+    depth = gl_Position.z;
     
     // transformar el vertice a espacio de mundo
     vec4 worldPos = modelMat * vertex;
@@ -32,6 +47,11 @@ void main()
     // comprobar si la luz esta debajo del objeto o no
     outColor = lightColour * max(dot(lightDir, worldNorm), 0.0);
 
+    // calculate shadow map coords
+    oUv0 = texViewProj0 * worldPos;
+    oUv1 = texViewProj1 * worldPos;
+    oUv2 = texViewProj2 * worldPos;
+
     // vertice desde el punto de vista de la luz
-    oUv = texViewProj * worldPos;
+    //oUv = texViewProj * worldPos;
 }

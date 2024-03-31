@@ -16,7 +16,10 @@ scene = {
                     zOrder = 0,
                     bgColorR = 0.8,
                     bgColorG = 0.8,
-                    bgColorB = 0.8
+                    bgColorB = 0.8,
+                    targetToLookX = 0.0,
+                    targetToLookY = 0.0,
+                    targetToLookZ = 0.0
                 }
             }
         }

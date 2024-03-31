@@ -1,17 +1,3 @@
-vertex_program ShadowCasterVS glsl {
-    source ShadowCasterVS.glsl
-
-    default_params{
-		param_named_auto worldViewProjMatrix worldviewproj_matrix
-        param_named_auto texelOffsets texel_offsets
-        //param_named_auto depthRange scene_depth_range
-    }
-}
-
-fragment_program ShadowCasterFS glsl {
-    source ShadowCasterFS.glsl
-}
-
 /*
 Se utiliza para calcular el depthmap, es decir, la profundidad de cada pixel
 */
@@ -26,43 +12,7 @@ material ShadowCaster
             vertex_program_ref ShadowCasterVS {}
 
             fragment_program_ref ShadowCasterFS {}
-
-            //depth_bias 0.0005
         }
-    }
-}
-
-vertex_program ShadowReceiverVS glsl {
-    source ShadowReceiverVS.glsl
-
-	default_params{
-        // TODO SE HACE EN COORDENADAS DE GLOBALES/MUNDO
-        // matriz de modelado (se utiliza para transformar los vertices desde el espacio local del objeto al espacio de mundo)
-        param_named_auto modelMat world_matrix
-        // matriz de normales (se utiliza para transformar los vectores desde el espacio local del objeto al espacio de mundo)
-        // se utiliza la inversa de la traspuesta para evitar que las normales se deformen
-        param_named_auto normalModelMat inverse_transpose_world_matrix
-		param_named_auto worldViewProjMatrix worldviewproj_matrix
-        // se utiliza para transformar un objeto desde el espacio de mundo al espacio de coordenadas de la luz
-		param_named_auto texViewProj texture_viewproj_matrix
-        // posicion y color de la primera luz (por lo tanto, solo soporta las sombras con UNA luz)
-		//param_named_auto lightPosition light_position 0
-		//param_named_auto lightColour light_diffuse_colour 0
-    }
-}
-
-fragment_program ShadowReceiverFS glsl {
-    source ShadowReceiverFS.glsl
-
-	default_params{
-        // depth map
-		param_named shadowMap int 0
-
-        param_named inverseShadowmapSize float 0.0009765625
-		param_named fixedDepthBias float 0.0005
-		param_named gradientClamp float 0.0098
-		param_named gradientScaleBias float 0
-        param_named shadowFuzzyWidth float 1
     }
 }
 
@@ -79,21 +29,18 @@ material ShadowReceiver
         // lighting
         pass Lighting
         {
-            iteration once_per_light
+            //iteration once_per_light
             
-            scene_blend add
+            //scene_blend add
 
-            ambient 0 0 0
+            //ambient 0 0 0
 
-            vertex_program_ref ShadowReceiverVS {
-                param_named_auto lightPosition light_position 0
-		        param_named_auto lightColour light_diffuse_colour 0
-            }
+            vertex_program_ref ShadowReceiverVS {}
 
             fragment_program_ref ShadowReceiverFS {}
 
             // textura con el depth map
-            texture_unit ShadowMap
+            texture_unit ShadowMap0
             {
                 tex_address_mode clamp
                 tex_border_colour 1.0 1.0 1.0 1.0
@@ -101,117 +48,167 @@ material ShadowReceiver
                 filtering none
             }
 
-            //depth_bias 0.0005
-        }
-    }
-}
-
-/*
-vertex_program ShadowCasterVP cg
-{
-    source v-shadow-caster.cg
-    entry_point main
-    profiles arbvp1
-
-    default_params
-    {
-        param_named_auto p_ModelViewProjection worldviewproj_matrix
-        param_named_auto p_AmbientLight ambient_light_colour
-    }
-}
-
-fragment_program ShadowCasterFP cg
-{
-    source f-shadow-caster.cg
-    entry_point main
-    profiles arbfp1
-    // Store normalized (usefull to avoid overflowin) or non-normalized depth ?
-    //compile_arguments -DSTORE_NORMALIZED_DEPTH
-
-    default_params
-    {
-        // Only used when storing normalized depth values
-        //param_named_auto p_Near near_clip_distance
-        //param_named_auto p_Far far_clip_distance
-        param_named p_DepthOffset float 0.01
-    }
-}
-
-material ShadowCaster
-{
-    technique default
-    {
-        // Z-write only pass
-        pass Z-write
-        {
-            vertex_program_ref ShadowCasterVP
-            {
-            }
-            fragment_program_ref ShadowCasterFP
-            {
-            }
-        }
-    }
-}
-
-vertex_program LightingWithShadowMapVP cg
-{
-    source v-lighting.cg
-    entry_point main
-    profiles arbvp1
-    // Similar to standard lighting but using the shadow map in addition
-    compile_arguments -DSHADOW_MAP
-    
-    default_params
-    {
-        param_named_auto p_ModelView worldview_matrix
-        param_named_auto p_InverseModelView inverse_worldview_matrix
-        param_named_auto p_ModelViewProjection worldviewproj_matrix
-        param_named_auto p_LightPosition light_position_object_space
-        // Required to express fragment's position in light space
-        param_named_auto p_Model world_matrix
-        param_named_auto p_TextureViewProjection texture_viewproj_matrix
-    }
-}
-
-fragment_program LightingWithShadowMapFP cg
-{
-    source f-lighting.cg
-    entry_point main
-    profiles arbfp1
-    // Similar to standard lighting but using the shadow map in addition
-    compile_arguments -DSHADOW_MAP
-    
-    default_params
-    {
-        param_named_auto p_LightDiffuse light_diffuse_colour 0
-        param_named_auto p_LightSpecular light_specular_colour 0
-        param_named_auto p_LightPower light_power 0
-        param_named p_Diffuse float4 0.5 0 0 1 
-        param_named p_Specular float 1 1 1 30
-    }
-}
-
-material ShadowReceiver
-{
-    technique default
-    {
-        pass lighting
-        {
-            vertex_program_ref LightingWithShadowMapVP
-            {
-            }
-
-            fragment_program_ref LightingWithShadowMapFP
-            {
-            }
-
-            texture_unit ShadowMap
+            texture_unit ShadowMap1
             {
                 tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            texture_unit ShadowMap2
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            //depth_bias 0.0001
+        }
+    }
+}
+
+// TEMPLATES
+material ShadowTemplateTexture {    
+    technique {
+        // Base ambient pass
+        pass Ambient
+        {
+            scene_blend modulate
+
+            // base colours, not needed for rendering, but as information
+            // to lighting pass categorisation routine
+            ambient 1 1 1
+            diffuse 0 0 0 
+            specular 0 0 0 0 
+        }
+
+        pass Lighting
+        {
+
+            iteration once_per_light
+            
+            scene_blend add
+
+            ambient 0 0 0
+            diffuse 1 1 1
+            specular 1 1 1 1
+
+            vertex_program_ref ShadowReceiverVS {}
+
+            fragment_program_ref ShadowReceiverFS {}
+
+            // textura con el depth map
+            texture_unit ShadowMap0
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            texture_unit ShadowMap1
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            texture_unit ShadowMap2
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
                 filtering none
             }
         }
+
+        pass Decal {
+            lighting off
+            scene_blend modulate
+
+            // Really basic vertex program
+            vertex_program_ref AmbientOneTextureVS
+            {
+                param_named ambient float4 1 1 1 1
+            }
+            fragment_program_ref AmbientOneTextureFS {}
+        }
     }
 }
-*/
+
+
+material ShadowTemplateColor {
+    technique {
+        // Base ambient pass
+        pass Ambient
+        {
+            scene_blend modulate
+
+            // base colours, not needed for rendering, but as information
+            // to lighting pass categorisation routine
+            ambient 1 1 1
+            diffuse 0 0 0 
+            specular 0 0 0 0 
+        }
+        
+        pass Lighting
+        {
+            iteration once_per_light
+            
+            scene_blend add
+
+            ambient 0 0 0
+            diffuse 1 1 1
+            specular 1 1 1 1
+
+            vertex_program_ref ShadowReceiverVS {}
+
+            fragment_program_ref ShadowReceiverFS {}
+
+            // textura con el depth map
+            texture_unit ShadowMap0
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            texture_unit ShadowMap1
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            texture_unit ShadowMap2
+            {
+                tex_address_mode clamp
+                tex_border_colour 1.0 1.0 1.0 1.0
+                content_type shadow
+                filtering none
+            }
+
+            //depth_bias 0.01
+        }
+
+        pass Decal {
+            scene_blend modulate
+
+            ambient 1 1 1
+        }
+    }
+}
+
+material juan : ShadowTemplateColor {
+    technique {
+        pass Decal {
+            diffuse 1.0 0.0 0.0 1.0
+            specular 0.5 0.0 0 0 0
+        }
+    }
+}
