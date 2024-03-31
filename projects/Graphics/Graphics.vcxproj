@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsManager.cpp" />
     <ClCompile Include="..\..\src\Graphics\Light.cpp" />
     <ClCompile Include="..\..\src\Graphics\LightDirectional.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Graphics.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\SpriteRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
     <ClInclude Include="..\..\src\Graphics\Light.h" />
     <ClInclude Include="..\..\src\Graphics\LightDirectional.h" />

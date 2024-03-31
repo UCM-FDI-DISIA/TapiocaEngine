@@ -98,6 +98,7 @@
     <ClCompile Include="..\..\src\Graphics\Components\ParticleSystemComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -179,5 +180,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Graphics.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\SpriteRenderer.h" />
   </ItemGroup>
 </Project>
