@@ -38,6 +38,8 @@
 #include "WindowManager.h"
 #include "GraphicsManager.h"
 
+#define _PSSM
+
 namespace Tapioca {
 template class TAPIOCA_API Singleton<GraphicsManager>;
 template<>
@@ -224,35 +226,48 @@ void GraphicsManager::setUpShadows() {
     Como no se soporta el autosombreado, se diferencia entre objetos que proyectan sombras (castShadows a true) y que reciben (castShadows a false)
     */
     Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
-    if (false) {
+    Ogre::MaterialPtr receiverMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowReceiverText");
+    if (casterMat && receiverMat && false) {
+        // CUANDO SE SETEA UNA CAMARA DE SOMBRAS, TODOS LOS OBJETOS QUE TIENEN QUE CASTEAR SOMBRAS
+        // SINO, SE VE MAL
+#ifndef _PSSM
         //scnMgr->setShadowCameraSetup(Ogre::LiSPSMShadowCameraSetup::create());
-        //scnMgr->setShadowCameraSetup(Ogre::FocusedShadowCameraSetup::create());
+        scnMgr->setShadowCameraSetup(Ogre::FocusedShadowCameraSetup::create());
 
-        scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
+        scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE);
 
-        //scnMgr->setShadowTexturePixelFormat(Ogre::PF_DEPTH32);
+        // tener mas precision a la hora de calcular la profundidad de la sombras (float)
+        scnMgr->setShadowTexturePixelFormat(Ogre::PF_DEPTH32);
         // el tam de las texturas de sombras
         // cuanto mas alto es mayor es la calidad. Ademas, tiene que ser multiplo de 2
-        //scnMgr->setShadowTextureSize(1024);
+        scnMgr->setShadowTextureSize(2048);
         // cada luz tiene asociada su propia textura de sombra para evitar el estancamiento del pipeline
         // grafico que supondria utilizar (y cambiar) la misma textura de sombra para cada luz
         // Para evitar sobrecargar la memoria para las texturas, se establece cuantas texturas de sombra
         // puede haber, lo que se traduce en cuantas luces pueden proyectar sombras a la vez
-        //scnMgr->setShadowTextureCount(1);
+        scnMgr->setShadowTextureCount(1);
 
-        // tener mas precision a la hora de calcular la profundiad de la sombras (float)
+        // distancia maxima de las sombras
+        // Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
+        // para las sombras que producen las luces direccionales
+        scnMgr->setShadowFarDistance(300.0f);
+
+        // (no se si hace falta del todo si se ha utilizado un numero con mucha precision para
+        // la profundidad de las sombras)
+        scnMgr->setShadowTextureReceiverMaterial(receiverMat);
+#endif
         scnMgr->setShadowTextureCasterMaterial(casterMat);
 
         // los objetos tanto proyectan como reciben sombras. Esto permite crear autosombras,
         // pero es responsabilidad del programador crear un shader con esa funcionalidad.
         scnMgr->setShadowTextureSelfShadow(true);
 
-        // distancia maxima de las sombras
-        // Aumentando el tam de textura o reduciendo la distancia se pueden conseguir mejores resultados
-        // para las sombras que producen las luces direccionales
-        scnMgr->setShadowFarDistance(3000.0f);
-
         scnMgr->setShadowTextureFadeStart(0.3f);
+
+#ifdef _PSSM
+        scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
+
+        scnMgr->setShadowFarDistance(3000.0f);
 
         // 3 textures per directional light (PSSM)
         scnMgr->setShadowTextureCountPerLightType(Ogre::Light::LT_DIRECTIONAL, 3);
@@ -285,6 +300,10 @@ void GraphicsManager::setUpShadows() {
                 }
             }
         }
+#endif
+    }
+    else {
+        scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     }
 }
 

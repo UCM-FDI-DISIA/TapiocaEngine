@@ -2,27 +2,15 @@
 
 uniform float inverseShadowmapSize;
 uniform float fixedDepthBias;
-
-// PSSM
-uniform vec4 pssmSplitPoints;
 uniform sampler2D shadowMap0;
-uniform sampler2D shadowMap1;
-uniform sampler2D shadowMap2;
 
-//uniform sampler2D shadowMap;
-//uniform float gradientClamp;
-//uniform float gradientScaleBias;
+uniform float gradientClamp;
+uniform float gradientScaleBias;
 
 in vec4 outColor;
 
-// PSSM
-in float depth;
-in vec4 oUv0;
-in vec4 oUv1;
-in vec4 oUv2;
-
 // vertice desde el punto de vista de la luz
-//in vec4 oUv;
+in vec4 oUv0;
 
 out vec4 fFragColor;
 
@@ -49,7 +37,7 @@ float texture2DShadowLerp(sampler2D depths, vec2 size, vec2 uv, float compare){
 }
    
 
-void shadowFilter( sampler2D shadowMap, vec4 oUv, vec3 splitColour )
+void shadowFilter(sampler2D shadowMap, vec4 oUv)
 {
     // Perform perspective divide
     vec4 shadowUV = oUv;
@@ -57,9 +45,6 @@ void shadowFilter( sampler2D shadowMap, vec4 oUv, vec3 splitColour )
  
     // Transform [-1, 1] to [0, 1] range
     shadowUV.z = shadowUV.z * 0.5 + 0.5;
- 
-    // Get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
-    //float centerdepth = texture2D(shadowMap, shadowUV.xy).x;
 
     // PCF 3X3
     int pcf = 3;
@@ -74,48 +59,38 @@ void shadowFilter( sampler2D shadowMap, vec4 oUv, vec3 splitColour )
 	shadowFactor= shadowFactor*0.11111111;
  
     fFragColor = vec4(outColor.xyz * shadowFactor, 1.0);
-
-    //fFragColor = (centerdepth > shadowUV.z) ? vec4(outColor.xyz * splitColour, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
 }
  
 void main()
 {
-    if( depth <= pssmSplitPoints.y )
-    {
-        shadowFilter(shadowMap0, oUv0, vec3( 1.0, 0.0, 0.0 ) );
-    }
-    else if( depth <= pssmSplitPoints.z )
-    {
-        shadowFilter(shadowMap1, oUv1, vec3( 0.0, 1.0, 0.0 ) );
-    }
-    else if( depth <= pssmSplitPoints.w )
-    {
-        shadowFilter(shadowMap2, oUv2, vec3( 0.0, 0.0, 1.0 ) );
-    }
-    else
-    {
-        discard;
-    }
+    // 1 METODO (SE VE BIEN SI HAY UNA CAMARA DE SOMBRAS ACTIVADA)
+    shadowFilter(shadowMap0, oUv0);
 
+    // 2 METODO
     /*
-    vec4 shadowUV = oUv;
+    vec4 shadowUV = oUv0;
     // punto en el depth shadow map
     // se usa para obtener la profundida del vertice desde el punto de vista de la luz
     // convertir coordenadas de vista en NCD (coordenadas para la textura)
     shadowUV = shadowUV / shadowUV.w;
-    
-    float centerdepth = texture2D(shadowMap, shadowUV.xy).x;
- 
+
     // convertir -1...1 a 0...1 (normalizarlo)
     shadowUV.z = shadowUV.z * 0.5 + 0.5;
+    
+    float centerdepth = texture2D(shadowMap0, shadowUV.xy).x;
+
+    // ORIGINALMENTE ESTABA AQUI
+    // convertir -1...1 a 0...1 (normalizarlo)
+    //shadowUV.z = shadowUV.z * 0.5 + 0.5;
  
     // shadowUV.z contiene la posicion del fragmento en el espacio de la luz
     float pixeloffset = inverseShadowmapSize;
+    // PCF (cuatro adyacentes sin diagonales)
     vec4 depths = vec4(
-        texture2D(shadowMap, shadowUV.xy + vec2(-pixeloffset, 0.0)).x,
-        texture2D(shadowMap, shadowUV.xy + vec2(+pixeloffset, 0.0)).x,
-        texture2D(shadowMap, shadowUV.xy + vec2(0.0, -pixeloffset)).x,
-        texture2D(shadowMap, shadowUV.xy + vec2(0.0, +pixeloffset)).x);
+        texture2D(shadowMap0, shadowUV.xy + vec2(-pixeloffset, 0.0)).x,
+        texture2D(shadowMap0, shadowUV.xy + vec2(+pixeloffset, 0.0)).x,
+        texture2D(shadowMap0, shadowUV.xy + vec2(0.0, -pixeloffset)).x,
+        texture2D(shadowMap0, shadowUV.xy + vec2(0.0, +pixeloffset)).x);
     
     vec2 differences = abs(depths.yw - depths.xz);
 	float gradient = min(gradientClamp, max(differences.x, differences.y));
@@ -140,5 +115,5 @@ void main()
     // y la posicion del vertice desde el punto de vista de la luz
     // La posicion del verticia del punto se ha tenido que converitr al espacio de la luz para poder usar el mismo sistema de referencia
     //fFragColor = (finalCenterDepth > shadowUV.z) ? vec4(outColor.xyz, 1.0) : vec4(0,0,0,1);
-*/
+    */
 }

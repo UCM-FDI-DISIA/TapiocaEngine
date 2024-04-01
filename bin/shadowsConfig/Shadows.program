@@ -11,6 +11,9 @@ fragment_program ShadowCasterFS glsl {
     source ShadowCasterFS.glsl
 }
 
+// -------------------------------//
+// PSSM
+
 vertex_program ShadowReceiverVS glsl {
     source ShadowReceiverVS.glsl
 
@@ -41,11 +44,10 @@ fragment_program ShadowReceiverFS glsl {
         // depth map
 		//param_named shadowMap int 0
         param_named inverseShadowmapSize float 0.0009765625
-        // 0.01
+        // 0.01 ó 0.0001
 		param_named fixedDepthBias float 0.0001
 		//param_named gradientClamp float 0.0098
 		//param_named gradientScaleBias float 0
-        //param_named shadowFuzzyWidth float 1
 
         // PSSM
         param_named shadowMap0 int 0
@@ -74,5 +76,41 @@ fragment_program AmbientOneTextureFS glsl
     default_params
     {
         param_named textura int 0
+    }
+}
+
+// -------------------------------//
+// TEXTURE-BASED (NON INTEGRATED)
+vertex_program ShadowReceiverTextVS glsl {
+    source ShadowReceiverTextVS.glsl
+
+	default_params{
+        // TODO SE HACE EN COORDENADAS DE GLOBALES/MUNDO
+        // matriz de modelado (se utiliza para transformar los vertices desde el espacio local del objeto al espacio de mundo)
+        param_named_auto modelMat world_matrix
+        // matriz de normales (se utiliza para transformar los vectores desde el espacio local del objeto al espacio de mundo)
+        // se utiliza la inversa de la traspuesta para evitar que las normales se deformen
+        param_named_auto normalModelMat inverse_transpose_world_matrix
+		param_named_auto worldViewProjMatrix worldviewproj_matrix
+        // posicion y color de la primera luz (por lo tanto, solo soporta las sombras con UNA luz)
+		param_named_auto lightPosition light_position 0
+		param_named_auto lightColour light_diffuse_colour 0
+
+        // se utiliza para transformar un objeto desde el espacio de mundo al espacio de coordenadas de la luz
+		param_named_auto texViewProj texture_viewproj_matrix
+    }
+}
+
+fragment_program ShadowReceiverTextFS glsl {
+    source ShadowReceiverTextFS.glsl
+
+	default_params{
+        // depth map
+		param_named shadowMap0 int 0
+        param_named inverseShadowmapSize float 0.0009765625
+        // 0.01 ó 0.0001
+		param_named fixedDepthBias float 0.0005
+		param_named gradientClamp float 0.0098
+		param_named gradientScaleBias float 0
     }
 }
