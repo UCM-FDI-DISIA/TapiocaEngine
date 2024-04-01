@@ -90,8 +90,11 @@ namespace Ogre {
         /// Base value data
         union
         {
+#pragma warning(push)
+#pragma warning(disable : 26495)
             int mBaseValueInt;
             Real mBaseValueReal[4];
+#pragma warning(pop)
         };
 
         /// Internal method to set a value as base
@@ -133,7 +136,10 @@ namespace Ogre {
 
 
     public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
         AnimableValue(ValueType t) : mType(t) {}
+#pragma warning(pop)
         virtual ~AnimableValue() {}
 
         /// Gets the value type of this animable value

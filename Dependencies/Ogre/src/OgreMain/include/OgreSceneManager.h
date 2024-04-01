@@ -370,8 +370,11 @@ namespace Ogre {
             /// Pass that was actually used at the grouping level
             const Pass* mUsedPass;
         public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
             SceneMgrQueuedRenderableVisitor() 
                 :transparentShadowCastersMode(false) {}
+#pragma warning(pop)
             ~SceneMgrQueuedRenderableVisitor() {}
             void visit(const Pass* p, RenderableList& rs) override;
             void visit(RenderablePass* rp) override;

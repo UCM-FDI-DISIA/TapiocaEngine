@@ -115,9 +115,12 @@ namespace Ogre {
         class TargetOperation
         {
         public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
             TargetOperation()
             { 
             }
+#pragma warning(pop)
             TargetOperation(RenderTarget* inTarget)
                 : target(inTarget), currentQueueGroupID(0), visibilityMask(0xFFFFFFFF), lodBias(1.0f),
                   onlyInitial(false), hasBeenRendered(false), findVisibleObjects(false),
@@ -166,7 +169,10 @@ namespace Ogre {
             bool shadowsEnabled;
 
             String cameraOverride;
+#pragma warning(push)
+#pragma warning(disable : 26495)
             int alignCameraToFace;
+#pragma warning(pop)
         };
         typedef std::vector<TargetOperation> CompiledState;
         

@@ -85,7 +85,10 @@ namespace Ogre {
         {
 
         public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
             Element() {}
+#pragma warning(pop)
 
             Element(const Vector3& position, float width, float texCoord, const ColourValue& colour,
                     const Quaternion& orientation);

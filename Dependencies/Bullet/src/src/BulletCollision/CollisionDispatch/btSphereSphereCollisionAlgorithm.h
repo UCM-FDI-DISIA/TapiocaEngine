@@ -34,8 +34,11 @@ class btSphereSphereCollisionAlgorithm : public btActivatingCollisionAlgorithm
 public:
 	btSphereSphereCollisionAlgorithm(btPersistentManifold* mf, const btCollisionAlgorithmConstructionInfo& ci, const btCollisionObjectWrapper* col0Wrap, const btCollisionObjectWrapper* col1Wrap);
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
 	btSphereSphereCollisionAlgorithm(const btCollisionAlgorithmConstructionInfo& ci)
 		: btActivatingCollisionAlgorithm(ci) {}
+#pragma warning(pop)
 
 	virtual void processCollision(const btCollisionObjectWrapper* body0Wrap, const btCollisionObjectWrapper* body1Wrap, const btDispatcherInfo& dispatchInfo, btManifoldResult* resultOut);
 

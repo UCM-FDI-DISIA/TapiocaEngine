@@ -67,7 +67,10 @@ namespace Ogre
     };
     template <> struct _OgreExport VectorBase<2, Real>
     {
+        #pragma warning(push)
+        #pragma warning(disable : 26495)
         VectorBase() {}
+        #pragma warning(pop)
         VectorBase(Real _x, Real _y) : x(_x), y(_y) {}
         Real x, y;
         Real* ptr() { return &x; }
@@ -127,7 +130,10 @@ namespace Ogre
 
     template <> struct _OgreExport VectorBase<3, Real>
     {
+        #pragma warning(push)
+        #pragma warning(disable : 26495)
         VectorBase() {}
+        #pragma warning(pop)
         VectorBase(Real _x, Real _y, Real _z) : x(_x), y(_y), z(_z) {}
         Real x, y, z;
         Real* ptr() { return &x; }
@@ -256,7 +262,10 @@ namespace Ogre
 
     template <> struct _OgreExport VectorBase<4, Real>
     {
+        #pragma warning(push)
+        #pragma warning(disable : 26495)
         VectorBase() {}
+        #pragma warning(pop)
         VectorBase(Real _x, Real _y, Real _z, Real _w) : x(_x), y(_y), z(_z), w(_w) {}
         Real x, y, z, w;
         Real* ptr() { return &x; }

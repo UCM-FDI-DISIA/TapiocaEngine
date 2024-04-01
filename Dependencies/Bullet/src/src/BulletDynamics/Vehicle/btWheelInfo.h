@@ -36,6 +36,8 @@ struct btWheelInfoConstructionInfo
 /// btWheelInfo contains information per wheel about friction and suspension.
 struct btWheelInfo
 {
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	struct RaycastInfo
 	{
 		//set by raycaster
@@ -48,6 +50,7 @@ struct btWheelInfo
 		bool m_isInContact;
 		void* m_groundObject;  //could be general void* ptr
 	};
+	#pragma warning(pop)
 
 	RaycastInfo m_raycastInfo;
 
@@ -78,8 +81,13 @@ struct btWheelInfo
 
 	void* m_clientInfo;  //can be used to store pointer to sync transforms...
 
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btWheelInfo() {}
+	#pragma warning(pop)
 
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btWheelInfo(btWheelInfoConstructionInfo& ci)
 
 	{
@@ -103,6 +111,7 @@ struct btWheelInfo
 		m_bIsFrontWheel = ci.m_bIsFrontWheel;
 		m_maxSuspensionForce = ci.m_maxSuspensionForce;
 	}
+	#pragma warning(pop)
 
 	void updateWheel(const btRigidBody& chassis, RaycastInfo& raycastInfo);
 

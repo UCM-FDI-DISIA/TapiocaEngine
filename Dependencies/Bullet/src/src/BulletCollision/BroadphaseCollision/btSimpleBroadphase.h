@@ -23,14 +23,19 @@ struct btSimpleBroadphaseProxy : public btBroadphaseProxy
 	int m_nextFree;
 
 	//	int			m_handleId;
-
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btSimpleBroadphaseProxy(){};
+	#pragma warning(pop)
 
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btSimpleBroadphaseProxy(const btVector3& minpt, const btVector3& maxpt, int shapeType, void* userPtr, int collisionFilterGroup, int collisionFilterMask)
 		: btBroadphaseProxy(minpt, maxpt, userPtr, collisionFilterGroup, collisionFilterMask)
 	{
 		(void)shapeType;
 	}
+	#pragma warning(pop)
 
 	SIMD_FORCE_INLINE void SetNextFree(int next) { m_nextFree = next; }
 	SIMD_FORCE_INLINE int GetNextFree() const { return m_nextFree; }

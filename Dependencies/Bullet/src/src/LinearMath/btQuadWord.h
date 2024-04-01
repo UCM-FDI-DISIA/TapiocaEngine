@@ -175,10 +175,13 @@ public:
 		m_floats[3] = _w;
 	}
 	/**@brief No initialization constructor */
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	SIMD_FORCE_INLINE btQuadWord()
 	//	:m_floats[0](btScalar(0.)),m_floats[1](btScalar(0.)),m_floats[2](btScalar(0.)),m_floats[3](btScalar(0.))
 	{
 	}
+	#pragma warning(pop)
 
 	/**@brief Three argument constructor (zeros w)
    * @param x Value of x

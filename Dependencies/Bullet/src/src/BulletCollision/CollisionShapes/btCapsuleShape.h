@@ -30,7 +30,10 @@ protected:
 
 protected:
 	///only used for btCapsuleShapeZ and btCapsuleShapeX subclasses.
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btCapsuleShape() : btConvexInternalShape() { m_shapeType = CAPSULE_SHAPE_PROXYTYPE; };
+	#pragma warning(pop)
 
 public:
 	BT_DECLARE_ALIGNED_ALLOCATOR();

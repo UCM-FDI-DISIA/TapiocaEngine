@@ -187,7 +187,10 @@ namespace Ogre {
         VertexElementSemantic mSemantic;
     public:
         /// Constructor, should not be called directly, only needed because of list
+#pragma warning(push)
+#pragma warning(disable : 26495)
         VertexElement() {}
+#pragma warning(pop)
         /// Constructor, should not be called directly, call VertexDeclaration::addElement
         VertexElement(unsigned short source, size_t offset, VertexElementType theType,
             VertexElementSemantic semantic, unsigned short index = 0);

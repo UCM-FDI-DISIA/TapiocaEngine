@@ -51,6 +51,8 @@ enum btContactPointFlags
 class btManifoldPoint
 {
 public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
 	btManifoldPoint()
 		: m_userPersistentData(0),
 		  m_contactPointFlags(0),
@@ -66,13 +68,14 @@ public:
 		  m_lifeTime(0)
 	{
 	}
+#pragma warning(pop)
 
 	btManifoldPoint(const btVector3& pointA, const btVector3& pointB,
 					const btVector3& normal,
 					btScalar distance) : m_localPointA(pointA),
 										 m_localPointB(pointB),
-										 m_positionWorldOnB(0,0,0),
-										 m_positionWorldOnA(0,0,0),
+										 m_positionWorldOnB(0, 0, 0),
+										 m_positionWorldOnA(0, 0, 0),
 										 m_normalWorldOnB(normal),
 										 m_distance1(distance),
 										 m_combinedFriction(btScalar(0.)),
@@ -95,8 +98,8 @@ public:
 										 m_contactERP(0.f),
 										 m_frictionCFM(0.f),
 										 m_lifeTime(0),
-										 m_lateralFrictionDir1(0,0,0),
-										 m_lateralFrictionDir2(0,0,0)
+										 m_lateralFrictionDir1(0, 0, 0),
+										 m_lateralFrictionDir2(0, 0, 0)
 	{
 	}
 
@@ -130,12 +133,14 @@ public:
 	btScalar m_contactMotion1;
 	btScalar m_contactMotion2;
 
-	union {
+	union
+	{
 		btScalar m_contactCFM;
 		btScalar m_combinedContactStiffness1;
 	};
 
-	union {
+	union
+	{
 		btScalar m_contactERP;
 		btScalar m_combinedContactDamping1;
 	};

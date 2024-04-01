@@ -36,11 +36,15 @@ struct btCollisionAlgorithmConstructionInfo
 		  m_manifold(0)
 	{
 	}
+
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btCollisionAlgorithmConstructionInfo(btDispatcher* dispatcher, int temp)
 		: m_dispatcher1(dispatcher)
 	{
 		(void)temp;
 	}
+	#pragma warning(pop)
 
 	btDispatcher* m_dispatcher1;
 	btPersistentManifold* m_manifold;
@@ -59,7 +63,10 @@ protected:
 	//	int	getDispatcherId();
 
 public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
 	btCollisionAlgorithm(){};
+#pragma warning(pop)
 
 	btCollisionAlgorithm(const btCollisionAlgorithmConstructionInfo& ci);
 

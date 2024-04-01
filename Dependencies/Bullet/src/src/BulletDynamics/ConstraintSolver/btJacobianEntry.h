@@ -30,7 +30,10 @@ ATTRIBUTE_ALIGNED16(class)
 btJacobianEntry
 {
 public:
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btJacobianEntry(){};
+	#pragma warning(pop)
 	//constraint between two different rigidbodies
 	btJacobianEntry(
 		const btMatrix3x3& world2A,

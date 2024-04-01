@@ -72,7 +72,10 @@ namespace Ogre
             @note
                 It does <b>NOT</b> initialize the matrix for efficiency.
         */
+        #pragma warning(push)
+        #pragma warning(disable : 26495)
         Matrix3 () {}
+        #pragma warning(pop)
         explicit Matrix3 (const Real arr[3][3])
         {
             memcpy(m,arr,9*sizeof(Real));

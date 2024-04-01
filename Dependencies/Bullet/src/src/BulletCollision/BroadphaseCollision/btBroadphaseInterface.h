@@ -38,7 +38,10 @@ struct btBroadphaseRayCallback : public btBroadphaseAabbCallback
 	virtual ~btBroadphaseRayCallback() {}
 
 protected:
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btBroadphaseRayCallback() {}
+	#pragma warning(pop)
 };
 
 #include "LinearMath/btVector3.h"

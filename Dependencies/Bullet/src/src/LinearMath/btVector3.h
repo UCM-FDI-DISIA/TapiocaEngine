@@ -114,9 +114,12 @@ public:
 
 public:
 	/**@brief No initialization constructor */
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	SIMD_FORCE_INLINE btVector3()
 	{
 	}
+	#pragma warning(pop)
 
 	/**@brief Constructor from scalars 
    * @param x X value

@@ -114,10 +114,13 @@ btBroadphaseProxy
 	}
 
 	//used for memory pools
-	btBroadphaseProxy() : m_clientObject(0)
-	{
-	}
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
+	btBroadphaseProxy() : m_clientObject(0) { }
+	#pragma warning(pop)
 
+	#pragma warning(push)
+	#pragma warning(disable : 26495)
 	btBroadphaseProxy(const btVector3& aabbMin, const btVector3& aabbMax, void* userPtr, int collisionFilterGroup, int collisionFilterMask)
 		: m_clientObject(userPtr),
 		  m_collisionFilterGroup(collisionFilterGroup),
@@ -126,6 +129,7 @@ btBroadphaseProxy
 		  m_aabbMax(aabbMax)
 	{
 	}
+	#pragma warning(pop)
 
 	static SIMD_FORCE_INLINE bool isPolyhedral(int proxyType)
 	{

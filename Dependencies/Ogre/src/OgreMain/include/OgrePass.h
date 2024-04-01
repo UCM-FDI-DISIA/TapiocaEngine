@@ -1539,6 +1539,8 @@ namespace Ogre {
     */
     struct IlluminationPass : public PassAlloc
     {
+#pragma warning(push)
+#pragma warning(disable : 26495)
         IlluminationStage stage;
         /// The pass to use in this stage
         Pass* pass;
@@ -1546,8 +1548,8 @@ namespace Ogre {
         bool destroyOnShutdown;
         /// The original pass which spawned this one
         Pass* originalPass;
-
         IlluminationPass() {}
+#pragma warning(pop)
     };
 
     typedef std::vector<IlluminationPass*> IlluminationPassList;

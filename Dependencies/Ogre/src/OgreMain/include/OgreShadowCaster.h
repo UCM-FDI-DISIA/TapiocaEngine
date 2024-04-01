@@ -62,7 +62,10 @@ namespace Ogre {
         /// Shared link to w-coord buffer (optional).
         HardwareVertexBufferSharedPtr mWBuffer;
     public:
+#pragma warning(push)
+#pragma warning(disable : 26495)
         ShadowRenderable() : mLightCap(0) {}
+#pragma warning(pop)
         ShadowRenderable(MovableObject* parent, const HardwareIndexBufferSharedPtr& indexBuffer,
                          const VertexData* vertexData, bool createSeparateLightCap,
                          bool isLightCap = false);

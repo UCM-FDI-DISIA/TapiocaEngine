@@ -81,11 +81,17 @@ namespace Ogre
     {
     protected:
         /// The matrix entries, indexed by [row][col].
+        #pragma warning(push)
+        #pragma warning(disable : 26495)
         T m[rows][4];
+        #pragma warning(pop)
         // do not reduce storage for affine for compatibility with SSE, shader mat4 types
     public:
         /// Do <b>NOT</b> initialize for efficiency.
+        #pragma warning(push)
+        #pragma warning(disable : 26495)
         TransformBase() {}
+        #pragma warning(pop)
 
         template<typename U>
         explicit TransformBase(const U* ptr) {

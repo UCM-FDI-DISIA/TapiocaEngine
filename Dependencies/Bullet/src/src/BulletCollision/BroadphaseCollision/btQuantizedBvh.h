@@ -128,10 +128,13 @@ public:
 	int m_subtreeSize;
 	int m_padding[3];
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
 	btBvhSubtreeInfo()
 	{
 		//memset(&m_padding[0], 0, sizeof(m_padding));
 	}
+#pragma warning(pop)
 
 	void setAabbFromQuantizeNode(const btQuantizedBvhNode& quantizedNode)
 	{
