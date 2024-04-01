@@ -50,6 +50,7 @@ void runEngine() {
         createEngineBuilders();
 
         // PRUEBAS DE GRAPHICS
+        /*
         auto node1 = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f), Vector3(4.1f, 4.1f, 4.1f));
         auto sphere = graphics->createMesh(node1, "racoon/mapache.mesh");
         sphere->castShadows(true);
@@ -65,6 +66,7 @@ void runEngine() {
         light->produceShadows(true);
 
         scenes->loadScene("archivo2.lua");
+        */
 
         // PRUEBAS DE CORE
         /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
@@ -76,14 +78,14 @@ void runEngine() {
         // PRUEBAS DE SOUND
         //SoundManager::instance()->testsample();
 
-        //scenes->loadScene("startScene.lua");
+        scenes->loadScene("startScene.lua");
 
         game->run();
 
-        delete node1;
+        /*delete node1;
         delete node2;
         delete node3;
-        delete node4;
+        delete node4;*/
     }
 #ifdef _DEBUG
     else
