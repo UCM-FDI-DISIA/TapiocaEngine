@@ -38,8 +38,6 @@
 #include "WindowManager.h"
 #include "GraphicsManager.h"
 
-#define _PSSM
-
 namespace Tapioca {
 template class TAPIOCA_API Singleton<GraphicsManager>;
 template<>
@@ -225,9 +223,13 @@ void GraphicsManager::setUpShadows() {
     de vision. Por lo que se recomienda no proyectar sombras con este tipo de luz.
     Como no se soporta el autosombreado, se diferencia entre objetos que proyectan sombras (castShadows a true) y que reciben (castShadows a false)
     */
+
+#define _PSSM
+
     Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
     Ogre::MaterialPtr receiverMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowReceiverText");
-    if (casterMat && receiverMat && false) {
+
+    if (casterMat && receiverMat) {
         // CUANDO SE SETEA UNA CAMARA DE SOMBRAS, TODOS LOS OBJETOS QUE TIENEN QUE CASTEAR SOMBRAS
         // SINO, SE VE MAL
 #ifndef _PSSM

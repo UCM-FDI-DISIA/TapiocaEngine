@@ -16,7 +16,7 @@ Mesh::Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::
     : RenderObject(node, sceneManager), mesh(sceneManager->createEntity(meshName)) {
     init(mesh);
 
-    mesh->setCastShadows(false);
+    mesh->setCastShadows(true);
 }
 
 void Mesh::setMaterial(std::string const& materialName) { mesh->setMaterialName(materialName); }

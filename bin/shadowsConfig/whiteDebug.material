@@ -1,0 +1,8 @@
+material whiteDebug {
+    receive_shadows off
+    technique {
+        pass {
+            diffuse 1.0 1.0 1.0
+        }
+    }
+}

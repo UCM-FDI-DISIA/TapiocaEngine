@@ -26,6 +26,7 @@ void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, co
     line->position(to.x(), to.y(), to.z());
     line->colour(color.x(), color.y(), color.z());
     line->end();
+    line->setCastShadows(false);
     lines.push_back(line);
 }
 
@@ -42,12 +43,13 @@ void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVec
                                           int lifeTime, const btVector3& color) {
     auto g = GraphicsManager::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
-    line->begin("white", Ogre::RenderOperation::OT_POINT_LIST);
+    line->begin("whiteDebug", Ogre::RenderOperation::OT_POINT_LIST);
     line->position(PointOnB.x(), PointOnB.y(), PointOnB.z());
     btVector3 to = PointOnB + normalOnB * distance;
     line->position(to.x(), to.y(), to.z());
     line->colour(color.x(), color.y(), color.z());
     line->end();
+    line->setCastShadows(false);
     lines.push_back(line);
 }
 
