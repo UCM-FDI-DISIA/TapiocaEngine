@@ -6,7 +6,8 @@
 #include "../Mesh.h"
 
 namespace Tapioca {
-MeshRenderer::MeshRenderer() : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)) { }
+MeshRenderer::MeshRenderer()
+    : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), meshName(), materialName("") { }
 
 MeshRenderer::~MeshRenderer() { delete node; }
 
@@ -44,7 +45,9 @@ void MeshRenderer::awake() {
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     mesh = g->createMesh(node, meshName);
-
+    if (materialName != "") {
+        mesh->setMaterial(materialName);
+    }
 }
 
 void MeshRenderer::handleEvent(std::string const& id, void* info) {
@@ -62,4 +65,3 @@ void MeshRenderer::setMeshName(const std::string& n) { meshName = n; }
 void MeshRenderer::setMaterialName(const std::string& n) { materialName = n; }
 
 }
-
