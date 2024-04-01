@@ -56,6 +56,8 @@ public:
     */
     virtual ~WindowManager();
 
+    void setWindowName(std::string const& name);
+
     inline void setGLContext(void* context) { glContext = context; }
     /*
     * @brief Devuelve un puntero al contexto de OpenGL

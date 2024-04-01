@@ -16,7 +16,7 @@ template<>
 WindowManager* Singleton<WindowManager>::instance_ = nullptr;
 
 WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
-    : sdlWindow(nullptr), glContext(nullptr), windowWidth(w), windowHeight(h), modules(), game(nullptr) {
+    : sdlWindow(nullptr), glContext(nullptr), windowName(windowName), windowWidth(w), windowHeight(h), modules(), game(nullptr) {
 }
 
 bool WindowManager::init() {
@@ -47,6 +47,8 @@ WindowManager::~WindowManager() {
         sdlWindow = nullptr;
     }
 }
+
+void WindowManager::setWindowName(std::string const& name) { SDL_SetWindowTitle(sdlWindow, name.c_str()); }
 
 void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
 
