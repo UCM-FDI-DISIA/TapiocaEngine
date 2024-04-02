@@ -4,7 +4,7 @@
 
 namespace Tapioca {
 template<IsComponent TComp>
-class TAPIOCA_API BasicBuilder : public ComponentBuilder {
+class BasicBuilder : public ComponentBuilder {
 public:
     BasicBuilder() : ComponentBuilder(TComp::id) { }
 

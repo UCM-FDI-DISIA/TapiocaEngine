@@ -41,9 +41,9 @@ public:
     */
     std::vector<GameObject*> getObjects() const;
     /*
-    * @brief Devuelve el objeto al que esta asociado un handler
+    * @brief Devuelve el objeto al que esta asociado un handler. Si no encuentra un objeto, devuelve nullptr
     * @param handler Handler del objeto que se quiere obtener
-    * @return Objeto asociado al handler
+    * @return Objeto asociado al handler o nullptr
     */
     GameObject* getHandler(std::string const& handler) const;
 
