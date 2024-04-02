@@ -163,13 +163,13 @@ material ShadowTemplateTexture {
         }
 
         pass Decal {
-            lighting off
+            //lighting off
             scene_blend modulate
-
+            
             // Really basic vertex program
             vertex_program_ref AmbientOneTextureVS
             {
-                param_named ambient float4 1 1 1 1
+                param_named ambient float4 1.0 1.0 1.0 1.0
             }
             fragment_program_ref AmbientOneTextureFS {}
         }

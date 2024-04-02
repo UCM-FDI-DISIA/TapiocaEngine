@@ -49,10 +49,10 @@ void runEngine() {
     if (game->init()) {
         createEngineBuilders();
 
-        // PRUEBAS DE GRAPHICS
         /*
+        // PRUEBAS DE GRAPHICS
         auto node1 = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f), Vector3(4.1f, 4.1f, 4.1f));
-        auto sphere = graphics->createMesh(node1, "racoon/mapache.mesh");
+        auto sphere = graphics->createMesh(node1, "coin/coin.mesh");
         sphere->castShadows(true);
         auto node2 = graphics->createNode(Vector3(0.0f, 0.0f, -90.0f), Vector3(10.1f, 10.1f, 0.1f));
         auto sphere2 = graphics->createMesh(node2, "cube.mesh");
