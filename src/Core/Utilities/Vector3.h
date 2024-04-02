@@ -101,11 +101,15 @@ public:
     inline Vector3 operator-() const { return Vector3(-x, -y, -z); }
     inline Vector3 operator-(const Vector3& other) const { return Vector3(x - other.x, y - other.y, z - other.z); }
     inline Vector3 operator*(const float& other) const { return Vector3(x * other, y * other, z * other); }
+    inline Vector3 operator*(const Vector3& other) const {
+        return Vector3((y * other.z) - (z * other.y),-((z * other.x) - (x * other.z)), (x * other.y) - (y * other.x));
+    }
     inline Vector3 operator/(const float& other) const { return Vector3(x / other, y / other, z / other); }
 
     inline Vector3& operator+=(const Vector3& other) { return *this = *this + other; }
     inline Vector3& operator-=(const Vector3& other) { return *this = *this - other; }
     inline Vector3& operator*=(const float& other) { return *this = *this * other; }
+    inline Vector3& operator*=(const Vector3& other) { return *this = *this * other; }
     inline Vector3& operator/=(const float& other) { return *this = *this / other; }
 
     inline bool operator==(const Vector3& other) const { return (x == other.x && y == other.y && z == other.z); }
