@@ -2,6 +2,7 @@
 #include <imgui.h>
 #include <functional>
 #include "Utilities/Vector2.h"
+#include "Utilities/Vector4.h"
 #include "Utilities/Singleton.h"
 #include "WindowModule.h"
 // warnings de ogre
@@ -37,6 +38,9 @@ struct pair_hash {
     }
 };
 class Image;
+class ProgressBar;
+class Slider;
+class DropBox;
 
 /*
 * @brief Clase que se encarga de la interfaz de usuario
@@ -58,6 +62,15 @@ private:
     // TEMPORAL
     std::unordered_map<std::string, Image*> images;  // Imagenes de la interfaz de ususario 
     uint32_t  testid;
+     std::unordered_map<std::string, ProgressBar*> progressbars; 
+
+     std::unordered_map<std::string, Slider*> sliders;
+
+     std::unordered_map<std::string, DropBox*> dropboxes;
+     std::string items[2];
+     int item_current ;
+
+
 
     /*
     * @brief Inicializa a nulo los punteros
@@ -135,5 +148,10 @@ public:
     Image* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
                          ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                              ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
+    ProgressBar* createProgressBar(float initprogress , Vector4 progesscolor,std::string backtext,Vector2 siz,Vector2 pos);
+    Slider* createSlider(std::string tittle,bool verticalMode,float initvalue,float maxValue,float minValue,Vector2 siz,Vector2 pos);
+    DropBox* createDropBox(std::string tittle , std::vector<std::string>content,int initialselect,Vector2 siz , Vector2 pos);
+
+
 };
 }
