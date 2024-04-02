@@ -134,7 +134,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
                                              const bool isTrigger, const int group, const int mask) {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
-    btVector3 rot = toBtVector3(rotation);
+    btQuaternion rot = toBtQuaternion(rotation);
 
     btCollisionShape* shape;
 
@@ -158,10 +158,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vecto
     btTransform transform;
     transform.setIdentity();
     transform.setOrigin(pos);
-
-    btQuaternion quaternion;
-    quaternion.setEuler(rot.getY(), rot.getX(), rot.getZ());
-    transform.setRotation(quaternion);
+    transform.setRotation(rot);
 
     //para sincronizar el transform con el grafico
     btMotionState* motionState = new btDefaultMotionState(transform);
