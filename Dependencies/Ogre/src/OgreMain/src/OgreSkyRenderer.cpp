@@ -399,9 +399,7 @@ MeshPtr SceneManager::SkyDomeRenderer::createSkydomePlane(
 
 void SceneManager::SkyPlaneRenderer::_updateRenderQueue(RenderQueue* queue)
 {
-    if (
-        Entity->isVisible())
-    {
+    if (mSkyPlaneEntity->isVisible()){
         mSkyPlaneEntity->_updateRenderQueue(queue);
     }
 }
