@@ -87,7 +87,8 @@ void Transform::start() { changed(); }
 void Transform::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         for (Transform* child : children) {
-            child->pushEvent("transformChanged", info, false);
+            bool b = false;
+            child->pushEvent("transformChanged", &b, false);
         }
     }
 }
