@@ -132,20 +132,10 @@ void CameraComponent::handleEvent(std::string const& id, void* info) {
             targetToLookSet = false;
             lookAt(targetToLook);
         }
-        // Distinguir entre si esta mirando a un punto o esta mirando en una direccion
-        //if (direction == Vector3(0.0f, 0.0f, 0.0f)) {
-        //    // Mirar a un punto depende de la posicion de la camara
-        //    // Por lo tanto, cada vez que se cambie la pos, hay que cambiarlo
-        //    lookAt(targetToLook);
-        //}
-        /*node->setRotation(transform->getGlobalRotation());
-        node->setScale(transform->getGlobalScale());*/
     }
 }
 
 void CameraComponent::lookAt(const Vector3 targetToLook) {
-    // Indicar que se va a usar targetToLook y no direction
-    //direction = Vector3(0.0f, 0.0f, 0.0f);
     this->targetToLook = targetToLook;
     camera->lookAt(targetToLook);
 }

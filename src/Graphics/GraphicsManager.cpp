@@ -315,9 +315,9 @@ void GraphicsManager::loadResources() {
         cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    // shaders para las sombras
+    // shaders para las sombras y material del physics debug
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./shadowsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "./assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 #ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(

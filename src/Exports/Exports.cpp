@@ -49,24 +49,22 @@ void runEngine() {
     if (game->init()) {
         createEngineBuilders();
 
-        /*
         // PRUEBAS DE GRAPHICS
-        auto node1 = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f), Vector3(4.1f, 4.1f, 4.1f));
-        auto sphere = graphics->createMesh(node1, "coin/coin.mesh");
-        sphere->castShadows(true);
-        auto node2 = graphics->createNode(Vector3(0.0f, 0.0f, -90.0f), Vector3(10.1f, 10.1f, 0.1f));
-        auto sphere2 = graphics->createMesh(node2, "cube.mesh");
-        sphere2->castShadows(true);
-        //sphere2->setMaterial("juan");
-        auto node3 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f));
-        auto sphere3 = graphics->createMesh(node3, "sphere.mesh");
-        sphere3->castShadows(true);
-        auto node4 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
-        auto light = graphics->createLightDirectional(node4, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
-        light->produceShadows(true);
+        //auto node1 = graphics->createNode(Vector3(0.0f, 0.0f, -30.0f), Vector3(4.1f, 4.1f, 4.1f));
+        //auto sphere = graphics->createMesh(node1, "coin/coin.mesh");
+        //sphere->castShadows(true);
+        //auto node2 = graphics->createNode(Vector3(0.0f, 0.0f, -90.0f), Vector3(10.1f, 10.1f, 0.1f));
+        //auto sphere2 = graphics->createMesh(node2, "models/cube.mesh");
+        //sphere2->castShadows(true);
+        ////sphere2->setMaterial("juan");
+        //auto node3 = graphics->createNode(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f));
+        //auto sphere3 = graphics->createMesh(node3, "models/sphere.mesh");
+        //sphere3->castShadows(true);
+        //auto node4 = graphics->createNode(Vector3(-20.0f, 0.0f, 70.0f));
+        //auto light = graphics->createLightDirectional(node4, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
+        //light->produceShadows(true);
 
         scenes->loadScene("archivo2.lua");
-        */
 
         // PRUEBAS DE CORE
         /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
