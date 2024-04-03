@@ -93,9 +93,6 @@ private:
 #pragma warning(default : 4251)
 #endif
 
-    // UI
-    Ogre::OverlaySystem* overSys;   // Systema de overlays de Ogre
-
     // TODO: se carga de archivo, se puede borrar
     /*
     * @brief Carga plugIns especificados desde codigo

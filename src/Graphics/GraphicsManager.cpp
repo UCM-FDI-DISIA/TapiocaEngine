@@ -46,7 +46,7 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext(), overSys(nullptr) { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext() { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -94,7 +94,6 @@ bool GraphicsManager::init() {
     // ogre.log guarda un mensaje de depuracion
     // getWritablePath parte del homePath (asignado arriba)
     mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
-    overSys = new Ogre::OverlaySystem();
 
     // Otra forma: cargar los plugins desde codigo
     // loadPlugIns();   // cargar codec, que sirve para poder usar png, jpg... (para las texturas)
@@ -141,8 +140,6 @@ bool GraphicsManager::init() {
     ogreWindow = mRoot->createRenderWindow(mwindowName, windowWidth, windowHeight, false, &miscParams);
 
     scnMgr = mRoot->createSceneManager();
-
-    scnMgr->addRenderQueueListener(overSys);
 
     loadShaders();
 
@@ -364,14 +361,8 @@ void GraphicsManager::shutDown() {
     if (mRoot == nullptr) return;
 
     // ELIMINAR EL SCENE MANAGER
-    scnMgr->removeRenderQueueListener(overSys);
     mShaderGenerator->removeSceneManager(scnMgr);
     mRoot->destroySceneManager(scnMgr);
-
-    if (overSys != nullptr) {
-        delete overSys;
-        overSys = nullptr;
-    }
 
     // ELIMINAR EL SISTEMA DE SHADERS
 
