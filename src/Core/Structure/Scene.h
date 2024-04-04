@@ -21,6 +21,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::vector<GameObject*> objects;                           // Objetos que tiene la escena
+    static std::vector<GameObject*> dontDestroyOnLoad;
     std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
     std::string name;
 #ifdef _MSC_VER
@@ -40,6 +41,11 @@ public:
     * @return Vector que contiene punteros a los objetos de esta escena
     */
     std::vector<GameObject*> getObjects() const;
+    /*
+    * @brief Devuelve los objetos que no se destruyen al cambiar de escena
+    * @return Vector que contiene punteros a los objetos que no se destruyen al cambiar de escena
+    */
+    std::vector<GameObject*> getDontDestroyOnLoad() const;
     /*
     * @brief Devuelve el objeto al que esta asociado un handler. Si no encuentra un objeto, devuelve nullptr
     * @param handler Handler del objeto que se quiere obtener
