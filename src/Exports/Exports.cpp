@@ -64,7 +64,7 @@ void runEngine() {
         //auto light = graphics->createLightDirectional(node4, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
         //light->produceShadows(true);
 
-        scenes->loadScene("archivo2.lua");
+        //scenes->loadScene("archivo2.lua");
 
         // PRUEBAS DE CORE
         /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
