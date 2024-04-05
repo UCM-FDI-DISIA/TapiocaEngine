@@ -27,9 +27,6 @@
     <ClCompile Include="..\..\src\Physics\Physics_Def.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Physics\Components\Collider.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Physics\Components\RigidBody.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -40,9 +37,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Physics\PhysicsDebugDrawer.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Physics\Components\Collider.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Physics\Components\RigidBody.h">
       <Filter>Components</Filter>

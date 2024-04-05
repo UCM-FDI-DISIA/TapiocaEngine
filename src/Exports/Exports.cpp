@@ -17,7 +17,6 @@
 // Core
 #include "Components/Transform.h"
 // Physics
-#include "Components/Collider.h"
 #include "Components/RigidBody.h"
 // Graphics
 #include "Components/MeshRenderer.h"
@@ -134,7 +133,6 @@ static void createEngineBuilders() {
     // Core
     manager->addFactory(new BasicBuilder<Transform>());
     // Physiscs
-    manager->addFactory(new BasicBuilder<Collider>());
     manager->addFactory(new BasicBuilder<RigidBody>());
     // Graphics
     manager->addFactory(new BasicBuilder<MeshRenderer>());
