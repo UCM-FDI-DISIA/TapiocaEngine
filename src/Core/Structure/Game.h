@@ -74,8 +74,14 @@ public:
     inline void exit() { finish = true; }
     /*
     * @brief Inicializa los modulos
+    * @return True si se ha inicializado correctamente, false en caso contrario
     */
     bool init();
+    /*
+    * @brief Inicializa la configuracion del juego
+    * @return True si se ha inicializado correctamente, false en caso contrario
+    */
+    bool initConfig();
     /*
     * @brief Metodo que contiene el bucle principal del juego
     */

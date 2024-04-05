@@ -33,6 +33,16 @@ bool Game::init() {
     return initialized;
 }
 
+bool Game::initConfig() {
+    bool initialized = true;
+    auto mod = modules.begin();
+    while (initialized && mod != modules.end()) {
+        initialized = (*mod)->initConfig();
+        ++mod;
+    }
+    return initialized;
+}
+
 void Game::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;

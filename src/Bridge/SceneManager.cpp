@@ -6,6 +6,7 @@
 #include <imgui.h>
 
 #include "Structure/Game.h"
+#include "Structure/DynamicLibraryLoader.h"
 #include "Structure/FactoryManager.h"
 #include "WindowManager.h"
 #include "Structure/Scene.h"
@@ -19,6 +20,12 @@ template<>
 SceneManager* Singleton<SceneManager>::instance_ = nullptr;
 
 SceneManager::SceneManager() : luaState(nullptr), game(nullptr), factMngr(nullptr), scenesPath("assets\\scenes\\") { }
+
+SceneManager::~SceneManager() {
+    luaState = nullptr;
+    game = nullptr;
+    factMngr = nullptr;
+}
 
 bool SceneManager::init() {
     game = Game::instance();
@@ -36,14 +43,22 @@ bool SceneManager::init() {
 #endif
         return false;
     }
-
     return true;
 }
 
-SceneManager::~SceneManager() {
-    luaState = nullptr;
-    game = nullptr;
-    factMngr = nullptr;
+bool SceneManager::initConfig() {
+#ifdef _DEBUG
+    std::cout << "SceneManager: Configurando la escena inicial...\n";
+#endif
+
+    EntryPointGetInitScene initScene = (EntryPointGetInitScene)GetProcAddress(DynamicLibraryLoader::module, "getInitScene");
+    if (initScene == nullptr) {
+#ifdef _DEBUG
+		std::cerr << "La DLL del juego no tiene la funcion \"getInitScene\"\n";
+#endif
+		return false;
+    }
+    return loadScene(initScene());
 }
 
 bool SceneManager::loadScene(std::string const& sceneName) {

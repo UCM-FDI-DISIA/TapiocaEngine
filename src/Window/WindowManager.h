@@ -1,8 +1,8 @@
 #pragma once
-#include <Utilities/Singleton.h>
+#include <vector>
+#include "Utilities/Singleton.h"
 #include "WindowModule.h"
 
-#include <vector>
 struct SDL_Window;
 
 namespace Tapioca {
@@ -12,20 +12,19 @@ class TAPIOCA_API WindowManager : public Singleton<WindowManager>, public Module
     friend Singleton<WindowManager>;
 
 private:
-    
     // C4251 'Tapioca::WindowManager::windowName'
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
     // para que la utilicen los clientes de class 'Tapioca::WindowManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string windowName;                 // Nombre de la ventana
+    std::string windowName;   // Nombre de la ventana
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    uint32_t windowWidth, windowHeight;     // Anchura y altura de la ventana, respectivamente
-    SDL_Window* sdlWindow;                  // Ventana de SDL
-    void* glContext;                        // Contexto de OpenGL
+    uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
+    SDL_Window* sdlWindow;                // Ventana de SDL
+    void* glContext;                      // Contexto de OpenGL
 
 
     // warning C4251 'Tapioca::WindowManager::modules' :
@@ -34,27 +33,34 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::vector<WindowModule*> modules;     // Modulos suscritos a los eventos de ventana
+    std::vector<WindowModule*> modules;   // Modulos suscritos a los eventos de ventana
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
 
     Game* game;
-    
+
     /*
     * @brief Constructora de la clase WindowManager.
     */
     WindowManager(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
-    
+
 public:
-    /*
-    * @brief Inicializa el WindowManager
-    */
-    bool init() override;
     /*
     * @brief Destructora de la clase WindowManager
     */
     virtual ~WindowManager();
+
+    /*
+    * @brief Inicializa el WindowManager
+    * @return Si se ha podido inicializar correctamente o no el WindowManager
+    */
+    bool init() override;
+    /*
+    * @brief Inicializa la configuracion del juego
+    * @return Si se ha podido inicializar correctamente o no la configuracion
+    */
+    bool initConfig() override;
 
     void setWindowName(std::string const& name);
 
@@ -69,7 +75,7 @@ public:
     * @brief Devuelve el nombre de la ventana de SDL
     * @return String con el nombre de la ventana de SDL
     */
-    inline std::string const& getWindowName() { return windowName; } 
+    inline std::string const& getWindowName() { return windowName; }
 
     /*
     * @brief Devuelve un puntero a la ventana de SDL
@@ -107,6 +113,6 @@ public:
 
 /*
 * @brief Para acortar el metodo WindowManager::instance()->method() a windowManager().method()
-*/ 
+*/
 inline WindowManager& windowManager() { return *WindowManager::instance(); }
 }

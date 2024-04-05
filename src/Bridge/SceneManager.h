@@ -33,8 +33,14 @@ private:
 
     /*
     * @brief Inicializa los punteros a Game y FactoryManager
+    * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
+    /*
+    * @brief Inicializa la configuracion del juego
+    * @return true si se ha inicializado correctamente, false si no
+    */
+    bool initConfig() override;
 
     /*
     * @brief Carga una escena
