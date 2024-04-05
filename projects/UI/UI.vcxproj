@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\src\UI\Components\ProgressBar.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Text.cpp" />
+    <ClCompile Include="..\..\src\UI\RenderListener.cpp" />
     <ClCompile Include="..\..\src\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +37,7 @@
     <ClInclude Include="..\..\src\UI\Components\ProgressBar.h" />
     <ClInclude Include="..\..\src\UI\Components\Slider.h" />
     <ClInclude Include="..\..\src\UI\Components\Text.h" />
+    <ClInclude Include="..\..\src\UI\RenderListener.h" />
     <ClInclude Include="..\..\src\UI\UI.h" />
     <ClInclude Include="..\..\src\UI\UIManager.h" />
   </ItemGroup>

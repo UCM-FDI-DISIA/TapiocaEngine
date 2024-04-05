@@ -1,17 +1,7 @@
 #pragma once
 #include <functional>
-#include "Utilities/Vector2.h"
-#include "Utilities/Vector4.h"
 #include "Utilities/Singleton.h"
 #include "WindowModule.h"
-// warnings de ogre
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-#include <OgreRenderTargetListener.h>
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
 
 struct SDL_Window;
 
@@ -27,6 +17,7 @@ namespace Tapioca {
 class Game;
 class RenderNode;
 class WindowManager;
+class RenderListener;
 
 /* 
 * @brief Funcion hash para pares para poder usarlos como clave en unordered_map
@@ -40,15 +31,11 @@ struct pair_hash {
         return hash1 ^ hash2;
     }
 };
-class Image;
-class ProgressBar;
-class Slider;
-class DropBox;
 
 /*
 * @brief Clase que se encarga de la interfaz de usuario
 */
-class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule, public Ogre::RenderTargetListener {
+class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule {
 private:
     friend Singleton<UIManager>;
 
@@ -58,23 +45,12 @@ private:
     void* glContext;                                  // Referencia al contexto de OpenGL
     Ogre::SceneManager* sceneManager;                 // Referencia al SceneManager de Ogre
     Ogre::RenderWindow* ogreWindow;                   // Referencia a la superficie de renderizado de Ogre
+    RenderListener* renderListener;                   // Listener de renderizado de Ogre
+
     std::string fontsPath;                            // Ruta de la carpeta de fuentes
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
 
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
-
-    // TEMPORAL
-    std::unordered_map<std::string, Image*> images;  // Imagenes de la interfaz de ususario 
-    uint32_t  testid;
-     std::unordered_map<std::string, ProgressBar*> progressbars; 
-
-     std::unordered_map<std::string, Slider*> sliders;
-
-     std::unordered_map<std::string, DropBox*> dropboxes;
-     std::string items[2];
-     int item_current ;
-
-
 
     /*
     * @brief Inicializa a nulo los punteros
@@ -94,19 +70,10 @@ public:
     UIManager& operator=(UIManager&&) = delete;
 
     /*
-    * @brief Se llama cuando Ogre termine de renderizar en el viewport al que hemos asignado el UIManager como listener
-    */
-    void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) override;
-
-    /*
     * @brief Inicializa ImGui con SDL y OpenGL, y anade el UIManager como listener de la ventana de Ogre
     * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
-    /*
-    * @brief Renderiza la interfaz de usuario
-    */
-    void render() override;
     /*
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL
@@ -145,15 +112,5 @@ public:
     * @brief Devuelve el identificador de la textura de una imagen
     */
     ImTextureID getTextureId(const std::string& name);
-
-    /*
-    * Crea una imagen qeu se muestra en el Hud
-    */
-    Image* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy);
-    ProgressBar* createProgressBar(float initprogress , Vector4 progesscolor,std::string backtext,Vector2 siz,Vector2 pos);
-    Slider* createSlider(std::string tittle,bool verticalMode,float initvalue,float maxValue,float minValue,Vector2 siz,Vector2 pos);
-    DropBox* createDropBox(std::string tittle , std::vector<std::string>content,int initialselect,Vector2 siz , Vector2 pos);
-
-
 };
 }
