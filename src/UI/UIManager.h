@@ -18,6 +18,7 @@ struct SDL_Window;
 
 namespace Ogre {
 class SceneManager;
+class RenderWindow;
 }
 
 namespace Tapioca {
@@ -54,6 +55,7 @@ private:
     SDL_Window* sdlWindow;                            // Referencia a la ventana de SDL
     void* glContext;                                  // Referencia al contexto de OpenGL
     Ogre::SceneManager* sceneManager;                 // Referencia al SceneManager de Ogre
+    Ogre::RenderWindow* ogreWindow;                   // Referencia a la superficie de renderizado de Ogre
     std::string fontsPath;                            // Ruta de la carpeta de fuentes
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
 

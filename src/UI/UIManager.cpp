@@ -18,6 +18,8 @@
 #include "Structure/Scene.h"
 #include "WindowManager.h"
 
+#include "GraphicsManager.h"
+
 // TEMPORAL
 #include "Components/Image.h"
 #define STB_IMAGE_IMPLEMENTATION
@@ -70,7 +72,10 @@ UIManager::~UIManager() {
     ImGui::DestroyContext();
 }
 
-void UIManager::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) { render(); }
+void UIManager::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) { 
+    render();
+    std::cout << "renderizandoHUD \n";
+}
 
 bool UIManager::init() {
     game = Game::instance();
@@ -84,6 +89,8 @@ bool UIManager::init() {
     windowManager = WindowManager::instance();
     sdlWindow = windowManager->getWindow();
     glContext = windowManager->getGLContext();
+    ogreWindow = GraphicsManager::instance()->getOgreRenderTarget();
+    ogreWindow->addListener(this);
     ImGui_ImplSDL2_InitForOpenGL(sdlWindow, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
 

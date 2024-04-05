@@ -410,6 +410,8 @@ void GraphicsManager::shutDown() {
 
 Ogre::SceneManager* GraphicsManager::getSceneManager() { return nullptr; }
 
+Ogre::RenderWindow* GraphicsManager::getOgreRenderTarget() { return ogreWindow; }
+
 RenderNode* GraphicsManager::createNode(const Vector3 pos, const Vector3 scale) {
     return new RenderNode(scnMgr, pos, scale);
 }

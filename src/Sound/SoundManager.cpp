@@ -30,10 +30,11 @@ SoundManager::~SoundManager() {
 }
 
 bool SoundManager::init() {
+    
     soundEngine = irrklang::createIrrKlangDevice();
     if (!soundEngine) {
 #ifdef _DEBUG
-        std::cout << "Error al inciar el motor de audio\n";
+        std::cout << "Error al inciar el motor de audio , no se encunetra dispositivo de salida\n";
 #endif
         return false;
     }
