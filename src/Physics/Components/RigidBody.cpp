@@ -95,6 +95,18 @@ bool RigidBody::initComponent(const CompMap& variables) {
 #endif
         return false;
     }
+    bool maskSet = setValueFromMap(mask, "mask", variables);
+    if (!maskSet) {
+#ifdef _DEBUG
+        std::cout << "RigidBody:Mask por defecto.\n";
+#endif
+    }
+    bool groupSet = setValueFromMap(group, "group", variables);
+    if (!groupSet) {
+#ifdef _DEBUG
+        std::cout << "RigidBody:Group por defecto.\n";
+#endif
+    }
 
     return true;
 }
@@ -134,23 +146,14 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) {
-//#ifdef _DEBUG
-//    std::cout << "Entro en collision\n";
-//#endif
     pushEvent("onCollisionEnter", other, false);
 }
 
 void RigidBody::onCollisionExit(GameObject* const other) {
-//#ifdef _DEBUG
-//    std::cout << "Salgo de collision\n";
-//#endif
     pushEvent("onCollisionExit", other, false);
 }
 
 void RigidBody::onCollisionStay(GameObject* const other) {
-//#ifdef _DEBUG
-//    std::cout << "Estoy en collision\n";
-//#endif
     pushEvent("onCollisionStay", other, false);
 }
 
@@ -161,8 +164,6 @@ void RigidBody::awake() {
     rigidBody = PhysicsManager::instance()->createRigidBody(
         transform->getGlobalPosition(), transform->getGlobalRotation(), colliderScale, colShape, movementType, mass,
         friction, damping, bounciness, isTrigger, group, mask);
-
-    // collider = object->getComponent<Collider>();
 
     rigidBody->setUserPointer(this);
 }
