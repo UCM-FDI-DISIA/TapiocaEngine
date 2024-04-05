@@ -25,9 +25,7 @@ RigidBody::~RigidBody() {
 bool RigidBody::initComponent(const CompMap& variables) {
 
     int colShapeAux;
-
-    bool colShapeSet = setValueFromMap(colShapeAux, "colShape", variables);
-    if (!colShapeSet) {
+    if (!setValueFromMap(colShapeAux, "colShape", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar colShape.\n";
 #endif
@@ -36,8 +34,8 @@ bool RigidBody::initComponent(const CompMap& variables) {
     colShape = (ColliderShape)colShapeAux;
 
     bool colliderScaleSet = setValueFromMap(colliderScale.x, "colliderScaleX", variables) &&
-        setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
-        setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
+                            setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
+                            setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
     if (!colliderScaleSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar colliderScale.\n";
@@ -45,8 +43,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
         return false;
     }
 
-    bool isTriggerSet = setValueFromMap(isTrigger, "isTrigger", variables);
-    if (!isTriggerSet) {
+    if (!setValueFromMap(isTrigger, "isTrigger", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar isTrigger.\n";
 #endif
@@ -54,55 +51,54 @@ bool RigidBody::initComponent(const CompMap& variables) {
     }
 
     int movementTypeAux;
-    bool movementTypeSet = setValueFromMap(movementTypeAux, "movementType", variables);
-    if (!movementTypeSet) {
+    if (!setValueFromMap(movementTypeAux, "movementType", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar movementType.\n";
 #endif
         return false;
     }
-
     movementType = (MovementType)movementTypeAux;
 
-    bool massSet = setValueFromMap(mass, "mass", variables);
-    if (!massSet) {
+    if (!setValueFromMap(mass, "mass", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar mass.\n";
 #endif
         return false;
     }
 
-    bool frictionSet = setValueFromMap(friction, "friction", variables);
-    if (!frictionSet) {
+    if (!setValueFromMap(friction, "friction", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar friction.\n";
 #endif
         return false;
     }
 
-    bool dampingSet = setValueFromMap(damping, "damping", variables);
-    if (!dampingSet) {
+    if (!setValueFromMap(damping, "damping", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar damping.\n";
 #endif
         return false;
     }
 
-    bool bouncinessSet = setValueFromMap(bounciness, "bounciness", variables);
-    if (!bouncinessSet) {
+    if (!setValueFromMap(bounciness, "bounciness", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: RigidBody: no se pudo inicializar bounciness.\n";
 #endif
         return false;
     }
-    bool maskSet = setValueFromMap(mask, "mask", variables);
-    if (!maskSet) {
+
+    int bitmask;
+    if (!setValueFromMap(bitmask, "mask", variables)) {
 #ifdef _DEBUG
         std::cout << "RigidBody:Mask por defecto.\n";
 #endif
     }
-    bool groupSet = setValueFromMap(group, "group", variables);
-    if (!groupSet) {
+    for (int i = 0; i < std::to_string(bitmask).length(); ++i) {
+        if (bitmask & (1 << i)) mask += (1 << i);
+    }
+
+
+    if (!setValueFromMap(group, "group", variables)) {
 #ifdef _DEBUG
         std::cout << "RigidBody:Group por defecto.\n";
 #endif
