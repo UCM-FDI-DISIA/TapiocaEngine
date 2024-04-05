@@ -3,15 +3,13 @@
 #include "Scene.h"
 #include "Module.h"
 #include "DynamicLibraryLoader.h"
-#include "../Sound/SoundManager.h"
-
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<Game>;
 template<>
 Game* Singleton<Game>::instance_ = nullptr;
 
-Game::Game() : finish(false), deltaTime(0) { }
+Game::Game() : finish(false), deltaTime(0), gameInitialized(false) { }
 
 Game::~Game() {
     while (!scenes.empty()) {
@@ -39,9 +37,10 @@ void Game::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
-    Tapioca::SoundManager::instance()->testsample();
+    gameInitialized = false;
     auto currentTime = std::chrono::high_resolution_clock::now();
     uint64_t lag = 0;
+    uint64_t timeSinceStart = 0;
 
     while (!finish) {
         auto newTime = std::chrono::high_resolution_clock::now();
@@ -67,6 +66,15 @@ void Game::run() {
 
         update();
         refresh();
+
+        if (!gameInitialized) timeSinceStart += deltaTime;
+        if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
+#ifdef _DEBUG
+            std::cout << "Ya pasaron " << TIME_TO_INITIALIZE_GAME << " milisegundos\n";
+#endif
+            DynamicLibraryLoader::initGame();
+            gameInitialized = true;
+        }
 
         render();
     }
@@ -133,7 +141,7 @@ void Game::popScene() {
         finish = true;
 #ifdef _DEBUG
         std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
-#endif 
+#endif
     }
 }
 

@@ -1,31 +1,30 @@
 scene = {
-    -- Boton que carga la escena de juego
-    StartButton={
-        components = {
-            Transform = {
-                positionX = WINDOW_WIDTH / 2 - 65,
-                positionY = WINDOW_HEIGHT / 2 + 20,
-                positionZ = 0.0,
-                scaleX = 130.0,
-                scaleY = 40.0,
-                scaleZ = 0.0,
-                rotationX = 0.0,
-                rotationY = 0.0,
-                rotationZ = 0.0
-            },
-            Button = {
-                name = "StartButton",
-                text = "Play",
-                onClickId = 1, -- Identificador de la funcion del boton, esta un poco feo
-                textFontName = "impact.ttf",
-            }
-        }
-    },
+    -- StartButton={
+    --     components = {
+    --         Transform = {
+    --             positionX = WINDOW_WIDTH / 2 - 65,
+    --             positionY = WINDOW_HEIGHT / 2 + 20,
+    --             positionZ = 0.0,
+    --             scaleX = 130.0,
+    --             scaleY = 40.0,
+    --             scaleZ = 0.0,
+    --             rotationX = 0.0,
+    --             rotationY = 0.0,
+    --             rotationZ = 0.0
+    --         },
+    --         Button = {
+    --             name = "StartButton",
+    --             text = "Play",
+    --             onClickId = 1, -- Identificador de la funcion del boton, esta un poco feo
+    --             textFontName = "impact.ttf",
+    --         }
+    --     }
+    -- },
     madeWithText={
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2 - 25,
-                positionY = WINDOW_HEIGHT / 2 - 60,
+                positionY = WINDOW_HEIGHT / 2 - 40,
                 positionZ = 0.0,
                 scaleX = 0.0,
                 scaleY = 0.0,
@@ -45,7 +44,7 @@ scene = {
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2 - 75,
-                positionY = WINDOW_HEIGHT / 2 - 50,
+                positionY = WINDOW_HEIGHT / 2 - 30,
                 positionZ = 0.0, -- No importa
                 scaleX = 0.0,
                 scaleY = 0.0,

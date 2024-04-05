@@ -73,7 +73,7 @@ void runEngine() {
         Vector3 p = qc.rotatePoint(Tapioca::Vector3(0, 0, 1));*/
 
         // PRUEBAS DE SOUND
-        //SoundManager::instance()->testsample();
+        SoundManager::instance()->testsample();
 
         scenes->loadScene("startScene.lua");
 
