@@ -1,7 +1,9 @@
 #pragma once
+#include "BaseWidget.h"
 #include "Core.h"
+
 namespace Tapioca {
-class TAPIOCA_API ProgressBar { 
+class TAPIOCA_API ProgressBar : public BaseWidget { 
 private:
     //valor entre 0 y 1 que indica como de llena esta la barra
     float progress = 0;

@@ -11,11 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Window\Window.vcxproj">
-      <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\src\Graphics\AnimationHelper.cpp" />
     <ClCompile Include="..\..\src\Graphics\Billboard.cpp" />
     <ClCompile Include="..\..\src\Graphics\BillboardSet.cpp" />

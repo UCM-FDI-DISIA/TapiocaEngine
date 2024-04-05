@@ -1,8 +1,10 @@
 #pragma once
+#include "BaseWidget.h"
 #include "Core.h"
 #include <string>
+
 namespace Tapioca {
-class TAPIOCA_API  DropBox {
+class TAPIOCA_API  DropBox : public BaseWidget {
 
 private:
     std::string name;

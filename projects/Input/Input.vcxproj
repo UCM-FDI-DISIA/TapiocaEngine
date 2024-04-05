@@ -91,14 +91,6 @@
     <ClInclude Include="..\..\src\Input\Input.h" />
     <ClInclude Include="..\..\src\Input\InputManager.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.vcxproj">
-      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Window\Window.vcxproj">
-      <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

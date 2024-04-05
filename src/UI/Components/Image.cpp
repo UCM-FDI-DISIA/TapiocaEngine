@@ -1,9 +1,10 @@
 #include "Image.h"
 #include "OgreGLTextureCommon.h"
 #include "OgreTextureManager.h"
+#include "OgreGLTexture.h"
 
 namespace Tapioca {
-Image::Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy, ImGuiWindowFlags flags) {
+Image::Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy) {
     sourcefile = file;
     size = widthandheigth;
     position = xandy;
@@ -21,6 +22,5 @@ Image::Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2
         std::cout << "ERROR AL CARGAR" << file << " IMAGEN PARA INTERFAZ: \n " << oe.getDescription();
 #endif   // _DEBUG
     }
-    myflags = flags;
 }
 }

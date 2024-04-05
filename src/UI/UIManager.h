@@ -1,5 +1,4 @@
 #pragma once
-#include <imgui.h>
 #include <functional>
 #include "Utilities/Vector2.h"
 #include "Utilities/Vector4.h"
@@ -15,6 +14,9 @@
 #endif
 
 struct SDL_Window;
+
+struct ImFont;
+typedef void* ImTextureID;
 
 namespace Ogre {
 class SceneManager;
@@ -147,9 +149,7 @@ public:
     /*
     * Crea una imagen qeu se muestra en el Hud
     */
-    Image* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy,
-                         ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
-                             ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings);
+    Image* createImage(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy);
     ProgressBar* createProgressBar(float initprogress , Vector4 progesscolor,std::string backtext,Vector2 siz,Vector2 pos);
     Slider* createSlider(std::string tittle,bool verticalMode,float initvalue,float maxValue,float minValue,Vector2 siz,Vector2 pos);
     DropBox* createDropBox(std::string tittle , std::vector<std::string>content,int initialselect,Vector2 siz , Vector2 pos);
