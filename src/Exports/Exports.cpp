@@ -31,6 +31,10 @@
 #include "Components/Text.h"
 #include "Components/ImageButton.h"
 
+//Sound
+#include "Components/AudioListenerComponent.h"
+#include "Components/AudioSourceComponent.h"
+
 // PRUEBAS
 #include "RenderNode.h"
 #include "Mesh.h"
@@ -63,7 +67,7 @@ void runEngine() {
         //auto light = graphics->createLightDirectional(node4, Tapioca::Vector3(0.0f, 0.0f, -1.0f));
         //light->produceShadows(true);
 
-        scenes->loadScene("archivo2.lua");
+     //   scenes->loadScene("archivo2.lua");
 
         // PRUEBAS DE CORE
         /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
@@ -146,6 +150,11 @@ static void createEngineBuilders() {
     manager->addFactory(new BasicBuilder<InputText>());
     manager->addFactory(new BasicBuilder<Text>());
     manager->addFactory(new BasicBuilder<ImageButton>());
+
+   //Sound
+    manager->addFactory(new BasicBuilder<AudioListenerComponent>());
+    manager->addFactory(new BasicBuilder<AudioSourceComponent>());
+    
 }
 
 void mapInput() {

@@ -13,12 +13,16 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Sound\AudioListener.cpp" />
     <ClCompile Include="..\..\src\Sound\AudioSource.cpp" />
+    <ClCompile Include="..\..\src\Sound\Components\AudioListenerComponent.cpp" />
+    <ClCompile Include="..\..\src\Sound\Components\AudioSourceComponent.cpp" />
     <ClCompile Include="..\..\src\Sound\Sound.cpp" />
     <ClCompile Include="..\..\src\Sound\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Sound\AudioListener.h" />
     <ClInclude Include="..\..\src\Sound\AudioSource.h" />
+    <ClInclude Include="..\..\src\Sound\Components\AudioListenerComponent.h" />
+    <ClInclude Include="..\..\src\Sound\Components\AudioSourceComponent.h" />
     <ClInclude Include="..\..\src\Sound\Sound.h" />
     <ClInclude Include="..\..\src\Sound\SoundManager.h" />
   </ItemGroup>
@@ -71,6 +75,7 @@
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -88,6 +93,7 @@
       <PreprocessorDefinitions>TAPIOCA_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\IrrKlang\include\;$(SolutionDir)src\Core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
