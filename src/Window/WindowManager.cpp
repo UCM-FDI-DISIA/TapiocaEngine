@@ -63,14 +63,17 @@ bool WindowManager::initConfig() {
 #endif
         return false;
     }
-    windowName = wn();
+    setWindowName(wn());
 #ifdef _DEBUG
     std::cout << "WindowManager: Nombre de la ventana configurado a \"" << windowName << "\"\n";
 #endif
     return true;
 }
 
-void WindowManager::setWindowName(std::string const& name) { SDL_SetWindowTitle(sdlWindow, name.c_str()); }
+void WindowManager::setWindowName(std::string const& name) {
+    SDL_SetWindowTitle(sdlWindow, name.c_str());
+    windowName = name;
+}
 
 void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
 
