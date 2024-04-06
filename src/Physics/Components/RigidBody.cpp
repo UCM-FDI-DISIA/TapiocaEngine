@@ -93,8 +93,10 @@ bool RigidBody::initComponent(const CompMap& variables) {
         std::cout << "RigidBody:Mask por defecto.\n";
 #endif
     }
-    for (int i = 0; i < std::to_string(bitmask).length(); ++i) {
-        if (bitmask & (1 << i)) mask += (1 << i);
+    else {
+        for (int i = 0; i < std::to_string(bitmask).length(); ++i) {
+            if (bitmask & (1 << i)) mask += (1 << i);
+        }
     }
 
 
