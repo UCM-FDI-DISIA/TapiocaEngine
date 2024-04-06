@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <stack>
+#include <unordered_map>
 #include <string>
 #include "Utilities/Singleton.h"
 #include "defs.h"
@@ -25,7 +25,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::vector<Module*> modules;                           // Modulos del motor
-    std::stack<Scene*> scenes;                              // Escenas del motor
+    std::unordered_map<std::string, Scene*> scenes;   // Escenas del motor
     std::vector<Scene*> toDelete;                           // Escenas que se van a eliminar
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -88,24 +88,18 @@ public:
     void run();
 
     /*
-    * @brief Devuelve la escena que se esta ejecutando
-    * @return Escena que se esta ejecutando
-    */
-    Scene* getTopScene() const;
-    /*
     * @brief Aniade una escena al stack
     * @param sc Escena que se quiere aniadir
     */
-    void pushScene(Scene* const sc);
+    void addScene(Scene* const sc);
     /*
     * @brief Elimina la escena que se esta ejecutando del stack
     */
-    void popScene();
+    void deleteScene(Scene* const sc);
     /*
-    * @brief Cambia la escena
-    * @param sc Escena a la que se quiere cambiar
+    * @brief Elimina la escena que se esta ejecutando del stack
     */
-    void changeScene(Scene* const sc);
+    void deleteScene(std::string const& sc);
     
     /*
     * @brief Aniade un modulo al vector
@@ -116,5 +110,9 @@ public:
     * @brief Envia un evento a las escenas
     */
     void pushEvent(std::string const& id, void* info);
+
+    std::unordered_map<std::string, Scene*> getScenes() const;
+
+    Scene* getDontDestroyOnLoadScene() const;
 };
 }

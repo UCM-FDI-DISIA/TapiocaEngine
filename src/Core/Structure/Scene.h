@@ -21,12 +21,13 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::vector<GameObject*> objects;                           // Objetos que tiene la escena
-    static std::vector<GameObject*> dontDestroyOnLoad;
     std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
     std::string name;
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+    bool active;
+
 public:
     /*
     * @brief Constructora de la clase Scene
@@ -41,11 +42,6 @@ public:
     * @return Vector que contiene punteros a los objetos de esta escena
     */
     std::vector<GameObject*> getObjects() const;
-    /*
-    * @brief Devuelve los objetos que no se destruyen al cambiar de escena
-    * @return Vector que contiene punteros a los objetos que no se destruyen al cambiar de escena
-    */
-    std::vector<GameObject*> getDontDestroyOnLoad() const;
     /*
     * @brief Devuelve el objeto al que esta asociado un handler. Si no encuentra un objeto, devuelve nullptr
     * @param handler Handler del objeto que se quiere obtener
@@ -101,5 +97,8 @@ public:
     void pushEvent(std::string const& id, void* info);
 
     std::string const& getName() const;
+
+    void setActive(const bool a);
+    bool isActive() const;
 };
 }

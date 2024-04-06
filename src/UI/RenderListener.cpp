@@ -43,7 +43,8 @@ void RenderListener::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) 
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
 
-    if (game->getTopScene() != nullptr) game->getTopScene()->render();
+    for (std::pair<std::string, Scene*> s : game->getScenes())
+        s.second->render();
 
     // TEMPORAL
     for (auto image : images) {

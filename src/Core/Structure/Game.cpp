@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Module.h"
 #include "DynamicLibraryLoader.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<Game>;
@@ -12,10 +13,10 @@ Game* Singleton<Game>::instance_ = nullptr;
 Game::Game() : finish(false), deltaTime(0), gameInitialized(false) { }
 
 Game::~Game() {
-    while (!scenes.empty()) {
-        delete scenes.top();
-        scenes.pop();
-    }
+    for (auto s : scenes)
+        delete s.second;
+
+    scenes.clear();
 
     DynamicLibraryLoader::freeModule();
 
@@ -26,6 +27,8 @@ Game::~Game() {
 bool Game::init() {
     bool initialized = true;
     auto mod = modules.begin();
+    scenes.insert({"dontDestroyOnLoad", new Scene("dontDestroyOnLoad")});
+
     while (initialized && mod != modules.end()) {
         initialized = (*mod)->init();
         ++mod;
@@ -99,14 +102,16 @@ void Game::update() {
     for (auto mod : modules)
         mod->update(deltaTime);
 
-    if (!scenes.empty()) scenes.top()->update(deltaTime);
+    for (auto s : scenes)
+        if (s.second->isActive()) s.second->update(deltaTime);
 }
 
 void Game::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
 
-    if (!scenes.empty()) scenes.top()->fixedUpdate();
+    for (auto s : scenes)
+        if (s.second->isActive()) s.second->fixedUpdate();
 }
 
 void Game::render() {
@@ -122,7 +127,8 @@ void Game::refresh() {
         delete sc;
     toDelete.clear();
 
-    if (!scenes.empty()) scenes.top()->refresh();
+    for (auto s : scenes)
+        if(s.second->isActive())s.second->refresh();
 }
 
 void Game::addModule(Module* const m) { modules.push_back(m); }
@@ -132,22 +138,27 @@ void Game::pushEvent(std::string const& id, void* info) {
     //if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
 #endif
 
-    if (!scenes.empty()) scenes.top()->handleEvent(id, info);
+    for (auto s : scenes)
+        if (s.second->isActive()) s.second->handleEvent(id, info);
 }
 
-Scene* Game::getTopScene() const { return (!scenes.empty()) ? scenes.top() : nullptr; }
+std::unordered_map<std::string, Scene*> Game::getScenes() const { return scenes; }
 
-void Game::pushScene(Scene* const sc) {
-    scenes.push(sc);
-    // TODO: mejorar awake y start para que se ejecute para componentes que se crean en tiempo de ejecucion
-    sc->awake();
-    sc->start();
-}
+Scene* Game::getDontDestroyOnLoadScene() const { return scenes.find("dontDestroyOnLoad")->second; }
 
-void Game::popScene() {
-    toDelete.push_back(scenes.top());
-    scenes.pop();
-    if (scenes.empty()) {
+void Game::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
+
+void Game::deleteScene(std::string const& sc) {
+    if (sc == "dontDestroyOnLoad") return;
+
+    auto it = scenes.find(sc);
+    if (it != scenes.end()) {
+        toDelete.push_back(it->second);
+        scenes.erase(it);
+    }
+
+    //si solo queda la escena de dontDestroyOnLoad se cierra el juego
+    if (scenes.size() == 1) {
         finish = true;
 #ifdef _DEBUG
         std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
@@ -155,10 +166,9 @@ void Game::popScene() {
     }
 }
 
-void Game::changeScene(Scene* const sc) {
-    toDelete.push_back(scenes.top());
-    scenes.pop();
-    scenes.push(sc);
+void Game::addScene(Scene* const sc) {
+    scenes.insert({sc->getName(), sc});
+    // TODO: mejorar awake y start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->awake();
     sc->start();
 }
