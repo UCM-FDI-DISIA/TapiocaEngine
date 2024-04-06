@@ -26,7 +26,6 @@ private:
     SDL_Window* sdlWindow;                // Ventana de SDL
     void* glContext;                      // Contexto de OpenGL
 
-
     // warning C4251 'Tapioca::WindowManager::modules' :
     // class 'std::vector<Tapioca::WindowModule *,std::allocator<Tapioca::WindowModule *>>' necesita tener una
     // interfaz DLL para que la utilicen los clientes de class 'Tapioca::WindowManager'
@@ -38,7 +37,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
 
-    Game* game;
+    Game* game;   // Puntero a Game
 
     /*
     * @brief Constructora de la clase WindowManager.
@@ -62,20 +61,24 @@ public:
     */
     bool initConfig() override;
 
-    void setWindowName(std::string const& name);
-
-    inline void setGLContext(void* context) { glContext = context; }
     /*
-    * @brief Devuelve un puntero al contexto de OpenGL
+    * @brief Establece el nombre de la ventana de SDL
     */
-    inline void* getGLContext() { return glContext; }
-
-
+    void setWindowName(std::string const& name);
     /*
     * @brief Devuelve el nombre de la ventana de SDL
     * @return String con el nombre de la ventana de SDL
     */
     inline std::string const& getWindowName() { return windowName; }
+
+    /*
+    * @brief Establece el contexto de OpenGL
+    */
+    inline void setGLContext(void* context) { glContext = context; }
+    /*
+    * @brief Devuelve un puntero al contexto de OpenGL
+    */
+    inline void* getGLContext() { return glContext; }
 
     /*
     * @brief Devuelve un puntero a la ventana de SDL

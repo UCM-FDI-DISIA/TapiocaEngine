@@ -64,6 +64,9 @@ bool WindowManager::initConfig() {
         return false;
     }
     windowName = wn();
+#ifdef _DEBUG
+    std::cout << "WindowManager: Nombre de la ventana configurado a \"" << windowName << "\"\n";
+#endif
     return true;
 }
 
