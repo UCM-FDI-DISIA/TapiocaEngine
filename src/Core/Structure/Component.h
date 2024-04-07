@@ -13,8 +13,7 @@ private:
 protected:
     GameObject* object;   // Gameobject al que esta adjunto este componente
     bool alive;           // Indica si se deberia borrar el componente
-    bool active;          // Indica si el componente esta activo (si se actualizan update,handleEvents,...)
-    //static std::unordered_set<Component*> listeners;    // Contiene los componentes que reciben mensajes y eventos
+    bool active;          // Indica si el componente esta activo (si se actualizan update y fixedUpdate)
 
 public:
     /*
