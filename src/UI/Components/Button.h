@@ -23,7 +23,6 @@ protected:
     std::string text;                // Texto que se muestra en el boton
     int onClickId;                   // Identificador de la funcion que se ejecuta cuando se hace click en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
-    Vector2 padding;                 // Tamano del padding del boton
     std::string textFontName;        // Nombre de la fuente del texto del boton
     float textSize;                  // Tamano de la fuente del texto del boton
     ImFont* textFont;                // Fuente del texto del boton incluyendo tamano
@@ -100,12 +99,6 @@ public:
     void updateOnClick();
 
     /*
-    * @brief Establece el tamano del padding del boton
-    * @param padding Tamano del padding del boton
-    */
-    inline void setPadding(const Vector2& padding) { this->padding = padding; }
-
-    /*
     * @brief Establece el tamano del texto del boton
     */
     inline void setTextSize(float textSize) {
@@ -177,12 +170,6 @@ public:
     * @return Funcion que se ejecuta cuando se hace click en el boton
 	*/
     inline std::function<void()> getOnClick() const { return onClick; }
-
-    /*
-    * @brief Devuelve el tamano del padding del boton
-    * @return Tamano del padding del boton
-    */
-    inline Vector2 getPadding() const { return padding; }
 
     /*
     * @brief Devuelve el tamano de la fuente del texto del boton

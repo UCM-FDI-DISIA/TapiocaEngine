@@ -350,6 +350,8 @@ bool GraphicsManager::handleEvents(const SDL_Event& event) {
             std::cout << "Resized\n";
 #endif
             ogreWindow->resize(windowManager->getWindowW(), windowManager->getWindowH());
+
+            // Para que UIManager tenga en cuenta el cambio de tamano de la ventana
             return false;
         }
     }

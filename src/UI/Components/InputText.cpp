@@ -32,44 +32,38 @@ void InputText::startBuffer() {
 }
 
 bool InputText::initComponent(const CompMap& variables) {
-    bool nameSet = setValueFromMap(name, "name", variables);
-    if (!nameSet) {
+    if (!setValueFromMap(name, "name", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: Input Text: no se pudo inicializar el nombre.\n";
 #endif
         return false;
     }
 
-    bool bufferSizeSet = setValueFromMap(bufferSize, "bufferSize", variables);
-    if (!bufferSizeSet) {
+    if (!setValueFromMap(bufferSize, "bufferSize", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de bufferSize. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool placeHolderTextSet = setValueFromMap(placeHolderText, "placeHolderText", variables);
-    if (!placeHolderTextSet) {
+    if (!setValueFromMap(placeHolderText, "placeHolderText", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de placeHolderText. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool onTextEnteredIdSet = setValueFromMap(onTextEnteredId, "onTextEnteredId", variables);
-    if (!onTextEnteredIdSet) {
+    if (!setValueFromMap(onTextEnteredId, "onTextEnteredId", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de onTextEnteredId. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool textFontNameSet = setValueFromMap(textFontName, "textFontName", variables);
-    if (!textFontNameSet) {
+    if (!setValueFromMap(textFontName, "textFontName", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de textFontName. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool textSizeSet = setValueFromMap(textSize, "textSize", variables);
-    if (!textSizeSet) {
+    if (!setValueFromMap(textSize, "textSize", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
 #endif
@@ -93,15 +87,13 @@ bool InputText::initComponent(const CompMap& variables) {
 #endif
     }
 
-    bool flagsSet = setValueFromMap(flags, "flags", variables);
-    if (!flagsSet) {
+    if (!setValueFromMap(flags, "flags", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de flags. Se inicializo al valor predefinido\n ";
 #endif
     }
 
-    bool windowFlagsSet = setValueFromMap(windowFlags, "windowFlags", variables);
-    if (!windowFlagsSet) {
+    if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
 #ifdef _DEBUG
         std::cout << "Input Text: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
 #endif
@@ -118,10 +110,13 @@ void InputText::start() {
 }
 
 void InputText::render() const {
-    ImVec2 inputTextSize(getSize().x, 0);
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
+    ImVec2 inputTextSize(getSize().x * scaleFactorX, 0);
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del inputText
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
     ImGui::SetNextWindowSize(inputTextSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
@@ -159,7 +154,6 @@ void InputText::render() const {
 }
 
 void InputText::createInputTextFunctions() {
-
     inputTextFunctions[InputTextFunction::INPUT_TEXT_NONE] = []() {
 #ifdef _DEBUG
         std::cout << "No se ha asignado ninguna funcion especial a la caja de texto\n";
@@ -175,6 +169,6 @@ void InputText::createInputTextFunctions() {
 
 void InputText::updateOnTextEnter() { onTextEntered = inputTextFunctions[onTextEnteredId]; }
 
-void InputText::updateTextFont() { textFont = UIManager::instance()->getFont(textFontName, textSize); }
+void InputText::updateTextFont() { textFont = uiManager->getFont(textFontName, textSize); }
 
 }

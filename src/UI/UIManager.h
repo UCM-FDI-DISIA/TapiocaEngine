@@ -47,6 +47,9 @@ private:
     Ogre::RenderWindow* ogreWindow;                   // Referencia a la superficie de renderizado de Ogre
     RenderListener* renderListener;                   // Listener de renderizado de Ogre
 
+    float scaleFactorX;                               // Factor de escala en X
+    float scaleFactorY;                               // Factor de escala en Y
+
     std::string fontsPath;                            // Ruta de la carpeta de fuentes
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
 
@@ -80,6 +83,17 @@ public:
     * @return true si se ha manejado el evento, false si no
     */
     bool handleEvents(const SDL_Event& event) override;
+
+    /*
+    * @brief Devuelve el factor de escala en X
+    * @return Factor de escala en X
+    */
+    inline float getScaleFactorX() const { return scaleFactorX; }
+    /*
+    * @brief Devuelve el factor de escala en Y
+    * @return Factor de escala en Y
+    */
+    inline float getScaleFactorY() const { return scaleFactorY; }
 
     /*
     * @brief Devuelve si existe o no la carpeta de fuentes

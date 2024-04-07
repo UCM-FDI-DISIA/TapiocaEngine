@@ -8,7 +8,7 @@
 namespace Tapioca {
 Button::Button()
     : BaseWidget(), Component(), text("Button"), onClickId(ButtonFunction::BUTTON_NONE), onClick([]() {}),
-      padding(Vector2(10, 5)), textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f) {
+      textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     ImVec4 normalColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Button];
@@ -20,50 +20,35 @@ Button::Button()
     createButtonFunctions();
 }
 
-Button::~Button() {
-    textFont = nullptr;
-}
+Button::~Button() { textFont = nullptr; }
 
 bool Button::initComponent(const CompMap& variables) {
-    bool nameSet = setValueFromMap(name, "name", variables);
-    if (!nameSet) {
+    if (!setValueFromMap(name, "name", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: Button: no se pudo inicializar el nombre.\n";
 #endif
         return false;
     }
 
-    bool textSet = setValueFromMap(text, "text", variables);
-    if (!textSet) {
+    if (!setValueFromMap(text, "text", variables)) {
 #ifdef _DEBUG
         std::cout << "Button: no se encontro el valor de text. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool onClickIdSet = setValueFromMap(onClickId, "onClickId", variables);
-    if (!onClickIdSet) {
+    if (!setValueFromMap(onClickId, "onClickId", variables)) {
 #ifdef _DEBUG
         std::cout << "Button: no se encontro el valor de onClickId. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool paddingSet =
-        setValueFromMap(padding.x, "paddingX", variables) && setValueFromMap(padding.y, "paddingY", variables);
-    if (!paddingSet) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de padding. Se inicializo a los valores predefinidos\n";
-#endif
-    }
-
-    bool textFontNameSet = setValueFromMap(textFontName, "textFontName", variables);
-    if (!textFontNameSet) {
+    if (!setValueFromMap(textFontName, "textFontName", variables)) {
 #ifdef _DEBUG
         std::cout << "Button: no se encontro el valor de textFontName. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool textSizeSet = setValueFromMap(textSize, "textSize", variables);
-    if (!textSizeSet) {
+    if (!setValueFromMap(textSize, "textSize", variables)) {
 #ifdef _DEBUG
         std::cout << "Button: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
 #endif
@@ -108,8 +93,7 @@ bool Button::initComponent(const CompMap& variables) {
 #endif
     }
 
-    bool windowFlagsSet = setValueFromMap(windowFlags, "windowFlags", variables);
-    if (!windowFlagsSet) {
+    if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
 #ifdef _DEBUG
         std::cout << "Button: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
 #endif
@@ -127,16 +111,14 @@ void Button::start() {
 void Button::render() const {
     std::string textStr = text;
     const char* text = textStr.c_str();
-    ImVec2 constSize(getSize().x, getSize().y);
-    ImVec2 buttonSize = constSize;
-    // Si el tamano es -1, -1, se calcula el tamano del boton en funcion del texto
-    if (constSize.x <= -1 && constSize.y <= -1) {
-        ImVec2 textSize = ImGui::CalcTextSize(text);
-        buttonSize = ImVec2(textSize.x + padding.x, textSize.y + padding.y);
-    }
+
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
+    ImVec2 buttonSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
     ImGui::SetNextWindowSize(buttonSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
@@ -188,5 +170,5 @@ void Button::createButtonFunctions() {
 
 void Button::updateOnClick() { onClick = buttonFunctions[onClickId]; }
 
-void Button::updateTextFont() { textFont = UIManager::instance()->getFont(textFontName, textSize); }
+void Button::updateTextFont() { textFont = uiManager->getFont(textFontName, textSize); }
 }

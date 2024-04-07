@@ -11,8 +11,7 @@ bool ImageButton::initComponent(const CompMap& variables) {
 
     if (!Button::initComponent(variables)) return false;
 
-    bool imagePathSet = setValueFromMap(imagePath, "imagePath", variables);
-    if (!imagePathSet) {
+    if (!setValueFromMap(imagePath, "imagePath", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: ImageButton: no se pudo inicializar la ruta de la imagen.\n";
 #endif
@@ -62,9 +61,12 @@ void ImageButton::start() {
 }
 
 void ImageButton::render() const {
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x, getSize().y));
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
+    ImGui::SetNextWindowSize(ImVec2(getSize().x * scaleFactorX, getSize().y * scaleFactorY));
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
@@ -91,7 +93,5 @@ void ImageButton::render() const {
     ImGui::End();
 }
 
-void ImageButton::updateTexture() {
-    textureId = UIManager::instance()->getTextureId(imagePath);
-}
+void ImageButton::updateTexture() { textureId = uiManager->getTextureId(imagePath); }
 }

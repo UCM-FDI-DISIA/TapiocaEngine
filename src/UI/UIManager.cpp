@@ -39,7 +39,7 @@ UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
     : game(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr),
-      ogreWindow(nullptr), renderListener(nullptr), fontsPath("assets/fonts/") { }
+      ogreWindow(nullptr), renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") { }
 
 UIManager::~UIManager() {
     game = nullptr;
@@ -84,51 +84,6 @@ bool UIManager::init() {
     renderListener->createSlider("slide", true, 13, 22, 0, Vector2(40, 120), Vector2(10, 80));
     std::vector<std::string> s({"opcion", "otraopcion", "otramas"});
     renderListener->createDropBox("dropbox", s, 0, Vector2(100, 60), Vector2(80, 120));
-    /*//pruebas de la imagen
-    //sceneManager = graphics->getSceneManager();
-    int w = 200;
-    int h = 200;
-    //el filename dpende del working directory al parecer
-    //unsigned char* image_data = stbi_load("./imagetest.PNG", &w, &h, NULL, 4);//carga los datos de la imagen en bruto
-    //pero luego para convertirloa una textura de opengl con esto daba errores de linkado muy turbios
-    /* if (image_data == NULL) 
-    {
-        std::cout << "NO SE CARGO LA IMAGEN";
-    }
-    Ogre::TexturePtr p;
-    try {
-
-         p = Ogre::TextureManager::getSingleton().load("imagetest.PNG", "General");
-    } catch (Ogre::Exception oe) {
-         std::cout <<"ERROR AL CARGAR IMAGEN PARA INTERFAZ " << oe.getDescription();
-    }
-   // Ogre::Texture* t =  p.get();
-    Ogre::GLTexture*  t = (Ogre::GLTexture*) p.get();
-    
-    GLuint* image_texture = new GLuint();// = p.getPointer().get;
-
-    t->getCustomAttribute("GLID", image_texture);
-    int imageHeigh= t->getHeight();
-    int imageWidth = t->getWidth();
-   
-    testid = *image_texture;
-    //pgetCustomAttribute("GLID", image_texture);
-    //glGenTextures(1, &image_texture);
-    //glBindTexture(GL_TEXTURE_2D, image_texture);
-     //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
-    delete image_texture;*/
-
-    //lo que he usado para probar que si no deja leaks
-    // delete image_data;
-    //item_current = 0;
-    //char* items2[] = {"AAAA", "BBBB", "CCCC",    "DDDD", "EEEE",   "FFFF",
-    //                      "GGGG", "HHHH", "IIIIIII", "JJJJ", "KKKKKKK"};
-
-
-    //    char items2[] = {'a', 'b'};
-    // items[0] = "asda";
-    //  items[1] = "asd";
-    //items = items2;
 
     return true;
 }
@@ -136,7 +91,14 @@ bool UIManager::init() {
 bool UIManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            ImGui::GetIO().DisplaySize = ImVec2(windowManager->getWindowW(), windowManager->getWindowH());
+            ImGuiIO& io= ImGui::GetIO();
+            io.DisplaySize = ImVec2(windowManager->getWindowW(), windowManager->getWindowH());
+
+            scaleFactorX = (float)windowManager->getWindowW() / (float)windowManager->getLastWindowW();
+            scaleFactorY = (float)windowManager->getWindowH() / (float)windowManager->getLastWindowH();
+            io.FontGlobalScale = std::min(scaleFactorX, scaleFactorY);
+
+            return true;
         }
     }
     if (ImGui_ImplSDL2_ProcessEvent(&event) &&

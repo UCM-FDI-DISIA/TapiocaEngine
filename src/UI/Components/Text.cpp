@@ -14,30 +14,26 @@ Text::Text()
 Text::~Text() { textFont = nullptr; }
 
 bool Text::initComponent(const CompMap& variables) {
-    bool nameSet = setValueFromMap(name, "name", variables);
-    if (!nameSet) {
+    if (!setValueFromMap(name, "name", variables)) {
 #ifdef _DEBUG
         std::cerr << "Error: Text: no se pudo inicializar el nombre.\n";
 #endif
         return false;
     }
 
-    bool textSet = setValueFromMap(text, "text", variables);
-    if (!textSet) {
+    if (!setValueFromMap(text, "text", variables)) {
 #ifdef _DEBUG
         std::cout << "Text: no se encontro el valor de text. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool textSizeSet = setValueFromMap(textSize, "textSize", variables);
-    if (!textSizeSet) {
+    if (!setValueFromMap(textSize, "textSize", variables)) {
 #ifdef _DEBUG
         std::cout << "Text: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
 #endif
     }
 
-    bool textFontNameSet = setValueFromMap(textFontName, "textFontName", variables);
-    if (!textFontNameSet) {
+    if (!setValueFromMap(textFontName, "textFontName", variables)) {
 #ifdef _DEBUG
         std::cout << "Text: no se encontro el valor de text. Se inicializo al valor predefinido\n";
 #endif
@@ -52,8 +48,7 @@ bool Text::initComponent(const CompMap& variables) {
 #endif
     }
 
-    bool windowFlagsSet = setValueFromMap(windowFlags, "windowFlags", variables);
-    if (!windowFlagsSet) {
+    if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
 #ifdef _DEBUG
         std::cout << "Text: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
 #endif
@@ -68,9 +63,12 @@ void Text::start() {
 }
 
 void Text::render() const {
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del texto
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x, getSize().y));
+    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
+    ImGui::SetNextWindowSize(ImVec2(getSize().x * scaleFactorX, getSize().y * scaleFactorY));
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
