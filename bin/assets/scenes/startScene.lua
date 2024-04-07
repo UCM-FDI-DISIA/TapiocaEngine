@@ -58,28 +58,28 @@ scene = {
             }
         }
     }
-    ,StartButton={
-        components = {
-            Transform = {
-                positionX = WINDOW_WIDTH / 2,
-                positionY = WINDOW_HEIGHT / 2,
-                positionZ = 0.0, -- No importa
-                scaleX = 130.0,
-                scaleY = 40.0,
-                scaleZ = 0.0, -- No importa
-                rotationX = 0.0, -- No importa
-                rotationY = 0.0, -- No importa
-                rotationZ = 0.0 -- No importa
-            },
-            Button = {
-                name = "StartButton",
-                text = "Play",
-                onClickId = 1, -- Identificador de la funcion del boton, esta un poco feo
-                textFontName = "impact.ttf",
-                -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
-            }
-        }
-    },
+    -- StartButton={
+    --     components = {
+    --         Transform = {
+    --             positionX = WINDOW_WIDTH / 2,
+    --             positionY = WINDOW_HEIGHT / 2,
+    --             positionZ = 0.0, -- No importa
+    --             scaleX = 130.0,
+    --             scaleY = 40.0,
+    --             scaleZ = 0.0, -- No importa
+    --             rotationX = 0.0, -- No importa
+    --             rotationY = 0.0, -- No importa
+    --             rotationZ = 0.0 -- No importa
+    --         },
+    --         Button = {
+    --             name = "StartButton",
+    --             text = "Play",
+    --             onClickId = 1, -- Identificador de la funcion del boton, esta un poco feo
+    --             textFontName = "impact.ttf",
+    --             -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
+    --         }
+    --     }
+    -- },
     -- StartInputText={
     --     components = {
     --         Transform = {
