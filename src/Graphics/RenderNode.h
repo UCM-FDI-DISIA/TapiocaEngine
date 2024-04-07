@@ -11,6 +11,7 @@ class MovableObject;
 
 namespace Tapioca {
 class Vector3;
+class Quaternion;
 class RenderObject;
 class GraphicsManager;
 class Camera;
@@ -53,6 +54,7 @@ public:
     metodo con una escala de Vector3(3,3,3), la escala resultante del objeto seria
     Vector3(5,5,5)*/
     void scale(const Vector3 s);
+    void setRotation(const Quaternion q);
     void setRotation(const Vector3 rot);
     void rotate(const Vector3 r);
 
@@ -60,6 +62,6 @@ public:
     void yaw(const float angle);
     void pitch(const float angle);
 
-    void showBoundingBox(bool show);
+    Vector3 getPosition() const;
 };
 }

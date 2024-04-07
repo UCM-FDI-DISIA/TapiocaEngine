@@ -20,17 +20,20 @@ class Collider;
 
 namespace Tapioca {
 class Vector3;
+class Quaternion;
 class PhysicsDebugDrawer;
 
-class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager> , public Module {
+class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager>, public Module {
     friend Singleton<PhysicsManager>;
 
 private:
-    btDefaultCollisionConfiguration* colConfig;                 // configuracion predeterminada para la deteccion de colisiones
-    btBroadphaseInterface* broadphase;                          // detectar pares de objetos de la misma region
-    btCollisionDispatcher* colDispatch;                         // confirmar la colision, notificar a los objetos que se colisionan y callbacks
-    btSequentialImpulseConstraintSolver* constraintSolver;      // resolver la interaccion de colisiones y calculos de fuerzas resultantes
-    btDiscreteDynamicsWorld* dynamicsWorld;                     // el mundo
+    btDefaultCollisionConfiguration* colConfig;   // configuracion predeterminada para la deteccion de colisiones
+    btBroadphaseInterface* broadphase;            // detectar pares de objetos de la misma region
+    btCollisionDispatcher*
+        colDispatch;   // confirmar la colision, notificar a los objetos que se colisionan y callbacks
+    btSequentialImpulseConstraintSolver*
+        constraintSolver;                     // resolver la interaccion de colisiones y calculos de fuerzas resultantes
+    btDiscreteDynamicsWorld* dynamicsWorld;   // el mundo
 
 // warning C4251: 'Tapioca::PhysicsManager::rigidBodies':
 // class ' std::unordered_set<btRigidBody*, std::hash<btRigidBody*>, std::equal_to<btRigidBody*>,
@@ -44,8 +47,8 @@ private:
 #pragma warning(default : 4251)
 #endif
 
-#ifdef _DEBUG                                                      
-    PhysicsDebugDrawer* pdd;                                    // para dibujar las fisicas
+#ifdef _DEBUG
+    PhysicsDebugDrawer* pdd;   // para dibujar las fisicas
 #endif
 
     /*
@@ -88,12 +91,11 @@ public:
     * @param  group Grupo al que pertenece el rb
     * @return Puntero al rb creado
     */
-    btRigidBody* createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
-                                 const ColliderShape colliderShape = BOX_SHAPE, 
-                                 const MovementType type = STATIC_OBJECT,
-                                 float mass = 0, const float friction = 0,
-                                 const float damping = 0,const float bounciness = 0, 
-                                 const bool isTrigger = false, const int group = 1, const int mask = -1);
+    btRigidBody* createRigidBody(const Vector3 position, const Quaternion rotation, const Vector3 shapeScale,
+                                 const ColliderShape colliderShape = BOX_SHAPE, const MovementType type = STATIC_OBJECT,
+                                 float mass = 0, const float friction = 0, const float damping = 0,
+                                 const float bounciness = 0, const bool isTrigger = false, const int group = 1,
+                                 const int mask = -1);
 
     /*
     * @brief  destruir rigidBody
@@ -101,12 +103,12 @@ public:
     */
     void destroyRigidBody(btRigidBody* const rb);
 
-     /*
+    /*
     * @brief  quitar del mundo
     * @param rb puntero al rb que se quiere quitar
     */
     void removeRigidBody(btRigidBody* const rb);
- 
+
     /*
     * @brief  añadirlo del mundo
     * @param rb puntero al rb que se quiere añadir

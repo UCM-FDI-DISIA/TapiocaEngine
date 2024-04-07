@@ -16,7 +16,7 @@ namespace Tapioca {
 class TAPIOCA_API Transform : public Component {
 private:
     Vector3 position;
-    Vector3 rotation;
+    Quaternion rotation;
     Vector3 scale;
 
     Transform* parent;
@@ -32,7 +32,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    
+
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */
@@ -61,6 +61,14 @@ private:
     * @brief Elimina su relacion de parentesco con su padre
     */
     void removeParent();
+
+    Vector3 localRight();
+
+    Vector3 localUp();
+
+    Vector3 localForward();
+
+    Vector3 getRotationPositionAux(Vector3 aux) const;
 
 public:
     COMPONENT_ID("Transform")
@@ -116,16 +124,18 @@ public:
     * @return La posicion global del transform
     */
     Vector3 getGlobalPosition() const;
+    
+    Vector3 getRotationPosition() const;
     /*
     * @brief Devuelve la rotacion local del transform
     * @return La posicion local del transform
     */
-    inline Vector3 getRotation() const { return rotation; }
+    inline Quaternion getRotation() const { return rotation; }
     /*
     * @brief Devuelve la rotacion global del transform
     * @return La rotacion global del transform
     */
-    Vector3 getGlobalRotation() const;
+    Quaternion getGlobalRotation() const;
     /*
     * @brief Devuelve la escala local del transform
     * @return La escala local del transform

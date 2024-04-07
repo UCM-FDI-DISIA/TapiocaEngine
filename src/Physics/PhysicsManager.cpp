@@ -3,6 +3,7 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 #include "Utilities/Vector3.h"
+#include "Utilities/Quaternion.h"
 #include "Components/RigidBody.h"
 #include "checkML.h"
 #include "Structure/Game.h"
@@ -20,9 +21,9 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
 
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-//#ifdef _DEBUG
-//    std::cout << "Entro\n";
-//#endif
+    //#ifdef _DEBUG
+    //    std::cout << "Entro\n";
+    //#endif
 
     if (obj1 != nullptr && obj2 != nullptr) {
         RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
@@ -38,9 +39,9 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
 
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-//#ifdef _DEBUG
-//    std::cout << "Salgo\n";
-//#endif
+    //#ifdef _DEBUG
+    //    std::cout << "Salgo\n";
+    //#endif
     if (obj1 != nullptr && obj2 != nullptr) {
         RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
         RigidBody* col2 = static_cast<RigidBody*>(obj2->getUserPointer());
@@ -56,9 +57,9 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
     const btCollisionObject* body1 = static_cast<btCollisionObject*>(obj1);
     const btCollisionObject* body2 = static_cast<btCollisionObject*>(obj2);
 
-//#ifdef _DEBUG
-//    std::cout << "Stay\n";
-//#endif
+    //#ifdef _DEBUG
+    //    std::cout << "Stay\n";
+    //#endif
 
     if (body1 != nullptr && body2 != nullptr) {
 
@@ -128,13 +129,15 @@ void PhysicsManager::update(const uint64_t deltaTime) {
 #endif }
 }
 void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 1); }
-btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Vector3 rotation, const Vector3 shapeScale,
-                                             const ColliderShape colliderShape, const MovementType type, float mass,
-                                             const float friction, const float damping, const float bounciness,
-                                             const bool isTrigger, const int group, const int mask) {
+btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quaternion rotation,
+                                             const Vector3 shapeScale, const ColliderShape colliderShape,
+                                             const MovementType type, float mass, const float friction,
+                                             const float damping, const float bounciness, const bool isTrigger,
+                                             const int group, const int mask) {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
-    btQuaternion rot = toBtQuaternion(rotation);
+    btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
+    //btQuaternion rot = toBtQuaternion(rotation);
 
     btCollisionShape* shape;
 

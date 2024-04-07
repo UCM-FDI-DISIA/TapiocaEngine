@@ -66,6 +66,10 @@ void RenderNode::setScale(const Vector3 newScale) { node->setScale(newScale.x, n
 void RenderNode::translate(const Vector3 mov) { node->translate(mov.x, mov.y, mov.z); }
 void RenderNode::scale(const Vector3 scale) { node->scale(scale.x, scale.y, scale.z); }
 
+void RenderNode::setRotation(const Quaternion q) {
+    Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
+    node->setOrientation(oq);
+}
 void RenderNode::setRotation(const Vector3 rot) {
     Quaternion q = Quaternion(rot);
     Ogre::Quaternion oq = Ogre::Quaternion(q.scalar, q.vector.x, q.vector.y, q.vector.z);
@@ -83,5 +87,8 @@ void RenderNode::yaw(const float angle) {
 }
 void RenderNode::pitch(const float angle) { node->pitch(Ogre::Degree(angle), Ogre::Node::TS_WORLD); }
 
-void RenderNode::showBoundingBox(bool show) { node->showBoundingBox(show); }
+Vector3 RenderNode::getPosition() const {
+    Ogre::Vector3 pos = node->getPosition();
+    return Vector3(pos.x, pos.y, pos.z);
+}
 }

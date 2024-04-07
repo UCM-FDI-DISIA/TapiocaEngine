@@ -14,14 +14,15 @@ Quaternion::Quaternion(const float q0, const float q1, const float q2, const flo
 Quaternion::Quaternion(const float alfa, const Vector3 vec) {
     //primero hay que convertir vec en un vector unitario
     Vector3 uvec = vec / vec.magnitude();
-    float alfarad = alfa * (PI / 180);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
+    float alfarad =
+        alfa * (PI / 180);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
     angle = alfarad;
     scalar = cosf(alfarad / 2);
     float alfasin = sinf(alfarad / 2);
     vector = Vector3(alfasin * uvec.x, alfasin * uvec.y, alfasin * uvec.z);
 }
 
-Quaternion::Quaternion(const Vector3 euler) { 
+Quaternion::Quaternion(const Vector3 euler) {
     //la libreria math opera en radianes
     float roll = euler.x * (PI / 180);
     float cosroll = cosf(roll / 2);
@@ -44,35 +45,53 @@ Quaternion::Quaternion(const Vector3 euler) {
     vector.z = cosroll * cosyaw * sinpitch - sinroll * sinyaw * cospitch;
 
     angle = 2 * acosf(scalar);
-
 }
 
-Quaternion Quaternion::inverse() { return conjugate() / norm(); }
+Quaternion Quaternion::inverse() { return conjugate() / magnitude(); }
 
 Quaternion Quaternion::conjugate() { return Quaternion(scalar, -vector.x, -vector.y, -vector.z); }
 
-float Quaternion::norm() {
+float Quaternion::magnitude() {
     return sqrtf(scalar * scalar + vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 }
 
 Vector3 Quaternion::euler() {
+
+    /*
+    normalize();
+
     // usamos los angulos de los ejes con el vector del cuaternion
     // asume un cuaternion normalizado
-    float sinx = 2 * (scalar * vector.x + vector.y * vector.z);
-    float cosx = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
+    float sinx = 2.0f * (scalar * vector.x + vector.y * vector.z);
+    float cosx = 1.0f - 2.0f * (vector.x * vector.x + vector.y * vector.y);
     float x = atan2f(sinx, cosx);
 
-    float siny = sqrtf(1 + 2 * (scalar * vector.y - vector.x * vector.z));
-    float cosy = sqrtf(1 - 2 * (scalar * vector.y - vector.x * vector.z));
-    float y = 2 * atan2f(siny, cosy) - PI / 2;
+    float siny = sqrtf(1.0f + 2.0f * (scalar * vector.y - vector.x * vector.z));
+    float cosy = sqrtf(1.0f - 2.0f * (scalar * vector.y - vector.x * vector.z));
 
-    float sinz = 2 * (scalar * vector.z + vector.x * vector.y);
-    float cosz = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
+    float y = 2.0f * atan2f(siny, cosy) - PI / 2.0f;
+
+    float sinz = 2.0f * (scalar * vector.z + vector.x * vector.y);
+    float cosz = 1.0f - 2.0f * (vector.y * vector.y + vector.z * vector.z);
     float z = atan2f(sinz, cosz);
 
     // creo que esta bien para un sistema diestro como todo lo demas ,
     // si no puede que haya que devolver -z
-    return Vector3(x * (180 / PI), y * (180 / PI), z * (180 / PI));
+    return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
+    */
+
+    // Assuming a normalized quaternion
+    float phi =
+        atan2f(2 * (scalar * vector.x + vector.y * vector.z), 1 - 2 * (vector.x * vector.x + vector.y * vector.y));
+    float theta = -PI / 2 +
+        2 *
+            atan2f(sqrtf(1 + 2 * (scalar * vector.y - vector.x * vector.z)),
+                   sqrtf(1 - 2 * (scalar * vector.y - vector.x * vector.z)));
+    float psi =
+        atan2f(2 * (scalar * vector.z + vector.x * vector.y), 1 - 2 * (vector.y * vector.y + vector.z * vector.z));
+
+    // Convert radians to degrees
+    return Vector3(phi * (180 / PI), theta * (180 / PI), psi * (180 / PI));
 }
 
 Quaternion Quaternion::operator*(const Quaternion rhs) {
@@ -112,14 +131,14 @@ Vector3 Quaternion::rotatePoint(const Vector3 point) {
     //degrees = degrees * (PI / 180);
     // return( point * cos(degrees)) + (axis.cross(point)) * sin(degrees) + axis * ((axis.dot(point)*(1-cos(degrees))));
     //return point + axis.cross(axis.cross(point)) * (1 - cos(degrees)) + axis.cross(point) * sin(degrees);
-    
-    //El elemento neutro  es 1 0i 0k 0j 
-    //En este caso el punto no rota 
-   if (!(vector.x || vector.y || vector.z)||!angle ) {
+
+    //El elemento neutro  es 1 0i 0k 0j
+    //En este caso el punto no rota
+    if (!(vector.x || vector.y || vector.z) || !angle) {
         return point;
     }
-   
-   /* angle = 1;
+
+    /* angle = 1;
      float s = sinf(angle / 2); 
    double x = vector.x / sinf(angle / 2);
     double y = vector.y / sinf(angle / 2);
@@ -130,6 +149,8 @@ Vector3 Quaternion::rotatePoint(const Vector3 point) {
     return point + axis.cross(axis.cross(point) * (1 - cosf(angle))) + axis.cross(point) * sinf(angle);
 }
 
+Quaternion Quaternion::normalized() { return *this / magnitude(); }
 
+void Quaternion::normalize() { (*this) = *this / magnitude(); }
 
 }

@@ -34,8 +34,8 @@ bool RigidBody::initComponent(const CompMap& variables) {
     colShape = (ColliderShape)colShapeAux;
 
     bool colliderScaleSet = setValueFromMap(colliderScale.x, "colliderScaleX", variables) &&
-                            setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
-                            setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
+        setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
+        setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
     if (!colliderScaleSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar colliderScale.\n";
@@ -128,32 +128,35 @@ void RigidBody::fixedUpdate() {
 void RigidBody::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         bool b = *((bool*)info);
-        if (!b)
+        if (!b) {
             if (movementType == DYNAMIC_OBJECT) {
                 btTransform& btTr = rigidBody->getWorldTransform();
                 btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-                btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+
+                Quaternion q = transform->getGlobalRotation();
+                btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
+                btTr.setRotation(btQ);
+                //btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
             }
             else if (movementType == KINEMATIC_OBJECT) {
                 btTransform btTr;
                 rigidBody->getMotionState()->getWorldTransform(btTr);
                 btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-                btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+
+                Quaternion q = transform->getGlobalRotation();
+                btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
+                btTr.setRotation(btQ);
+                //btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
                 rigidBody->getMotionState()->setWorldTransform(btTr);
             }
+        }
     }
 }
-void RigidBody::onCollisionEnter(GameObject* const other) {
-    pushEvent("onCollisionEnter", other, false);
-}
+void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
 
-void RigidBody::onCollisionExit(GameObject* const other) {
-    pushEvent("onCollisionExit", other, false);
-}
+void RigidBody::onCollisionExit(GameObject* const other) { pushEvent("onCollisionExit", other, false); }
 
-void RigidBody::onCollisionStay(GameObject* const other) {
-    pushEvent("onCollisionStay", other, false);
-}
+void RigidBody::onCollisionStay(GameObject* const other) { pushEvent("onCollisionStay", other, false); }
 
 void RigidBody::awake() {
 
@@ -205,14 +208,14 @@ void RigidBody::setTensor(const Vector3 t) {
     btVector3 inertia;
     btVector3 tensor = toBtVector3(t);
     rigidBody->getCollisionShape()->calculateLocalInertia(mass, inertia);
-    rigidBody->setMassProps(mass, inertia*tensor);
+    rigidBody->setMassProps(mass, inertia * tensor);
     PhysicsManager::instance()->addRigidBody(rigidBody);
 };
 
 
 void RigidBody::addHingeConstraint(const Vector3 a) {
 
-   /* btTransform frameInA(btQuaternion::getIdentity(), btVector3(0, 0, 0));   
+    /* btTransform frameInA(btQuaternion::getIdentity(), btVector3(0, 0, 0));   
     btTransform frameInB( btQuaternion::getIdentity(),btVector3(0, 0, 0));  
     btHingeConstraint* hingeConstraint = new btHingeConstraint(*rigidBody, frameInA,toBtVector3(a));
     hingeConstraint->setFrames(frameInA, frameInB);     

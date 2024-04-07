@@ -92,6 +92,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+    int planeNumber;
 
     // TODO: se carga de archivo, se puede borrar
     /*
@@ -293,6 +294,10 @@ public:
     Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, const Vector3& up_,
                        std::string const& name, const float width, const float height, const int xSegments,
                        const int ySegments, std::string const& material = "");
+
+    Plane* createPlaneWithName(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
+                               const Vector3& up_, const float width, const float height, const int xSegments,
+                               const int ySegments, std::string const& material = "");
 
     /*
     * @brief Crea un plane

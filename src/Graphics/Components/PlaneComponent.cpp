@@ -14,12 +14,14 @@ PlaneComponent::~PlaneComponent() { delete node; }
 
 bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha podido establecer o No hay nombre de mesh
     // No se ha podido establecer o No hay nombre de mesh
+    /*
     if (!setValueFromMap(planeName, "planeName", variables) || planeName == "") {
 #ifdef _DEBUG
         std::cerr << "Error: PlaneComponent: no se pudo inicializar el nombre del plano.\n";
 #endif
         return false;
     }
+    */
 
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
@@ -37,12 +39,14 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
         rkNormal = Tapioca::Vector3(0.f, 0.f, 1.f);
     }
 
+    /*
     if (!setValueFromMap(fConstant, "f", variables)) {
 #ifdef _DEBUG
         std::cout << "No se ha definido una constante f, se usara el valor por defecto 0.\n";
 #endif
         fConstant = 0.f;
     }
+    */
 
     bool upSet = setValueFromMap(up.x, "upX", variables) && setValueFromMap(up.y, "upY", variables) &&
         setValueFromMap(up.z, "upZ", variables);
@@ -89,7 +93,7 @@ void PlaneComponent::awake() {
     transform = gameobject->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
-    plane = g->createPlane(node, rkNormal, fConstant, up, planeName, width, height, xSegments, ySegments, materialName);
+    plane = g->createPlaneWithName(node, rkNormal, 0, up, width, height, xSegments, ySegments, materialName);
 
     if (materialName != "") plane->setMaterial(materialName);
 }
@@ -97,7 +101,7 @@ void PlaneComponent::awake() {
 void PlaneComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
-        node->setScale(transform->getGlobalScale());
+        //node->setScale(transform->getGlobalScale());
     }
 }
 

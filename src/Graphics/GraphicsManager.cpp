@@ -46,7 +46,7 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext() { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0) { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -473,6 +473,16 @@ Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNorm
                                     const Vector3& up_, std::string const& name, const float width, const float height,
                                     const int xSegments, const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
+}
+
+Plane* GraphicsManager::createPlaneWithName(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
+                                            const Vector3& up_, const float width, const float height,
+                                            const int xSegments, const int ySegments, std::string const& material) {
+
+    Plane* plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, "Plane" + planeNumber, width, height,
+                             xSegments, ySegments);
+    ++planeNumber;
+    return plane;
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,

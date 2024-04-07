@@ -62,7 +62,7 @@ public:
     * @brief devuelve la magnitud del quaternion 
     * @return Magnitud del quaternion 
     */
-    float norm();
+    float magnitude();
     /*
     * @brief Devuelve un vector con la rotacion en angulos sexadecimales  pitch , yaw, roll (x,y,z) en un sistema y up
     * @return Vector con la rotacion en angulos sexadecimales
@@ -100,6 +100,9 @@ public:
     */
     Vector3 rotatePoint(const Vector3 point);
 
+    Quaternion normalized();
+
+    void normalize();
 };
 }
 

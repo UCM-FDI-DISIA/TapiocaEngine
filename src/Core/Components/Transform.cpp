@@ -38,6 +38,50 @@ void Transform::removeParent() {
     parent = nullptr;
 }
 
+Vector3 Transform::localRight() {
+    Vector3 r(-1, 0, 0);   //X
+    Vector3 v = rotation.rotatePoint(r);
+    v.normalize();
+    return v;
+}
+
+Vector3 Transform::localUp() {
+    Vector3 u(0, 1, 0);   //Y
+    Vector3 v = rotation.rotatePoint(u);
+    v.normalize();
+    return v;
+}
+
+Vector3 Transform::localForward() {
+    Vector3 r = localRight();
+    Vector3 u = localUp();
+    Vector3 v = u.cross(r);
+    v.normalize();
+    return v;
+}
+
+Vector3 Transform::getRotationPositionAux(Vector3 point) const {
+    if (parent == nullptr) {
+        return point;
+    }
+
+    Vector3 xAxis = -parent->localRight();
+    Vector3 yAxis = parent->localUp();
+    Vector3 zAxis = parent->localForward();
+
+    //Vector3 point = position;
+
+    Vector3 pos;
+    pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
+    pos.y = point.x * xAxis.y + point.y * yAxis.y + point.z * zAxis.y;
+    pos.z = point.x * xAxis.z + point.y * yAxis.z + point.z * zAxis.z;
+
+    // se convierte al sistema de coordenadas del padre
+    pos = pos + parent->position;
+
+    return parent->getRotationPositionAux(pos);
+}
+
 Transform::Transform()
     : Component(), position(Vector3(0)), rotation(Vector3(0.0f)), scale(Vector3(1.0f)), parent(nullptr) { }
 
@@ -61,14 +105,17 @@ bool Transform::initComponent(const CompMap& variables) {
         return false;
     }
 
-    bool rotationSet = setValueFromMap(rotation.x, "rotationX", variables) &&
-        setValueFromMap(rotation.y, "rotationY", variables) && setValueFromMap(rotation.z, "rotationZ", variables);
+    Vector3 rotationVec;
+    bool rotationSet = setValueFromMap(rotationVec.x, "rotationX", variables) &&
+        setValueFromMap(rotationVec.y, "rotationY", variables) &&
+        setValueFromMap(rotationVec.z, "rotationZ", variables);
     if (!rotationSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la rotacion.\n";
 #endif
         return false;
     }
+    rotation = Quaternion(rotationVec);
 
     bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
         setValueFromMap(scale.z, "scaleZ", variables);
@@ -101,18 +148,22 @@ Vector3 Transform::getGlobalPosition() const {
     return aux;
 }
 
-Vector3 Transform::getGlobalRotation() const {
+Vector3 Transform::getRotationPosition() const { return getRotationPositionAux(position); }
+
+Quaternion Transform::getGlobalRotation() const {
+    /*
     Vector3 aux = rotation;
     if (parent != nullptr) {
         aux = parent->getGlobalRotation() + aux;
     }
 
     return aux;
-    /*Quaternion aux = Quaternion(rotation);
+    */
+    Quaternion aux = rotation;
     if (parent != nullptr) {
         aux = Quaternion(parent->getGlobalRotation()) * aux;
     }
-    return aux.euler();*/
+    return aux;
 }
 
 Vector3 Transform::getGlobalScale() const {
@@ -133,7 +184,8 @@ void Transform::setPositionXY(const Vector2& p, bool rb) {
     changed(rb);
 }
 void Transform::setRotation(const Vector3& r, bool rb) {
-    rotation = r;
+    rotation = Quaternion(r);
+    //rotation = r;
     changed(rb);
 }
 void Transform::setScale(const Vector3& s) {
@@ -150,7 +202,9 @@ void Transform::translate(const Vector3& p) {
     changed();
 }
 void Transform::rotate(const Vector3& r) {
-    rotation += r;
+    Quaternion q = Quaternion(r);
+    rotation = rotation * q;
+    //rotation += r;
     changed();
 }
 
@@ -159,16 +213,16 @@ Vector3 Transform::right() {
     Vector3 r(-1, 0, 0);   //X
 
     // Crear cuaterniones para las rotaciones en cada eje
-    Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
-    Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
-    Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
+    //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
+    //Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
+    //Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
 
-    // Multiplicar los cuaterniones en orden (Z * Y * X)
-    Quaternion combinedRotation = q_z * q_y * q_x;
+    //// Multiplicar los cuaterniones en orden (Z * Y * X)
+    //Quaternion combinedRotation = q_z * q_y * q_x;
 
 
     // Rotar el vector forward utilizando el cuaternion combinado
-    Vector3 v = combinedRotation.rotatePoint(r);
+    Vector3 v = getGlobalRotation().rotatePoint(r);
 
     v.normalize();
 
@@ -179,16 +233,16 @@ Vector3 Transform::up() {
     Vector3 u(0, 1, 0);   //Y
 
     // Crear cuaterniones para las rotaciones en cada eje
-    Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
-    Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
-    Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
+    //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
+    //Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
+    //Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
 
-    // Multiplicar los cuaterniones en orden (Z * Y * X)
-    Quaternion combinedRotation = q_z * q_y * q_x;
+    //// Multiplicar los cuaterniones en orden (Z * Y * X)
+    //Quaternion combinedRotation = q_z * q_y * q_x;
 
 
     // Rotar el vector forward utilizando el cuaternion combinado
-    Vector3 v = combinedRotation.rotatePoint(u);
+    Vector3 v = getGlobalRotation().rotatePoint(u);
 
     v.normalize();
 
