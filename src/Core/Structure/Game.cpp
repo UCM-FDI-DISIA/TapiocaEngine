@@ -13,10 +13,10 @@ Game* Singleton<Game>::instance_ = nullptr;
 Game::Game() : finish(false), deltaTime(0), gameInitialized(false) { }
 
 Game::~Game() {
-    for (auto s : scenes)
+    for (auto s : loadedScenes)
         delete s.second;
 
-    scenes.clear();
+    loadedScenes.clear();
 
     DynamicLibraryLoader::freeModule();
 
@@ -27,7 +27,6 @@ Game::~Game() {
 bool Game::init() {
     bool initialized = true;
     auto mod = modules.begin();
-    scenes.insert({"dontDestroyOnLoad", new Scene("dontDestroyOnLoad")});
 
     while (initialized && mod != modules.end()) {
         initialized = (*mod)->init();
@@ -102,7 +101,7 @@ void Game::update() {
     for (auto mod : modules)
         mod->update(deltaTime);
 
-    for (auto s : scenes)
+    for (auto s : loadedScenes)
         if (s.second->isActive()) s.second->update(deltaTime);
 }
 
@@ -110,7 +109,7 @@ void Game::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
 
-    for (auto s : scenes)
+    for (auto s : loadedScenes)
         if (s.second->isActive()) s.second->fixedUpdate();
 }
 
@@ -127,7 +126,7 @@ void Game::refresh() {
         delete sc;
     toDelete.clear();
 
-    for (auto s : scenes)
+    for (auto s : loadedScenes)
         if(s.second->isActive())s.second->refresh();
 }
 
@@ -138,27 +137,27 @@ void Game::pushEvent(std::string const& id, void* info) {
     //if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
 #endif
 
-    for (auto s : scenes)
+    for (auto s : loadedScenes)
         if (s.second->isActive()) s.second->handleEvent(id, info);
 }
 
-std::unordered_map<std::string, Scene*> Game::getScenes() const { return scenes; }
+std::unordered_map<std::string, Scene*> Game::getLoadedScenes() const { return loadedScenes; }
 
-Scene* Game::getDontDestroyOnLoadScene() const { return scenes.find("dontDestroyOnLoad")->second; }
+Scene* Game::getScene(std::string sc) { return loadedScenes.at(sc); }
 
 void Game::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
 
 void Game::deleteScene(std::string const& sc) {
     if (sc == "dontDestroyOnLoad") return;
 
-    auto it = scenes.find(sc);
-    if (it != scenes.end()) {
+    auto it = loadedScenes.find(sc);
+    if (it != loadedScenes.end()) {
         toDelete.push_back(it->second);
-        scenes.erase(it);
+        loadedScenes.erase(it);
     }
 
     //si solo queda la escena de dontDestroyOnLoad se cierra el juego
-    if (scenes.size() == 1) {
+    if (loadedScenes.size() == 1) {
         finish = true;
 #ifdef _DEBUG
         std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
@@ -166,8 +165,8 @@ void Game::deleteScene(std::string const& sc) {
     }
 }
 
-void Game::addScene(Scene* const sc) {
-    scenes.insert({sc->getName(), sc});
+void Game::loadScene(Scene* const sc) {
+    loadedScenes.insert({sc->getName(), sc});
     // TODO: mejorar awake y start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->awake();
     sc->start();

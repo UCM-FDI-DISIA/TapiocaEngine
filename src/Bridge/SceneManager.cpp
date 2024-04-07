@@ -98,7 +98,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
         return false;
     }
 
-    game->addScene(scene);
+    game->loadScene(scene);
     lua_close(luaState);
 #ifdef _DEBUG
     std::cout << "Escena cargada correctamente\n";

@@ -25,7 +25,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::vector<Module*> modules;                           // Modulos del motor
-    std::unordered_map<std::string, Scene*> scenes;   // Escenas del motor
+    std::unordered_map<std::string, Scene*> loadedScenes;         // Escenas cargadas
     std::vector<Scene*> toDelete;                           // Escenas que se van a eliminar
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -88,19 +88,33 @@ public:
     void run();
 
     /*
-    * @brief Aniade una escena al stack
-    * @param sc Escena que se quiere aniadir
+    * @brief Carga una escena que se ejecutara a la vez que el resto de escenas cargadas
+    * @param sc Puntero a la escena que se quiere cargar
     */
-    void addScene(Scene* const sc);
+    void loadScene(Scene* const sc);
     /*
-    * @brief Elimina la escena que se esta ejecutando del stack
+    * @brief Elimina la escena indicada para que deje de ejecutarse
+    * @param sc Puntero a la escena que se quiere borrar
     */
     void deleteScene(Scene* const sc);
     /*
-    * @brief Elimina la escena que se esta ejecutando del stack
+    * @brief Elimina la escena indicada para que deje de ejecutarse
+    * @param sc Nombre de la escena que se quiere borrar
     */
     void deleteScene(std::string const& sc);
     
+    /*
+    * @brief Devuelve todas las escenas cargadas
+    * @return unordered_map con las escenas cargadas
+    */
+    std::unordered_map<std::string, Scene*> getLoadedScenes() const;
+    /*
+    * @brief Devuelve la esce
+    * @param sc Nombre de la escena que se quiere obtener
+    * @return Puntero a la escena con el nombre indicado
+    */
+    Scene* getScene(std::string sc);
+
     /*
     * @brief Aniade un modulo al vector
     * @param m Modulo que se quiere aniadir
@@ -111,8 +125,6 @@ public:
     */
     void pushEvent(std::string const& id, void* info);
 
-    std::unordered_map<std::string, Scene*> getScenes() const;
 
-    Scene* getDontDestroyOnLoadScene() const;
 };
 }
