@@ -37,6 +37,13 @@ scene = {
                 name = "madeWithText",
                 text = "made with",
                 textFontName = "AGENCYB.TTF"
+            },
+            AudioListenerComponent={},
+            AudioSourceComponent=
+            {
+                islooping= true,
+                ispaused=false,
+                sourcepath="OutoftheWoods.mp3"
             }
         }
     },

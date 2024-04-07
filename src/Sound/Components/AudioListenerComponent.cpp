@@ -10,6 +10,7 @@ AudioListenerComponent::AudioListenerComponent() { }
 AudioListenerComponent::~AudioListenerComponent() {
 
 	delete listener;
+   // delete myTransform;
 }
 
 bool AudioListenerComponent::initComponent(const CompMap& variables) { 

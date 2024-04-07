@@ -267,6 +267,7 @@ void runEngine() {
         // PRUEBAS DE SOUND
         SoundManager::instance()->testsample();
 
+       // scenes->loadScene("archivo2.lua");
         scenes->loadScene("startScene.lua");
 
         game->run();

@@ -60,3 +60,10 @@ void Tapioca::AudioSource::setVolume(float v) {
      volume = v;
 
 }
+
+void Tapioca::AudioSource::setPosition(Vector3 p) { 
+    position = p;
+    mysound->setPosition(irrklang::vec3df(p.x,p.y,p.z));
+    
+}
+

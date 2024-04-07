@@ -38,6 +38,13 @@ scene = {
                 },
                 MeshRenderer = {  
                     meshName = "models/Sinbad.mesh",
+                },
+                AudioListenerComponent={},
+                AudioSourceComponent=
+                {
+                    islooping= true,
+                    ispaused=false,
+                    sourcepath="OutoftheWoods.mp3"
                 }
             },
             children = {

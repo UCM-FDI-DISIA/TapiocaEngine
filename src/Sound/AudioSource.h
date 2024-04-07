@@ -70,5 +70,6 @@ public:
     void setSpeed(float s);
     void setLooped(bool l);
     void setVolume(float v);
+    void setPosition(Vector3 p);
 };
 }
