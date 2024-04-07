@@ -39,7 +39,8 @@ UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
     : game(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr),
-      ogreWindow(nullptr), renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") { }
+      ogreWindow(nullptr), renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") {
+}
 
 UIManager::~UIManager() {
     game = nullptr;
@@ -91,12 +92,21 @@ bool UIManager::init() {
 bool UIManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            ImGuiIO& io= ImGui::GetIO();
+            ImGuiIO& io = ImGui::GetIO();
             io.DisplaySize = ImVec2(windowManager->getWindowW(), windowManager->getWindowH());
 
-            scaleFactorX = (float)windowManager->getWindowW() / (float)windowManager->getLastWindowW();
-            scaleFactorY = (float)windowManager->getWindowH() / (float)windowManager->getLastWindowH();
-            io.FontGlobalScale = std::min(scaleFactorX, scaleFactorY);
+            float newWidth = (float)windowManager->getWindowW();
+            float newHeight = (float)windowManager->getWindowH();
+            float firstWidth = (float)windowManager->getFirstWindowW();
+            float firstHeight = (float)windowManager->getFirstWindowH();
+            if (!windowManager->getResized()) {
+                scaleFactorX = (float)(newWidth / firstWidth);
+                scaleFactorY = (float)(newHeight / firstHeight);
+            }
+            else
+                scaleFactorX = scaleFactorY = 1.0f;
+
+            //io.FontGlobalScale = std::min(scaleFactorX, scaleFactorY);
 
             return true;
         }

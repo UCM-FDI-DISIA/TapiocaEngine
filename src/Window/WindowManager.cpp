@@ -20,7 +20,7 @@ WindowManager* Singleton<WindowManager>::instance_ = nullptr;
 
 WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : sdlWindow(nullptr), glContext(nullptr), windowName(windowName), windowWidth(w), windowHeight(h),
-      lastWindowWidth(w), lastWindowHeight(h), modules(), game(nullptr) { }
+      firstWindowWidth(w), firstWindowHeight(h), resized(true), modules(), game(nullptr) { }
 
 WindowManager::~WindowManager() {
     // eliminar la ventana de sdl
@@ -93,21 +93,8 @@ void WindowManager::update(const uint64_t deltaTime) {
         // Si es un evento de redimensionar la ventana, actualiza sus dimensiones
         else if (event.type == SDL_WINDOWEVENT) {
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-                int newWidth, newHeight;
-                SDL_GetWindowSize(sdlWindow, &newWidth, &newHeight);
-
-                if (newWidth != lastWindowWidth || newHeight != lastWindowHeight) {
-#ifdef _DEBUG
-                    std::cout << "Last window size: " << lastWindowWidth << "x" << lastWindowHeight << '\n';
-                    std::cout << "New window size: " << newWidth << "x" << newHeight << '\n';
-#endif
-
-                    lastWindowWidth = windowWidth;
-                    lastWindowHeight = windowHeight;
-
-                    windowWidth = newWidth;
-                    windowHeight = newHeight;
-                }
+                SDL_GetWindowSize(sdlWindow, (int*)(&windowWidth), (int*)(&windowHeight));
+                resized = false;
             }
         }
 

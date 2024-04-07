@@ -92,7 +92,7 @@ Transform::~Transform() {
     }
 
     removeConnections();
-    object->die();
+    if (object != nullptr) object->die();
 }
 
 bool Transform::initComponent(const CompMap& variables) {

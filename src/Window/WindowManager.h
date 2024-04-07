@@ -22,10 +22,13 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    uint32_t windowWidth, windowHeight;           // Anchura y altura de la ventana, respectivamente
-    uint32_t lastWindowWidth, lastWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
-    SDL_Window* sdlWindow;                        // Ventana de SDL
-    void* glContext;                              // Contexto de OpenGL
+    uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
+    uint32_t firstWindowWidth,
+        firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
+    SDL_Window* sdlWindow;   // Ventana de SDL
+    void* glContext;         // Contexto de OpenGL
+
+    bool resized;   // Si se ha redimensionado
 
     // warning C4251 'Tapioca::WindowManager::modules' :
     // class 'std::vector<Tapioca::WindowModule *,std::allocator<Tapioca::WindowModule *>>' necesita tener una
@@ -103,13 +106,24 @@ public:
     * @brief Devuelve el ancho de ventana antes de escalarse
     * @return Ancho de la ventana antes de escalarse
     */
-    inline uint32_t getLastWindowW() { return lastWindowWidth; }
+    inline uint32_t getFirstWindowW() { return firstWindowWidth; }
 
     /*
-    * @brief Devuelve el alto de ventana antes de escalarse
-    * @return Alto de la ventana antes de escalarse
+    * @brief Devuelve el alto de la primera ventana
+    * @return Alto de la primera ventana
     */
-    inline uint32_t getLastWindowH() { return lastWindowHeight; }
+    inline uint32_t getFirstWindowH() { return firstWindowHeight; }
+
+    /*
+    * @brief Devuelve si se ha redimensionado
+    * @return true si se ha redimensionado, false si no
+    */
+    inline bool getResized() const { return resized; }
+    /*
+    * @brief Establece si se ha redimensionado
+    * @param resizedY true si se ha redimensionado, false si no
+    */
+    inline void setResized(bool resized) { this->resized = resized; }
 
     /*
     * @brief Agrega un modulo al vector de modulos

@@ -63,12 +63,20 @@ void Text::start() {
 }
 
 void Text::render() const {
+    std::string textStr = text;
+    const char* text = textStr.c_str();
+
     float scaleFactorX = uiManager->getScaleFactorX();
     float scaleFactorY = uiManager->getScaleFactorY();
 
-    // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del texto
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x * scaleFactorX, getSize().y * scaleFactorY));
+    ImGui::PushFont(textFont);
+
+    ImVec2 calculatedTextSize = ImGui::CalcTextSize(text);
+    ImVec2 textPos(getPosition().x * scaleFactorX - calculatedTextSize.x / 2.0f,
+                   getPosition().y * scaleFactorY - calculatedTextSize.y / 2.0f);
+
+    ImGui::SetNextWindowPos(textPos);
+    ImGui::SetNextWindowSize(calculatedTextSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
@@ -79,20 +87,20 @@ void Text::render() const {
 
     ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
 
-    // Establece la fuente del texto
-    ImGui::PushFont(textFont);
     // Establece el color del texto
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));
+
     // Imprime el texto
-    ImGui::Text(text.c_str());
+    ImGui::Text(text);
 
     // Pop para WindowBg, el color del texto
     ImGui::PopStyleColor(2);
-    // Pop para la fuente del texto
-    ImGui::PopFont();
 
     ImGui::End();
+
+    // Pop para la fuente del texto
+    ImGui::PopFont();
 }
 
-void Text::updateTextFont() { textFont = UIManager::instance()->getFont(textFontName, textSize); }
+void Text::updateTextFont() { textFont = uiManager->getFont(textFontName, textSize); }
 }

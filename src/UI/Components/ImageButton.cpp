@@ -64,9 +64,13 @@ void ImageButton::render() const {
     float scaleFactorX = uiManager->getScaleFactorX();
     float scaleFactorY = uiManager->getScaleFactorY();
 
+    ImVec2 buttonSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
+    ImVec2 buttonPos(getPosition().x * scaleFactorX - buttonSize.x / 2.0f,
+                     getPosition().y * scaleFactorY - buttonSize.y / 2.0f);
+
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x * scaleFactorX, getSize().y * scaleFactorY));
+    ImGui::SetNextWindowPos(buttonPos);
+    ImGui::SetNextWindowSize(buttonSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
@@ -82,7 +86,7 @@ void ImageButton::render() const {
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(activeColor.x, activeColor.y, activeColor.z, activeColor.w));
 
-    if (ImGui::ImageButton(imagePath.c_str(), textureId, ImVec2(getSize().x, getSize().y), ImVec2(uv0.x, uv0.y),
+    if (ImGui::ImageButton(imagePath.c_str(), textureId, buttonSize, ImVec2(uv0.x, uv0.y),
                            ImVec2(uv1.x, uv1.y), ImVec4(imageBgColor.x, imageBgColor.y, imageBgColor.z, imageBgColor.w),
                            ImVec4(imageTint.x, imageTint.y, imageTint.z, imageTint.w)))
         onClick();

@@ -116,9 +116,11 @@ void Button::render() const {
     float scaleFactorY = uiManager->getScaleFactorY();
 
     ImVec2 buttonSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
+    ImVec2 buttonPos(getPosition().x * scaleFactorX - buttonSize.x / 2.0f,
+                     getPosition().y * scaleFactorY - buttonSize.y / 2.0f);
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
+    ImGui::SetNextWindowPos(buttonPos);
     ImGui::SetNextWindowSize(buttonSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
@@ -141,7 +143,7 @@ void Button::render() const {
     // Establece el ancho de envoltura para el texto del boton
     ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + buttonSize.x);
     // -1, -1 para que el boton se ajuste al tamano de la ventana
-    if (ImGui::Button(text, ImVec2(-1, -1))) onClick();
+    if (ImGui::Button(text, buttonSize)) onClick();
 
     // Pop para el ancho de envoltura
     ImGui::PopTextWrapPos();

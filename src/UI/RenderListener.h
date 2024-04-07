@@ -15,6 +15,7 @@
 
 namespace Tapioca {
 class Game;
+class WindowManager;
 
 // TEMPORAL
 class Image;
@@ -27,7 +28,8 @@ class DropBox;
 */
 class RenderListener : public Ogre::RenderTargetListener {
 private:
-    Game* game;   // Referencia al Game
+    Game* game;                     // Referencia al Game
+    WindowManager* windowManager;   // Referencia al WindowManager
 
     // TEMPORAL
     std::unordered_map<std::string, Image*> images;
@@ -45,7 +47,7 @@ public:
     RenderListener(Game* game);
 
     /*
-    * @brief 
+    * @brief Pone a nullptr el puntero al Game
     */
     ~RenderListener();
 

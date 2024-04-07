@@ -4,13 +4,18 @@
 
 #include "Structure/Game.h"
 #include "Structure/Scene.h"
+#include "WindowManager.h"
+
+// Temporal
 #include "Components/Image.h"
 #include "Components/ProgressBar.h"
 #include "Components/Slider.h"
 #include "Components/DropBox.h"
 
 namespace Tapioca {
-RenderListener::RenderListener(Game* game) : game(game), testid(), item_current() { }
+RenderListener::RenderListener(Game* game) : game(game), testid(), item_current() {
+    windowManager = WindowManager::instance();
+}
 
 RenderListener::~RenderListener() {
     // TEMPORAL
@@ -44,6 +49,8 @@ void RenderListener::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) 
 
     for (std::pair<std::string, Scene*> s : game->getLoadedScenes())
         s.second->render();
+
+    windowManager->setResized(true);
 
     // TEMPORAL
     for (auto image : images) {
@@ -114,7 +121,7 @@ void RenderListener::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) 
 
         int s = dbox.second->getContent().size();
         int current = *dbox.second->getCurrent();
-        if (ImGui::BeginCombo(dbox.second->getName().c_str(), dbox.second->getContent()[current].c_str())) {
+        if (ImGui::BeginCombo("##", dbox.second->getContent()[current].c_str())) {
             for (int i = 0; i < s; i++) {
 
                 bool selected = i == current;

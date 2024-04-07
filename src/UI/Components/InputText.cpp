@@ -113,10 +113,11 @@ void InputText::render() const {
     float scaleFactorX = uiManager->getScaleFactorX();
     float scaleFactorY = uiManager->getScaleFactorY();
 
-    ImVec2 inputTextSize(getSize().x * scaleFactorX, 0);
+    ImVec2 inputTextSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
+    ImVec2 inputTextPos(getPosition().x * scaleFactorX - inputTextSize.x / 2.0f,
+                        getPosition().y * scaleFactorY - inputTextSize.y / 2.0f);
 
-    // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del inputText
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x * scaleFactorX, getPosition().y * scaleFactorY));
+    ImGui::SetNextWindowPos(inputTextPos);
     ImGui::SetNextWindowSize(inputTextSize);
 
     // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
@@ -134,8 +135,6 @@ void InputText::render() const {
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));
     // Establece el color de la caja de texto
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(bgColor.x, bgColor.y, bgColor.z, bgColor.w));
-    // Establece el ancho de envoltura para el texto del inputText
-    ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + inputTextSize.x);
 
     if (ImGui::InputText("##", getBuffer(), getBufferSize(), getFlags())) {
         if (ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter)) {
@@ -143,8 +142,6 @@ void InputText::render() const {
         }
     }
 
-    // Pop para el ancho de envoltura
-    ImGui::PopTextWrapPos();
     // Pop para WindowBg, el color del texto y el color de fondo
     ImGui::PopStyleColor(3);
     // Pop para la fuente del texto
