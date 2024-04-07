@@ -56,9 +56,7 @@ float Quaternion::magnitude() {
 }
 
 Vector3 Quaternion::euler() {
-
-    /*
-    normalize();
+    // normalize();
 
     // usamos los angulos de los ejes con el vector del cuaternion
     // asume un cuaternion normalizado
@@ -78,20 +76,6 @@ Vector3 Quaternion::euler() {
     // creo que esta bien para un sistema diestro como todo lo demas ,
     // si no puede que haya que devolver -z
     return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
-    */
-
-    // Assuming a normalized quaternion
-    float phi =
-        atan2f(2 * (scalar * vector.x + vector.y * vector.z), 1 - 2 * (vector.x * vector.x + vector.y * vector.y));
-    float theta = -PI / 2 +
-        2 *
-            atan2f(sqrtf(1 + 2 * (scalar * vector.y - vector.x * vector.z)),
-                   sqrtf(1 - 2 * (scalar * vector.y - vector.x * vector.z)));
-    float psi =
-        atan2f(2 * (scalar * vector.z + vector.x * vector.y), 1 - 2 * (vector.y * vector.y + vector.z * vector.z));
-
-    // Convert radians to degrees
-    return Vector3(phi * (180 / PI), theta * (180 / PI), psi * (180 / PI));
 }
 
 Quaternion Quaternion::operator*(const Quaternion rhs) {
