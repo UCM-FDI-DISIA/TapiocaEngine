@@ -148,16 +148,13 @@ Scene* Game::getScene(std::string sc) { return loadedScenes.at(sc); }
 void Game::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
 
 void Game::deleteScene(std::string const& sc) {
-    if (sc == "dontDestroyOnLoad") return;
-
     auto it = loadedScenes.find(sc);
     if (it != loadedScenes.end()) {
         toDelete.push_back(it->second);
         loadedScenes.erase(it);
     }
 
-    //si solo queda la escena de dontDestroyOnLoad se cierra el juego
-    if (loadedScenes.size() == 1) {
+    if (loadedScenes.size() == 0) {
         finish = true;
 #ifdef _DEBUG
         std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
