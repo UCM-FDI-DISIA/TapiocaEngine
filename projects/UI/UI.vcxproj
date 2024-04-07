@@ -41,6 +41,17 @@
     <ClInclude Include="..\..\src\UI\UI.h" />
     <ClInclude Include="..\..\src\UI\UIManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
+      <Project>{41b70f84-8525-46cb-b0ae-a461780aec77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Input\Input.vcxproj">
+      <Project>{e3f8c2c9-6137-4434-999c-b6e8958260f5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Window\Window.vcxproj">
+      <Project>{e28891b0-ce35-4623-9a3e-1144b8ad4a7d}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

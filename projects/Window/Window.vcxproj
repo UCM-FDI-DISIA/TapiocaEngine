@@ -91,6 +91,11 @@
     <ClInclude Include="..\..\src\Window\WindowManager.h" />
     <ClInclude Include="..\..\src\Window\WindowModule.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

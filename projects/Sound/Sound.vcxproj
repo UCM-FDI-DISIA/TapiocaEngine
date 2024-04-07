@@ -26,6 +26,11 @@
     <ClInclude Include="..\..\src\Sound\Sound.h" />
     <ClInclude Include="..\..\src\Sound\SoundManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{5e0af72d-8466-4a76-b633-4d6198f021b1}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
