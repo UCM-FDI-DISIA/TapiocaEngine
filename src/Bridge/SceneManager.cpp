@@ -47,9 +47,7 @@ bool SceneManager::init() {
 }
 
 bool SceneManager::initConfig() {
-#ifdef _DEBUG
-    std::cout << "SceneManager: Configurando la escena inicial...\n";
-#endif
+    logInfo("SceneManager: Configurando la escena inicial...\n");
 
     EntryPointGetInitScene initScene =
         (EntryPointGetInitScene)GetProcAddress(DynamicLibraryLoader::module, "getInitScene");
@@ -198,7 +196,7 @@ bool SceneManager::loadComponents(GameObject* const gameObject) {
         lua_pop(luaState, 1);
     }
     if (gameObject->getComponent<Transform>() == nullptr) {
-        gameObject->addComponent<Transform>();
+        gameObject->addComponent(new Transform(), Transform::id);
     }
     return true;
 }

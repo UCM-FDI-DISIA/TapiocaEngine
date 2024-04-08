@@ -83,6 +83,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+
 public:
     /*
     * @brief Constructora de la clase GameObject
@@ -126,17 +127,23 @@ public:
     inline virtual Scene* getScene() const { return scene; }
 
     /*
-    * @brief Aniade una componente al objeto
+    * @brief Aniade una componente al objeto, no se deberia de usar en ejecucion.
     * @param comp Componente que se quiere aniadir al objeto
     * @param id Id de la componenete que se quiere aniadir
     */
     void addComponent(Component* const comp, std::string const& id);
     /*
-    * @brief Aniade una componente al objeto
+    * @brief Aniade una componente al objeto.
     */
-    template<IsComponent TComp> inline TComp* addComponent() {
+    template<IsComponent TComp> inline TComp* addComponent(const CompMap& variables = CompMap()) {
         TComp* comp = new TComp();
-        addComponent(comp, TComp::id); 
+        if (!comp->initComponent(variables)) {
+            delete comp;
+            return nullptr;
+        }
+        addComponent(comp, TComp::id);
+        comp->awake();
+        comp->start();
         return comp;
     }
     /*

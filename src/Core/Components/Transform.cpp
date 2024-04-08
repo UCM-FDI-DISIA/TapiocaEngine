@@ -96,17 +96,25 @@ Transform::~Transform() {
 }
 
 bool Transform::initComponent(const CompMap& variables) {
-    bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
+    if (!setValueFromMap(position.x, "positionX", variables)) position.x = 0;
+    if (!setValueFromMap(position.y, "positionY", variables)) position.y = 0;
+    if (!setValueFromMap(position.z, "positionZ", variables)) position.z = 0;
+
+    /*bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
         setValueFromMap(position.y, "positionY", variables) && setValueFromMap(position.z, "positionZ", variables);
     if (!positionSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la posicion.\n";
 #endif
         return false;
-    }
+    }*/
 
     Vector3 rotationVec;
-    bool rotationSet = setValueFromMap(rotationVec.x, "rotationX", variables) &&
+    if (!setValueFromMap(rotationVec.x, "rotationX", variables)) rotationVec.x = 0;
+    if (!setValueFromMap(rotationVec.y, "rotationY", variables)) rotationVec.y = 0;
+    if (!setValueFromMap(rotationVec.z, "rotationZ", variables)) rotationVec.z = 0;
+
+    /*bool rotationSet = setValueFromMap(rotationVec.x, "rotationX", variables) &&
         setValueFromMap(rotationVec.y, "rotationY", variables) &&
         setValueFromMap(rotationVec.z, "rotationZ", variables);
     if (!rotationSet) {
@@ -114,17 +122,22 @@ bool Transform::initComponent(const CompMap& variables) {
         std::cerr << "Error: Transform: no se pudo inicializar la rotacion.\n";
 #endif
         return false;
-    }
+    }*/
     rotation = Quaternion(rotationVec);
 
-    bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
+    
+    if (!setValueFromMap(scale.x, "scaleX", variables)) scale.x = 0;
+    if (!setValueFromMap(scale.y, "scaleY", variables)) scale.y = 0;
+    if (!setValueFromMap(scale.z, "scaleZ", variables)) scale.z = 0;
+
+    /*bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
         setValueFromMap(scale.z, "scaleZ", variables);
     if (!scaleSet) {
 #ifdef _DEBUG
         std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
 #endif
         return false;
-    }
+    }*/
 
     return true;
 }

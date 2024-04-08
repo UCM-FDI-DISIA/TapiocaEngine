@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Exports\Exports.h" />
+    <ClInclude Include="..\..\src\Exports\Tapioca.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bridge\Bridge.vcxproj">
