@@ -103,6 +103,6 @@ public:
     * @param sceneName Nombre de escena
     * @return true si se ha cargado correctamente, false si no
 	*/
-    bool loadScene(std::string const& sceneName);
+    Scene* loadScene(std::string const& sceneName);
 };
 }

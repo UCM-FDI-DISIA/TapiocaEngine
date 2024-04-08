@@ -80,11 +80,11 @@ bool UIManager::init() {
     loadFonts();
 
     // TEMPORAL
-    renderListener->createImage("imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
-    renderListener->createProgressBar(0.42, Vector4(00.2, 0.1, 0.6, 1), "42%", Vector2(200, 100), Vector2(10, 0));
-    renderListener->createSlider("slide", true, 13, 22, 0, Vector2(40, 120), Vector2(10, 80));
-    std::vector<std::string> s({"opcion", "otraopcion", "otramas"});
-    renderListener->createDropBox("dropbox", s, 0, Vector2(100, 60), Vector2(80, 120));
+    //renderListener->createImage("imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
+    //renderListener->createProgressBar(0.42, Vector4(00.2, 0.1, 0.6, 1), "42%", Vector2(200, 100), Vector2(10, 0));
+    //renderListener->createSlider("slide", true, 13, 22, 0, Vector2(40, 120), Vector2(10, 80));
+    //std::vector<std::string> s({"opcion", "otraopcion", "otramas"});
+    //renderListener->createDropBox("dropbox", s, 0, Vector2(100, 60), Vector2(80, 120));
 
     return true;
 }

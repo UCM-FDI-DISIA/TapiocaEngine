@@ -4,10 +4,12 @@
 #include "../Sound.h"
 #include "../AudioSource.h"
 
-Tapioca::AudioSourceComponent::AudioSourceComponent()
-    : is3D(false), islooping(false), ispaused(true), mySound(nullptr), mySource(nullptr), myTransform(nullptr), playSpeed() { }
+namespace Tapioca {
+AudioSourceComponent::AudioSourceComponent()
+    : is3D(false), islooping(false), ispaused(true), mySound(nullptr), mySource(nullptr), myTransform(nullptr),
+      playSpeed() { }
 
-Tapioca::AudioSourceComponent::~AudioSourceComponent() {
+AudioSourceComponent::~AudioSourceComponent() {
     delete mySource;
     mySource = nullptr;
     delete mySound;
@@ -15,7 +17,7 @@ Tapioca::AudioSourceComponent::~AudioSourceComponent() {
     myTransform = nullptr;
 }
 
-bool Tapioca::AudioSourceComponent::initComponent(const CompMap& variables) {
+bool AudioSourceComponent::initComponent(const CompMap& variables) {
 
     //para que se pueda acceder a ellos todos los sonidos se crearan pausados
     if (!setValueFromMap(is3D, "is3D", variables)) {
@@ -25,7 +27,7 @@ bool Tapioca::AudioSourceComponent::initComponent(const CompMap& variables) {
     }
     if (!setValueFromMap(islooping, "islooping", variables)) {
 #ifdef _DEBUG
-		std::cout << "AudioSourceComponent: no se encontro el valor de islooping. Se inicializo a false\n";
+        std::cout << "AudioSourceComponent: no se encontro el valor de islooping. Se inicializo a false\n";
 #endif
     }
     if (!setValueFromMap(ispaused, "ispaused", variables)) {
@@ -42,7 +44,7 @@ bool Tapioca::AudioSourceComponent::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Tapioca::AudioSourceComponent::awake() {
+void AudioSourceComponent::awake() {
     myTransform = getObject()->getComponent<Transform>();
     position = myTransform->getGlobalPosition();
     mySound = new Sound(sourcepath);
@@ -54,11 +56,12 @@ void Tapioca::AudioSourceComponent::awake() {
     }
 }
 
-void Tapioca::AudioSourceComponent::handleEvent(std::string const& id, void* info) {
+void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
     if (id == "transformchanged") {
         position = myTransform->getGlobalPosition();
         mySource->setPosition(position);
     }
 }
 
-void Tapioca::AudioSourceComponent::playSound() { }
+void AudioSourceComponent::playSound() { }
+}

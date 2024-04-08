@@ -36,7 +36,7 @@ private:
     bool gameInitialized;                                   // True si el juego ha sido inicializado, false en caso contrario
     static const uint64_t TIME_TO_INITIALIZE_GAME = 2000;   // Tiempo que se espera para inicializar el juego
 
-    std::string mainScene = "startScene";	                // Nombre de la escena principal
+    const char* MAIN_SCENE_NAME = "startScene";             // Nombre de la escena principal
 
     /*
     * @brief Comienza los modulos
@@ -93,7 +93,7 @@ public:
     * @brief Devuelve el nombre de la escena principal
     * @return Nombre de la escena principal
     */
-    std::string getMainScene() const { return mainScene; }
+    std::string getMainScene() const { return MAIN_SCENE_NAME; }
 
     /*
     * @brief Carga una escena que se ejecutara a la vez que el resto de escenas cargadas
@@ -110,7 +110,7 @@ public:
     * @param sc Nombre de la escena que se quiere borrar
     */
     void deleteScene(std::string const& sc);
-    
+
     /*
     * @brief Devuelve todas las escenas cargadas
     * @return unordered_map con las escenas cargadas
@@ -132,7 +132,5 @@ public:
     * @brief Envia un evento a las escenas
     */
     void pushEvent(std::string const& id, void* info);
-
-
 };
 }

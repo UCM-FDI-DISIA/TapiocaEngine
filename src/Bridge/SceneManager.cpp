@@ -51,33 +51,34 @@ bool SceneManager::initConfig() {
     std::cout << "SceneManager: Configurando la escena inicial...\n";
 #endif
 
-    EntryPointGetInitScene initScene = (EntryPointGetInitScene)GetProcAddress(DynamicLibraryLoader::module, "getInitScene");
+    EntryPointGetInitScene initScene =
+        (EntryPointGetInitScene)GetProcAddress(DynamicLibraryLoader::module, "getInitScene");
     if (initScene == nullptr) {
 #ifdef _DEBUG
-		std::cerr << "La DLL del juego no tiene la funcion \"getInitScene\"\n";
+        std::cerr << "La DLL del juego no tiene la funcion \"getInitScene\"\n";
 #endif
-		return false;
+        return false;
     }
     return loadScene(initScene());
 }
 
-bool SceneManager::loadScene(std::string const& sceneName) {
+Scene* SceneManager::loadScene(std::string const& sceneName) {
     luaState = luaL_newstate();
     if (luaState == nullptr) {
 #ifdef _DEBUG
         std::cerr << "Error al crear el estado de lua\n";
 #endif
-        return false;
+        return nullptr;
     }
 
     exposeUIvalues();
 
     std::string extension = ".lua";
     std::string name = sceneName;
-    if (sceneName.size() < extension.size()||sceneName.substr(sceneName.size()-extension.size(),sceneName.size())!=extension){
+    if (sceneName.size() < extension.size() ||
+        sceneName.substr(sceneName.size() - extension.size(), sceneName.size()) != extension) {
         name = sceneName + extension;
     }
-
 
     std::string path = scenesPath + name;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
@@ -85,7 +86,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
         std::cerr << "Error al cargar el archivo LUA: " << lua_tostring(luaState, -1) << '\n';
 #endif
         lua_close(luaState);
-        return false;
+        return nullptr;
     }
 
     Scene* scene = new Scene(name.substr(0, name.size() - extension.size()));
@@ -95,7 +96,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
 #endif
         lua_close(luaState);
         delete scene;
-        return false;
+        return nullptr;
     }
 
     game->loadScene(scene);
@@ -103,7 +104,7 @@ bool SceneManager::loadScene(std::string const& sceneName) {
 #ifdef _DEBUG
     std::cout << "Escena cargada correctamente\n";
 #endif
-    return true;
+    return scene;
 }
 
 bool SceneManager::loadScene(Scene* const scene) {

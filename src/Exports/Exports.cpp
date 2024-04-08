@@ -48,25 +48,12 @@ void runEngine() {
     if (game->init()) {
         createEngineBuilders();
 
-        //scenes->loadScene("archivo2.lua");
-
-        // PRUEBAS DE CORE
-        /*Quaternion q = Tapioca::Quaternion(0, Tapioca::Vector3(0, 1, 0));
-        Quaternion q2 = Tapioca::Quaternion(0, Tapioca::Vector3(0, 0, 1));
-        Quaternion q3 = Tapioca::Quaternion(1, 0, 0, 0.0000000017);
-        Quaternion qc = q * q2 * q3;
-        Vector3 p = qc.rotatePoint(Tapioca::Vector3(0, 0, 1));*/
-
         // PRUEBAS DE SOUND
+        //scenes->loadScene("archivo2.lua");
         SoundManager::instance()->testsample();
 
-        scenes->loadScene(game->getMainScene() + ".lua");
+        Scene* mainScene = scenes->loadScene(game->getMainScene());
         game->run();
-
-        /*delete node1;
-        delete node2;
-        delete node3;
-        delete node4;*/
     }
 #ifdef _DEBUG
     else

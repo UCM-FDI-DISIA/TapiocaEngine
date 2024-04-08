@@ -76,9 +76,6 @@ void Game::run() {
             }
         }
 
-        update();
-        refresh();
-
         if (!gameInitialized) timeSinceStart += deltaTime;
         if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
 #ifdef _DEBUG
@@ -86,10 +83,12 @@ void Game::run() {
 #endif
             if (!DynamicLibraryLoader::initGame())
             	finish = true;
-            deleteScene(mainScene);
+            deleteScene(MAIN_SCENE_NAME);
             gameInitialized = true;
         }
 
+        update();
+        refresh();
         render();
     }
 }
