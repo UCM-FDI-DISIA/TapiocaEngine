@@ -7,7 +7,8 @@
 
 namespace Tapioca {
 MeshRenderer::MeshRenderer()
-    : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), meshName(), materialName("") { }
+    : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), meshName(), materialName(""),
+      castShadows(true) { }
 
 MeshRenderer::~MeshRenderer() { delete node; }
 
@@ -36,6 +37,12 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 #endif
     }
 
+    if (!setValueFromMap(castShadows, "castShadows", variables)) {
+#ifdef _DEBUG
+        std::cout << "MeshRenderer: el objeto produce sombras por defecto.\n";
+#endif
+    }
+
     return true;
 }
 
@@ -45,8 +52,12 @@ void MeshRenderer::awake() {
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     mesh = g->createMesh(node, meshName);
+
     if (materialName != "") {
         mesh->setMaterial(materialName);
+    }
+    if (!castShadows) {
+        mesh->castShadows(false);
     }
 }
 

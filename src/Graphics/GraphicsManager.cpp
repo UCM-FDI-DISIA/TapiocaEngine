@@ -226,7 +226,7 @@ void GraphicsManager::setUpShadows() {
     Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
     Ogre::MaterialPtr receiverMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowReceiverText");
 
-    if (casterMat && receiverMat && false) {
+    if (casterMat && receiverMat) {
         // CUANDO SE SETEA UNA CAMARA DE SOMBRAS, TODOS LOS OBJETOS QUE TIENEN QUE CASTEAR SOMBRAS
         // SINO, SE VE MAL
 #ifndef _PSSM

@@ -29,8 +29,10 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    Mesh* getMesh() const;
     Vector3 initialRotation;
+    bool castShadows;
+
+    Mesh* getMesh() const;
 
 public:
     COMPONENT_ID("MeshRenderer")
