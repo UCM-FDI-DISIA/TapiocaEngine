@@ -82,5 +82,7 @@ public:
     * @return Valor interpolado entre los 2 valores con el factor t 
     */
     static Vector2 lerp(Vector2 const& start, Vector2 const& end, float t);
+
+    static float clamp(float v, float min, float max);
 };
 }

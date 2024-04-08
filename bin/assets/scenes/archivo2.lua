@@ -44,7 +44,7 @@ scene = {
                 {
                     islooping= true,
                     ispaused=false,
-                    sourcepath="OutoftheWoods.mp3"
+                    sourcepath="assets/audio/OutoftheWoods.mp3"
                 }
             },
             children = {

@@ -8,8 +8,3 @@
 #ifdef _DEBUG
 #include <iostream>
 #endif;
-
-static inline float clamp(float v, float min, float max) {
-    if (v < min) return min;
-    else if (v > max) return max;
-}

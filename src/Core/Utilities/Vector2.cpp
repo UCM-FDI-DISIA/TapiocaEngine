@@ -32,4 +32,8 @@ Vector2 Vector2::lerp(Vector2 const& start, Vector2 const& end, float t) {
     float y = (1 - t) * start.y + t * end.y;
     return Vector2(x, y);
 }
+float Vector2::clamp(float v, float min, float max) {
+    if (v < min) return min;
+    else if (v > max) return max;
+}
 }

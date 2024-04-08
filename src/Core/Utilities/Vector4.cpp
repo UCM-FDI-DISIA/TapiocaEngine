@@ -37,7 +37,7 @@ float Vector4::normalize() {
 }
 
 Vector4 Vector4::lerp(Vector4 const& start, Vector4 const& end, float t) {
-    t = clamp(t, 0, 1);
+    t = Vector2::clamp(t, 0, 1);
 
     float x = (1 - t) * start.x + t * end.x;
     float y = (1 - t) * start.y + t * end.y;
