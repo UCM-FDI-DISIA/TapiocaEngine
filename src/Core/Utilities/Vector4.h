@@ -99,12 +99,18 @@ public:
     //inline bool operator>=(const Vector4& other) { return !(magnitude() < other.magnitude()); }
 
     /*
-    * @brief Devuelve la interpolacion entre 2 vectores segun un factor de interpolacion
-    * @param start Punto desde el que se quiere interpoalr
-    * @param other Punto hasta el que se quiere interpolar.
+    * @brief Devuelve la interpolacion entre este vector y otro segun un factor de interpolacion
+    * @param end Punto hasta el que se quiere interpolar.
     * @param t factor de interpolacion (debe ser un valor entre 0 y 1. Si no, se redondeara al limite mas cercano)
     * @return Valor interpolado entre los 2 valores con el factor t 
     */
-    static Vector4 lerp(Vector4 const& start, Vector4 const& end, float t);
+    Vector4 lerp(Vector4 const& end, float t);
+
+    /*
+    * @brief Devuelve la distancia entre este vector y otro
+    * @param other Vector hasta el que se quiere calcular la distancia.
+    * @return Distancia entre los 2 vectores
+    */
+    float distance(Vector4 const& other);
 };
 }

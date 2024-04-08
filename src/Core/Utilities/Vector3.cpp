@@ -60,13 +60,22 @@ Vector3 Vector3::cross(const Vector3 other) {
 
 float Vector3::dot(const Vector3 other) { return x * other.x + y * other.y + z * other.z; }
 
-Vector3 Vector3::lerp(Vector3 const& start, Vector3 const& end, float t) {
+Vector3 Vector3::lerp(Vector3 const& end, float t) {
     t = Vector2::clamp(t, 0, 1);
 
-    float x = (1 - t) * start.x + t * end.x;
-    float y = (1 - t) * start.y + t * end.y;
-    float z = (1 - t) * start.z + t * end.z;
-    return Vector3(x, y, z);
+    float lx = (1 - t) * x + t * end.x;
+    float ly = (1 - t) * y + t * end.y;
+    float lz = (1 - t) * z + t * end.z;
+    return Vector3(lx, ly, lz);
 }
+
+float Vector3::distance(Vector3 const& other) {
+    double dx = other.x - x;
+    double dy = other.y - y;
+    double dz = other.z - z;
+    return std::sqrt(dx * dx + dy * dy + dz * dz);
+}
+
+
 
 }

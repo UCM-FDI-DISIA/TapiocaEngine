@@ -36,13 +36,20 @@ float Vector4::normalize() {
 	return mag;
 }
 
-Vector4 Vector4::lerp(Vector4 const& start, Vector4 const& end, float t) {
+Vector4 Vector4::lerp(Vector4 const& end, float t) {
     t = Vector2::clamp(t, 0, 1);
 
-    float x = (1 - t) * start.x + t * end.x;
-    float y = (1 - t) * start.y + t * end.y;
-    float z = (1 - t) * start.z + t * end.z;
-    float w = (1 - t) * start.w + t * end.w;
-    return Vector4(x, y, z, w);
+    float lx = (1 - t) * x + t * end.x;
+    float ly = (1 - t) * y + t * end.y;
+    float lz = (1 - t) * z + t * end.z;
+    float lw = (1 - t) * w + t * end.w;
+    return Vector4(lx, ly, lz, lw);
+}
+float Vector4::distance(Vector4 const& other) {
+    double dx = other.x - x;
+    double dy = other.y - y;
+    double dz = other.z - z;
+    double dw = other.w - w;
+    return std::sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
 }
 }

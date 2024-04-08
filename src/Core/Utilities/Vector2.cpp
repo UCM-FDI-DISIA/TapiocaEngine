@@ -25,13 +25,20 @@ float Vector2::normalize() {
 	return mag;
 }
 
-Vector2 Vector2::lerp(Vector2 const& start, Vector2 const& end, float t) {
+Vector2 Vector2::lerp(Vector2 const& end, float t) {
     t = clamp(t, 0, 1);
 
-    float x = (1 - t) * start.x + t * end.x;
-    float y = (1 - t) * start.y + t * end.y;
-    return Vector2(x, y);
+    float lx = (1 - t) * x + t * end.x;
+    float ly = (1 - t) * y + t * end.y;
+    return Vector2(lx, ly);
 }
+float Vector2::distance(Vector2 const& other) { 
+    double dx = other.x - x;
+    double dy = other.y - y;
+    return std::sqrt(dx * dx + dy * dy);
+}
+
+
 float Vector2::clamp(float v, float min, float max) {
     if (v < min) return min;
     else if (v > max) return max;
