@@ -57,10 +57,8 @@ void runEngine() {
         Scene* mainScene = scenes->loadScene(game->getMainScene());
         game->run();
     }
-#ifdef _DEBUG
     else
-        std::cerr << "Error al inicializar un modulo\n";
-#endif
+        logError("RunEngine: Error al inicializar un modulo.");
 }
 
 static void createModules(Tapioca::Game* game) {
@@ -99,33 +97,31 @@ static void createModules(Tapioca::Game* game) {
 }
 
 static void createEngineBuilders() {
-#ifdef _DEBUG
-    std::cout << "Anadiendo factorias del motor\n";
-#endif
+    logInfo("Anadiendo contructores del motor.");
     FactoryManager* manager = FactoryManager::instance();
     // Core
-    manager->addFactory(new BasicBuilder<Transform>());
+    manager->addBuilder(new BasicBuilder<Transform>());
     // Physiscs
-    manager->addFactory(new BasicBuilder<RigidBody>());
+    manager->addBuilder(new BasicBuilder<RigidBody>());
     // Graphics
-    manager->addFactory(new BasicBuilder<MeshRenderer>());
-    manager->addFactory(new BasicBuilder<CameraComponent>());
-    manager->addFactory(new BasicBuilder<Animator>());
-    manager->addFactory(new BasicBuilder<ParticleSystemComponent>());
-    manager->addFactory(new BasicBuilder<SpriteRenderer>());
-    manager->addFactory(new BasicBuilder<PlaneComponent>());
-    manager->addFactory(new BasicBuilder<LightDirComp>());
-    manager->addFactory(new BasicBuilder<SkyplaneComponent>());
-    manager->addFactory(new BasicBuilder<SkyboxComponent>());
+    manager->addBuilder(new BasicBuilder<MeshRenderer>());
+    manager->addBuilder(new BasicBuilder<CameraComponent>());
+    manager->addBuilder(new BasicBuilder<Animator>());
+    manager->addBuilder(new BasicBuilder<ParticleSystemComponent>());
+    manager->addBuilder(new BasicBuilder<SpriteRenderer>());
+    manager->addBuilder(new BasicBuilder<PlaneComponent>());
+    manager->addBuilder(new BasicBuilder<LightDirComp>());
+    manager->addBuilder(new BasicBuilder<SkyplaneComponent>());
+    manager->addBuilder(new BasicBuilder<SkyboxComponent>());
     // UI
-    manager->addFactory(new BasicBuilder<Button>());
-    manager->addFactory(new BasicBuilder<InputText>());
-    manager->addFactory(new BasicBuilder<Text>());
-    manager->addFactory(new BasicBuilder<ImageButton>());
+    manager->addBuilder(new BasicBuilder<Button>());
+    manager->addBuilder(new BasicBuilder<InputText>());
+    manager->addBuilder(new BasicBuilder<Text>());
+    manager->addBuilder(new BasicBuilder<ImageButton>());
 
     //Sound
-    manager->addFactory(new BasicBuilder<AudioListenerComponent>());
-    manager->addFactory(new BasicBuilder<AudioSourceComponent>());
+    manager->addBuilder(new BasicBuilder<AudioListenerComponent>());
+    manager->addBuilder(new BasicBuilder<AudioSourceComponent>());
 }
 
 void mapInput() {
@@ -138,15 +134,11 @@ void mapInput() {
 
     // Si no puede cargar el archivo, se muestra un mensaje y cierra la instancia de LUA
     if (luaL_dofile(luaState, path.c_str()) != 0) {
-#ifdef _DEBUG
-        std::cerr << "Error al cargar archivo LUA: " << lua_tostring(luaState, -1) << '\n';
-#endif
+        logError(("MapInput: Error al cargar el archivo Lua: " + std::string(lua_tostring(luaState, -1))).c_str());
         lua_close(luaState);
     }
     else {
-#ifdef _DEBUG
-        std::cout << "Mapa de controles cargado correctamente" << '\n';
-#endif
+        logInfo("MapInput: Mapa de controles cargado correctamente.");
         // Mete en el stack de luaState la variable global con el nombre events
         lua_getglobal(luaState, "events");
 

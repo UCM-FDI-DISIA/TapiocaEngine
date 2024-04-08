@@ -12,24 +12,18 @@ bool ImageButton::initComponent(const CompMap& variables) {
     if (!Button::initComponent(variables)) return false;
 
     if (!setValueFromMap(imagePath, "imagePath", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: ImageButton: no se pudo inicializar la ruta de la imagen.\n";
-#endif
+        logError("ImageButton: No se pudo inicializar la ruta de la imagen.");
         return false;
     }
 
     bool uv0Set = setValueFromMap(uv0.x, "uv0X", variables) && setValueFromMap(uv0.y, "uv0Y", variables);
     if (!uv0Set) {
-#ifdef _DEBUG
-        std::cout << "ImageButton: no se encontro el valor de uv0. Se inicializo a los valores predefinidos.\n";
-#endif
+        logInfo("ImageButton: No se encontro el valor de uv0. Se inicializo a los valores predefinidos.");
     }
 
     bool uv1Set = setValueFromMap(uv1.x, "uv1X", variables) && setValueFromMap(uv1.y, "uv1Y", variables);
     if (!uv0Set) {
-#ifdef _DEBUG
-        std::cout << "ImageButton: no se encontro el valor de uv1. Se inicializo a los valores predefinidos.\n";
-#endif
+        logInfo("ImageButton: No se encontro el valor de uv1. Se inicializo a los valores predefinidos.");
     }
 
     bool imageBgColorSet = setValueFromMap(imageBgColor.x, "imageBgColorR", variables) &&
@@ -37,19 +31,14 @@ bool ImageButton::initComponent(const CompMap& variables) {
         setValueFromMap(imageBgColor.z, "imageBgColorB", variables) &&
         setValueFromMap(imageBgColor.w, "imageBgColorA", variables);
     if (!imageBgColorSet) {
-#ifdef _DEBUG
-        std::cout
-            << "ImageButton: no se encontro el valor de imageBgColor. Se inicializo a los valores predefinidos.\n";
-#endif
+        logInfo("ImageButton: No se encontro el valor de imageBgColor. Se inicializo a los valores predefinidos.");
     }
 
     bool imageTintSet = setValueFromMap(imageTint.x, "imageTintR", variables) &&
         setValueFromMap(imageTint.y, "imageTintG", variables) &&
         setValueFromMap(imageTint.z, "imageTintB", variables) && setValueFromMap(imageTint.w, "imageTintA", variables);
     if (!imageTintSet) {
-#ifdef _DEBUG
-        std::cout << "ImageButton: no se encontro el valor de imageTint. Se inicializo a los valores predefinidos.\n";
-#endif
+        logInfo("ImageButton: No se encontro el valor de imageTint. Se inicializo a los valores predefinidos.");
     }
 
     return true;

@@ -18,9 +18,7 @@ Image::Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2
         textWidth = myTexture->getWidth();
         delete image_textureid;
     } catch (Ogre::Exception oe) {
-#ifdef _DEBUG
-        std::cout << "ERROR AL CARGAR" << file << " IMAGEN PARA INTERFAZ: \n " << oe.getDescription();
-#endif   // _DEBUG
+        logError(("Image: Error al cargar \"" + file + "\" (Imagen) para interfaz: " + oe.getDescription()).c_str());
     }
 }
 }

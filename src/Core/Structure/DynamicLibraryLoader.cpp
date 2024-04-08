@@ -14,20 +14,14 @@ bool DynamicLibraryLoader::load(std::string const& gameName) {
     gamePath = "./" + gameName + ".dll";
 #endif
 
-#ifdef _DEBUG
-    std::cout << "Cargando " << gamePath << "...\n";
-#endif
+    logInfo(("DynamicLibraryLoader: Cargando \"" + gamePath + "\"...").c_str());
 
     if ((module = LoadLibraryA(gamePath.c_str())) == nullptr) {
-#ifdef _DEBUG
-        std::cerr << "Error al cargar la DLL.\n";
-#endif
+        logError("DynamicLibraryLoader: Error al cargar la DLL.");
         return false;
     }
 
-#ifdef _DEBUG
-    std::cout << "Se ha cargado \"" << gameName << "\" correctamente\n";
-#endif
+    logInfo(("DynamicLibraryLoader: Se ha cargado \"" + gameName + "\" correctamente.").c_str());
 
     return true;
 }
@@ -36,18 +30,14 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
     if (load(gameName)) {
         EntryPointInit eP = (EntryPointInit)GetProcAddress(module, "init");
         if (eP == nullptr) {
-#ifdef _DEBUG
-            std::cerr << "La DLL del juego no tiene la funcion \"init\"\n";
-#endif
+            logError("DynamicLibraryLoader: La DLL del juego no tiene la funcion \"init\".");
             return false;
         }
         eP();
         return Game::instance()->initConfig();
     }
     else {
-#ifdef _DEBUG
-        std::cerr << "Error al cargar la DLL del juego\n";
-#endif
+        logError("DynamicLibraryLoader: Error al cargar la DLL del juego.");
         return false;
     }
 }

@@ -17,18 +17,14 @@ bool LightDirComp::initComponent(const CompMap& variables) {
         setValueFromMap(directionAux.z, "directionZ", variables);
     directionSet = directionSet && directionAux != direction;
     if (!directionSet) {
-#ifdef _DEBUG
-        std::cout << "LightDirComp: apunta hacia (0,0,-1) global.\n";
-#endif
+        logInfo("LightDirComp: Apunta hacia (0,0,-1) global.");
     }
     else {
         direction = directionAux;
     }
 
     if (!setValueFromMap(shadows, "mainLight", variables)) {
-#ifdef _DEBUG
-        std::cout << "LightDirComp: no produce sombras.\n";
-#endif
+        logInfo("LightDirComp: No produce sombras.");
     }
 
     Vector4 colorAux;
@@ -37,9 +33,7 @@ bool LightDirComp::initComponent(const CompMap& variables) {
         setValueFromMap(colorAux.w, "colorA", variables);
     colorSet = colorSet && colorAux != color;
     if (!colorSet) {
-#ifdef _DEBUG
-        std::cout << "LightDirComp: luz blanca.\n";
-#endif
+        logInfo("LightDirComp: Luz blanca.");
     }
     else {
         color = colorAux;
@@ -47,9 +41,7 @@ bool LightDirComp::initComponent(const CompMap& variables) {
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
-#ifdef _DEBUG
-        std::cout << "LightDirComp: la potencia de la luz por defecto es 1.0f.\n";
-#endif
+        logInfo("LightDirComp: La potencia de la luz por defecto es 1.0f.");
     }
     else {
         powerScale = powerAux;

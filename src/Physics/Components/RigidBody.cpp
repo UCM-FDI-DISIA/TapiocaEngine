@@ -26,9 +26,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
     int colShapeAux;
     if (!setValueFromMap(colShapeAux, "colShape", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar colShape.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar colShape.");
         return false;
     }
     colShape = (ColliderShape)colShapeAux;
@@ -37,61 +35,45 @@ bool RigidBody::initComponent(const CompMap& variables) {
         setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
         setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
     if (!colliderScaleSet) {
-#ifdef _DEBUG
-        std::cerr << "Error: Transform: no se pudo inicializar colliderScale.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar colliderScale.");
         return false;
     }
 
     if (!setValueFromMap(isTrigger, "isTrigger", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar isTrigger.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar isTrigger.");
         return false;
     }
 
     int movementTypeAux;
     if (!setValueFromMap(movementTypeAux, "movementType", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar movementType.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar movementType.");
         return false;
     }
     movementType = (MovementType)movementTypeAux;
 
     if (!setValueFromMap(mass, "mass", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar mass.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar mass.");
         return false;
     }
 
     if (!setValueFromMap(friction, "friction", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar friction.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar friction.");
         return false;
     }
 
     if (!setValueFromMap(damping, "damping", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar damping.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar damping.");
         return false;
     }
 
     if (!setValueFromMap(bounciness, "bounciness", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: RigidBody: no se pudo inicializar bounciness.\n";
-#endif
+        logError("RigidBody: No se pudo inicializar bounciness.");
         return false;
     }
 
     int bitmask;
     if (!setValueFromMap(bitmask, "mask", variables)) {
-#ifdef _DEBUG
-        std::cout << "RigidBody:Mask por defecto.\n";
-#endif
+        logInfo("Rigidbody: Mask por defecto.");
     }
     else {
         for (int i = 0; i < std::to_string(bitmask).length(); ++i) {
@@ -101,9 +83,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
 
     if (!setValueFromMap(group, "group", variables)) {
-#ifdef _DEBUG
-        std::cout << "RigidBody:Group por defecto.\n";
-#endif
+        logInfo("Rigidbody: Group por defecto.");
     }
 
     return true;

@@ -31,9 +31,7 @@ void InputManager::mapInput(std::string const& evt, std::string const& src, int 
 
 void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
-#ifdef _DEBUG
-    else std::cout << "No hay joysticks conectados\n";
-#endif
+    else logInfo("InputManager: No hay joysticks conectados.");
 }
 
 void InputManager::addController(const int i) {
@@ -41,14 +39,9 @@ void InputManager::addController(const int i) {
     if (ctrl != nullptr) {
         controllers.insert({i, ctrl});
         deadZones.insert({i, DEFAULT_DEADZONE});
-
-#ifdef _DEBUG
-        std::cout << "Mando conectado (" << SDL_GameControllerName(ctrl) << ")\n";
+        logInfo(("InputManager: Mando conectado (" + std::string(SDL_GameControllerName(ctrl)) + ").").c_str());
     }
-    else std::cerr << "No se pudo abrir mando, " << SDL_GetError() << "\n";
-#else
-    }
-#endif
+    else logError(("InputManager: No se pudo abrir mando, " + std::string(SDL_GetError()) + ".").c_str());
 }
 
 void InputManager::removeController(const int i) {
@@ -58,9 +51,7 @@ void InputManager::removeController(const int i) {
         SDL_GameControllerClose(ctrl);
         ctrl = nullptr;
 
-#ifdef _DEBUG
-        std::cout << "Mando desconectado\n";
-#endif
+        logInfo("InputManager: Mando desconectado.");
     }
 }
 

@@ -26,59 +26,41 @@ bool CameraComponent::initComponent(const CompMap& variables) {
             setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
             setValueFromMap(targetToLook.z, "targetToLookZ", variables);
         if (!targetToLookSet) {
-#ifdef _DEBUG
-            std::cout << "CameraComponent: la camara apunta hacia (0,0,-1) global.\n";
-#endif
+            logInfo("CameraComponent: La camara apunta hacia (0,0,-1) global.");
         }
     }
 
     if (!setValueFromMap(nearPlane, "nearPlane", variables)) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: la distancia por defecto al nearPlane es 1.0f.\n";
-#endif
+        logInfo("CameraComponent: La distancia por defecto al nearPlane es 1.0f.");
     }
 
     if (!setValueFromMap(nearPlane, "farPlane", variables)) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: la distancia por defecto al farPlane es 1000.0f.\n";
-#endif
+        logInfo("CameraComponent: La distancia por defecto al farPlane es 1000.0f.");
     }
 
     // Viewport
     if (!setValueFromMap(zOrder, "zOrder", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: CameraComponent: no se pudo inicializar el zOrder.\n";
-#endif
+        logError("CameraComponent: No se pudo inicializar el zOrder.");
         return false;
     }
 
     bool colorSet = setValueFromMap(color.x, "bgColorR", variables) &&
         setValueFromMap(color.y, "bgColorG", variables) && setValueFromMap(color.z, "bgColorB", variables);
     if (!colorSet) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: el color predeterminado del fondo es negro.\n";
-#endif
+        logInfo("CameraComponent: El color predeterminado del fondo es negro.");
     }
 
     if (!setValueFromMap(dimensions.x, "left", variables)) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: la camara esta situada a la izquierda del todo.\n";
-#endif
+        logInfo("CameraComponent: La camara esta situada a la izquierda del todo.");
     }
     if (!setValueFromMap(dimensions.y, "top", variables)) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: la camara esta situada arriba del todo.\n";
-#endif
+        logInfo("CameraComponent: La camara esta situada arriba del todo.");
     }
     if (!setValueFromMap(dimensions.z, "width", variables)) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: el ancho de la camara corresponde con el de la ventana.\n";
-#endif
+        logInfo("CameraComponent: El ancho de la camara corresponde con el de la ventana.");
     }
     if (!setValueFromMap(dimensions.w, "height", variables)) {
-#ifdef _DEBUG
-        std::cout << "CameraComponent: la altura de la camara corresponde con la de la ventana.\n";
-#endif
+        logInfo("CameraComponent: La altura de la camara corresponde con la de la ventana.");
     }
 
     return true;

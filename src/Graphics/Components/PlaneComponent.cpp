@@ -24,17 +24,13 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
 
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
-#ifdef _DEBUG
-        std::cout << "No existe nombre para el material: se coloca el predefinido por la mesh.\n";
-#endif
+        logInfo("PlaneComponent: No existe nombre para el material: se coloca el predefinido por la mesh.");
     }
 
     bool normalSet = setValueFromMap(rkNormal.x, "rkNormalX", variables) &&
         setValueFromMap(rkNormal.y, "rkNormalY", variables) && setValueFromMap(rkNormal.z, "rkNormalZ", variables);
     if (!normalSet) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).\n";
-#endif
+        logInfo("PlaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
         rkNormal = Tapioca::Vector3(0.f, 0.f, 1.f);
     }
 
@@ -50,37 +46,27 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
     bool upSet = setValueFromMap(up.x, "upX", variables) && setValueFromMap(up.y, "upY", variables) &&
         setValueFromMap(up.z, "upZ", variables);
     if (!upSet) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido un up para el plano, se usara el valor por defecto (0, 1, 0).\n";
-#endif
+        logInfo("PlaneComponent: No se ha definido un up para el plano, se usara el valor por defecto (0, 1, 0).");
         up = Tapioca::Vector3(0.f, 1.f, 0.f);
     }
 
     if (!setValueFromMap(width, "width", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido una anchura, se usara el valor por defecto 1.\n";
-#endif
+        logInfo("PlaneComponent: No se ha definido una anchura, se usara el valor por defecto 1.");
         width = 1.f;
     }
 
     if (!setValueFromMap(height, "height", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido una altura, se usara el valor por defecto 1.\n";
-#endif
+        logInfo("PlaneComponent: No se ha definido una altura, se usara el valor por defecto 1.");
         height = 1.f;
     }
 
     if (!setValueFromMap(xSegments, "xSegments", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.\n";
-#endif
+        logInfo("PlaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
         xSegments = 1;
     }
 
     if (!setValueFromMap(ySegments, "ySegments", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.\n";
-#endif
+        logInfo("PlaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
         ySegments = 1;
     }
 

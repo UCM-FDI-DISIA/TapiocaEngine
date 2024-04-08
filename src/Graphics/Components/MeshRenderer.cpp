@@ -15,32 +15,24 @@ MeshRenderer::~MeshRenderer() { delete node; }
 bool MeshRenderer::initComponent(const CompMap& variables) {
     // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(meshName, "meshName", variables) || meshName == "") {
-#ifdef _DEBUG
-        std::cerr << "Error: MeshRenderer: no se pudo inicializar el nombre del mesh.\n";
-#endif
+        logError("MeshRenderer: No se pudo inicializar el nombre del mesh.");
         return false;
     }
 
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
-#ifdef _DEBUG
-        std::cout << "MeshRenderer: no existe nombre para el material: se coloca el predefinido por la mesh.\n";
-#endif
+        logInfo("MeshRenderer: No existe nombre para el material: se coloca el predefinido por la mesh.");
     }
 
     bool rotationSet = setValueFromMap(initialRotation.x, "initRotationX", variables) &&
         setValueFromMap(initialRotation.y, "initRotationY", variables) &&
         setValueFromMap(initialRotation.z, "initRotationZ", variables);
     if (!rotationSet) {
-#ifdef _DEBUG
-        std::cout << "MeshRenderer: la rotacion inicial es Vector3(0,0,0).\n";
-#endif
+        logInfo("MeshRenderer: La rotacion inicial es Vector3(0,0,0).");
     }
 
     if (!setValueFromMap(castShadows, "castShadows", variables)) {
-#ifdef _DEBUG
-        std::cout << "MeshRenderer: el objeto produce sombras por defecto.\n";
-#endif
+        logInfo("MeshRenderer: El objeto produce sombras por defecto.");
     }
 
     return true;

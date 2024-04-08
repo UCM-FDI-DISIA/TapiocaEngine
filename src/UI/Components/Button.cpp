@@ -24,43 +24,31 @@ Button::~Button() { textFont = nullptr; }
 
 bool Button::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: Button: no se pudo inicializar el nombre.\n";
-#endif
+        logError("Button: No se pudo inicializar el nombre.");
         return false;
     }
 
     if (!setValueFromMap(text, "text", variables)) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de text. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Button: No se encontro el valor de text. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(onClickId, "onClickId", variables)) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de onClickId. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Button: No se encontro el valor de onClickId. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de textFontName. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Button: No se encontro el valor de textFontName. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Button: No se encontro el valor de textSize. Se inicializo al valor predefinido.");
     }
 
     bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
         setValueFromMap(textColor.y, "textColorG", variables) &&
         setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
     if (!textColorSet) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de textColor. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Button: No se encontro el valor de textColor. Se inicializo a los valores predefinidos.");
     }
 
     bool normalColorSet = setValueFromMap(normalColor.x, "normalColorR", variables) &&
@@ -68,9 +56,7 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(normalColor.z, "normalColorB", variables) &&
         setValueFromMap(normalColor.w, "normalColorA", variables);
     if (!normalColorSet) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de normalColor. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Button: No se encontro el valor de normalColor. Se inicializo a los valores predefinidos.");
     }
 
     bool hoverColorSet = setValueFromMap(hoverColor.x, "hoverColorR", variables) &&
@@ -78,9 +64,7 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(hoverColor.z, "hoverColorB", variables) &&
         setValueFromMap(hoverColor.w, "hoverColorA", variables);
     if (!hoverColorSet) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de hoverColor. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Button: No se encontro el valor de hoverColor. Se inicializo a los valores predefinidos.");
     }
 
     bool activeColorSet = setValueFromMap(activeColor.x, "activeColorR", variables) &&
@@ -88,15 +72,11 @@ bool Button::initComponent(const CompMap& variables) {
         setValueFromMap(activeColor.z, "activeColorB", variables) &&
         setValueFromMap(activeColor.w, "activeColorA", variables);
     if (!activeColorSet) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de activeColor. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Button: No se encontro el valor de activeColor. Se inicializo a los valores predefinidos.");
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
-#ifdef _DEBUG
-        std::cout << "Button: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Button: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos.");
     }
 
     return true;

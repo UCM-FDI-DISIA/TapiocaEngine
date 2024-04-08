@@ -13,9 +13,7 @@ Scene::~Scene() {
 bool Scene::addObject(GameObject* const object, std::string const& handler) {
     if (handler != "") {
         if (handlers.contains(handler)) {
-#ifdef _DEBUG
-            std::cerr << "Ya existe ese nombre de handler, por favor elige otro.\n";
-#endif
+            logError(("Scene: Ya existe ese nombre de handler (\"" + handler + "\"), por favor elige otro.").c_str());
             return false;
         }
         object->handler = handler;

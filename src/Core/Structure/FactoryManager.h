@@ -51,6 +51,6 @@ public:
     /*
     * @brief Añade una factoria al mapa de factorias
     */
-    void addFactory(ComponentBuilder* const builder);
+    void addBuilder(ComponentBuilder* const builder);
 };
 }

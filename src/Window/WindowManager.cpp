@@ -40,9 +40,7 @@ bool WindowManager::init() {
     sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
                                  windowHeight, flags);
     if (sdlWindow == nullptr) {
-#ifdef _DEBUG
-        std::cerr << "Error al crear la ventana de SDL: " << SDL_GetError() << '\n';
-#endif
+        logError(("WindowManager: Error al crear la ventana de SDL: " + std::string(SDL_GetError()) + '.').c_str());
         return false;
     }
 
@@ -52,21 +50,15 @@ bool WindowManager::init() {
 }
 
 bool WindowManager::initConfig() {
-#ifdef _DEBUG
-    std::cout << "WindowManager: Configurando el nombre de la ventana...\n";
-#endif
+    logInfo("WindowManager: Configurando el nombre de la ventana...");
 
     EntryPointGetWindowName wn = (EntryPointGetWindowName)GetProcAddress(DynamicLibraryLoader::module, "getWindowName");
     if (wn == nullptr) {
-#ifdef _DEBUG
-        std::cerr << "La DLL del juego no tiene la funcion \"getWindowName\"\n";
-#endif
+        logError("WindowManager: La DLL del juego no tiene la funcion \"getWindowName\".");
         return false;
     }
     setWindowName(wn());
-#ifdef _DEBUG
-    std::cout << "WindowManager: Nombre de la ventana configurado a \"" << windowName << "\"\n";
-#endif
+    logInfo(("WindowManager: Nombre de la ventana configurado a \"" + windowName + "\".").c_str());
     return true;
 }
 

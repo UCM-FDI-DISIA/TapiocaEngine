@@ -16,19 +16,13 @@ ParticleSystemComponent::~ParticleSystemComponent() { delete node; }
 bool ParticleSystemComponent::initComponent(const CompMap& variables) {
     // Da igual si no hay nombre para el sistema de particulas o si tiene un nombre vacio
     if (!setValueFromMap(pSysName, "pSysName", variables) || pSysName == "") {
-#ifdef _DEBUG
-        std::cout << "ParticleSystem: no existe nombre para el sistema de particulas: se creara sin nombre.\n";
-#endif
+        logInfo("ParticleSystem: No existe nombre para el sistema de particulas: se creara sin nombre.");
     }
     if (!setValueFromMap(templateName, "templateName", variables)) {
-#ifdef _DEBUG
-        std::cout << "ParticleSystem: no existe nombre para el template: se creara uno por defecto.\n";
-#endif
+        logInfo("ParticleSystem: No existe nombre para el template: se creara uno por defecto.");
     }
     if (!setValueFromMap(emitting, "emitting", variables)) {
-#ifdef _DEBUG
-        std::cout << "ParticleSystem: emitting no esta establecido: se pondra a false por defecto.\n";
-#endif
+        logInfo("ParticleSystem: \"emitting\" no esta establecido: se pondra a false por defecto.");
     }
 
     return true;

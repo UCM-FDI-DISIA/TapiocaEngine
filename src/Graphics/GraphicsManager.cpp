@@ -130,9 +130,7 @@ bool GraphicsManager::init() {
     SDL_SysWMinfo wmInfo;
     SDL_VERSION(&wmInfo.version);
     if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
-#ifdef _DEBUG
-        std::cerr << "Error al obtener informacion de la ventana de SDL: " << SDL_GetError() << '\n';
-#endif
+        logError(("GraphicsManager: Error al obtener informacion de la ventana de SDL: " + std::string(SDL_GetError())).c_str());
         return false;
     }
     // vincular ventana de SDL con Ogre
@@ -155,9 +153,7 @@ bool GraphicsManager::init() {
 
     ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
     if (glContext == nullptr) {
-#ifdef _DEBUG
-        std::cerr << "Error al obtener el contexto de OpenGL\n";
-#endif
+        logError("GraphicsManager: Error al obtener el contexto de OpenGL.");
         return false;
     }
     windowManager->setGLContext(glContext);
@@ -348,9 +344,7 @@ void GraphicsManager::render() { mRoot->renderOneFrame(); }
 bool GraphicsManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-#ifdef _DEBUG
-            std::cout << "Resized\n";
-#endif
+            logInfo("GraphicsManager: Resized");
             ogreWindow->resize(windowManager->getWindowW(), windowManager->getWindowH());
 
             // Para que UIManager tenga en cuenta el cambio de tamano de la ventana
@@ -455,9 +449,7 @@ LightSpotlight* GraphicsManager::createLightSpotlight(RenderNode* const node, co
 
 void GraphicsManager::setMainLight(LightDirectional* lightDir) {
     if (mainLight != nullptr) {
-#ifdef _DEBUG
-        std::cout << "Se ha cambiado la luz principal (la que produce sombras)\n";
-#endif
+        logWarn("GraphicsManager: Se ha cambiado la luz principal (la que produce sombras)");
         mainLight->produceShadows(false);
     }
     mainLight = lightDir;

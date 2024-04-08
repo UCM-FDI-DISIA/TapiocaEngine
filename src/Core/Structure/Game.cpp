@@ -126,10 +126,6 @@ void Game::refresh() {
 void Game::addModule(Module* const m) { modules.push_back(m); }
 
 void Game::pushEvent(std::string const& id, void* info) {
-#ifdef _DEBUG
-    //if (id == "ev_ACCEPT") std::cout << "Aceptar\n";
-#endif
-
     for (auto s : loadedScenes)
         if (s.second->isActive()) s.second->handleEvent(id, info);
 }
@@ -149,15 +145,12 @@ void Game::deleteScene(std::string const& sc) {
 
     if (loadedScenes.size() == 0) {
         finish = true;
-#ifdef _DEBUG
-        std::cout << "No hay escenas en el juego. Se va a cerrar la aplicacion.\n";
-#endif
+        logWarn("Game: No hay escenas en el juego. Se va a cerrar la aplicacion.");
     }
 }
 
 void Game::loadScene(Scene* const sc) {
     loadedScenes.insert({sc->getName(), sc});
-    // TODO: mejorar awake y start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->awake();
     sc->start();
 }
@@ -167,9 +160,7 @@ void Game::loadingGame(uint64_t deltaTime) {
 
     if (!gameInitialized) timeSinceStart += deltaTime;
     if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
-#ifdef _DEBUG
-        std::cout << "Ya pasaron " << TIME_TO_INITIALIZE_GAME << " milisegundos\n";
-#endif
+        logInfo(("Ya pasaron " + std::to_string(TIME_TO_INITIALIZE_GAME) + " milisegundos").c_str());
         if (!DynamicLibraryLoader::initGame()) finish = true;
         deleteScene(MAIN_SCENE_NAME);
         gameInitialized = true;

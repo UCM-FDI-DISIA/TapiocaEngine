@@ -21,7 +21,8 @@ Component* FactoryManager::createComponent(std::string const& name) {
     return nullptr;
 }
 
-void FactoryManager::addFactory(ComponentBuilder* const builder) {
+void FactoryManager::addBuilder(ComponentBuilder* const builder) {
+
 #ifdef _DEBUG
     std::cout << "Anadiendo la factoria " << builder->id << "\n";
 #endif

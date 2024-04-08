@@ -21,24 +21,16 @@ bool AudioSourceComponent::initComponent(const CompMap& variables) {
 
     //para que se pueda acceder a ellos todos los sonidos se crearan pausados
     if (!setValueFromMap(is3D, "is3D", variables)) {
-#ifdef _DEBUG
-        std::cout << "AudioSourceComponent: no se encontro el valor de is3D. Se inicializo a false\n";
-#endif
+        logInfo("AudioSourceComponent: No se encontro el valor de is3D. Se inicializo a false.");
     }
     if (!setValueFromMap(islooping, "islooping", variables)) {
-#ifdef _DEBUG
-        std::cout << "AudioSourceComponent: no se encontro el valor de islooping. Se inicializo a false\n";
-#endif
+        logInfo("AudioSourceComponent: No se encontro el valor de islooping. Se inicializo a false.");
     }
     if (!setValueFromMap(ispaused, "ispaused", variables)) {
-#ifdef _DEBUG
-        std::cout << "AudioSourceComponent: no se encontro el valor de ispaused. Se inicializo a true\n";
-#endif
+        logInfo("AudioSourceComponent: No se encontro el valor de ispaused. Se inicializo a true.");
     }
     if (!setValueFromMap(sourcepath, "sourcepath", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: AudioSourceComponent: no se pudo inicializar el sourcepath del sonido.\n";
-#endif
+        logError("AudioSourceComponent: No se pudo inicializar el sourcepath del sonido.");
         return false;
     }
     return true;

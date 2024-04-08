@@ -17,75 +17,55 @@ bool SkyplaneComponent::initComponent(const CompMap& variables) {
 
     // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(skyplaneName, "planeName", variables) || skyplaneName == "") {
-#ifdef _DEBUG
-        std::cerr << "Error: SkyplaneComponent: no se pudo inicializar el nombre del skyplane.\n";
-#endif
+        logError("SkyplaneComponent: No se pudo inicializar el nombre del skyplane.");
         return false;
     }
 
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
-#ifdef _DEBUG
-        std::cout << "No existe nombre para el material: se coloca el predefinido por la mesh.\n";
-#endif
+        logInfo("SkyplaneComponent: No existe nombre para el material: se coloca el predefinido por la mesh.");
     }
 
     bool normalSet = setValueFromMap(rkNormal.x, "rkNormalX", variables) &&
         setValueFromMap(rkNormal.y, "rkNormalY", variables) && setValueFromMap(rkNormal.z, "rkNormalZ", variables);
     if (!normalSet) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
         rkNormal = Tapioca::Vector3(0.f, 0.f, 1.f);
     }
 
     if (!setValueFromMap(fConstant, "f", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido una constante f, se usara el valor por defecto 0.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido una constante f, se usara el valor por defecto 0.");
         fConstant = 0.f;
     }
 
     bool scale = setValueFromMap(scale, "scale", variables);
     if (!scale) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido un scale para skyplane, se usara el valor por defecto 1000.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido un scale para skyplane, se usara el valor por defecto 1000.");
         scale = 1000.f;
     }
 
     if (!setValueFromMap(tiling, "tiling", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido un tiling, se usara el valor por defecto 10.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido un tiling, se usara el valor por defecto 10.");
         tiling = 10.f;
     }
 
     if (!setValueFromMap(drawFirst, "drawFirst", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido un valor para drawFirst, se usara el valor por defecto true.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido un valor para drawFirst, se usara el valor por defecto true.");
         drawFirst = true;
     }
 
     if (!setValueFromMap(bow, "bow", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido un valor para bow, se usara el valor por defecto 0.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido un valor para bow, se usara el valor por defecto 0.");
         bow = 0.f;
     }
 
     if (!setValueFromMap(xSegments, "xSegments", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
         xSegments = 1;
     }
 
     if (!setValueFromMap(ySegments, "ySegments", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.\n";
-#endif
+        logInfo("SkyplaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
         ySegments = 1;
     }
 

@@ -33,70 +33,50 @@ void InputText::startBuffer() {
 
 bool InputText::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: Input Text: no se pudo inicializar el nombre.\n";
-#endif
+        logError("InputText: No se pudo inicializar el nombre.");
         return false;
     }
 
     if (!setValueFromMap(bufferSize, "bufferSize", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de bufferSize. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("InputText: No se encontro el valor de bufferSize. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(placeHolderText, "placeHolderText", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de placeHolderText. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("InputText: No se encontro el valor de placeHolderText. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(onTextEnteredId, "onTextEnteredId", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de onTextEnteredId. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("InputText: No se encontro el valor de onTextEnteredId. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de textFontName. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("InputText: No se encontro el valor de textFontName. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("InputText: No se encontro el valor de textSize. Se inicializo al valor predefinido.");
     }
 
     bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
         setValueFromMap(textColor.y, "textColorG", variables) &&
         setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
     if (!textColorSet) {
-#ifdef _DEBUG
-        std::cout << "Input Text : no se encontro el valor de textColor. Se inicializo a los valores predefinidos\n ";
-#endif
+        logInfo("InputText: No se encontro el valor de textColor. Se inicializo a los valores predefinidos");
     }
 
     bool bgColorSet = setValueFromMap(bgColor.x, "bgColorR", variables) &&
         setValueFromMap(bgColor.y, "bgColorG", variables) && setValueFromMap(bgColor.z, "bgColorB", variables) &&
         setValueFromMap(bgColor.w, "bgColorA", variables);
     if (!bgColorSet) {
-#ifdef _DEBUG
-        std::cout << "Input Text : no se encontro el valor de bgColor. Se inicializo a los valores predefinidos\n ";
-#endif
+        logInfo("InputText: No se encontro el valor de bgColor. Se inicializo a los valores predefinidos.");
     }
 
     if (!setValueFromMap(flags, "flags", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de flags. Se inicializo al valor predefinido\n ";
-#endif
+        logInfo("InputText: No se encontro el valor de flags. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
-#ifdef _DEBUG
-        std::cout << "Input Text: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("InputText: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos.");
     }
 
     return true;

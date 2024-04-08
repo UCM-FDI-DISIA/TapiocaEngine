@@ -15,43 +15,31 @@ Text::~Text() { textFont = nullptr; }
 
 bool Text::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-#ifdef _DEBUG
-        std::cerr << "Error: Text: no se pudo inicializar el nombre.\n";
-#endif
+        logError("Text: No se pudo inicializar el nombre.");
         return false;
     }
 
     if (!setValueFromMap(text, "text", variables)) {
-#ifdef _DEBUG
-        std::cout << "Text: no se encontro el valor de text. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Text: No se encontro el valor de text. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
-#ifdef _DEBUG
-        std::cout << "Text: no se encontro el valor de textSize. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Text: No se encontro el valor de textSize. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-#ifdef _DEBUG
-        std::cout << "Text: no se encontro el valor de text. Se inicializo al valor predefinido\n";
-#endif
+        logInfo("Text: No se encontro el valor de text. Se inicializo al valor predefinido.");
     }
 
     bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
         setValueFromMap(textColor.y, "textColorG", variables) &&
         setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
     if (!textColorSet) {
-#ifdef _DEBUG
-        std::cout << "Text: no se encontro el valor de textColor. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Text: No se encontro el valor de textColor. Se inicializo a los valores predefinidos.");
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
-#ifdef _DEBUG
-        std::cout << "Text: no se encontro el valor de windowFlags. Se inicializo a los valores predefinidos\n";
-#endif
+        logInfo("Text: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos.");
     }
 
     return true;
