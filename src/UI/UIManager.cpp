@@ -111,8 +111,7 @@ bool UIManager::handleEvents(const SDL_Event& event) {
             return true;
         }
     }
-    if (ImGui_ImplSDL2_ProcessEvent(&event) &&
-        (ImGui::IsAnyItemHovered() || ImGui::IsAnyItemActive() || ImGui::IsAnyItemFocused())) {
+    if (ImGui_ImplSDL2_ProcessEvent(&event) && ImGui::GetIO().WantCaptureMouse) {
         //#ifdef _DEBUG
         //        std::cout << "Interactuando con UI\n";
         //#endif
@@ -137,31 +136,37 @@ void UIManager::loadFonts(float pixelSize) {
 #ifdef _DEBUG
         std::cout << "No se han cargado las fuentes\n";
 #endif
-        return;
     }
 
     for (const auto& entry : std::filesystem::directory_iterator(fontsPath)) {
         if (entry.is_regular_file()) {
             auto path = entry.path();
             std::string extension = path.extension().string();
-            std::transform(extension.begin(), extension.end(), extension.begin(),
-                           [](unsigned char c) { return std::tolower(c); });
-
-            if (extension == ".ttf" || extension == ".otf") {
-                loadFont(path.stem().string() + extension, pixelSize);
-            }
+            if (extension == ".ttf" || extension == ".TTF" || extension == ".otf" || extension == ".OTF")
+                if (loadFont(path.stem().string() + extension, pixelSize) == nullptr) {
+#ifdef _DEBUG
+                    std::cout << "No se ha podido cargar la fuente " << path.stem().string() + extension << '\n';
+#endif
+                }
         }
     }
 }
 
-void UIManager::loadFont(const std::string& name, float pixelSize) {
+ImFont* UIManager::loadFont(const std::string& name, float pixelSize) {
     std::string path = fontsPath + name;
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->AddFontFromFileTTF(path.c_str(), pixelSize);
+    if (font == nullptr) {
+#ifdef _DEBUG
+        std::cout << "No se pudo cargar la fuente " << name << '\n';
+#endif
+        return nullptr;
+    }
     fonts.insert({{name, pixelSize}, font});
 #ifdef _DEBUG
     std::cout << "Fuente " << name << " cargada correctamente\n";
 #endif
+    return fonts[{name, pixelSize}];
 }
 
 ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
@@ -187,7 +192,12 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
         }
 
         // Se intenta cargar la fuente
-        loadFont(name, pixelSize);
+        if (!loadFont(name, pixelSize)) {
+#ifdef _DEBUG
+            std::cout << "Se usara la fuente por defecto\n";
+#endif
+            return ImGui::GetIO().FontDefault;
+        }
         return fonts[{name, pixelSize}];
     }
 }

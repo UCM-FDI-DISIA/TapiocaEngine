@@ -111,8 +111,9 @@ public:
     * @brief Carga una fuente de la carpeta de fuentes
     * @param name Nombre de la fuente con extension
     * @param pixelSize Tamano de la fuente, por defecto 16.0f
+    * @return Puntero a la fuente cargada, nullptr si no se ha podido cargar
     */
-    void loadFont(const std::string& name, float pixelSize = fontDefaultSize);
+    ImFont* loadFont(const std::string& name, float pixelSize = fontDefaultSize);
 
     /*
     * @brief Devuelve la fuente a partir de un nombre, si no existe la intenta cargar

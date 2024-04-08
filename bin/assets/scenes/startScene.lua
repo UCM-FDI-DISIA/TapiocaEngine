@@ -1,4 +1,28 @@
 scene = {
+    {
+        components = {
+            Transform = {
+                positionX = 0.0,
+                positionY = 30.0,
+                positionZ = 0.0,
+                scaleX = 1.0,
+                scaleY = 1.0,
+                scaleZ = 1.0,
+                rotationX = 0.0,
+                rotationY = 0.0,
+                rotationZ = 90.0
+            },
+            CameraComponent = {
+                zOrder = -1, -- Cuando se arregle lo de cargar las escenas después de haber recorrido todas las entidades, se podrá cambiar a 0
+                bgColorR = 0.0,
+                bgColorG = 0.0,
+                bgColorB = 0.0,
+                targetToLookX = 0.0,
+                targetToLookY = 0.0,
+                targetToLookZ = 0.0
+            }
+        }
+    },
     madeWithText={
         components = {
             Transform = {
