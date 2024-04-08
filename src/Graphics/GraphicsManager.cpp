@@ -509,16 +509,18 @@ AnimationHelper* GraphicsManager::createAnimationHelper(Mesh* const object, cons
     return new AnimationHelper(object, autoPlay, loop);
 }
 
-Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& texture, const float distC,
-                                      const bool orderC) {
-    return new Skybox(scnMgr, node, texture, distC, orderC);
+Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
+                                      const float distC, const bool orderC) {
+    return new Skybox(scnMgr, node, material, name, distC, orderC);
 }
 
-Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
+Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName,
+                                          std::string const& name, const bool enable,
                                           const Vector3 rkNormal, const float fConstant, const float scale,
                                           const float tiling, const bool drawFirst, const float bow,
                                           const int xsegments, const int ysegments) {
-    return new Skyplane(scnMgr, node, mshMgr, materialName, enable, rkNormal, fConstant, scale, tiling, drawFirst, bow,
+    return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
+                        bow,
                         xsegments, ysegments);
 }
 

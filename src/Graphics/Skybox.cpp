@@ -12,15 +12,15 @@
 
 namespace Tapioca {
 
-Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& texture, const float distC,
-               const bool orderC)
-    : RenderObject(node, scnMgr), texture(texture), distC(distC), orderC(orderC) {
+Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& material,
+               std::string const& skyboxName, const float distC, const bool orderC)
+    : RenderObject(node, scnMgr), material(material), distC(distC), orderC(orderC) {
     scnM = scnMgr;
 
     Ogre::MaterialPtr m = Ogre::MaterialManager::getSingleton().getByName(
-        texture, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        material, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     if (!m) {
-        OGRE_EXCEPT(Ogre::Exception::ERR_INVALIDPARAMS, "Sky box material '" + texture + "' not found.",
+        OGRE_EXCEPT(Ogre::Exception::ERR_INVALIDPARAMS, "Sky box material '" + material + "' not found.",
                     "SceneManager::setSkyBox");
     }
     // Ensure loaded
@@ -34,13 +34,13 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
     }
 
     if (!valid) {
-        Ogre::LogManager::getSingleton().logWarning("skybox material " + texture + " is not supported, defaulting");
+        Ogre::LogManager::getSingleton().logWarning("skybox material " + material + " is not supported, defaulting");
         m = Ogre::MaterialManager::getSingleton().getDefaultSettings();
     }
 
     // Create object
     if (!mSkyBoxObj) {
-        mSkyBoxObj = std::make_unique<Ogre::ManualObject>("SkyBox");
+        mSkyBoxObj = std::make_unique<Ogre::ManualObject>(skyboxName);
         mSkyBoxObj->setCastShadows(false);
     }
     else {
@@ -50,7 +50,7 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
     }
 
     mSkyBoxObj->setRenderQueueGroup(0);
-    mSkyBoxObj->begin(texture, Ogre::RenderOperation::OT_TRIANGLE_STRIP,
+    mSkyBoxObj->begin(material, Ogre::RenderOperation::OT_TRIANGLE_STRIP,
                       Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
     // rendering cube, only using 14 vertices
@@ -79,7 +79,7 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
 
     init(mSkyBoxObj.get());
 
-    mSkyBoxObj->end();    
+    mSkyBoxObj->end();
 }
 
 void Skybox::setEnable(const bool enable) { scnM->setSkyBoxEnabled(false); }

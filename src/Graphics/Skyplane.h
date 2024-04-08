@@ -51,7 +51,8 @@ public:
     * @param scale Escala del skyplane
     */
     Skyplane(Ogre::SceneManager* const scnMgr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
-             std::string const& materialName, const bool enable = true, const Vector3 rkNormal = {0.0f, 0.0f, 1.0f},
+             std::string const& materialName, std::string const& skyplaneName, const bool enable = true,
+             const Vector3 rkNormal = {0.0f, 0.0f, 1.0f},
              const float fConstant = -20.0f, const float scale = 0.3f, const float tiling = 1.0f,
              const bool drawFirst = true, const float bow = 1.0f, const int xsegments = 100, const int ysegments = 100);
     /*

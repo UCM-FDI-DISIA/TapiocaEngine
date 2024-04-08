@@ -26,6 +26,8 @@
 #include "Components/PlaneComponent.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/LightDirComp.h"
+#include "Components/SkyplaneComponent.h"
+#include "Components/SkyboxComponent.h"
 // UI
 #include "Components/Button.h"
 #include "Components/InputText.h"
@@ -113,6 +115,8 @@ static void createEngineBuilders() {
     manager->addFactory(new BasicBuilder<SpriteRenderer>());
     manager->addFactory(new BasicBuilder<PlaneComponent>());
     manager->addFactory(new BasicBuilder<LightDirComp>());
+    manager->addFactory(new BasicBuilder<SkyplaneComponent>());
+    manager->addFactory(new BasicBuilder<SkyboxComponent>());
     // UI
     manager->addFactory(new BasicBuilder<Button>());
     manager->addFactory(new BasicBuilder<InputText>());

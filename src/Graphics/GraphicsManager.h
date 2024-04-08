@@ -329,12 +329,21 @@ public:
 
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
 
-    Skybox* createSkybox(RenderNode* const node, std::string const& texture, const float distC = 5000,
-                         const bool orderC = true);
+    /*
+    * @brief Crea un skybox
+    * @param node Nodo para renderizado
+    */
+    Skybox* createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
+                         const float distC = 5000, const bool orderC = true);
 
-    Skyplane* createSkyplane(RenderNode* const node, std::string const& materialName, const bool enable,
-                             const Vector3 rkNormal, const float fConstant, const float scale, const float tiling,
-                             const bool drawFirst, const float bow, const int xsegments, const int ysegments);
+    /*
+    * @brief Crea un skyplane
+    * @param node Nodo para renderizado
+    */
+    Skyplane* createSkyplane(RenderNode* const node, std::string const& materialName, std::string const& name,
+                             const bool enable, const Vector3 rkNormal, const float fConstant, const float scale,
+                             const float tiling, const bool drawFirst, const float bow, const int xsegments,
+                             const int ysegments);
 
     Ogre::ManualObject* createManualObject(RenderNode* const node);
 

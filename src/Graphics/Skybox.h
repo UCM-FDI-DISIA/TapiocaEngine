@@ -16,19 +16,20 @@ namespace Tapioca {
 class TAPIOCA_API Skybox : public RenderObject {
 private:
     std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;
-    Ogre::SceneManager* scnM; 
+    Ogre::SceneManager* scnM;
     // warning C4251 'Tapioca::Skybox::texture' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string texture;            // Nombre de la textura
+    std::string material;      // Nombre del material
+    std::string skyboxName;   // Nombre skybox
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    float distC;                    // 
-    bool orderC;
+    float distC;   // Distancia entre la cámara y el skybox
+    bool orderC;   // True se pinta el plano antes que la escena False después
 public:
     /*
     * @brief Construye un skybox con la textura texture a una distancia distC de la cámara
@@ -38,8 +39,8 @@ public:
     * @param distC Distancia del plano a la camara
     * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
     */
-    Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& texture,
-           const float distC = 5000, const bool orderC = true);
+    Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& material,
+           std::string const& skyboxName, const float distC = 5000, const bool orderC = true);
 
     /*
     * @brief Activa o desactiva el Skybox
