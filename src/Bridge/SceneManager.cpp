@@ -59,7 +59,7 @@ bool SceneManager::initConfig() {
 #endif
         return false;
     }
-    return loadScene(initScene());
+    return loadScene(initScene()) != nullptr;
 }
 
 Scene* SceneManager::loadScene(std::string const& sceneName) {
