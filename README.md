@@ -37,7 +37,8 @@ El motor se divide en varios módulos que se encargan de diferentes aspectos del
 - <strong>Physics</strong>: Módulo encargado de la simulación física
 - <strong>Audio</strong>: Módulo encargado de la gestión del audio (sin implementar aún)
 - <strong>UI</strong>: Módulo encargado de la gestión de la interfaz gráfica
-- <strong>Main</strong>: Módulo encargado de crear los módulos anteriores
+- <strong>Exports</strong>: Módulo encargado de crear una librería dinámica que incluye los módulos anteriores
+- <strong>Main</strong>: Módulo encargado de ejecutar el motor
 
 Los motores de tecnología hacen uso de diferentes bibliotecas para su funcionamiento. <strong>Tapioca Engine</strong> se hace uso de las siguientes:
 
@@ -45,8 +46,9 @@ Los motores de tecnología hacen uso de diferentes bibliotecas para su funcionam
 - [SDL](https://www.libsdl.org/): gestión de la entrada
 - [Dear ImGui](https://github.com/ocornut/imgui): interfaz gráfica
 - [Bullet](https://github.com/bulletphysics/bullet3): simulación física
-- [FMOD](https://fmod.com/): gestión del audio
+- [IrrKlang](https://www.ambiera.com/irrklang/): gestión del audio
 - [LUA](https://www.lua.org/): scripting
+- [LUABridge](https://github.com/vinniefalco/LuaBridge): integración de LUA en C++
 
 Se sigue una arquitectura basada en entidades y componentes (EC), y se hace uso de patrones de diseño, especialmente el patrón de factoría o <strong>Factory Method</strong>.
 
