@@ -30,13 +30,13 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    uint64_t deltaTime;                                     // Tiempo transcurrido desde el ultimo tick
-    static const uint64_t MAX_NUM_FIXED_UDPATES = 150;      // Numero maximo de fixedUpdates
-    bool finish;                                            // True si va a terminar la ejecucion, false en caso contrario
-    bool gameInitialized;                                   // True si el juego ha sido inicializado, false en caso contrario
+    uint64_t deltaTime;                                  // Tiempo transcurrido desde el ultimo tick
+    static const uint64_t MAX_NUM_FIXED_UDPATES = 150;   // Numero maximo de fixedUpdates
+    bool finish;                                         // True si va a terminar la ejecucion, false en caso contrario
+    bool gameInitialized;   // True si el juego ha sido inicializado, false en caso contrario
     static const uint64_t TIME_TO_INITIALIZE_GAME = 2000;   // Tiempo que se espera para inicializar el juego
 
-    const char* MAIN_SCENE_NAME = "startScene";             // Nombre de la escena principal
+    const char* MAIN_SCENE_NAME = "startScene";   // Nombre de la escena principal
 
     /*
     * @brief Comienza los modulos
@@ -90,12 +90,6 @@ public:
     void run();
 
     /*
-    * @brief Devuelve el nombre de la escena principal
-    * @return Nombre de la escena principal
-    */
-    std::string getMainScene() const { return MAIN_SCENE_NAME; }
-
-    /*
     * @brief Carga una escena que se ejecutara a la vez que el resto de escenas cargadas
     * @param sc Puntero a la escena que se quiere cargar
     */
@@ -132,5 +126,16 @@ public:
     * @brief Envia un evento a las escenas
     */
     void pushEvent(std::string const& id, void* info);
+
+    /*
+    * @brief Devuelve el nombre de la escena principal
+    * @return Nombre de la escena principal
+    */
+    inline std::string getMainScene() const { return MAIN_SCENE_NAME; }
+
+    /*
+    * @brief Carga el juego
+    */
+    void loadingGame(uint64_t deltaTime);
 };
 }

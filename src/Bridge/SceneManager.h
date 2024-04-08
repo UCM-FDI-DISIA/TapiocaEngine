@@ -101,7 +101,7 @@ public:
     /*
     * @brief Carga la escena solicitada
     * @param sceneName Nombre de escena
-    * @return true si se ha cargado correctamente, false si no
+    * @return Puntero a la escena cargada
 	*/
     Scene* loadScene(std::string const& sceneName);
 };

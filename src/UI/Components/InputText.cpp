@@ -7,7 +7,7 @@
 namespace Tapioca {
 InputText::InputText()
     : BaseWidget(), Component(), placeHolderText("Enter text here"), bufferSize(256), buffer(nullptr),
-      onTextEnteredId(InputTextFunction::INPUT_TEXT_NONE), onTextEntered([]() {}), textFontName("arial.ttf"),
+      onTextEnteredId("Debug"), onTextEntered([]() {}), textFontName("arial.ttf"),
       textSize(16.0f), textFont(nullptr),
       flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
@@ -151,16 +151,10 @@ void InputText::render() const {
 }
 
 void InputText::createInputTextFunctions() {
-    inputTextFunctions[InputTextFunction::INPUT_TEXT_NONE] = []() {
+    inputTextFunctions["Debug"] = []() {
 #ifdef _DEBUG
-        std::cout << "No se ha asignado ninguna funcion especial a la caja de texto\n";
+        std::cout << "Se ha hecho Enter en la caja de texto\n";
 #endif
-    };
-
-    inputTextFunctions[InputTextFunction::INPUT_TEXT_TEXT_ENTERED] = [this]() {
-        setPlaceHolderText("Se ha hecho ENTER");
-        setTextColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
-        setBgColor(Vector4(0.0f, 1.0f, 0.0f, 1.0f));
     };
 }
 

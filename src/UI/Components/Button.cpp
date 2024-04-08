@@ -7,7 +7,7 @@
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), text("Button"), onClickId(ButtonFunction::BUTTON_NONE), onClick([]() {}),
+    : BaseWidget(), Component(), text("Button"), onClickId("Debug"), onClick([]() {}),
       textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -156,17 +156,10 @@ void Button::render() const {
 }
 
 void Button::createButtonFunctions() {
-    buttonFunctions[ButtonFunction::BUTTON_NONE] = []() {
+    buttonFunctions["Debug"] = []() {
 #ifdef _DEBUG
-        std::cout << "No se ha asignado ninguna funcion especial al boton\n";
+        std::cout << "Se ha hecho click en el boton!\n";
 #endif
-    };
-
-    buttonFunctions[ButtonFunction::BUTTON_INIT_GAME] = [this]() {
-        if (!DynamicLibraryLoader::initGame()) {
-            setText("Couldn't init game");
-            setTextColor(Vector4(1.0f, 0.0f, 0.0f, 1.0f));
-        }
     };
 }
 

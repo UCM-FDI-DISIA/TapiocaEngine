@@ -11,17 +11,12 @@ struct ImFont;
 
 namespace Tapioca {
 /*
-* @brief Enumeracion que representa las funciones que puede realizar un boton
-*/
-enum ButtonFunction { BUTTON_NONE, BUTTON_INIT_GAME };
-
-/*
 * @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
 protected:
     std::string text;                // Texto que se muestra en el boton
-    int onClickId;                   // Identificador de la funcion que se ejecuta cuando se hace click en el boton
+    std::string onClickId;           // Identificador de la funcion que se ejecuta cuando se hace click en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
     std::string textFontName;        // Nombre de la fuente del texto del boton
     float textSize;                  // Tamano de la fuente del texto del boton
@@ -34,7 +29,7 @@ protected:
     /*
     * @brief Diccionario que contiene las funciones que se ejecutan cuando se hace click en el boton
     */
-    std::unordered_map<int, std::function<void()>> buttonFunctions;
+    std::unordered_map<std::string, std::function<void()>> buttonFunctions;
 
 public:
     COMPONENT_ID("Button")
@@ -80,7 +75,7 @@ public:
     * @brief Establece el identificador de la funcion que se ejecuta cuando se hace click en el boton
     * @param onClickId Identificador de la funcion que se ejecuta cuando se hace click en el boton
     */
-    inline void setOnClickId(int onClickId) {
+    inline void setOnClickId(std::string& onClickId) {
         if (onClickId != this->onClickId) {
             this->onClickId = onClickId;
             updateOnClick();
@@ -114,7 +109,7 @@ public:
     inline void setTextFontName(std::string textFontName) {
         if (textFontName != this->textFontName) {
             this->textFontName = textFontName;
-			updateTextFont();
+            updateTextFont();
         }
     }
 
@@ -163,7 +158,7 @@ public:
     * @brief Devuelve el identificador de la funcion que se ejecuta cuando se hace click en el boton
     * @return Identificador de la funcion que se ejecuta cuando se hace click en el boton
 	*/
-    inline int getOnClickId() const { return onClickId; }
+    inline std::string getOnClickId() const { return onClickId; }
 
     /*
     * @brief Devuelve la funcion que se ejecuta cuando se hace click en el boton

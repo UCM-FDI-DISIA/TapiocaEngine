@@ -74,7 +74,7 @@ scene = {
     --         Button = {
     --             name = "StartButton",
     --             text = "Play",
-    --             onClickId = 1, -- Identificador de la funcion del boton, esta un poco feo
+    --             onClickId = "Debug",
     --             textFontName = "impact.ttf",
     --             -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
     --         }
@@ -97,7 +97,7 @@ scene = {
     --             name = "StartInputText",
     --             placeHolderText = "Dime tu nombre...",
     --             bufferSize = 100,
-    --             onTextEnteredId = 1, -- Identificador de la funcion de la caja de texto, esta un poco feo
+    --             onTextEnteredId = "Debug",
     --             textSize = 20.0,
     --             textFontName = "impact.ttf",
     --             textColorR = 1.0,

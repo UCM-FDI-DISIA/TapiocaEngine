@@ -76,16 +76,8 @@ void Game::run() {
             }
         }
 
-        if (!gameInitialized) timeSinceStart += deltaTime;
-        if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
-#ifdef _DEBUG
-            std::cout << "Ya pasaron " << TIME_TO_INITIALIZE_GAME << " milisegundos\n";
-#endif
-            if (!DynamicLibraryLoader::initGame())
-            	finish = true;
-            deleteScene(MAIN_SCENE_NAME);
-            gameInitialized = true;
-        }
+        // TEMPORAL
+        loadingGame(deltaTime);
 
         update();
         refresh();
@@ -168,5 +160,19 @@ void Game::loadScene(Scene* const sc) {
     // TODO: mejorar awake y start para que se ejecute para componentes que se crean en tiempo de ejecucion
     sc->awake();
     sc->start();
+}
+
+void Game::loadingGame(uint64_t deltaTime) {
+    static uint64_t timeSinceStart = 0;
+
+    if (!gameInitialized) timeSinceStart += deltaTime;
+    if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
+#ifdef _DEBUG
+        std::cout << "Ya pasaron " << TIME_TO_INITIALIZE_GAME << " milisegundos\n";
+#endif
+        if (!DynamicLibraryLoader::initGame()) finish = true;
+        deleteScene(MAIN_SCENE_NAME);
+        gameInitialized = true;
+    }
 }
 }

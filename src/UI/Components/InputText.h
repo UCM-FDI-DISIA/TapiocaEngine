@@ -10,11 +10,6 @@ typedef int ImGuiInputTextFlags;
 
 namespace Tapioca {
 /*
-* @brief Enumeracion de las funciones de la caja de texto
-*/
-enum InputTextFunction { INPUT_TEXT_NONE, INPUT_TEXT_TEXT_ENTERED };
-
-/*
 * @brief Clase que representa una caja de texto en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
 class TAPIOCA_API InputText : public BaseWidget, public Component {
@@ -22,7 +17,7 @@ private:
     std::string placeHolderText;   // Texto que se muestra en la caja de texto
     char* buffer;                  // Buffer de la caja de texto
     int bufferSize;                // Tamano del buffer de la caja de texto
-    int onTextEnteredId;   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
+    std::string onTextEnteredId;   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     std::function<void()> onTextEntered;   // Funcion que se ejecuta cuando se hace ENTER en la caja de texto
     float textSize;                        // Tamano de la fuente del texto de la caja de texto
     std::string textFontName;              // Nombre de la fuente del texto de la caja de texto
@@ -34,7 +29,7 @@ private:
     /*
     * @brief Diccionario que contiene las funciones que se ejecutan cuando se hace ENTER en la caja de texto
     */
-    std::unordered_map<int, std::function<void()>> inputTextFunctions;
+    std::unordered_map<std::string, std::function<void()>> inputTextFunctions;
 
 public:
     COMPONENT_ID("InputText")
@@ -102,7 +97,7 @@ public:
     * @brief Establece el identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     * @param onTextEnteredId Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     */
-    inline void setOnTextEnterId(int onTextEnteredId) {
+    inline void setOnTextEnterId(std::string onTextEnteredId) {
         if (onTextEnteredId != this->onTextEnteredId) {
             this->onTextEnteredId = onTextEnteredId;
             updateOnTextEnter();
@@ -193,7 +188,7 @@ public:
     * @brief Devuelve el identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     * @return Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
 	*/
-    inline int getOnTextEnteredId() const { return onTextEnteredId; }
+    inline std::string getOnTextEnteredId() const { return onTextEnteredId; }
 
     /*
     * @brief Devuelve la funcion que se ejecuta cuando se hace ENTER en la caja de texto
