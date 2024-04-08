@@ -7,8 +7,7 @@
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent()
-    : plane(nullptr), node(nullptr), transform(nullptr), fConstant(), height(), width(),
-      xSegments(), ySegments() { }
+    : plane(nullptr), node(nullptr), transform(nullptr), fConstant(), height(), width(), xSegments(), ySegments() { }
 
 PlaneComponent::~PlaneComponent() { delete node; }
 
@@ -105,5 +104,6 @@ void PlaneComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-Plane* PlaneComponent::getPlane() const { return plane; }
+void PlaneComponent::setVisible(const bool enable) { plane->setVisible(enable); }
+bool PlaneComponent::isVisible() const { return plane->isVisible(); }
 }

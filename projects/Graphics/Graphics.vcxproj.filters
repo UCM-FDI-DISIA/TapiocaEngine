@@ -98,7 +98,12 @@
     <ClCompile Include="..\..\src\Graphics\Components\ParticleSystemComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Components\SpriteRenderer.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\SpriteRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\LightDirComp.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -180,6 +185,11 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Graphics.h" />
-    <ClInclude Include="..\..\src\Graphics\Components\SpriteRenderer.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\SpriteRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\LightDirComp.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

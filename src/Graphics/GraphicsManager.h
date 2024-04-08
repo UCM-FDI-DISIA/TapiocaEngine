@@ -93,6 +93,8 @@ private:
 #pragma warning(default : 4251)
 #endif
     int planeNumber;
+    // la luz principal es aquella luz direccional que produce sombras
+    LightDirectional* mainLight;
 
     // TODO: se carga de archivo, se puede borrar
     /*
@@ -237,6 +239,11 @@ public:
     */
     LightSpotlight* createLightSpotlight(RenderNode* const node, const Vector3 direction,
                                          const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+    /*
+    * @brief Se establece la luz principal, es decir, la luz direccional que produce sombras. Solo puede haber una
+    * @param Nueva luz principal
+    */
+    void setMainLight(LightDirectional* lightDir);
 
     /*
     * @brief Crea una malla

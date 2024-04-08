@@ -66,6 +66,8 @@ public:
 
     void setMeshName(const std::string& n);
     void setMaterialName(const std::string& n);
-    void setVisible(bool v);
+
+    void setVisible(const bool enable);
+    bool isVisible() const;
 };
 }

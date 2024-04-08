@@ -17,6 +17,7 @@
     <ClCompile Include="..\..\src\Graphics\Camera.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\CameraComponent.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\LightDirComp.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\ParticleSystemComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="..\..\src\Graphics\Camera.h" />
     <ClInclude Include="..\..\src\Graphics\Components\Animator.h" />
     <ClInclude Include="..\..\src\Graphics\Components\CameraComponent.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\LightDirComp.h" />
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\Components\ParticleSystemComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h" />

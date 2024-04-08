@@ -14,8 +14,8 @@ class RenderNode;
 */
 class TAPIOCA_API Light : public RenderObject {
 protected:
-    Ogre::Light* mLight;        // Light de Ogre
-    Vector4 mColor;            // Color de la luz
+    Ogre::Light* mLight;   // Light de Ogre
+    Vector4 mColor;        // Color de la luz
 
     /*
     * @brief Constructora de la clase Light.
@@ -41,8 +41,6 @@ public:
     * @brief Cambia la potencia de la luz. Por defecto es 1.0f
     * @param power Potencia
     */
-    void setPowerScale(float power);
-
-    void produceShadows(bool enable);
+    void setPowerScale(const float power);
 };
 }

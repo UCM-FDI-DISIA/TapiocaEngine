@@ -20,7 +20,6 @@ private:
     int xSegments;
     int ySegments;
 
-
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -29,7 +28,6 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    Plane* getPlane() const;
 
 public:
     COMPONENT_ID("PlaneComponent")
@@ -61,5 +59,8 @@ public:
     * @param info puntero a void para pasar parametros
     */
     void handleEvent(std::string const& id, void* info) override;
+
+    void setVisible(const bool enable);
+    bool isVisible() const;
 };
 }

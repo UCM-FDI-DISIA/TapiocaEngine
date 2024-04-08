@@ -12,6 +12,32 @@ scene = {
                     rotationY = 0.0,
                     rotationZ = 0.0
                 },
+                LightDirComp = {
+                    directionX = 0.0,
+                    directionY = 0.0,
+                    directionZ = -1.0,
+                    mainLight = true,
+                    colorR = 1.0,
+                    colorG = 1.0,
+                    colorB = 1.0,
+                    colorA = 1.0,
+                    powerScale = 1.0
+                }
+            }
+        },
+        {
+            components = {
+                Transform = {
+                    positionX = 0.0,
+                    positionY = 0.0,
+                    positionZ = 200.0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0,
+                    rotationX = 0.0,
+                    rotationY = 0.0,
+                    rotationZ = 0.0
+                },
                 CameraComponent = {
                     zOrder = 0,
                     bgColorR = 0.8,
@@ -38,13 +64,6 @@ scene = {
                 },
                 MeshRenderer = {  
                     meshName = "models/Sinbad.mesh",
-                },
-                AudioListenerComponent={},
-                AudioSourceComponent=
-                {
-                    islooping= true,
-                    ispaused=false,
-                    sourcepath="assets/audio/OutoftheWoods.mp3"
                 }
             },
             children = {

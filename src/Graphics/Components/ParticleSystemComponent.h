@@ -12,20 +12,20 @@ private:
     Transform* transform;
     ParticleSystem* pSys;
 
-       // warning C4251 'Tapioca::ParticleSystemComponent::pSysName' :
+    // warning C4251 'Tapioca::ParticleSystemComponent::pSysName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent' Graphics
     // warning C4251 'Tapioca::ParticleSystemComponent::templateName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent'
-//#ifdef _MSC_VER
-//#pragma warning(disable : 4251)
-//#endif
+    //#ifdef _MSC_VER
+    //#pragma warning(disable : 4251)
+    //#endif
     std::string pSysName;
     std::string templateName;
-//#ifdef _MSC_VER
-//#pragma warning(default : 4251)
-//#endif
+    //#ifdef _MSC_VER
+    //#pragma warning(default : 4251)
+    //#endif
     bool emitting;
 
 public:
@@ -93,7 +93,7 @@ public:
     * @brief Devuelve si el sistema de particulas es visible o no
     * @return True si es visible, false en caso contrario
     */
-    bool isVisible();
+    bool isVisible() const;
 
     /* 
     * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas
@@ -102,8 +102,5 @@ public:
     * @param interval Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso)
     */
     void fastForward(const float time, const float interval);
-
 };
-
-
 }

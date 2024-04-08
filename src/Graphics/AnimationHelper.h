@@ -12,7 +12,6 @@ class RenderNode;
 class Mesh;
 
 class TAPIOCA_API AnimationHelper {
-
 private:
     Ogre::AnimationState* animState;
     Ogre::AnimationStateSet* animStateSet;

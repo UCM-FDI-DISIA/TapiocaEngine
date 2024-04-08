@@ -22,18 +22,17 @@ bool SpriteRenderer::initComponent(const CompMap& variables) {
         setValueFromMap(color.z, "colorZ", variables) && setValueFromMap(color.w, "colorW", variables);
     if (!colorSet) {
 #ifdef _DEBUG
-            std::cerr << "No se ha definido un color para el billboard. Se usará un color por defecto.\n";
+        std::cerr << "No se ha definido un color para el billboard. Se usará un color por defecto.\n";
 #endif
-            color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-        }
+        color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
     }
+}
 
-    void SpriteRenderer::start() {
-        GameObject* gameobject = getObject();
-        transform = gameobject->getComponent<Transform>();
-        GraphicsManager* g = GraphicsManager::instance();
-        node = g->createNode();
-        billboard = g->createBillboard(node, billboardName, transform->getGlobalPosition(), color);
-    }
-    void SpriteRenderer::handleEvent(std::string const& id, void* info) { }
+void SpriteRenderer::start() {
+    GameObject* gameobject = getObject();
+    transform = gameobject->getComponent<Transform>();
+    GraphicsManager* g = GraphicsManager::instance();
+    node = g->createNode();
+    billboard = g->createBillboard(node, billboardName, transform->getGlobalPosition(), color);
+}
 }

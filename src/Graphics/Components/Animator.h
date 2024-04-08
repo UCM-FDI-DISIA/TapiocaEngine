@@ -12,7 +12,7 @@ private:
     MeshRenderer* meshRenderer;
     AnimationHelper* anim;
 
-    float speed;        //Velocidad a la que se actualiza la animacion
+    float speed;   //Velocidad a la que se actualiza la animacion
 
 public:
     COMPONENT_ID("Animator")

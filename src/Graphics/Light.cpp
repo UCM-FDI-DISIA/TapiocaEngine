@@ -24,7 +24,5 @@ void Light::setColor(const Vector4 color) {
     mColor = color;
 }
 
-void Light::setPowerScale(float power) { mLight->setPowerScale(power); }
-
-void Light::produceShadows(bool enable) { mLight->setCastShadows(enable); }
+void Light::setPowerScale(const float power) { mLight->setPowerScale(power); }
 }

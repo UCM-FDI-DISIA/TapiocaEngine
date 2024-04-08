@@ -10,16 +10,14 @@
 #endif
 
 namespace Tapioca {
-AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true,
-                                 const bool loop = true)
-    : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()),
-      playing(autoPlay), looping(loop) {
-//#ifdef _DEBUG
-//    auto aux = object->getMesh()->getAllAnimationStates();
-//    for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
-//        std::cout << it->first << '\n';
-//    }
-//#endif   // _DEBUG
+AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true, const bool loop = true)
+    : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()), playing(autoPlay), looping(loop) {
+    //#ifdef _DEBUG
+    //    auto aux = object->getMesh()->getAllAnimationStates();
+    //    for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
+    //        std::cout << it->first << '\n';
+    //    }
+    //#endif   // _DEBUG
 }
 
 AnimationHelper::~AnimationHelper() { }

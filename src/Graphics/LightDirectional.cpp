@@ -9,6 +9,7 @@
 #endif
 #include "RenderNode.h"
 #include "Utilities/Vector3.h"
+#include "GraphicsManager.h"
 
 namespace Tapioca {
 LightDirectional::LightDirectional(Ogre::SceneManager* const scnManager, RenderNode* const node, const Vector4 color,
@@ -19,4 +20,14 @@ LightDirectional::LightDirectional(Ogre::SceneManager* const scnManager, RenderN
 }
 
 void LightDirectional::setDirection(const Vector3 direction) { node->setDirection(direction); }
+
+void LightDirectional::produceShadows(const bool enable) {
+    if (enable) {
+        mLight->setCastShadows(true);
+        GraphicsManager::instance()->setMainLight(this);
+    }
+    else {
+        mLight->setCastShadows(false);
+    }
+}
 }

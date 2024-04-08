@@ -46,7 +46,7 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0) { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), mainLight(nullptr) { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -226,7 +226,7 @@ void GraphicsManager::setUpShadows() {
     Ogre::MaterialPtr casterMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowCaster");
     Ogre::MaterialPtr receiverMat = Ogre::MaterialManager::getSingletonPtr()->getByName("ShadowReceiverText");
 
-    if (casterMat && receiverMat) {
+    if (casterMat && receiverMat && false) {
         // CUANDO SE SETEA UNA CAMARA DE SOMBRAS, TODOS LOS OBJETOS QUE TIENEN QUE CASTEAR SOMBRAS
         // SINO, SE VE MAL
 #ifndef _PSSM
@@ -301,9 +301,11 @@ void GraphicsManager::setUpShadows() {
         }
 #endif
     }
+    /*
     else {
         scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     }
+    */
 }
 
 void GraphicsManager::loadResources() {
@@ -451,6 +453,16 @@ LightSpotlight* GraphicsManager::createLightSpotlight(RenderNode* const node, co
     return new LightSpotlight(scnMgr, node, color, direction);
 }
 
+void GraphicsManager::setMainLight(LightDirectional* lightDir) {
+    if (mainLight != nullptr) {
+#ifdef _DEBUG
+        std::cout << "Se ha cambiado la luz principal (la que produce sombras)\n";
+#endif
+        mainLight->produceShadows(false);
+    }
+    mainLight = lightDir;
+}
+
 Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& meshName) {
     return new Mesh(scnMgr, node, meshName);
 }
@@ -481,9 +493,9 @@ Plane* GraphicsManager::createPlaneWithName(RenderNode* const node, const Vector
                                             const Vector3& up_, const float width, const float height,
                                             const int xSegments, const int ySegments, std::string const& material) {
 
+    ++planeNumber;
     Plane* plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, "Plane" + planeNumber, width, height,
                              xSegments, ySegments);
-    ++planeNumber;
     return plane;
 }
 

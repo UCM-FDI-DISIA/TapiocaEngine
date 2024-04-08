@@ -13,7 +13,7 @@ ParticleSystemComponent::ParticleSystemComponent()
 
 ParticleSystemComponent::~ParticleSystemComponent() { delete node; }
 
-bool ParticleSystemComponent::initComponent(const CompMap& variables) { 
+bool ParticleSystemComponent::initComponent(const CompMap& variables) {
     // Da igual si no hay nombre para el sistema de particulas o si tiene un nombre vacio
     if (!setValueFromMap(pSysName, "pSysName", variables) || pSysName == "") {
 #ifdef _DEBUG
@@ -48,7 +48,6 @@ void ParticleSystemComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-
 void ParticleSystemComponent::setEmitting(const bool emitting) { pSys->setEmitting(emitting); }
 
 bool ParticleSystemComponent::isEmitting() { return pSys->isEmitting(); }
@@ -59,8 +58,7 @@ int ParticleSystemComponent::getQuota() { return pSys->getQuota(); }
 
 void ParticleSystemComponent::setVisible(const bool v) { pSys->setVisible(v); }
 
-bool ParticleSystemComponent::isVisible() { return pSys->isVisible
-(); }
+bool ParticleSystemComponent::isVisible() const { return pSys->isVisible(); }
 
 void ParticleSystemComponent::fastForward(const float time, const float interval) { pSys->fastForward(time, interval); }
 

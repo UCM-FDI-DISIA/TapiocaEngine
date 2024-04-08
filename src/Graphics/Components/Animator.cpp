@@ -11,8 +11,7 @@
 
 namespace Tapioca {
 
-Animator::Animator()
-    : meshRenderer(nullptr), anim(nullptr), speed(1.f) { }
+Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f) { }
 
 Animator::~Animator() { }
 

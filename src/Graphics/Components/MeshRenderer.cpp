@@ -65,6 +65,6 @@ void MeshRenderer::setMeshName(const std::string& n) { meshName = n; }
 
 void MeshRenderer::setMaterialName(const std::string& n) { materialName = n; }
 
-void MeshRenderer::setVisible(bool v) { mesh->setVisible(v); }
-
+void MeshRenderer::setVisible(const bool enable) { mesh->setVisible(enable); }
+bool MeshRenderer::isVisible() const { return mesh->isVisible(); }
 }

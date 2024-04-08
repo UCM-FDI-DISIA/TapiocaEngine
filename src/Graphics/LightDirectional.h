@@ -38,5 +38,7 @@ public:
     * @param direction Direccion a la que se quiere apuntar
     */
     void setDirection(const Vector3 direction);
+
+    void produceShadows(const bool enable);
 };
 }
