@@ -25,7 +25,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::vector<Module*> modules;                           // Modulos del motor
-    std::unordered_map<std::string, Scene*> loadedScenes;         // Escenas cargadas
+    std::unordered_map<std::string, Scene*> loadedScenes;   // Escenas cargadas
     std::vector<Scene*> toDelete;                           // Escenas que se van a eliminar
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -35,6 +35,8 @@ private:
     bool finish;                                            // True si va a terminar la ejecucion, false en caso contrario
     bool gameInitialized;                                   // True si el juego ha sido inicializado, false en caso contrario
     static const uint64_t TIME_TO_INITIALIZE_GAME = 2000;   // Tiempo que se espera para inicializar el juego
+
+    std::string mainScene = "startScene";	                // Nombre de la escena principal
 
     /*
     * @brief Comienza los modulos
@@ -86,6 +88,12 @@ public:
     * @brief Metodo que contiene el bucle principal del juego
     */
     void run();
+
+    /*
+    * @brief Devuelve el nombre de la escena principal
+    * @return Nombre de la escena principal
+    */
+    std::string getMainScene() const { return mainScene; }
 
     /*
     * @brief Carga una escena que se ejecutara a la vez que el resto de escenas cargadas

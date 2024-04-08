@@ -86,7 +86,7 @@ void Game::run() {
 #endif
             if (!DynamicLibraryLoader::initGame())
             	finish = true;
-            deleteScene("startScene.lua");
+            deleteScene(mainScene);
             gameInitialized = true;
         }
 

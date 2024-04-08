@@ -60,8 +60,7 @@ void runEngine() {
         // PRUEBAS DE SOUND
         SoundManager::instance()->testsample();
 
-        scenes->loadScene("startScene.lua");
-
+        scenes->loadScene(game->getMainScene() + ".lua");
         game->run();
 
         /*delete node1;
