@@ -84,7 +84,9 @@ void Game::run() {
 #ifdef _DEBUG
             std::cout << "Ya pasaron " << TIME_TO_INITIALIZE_GAME << " milisegundos\n";
 #endif
-            DynamicLibraryLoader::initGame();
+            if (!DynamicLibraryLoader::initGame())
+            	finish = true;
+            deleteScene("startScene.lua");
             gameInitialized = true;
         }
 
@@ -127,7 +129,7 @@ void Game::refresh() {
     toDelete.clear();
 
     for (auto s : loadedScenes)
-        if(s.second->isActive())s.second->refresh();
+        if (s.second->isActive()) s.second->refresh();
 }
 
 void Game::addModule(Module* const m) { modules.push_back(m); }
