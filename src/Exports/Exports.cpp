@@ -97,7 +97,7 @@ static void createModules(Tapioca::Game* game) {
 }
 
 static void createEngineBuilders() {
-    logInfo("Anadiendo contructores del motor.");
+    logInfo("RunEngine: Anadiendo contructores del motor.");
     FactoryManager* manager = FactoryManager::instance();
     // Core
     manager->addBuilder(new BasicBuilder<Transform>());

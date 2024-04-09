@@ -82,9 +82,7 @@ public:
     inline bool setValueFromMap(T& var, std::string const& varName, const CompMap& map) {
         auto v = map.find(varName);
         if (v == map.end()) {
-#ifdef _DEBUG
-            std::cerr << "Nombre de variable no encontrado en el mapa: " << varName << '\n';
-#endif
+            logWarn(("SetValueFromMap: Nombre de variable \"" + varName + "\" no encontrado en el mapa.").c_str());
             return false;
         }
 

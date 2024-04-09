@@ -55,6 +55,7 @@ bool SceneManager::initConfig() {
 }
 
 Scene* SceneManager::loadScene(std::string const& sceneName) {
+    logInfo(("SceneManager: Cargando escena \"" + sceneName + "\"...").c_str());
     luaState = luaL_newstate();
     if (luaState == nullptr) {
         logError("SceneManager: Error al crear el estado de Lua.");

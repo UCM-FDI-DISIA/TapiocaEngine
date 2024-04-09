@@ -22,10 +22,7 @@ Component* FactoryManager::createComponent(std::string const& name) {
 }
 
 void FactoryManager::addBuilder(ComponentBuilder* const builder) {
-
-#ifdef _DEBUG
-    std::cout << "Anadiendo la factoria " << builder->id << "\n";
-#endif
+    logInfo(("FactoryManager: Anadiendo el constructor \"" + std::string(builder->id) + "\".").c_str());
     builders[builder->id] = builder;
 }
 }
