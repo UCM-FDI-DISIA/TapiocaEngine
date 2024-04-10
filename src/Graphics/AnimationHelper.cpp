@@ -25,7 +25,7 @@ AnimationHelper::~AnimationHelper() { }
 void AnimationHelper::updateAnim(const uint64_t delt, const float speed) {
     if (animState != nullptr) {
         // Actualiza la animacion
-        animState->addTime(delt * speed);
+        animState->addTime(delt * 0.001 * speed);
     }
 }
 
