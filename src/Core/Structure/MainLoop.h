@@ -132,7 +132,7 @@ public:
     * @brief Devuelve el nombre de la escena principal
     * @return Nombre de la escena principal
     */
-    inline std::string getMainScene() const { return MAIN_SCENE_NAME; }
+    inline std::string getMainSceneName() const { return MAIN_SCENE_NAME; }
 
     /*
     * @brief Carga el juego

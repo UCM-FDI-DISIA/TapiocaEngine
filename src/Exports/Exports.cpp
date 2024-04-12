@@ -54,7 +54,7 @@ void runEngine() {
         //scenes->loadScene("archivo2.lua");
         SoundManager::instance()->testsample();
 
-        Scene* mainScene = scenes->loadScene(mainLoop->getMainScene());
+        Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName());
         mainLoop->run();
     }
     else

@@ -51,6 +51,11 @@ bool MainLoop::initConfig() {
 }
 
 void MainLoop::run() {
+    if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
+        logWarn("MainLoop: No hay escena de inicio del motor. Se va a cerrar la aplicacion.");
+        return;
+    }
+
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
@@ -155,7 +160,7 @@ void MainLoop::deleteScene(std::string const& sc) {
         loadedScenes.erase(it);
     }
 
-    if (loadedScenes.size() == 0) {
+    if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
         finish = true;
         logWarn("MainLoop: No hay escenas en el juego. Se va a cerrar la aplicacion.");
     }
