@@ -2,6 +2,7 @@
 #include "GraphicsManager.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
+#include "Utilities/RenderNode.h"
 
 namespace Tapioca {
 
@@ -46,7 +47,4 @@ void SkyboxComponent::awake() {
 
     //if (materialName != "") skybox->setMaterial(materialName);
 }
-
-void SkyboxComponent::update(uint64_t delt) { }
-
 }

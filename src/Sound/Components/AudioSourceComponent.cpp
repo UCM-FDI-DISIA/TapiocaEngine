@@ -1,13 +1,14 @@
 #include "AudioSourceComponent.h"
-//#include "AudioSourceComponent.h"
 #include "Components/Transform.h"
 #include "Sound.h"
 #include "AudioSource.h"
+#include "Structure/GameObject.h"
+#include "Components/Transform.h"
 
 namespace Tapioca {
 AudioSourceComponent::AudioSourceComponent()
     : is3D(false), islooping(false), ispaused(true), mySound(nullptr), mySource(nullptr), myTransform(nullptr),
-      playSpeed() { }
+      volumen(0.0f), playSpeed(0.0f) { }
 
 AudioSourceComponent::~AudioSourceComponent() {
     delete mySource;

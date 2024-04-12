@@ -1,11 +1,14 @@
 #pragma once
 #include "Structure/Component.h"
-#include "Core.h"
+#include "Utilities/Vector3.h"
 
 namespace Tapioca {
 class AudioSource;
 class Sound;
 class Transform;
+
+/*
+*/
 class TAPIOCA_API AudioSourceComponent: public Component {
 private:
     //envoltorios 

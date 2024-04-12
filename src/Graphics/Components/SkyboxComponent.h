@@ -11,10 +11,31 @@ private:
     RenderNode* node;
     Skybox* skybox;
     Transform* transform;
+
+    // 'Tapioca::SkyboxComponent::materialName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita 
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::SkyboxComponent' Graphics C
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string materialName;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
+    // 'Tapioca::SkyboxComponent::skyboxName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::SkyboxComponent'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string skyboxName;
-    float distC;   
-    bool orderC; 
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
+    float distC;
+    bool orderC;
 
 public:
     COMPONENT_ID("SkyboxComponent");
@@ -39,6 +60,5 @@ public:
     * Garantiza que todos los componentes iniciales esten creados
     */
     void awake() override;
-    void update(uint64_t delt) override;
 };
 }

@@ -1,14 +1,17 @@
 #pragma once
 #include "defs.h"
 #include <string>
+
 namespace irrklang{
 class ISoundSource;
-
 }
 
 namespace Tapioca {
 class AudioSource;
 class SoundManager;
+
+/*
+*/
 class TAPIOCA_API Sound {
 private:
     friend AudioSource;

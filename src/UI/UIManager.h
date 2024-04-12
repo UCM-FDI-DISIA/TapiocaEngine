@@ -38,20 +38,39 @@ class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule {
 private:
     friend Singleton<UIManager>;
 
-    MainLoop* mainLoop;                 // Referencia al MainLoop
-    WindowManager* windowManager;       // Referencia al WindowManager
-    SDL_Window* sdlWindow;              // Referencia a la ventana de SDL
-    void* glContext;                    // Referencia al contexto de OpenGL
-    Ogre::RenderWindow* ogreWindow;     // Referencia a la superficie de renderizado de Ogre
-    RenderListener* renderListener;     // Listener de renderizado de Ogre
+    MainLoop* mainLoop;               // Referencia al MainLoop
+    WindowManager* windowManager;     // Referencia al WindowManager
+    SDL_Window* sdlWindow;            // Referencia a la ventana de SDL
+    void* glContext;                  // Referencia al contexto de OpenGL
+    Ogre::RenderWindow* ogreWindow;   // Referencia a la superficie de renderizado de Ogre
+    RenderListener* renderListener;   // Listener de renderizado de Ogre
 
     float scaleFactorX;   // Factor de escala en X
     float scaleFactorY;   // Factor de escala en Y
 
-    std::string fontsPath;                            // Ruta de la carpeta de fuentes
+    // 'Tapioca::UIManager::fontsPath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string fontsPath;   // Ruta de la carpeta de fuentes
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
 
+    // 'Tapioca::UIManager::fonts' :
+    // class 'std::unordered_map<std::pair<std::string,float>,ImFont *,Tapioca::pair_hash,std::equal_to<std::pair<std::string,float>>,std::allocator<std::pair<const std::pair<std::string,float>,ImFont *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
     /*
     * @brief Inicializa a nulo los punteros
