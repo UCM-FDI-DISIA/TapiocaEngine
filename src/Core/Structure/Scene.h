@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <map>
 #include "defs.h"
 
 namespace Tapioca {
@@ -20,12 +21,16 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::vector<GameObject*> objects;                           // Objetos que tiene la escena
-    std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
-    std::string name;
+    std::vector<GameObject*> objects;                        // Objetos que tiene la escena
+    std::unordered_map<std::string, GameObject*> handlers;   // Relaciones entre handlers y objetos
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+    // FALTA WARNING C4251 PARA name
+    std::string name;
+    // FALTA WARNING C4251 PARA layers
+    std::map<int, std::vector<GameObject*>> layers;         // Objetos que tiene la escena por orden de capa
+
     bool active;
 
 public:
@@ -55,7 +60,7 @@ public:
     * @param handler Handler que se quiere asociar al objeto que se quiere aniadir. Los handlers deben ser unicos
     * @return True se se ha aniadido correctamente a la escena, false en caso contrario
     */
-    bool addObject(GameObject* const object, std::string const& handler = "");
+    bool addObject(GameObject* const object, std::string const& handler = "", int zIndex = 0);
     /*
     * @brief Inicializa los objetos de la escena. Se ejecuta antes del start
     */
@@ -96,9 +101,28 @@ public:
     */
     void pushEvent(std::string const& id, void* info);
 
+    /*
+    * @brief Devuelve el nombre de la escena
+    * @return Nombre de la escena
+    */
     std::string const& getName() const;
 
+    /*
+    * @brief Establece si la escena esta activa
+    * @param a True si se quiere activar la escena, false en caso contrario
+    */
     void setActive(const bool a);
+    /*
+    * @brief Devuelve si la escena esta activa
+    * @return True si la escena esta activa, false en caso contrario
+    */
     bool isActive() const;
+
+    /*
+    * @brief Actualiza el zIndex de un objeto
+    * @param obj Objeto al que se le quiere cambiar el zIndex
+    * @param zIndex Nuevo zIndex del objeto
+    */
+    void updateZIndex(GameObject* obj, int zIndex);
 };
 }

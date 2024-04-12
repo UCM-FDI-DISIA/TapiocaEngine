@@ -10,7 +10,7 @@ Scene::~Scene() {
         delete obj;
 }
 
-bool Scene::addObject(GameObject* const object, std::string const& handler) {
+bool Scene::addObject(GameObject* const object, std::string const& handler, int zIndex) {
     if (handler != "") {
         if (handlers.contains(handler)) {
             logError(("Scene: Ya existe ese nombre de handler (\"" + handler + "\"), por favor elige otro.").c_str());
@@ -21,6 +21,7 @@ bool Scene::addObject(GameObject* const object, std::string const& handler) {
     }
 
     objects.push_back(object);
+    layers[zIndex].push_back(object);
     object->setScene(this);
     return true;
 }
@@ -76,8 +77,14 @@ void Scene::fixedUpdate() {
 }
 
 void Scene::render() const {
-    for (auto obj : objects)
-        obj->render();
+    // Mayor zIndex implica que se dibuje antes para que quede por debajo
+    for (auto it = layers.rbegin(); it != layers.rend(); ++it) {
+        for (auto obj : it->second)
+            obj->render();
+    }
+
+    /*for (auto obj : objects)
+        obj->render();*/
 }
 
 void Scene::awake() {
@@ -96,4 +103,24 @@ void Scene::setActive(const bool a) { active = a; }
 
 bool Scene::isActive() const { return active; }
 
+void Scene::updateZIndex(GameObject* obj, int zIndex) {
+    if (zIndex < 0) {
+        logWarn("Scene: No se puede anadir un objeto con zIndex negativo.");
+        return;
+    }
+    else if (zIndex == 0)
+        return;
+
+    // Elimina el objeto de la capa actual
+    for (auto it = layers.begin(); it != layers.end(); ++it) {
+        for (GameObject* o : it->second) {
+            if (o == obj) {
+				it->second.erase(std::remove(it->second.begin(), it->second.end(), obj), it->second.end());
+				break;
+			}
+		}
+    }
+    // Lo aniade a la nueva capa
+    layers[zIndex].push_back(obj);
+}
 }

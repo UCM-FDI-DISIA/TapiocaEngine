@@ -20,7 +20,7 @@ private:
 protected:
    // irrklang::ISound* mysound;
     irrklang::ISoundSource* mysource;
-    // C4251 'Tapioca::Sound::sourceFile' :
+    // warning C4251 'Tapioca::Sound::sourceFile' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Sound'
 #ifdef _MSC_VER

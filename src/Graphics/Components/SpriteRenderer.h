@@ -14,6 +14,7 @@ private:
     Transform* transform;
     Vector4 color;
 
+// FALTA PONER EL WARNING
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

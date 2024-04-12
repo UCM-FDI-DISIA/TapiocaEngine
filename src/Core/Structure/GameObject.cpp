@@ -72,9 +72,8 @@ void GameObject::update(const uint64_t deltaTime) {
 }
 
 void GameObject::handleEvent(std::string const& id, void* info) {
-    for (auto comp : cmpOrder) {
+    for (auto comp : cmpOrder)
         comp->handleEvent(id, info);
-    }
 }
 
 void GameObject::initComponents(const CompMap& variables) {
@@ -89,9 +88,8 @@ void GameObject::fixedUpdate() {
 }
 
 void GameObject::render() const {
-    for (auto comp : cmpOrder) {
+    for (auto comp : cmpOrder)
         comp->render();
-    }
 }
 
 void GameObject::awake() {

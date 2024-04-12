@@ -108,17 +108,17 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
 #ifdef _DEBUG
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        if (!scene->addObject(gameObject, gameObjectName) || !loadGameObject(gameObject)) return false;
+        int zIndex = 0;
+        if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) return false;
 
         lua_pop(luaState, 1);
     }
     return true;
 }
 
-bool SceneLoader::loadGameObject(GameObject* const gameObject) {
+bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
     lua_pushnil(luaState);
     std::string name = "";
-
     std::vector<GameObject*> children;
 
     while (lua_next(luaState, -2) != 0) {
@@ -130,6 +130,9 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject) {
         else if (name == "children") {
             lua_pushnil(luaState);
             if (!loadGameObjects(gameObject->getScene(), children)) return false;
+        }
+        else if (name == "zIndex") {
+            zIndex = lua_tointeger(luaState, -1);
         }
         lua_pop(luaState, 1);
     }
@@ -147,16 +150,24 @@ bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& 
 #ifdef _DEBUG
     std::cout << "Children: start\n";
 #endif
+    std::string name = "";
+    std::string gameObjectName = "";
+    int zIndex = 0;
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
-        std::string gameObjectName = "";
-        if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
-        scene->addObject(gameObject, gameObjectName);
-        gameObjects.push_back(gameObject);
+        if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
+        if (name == "zIndex") {
+            zIndex = lua_tointeger(luaState, -1);
+        }
+        else {
+            gameObjects.push_back(gameObject);
+            gameObjectName = name;
 #ifdef _DEBUG
-        std::cout << "\tGameObject: " << gameObjectName << "\n";
+            std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
-        if (!loadGameObject(gameObject)) return false;
+            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex))
+                return false;
+        }
 
         lua_pop(luaState, 1);
     }

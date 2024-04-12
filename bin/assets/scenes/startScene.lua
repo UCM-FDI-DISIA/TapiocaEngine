@@ -1,5 +1,6 @@
 scene = {
     {
+        -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = 0.0,
@@ -31,6 +32,7 @@ scene = {
         }
     },
     madeWithText={
+        -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
@@ -57,6 +59,7 @@ scene = {
         }
     },
     StartText={
+        -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
@@ -83,6 +86,7 @@ scene = {
         }
     }
     -- StartButton={
+    --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
     --             positionX = WINDOW_WIDTH / 2,
@@ -105,6 +109,7 @@ scene = {
     --     }
     -- },
     -- StartInputText={
+    --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
     --             positionX = WINDOW_WIDTH / 2,
@@ -138,6 +143,7 @@ scene = {
     --     }
     -- },
     -- StartImageButton={
+    --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
     --             positionX = WINDOW_WIDTH / 2,

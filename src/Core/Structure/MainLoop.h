@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <unordered_map>
+#include <map>
 #include <string>
 #include "Utilities/Singleton.h"
 #include "defs.h"
@@ -15,7 +16,10 @@ private:
     // warning C4251 'Tapioca::MainLoop::modules' :
     // class 'std::vector<Tapioca::Module *,std::allocator<Tapioca::Module *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
-    // warning C4251 'Tapioca::MainLoop::scenes' :
+    // warning C4251 'Tapioca::MainLoop::loadedScenes' :
+    // class 'std::stack<Tapioca::Scene *,std::deque<Tapioca::Scene *,std::allocator<Tapioca::Scene *>>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
+    // warning C4251 'Tapioca::MainLoop::sceneBuffer' :
     // class 'std::stack<Tapioca::Scene *,std::deque<Tapioca::Scene *,std::allocator<Tapioca::Scene *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
     // warning C4251 'Tapioca::MainLoop::toDelete' :
