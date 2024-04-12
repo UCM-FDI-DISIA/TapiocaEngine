@@ -11,11 +11,6 @@ class Scene;
 class TAPIOCA_API GameObject {
 private:
     friend class Scene;
-    /*
-    * @brief Cambia la escena a la que pertence el gameObject
-    * @param sc Escena a la que se quiere mover el objeto
-    */
-    void setScene(Scene* const sc);
 
     /*
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
@@ -120,6 +115,12 @@ public:
     * @brief Marca al objeto como "muerto" (se dejan de actualizar update,handleEvents,...)
     */
     inline void die() { alive = false; }
+
+    /*
+    * @brief Cambia la escena a la que pertence el gameObject
+    * @param sc Escena a la que se quiere mover el objeto
+    */
+    void setScene(Scene* const sc);
     /*
     * @brief Devuelve puntero de la escena a la que pertenece el objeto
     * @return Escena a la que pertenece el objeto

@@ -102,6 +102,7 @@ bool SceneLoader::loadScene(Scene* const scene) {
 bool SceneLoader::loadGameObjects(Scene* const scene) {
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
+        gameObject->setScene(scene);
         std::string gameObjectName = "";
 
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
@@ -155,6 +156,8 @@ bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& 
     int zIndex = 0;
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
+        gameObject->setScene(scene);
+
         if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
         if (name == "zIndex") {
             zIndex = lua_tointeger(luaState, -1);
