@@ -13,6 +13,11 @@ MainLoop* Singleton<MainLoop>::instance_ = nullptr;
 MainLoop::MainLoop() : finish(false), deltaTime(0), gameInitialized(false) { }
 
 MainLoop::~MainLoop() {
+    for (auto sc : sceneBuffer) 
+        delete sc;
+    
+    sceneBuffer.clear();
+
     for (auto s : loadedScenes)
         delete s.second;
 
@@ -91,6 +96,13 @@ void MainLoop::start() {
 }
 
 void MainLoop::update() {
+    for (auto sc : sceneBuffer) {
+        loadedScenes.insert({sc->getName(), sc});
+        sc->awake();
+        sc->start();
+    }
+    sceneBuffer.clear();
+
     for (auto mod : modules)
         mod->update(deltaTime);
 
@@ -149,11 +161,7 @@ void MainLoop::deleteScene(std::string const& sc) {
     }
 }
 
-void MainLoop::loadScene(Scene* const sc) {
-    loadedScenes.insert({sc->getName(), sc});
-    sc->awake();
-    sc->start();
-}
+void MainLoop::loadScene(Scene* const sc) { sceneBuffer.push_back(sc); }
 
 void MainLoop::loadingGame(uint64_t deltaTime) {
     static uint64_t timeSinceStart = 0;

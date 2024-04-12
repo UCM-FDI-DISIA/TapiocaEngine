@@ -26,6 +26,7 @@ private:
 #endif
     std::vector<Module*> modules;                           // Modulos del motor
     std::unordered_map<std::string, Scene*> loadedScenes;   // Escenas cargadas
+    std::vector<Scene*> sceneBuffer;                        // Escenas que se van a cargar la siguiente iteracion
     std::vector<Scene*> toDelete;                           // Escenas que se van a eliminar
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
