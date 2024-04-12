@@ -11,6 +11,7 @@ AudioSourceComponent::AudioSourceComponent()
       volumen(0.0f), playSpeed(0.0f) { }
 
 AudioSourceComponent::~AudioSourceComponent() {
+    mySource->setPaused(true);
     delete mySource;
     mySource = nullptr;
     delete mySound;

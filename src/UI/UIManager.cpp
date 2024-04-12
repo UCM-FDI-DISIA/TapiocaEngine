@@ -153,6 +153,8 @@ ImFont* UIManager::loadFont(const std::string& name, float pixelSize) {
         logError(("UIManager: No se pudo cargar la fuente \"" + name + "\".").c_str());
         return nullptr;
     }
+    ImGui_ImplOpenGL3_CreateFontsTexture();
+
     fonts.insert({{name, pixelSize}, font});
     logInfo(("UIManager: Fuente \"" + name + "\" cargada correctamente.").c_str());
     return fonts[{name, pixelSize}];

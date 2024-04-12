@@ -20,6 +20,13 @@ scene = {
                 targetToLookX = 0.0,
                 targetToLookY = 0.0,
                 targetToLookZ = 0.0
+            },
+            AudioListenerComponent={},
+            AudioSourceComponent=
+            {
+                islooping= true,
+                ispaused=false,
+                sourcepath="assets/audio/OutoftheWoods.mp3"
             }
         }
     },
@@ -46,13 +53,6 @@ scene = {
                 -- textColorB = 1.0,
                 -- textColorA = 1.0,
                 -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
-            },
-            AudioListenerComponent={},
-            AudioSourceComponent=
-            {
-                islooping= true,
-                ispaused=false,
-                sourcepath="assets/audio/OutoftheWoods.mp3"
             }
         }
     },
