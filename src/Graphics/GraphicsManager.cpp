@@ -81,6 +81,7 @@ bool GraphicsManager::init() {
     // tratamiento de errores
     if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
         delete fsLayer;
+        logError("GraphicsManager: No existe la ruta de plugins.cfg.");
         return false;
     }
 
@@ -93,7 +94,12 @@ bool GraphicsManager::init() {
     // ogre.cfg sirve para guardar y restaurar la configuracion de render
     // ogre.log guarda un mensaje de depuracion
     // getWritablePath parte del homePath (asignado arriba)
-    mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
+    try {
+        mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al cargar root: " + e.getFullDescription()).c_str());
+        return false;
+    }
 
     // Otra forma: cargar los plugins desde codigo
     // loadPlugIns();   // cargar codec, que sirve para poder usar png, jpg... (para las texturas)
@@ -101,12 +107,22 @@ bool GraphicsManager::init() {
 
     // El sistema de render debe cargarse no podemos crearlo
     // Se especifica que se cargue este sistema de render en el archivo "plugins.cfg" que esta actualmente en TapiocaEngine/bin
-    const Ogre::RenderSystemList renderSystems = mRoot->getAvailableRenderers();
-    renderSys = renderSystems.front();
-    mRoot->setRenderSystem(renderSys);
+    try {
+        const Ogre::RenderSystemList renderSystems = mRoot->getAvailableRenderers();
+        renderSys = renderSystems.front();
+        mRoot->setRenderSystem(renderSys);
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al cargar render system: " + e.getFullDescription()).c_str());
+        return false;
+    }
 
     // Inicializa ogre sin crear la ventana, siempre se hace despues de asignar el sistema de render
-    mRoot->initialise(false);
+    try {
+        mRoot->initialise(false);
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al inicializar root: " + e.getFullDescription()).c_str());
+        return false;
+    }
 
     // informacion de la ventana
     Ogre::NameValuePairList miscParams;
@@ -139,7 +155,12 @@ bool GraphicsManager::init() {
 
     scnMgr = mRoot->createSceneManager();
 
-    loadShaders();
+    try {
+        loadShaders();
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al cargar shaders: " + e.getFullDescription()).c_str());
+        return false;
+    }
 
     // guardarse el mesh manager
     mshMgr = mRoot->getMeshManager();
@@ -147,9 +168,19 @@ bool GraphicsManager::init() {
     // si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
 
-    loadResources();
+    try {
+        loadResources();
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al cargar recursos: " + e.getFullDescription()).c_str());
+        return false;
+    }
 
-    setUpShadows();
+    try {
+        setUpShadows();
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al inicializar sombras: " + e.getFullDescription()).c_str());
+        return false;
+    }
 
     ogreWindow->getCustomAttribute("GLCONTEXT", &glContext);
     if (glContext == nullptr) {
@@ -159,6 +190,8 @@ bool GraphicsManager::init() {
     windowManager->setGLContext(glContext);
 
     SDL_GL_SetSwapInterval(1);
+
+    logInfo("GraphicsManager: Inicializado");
 
     return true;
 }
@@ -306,12 +339,19 @@ void GraphicsManager::setUpShadows() {
 
 void GraphicsManager::loadResources() {
     // archivos de Ogre
+#ifdef _CREATE_EXE
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
+        cfgPath + "./Ogre/Main", "FileSystem",
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
+        cfgPath + "./Ogre/RTShaderLib", "FileSystem",
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+#else
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+#endif
 
     // shaders para las sombras y material del physics debug
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(

@@ -43,6 +43,7 @@ bool WindowManager::init() {
         logError(("WindowManager: Error al crear la ventana de SDL: " + std::string(SDL_GetError()) + '.').c_str());
         return false;
     }
+    logInfo("WindowManager: Cargada la ventana de SDL.");
 
     mainLoop = MainLoop::instance();
 
