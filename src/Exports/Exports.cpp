@@ -78,7 +78,7 @@ static void createModules(Tapioca::Game* game) {
     factories = Tapioca::FactoryManager::create();
     game->addModule(factories);
 
-    physics = Tapioca::PhysicsManager::create();
+    physics = Tapioca::PhysicsManager::create(/*true*/);
     game->addModule(physics);
 
     scenes = Tapioca::SceneManager::create();

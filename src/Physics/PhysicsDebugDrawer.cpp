@@ -30,9 +30,6 @@ void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, co
     lines.push_back(line);
 }
 
-void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& fromColor,
-                                  const btVector3& toColor) { }
-
 void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
 #ifdef _DEBUG
     std::cout << warningString << '\n';
@@ -52,8 +49,6 @@ void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVec
     line->setCastShadows(false);
     lines.push_back(line);
 }
-
-//void PhysicsDebugDrawer::drawTransform(const btTransform& transform, btScalar orthoLen) { }
 
 void PhysicsDebugDrawer::clearLines() {
     auto g = GraphicsManager::instance();

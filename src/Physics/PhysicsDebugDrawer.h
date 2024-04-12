@@ -49,7 +49,6 @@ public:
     * @param color Color de la linea
     */
     void drawLine(const btVector3& from, const btVector3& to, const btVector3& color) override;
-    void drawLine(const btVector3& from, const btVector3& to, const btVector3& fromColor, const btVector3& toColor) override;
     /*
     * @brief Dibuja un linea desde el punto de contacto al objeto que ha contactado
     * @param PointOnB Punto donde ha contactado

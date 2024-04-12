@@ -42,5 +42,6 @@ float Vector2::distance(Vector2 const& other) {
 float Vector2::clamp(float v, float min, float max) {
     if (v < min) return min;
     else if (v > max) return max;
+    else return v;
 }
 }

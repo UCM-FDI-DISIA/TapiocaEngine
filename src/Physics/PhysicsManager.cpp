@@ -76,15 +76,14 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
 }
 
 
-PhysicsManager::PhysicsManager()
+PhysicsManager::PhysicsManager(bool debug)
     : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), constraintSolver(nullptr), dynamicsWorld(nullptr)
 #ifdef _DEBUG
-      ,
-      pdd(nullptr)
-#endif   // _DEBUG
-{
-    //  init();
-}
+      ,pdd(nullptr), debug(debug)
+#else
+      , debug(false)
+#endif
+{ }
 
 PhysicsManager::~PhysicsManager() { destroy(); }
 
@@ -124,7 +123,7 @@ void PhysicsManager::update(const uint64_t deltaTime) {
     // dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 10);
 
 #ifdef _DEBUG
-    dynamicsWorld->debugDrawWorld();
+    if(debug) dynamicsWorld->debugDrawWorld();
 
 #endif }
 }
@@ -216,6 +215,14 @@ void PhysicsManager::destroy() {
 }
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return dynamicsWorld; }
+
+void PhysicsManager::activateDebug(bool d) { 
+#ifdef _DEBUG
+    debug = d;
+#else
+    logWarn("PhysicsManager: se intento activar debug en modo release\n");
+#endif
+}
 
 void PhysicsManager::destroyRigidBody(btRigidBody* const rb) {
     rigidBodies.erase(rb);

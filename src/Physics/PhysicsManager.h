@@ -29,10 +29,10 @@ class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager>, public Modu
 private:
     btDefaultCollisionConfiguration* colConfig;   // configuracion predeterminada para la deteccion de colisiones
     btBroadphaseInterface* broadphase;            // detectar pares de objetos de la misma region
-    btCollisionDispatcher*
-        colDispatch;   // confirmar la colision, notificar a los objetos que se colisionan y callbacks
-    btSequentialImpulseConstraintSolver*
-        constraintSolver;                     // resolver la interaccion de colisiones y calculos de fuerzas resultantes
+    btCollisionDispatcher* colDispatch;           // confirmar la colision, notificar a los objetos que se colisionan y callbacks
+    
+    // resolver la interaccion de colisiones y calculos de fuerzas resultantes
+    btSequentialImpulseConstraintSolver* constraintSolver;
     btDiscreteDynamicsWorld* dynamicsWorld;   // el mundo
 
 // warning C4251: 'Tapioca::PhysicsManager::rigidBodies':
@@ -47,6 +47,8 @@ private:
 #pragma warning(default : 4251)
 #endif
 
+    bool debug;
+
 #ifdef _DEBUG
     PhysicsDebugDrawer* pdd;   // para dibujar las fisicas
 #endif
@@ -54,7 +56,7 @@ private:
     /*
     * @brief Constructora de la clase PhysicsManager.
     */
-    PhysicsManager();
+    PhysicsManager(bool debug = false);
 
     /*
     * @brief Inicializa el manager
@@ -121,5 +123,7 @@ public:
     void destroy();
 
     btDiscreteDynamicsWorld* getWorld();
+
+    void activateDebug(bool d);
 };
 }
