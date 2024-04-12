@@ -187,6 +187,7 @@ void RigidBody::setTensor(const Vector3 t) {
     PhysicsManager::instance()->removeRigidBody(rigidBody);
     btVector3 inertia;
     btVector3 tensor = toBtVector3(t);
+   
     rigidBody->getCollisionShape()->calculateLocalInertia(mass, inertia);
     rigidBody->setMassProps(mass, inertia * tensor);
     PhysicsManager::instance()->addRigidBody(rigidBody);
@@ -279,7 +280,13 @@ float RigidBody::getBounciness() const { return bounciness; }
 
 Vector3 RigidBody::getVelocity() const { return toVector3(rigidBody->getLinearVelocity()); }
 
+Vector3 RigidBody::getAngularVelocity() const { return toVector3(rigidBody->getAngularVelocity()); }
+
 Vector3 RigidBody::getGravity() const { return toVector3(rigidBody->getGravity()); }
+
+Vector3 RigidBody::getTotalForce() const { return toVector3(rigidBody->getTotalForce());
+}
+Vector3 RigidBody::getPushVelocity() const { return toVector3(rigidBody->getPushVelocity()); }
 
 
 int RigidBody::getMask() const { return mask; }

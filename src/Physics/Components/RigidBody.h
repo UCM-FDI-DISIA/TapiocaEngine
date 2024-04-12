@@ -233,15 +233,32 @@ public:
     */
     float getBounciness() const;
     /*
-    * @brief Devuelve la velocidad
+    * @brief Devuelve la velocidad linear
     * @return Velocidad del rigidbody
     */
     Vector3 getVelocity() const;
+
+    /*
+    * @brief Devuelve la velocidad angular
+    * @return Velocidad del rigidbody
+    */
+    Vector3 getAngularVelocity() const;
+
     /*
     * @brief Devuelve la gravedad que se aplica a este objeto
     * @return Gravedad que se aplcia al rigidbody
     */
     Vector3 getGravity() const;
+    /*
+    * @brief Devuelve la fuerza que se aplica a este objeto
+    * 
+    */
+    Vector3 getTotalForce() const;
+    /*
+    * @brief Devuelve la velocidad 
+    * 
+    */
+    Vector3 getPushVelocity() const;
     /*
     * @brief
     */
