@@ -1,11 +1,11 @@
-#include "SceneManager.h"
+#include "SceneLoader.h"
 
 #include <lua.hpp>
 #include <LuaBridge.h>
 #include <fstream>
 #include <imgui.h>
 
-#include "Structure/Game.h"
+#include "Structure/MainLoop.h"
 #include "Structure/DynamicLibraryLoader.h"
 #include "Structure/FactoryManager.h"
 #include "WindowManager.h"
@@ -15,50 +15,50 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<SceneManager>;
+template class TAPIOCA_API Singleton<SceneLoader>;
 template<>
-SceneManager* Singleton<SceneManager>::instance_ = nullptr;
+SceneLoader* Singleton<SceneLoader>::instance_ = nullptr;
 
-SceneManager::SceneManager() : luaState(nullptr), game(nullptr), factMngr(nullptr), scenesPath("assets\\scenes\\") { }
+SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factMngr(nullptr), scenesPath("assets\\scenes\\") { }
 
-SceneManager::~SceneManager() {
+SceneLoader::~SceneLoader() {
     luaState = nullptr;
-    game = nullptr;
+    mainLoop = nullptr;
     factMngr = nullptr;
 }
 
-bool SceneManager::init() {
-    game = Game::instance();
+bool SceneLoader::init() {
+    mainLoop = MainLoop::instance();
     factMngr = FactoryManager::instance();
 
-    if (game == nullptr) {
-        logError("SceneManager: Instancia de Game invalida.");
+    if (mainLoop == nullptr) {
+        logError("SceneLoader: Instancia de MainLoop invalida.");
         return false;
     }
     if (factMngr == nullptr) {
-        logError("SceneManager: Instancia de FactoryManager invalida.");
+        logError("SceneLoader: Instancia de FactoryManager invalida.");
         return false;
     }
     return true;
 }
 
-bool SceneManager::initConfig() {
-    logInfo("SceneManager: Configurando la escena inicial...");
+bool SceneLoader::initConfig() {
+    logInfo("SceneLoader: Configurando la escena inicial...");
 
     EntryPointGetInitScene initScene =
         (EntryPointGetInitScene)GetProcAddress(DynamicLibraryLoader::module, "getInitScene");
     if (initScene == nullptr) {
-        logError("SceneManager: La DLL del juego no tiene la funcion \"getInitScene\".");
+        logError("SceneLoader: La DLL del juego no tiene la funcion \"getInitScene\".");
         return false;
     }
     return loadScene(initScene()) != nullptr;
 }
 
-Scene* SceneManager::loadScene(std::string const& sceneName) {
-    logInfo(("SceneManager: Cargando escena \"" + sceneName + "\"...").c_str());
+Scene* SceneLoader::loadScene(std::string const& sceneName) {
+    logInfo(("SceneLoader: Cargando escena \"" + sceneName + "\"...").c_str());
     luaState = luaL_newstate();
     if (luaState == nullptr) {
-        logError("SceneManager: Error al crear el estado de Lua.");
+        logError("SceneLoader: Error al crear el estado de Lua.");
         return nullptr;
     }
 
@@ -73,33 +73,33 @@ Scene* SceneManager::loadScene(std::string const& sceneName) {
 
     std::string path = scenesPath + name;
     if (luaL_dofile(luaState, path.c_str()) != 0) {
-        logError(("SceneManager: Error al cargar el archivo Lua: " + std::string(lua_tostring(luaState, -1))).c_str());
+        logError(("SceneLoader: Error al cargar el archivo Lua: " + std::string(lua_tostring(luaState, -1))).c_str());
         lua_close(luaState);
         return nullptr;
     }
 
     Scene* scene = new Scene(name.substr(0, name.size() - extension.size()));
     if (!loadScene(scene)) {
-        logError("SceneManager: Error al cargar la escena.");
+        logError("SceneLoader: Error al cargar la escena.");
         lua_close(luaState);
         delete scene;
         return nullptr;
     }
 
-    game->loadScene(scene);
+    mainLoop->loadScene(scene);
     lua_close(luaState);
-    logInfo("SceneManager: Escena cargada correctamente.");
+    logInfo("SceneLoader: Escena cargada correctamente.");
     return scene;
 }
 
-bool SceneManager::loadScene(Scene* const scene) {
+bool SceneLoader::loadScene(Scene* const scene) {
     lua_getglobal(luaState, "scene");
     if (!lua_istable(luaState, -1)) return false;
     lua_pushnil(luaState);
     return loadGameObjects(scene);
 }
 
-bool SceneManager::loadGameObjects(Scene* const scene) {
+bool SceneLoader::loadGameObjects(Scene* const scene) {
     while (lua_next(luaState, -2) != 0) {
         GameObject* gameObject = new GameObject();
         std::string gameObjectName = "";
@@ -115,7 +115,7 @@ bool SceneManager::loadGameObjects(Scene* const scene) {
     return true;
 }
 
-bool SceneManager::loadGameObject(GameObject* const gameObject) {
+bool SceneLoader::loadGameObject(GameObject* const gameObject) {
     lua_pushnil(luaState);
     std::string name = "";
 
@@ -143,7 +143,7 @@ bool SceneManager::loadGameObject(GameObject* const gameObject) {
     return true;
 }
 
-bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects) {
+bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects) {
 #ifdef _DEBUG
     std::cout << "Children: start\n";
 #endif
@@ -167,7 +167,7 @@ bool SceneManager::loadGameObjects(Scene* const scene, std::vector<GameObject*>&
     return true;
 }
 
-bool SceneManager::loadComponents(GameObject* const gameObject) {
+bool SceneLoader::loadComponents(GameObject* const gameObject) {
     Component* component = nullptr;
     std::string componentName = "";
     while (lua_next(luaState, -2) != 0) {
@@ -188,7 +188,7 @@ bool SceneManager::loadComponents(GameObject* const gameObject) {
     return true;
 }
 
-Component* SceneManager::loadComponent(std::string const& name) {
+Component* SceneLoader::loadComponent(std::string const& name) {
     if (!lua_istable(luaState, -1)) return nullptr;
 
     lua_pushnil(luaState);
@@ -240,12 +240,12 @@ Component* SceneManager::loadComponent(std::string const& name) {
         comp = factMngr->createComponent(name);
     }
     if (comp == nullptr) {
-        logError(("SceneManager: No existe el componente \"" + name + "\".").c_str());
+        logError(("SceneLoader: No existe el componente \"" + name + "\".").c_str());
         return nullptr;
     }
 
     if (!comp->initComponent(map)) {
-        logError(("SceneManager: Error al inicializar el componente \"" + name + "\".").c_str());
+        logError(("SceneLoader: Error al inicializar el componente \"" + name + "\".").c_str());
         delete comp;
         return nullptr;
     }
@@ -253,7 +253,7 @@ Component* SceneManager::loadComponent(std::string const& name) {
     return comp;
 }
 
-void SceneManager::exposeUIvalues() {
+void SceneLoader::exposeUIvalues() {
 
     luaL_openlibs(luaState);
 

@@ -14,7 +14,7 @@
 #endif
 
 namespace Tapioca {
-class Game;
+class MainLoop;
 class WindowManager;
 
 // TEMPORAL
@@ -28,7 +28,7 @@ class DropBox;
 */
 class RenderListener : public Ogre::RenderTargetListener {
 private:
-    Game* game;                     // Referencia al Game
+    MainLoop* mainLoop;             // Referencia al MainLoop
     WindowManager* windowManager;   // Referencia al WindowManager
 
     // TEMPORAL
@@ -44,7 +44,7 @@ public:
     /*
     * @brief Inicializa el puntero al Game
     */
-    RenderListener(Game* game);
+    RenderListener(MainLoop* mainLoop);
 
     /*
     * @brief Pone a nullptr el puntero al Game

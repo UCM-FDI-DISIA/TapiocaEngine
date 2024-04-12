@@ -1,19 +1,16 @@
 #pragma once
 #include "Structure/Component.h"
 #include "Utilities/Vector3.h"
-#include "../physicsDefs.h"
+#include "physicsDefs.h"
 
 class btRigidBody;
 
 namespace Tapioca {
-//class RigidBodyBuilder;
 class Vector3;
 class Transform;
 //class Collider;
 
 class TAPIOCA_API RigidBody : public Component {
-    //friend RigidBodyBuilder;
-
 private:
     btRigidBody* rigidBody;
     Transform* transform;
@@ -44,7 +41,6 @@ public:
     * @brief Destructora de la clase RigidBody.
     */
     ~RigidBody();
-
 
     /*
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.

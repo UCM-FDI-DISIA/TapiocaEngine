@@ -89,7 +89,7 @@
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
-    <ClCompile Include="..\..\src\Core\Structure\Game.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\MainLoop.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp" />
@@ -108,7 +108,7 @@
     <ClInclude Include="..\..\src\Core\Structure\ComponentBuilder.h" />
     <ClInclude Include="..\..\src\Core\Structure\DynamicLibraryLoader.h" />
     <ClInclude Include="..\..\src\Core\Structure\FactoryManager.h" />
-    <ClInclude Include="..\..\src\Core\Structure\Game.h" />
+    <ClInclude Include="..\..\src\Core\Structure\MainLoop.h" />
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
     <ClInclude Include="..\..\src\Core\Structure\Module.h" />
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />

@@ -1,22 +1,22 @@
 #include "GraphicsManager.h"
 
 // PROPIOS
-#include "LightPoint.h"
-#include "LightDirectional.h"
-#include "LightRectlight.h"
-#include "LightSpotlight.h"
-#include "RenderNode.h"
-#include "Camera.h"
-#include "Mesh.h"
-#include "Viewport.h"
+#include "Utilities/LightPoint.h"
+#include "Utilities/LightDirectional.h"
+#include "Utilities/LightRectlight.h"
+#include "Utilities/LightSpotlight.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/Camera.h"
+#include "Utilities/Mesh.h"
+#include "Utilities/Viewport.h"
 #include "GraphicsManager.h"
-#include "BillboardSet.h"
-#include "Billboard.h"
-#include "ParticleSystem.h"
-#include "Plane.h"
-#include "AnimationHelper.h"
-#include "Skybox.h"
-#include "Skyplane.h"
+#include "Utilities/BillboardSet.h"
+#include "Utilities/Billboard.h"
+#include "Utilities/ParticleSystem.h"
+#include "Utilities/Plane.h"
+#include "Utilities/AnimationHelper.h"
+#include "Utilities/Skybox.h"
+#include "Utilities/Skyplane.h"
 
 // OGRE
 // warnings de ogre
@@ -24,7 +24,7 @@
 #pragma warning(disable : 4251)
 #endif
 #include <Ogre.h>
-#include "SGTechniqueResolverListener.h"
+#include "Utilities/SGTechniqueResolverListener.h"
 #include <OgreOverlaySystem.h>
 #ifdef _MSC_VER
 #pragma warning(default : 4251)

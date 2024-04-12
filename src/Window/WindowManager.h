@@ -6,7 +6,7 @@
 struct SDL_Window;
 
 namespace Tapioca {
-class Game;
+class MainLoop;
 
 class TAPIOCA_API WindowManager : public Singleton<WindowManager>, public Module {
     friend Singleton<WindowManager>;
@@ -41,7 +41,7 @@ private:
 #pragma warning(disable : 4251)
 #endif
 
-    Game* game;   // Puntero a Game
+    MainLoop* mainLoop;   // Puntero a MainLoop
 
     /*
     * @brief Constructora de la clase WindowManager.

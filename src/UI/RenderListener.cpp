@@ -2,7 +2,7 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 
-#include "Structure/Game.h"
+#include "Structure/MainLoop.h"
 #include "Structure/Scene.h"
 #include "WindowManager.h"
 
@@ -13,7 +13,7 @@
 #include "Components/DropBox.h"
 
 namespace Tapioca {
-RenderListener::RenderListener(Game* game) : game(game), testid(), item_current() {
+RenderListener::RenderListener(MainLoop* mainLoop) : mainLoop(mainLoop), testid(), item_current() {
     windowManager = WindowManager::instance();
 }
 
@@ -39,7 +39,7 @@ RenderListener::~RenderListener() {
     }
     dropboxes.clear();
 
-    game = nullptr;
+    mainLoop = nullptr;
 }
 
 void RenderListener::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) {
@@ -47,7 +47,7 @@ void RenderListener::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) 
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
 
-    for (std::pair<std::string, Scene*> s : game->getLoadedScenes())
+    for (std::pair<std::string, Scene*> s : mainLoop->getLoadedScenes())
         s.second->render();
 
     windowManager->setResized(true);

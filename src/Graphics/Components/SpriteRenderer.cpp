@@ -1,9 +1,9 @@
 #include "SpriteRenderer.h"
-#include "../GraphicsManager.h"
+#include "GraphicsManager.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "../RenderNode.h"
-#include "../Billboard.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/Billboard.h"
 
 namespace Tapioca {
 SpriteRenderer::SpriteRenderer() : billboard(nullptr), node(nullptr), transform(nullptr), billboardName() { }

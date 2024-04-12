@@ -90,11 +90,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Bridge\SceneManager.cpp" />
+    <ClCompile Include="..\..\src\Bridge\SceneLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Bridge\Bridge.h" />
-    <ClInclude Include="..\..\src\Bridge\SceneManager.h" />
+    <ClInclude Include="..\..\src\Bridge\SceneLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">

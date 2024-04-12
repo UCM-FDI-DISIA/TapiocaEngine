@@ -1,13 +1,13 @@
 #include "Animator.h"
-#include "../GraphicsManager.h"
+#include "GraphicsManager.h"
 #include "Components/Transform.h"
-#include "../Components/MeshRenderer.h"
+#include "Components/MeshRenderer.h"
 #include "Structure/GameObject.h"
 #include "OgreSceneManager.h"
 #include "OgreEntity.h"
-#include "../RenderNode.h"
-#include "../Mesh.h"
-#include "../AnimationHelper.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/Mesh.h"
+#include "Utilities/AnimationHelper.h"
 
 namespace Tapioca {
 

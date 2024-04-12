@@ -1,6 +1,6 @@
 #include "Component.h"
 #include "GameObject.h"
-#include "Game.h"
+#include "MainLoop.h"
 #include <string>
 
 namespace Tapioca {

@@ -1,10 +1,10 @@
 #include "ParticleSystemComponent.h"
 
-#include "../GraphicsManager.h"
+#include "GraphicsManager.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
-#include "../RenderNode.h"
-#include "../ParticleSystem.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/ParticleSystem.h"
 
 namespace Tapioca {
 

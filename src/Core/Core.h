@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Structure/Game.h"
+#include "Structure/MainLoop.h"
 #include "Structure/Scene.h"
 #include "Structure/GameObject.h"
 #include "Structure/Component.h"

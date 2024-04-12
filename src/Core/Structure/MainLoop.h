@@ -9,18 +9,18 @@ namespace Tapioca {
 class Scene;
 class Module;
 
-class TAPIOCA_API Game : public Singleton<Game> {
+class TAPIOCA_API MainLoop : public Singleton<MainLoop> {
 private:
-    friend Singleton<Game>;
-    // warning C4251 'Tapioca::Game::modules' :
+    friend Singleton<MainLoop>;
+    // warning C4251 'Tapioca::MainLoop::modules' :
     // class 'std::vector<Tapioca::Module *,std::allocator<Tapioca::Module *>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Game'
-    // warning C4251 'Tapioca::Game::scenes' :
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
+    // warning C4251 'Tapioca::MainLoop::scenes' :
     // class 'std::stack<Tapioca::Scene *,std::deque<Tapioca::Scene *,std::allocator<Tapioca::Scene *>>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Game'
-    // warning C4251 'Tapioca::Game::toDelete' :
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
+    // warning C4251 'Tapioca::MainLoop::toDelete' :
     // class 'std::vector<Tapioca::Scene *,std::allocator<Tapioca::Scene *>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Game'
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -59,15 +59,15 @@ private:
     */
     void refresh();
     /*
-    * @brief Constructora de la clase Game
+    * @brief Constructora de la clase MainLoop
     */
-    Game();
+    MainLoop();
 
 public:
     /*
-    * @brief Destructora de la clase Game
+    * @brief Destructora de la clase MainLoop
     */
-    ~Game();
+    ~MainLoop();
 
     static const uint64_t FIXED_DELTA_TIME = 1000 / 60;   // mas de 60 fps (62.5)
     /*

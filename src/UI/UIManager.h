@@ -9,12 +9,11 @@ struct ImFont;
 typedef void* ImTextureID;
 
 namespace Ogre {
-class SceneManager;
 class RenderWindow;
 }
 
 namespace Tapioca {
-class Game;
+class MainLoop;
 class RenderNode;
 class WindowManager;
 class RenderListener;
@@ -39,16 +38,15 @@ class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule {
 private:
     friend Singleton<UIManager>;
 
-    Game* game;                                       // Referencia al Game
-    WindowManager* windowManager;                     // Referencia al WindowManager
-    SDL_Window* sdlWindow;                            // Referencia a la ventana de SDL
-    void* glContext;                                  // Referencia al contexto de OpenGL
-    Ogre::SceneManager* sceneManager;                 // Referencia al SceneManager de Ogre
-    Ogre::RenderWindow* ogreWindow;                   // Referencia a la superficie de renderizado de Ogre
-    RenderListener* renderListener;                   // Listener de renderizado de Ogre
+    MainLoop* mainLoop;                 // Referencia al MainLoop
+    WindowManager* windowManager;       // Referencia al WindowManager
+    SDL_Window* sdlWindow;              // Referencia a la ventana de SDL
+    void* glContext;                    // Referencia al contexto de OpenGL
+    Ogre::RenderWindow* ogreWindow;     // Referencia a la superficie de renderizado de Ogre
+    RenderListener* renderListener;     // Listener de renderizado de Ogre
 
-    float scaleFactorX;                               // Factor de escala en X
-    float scaleFactorY;                               // Factor de escala en Y
+    float scaleFactorX;   // Factor de escala en X
+    float scaleFactorY;   // Factor de escala en Y
 
     std::string fontsPath;                            // Ruta de la carpeta de fuentes
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes

@@ -1,9 +1,9 @@
 #include "PlaneComponent.h"
-#include "../GraphicsManager.h"
+#include "GraphicsManager.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "../RenderNode.h"
-#include "../Plane.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/Plane.h"
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent()

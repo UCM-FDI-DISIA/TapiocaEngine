@@ -2,21 +2,21 @@
 #include "defs.h"
 
 namespace Tapioca {
-class Game;
+class MainLoop;
 class WindowManager;
 class InputManager;
 class FactoryManager;
-class SceneManager;
+class SceneLoader;
 class GraphicsManager;
 class PhysicsManager;
 class UIManager;
 class SoundManager;
 
-Game* game;
+MainLoop* mainLoop;
 WindowManager* window;
 InputManager* input;
 FactoryManager* factories;
-SceneManager* scenes;
+SceneLoader* scenes;
 GraphicsManager* graphics;
 PhysicsManager* physics;
 UIManager* ui;
@@ -26,7 +26,7 @@ TAPIOCA_API void initEngine();
 TAPIOCA_API void deleteEngine();
 TAPIOCA_API void runEngine();
 
-static void createModules(Game* game);
+static void createModules(MainLoop* mainLoop);
 static void createEngineBuilders();
 void mapInput();
 }

@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Bridge\SceneManager.cpp">
+    <ClCompile Include="..\..\src\Bridge\SceneLoader.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Bridge\SceneManager.h">
+    <ClInclude Include="..\..\src\Bridge\SceneLoader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Bridge\Bridge.h" />

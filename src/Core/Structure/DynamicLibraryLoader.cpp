@@ -1,7 +1,7 @@
 #include "DynamicLibraryLoader.h"
 #include "componentDefs.h"
 #include "defs.h"
-#include "Game.h"
+#include "MainLoop.h"
 
 namespace Tapioca {
 HMODULE DynamicLibraryLoader::module = nullptr;
@@ -34,7 +34,7 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
             return false;
         }
         eP();
-        return Game::instance()->initConfig();
+        return MainLoop::instance()->initConfig();
     }
     else {
         logError("DynamicLibraryLoader: Error al cargar la DLL del juego.");

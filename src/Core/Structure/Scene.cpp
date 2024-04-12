@@ -1,6 +1,6 @@
 #include "Scene.h"
 #include "GameObject.h"
-#include "Game.h"
+#include "MainLoop.h"
 
 namespace Tapioca {
 Scene::Scene(std::string const& name) : name(name), active(true) { }
@@ -51,7 +51,7 @@ void Scene::handleEvent(std::string const& id, void* info) {
     }
 }
 
-void Scene::pushEvent(std::string const& id, void* info) { Game::instance()->pushEvent(id, info); }
+void Scene::pushEvent(std::string const& id, void* info) { MainLoop::instance()->pushEvent(id, info); }
 
 
 std::vector<GameObject*> Scene::getObjects() const { return objects; }

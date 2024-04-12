@@ -1,6 +1,6 @@
 #pragma once
 #include "defs.h"
-#include "../Core/Utilities/Vector3.h"
+#include "Utilities/Vector3.h"
 namespace irrklang { 
 class ISound;
 }

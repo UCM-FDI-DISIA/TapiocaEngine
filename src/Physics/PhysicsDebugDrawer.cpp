@@ -8,7 +8,7 @@
 #pragma warning(default : 4251)
 #endif
 #include "GraphicsManager.h"
-#include "RenderNode.h"
+#include "Utilities/RenderNode.h"
 #include "checkML.h"
 
 namespace Tapioca {

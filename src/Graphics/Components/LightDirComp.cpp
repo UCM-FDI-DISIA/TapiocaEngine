@@ -1,7 +1,7 @@
 #include "LightDirComp.h"
-#include "../RenderNode.h"
-#include "../GraphicsManager.h"
-#include "../LightDirectional.h"
+#include "GraphicsManager.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/LightDirectional.h"
 
 namespace Tapioca {
 LightDirComp::LightDirComp()

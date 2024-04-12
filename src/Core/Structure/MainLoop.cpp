@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "MainLoop.h"
 #include <chrono>
 #include "Scene.h"
 #include "Module.h"
@@ -6,13 +6,13 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<Game>;
+template class TAPIOCA_API Singleton<MainLoop>;
 template<>
-Game* Singleton<Game>::instance_ = nullptr;
+MainLoop* Singleton<MainLoop>::instance_ = nullptr;
 
-Game::Game() : finish(false), deltaTime(0), gameInitialized(false) { }
+MainLoop::MainLoop() : finish(false), deltaTime(0), gameInitialized(false) { }
 
-Game::~Game() {
+MainLoop::~MainLoop() {
     for (auto s : loadedScenes)
         delete s.second;
 
@@ -24,7 +24,7 @@ Game::~Game() {
         delete mod;
 }
 
-bool Game::init() {
+bool MainLoop::init() {
     bool initialized = true;
     auto mod = modules.begin();
 
@@ -35,7 +35,7 @@ bool Game::init() {
     return initialized;
 }
 
-bool Game::initConfig() {
+bool MainLoop::initConfig() {
     bool initialized = true;
     auto mod = modules.begin();
     while (initialized && mod != modules.end()) {
@@ -45,7 +45,7 @@ bool Game::initConfig() {
     return initialized;
 }
 
-void Game::run() {
+void MainLoop::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
@@ -85,12 +85,12 @@ void Game::run() {
     }
 }
 
-void Game::start() {
+void MainLoop::start() {
     for (auto mod : modules)
         mod->start();
 }
 
-void Game::update() {
+void MainLoop::update() {
     for (auto mod : modules)
         mod->update(deltaTime);
 
@@ -98,7 +98,7 @@ void Game::update() {
         if (s.second->isActive()) s.second->update(deltaTime);
 }
 
-void Game::fixedUpdate() {
+void MainLoop::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
 
@@ -106,12 +106,12 @@ void Game::fixedUpdate() {
         if (s.second->isActive()) s.second->fixedUpdate();
 }
 
-void Game::render() {
+void MainLoop::render() {
     for (auto mod : modules)
         mod->render();
 }
 
-void Game::refresh() {
+void MainLoop::refresh() {
     for (auto mod : modules)
         mod->refresh();
 
@@ -123,20 +123,20 @@ void Game::refresh() {
         if (s.second->isActive()) s.second->refresh();
 }
 
-void Game::addModule(Module* const m) { modules.push_back(m); }
+void MainLoop::addModule(Module* const m) { modules.push_back(m); }
 
-void Game::pushEvent(std::string const& id, void* info) {
+void MainLoop::pushEvent(std::string const& id, void* info) {
     for (auto s : loadedScenes)
         if (s.second->isActive()) s.second->handleEvent(id, info);
 }
 
-std::unordered_map<std::string, Scene*> Game::getLoadedScenes() const { return loadedScenes; }
+std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { return loadedScenes; }
 
-Scene* Game::getScene(std::string sc) { return loadedScenes.at(sc); }
+Scene* MainLoop::getScene(std::string sc) { return loadedScenes.at(sc); }
 
-void Game::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
+void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
 
-void Game::deleteScene(std::string const& sc) {
+void MainLoop::deleteScene(std::string const& sc) {
     auto it = loadedScenes.find(sc);
     if (it != loadedScenes.end()) {
         toDelete.push_back(it->second);
@@ -145,17 +145,17 @@ void Game::deleteScene(std::string const& sc) {
 
     if (loadedScenes.size() == 0) {
         finish = true;
-        logWarn("Game: No hay escenas en el juego. Se va a cerrar la aplicacion.");
+        logWarn("MainLoop: No hay escenas en el juego. Se va a cerrar la aplicacion.");
     }
 }
 
-void Game::loadScene(Scene* const sc) {
+void MainLoop::loadScene(Scene* const sc) {
     loadedScenes.insert({sc->getName(), sc});
     sc->awake();
     sc->start();
 }
 
-void Game::loadingGame(uint64_t deltaTime) {
+void MainLoop::loadingGame(uint64_t deltaTime) {
     static uint64_t timeSinceStart = 0;
 
     if (!gameInitialized) timeSinceStart += deltaTime;

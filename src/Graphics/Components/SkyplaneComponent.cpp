@@ -1,9 +1,9 @@
 #include "SkyplaneComponent.h"
-#include "../RenderNode.h"
-#include "../GraphicsManager.h"
+#include "GraphicsManager.h"
+#include "Utilities/RenderNode.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "../Skyplane.h"
+#include "Utilities/Skyplane.h"
 
 namespace Tapioca {
 

@@ -13,7 +13,7 @@
 #include <imgui_impl_opengl3.h>
 #include <SDL_opengl.h>
 
-#include "Structure/Game.h"
+#include "Structure/MainLoop.h"
 #include "Structure/Scene.h"
 #include "WindowManager.h"
 #include "GraphicsManager.h"
@@ -38,16 +38,15 @@ template<>
 UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
-    : game(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), sceneManager(nullptr),
+    : mainLoop(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr),
       ogreWindow(nullptr), renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") {
 }
 
 UIManager::~UIManager() {
-    game = nullptr;
+    mainLoop = nullptr;
     windowManager = nullptr;
     sdlWindow = nullptr;
     glContext = nullptr;
-    sceneManager = nullptr;
     ogreWindow = nullptr;
     delete renderListener;
     renderListener = nullptr;
@@ -60,7 +59,7 @@ UIManager::~UIManager() {
 }
 
 bool UIManager::init() {
-    game = Game::instance();
+    mainLoop = MainLoop::instance();
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -72,7 +71,7 @@ bool UIManager::init() {
     sdlWindow = windowManager->getWindow();
     glContext = windowManager->getGLContext();
     ogreWindow = GraphicsManager::instance()->getOgreRenderTarget();
-    renderListener = new RenderListener(game);
+    renderListener = new RenderListener(mainLoop);
     ogreWindow->addListener(renderListener);
     ImGui_ImplSDL2_InitForOpenGL(sdlWindow, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");

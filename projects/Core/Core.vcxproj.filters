@@ -21,7 +21,7 @@
     <ClCompile Include="..\..\src\Core\Structure\Component.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Structure\Game.cpp">
+    <ClCompile Include="..\..\src\Core\Structure\MainLoop.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp">
@@ -56,7 +56,7 @@
     <ClInclude Include="..\..\src\Core\Structure\Component.h">
       <Filter>Structure</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Structure\Game.h">
+    <ClInclude Include="..\..\src\Core\Structure\MainLoop.h">
       <Filter>Structure</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h">

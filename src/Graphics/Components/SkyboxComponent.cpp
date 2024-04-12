@@ -1,5 +1,5 @@
 #include "SkyboxComponent.h"
-#include "../GraphicsManager.h"
+#include "GraphicsManager.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 
@@ -12,7 +12,7 @@ SkyboxComponent::~SkyboxComponent() { delete node; }
 
 bool SkyboxComponent::initComponent(const CompMap& variables) { 
 
-    //No se ha podido establecer o No hay nombre de mesh
+    // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(skyboxName, "planeName", variables) || skyboxName == "") {
         logError("SkyboxComponent: No se pudo inicializar el nombre del skybox.");
         return false;

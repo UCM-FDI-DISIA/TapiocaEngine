@@ -8,7 +8,7 @@ struct lua_State;
 
 namespace Tapioca {
 class Scene;
-class Game;
+class MainLoop;
 class FactoryManager;
 class GameObject;
 class Component;
@@ -16,23 +16,23 @@ class Component;
 /*
 * @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
 */
-class TAPIOCA_API SceneManager : public Singleton<SceneManager>, public Module {
+class TAPIOCA_API SceneLoader : public Singleton<SceneLoader>, public Module {
 private:
-    friend Singleton<SceneManager>;
+    friend Singleton<SceneLoader>;
     friend class Scene;
 
     lua_State* luaState;        // Estado de lua
-    Game* game;                 // Puntero a Game
+    MainLoop* mainLoop;         // Puntero a MainLoop
     FactoryManager* factMngr;   // Puntero a FactoryManager
     std::string scenesPath;     // Ruta de las escenas
 
     /*
     * @brief Constructor por defecto
     */
-    SceneManager();
+    SceneLoader();
 
     /*
-    * @brief Inicializa los punteros a Game y FactoryManager
+    * @brief Inicializa los punteros a MainLoop y FactoryManager
     * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
@@ -50,7 +50,7 @@ private:
     bool loadScene(Scene* const scene);
 
     /*
-    * @brief Carga los gameobjects de una escena
+    * @brief Carga los MainLoopobjects de una escena
     * @param scene Escena a la que se le van a cargar los gameobjects
     * @return true si se ha cargado correctamente, false si no
     */
@@ -88,15 +88,15 @@ private:
     void exposeUIvalues();
 
 public:
-    SceneManager(SceneManager&) = delete;
-    SceneManager(SceneManager&&) = delete;
-    SceneManager& operator=(SceneManager&) = delete;
-    SceneManager& operator=(SceneManager&&) = delete;
+    SceneLoader(SceneLoader&) = delete;
+    SceneLoader(SceneLoader&&) = delete;
+    SceneLoader& operator=(SceneLoader&) = delete;
+    SceneLoader& operator=(SceneLoader&&) = delete;
 
     /*
     * @brief Elimina las escenas, gameobjects y componentes
     */
-    ~SceneManager();
+    ~SceneLoader();
 
     /*
     * @brief Carga la escena solicitada

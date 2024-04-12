@@ -2,7 +2,7 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 
-#include "../../Physics/PhysicsManager.h"
+#include "PhysicsManager.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 //#include "Collider.h"
@@ -11,7 +11,7 @@
 namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
-      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), bounciness(0), colliderScale(Vector3(1)),
+      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), colliderScale(Vector3(1)),
       activeRigidBody(true) { }
 
 RigidBody::~RigidBody() {

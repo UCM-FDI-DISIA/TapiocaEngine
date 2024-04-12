@@ -1,8 +1,8 @@
 #include "WindowManager.h"
 #include "componentDefs.h"
 #include "Structure/DynamicLibraryLoader.h"
+#include "Structure/MainLoop.h"
 
-#include <Structure/Game.h>
 #include <SDL.h>
 #include <SDL_syswm.h>
 #undef main
@@ -20,7 +20,7 @@ WindowManager* Singleton<WindowManager>::instance_ = nullptr;
 
 WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : sdlWindow(nullptr), glContext(nullptr), windowName(windowName), windowWidth(w), windowHeight(h),
-      firstWindowWidth(w), firstWindowHeight(h), resized(true), modules(), game(nullptr) { }
+      firstWindowWidth(w), firstWindowHeight(h), resized(true), modules(), mainLoop(nullptr) { }
 
 WindowManager::~WindowManager() {
     // eliminar la ventana de sdl
@@ -44,7 +44,7 @@ bool WindowManager::init() {
         return false;
     }
 
-    game = Game::instance();
+    mainLoop = MainLoop::instance();
 
     return true;
 }
@@ -70,9 +70,9 @@ void WindowManager::setWindowName(std::string const& name) {
 void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
 
 void WindowManager::sendEvent(std::string const& id, void* info) {
-    if (id == "ev_CLOSE") game->exit();
+    if (id == "ev_CLOSE") mainLoop->exit();
     else
-        game->pushEvent(id, info);
+        mainLoop->pushEvent(id, info);
 }
 
 
@@ -80,7 +80,7 @@ void WindowManager::update(const uint64_t deltaTime) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         // Si es un evento de cerrar la venetana, llama a que se cierre el juego
-        if (event.type == SDL_WINDOWEVENT_CLOSE || event.type == SDL_QUIT) game->exit();
+        if (event.type == SDL_WINDOWEVENT_CLOSE || event.type == SDL_QUIT) mainLoop->exit();
 
         // Si es un evento de redimensionar la ventana, actualiza sus dimensiones
         else if (event.type == SDL_WINDOWEVENT) {

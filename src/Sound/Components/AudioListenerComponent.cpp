@@ -1,11 +1,11 @@
 #include "AudioListenerComponent.h"
-#include "../AudioListener.h"
+#include "AudioListener.h"
 #include "Components/Transform.h"
 #include "Structure/GameObject.h"
-#include "../SoundManager.h"
+#include "SoundManager.h"
 
 namespace Tapioca {
-AudioListenerComponent::AudioListenerComponent() { }
+AudioListenerComponent::AudioListenerComponent() : listener(nullptr), myTransform(nullptr) { }
 
 AudioListenerComponent::~AudioListenerComponent() {
 

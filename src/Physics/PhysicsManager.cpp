@@ -6,7 +6,7 @@
 #include "Utilities/Quaternion.h"
 #include "Components/RigidBody.h"
 #include "checkML.h"
-#include "Structure/Game.h"
+#include "Structure/MainLoop.h"
 #undef new
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
@@ -120,14 +120,14 @@ bool PhysicsManager::init() {
 
 
 void PhysicsManager::update(const uint64_t deltaTime) {
-    // dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 10);
+    // dynamicsWorld->stepSimulation(MainLoop::FIXED_DELTA_TIME, 10);
 
 #ifdef _DEBUG
     if(debug) dynamicsWorld->debugDrawWorld();
 
 #endif }
 }
-void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(Game::FIXED_DELTA_TIME, 1); }
+void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(MainLoop::FIXED_DELTA_TIME, 1); }
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quaternion rotation,
                                              const Vector3 shapeScale, const ColliderShape colliderShape,
                                              const MovementType type, float mass, const float friction,

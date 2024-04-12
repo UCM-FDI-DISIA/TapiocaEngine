@@ -1,10 +1,10 @@
 #include "CameraComponent.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
-#include "../GraphicsManager.h"
-#include "../RenderNode.h"
-#include "../Camera.h"
-#include "../Viewport.h"
+#include "GraphicsManager.h"
+#include "Utilities/RenderNode.h"
+#include "Utilities/Camera.h"
+#include "Utilities/Viewport.h"
 
 namespace Tapioca {
 CameraComponent::CameraComponent()

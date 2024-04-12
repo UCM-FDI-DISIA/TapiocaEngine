@@ -1,11 +1,11 @@
 ﻿#include <lua.hpp>
 #include <sstream>
 #include "Exports.h"
-#include "Structure/Game.h"
+#include "Structure/MainLoop.h"
 #include "WindowManager.h"
 #include "InputManager.h"
 #include "Structure/FactoryManager.h"
-#include "SceneManager.h"
+#include "SceneLoader.h"
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
 #include "UIManager.h"
@@ -40,52 +40,52 @@
 
 namespace Tapioca {
 void initEngine() {
-    game = Tapioca::Game::create();
-    createModules(game);
+    mainLoop = Tapioca::MainLoop::create();
+    createModules(mainLoop);
 }
 
-void deleteEngine() { delete game; }
+void deleteEngine() { delete mainLoop; }
 
 void runEngine() {
-    if (game->init()) {
+    if (mainLoop->init()) {
         createEngineBuilders();
 
         // PRUEBAS DE SOUND
         //scenes->loadScene("archivo2.lua");
         SoundManager::instance()->testsample();
 
-        Scene* mainScene = scenes->loadScene(game->getMainScene());
-        game->run();
+        Scene* mainScene = scenes->loadScene(mainLoop->getMainScene());
+        mainLoop->run();
     }
     else
         logError("RunEngine: Error al inicializar un modulo.");
 }
 
-static void createModules(Tapioca::Game* game) {
+static void createModules(Tapioca::MainLoop* mainLoop) {
     window = Tapioca::WindowManager::create();
-    game->addModule(window);
+    mainLoop->addModule(window);
 
     graphics = Tapioca::GraphicsManager::create();
-    game->addModule(graphics);
+    mainLoop->addModule(graphics);
 
     ui = Tapioca::UIManager::create();
-    game->addModule(ui);
+    mainLoop->addModule(ui);
 
     input = Tapioca::InputManager::create();
-    game->addModule(input);
+    mainLoop->addModule(input);
     mapInput();
 
     factories = Tapioca::FactoryManager::create();
-    game->addModule(factories);
+    mainLoop->addModule(factories);
 
     physics = Tapioca::PhysicsManager::create(/*true*/);
-    game->addModule(physics);
+    mainLoop->addModule(physics);
 
-    scenes = Tapioca::SceneManager::create();
-    game->addModule(scenes);
+    scenes = Tapioca::SceneLoader::create();
+    mainLoop->addModule(scenes);
 
     sound = Tapioca::SoundManager::create();
-    game->addModule(sound);
+    mainLoop->addModule(sound);
 
     // Importante: UI tiene que suscribirse antes que input
     // para ignorar eventos de input que interactuen con la UI

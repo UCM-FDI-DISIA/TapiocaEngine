@@ -1,8 +1,8 @@
 #include "AudioSourceComponent.h"
 //#include "AudioSourceComponent.h"
 #include "Components/Transform.h"
-#include "../Sound.h"
-#include "../AudioSource.h"
+#include "Sound.h"
+#include "AudioSource.h"
 
 namespace Tapioca {
 AudioSourceComponent::AudioSourceComponent()
