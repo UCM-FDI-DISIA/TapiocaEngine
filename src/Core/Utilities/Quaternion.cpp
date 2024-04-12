@@ -8,33 +8,35 @@ namespace Tapioca {
 Quaternion::Quaternion(const float q0, const float q1, const float q2, const float q3) {
     scalar = q0;
     vector = Vector3(q1, q2, q3);
-    angle = 2 * acosf(q0);
+    float auxq0 = q0;
+    if (q0 > 1 || q0 < -1) auxq0 = std::round(auxq0);
+    angle = 2.0f * acosf(auxq0);
 }
 
 Quaternion::Quaternion(const float alfa, const Vector3 vec) {
     //primero hay que convertir vec en un vector unitario
     Vector3 uvec = vec / vec.magnitude();
     float alfarad =
-        alfa * (PI / 180);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
+        alfa * (PI / 180.f);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
     angle = alfarad;
-    scalar = cosf(alfarad / 2);
-    float alfasin = sinf(alfarad / 2);
+    scalar = cosf(alfarad / 2.f);
+    float alfasin = sinf(alfarad / 2.f);
     vector = Vector3(alfasin * uvec.x, alfasin * uvec.y, alfasin * uvec.z);
 }
 
 Quaternion::Quaternion(const Vector3 euler) {
     //la libreria math opera en radianes
-    float roll = euler.x * (PI / 180);
-    float cosroll = cosf(roll / 2);
-    float sinroll = sinf(roll / 2);
+    float roll = euler.x * (PI / 180.f);
+    float cosroll = cosf(roll / 2.f);
+    float sinroll = sinf(roll / 2.f);
 
-    float yaw = euler.y * (PI / 180);
-    float cosyaw = cosf(yaw / 2);
-    float sinyaw = sinf(yaw / 2);
+    float yaw = euler.y * (PI / 180.f);
+    float cosyaw = cosf(yaw / 2.f);
+    float sinyaw = sinf(yaw / 2.f);
 
-    float pitch = euler.z * (PI / 180);
-    float cospitch = cosf(pitch / 2);
-    float sinpitch = sinf(pitch / 2);
+    float pitch = euler.z * (PI / 180.f);
+    float cospitch = cosf(pitch / 2.f);
+    float sinpitch = sinf(pitch / 2.f);
 
     scalar = cosroll * cosyaw * cospitch + sinroll * sinyaw * sinpitch;
 
@@ -44,7 +46,7 @@ Quaternion::Quaternion(const Vector3 euler) {
 
     vector.z = cosroll * cosyaw * sinpitch - sinroll * sinyaw * cospitch;
 
-    angle = 2 * acosf(scalar);
+    angle = 2.f * acosf(scalar);
 }
 
 Quaternion Quaternion::inverse() { return conjugate() / magnitude(); }
@@ -130,7 +132,7 @@ Vector3 Quaternion::rotatePoint(const Vector3 point) {
    */
     Vector3 axis = vector / sinf(angle / 2);
 
-    return point + axis.cross(axis.cross(point) * (1 - cosf(angle))) + axis.cross(point) * sinf(angle);
+    return point + axis.cross(axis.cross(point) * (1.f - cosf(angle))) + axis.cross(point) * sinf(angle);
 }
 
 Quaternion Quaternion::normalized() { return *this / magnitude(); }
