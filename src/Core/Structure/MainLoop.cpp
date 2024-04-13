@@ -181,8 +181,8 @@ void MainLoop::loadingGame(uint64_t deltaTime) {
     if (!gameInitialized) timeSinceStart += deltaTime;
     if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
         logInfo(("Ya pasaron " + std::to_string(TIME_TO_INITIALIZE_GAME) + " milisegundos").c_str());
-        if (!DynamicLibraryLoader::initGame()) finish = true;
-        deleteScene(MAIN_SCENE_NAME);
+        //if (!DynamicLibraryLoader::initGame()) finish = true;
+        //deleteScene(MAIN_SCENE_NAME);
         gameInitialized = true;
     }
 }

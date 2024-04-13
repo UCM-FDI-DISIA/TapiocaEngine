@@ -7,8 +7,8 @@
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), text("Button"), onClickId("Debug"), onClick([]() {}),
-      textFont(nullptr), textFontName("arial.ttf"), textSize(16.0f) {
+    : BaseWidget(), Component(), text("Button"), onClickId("Debug"), onClick([]() {}), textFont(nullptr),
+      textFontName("arial.ttf"), textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     ImVec4 normalColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Button];
@@ -110,7 +110,8 @@ void Button::render() const {
 
     ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
-    ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
+    // Pop para WindowBorderSize y WindowPadding
+    ImGui::PopStyleVar(2);
 
     // Establece la fuente del texto
     ImGui::PushFont(textFont);

@@ -10,8 +10,12 @@ namespace Tapioca {
 */
 class TAPIOCA_API ImageButton : public Button {
 private:
-    std::string imagePath;      // Ruta de la imagen que se muestra en el boton
-    ImTextureID textureId;      // Identificador de la textura de la imagen que se muestra en el boton
+    std::string imagePathNormal;      // Ruta de la imagen que se muestra en el boton en estado normal
+    std::string imagePathHover;       // Ruta de la imagen que se muestra en el boton en estado hover
+    std::string imagePathActive;      // Ruta de la imagen que se muestra en el boton en estado active
+    ImTextureID textureIdNormal;      // Identificador de la textura de la imagen que se muestra en el boton en estado normal
+    ImTextureID textureIdHover;       // Identificador de la textura de la imagen que se muestra en el boton en estado hover
+    ImTextureID textureIdActive;      // Identificador de la textura de la imagen que se muestra en el boton en estado active
     Vector2 uv0;                // Coordenadas de la esquina superior izquierda de la imagen
     Vector2 uv1;                // Coordenadas de la esquina inferior derecha de la imagen
     Vector4 imageBgColor;       // Color de fondo de la imagen
@@ -47,20 +51,75 @@ public:
     void render() const override;
 
     /*
-    * @brief Actualiza la textura de la imagen
+    * @brief Actualiza las texturas de las imagenes del boton en los diferentes estados
     */
-    void updateTexture();
+    void updateTextures();
 
     /*
-    * @brief Establece la ruta de la imagen que se muestra en el boton
-    * @param imagePath Ruta de la imagen
+    * @brief Actualiza la textura de la imagen del boton en estado normal
     */
-    inline void setImagePath(const std::string& imagePath) {
-        if (imagePath != this->imagePath) {
-            this->imagePath = imagePath;
-            updateTexture();
+    void updateTextureNormal();
+
+    /*
+    * @brief Actualiza la textura de la imagen del boton en estado hover
+    */
+    void updateTextureHover();
+
+    /*
+    * @brief Actualiza la textura de la imagen del boton en estado active
+    */
+    void updateTextureActive();
+
+    /*
+    * @brief Establece la ruta de la imagen que se muestra en el boton en estado normal
+    * @param imagePath Ruta de la imagen en estado normal
+    */
+    inline void setImagePathNormal(const std::string& imagePath) {
+        if (imagePath != this->imagePathNormal) {
+            this->imagePathNormal = imagePath;
+            updateTextureNormal();
         }
     }
+
+    /*
+    * @brief Establece la ruta de la imagen que se muestra en el boton en estado hover
+    * @param imagePath Ruta de la imagen en estado hover
+    */
+    inline void setImagePathHover(const std::string& imagePath) {
+        if (imagePath != this->imagePathHover) {
+            this->imagePathHover = imagePath;
+            updateTextureHover();
+        }
+    }
+
+    /*
+    * @brief Establece la ruta de la imagen que se muestra en el boton en estado active
+    * @param imagePath Ruta de la imagen en estado active
+    */
+    inline void setImagePathActive(const std::string& imagePath) {
+        if (imagePath != this->imagePathNormal) {
+            this->imagePathActive = imagePath;
+            updateTextureActive();
+        }
+    }
+
+    /*
+    * @brief Establece el identificador de la textura de la imagen que se muestra en el boton en estado normal
+    * @param textureIdNormal Identificador de la textura de la imagen en estado normal
+    */
+    inline void setTextureIdNormal(ImTextureID textureIdNormal) { this->textureIdNormal = textureIdNormal; }
+
+    /*
+    * @brief Establece el identificador de la textura de la imagen que se muestra en el boton en estado hover
+    * @param textureIdHover Identificador de la textura de la imagen en estado hover
+    */
+    inline void setTextureIdHover(ImTextureID textureIdHover) { this->textureIdHover = textureIdHover; }
+
+    /*
+    * @brief Establece el identificador de la textura de la imagen que se muestra en el boton en estado active
+    * @param textureIdActive Identificador de la textura de la imagen en estado active
+    */
+    inline void setTextureIdActive(ImTextureID textureIdActive) { this->textureIdActive = textureIdActive; }
 
     /*
     * @brief Establece las coordenadas de la esquina superior izquierda de la imagen
@@ -87,10 +146,40 @@ public:
     inline void setImageTint(const Vector4& imageTint) { this->imageTint = imageTint; }
 
     /*
-    * @brief Devuelve la ruta de la imagen que se muestra en el boton
-    * @return Ruta de la imagen
+    * @brief Devuelve la ruta de la imagen que se muestra en el boton en estado normal
+    * @return Ruta de la imagen en estado normal
     */
-    inline std::string getImagePath() const { return imagePath; }
+    inline std::string getImagePathNormal() const { return imagePathNormal; }
+
+    /*
+    * @brief Devuelve la ruta de la imagen que se muestra en el boton en estado hover
+    * @return Ruta de la imagen en estado hover
+    */
+    inline std::string getImagePathHover() const { return imagePathHover; }
+
+    /*
+    * @brief Devuelve la ruta de la imagen que se muestra en el boton en estado active
+    * @return Ruta de la imagen en estado active
+    */
+    inline std::string getImagePathActive() const { return imagePathActive; }
+
+    /*
+    * @brief Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado normal
+    * @return Identificador de la textura de la imagen en estado normal
+    */
+    inline ImTextureID getTextureIdNormal() const { return textureIdNormal; }
+
+    /*
+    * @brief Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado hover
+    * @return Identificador de la textura de la imagen en estado hover
+    */
+    inline ImTextureID getTextureIdHover() const { return textureIdHover; }
+
+    /*
+    * @brief Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado active
+    * @return Identificador de la textura de la imagen en estado active
+    */
+    inline ImTextureID getTextureIdActive() const { return textureIdActive; }
 
     /*
     * @brief Devuelve las coordenadas de la esquina superior izquierda de la imagen

@@ -73,7 +73,8 @@ void Text::render() const {
 
     ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
-    ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
+    // Pop para WindowBorderSize y WindowPadding
+    ImGui::PopStyleVar(2);
 
     // Establece el color del texto
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));

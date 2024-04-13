@@ -38,9 +38,8 @@ template<>
 UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
-    : mainLoop(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr),
-      ogreWindow(nullptr), renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") {
-}
+    : mainLoop(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), ogreWindow(nullptr),
+      renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") { }
 
 UIManager::~UIManager() {
     mainLoop = nullptr;
@@ -79,7 +78,7 @@ bool UIManager::init() {
     loadFonts();
 
     // TEMPORAL
-    //renderListener->createImage("imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
+    //renderListener->createImage("textures/imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
     //renderListener->createProgressBar(0.42, Vector4(00.2, 0.1, 0.6, 1), "42%", Vector2(200, 100), Vector2(10, 0));
     //renderListener->createSlider("slide", true, 13, 22, 0, Vector2(40, 120), Vector2(10, 80));
     //std::vector<std::string> s({"opcion", "otraopcion", "otramas"});
@@ -110,12 +109,7 @@ bool UIManager::handleEvents(const SDL_Event& event) {
             return true;
         }
     }
-    if (ImGui_ImplSDL2_ProcessEvent(&event) && ImGui::GetIO().WantCaptureMouse) {
-        //#ifdef _DEBUG
-        //        std::cout << "Interactuando con UI\n";
-        //#endif
-        return true;
-    }
+    if (ImGui_ImplSDL2_ProcessEvent(&event) && ImGui::GetIO().WantCaptureMouse) return true;
     return false;
 }
 
@@ -139,7 +133,8 @@ void UIManager::loadFonts(float pixelSize) {
             std::string extension = path.extension().string();
             if (extension == ".ttf" || extension == ".TTF" || extension == ".otf" || extension == ".OTF")
                 if (loadFont(path.stem().string() + extension, pixelSize) == nullptr) {
-                    logError(("UIManager: No se ha podido cargar la fuente " + path.stem().string() + extension + '.').c_str());
+                    logError(("UIManager: No se ha podido cargar la fuente " + path.stem().string() + extension + '.')
+                                 .c_str());
                 }
         }
     }
@@ -166,7 +161,8 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
     // Si el tamano de la fuente es la que hay por defecto y no se ha cargado, se devuelve nullptr
     else if (pixelSize == fontDefaultSize && !fonts.contains({name, pixelSize})) {
         logInfo(("UIManager: No existe la fuente con el nombre \"" + name + "\" con el tamano predeterminado de " +
-                 std::to_string(fontDefaultSize) + ". Se usara la fuente por defecto.").c_str());
+                 std::to_string(fontDefaultSize) + ". Se usara la fuente por defecto.")
+                    .c_str());
         return ImGui::GetIO().FontDefault;
     }
     // Si no es el tamano de fuente por defecto, se intenta cargar

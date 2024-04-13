@@ -4,15 +4,26 @@
 
 namespace Tapioca {
 ImageButton::ImageButton()
-    : Button(), imagePath(""), textureId(), uv0(Vector2(0.0f, 0.0f)), uv1(Vector2(1.0f, 1.0f)),
+    : Button(), imagePathNormal(""), imagePathHover(""), imagePathActive(""), textureIdNormal(), textureIdHover(),
+      textureIdActive(), uv0(Vector2(0.0f, 0.0f)), uv1(Vector2(1.0f, 1.0f)),
       imageBgColor(Vector4(0.0f, 0.0f, 0.0f, 0.0f)), imageTint(Vector4(1.0f, 1.0f, 1.0f, 1.0f)) { }
 
 bool ImageButton::initComponent(const CompMap& variables) {
 
     if (!Button::initComponent(variables)) return false;
 
-    if (!setValueFromMap(imagePath, "imagePath", variables)) {
-        logError("ImageButton: No se pudo inicializar la ruta de la imagen.");
+    if (!setValueFromMap(imagePathNormal, "imagePathNormal", variables)) {
+        logError("ImageButton: No se pudo inicializar la ruta de la imagen para el estado normal.");
+        return false;
+    }
+
+    if (!setValueFromMap(imagePathHover, "imagePathHover", variables)) {
+        logError("ImageButton: No se pudo inicializar la ruta de la imagen para el estado hover.");
+        return false;
+    }
+
+    if (!setValueFromMap(imagePathActive, "imagePathActive", variables)) {
+        logError("ImageButton: No se pudo inicializar la ruta de la imagen para el estado active.");
         return false;
     }
 
@@ -46,7 +57,7 @@ bool ImageButton::initComponent(const CompMap& variables) {
 
 void ImageButton::start() {
     Button::start();
-    updateTexture();
+    updateTextures();
 }
 
 void ImageButton::render() const {
@@ -68,23 +79,51 @@ void ImageButton::render() const {
 
     ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
-    ImGui::PopStyleVar(2);   // Pop para WindowBorderSize y WindowPadding
+    // Pop para WindowBorderSize y WindowPadding
+    ImGui::PopStyleVar(2);
 
     // Establece los colores del boton en los diferentes estados
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(normalColor.x, normalColor.y, normalColor.z, normalColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(activeColor.x, activeColor.y, activeColor.z, activeColor.w));
 
-    if (ImGui::ImageButton(imagePath.c_str(), textureId, buttonSize, ImVec2(uv0.x, uv0.y),
-                           ImVec2(uv1.x, uv1.y), ImVec4(imageBgColor.x, imageBgColor.y, imageBgColor.z, imageBgColor.w),
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2());
+
+    // Calcula los limites del boton a partir de la posicion del cursor
+    ImVec2 cursorPos = ImGui::GetCursorScreenPos();
+    ImVec2 buttonMin = cursorPos;
+    ImVec2 buttonMax = ImVec2(cursorPos.x + buttonSize.x, cursorPos.y + buttonSize.y);
+    // Comprueba si el cursor esta encima del boton
+    bool hovered = ImGui::IsMouseHoveringRect(buttonMin, buttonMax);
+    // Comprueba si el cursor esta encima del boton y se ha pulsado el boton izquierdo del raton
+    bool active = ImGui::IsMouseDown(0) && hovered;
+
+    // Establece la textura del boton en funcion del estado
+    ImTextureID textureId = textureIdNormal;
+    // Primero hay que comprobar si el boton esta activo, luego si esta encima (hover) y por ultimo si esta normal
+    if (active) textureId = textureIdActive;
+    else if (hovered)
+        textureId = textureIdHover;
+
+    if (ImGui::ImageButton(name.c_str(), textureId, buttonSize, ImVec2(uv0.x, uv0.y), ImVec2(uv1.x, uv1.y),
+                           ImVec4(imageBgColor.x, imageBgColor.y, imageBgColor.z, imageBgColor.w),
                            ImVec4(imageTint.x, imageTint.y, imageTint.z, imageTint.w)))
         onClick();
 
+    // Pop para FramePadding
+    ImGui::PopStyleVar();
     // Pop para WindowBg y los colores de los estados del boton
     ImGui::PopStyleColor(4);
 
     ImGui::End();
 }
 
-void ImageButton::updateTexture() { textureId = uiManager->getTextureId(imagePath); }
+void ImageButton::updateTextures() {
+    updateTextureNormal();
+    updateTextureHover();
+    updateTextureActive();
+}
+void ImageButton::updateTextureNormal() { textureIdNormal = uiManager->getTextureId(imagePathNormal); }
+void ImageButton::updateTextureHover() { textureIdHover = uiManager->getTextureId(imagePathHover); }
+void ImageButton::updateTextureActive() { textureIdActive = uiManager->getTextureId(imagePathActive); }
 }
