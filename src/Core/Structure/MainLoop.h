@@ -116,9 +116,9 @@ public:
     */
     std::unordered_map<std::string, Scene*> getLoadedScenes() const;
     /*
-    * @brief Devuelve la esce
+    * @brief Devuelve la escena
     * @param sc Nombre de la escena que se quiere obtener
-    * @return Puntero a la escena con el nombre indicado
+    * @return Puntero a la escena con el nombre indicado, si la escena no existe, devuelve nullptr
     */
     Scene* getScene(std::string sc);
 

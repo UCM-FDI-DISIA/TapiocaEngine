@@ -102,9 +102,12 @@ void MainLoop::start() {
 
 void MainLoop::update() {
     for (auto sc : sceneBuffer) {
-        loadedScenes.insert({sc->getName(), sc});
-        sc->awake();
-        sc->start();
+        auto aux = loadedScenes.insert({sc->getName(), sc});
+        if (!aux.second) Tapioca::logError("[MainLoop]: No se ha cargado la escena porque ya existe");
+        else {
+            sc->awake();
+            sc->start();
+        }
     }
     sceneBuffer.clear();
 
@@ -149,7 +152,11 @@ void MainLoop::pushEvent(std::string const& id, void* info) {
 
 std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { return loadedScenes; }
 
-Scene* MainLoop::getScene(std::string sc) { return loadedScenes.at(sc); }
+Scene* MainLoop::getScene(std::string sc) {
+    auto aux = loadedScenes.find(sc);
+    if (aux != loadedScenes.end()) return aux->second;
+    else return nullptr;
+}
 
 void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
 
