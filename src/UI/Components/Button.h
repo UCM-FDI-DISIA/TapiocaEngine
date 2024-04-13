@@ -21,7 +21,9 @@ protected:
     std::string textFontName;        // Nombre de la fuente del texto del boton
     float textSize;                  // Tamano de la fuente del texto del boton
     ImFont* textFont;                // Fuente del texto del boton incluyendo tamano
-    Vector4 textColor;               // Color del texto del boton
+    Vector4 textColorNormal;         // Color del texto del boton en estado "normal"
+    Vector4 textColorHover;          // Color del texto del boton en estado "hover"
+    Vector4 textColorActive;         // Color del texto del boton en estado "active"
     Vector4 normalColor;             // Color del boton para el estado "normal"
     Vector4 hoverColor;              // Color del boton para el estado "hover"
     Vector4 activeColor;             // Color del boton para el estado "active"
@@ -125,11 +127,23 @@ public:
     void updateTextFont();
 
     /*
-    * @brief Establece el color del texto del boton
-    * @param textColor Color del texto del boton
+    * @brief Establece el color del texto del boton en estado "normal"
+    * @param textColor Color del texto del boton en estado "normal"
     */
-    inline void setTextColor(const Vector4& textColor) { this->textColor = textColor; }
+    inline void setTextColorNormal(const Vector4& textColor) { this->textColorNormal = textColor; }
 
+    /*
+    * @brief Establece el color del texto del boton en estado "hover"
+    * @param textColor Color del texto del boton en estado "hover"
+    */
+    inline void setTextColorHover(const Vector4& textColor) { this->textColorHover = textColor; }
+
+    /*
+    * @brief Establece el color del texto del boton en estado "active"
+    * @param textColor Color del texto del boton en estado "active"
+    */
+
+    inline void setTextColorActive(const Vector4& textColor) { this->textColorActive = textColor; }
     /*
     * @brief Establece el color del boton para el estado "normal"
     * @param normalColor Color del boton para el estado "normal"
@@ -185,10 +199,22 @@ public:
     inline ImFont* getTextFont() const { return textFont; }
 
     /*
-    * @brief Devuelve el color del texto del boton
-    * @return Color del texto del boton
+    * @brief Devuelve el color del texto del boton en estado "normal"
+    * @return Color del texto del boton en estado "normal"
     */
-    inline Vector4 getTextColor() const { return textColor; }
+    inline Vector4 getTextColorNormal() const { return textColorNormal; }
+
+    /*
+    * @brief Devuelve el color del texto del boton en estado "hover"
+    * @return Color del texto del boton en estado "hover"
+    */
+    inline Vector4 getTextColorHover() const { return textColorHover; }
+
+    /*
+    * @brief Devuelve el color del texto del boton en estado "active"
+    * @return Color del texto del boton en estado "active"
+    */
+    inline Vector4 getTextColorActive() const { return textColorActive; }
 
     /*
     * @brief Devuelve el color del boton para el estado "normal"

@@ -32,7 +32,7 @@
 #include "Components/Button.h"
 #include "Components/InputText.h"
 #include "Components/Text.h"
-#include "Components/ImageButton.h"
+#include "Components/ImageTextButton.h"
 
 //Sound
 #include "Components/AudioListenerComponent.h"
@@ -117,7 +117,7 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<Button>());
     manager->addBuilder(new BasicBuilder<InputText>());
     manager->addBuilder(new BasicBuilder<Text>());
-    manager->addBuilder(new BasicBuilder<ImageButton>());
+    manager->addBuilder(new BasicBuilder<ImageTextButton>());
 
     //Sound
     manager->addBuilder(new BasicBuilder<AudioListenerComponent>());

@@ -48,7 +48,7 @@
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\Components\ImageButton.cpp">
+    <ClCompile Include="..\..\src\UI\Components\ImageTextButton.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\UI\RenderListener.cpp">
@@ -90,7 +90,7 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\UI.h" />
-    <ClInclude Include="..\..\src\UI\Components\ImageButton.h">
+    <ClInclude Include="..\..\src\UI\Components\ImageTextButton.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\RenderListener.h">

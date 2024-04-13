@@ -8,8 +8,9 @@ namespace Tapioca {
 /*
 * @brief Clase que representa un botón con imagen en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
-class TAPIOCA_API ImageButton : public Button {
+class TAPIOCA_API ImageTextButton : public Button {
 private:
+    bool wantText;			  // Indica si se quiere mostrar el texto en el boton
     std::string imagePathNormal;      // Ruta de la imagen que se muestra en el boton en estado normal
     std::string imagePathHover;       // Ruta de la imagen que se muestra en el boton en estado hover
     std::string imagePathActive;      // Ruta de la imagen que se muestra en el boton en estado active
@@ -22,17 +23,17 @@ private:
     Vector4 imageTint;          // Tinte de la imagen
 
 public:
-    COMPONENT_ID("ImageButton")
+    COMPONENT_ID("ImageTextButton")
 
     /*
     * @brief Constructor por defecto
     */
-    ImageButton();
+    ImageTextButton();
 
     /*
     * @brief Destructor por defecto
     */
-    ~ImageButton() { }
+    ~ImageTextButton() { }
 
     /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start

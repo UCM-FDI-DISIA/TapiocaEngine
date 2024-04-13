@@ -10,7 +10,9 @@ Button::Button()
     : BaseWidget(), Component(), text("Button"), onClickId("Debug"), onClick([]() {}), textFont(nullptr),
       textFontName("arial.ttf"), textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
-    textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
+    textColorNormal = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
+    textColorHover = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
+    textColorActive = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     ImVec4 normalColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Button];
     normalColor = Vector4(normalColorImVec.x, normalColorImVec.y, normalColorImVec.z, normalColorImVec.w);
     ImVec4 hoverColorImVec = ImGui::GetStyle().Colors[ImGuiCol_ButtonHovered];
@@ -44,11 +46,28 @@ bool Button::initComponent(const CompMap& variables) {
         logInfo("Button: No se encontro el valor de textSize. Se inicializo al valor predefinido.");
     }
 
-    bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
-        setValueFromMap(textColor.y, "textColorG", variables) &&
-        setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
-    if (!textColorSet) {
-        logInfo("Button: No se encontro el valor de textColor. Se inicializo a los valores predefinidos.");
+    bool textColorNormalSet = setValueFromMap(textColorNormal.x, "textColorNormalR", variables) &&
+        setValueFromMap(textColorNormal.y, "textColorNormalG", variables) &&
+        setValueFromMap(textColorNormal.z, "textColorNormalB", variables) &&
+        setValueFromMap(textColorNormal.w, "textColorNormalA", variables);
+    if (!textColorNormalSet) {
+        logInfo("Button: No se encontro el valor de textColorNormal. Se inicializo a los valores predefinidos.");
+    }
+
+    bool textColorHoverSet = setValueFromMap(textColorHover.x, "textColorHoverR", variables) &&
+        setValueFromMap(textColorHover.y, "textColorHoverG", variables) &&
+        setValueFromMap(textColorHover.z, "textColorHoverB", variables) &&
+        setValueFromMap(textColorHover.w, "textColorHoverA", variables);
+    if (!textColorHoverSet) {
+        logInfo("Button: No se encontro el valor de textColorHover. Se inicializo a los valores predefinidos.");
+    }
+
+    bool textColorActiveSet = setValueFromMap(textColorActive.x, "textColorActiveR", variables) &&
+        setValueFromMap(textColorActive.y, "textColorActiveG", variables) &&
+        setValueFromMap(textColorActive.z, "textColorActiveB", variables) &&
+        setValueFromMap(textColorActive.w, "textColorActiveA", variables);
+    if (!textColorActiveSet) {
+        logInfo("Button: No se encontro el valor de textColorActive. Se inicializo a los valores predefinidos.");
     }
 
     bool normalColorSet = setValueFromMap(normalColor.x, "normalColorR", variables) &&
@@ -113,10 +132,27 @@ void Button::render() const {
     // Pop para WindowBorderSize y WindowPadding
     ImGui::PopStyleVar(2);
 
+    // Calcula los limites del boton a partir de la posicion del cursor
+    ImVec2 cursorPos = ImGui::GetCursorScreenPos();
+    ImVec2 buttonMin = cursorPos;
+    ImVec2 buttonMax = ImVec2(cursorPos.x + buttonSize.x, cursorPos.y + buttonSize.y);
+    // Comprueba si el cursor esta encima del boton
+    bool hovered = ImGui::IsMouseHoveringRect(buttonMin, buttonMax);
+    // Comprueba si el cursor esta encima del boton y se ha pulsado el boton izquierdo del raton
+    bool active = ImGui::IsMouseDown(0) && hovered;
+
+    // Establece la textura del boton en funcion del estado
+    ImVec4 textColor = ImVec4(textColorNormal.x, textColorNormal.y, textColorNormal.z, textColorNormal.w);
+
+    // Primero hay que comprobar si el boton esta activo, luego si esta encima (hover) y por ultimo si esta normal
+    if (active) textColor = ImVec4(textColorActive.x, textColorActive.y, textColorActive.z, textColorActive.w);
+    else if (hovered)
+        textColor = ImVec4(textColorHover.x, textColorHover.y, textColorHover.z, textColorHover.w);
+
     // Establece la fuente del texto
     ImGui::PushFont(textFont);
     // Establece el color del texto
-    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(textColor.x, textColor.y, textColor.z, textColor.w));
+    ImGui::PushStyleColor(ImGuiCol_Text, textColor);
     // Establece los colores del boton en los diferentes estados
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(normalColor.x, normalColor.y, normalColor.z, normalColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
