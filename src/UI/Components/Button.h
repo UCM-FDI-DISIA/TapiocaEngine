@@ -28,11 +28,6 @@ protected:
     Vector4 hoverColor;              // Color del boton para el estado "hover"
     Vector4 activeColor;             // Color del boton para el estado "active"
 
-    /*
-    * @brief Diccionario que contiene las funciones que se ejecutan cuando se hace click en el boton
-    */
-    std::unordered_map<std::string, std::function<void()>> buttonFunctions;
-
 public:
     COMPONENT_ID("Button")
 
@@ -61,11 +56,6 @@ public:
     * @brief Metodo que se usa para renderizar el boton
     */
     virtual void render() const override;
-
-    /*
-    * @brief Crea las funciones que se ejecutan cuando se hace click en el boton
-    */
-    void createButtonFunctions();
 
     /*
     * @brief Establece el texto del boton

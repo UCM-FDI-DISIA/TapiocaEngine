@@ -19,7 +19,6 @@ Button::Button()
     hoverColor = Vector4(hoverColorImVec.x, hoverColorImVec.y, hoverColorImVec.z, hoverColorImVec.w);
     ImVec4 activeColorImVec = ImGui::GetStyle().Colors[ImGuiCol_ButtonActive];
     activeColor = Vector4(activeColorImVec.x, activeColorImVec.y, activeColorImVec.z, activeColorImVec.w);
-    createButtonFunctions();
 }
 
 Button::~Button() { textFont = nullptr; }
@@ -172,15 +171,7 @@ void Button::render() const {
     ImGui::End();
 }
 
-void Button::createButtonFunctions() {
-    buttonFunctions["Debug"] = []() {
-#ifdef _DEBUG
-        std::cout << "Se ha hecho click en el boton!\n";
-#endif
-    };
-}
-
-void Button::updateOnClick() { onClick = buttonFunctions[onClickId]; }
+void Button::updateOnClick() { onClick = uiManager->getFunction(onClickId); }
 
 void Button::updateTextFont() { textFont = uiManager->getFont(textFontName, textSize); }
 }

@@ -13,7 +13,6 @@ InputText::InputText()
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     ImVec4 bgColorImVec = ImGui::GetStyle().Colors[ImGuiCol_FrameBg];
     bgColor = Vector4(bgColorImVec.x, bgColorImVec.y, bgColorImVec.z, bgColorImVec.w);
-    createInputTextFunctions();
 }
 
 InputText::~InputText() {
@@ -133,15 +132,7 @@ void InputText::render() const {
     ImGui::End();
 }
 
-void InputText::createInputTextFunctions() {
-    inputTextFunctions["Debug"] = []() {
-#ifdef _DEBUG
-        std::cout << "Se ha hecho Enter en la caja de texto\n";
-#endif
-    };
-}
-
-void InputText::updateOnTextEnter() { onTextEntered = inputTextFunctions[onTextEnteredId]; }
+void InputText::updateOnTextEnter() { onTextEntered = uiManager->getFunction(onTextEnteredId); }
 
 void InputText::updateTextFont() { textFont = uiManager->getFont(textFontName, textSize); }
 

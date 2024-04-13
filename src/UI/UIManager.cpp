@@ -14,6 +14,7 @@
 #include <SDL_opengl.h>
 
 #include "Structure/MainLoop.h"
+#include "Structure/DynamicLibraryLoader.h"
 #include "Structure/Scene.h"
 #include "WindowManager.h"
 #include "GraphicsManager.h"
@@ -76,6 +77,7 @@ bool UIManager::init() {
     ImGui_ImplOpenGL3_Init("#version 130");
 
     loadFonts();
+    createMainFunctions();
 
     // TEMPORAL
     //renderListener->createImage("textures/imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
@@ -83,6 +85,24 @@ bool UIManager::init() {
     //renderListener->createSlider("slide", true, 13, 22, 0, Vector2(40, 120), Vector2(10, 80));
     //std::vector<std::string> s({"opcion", "otraopcion", "otramas"});
     //renderListener->createDropBox("dropbox", s, 0, Vector2(100, 60), Vector2(80, 120));
+
+    return true;
+}
+
+bool UIManager::initConfig() {
+    EntryPointGetFunctions getFunctions =
+        (EntryPointGetFunctions)GetProcAddress(DynamicLibraryLoader::module, "getFunctions");
+    if (getFunctions == nullptr)
+        logError("SceneLoader: La DLL del juego no tiene la funcion \"getFunctions\". No se creará ninguna funcion.\n");
+
+    EntryPointGetFunctions getFunctionsCast = reinterpret_cast<EntryPointGetFunctions>(getFunctions);
+    if (getFunctionsCast != nullptr) {
+        std::vector<std::pair<std::string, std::function<void()>>> gameFunctions = getFunctionsCast();
+        for (auto f : gameFunctions)
+            setFunction(f.first, f.second);
+    }
+    else
+        logError("SceneLoader: getFunctions devolvio un puntero nulo.\n");
 
     return true;
 }
@@ -193,5 +213,27 @@ ImTextureID UIManager::getTextureId(const std::string& name) {
     GLuint glID;
     texturePtr->getCustomAttribute("GLID", &glID);
     return (ImTextureID)glID;
+}
+
+void UIManager::createMainFunctions() {
+    functions["Debug"] = []() {
+#ifdef _DEBUG
+        std::cout << "Se ha llamado a la funcion Debug!\n";
+#endif
+    };
+}
+
+void UIManager::setFunction(const std::string& functionName, std::function<void()> function) {
+    if (functions.contains(functionName))
+        logInfo(
+            ("UIManager: Ya existe un boton con el nombre \"" + functionName + "\". No se creo la funcion").c_str());
+    else
+        functions[functionName] = function;
+}
+
+std::function<void()> UIManager::getFunction(const std::string& functionName) {
+    if (functions.contains(functionName)) return functions[functionName];
+    logInfo(("UIManager: No existe una funcion con el nombre \"" + functionName + "\".").c_str());
+    return nullptr;
 }
 }

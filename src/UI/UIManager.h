@@ -73,10 +73,20 @@ private:
 #endif
 
     /*
+    * @brief Diccionario que contiene las funciones
+    */
+    std::unordered_map<std::string, std::function<void()>> functions;
+
+
+    /*
     * @brief Inicializa a nulo los punteros
     */
     UIManager();
 
+    /*
+    * @brief Crea las funciones principales
+    */
+    void createMainFunctions();
 
 public:
     /*
@@ -94,6 +104,10 @@ public:
     * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
+    /*
+    * 
+    */
+    bool initConfig() override;
     /*
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL
@@ -144,5 +158,19 @@ public:
     * @brief Devuelve el identificador de la textura de una imagen
     */
     ImTextureID getTextureId(const std::string& name);
+
+    /*
+    * @brief Establece una funcion a partir de su nombre
+    * @param functionName Nombre de la funcion
+    * @param function Funcion
+    */
+    void setFunction(const std::string& functionName, std::function<void()> function);
+
+    /*
+    * @brief Devuelve la funcion definida a partir de su nombre
+    * @param functionName Nombre de la funcion
+    * @return Funcion definida, nullptr si no existe
+    */
+    std::function<void()> getFunction(const std::string& functionName);
 };
 }

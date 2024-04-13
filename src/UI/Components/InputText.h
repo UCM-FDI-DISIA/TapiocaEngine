@@ -26,11 +26,6 @@ private:
     Vector4 bgColor;                       // Color de fondo de la caja de texto
     ImGuiInputTextFlags flags;             // Flags de la caja de texto
 
-    /*
-    * @brief Diccionario que contiene las funciones que se ejecutan cuando se hace ENTER en la caja de texto
-    */
-    std::unordered_map<std::string, std::function<void()>> inputTextFunctions;
-
 public:
     COMPONENT_ID("InputText")
 
@@ -231,10 +226,5 @@ public:
     * @return Flags de la caja de texto
 	*/
     inline ImGuiInputTextFlags getFlags() const { return flags; }
-
-    /*
-    * @brief Crea las funciones de la caja de texto
-    */
-    void createInputTextFunctions();
 };
 }
