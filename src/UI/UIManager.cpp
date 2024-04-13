@@ -93,16 +93,19 @@ bool UIManager::initConfig() {
     EntryPointGetFunctions getFunctions =
         (EntryPointGetFunctions)GetProcAddress(DynamicLibraryLoader::module, "getFunctions");
     if (getFunctions == nullptr)
-        logError("SceneLoader: La DLL del juego no tiene la funcion \"getFunctions\". No se creará ninguna funcion.\n");
+        logError("SceneLoader: La DLL del juego no tiene la funcion \"getFunctions\". No se creara ninguna funcion.\n");
 
     EntryPointGetFunctions getFunctionsCast = reinterpret_cast<EntryPointGetFunctions>(getFunctions);
     if (getFunctionsCast != nullptr) {
-        std::vector<std::pair<std::string, std::function<void()>>> gameFunctions = getFunctionsCast();
-        for (auto f : gameFunctions)
-            setFunction(f.first, f.second);
+        // Obtiene las funciones del juego
+        Function gameFunctions[MAX_FUNCTIONS];
+        int numberGameFunctions = getFunctionsCast(gameFunctions, MAX_FUNCTIONS);
+        for (int i = 0; i < numberGameFunctions; ++i) {
+            setFunction(gameFunctions[i].functionName, gameFunctions[i].function);
+        }
     }
     else
-        logError("SceneLoader: getFunctions devolvio un puntero nulo.\n");
+        logError("SceneLoader: getFunctions devolvio un puntero nulo. No se creara ninguna funcion.\n");
 
     return true;
 }

@@ -77,6 +77,7 @@ private:
     */
     std::unordered_map<std::string, std::function<void()>> functions;
 
+    static constexpr int MAX_FUNCTIONS = 100;   // Maximo de funciones
 
     /*
     * @brief Inicializa a nulo los punteros
