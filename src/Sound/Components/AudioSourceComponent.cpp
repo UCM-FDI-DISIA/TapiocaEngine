@@ -57,5 +57,24 @@ void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-void AudioSourceComponent::playSound() { }
+//void AudioSourceComponent::playSound() { } en verdad con un set pause false ya suena
+void AudioSourceComponent::pause(bool p) { 
+    ispaused = p;
+    mySource->setPaused(p);
+}
+void AudioSourceComponent::loop(bool l) { 
+    islooping = l;
+    mySource->setLooped(l);
+}
+void AudioSourceComponent::setVolume(float v) { 
+    if (v > 1.0f) {
+        v = 1.0f;
+    }
+    else if (v < 0.0f) {
+        v = 0.0f;
+    }
+    volumen = v;
+    mySource->setVolume(v);
+       
+}
 }

@@ -41,5 +41,6 @@ public:
     void playSound();
     void pause(bool p);
     void loop(bool l);
+    void setVolume(float v);
 };
 }
