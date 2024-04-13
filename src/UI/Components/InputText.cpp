@@ -116,11 +116,14 @@ void InputText::render() const {
     // Establece el color de la caja de texto
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(bgColor.x, bgColor.y, bgColor.z, bgColor.w));
 
-    if (ImGui::InputText("##", getBuffer(), getBufferSize(), getFlags())) {
+    if (ImGui::InputText("##", buffer, bufferSize, flags)) {
         if (ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter)) {
-            getOnTextEntered()();
+            onTextEntered();
         }
     }
+
+    // Si el buffer esta vacio, se pone el texto del placeholder
+    if (buffer[0] == '\0') strcpy_s(buffer, bufferSize, placeHolderText.c_str());
 
     // Pop para WindowBg, el color del texto y el color de fondo
     ImGui::PopStyleColor(3);
