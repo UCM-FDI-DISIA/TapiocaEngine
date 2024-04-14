@@ -13,7 +13,7 @@ namespace Tapioca {
 
 Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f) { }
 
-Animator::~Animator() { }
+Animator::~Animator() { delete anim; }
 
 bool Animator::initComponent(const CompMap& variables) {
     if (!setValueFromMap(speed, "playbackSpeed", variables)) speed = 1.f;
