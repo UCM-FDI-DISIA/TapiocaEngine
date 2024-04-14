@@ -173,5 +173,11 @@ public:
     * @return Funcion definida, nullptr si no existe
     */
     std::function<void()> getFunction(const std::string& functionName);
+
+    /*
+    * @brief Elimina una funcion a partir de su nombre
+    * @param functionName Nombre de la funcion
+    */
+    void removeFunction(const std::string& functionName);
 };
 }

@@ -156,13 +156,9 @@ void Button::render() const {
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(normalColor.x, normalColor.y, normalColor.z, normalColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(activeColor.x, activeColor.y, activeColor.z, activeColor.w));
-    // Establece el ancho de envoltura para el texto del boton
-    ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + buttonSize.x);
-    // -1, -1 para que el boton se ajuste al tamano de la ventana
+
     if (ImGui::Button(text, buttonSize)) onClick();
 
-    // Pop para el ancho de envoltura
-    ImGui::PopTextWrapPos();
     // Pop para WindowBg, los colores de los estados del boton y el color del texto
     ImGui::PopStyleColor(5);
     // Pop para la fuente del texto

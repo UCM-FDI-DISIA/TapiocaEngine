@@ -52,6 +52,7 @@ UIManager::~UIManager() {
     renderListener = nullptr;
 
     fonts.clear();
+    functions.clear();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -238,5 +239,12 @@ std::function<void()> UIManager::getFunction(const std::string& functionName) {
     if (functions.contains(functionName)) return functions[functionName];
     logInfo(("UIManager: No existe una funcion con el nombre \"" + functionName + "\".").c_str());
     return nullptr;
+}
+
+void UIManager::removeFunction(const std::string& functionName) {
+    if (functions.contains(functionName)) functions.erase(functionName);
+    else
+        logInfo(("UIManager: No existe una funcion con el nombre \"" + functionName + "\". No se elimino la funcion")
+                    .c_str());
 }
 }
