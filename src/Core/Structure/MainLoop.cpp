@@ -101,15 +101,21 @@ void MainLoop::start() {
 }
 
 void MainLoop::update() {
-    for (auto sc : sceneBuffer) {
-        auto aux = loadedScenes.insert({sc->getName(), sc});
-        if (!aux.second) Tapioca::logError("[MainLoop]: No se ha cargado la escena porque ya existe");
-        else {
-            sc->awake();
-            sc->start();
+    // Asegura que todas las escenas se carguen en el mismo
+    // ciclo, aunque se creen nuevas escenas al cargar otras
+    while (!sceneBuffer.empty()) {
+        auto auxBuffer = sceneBuffer;
+        sceneBuffer.clear();
+
+        for (auto sc : auxBuffer) {
+            auto loadedSc = loadedScenes.insert({sc->getName(), sc});
+            if (!loadedSc.second) Tapioca::logError("[MainLoop]: No se ha cargado la escena porque ya existe");
+            else {
+                sc->awake();
+                sc->start();
+            }
         }
     }
-    sceneBuffer.clear();
 
     for (auto mod : modules)
         mod->update(deltaTime);
