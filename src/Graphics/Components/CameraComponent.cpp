@@ -71,7 +71,7 @@ void CameraComponent::awake() {
 
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     node = graphicsManager->createNode();
-    camera = graphicsManager->createCamera(node, "Camera " + zOrder);
+    camera = graphicsManager->createCamera(node, "Camera " + std::to_string(zOrder));
     viewport = graphicsManager->createViewport(camera, zOrder);
 
     if (direction != Vector3(0.0f, 0.0f, 0.0f)) {

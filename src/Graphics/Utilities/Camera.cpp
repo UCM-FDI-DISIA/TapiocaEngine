@@ -12,7 +12,6 @@
 #include "RenderNode.h"
 
 namespace Tapioca {
-
 Camera::Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
                const Vector3 targetToLook, const float nearDist, const float farDist, const bool autoAspectRatio,
                const float aspectRatio)

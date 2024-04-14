@@ -82,9 +82,6 @@ void Scene::render() const {
         for (auto obj : it->second)
             obj->render();
     }
-
-    /*for (auto obj : objects)
-        obj->render();*/
 }
 
 void Scene::awake() {
