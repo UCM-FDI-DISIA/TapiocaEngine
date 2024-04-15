@@ -6,12 +6,13 @@
 struct lua_State;
 
 namespace Tapioca {
+    // TODO: Revisar (pero mas importante)
 class TAPIOCA_API LuaRegistry { 
 private:
     lua_State* L;
 
 public:
-    LuaRegistry();
+    LuaRegistry(lua_State* L);
 
     template<typename TClass, typename TFunc>
     void registerFunction(std::string className, std::string functionName, TFunc function) {

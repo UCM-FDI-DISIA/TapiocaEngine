@@ -16,6 +16,7 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Bridge\LuaRegistry.h" />
+    <ClInclude Include="..\..\src\Bridge\VariantStack.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

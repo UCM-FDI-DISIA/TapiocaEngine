@@ -19,6 +19,7 @@ public:
     LuaComponent(luabridge::LuaRef* objectTable);
     ~LuaComponent();
     bool initComponent(const CompMap& variables) override;
+    void start() override;
 };
 
 class TAPIOCA_API LuaComponentBuilder : public ComponentBuilder {
@@ -26,7 +27,7 @@ private:
     luabridge::LuaRef* classTable;
 
 public:
-    LuaComponentBuilder(std::string name);
+    LuaComponentBuilder(std::string name, luabridge::LuaRef* table);
     ~LuaComponentBuilder();
 
     Component* createComponent() override;

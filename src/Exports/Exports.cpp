@@ -10,6 +10,7 @@
 #include "PhysicsManager.h"
 #include "UIManager.h"
 #include "SoundManager.h"
+#include "LuaManager.h"
 
 // Componentes
 #include "Structure/BasicBuilder.h"
@@ -90,6 +91,9 @@ static void createModules(Tapioca::MainLoop* mainLoop) {
 
     sound = Tapioca::SoundManager::create();
     mainLoop->addModule(sound);
+
+    lua = Tapioca::LuaManager::create();
+    mainLoop->addModule(lua);
 
     // Importante: UI tiene que suscribirse antes que input
     // para ignorar eventos de input que interactuen con la UI

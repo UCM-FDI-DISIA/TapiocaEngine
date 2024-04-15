@@ -11,6 +11,7 @@ class GraphicsManager;
 class PhysicsManager;
 class UIManager;
 class SoundManager;
+class LuaManager;
 
 MainLoop* mainLoop;
 WindowManager* window;
@@ -21,6 +22,7 @@ GraphicsManager* graphics;
 PhysicsManager* physics;
 UIManager* ui;
 SoundManager* sound;
+LuaManager* lua;
 
 TAPIOCA_API void initEngine();
 TAPIOCA_API void deleteEngine();

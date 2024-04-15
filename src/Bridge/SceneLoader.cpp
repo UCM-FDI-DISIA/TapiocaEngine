@@ -110,7 +110,10 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
         std::cout << "\tGameObject: " << gameObjectName << "\n";
 #endif
         int zIndex = 0;
-        if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) return false;
+        if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+            delete gameObject;
+            return false;
+        }
 
         lua_pop(luaState, 1);
     }

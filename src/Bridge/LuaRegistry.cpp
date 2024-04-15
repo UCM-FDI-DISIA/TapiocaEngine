@@ -2,8 +2,7 @@
 #include "LuaManager.h"
 
 namespace Tapioca {
-LuaRegistry::LuaRegistry() {
-	L = LuaManager::instance()->getLuaState();
-    //luabridge::
+LuaRegistry::LuaRegistry(lua_State* L) : L(L) {
+	
 }
 }

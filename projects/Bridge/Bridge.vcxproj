@@ -101,6 +101,7 @@
     <ClInclude Include="..\..\src\Bridge\LuaManager.h" />
     <ClInclude Include="..\..\src\Bridge\LuaRegistry.h" />
     <ClInclude Include="..\..\src\Bridge\SceneLoader.h" />
+    <ClInclude Include="..\..\src\Bridge\VariantStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">

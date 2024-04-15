@@ -32,6 +32,6 @@ public:
     void loadBase();
 
     bool loadScript(const std::filesystem::path& path);
-    void loadScripts();
+    bool loadScripts();
 };
 }
