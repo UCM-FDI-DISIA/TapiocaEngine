@@ -3,6 +3,11 @@
 #include "Utilities/Singleton.h"
 
 struct lua_State;
+namespace std {
+namespace filesystem {
+    class path;
+}
+}
 
 namespace Tapioca {
 class LuaRegistry;
@@ -23,5 +28,10 @@ public:
     lua_State* getLuaState() const { return L; }
 
     LuaRegistry* getRegistry() const { return reg; }
+
+    void loadBase();
+
+    bool loadScript(const std::filesystem::path& path);
+    void loadScripts();
 };
 }

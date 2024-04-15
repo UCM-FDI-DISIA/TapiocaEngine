@@ -13,7 +13,13 @@ LuaComponent::~LuaComponent() {
 }
 
 bool LuaComponent::initComponent(const CompMap& variables) {
-    luabridge::LuaResult result = (*objectTable)["initComponent"](variables);
+    (*objectTable)["variables"] = luabridge::newTable(LuaManager::instance()->getLuaState());
+
+    for (auto variable : variables) {
+        (*objectTable)["variables"][variable.first] = variable.second;
+    }
+
+    luabridge::LuaResult result = (*objectTable)["initComponent"]((*objectTable),variables);
     if (result.hasFailed()) {
         logError(("LuaComponent " + name + ": Ha ocurrido un error durante initComponent [" +
                   std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())

@@ -18,7 +18,6 @@ public:
 
     LuaComponent(luabridge::LuaRef* objectTable);
     ~LuaComponent();
-
     bool initComponent(const CompMap& variables) override;
 };
 
