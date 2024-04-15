@@ -57,14 +57,38 @@ float Quaternion::magnitude() {
     return sqrtf(scalar * scalar + vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 }
 
-Vector3 Quaternion::euler() {
-    // normalize();
+Vector3 Quaternion::taitBryan() {
+    
+    normalize();
 
+
+    //hay 2 excepciones causadas por el gimbal lock cuando la rotacion se aproxima al polo nrote o al sur 
+    // y = +-90 , establecemos nuestro limite en 0.4999 radianes que correcponde a un valor de corte de aproximadamente 87 grados 
+    // explicacion detallada: https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToEuler/
+
+    float glimlockTestValue = vector.x * vector.y + vector.z * scalar;
+    if (glimlockTestValue > 0.499) {   // excepcion  en el polo norte
+        float x = 2 * atan2(vector.x, scalar);
+        float y  = PI / 2;
+       float z = 0;
+        return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
+    }
+    if (glimlockTestValue < -0.499) {   // excepcion en el polo sur
+        float x = -2 * atan2(vector.x, scalar);
+       float y  = -PI / 2;
+       float z= 0;
+       return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
+    }
     // usamos los angulos de los ejes con el vector del cuaternion
     // asume un cuaternion normalizado
     float sinx = 2.0f * (scalar * vector.x + vector.y * vector.z);
     float cosx = 1.0f - 2.0f * (vector.x * vector.x + vector.y * vector.y);
+    
     float x = atan2f(sinx, cosx);
+   // x = round(x);
+   // std::cout << x;
+    //Tapioca::Vector3 ejeX = Tapioca::Vector3(1, 0, 0);
+    //float x = sinf(angle / 2) * cos(ejeX.dot(vector));
 
     float siny = sqrtf(1.0f + 2.0f * (scalar * vector.y - vector.x * vector.z));
     float cosy = sqrtf(1.0f - 2.0f * (scalar * vector.y - vector.x * vector.z));
@@ -74,10 +98,20 @@ Vector3 Quaternion::euler() {
     float sinz = 2.0f * (scalar * vector.z + vector.x * vector.y);
     float cosz = 1.0f - 2.0f * (vector.y * vector.y + vector.z * vector.z);
     float z = atan2f(sinz, cosz);
-
+    // x =0;
+    //y = 1.6;
+    //z = 1.6;
     // creo que esta bien para un sistema diestro como todo lo demas ,
     // si no puede que haya que devolver -z
     return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
+}
+
+Vector3 Quaternion::eulerAxis() { 
+     normalize();
+    Vector3 axis = vector / vector.magnitude();
+
+    return axis * ((2.0f * acosf(scalar) * (180.0f / PI)));
+
 }
 
 Quaternion Quaternion::operator*(const Quaternion rhs) {

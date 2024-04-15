@@ -67,8 +67,12 @@ public:
     * @brief Devuelve un vector con la rotacion en angulos sexadecimales  pitch , yaw, roll (x,y,z) en un sistema y up
     * @return Vector con la rotacion en angulos sexadecimales
     */
-    Vector3 euler();
+    Vector3 taitBryan(); //puede que en verdad sea Tait-Bryan
 
+    /*
+    *  @brief  devuelve rotacion absoluta en 3 ejes de rotaticon (x,y,z)
+    */
+    Vector3 eulerAxis();
     /*
     * @brief Multiplica el cuaternion por rhs.
     * Para rotar un punto se puede hacer q * p * q(conjugado).
