@@ -1,9 +1,10 @@
 #pragma once
 #include "BaseWidget.h"
+#include "Structure/Component.h"
 #include "Core.h"
 
 namespace Tapioca {
-class TAPIOCA_API ProgressBar : public BaseWidget { 
+class TAPIOCA_API ProgressBar : public BaseWidget, public Component  { 
 private:
     //valor entre 0 y 1 que indica como de llena esta la barra
     float progress = 0;
@@ -14,25 +15,45 @@ private:
     //width y heitgh
     Vector2 size;
     std::string backgroundtext;
+    std::string name;
 
 
 public:
+    COMPONENT_ID("ProgressBar")
+    //@brief constructora vacia
+    ProgressBar();
+    //@brief destructora por defecto
+    ~ProgressBar();
     /*
-    * @brief constructora de barra de progreso toma como argumentos:
-    * @param initialprog initialprog valor entre 0 y 1 que establece como de llena est ala barra
-    * @param col el color de llenado de la barra r g b a
-    * @param pos la posicion en pantalla
-    * @param siz las dimensiones de la barra
-    * @param backtext texto que apareceria de fondo en la barra
+    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * @param variables unordered_map con los parametros iniciales
     */
-    ProgressBar(float initialprog, Vector4 col, Vector2 pos, Vector2 siz, std::string backtext = "");
-    
-    float getProgress() { return progress; }
-    void addProgress(float p) { progress += p; };
+    virtual bool initComponent(const CompMap& variables) override;
+    /*
+    * @brief Asigna el transform del objeto al texto e inicializa la fuente del texto
+    */
+    virtual void start() override;
+    /*
+    * @brief Metodo que se usa para renderizar 
+    */
+    virtual void render() const override;
 
+    /*
+    * @brief devuelve el progreso actual
+    */
+    float getProgress() { return progress; }
+    /*
+    * @brief aumenta en p el progreso
+    */
+    void addProgress(float p);
+
+    /*
+    *  @brief devuelve el color
+    */
     Vector4 getColor() { return color; }
-    Vector2 getPosition() { return position; }
-    Vector2 getSize() { return size; }
+    /*
+    * @brief devuelve el texto de fondo
+    */
     std::string getText() { return backgroundtext; }
     
 };

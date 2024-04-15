@@ -5,6 +5,7 @@
 
 #pragma once
 #include "BaseWidget.h"
+#include "Structure/Component.h"
 #include "Core.h"
 
 namespace Ogre {
@@ -12,7 +13,7 @@ class GLTexture;
 }
 
 namespace Tapioca {
-class TAPIOCA_API Image : public BaseWidget {
+class TAPIOCA_API Image : public BaseWidget, public Component {
 private:
     //informacion de a textura que vamos a cargar
     std::string sourcefile;
@@ -25,19 +26,33 @@ private:
     Tapioca::Vector2 size;
     //x e y
     Tapioca::Vector2 position;
+    //nombre para la ventana de ImGui
+    std::string name;
 
 public:
+    COMPONENT_ID("ImageUI")
+    //@brief constructora vacia
+    Image();
+    //@brief destructora por defecto
+    ~Image();
     /*
-    * @brief Constructora de imagen para interfaz que toma com parametros
-    * @param file la ruta al archivo de la imagen qeu qeuremos qeu se vea
-    * @param widthandheigth un vector con las dimensiones con las que deseamos mostrar la imagen
-    * @param xandy un vector con la posicion en pantalla de la imagen 
+    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * @param variables unordered_map con los parametros iniciales
     */
-    Image(std::string file, Tapioca::Vector2 widthandheigth, Tapioca::Vector2 xandy);
-    ~Image() { }
-
+    virtual bool initComponent(const CompMap& variables) override;
+    /*
+    * @brief Asigna el transform del objeto al texto e inicializa la fuente del texto
+    */
+    virtual void start() override;
+    /*
+    * @brief Metodo que se usa para renderizar 
+    */
+    virtual void render() const override;
+   
+    /*
+    * @brief devuelve el identificador de la textura en el buffer de OpenGl
+    */
     uint32_t getID() { return textureID; }
-    Tapioca::Vector2 getPosition() { return position; }
-    Tapioca::Vector2 getSize(){return size;}
+   
 };
 }

@@ -33,6 +33,10 @@
 #include "Components/InputText.h"
 #include "Components/Text.h"
 #include "Components/ImageTextButton.h"
+#include "Components/DropBox.h"
+#include "Components/Image.h"
+#include "Components/ProgressBar.h"
+#include "Components/Slider.h"
 
 //Sound
 #include "Components/AudioListenerComponent.h"
@@ -118,6 +122,10 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<InputText>());
     manager->addBuilder(new BasicBuilder<Text>());
     manager->addBuilder(new BasicBuilder<ImageTextButton>());
+    manager->addBuilder(new BasicBuilder<DropBox>());
+    manager->addBuilder(new BasicBuilder<Image>());
+    manager->addBuilder(new BasicBuilder<ProgressBar>());
+    manager->addBuilder(new BasicBuilder<Slider>());
 
     //Sound
     manager->addBuilder(new BasicBuilder<AudioListenerComponent>());
