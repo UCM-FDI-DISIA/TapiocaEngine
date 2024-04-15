@@ -1,7 +1,7 @@
 #pragma once
 #include "defs.h"
-#include <LuaBridge.h>
 #include <lua.hpp>
+#include <LuaBridge.h>
 
 struct lua_State;
 
