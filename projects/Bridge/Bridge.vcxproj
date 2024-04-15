@@ -90,10 +90,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Bridge\Components\LuaComponent.cpp" />
+    <ClCompile Include="..\..\src\Bridge\LuaManager.cpp" />
+    <ClCompile Include="..\..\src\Bridge\LuaRegistry.cpp" />
     <ClCompile Include="..\..\src\Bridge\SceneLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Bridge\Bridge.h" />
+    <ClInclude Include="..\..\src\Bridge\Components\LuaComponent.h" />
+    <ClInclude Include="..\..\src\Bridge\LuaManager.h" />
+    <ClInclude Include="..\..\src\Bridge\LuaRegistry.h" />
     <ClInclude Include="..\..\src\Bridge\SceneLoader.h" />
   </ItemGroup>
   <ItemGroup>
