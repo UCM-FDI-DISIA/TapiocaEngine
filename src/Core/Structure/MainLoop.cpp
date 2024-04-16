@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "DynamicLibraryLoader.h"
 #include "checkML.h"
+#include "GameObject.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<MainLoop>;
@@ -13,9 +14,9 @@ MainLoop* Singleton<MainLoop>::instance_ = nullptr;
 MainLoop::MainLoop() : finish(false), deltaTime(0), gameInitialized(false) { }
 
 MainLoop::~MainLoop() {
-    for (auto sc : sceneBuffer) 
+    for (auto sc : sceneBuffer)
         delete sc;
-    
+
     sceneBuffer.clear();
 
     for (auto s : loadedScenes)
@@ -89,6 +90,7 @@ void MainLoop::run() {
         // TEMPORAL
         loadingGame(deltaTime);
 
+        handleDelayedEvents();
         update();
         refresh();
         render();
@@ -149,11 +151,29 @@ void MainLoop::refresh() {
         if (s.second->isActive()) s.second->refresh();
 }
 
+void MainLoop::handleDelayedEvents() {
+    std::vector<Event> aux_events;
+    std::swap(delayedEvents, aux_events);
+    for (auto& e : aux_events) {
+        if (!e.global && e.emisor!=nullptr) {
+            e.emisor->handleEvent(e.id, e.info);
+        }
+        else {
+            for (auto s : loadedScenes) {
+                if (s.second->isActive()) s.second->handleEvent(e.id, e.info);
+            }
+        }
+    }
+    aux_events.clear();
+}
+
 void MainLoop::addModule(Module* const m) { modules.push_back(m); }
 
-void MainLoop::pushEvent(std::string const& id, void* info) {
-    for (auto s : loadedScenes)
-        if (s.second->isActive()) s.second->handleEvent(id, info);
+void MainLoop::pushEvent(Event const& e, bool const delay) {
+    if (delay) delayedEvents.emplace_back(e);
+    else
+        for (auto s : loadedScenes)
+            if (s.second->isActive()) s.second->handleEvent(e.id, e.info);
 }
 
 std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { return loadedScenes; }
@@ -161,7 +181,8 @@ std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { retu
 Scene* MainLoop::getScene(std::string sc) {
     auto aux = loadedScenes.find(sc);
     if (aux != loadedScenes.end()) return aux->second;
-    else return nullptr;
+    else
+        return nullptr;
 }
 
 void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }

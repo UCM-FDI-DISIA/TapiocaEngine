@@ -41,9 +41,10 @@ std::vector<Component*> GameObject::getComponents(std::string const& id) {
     return out;
 }
 
-void GameObject::pushEvent(std::string const& id, void* info, const bool global) {
-    if (global) scene->pushEvent(id, info);
-    else handleEvent(id, info);
+void GameObject::pushEvent(std::string const& id, void* info, const bool global, const bool delay) {
+    if (global || delay) scene->pushEvent({this, id, info, global}, delay);
+    else
+        handleEvent(id, info);
 }
 
 void GameObject::deleteCompVector(Component* const comp) {

@@ -13,6 +13,7 @@ class Module;
 class TAPIOCA_API MainLoop : public Singleton<MainLoop> {
 private:
     friend Singleton<MainLoop>;
+    std::vector<Event> delayedEvents;
     // warning C4251 'Tapioca::MainLoop::modules' :
     // class 'std::vector<Tapioca::Module *,std::allocator<Tapioca::Module *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
@@ -62,7 +63,11 @@ private:
     /*
     * @brief Borra los objetos y componentes muertos y borra las escenas q se han marcado como pendientes de eliminar
     */
-    void refresh();
+    void refresh(); 
+    /*
+    * @brief envia los mensajes retrasados
+    */
+    void handleDelayedEvents();
     /*
     * @brief Constructora de la clase MainLoop
     */
@@ -130,7 +135,7 @@ public:
     /*
     * @brief Envia un evento a las escenas
     */
-    void pushEvent(std::string const& id, void* info);
+    void pushEvent(Event const& e, bool const delay=false);
 
     /*
     * @brief Devuelve el nombre de la escena principal

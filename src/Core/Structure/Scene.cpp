@@ -52,7 +52,9 @@ void Scene::handleEvent(std::string const& id, void* info) {
     }
 }
 
-void Scene::pushEvent(std::string const& id, void* info) { MainLoop::instance()->pushEvent(id, info); }
+void Scene::pushEvent(Event const& e,bool const delay) {
+    MainLoop::instance()->pushEvent(e,delay);
+}
 
 
 std::vector<GameObject*> Scene::getObjects() const { return objects; }
@@ -112,10 +114,10 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
     for (auto it = layers.begin(); it != layers.end(); ++it) {
         for (GameObject* o : it->second) {
             if (o == obj) {
-				it->second.erase(std::remove(it->second.begin(), it->second.end(), obj), it->second.end());
-				break;
-			}
-		}
+                it->second.erase(std::remove(it->second.begin(), it->second.end(), obj), it->second.end());
+                break;
+            }
+        }
     }
     // Lo aniade a la nueva capa
     layers[zIndex].push_back(obj);

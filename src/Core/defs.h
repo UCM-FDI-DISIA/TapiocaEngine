@@ -9,7 +9,15 @@
 #include <iostream>
 #endif
 
+#include <string>
 namespace Tapioca {
+class GameObject;
+struct Event {
+    GameObject* emisor;
+    std::string const id;
+    void* info;
+    bool global;
+};
 inline void logInfo(const char* message) {
 #ifdef _DEBUG
 #ifdef TAPIOCA_EXPORTS
@@ -37,4 +45,4 @@ inline void logError(const char* message) {
 #endif   // TAPIOCA_EXPORTS
 #endif   // _DEBUG
 }
-}
+};

@@ -69,7 +69,7 @@ public:
     * @param info Puntero a void para pasar parametros
     * @param global Indica si el evento debe ser enviado glabalmente
     */
-    void pushEvent(std::string const& id, void* info, const bool global = true);
+    void pushEvent(std::string const& id, void* info, const bool global = true, const bool delay = false);
 
     /*
     * @brief Da valor a una variable declarada en un CompMap

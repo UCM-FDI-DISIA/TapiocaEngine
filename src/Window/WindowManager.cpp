@@ -73,7 +73,7 @@ void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod);
 void WindowManager::sendEvent(std::string const& id, void* info) {
     if (id == "ev_CLOSE") mainLoop->exit();
     else
-        mainLoop->pushEvent(id, info);
+        mainLoop->pushEvent({nullptr, id, info,true});
 }
 
 
