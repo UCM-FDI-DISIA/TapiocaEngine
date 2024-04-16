@@ -177,6 +177,8 @@ void MainLoop::deleteScene(std::string const& sc) {
 
 void MainLoop::loadScene(Scene* const sc) { 
     if (sc != nullptr) {
+        sc->awake();
+        sc->start();
         sceneBuffer.push_back(sc);
     }
 }
