@@ -89,6 +89,9 @@ Scene* SceneLoader::loadScene(std::string const& sceneName) {
     mainLoop->loadScene(scene);
     lua_close(luaState);
     logInfo("SceneLoader: Escena cargada correctamente.");
+
+    scene->awake();
+    scene->start();
     return scene;
 }
 
