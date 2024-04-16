@@ -5,6 +5,7 @@
 #include <filesystem>
 #include "Components/LuaComponent.h"
 #include "Structure/FactoryManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LuaManager* LuaManager::instance_ = nullptr;
@@ -35,8 +36,7 @@ bool LuaManager::init() {
 }
 
 void LuaManager::loadBase() {
-    // TODO Cambiar nombre (xD)
-    const char* mequieromorir = R"(comp = {
+    const char* base = R"(comp = {
     new = function(self)
         local newObj = {}
         setmetatable(newObj, { __index = self })
@@ -56,7 +56,7 @@ void LuaManager::loadBase() {
     alive = true,
     active = true
     })";
-    if (luaL_dostring(L, mequieromorir) != 0) {
+    if (luaL_dostring(L, base) != 0) {
         logError(("LuaManager: Error al cargar base de LuaComponent: " + std::string(lua_tostring(L, -1))).c_str());
     }
 }
@@ -71,11 +71,6 @@ bool LuaManager::loadScript(const std::filesystem::path & path) {
     luabridge::LuaRef* table = new luabridge::LuaRef(luabridge::getGlobal(L, "comp"));
     std::string name = path.filename().string();
     name = name.substr(0, name.length() - 4);
-    // TODO: Mirar si se puede quitar esto
-    luabridge::getGlobalNamespace(L)
-        .beginNamespace("Components")
-        .addVariable(name.c_str(), table)
-        .endNamespace();
     FactoryManager::instance()->addBuilder(new LuaComponentBuilder(name, table)); // Desde 18:40 a 21:15, Desde 22:22 a 00:45
     return true;
 }

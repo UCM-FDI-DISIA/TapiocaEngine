@@ -11,7 +11,7 @@ public:
         this->id = new char[len];
         strcpy_s(this->id, len, id);
     }
-    ~ComponentBuilder() {
+    virtual ~ComponentBuilder() {
         delete[] id;
     }
     /*

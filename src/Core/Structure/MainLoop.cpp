@@ -24,10 +24,10 @@ MainLoop::~MainLoop() {
 
     loadedScenes.clear();
 
-    DynamicLibraryLoader::freeModule();
-
     for (Module* mod : modules)
         delete mod;
+
+    DynamicLibraryLoader::freeModule();
 }
 
 bool MainLoop::init() {
