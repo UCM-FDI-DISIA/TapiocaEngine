@@ -7,13 +7,14 @@
 
 #ifdef _DEBUG
 #include <iostream>
+#include <string>
 #endif
 
 namespace Tapioca {
 class GameObject;
 struct Event {
     GameObject* emisor;
-    std::string const& id;
+    std::string const id;
     void* info;
     bool global;
 };
