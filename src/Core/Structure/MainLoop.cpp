@@ -110,10 +110,6 @@ void MainLoop::update() {
         for (auto sc : auxBuffer) {
             auto loadedSc = loadedScenes.insert({sc->getName(), sc});
             if (!loadedSc.second) Tapioca::logError("[MainLoop]: No se ha cargado la escena porque ya existe");
-            else {
-                sc->awake();
-                sc->start();
-            }
         }
     }
 
@@ -179,7 +175,13 @@ void MainLoop::deleteScene(std::string const& sc) {
     }
 }
 
-void MainLoop::loadScene(Scene* const sc) { sceneBuffer.push_back(sc); }
+void MainLoop::loadScene(Scene* const sc) { 
+    if (sc != nullptr) {
+        sc->awake();
+        sc->start();
+        sceneBuffer.push_back(sc);
+    }
+}
 
 void MainLoop::loadingGame(uint64_t deltaTime) {
     static uint64_t timeSinceStart = 0;
