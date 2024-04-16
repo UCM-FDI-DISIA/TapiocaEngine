@@ -7,9 +7,9 @@
 
 #ifdef _DEBUG
 #include <iostream>
-#include <string>
 #endif
 
+#include <string>
 namespace Tapioca {
 class GameObject;
 struct Event {
