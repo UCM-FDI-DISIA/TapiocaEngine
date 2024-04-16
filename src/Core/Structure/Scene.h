@@ -29,7 +29,7 @@ private:
     // FALTA WARNING C4251 PARA name
     std::string name;
     // FALTA WARNING C4251 PARA layers
-    std::map<int, std::vector<GameObject*>> layers;         // Objetos que tiene la escena por orden de capa
+    std::map<int, std::vector<GameObject*>> layers;   // Objetos que tiene la escena por orden de capa
 
     bool active;
 
@@ -99,7 +99,7 @@ public:
     * @param info Puntero a void para pasar parametros
     * @param global Indica si el evento debe ser enviado glabalmente
     */
-    void pushEvent(std::string const& id, void* info);
+    void pushEvent(Event const& e, bool const delay);
 
     /*
     * @brief Devuelve el nombre de la escena

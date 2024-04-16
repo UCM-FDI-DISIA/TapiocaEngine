@@ -34,26 +34,20 @@ private:
     */
     void render() const;
     /*
-    * @brief Procesa un evento recibido
-    * @param id String que indica el tipo de evento
-    * @param info Parametros del mensaje, cada evento gestiona sus propios parametros
-    */
-    void handleEvent(std::string const& id, void* info);
-    /*
     * @brief Elimina las componentes muertas del objeto
     */
     void refresh();
-    
 
-    Scene* scene;           // Escena a la que pertenece el objeto
-    bool alive;             // Indica si se deberia borrar la componente
+
+    Scene* scene;   // Escena a la que pertenece el objeto
+    bool alive;     // Indica si se deberia borrar la componente
     // warning C4251 'Tapioca::GameObject::handler' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string handler;    // Handler del objeto
+    std::string handler;   // Handler del objeto
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -73,7 +67,8 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_multimap<std::string, Component*> components;    // Componentes que tiene el objeto, cada una asociada a una id
+    std::unordered_multimap<std::string, Component*>
+        components;                     // Componentes que tiene el objeto, cada una asociada a una id
     std::vector<Component*> cmpOrder;   // TODO: Hace falta??????
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -88,6 +83,12 @@ public:
     * @brief Destructora de la clase GameObject
     */
     ~GameObject();
+    /*
+    * @brief Procesa un evento recibido
+    * @param id String que indica el tipo de evento
+    * @param info Parametros del mensaje, cada evento gestiona sus propios parametros
+    */
+    void handleEvent(std::string const& id, void* info);
 
     /*
     * @brief Inicializa las componentes del objeto. Se ejecuta antes del start
@@ -136,7 +137,8 @@ public:
     /*
     * @brief Aniade una componente al objeto.
     */
-    template<IsComponent TComp> inline TComp* addComponent(const CompMap& variables = CompMap()) {
+    template<IsComponent TComp>
+    inline TComp* addComponent(const CompMap& variables = CompMap()) {
         TComp* comp = new TComp();
         if (!comp->initComponent(variables)) {
             delete comp;
@@ -157,7 +159,8 @@ public:
     * @brief Devuelve un puntero a una componente del objeto
     * @return Puntero al componente. nullptr si el objeto no contiene la componente
     */
-    template<IsComponent TComp> inline TComp* getComponent() {
+    template<IsComponent TComp>
+    inline TComp* getComponent() {
         auto it = components.find(TComp::id);
         if (it == components.end()) return nullptr;
         return static_cast<TComp*>(it->second);
@@ -172,7 +175,8 @@ public:
     * @return Vector que contiene los punteros de tanto los hijos directos como los indirectos de este objeto
     */
     std::vector<Component*> getComponents(std::string const& id);
-    template<IsComponent TComp> inline std::vector<TComp*> getComponents() {
+    template<IsComponent TComp>
+    inline std::vector<TComp*> getComponents() {
         std::vector<TComp*> out;
 
         for (auto& comp : components) {
@@ -187,6 +191,6 @@ public:
     * @param info Puntero a void para pasar parametros
     * @param global Indica si el evento debe ser enviado glabalmente
     */
-    void pushEvent(std::string const& id, void* info, const bool global = true);
+    void pushEvent(std::string const& id, void* info, const bool global = true, const bool delay=false);
 };
 }
