@@ -43,8 +43,7 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
 }
 
 void DynamicLibraryLoader::freeModule() {
-    if (module != nullptr) {
+    if (module != nullptr)
         FreeLibrary(module);
-    }
 }
 }

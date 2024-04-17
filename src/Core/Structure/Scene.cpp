@@ -56,7 +56,6 @@ void Scene::pushEvent(Event const& e,bool const delay) {
     MainLoop::instance()->pushEvent(e,delay);
 }
 
-
 std::vector<GameObject*> Scene::getObjects() const { return objects; }
 
 GameObject* Scene::getHandler(std::string const& handler) const {

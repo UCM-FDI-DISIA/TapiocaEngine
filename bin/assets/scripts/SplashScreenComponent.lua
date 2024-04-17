@@ -12,7 +12,7 @@ end
 
 function comp:update(deltaTime)
 	if comp.time >= comp.changeTime and not comp.done then
-		if Tapioca.initGame(comp.gameName) then
+		if not Tapioca.initGame(comp.gameName) then
 			Tapioca.exit()
 		end
 		Tapioca.deleteScene(Tapioca.getMainSceneName())

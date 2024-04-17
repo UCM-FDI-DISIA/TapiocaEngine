@@ -17,7 +17,7 @@ end
 
 function comp:update(deltaTime)
 	if comp.time >= 2000 and not comp.done then
-		Tapioca.loadScene("startScene2.lua")
+		Tapioca.loadScene("StartScene2.lua")
 		comp.done = true
 	elseif not comp.done then
 		comp.time = comp.time + deltaTime

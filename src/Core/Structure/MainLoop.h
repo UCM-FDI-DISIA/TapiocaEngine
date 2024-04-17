@@ -39,10 +39,8 @@ private:
     uint64_t deltaTime;                                  // Tiempo transcurrido desde el ultimo tick
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;   // Numero maximo de fixedUpdates
     bool finish;                                         // True si va a terminar la ejecucion, false en caso contrario
-    bool gameInitialized;   // True si el juego ha sido inicializado, false en caso contrario
-    static const uint64_t TIME_TO_INITIALIZE_GAME = 2000;   // Tiempo que se espera para inicializar el juego
 
-    const char* MAIN_SCENE_NAME = "startScene";   // Nombre de la escena principal
+    const char* MAIN_SCENE_NAME = "StartScene";   // Nombre de la escena principal
 
     /*
     * @brief Comienza los modulos
