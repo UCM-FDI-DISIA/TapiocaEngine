@@ -7,7 +7,7 @@
 
 namespace Tapioca {
 LuaComponent::LuaComponent(luabridge::LuaRef* objTable) : objectTable(objTable) {
-
+    
 }
 
 LuaComponent::~LuaComponent() {
@@ -15,8 +15,6 @@ LuaComponent::~LuaComponent() {
 }
 
 bool LuaComponent::initComponent(const CompMap& variables) {
-    lua_State* L = LuaManager::instance()->getLuaState();
-    // TODO: Revisar como se ve variables en Lua
     luabridge::LuaResult result = (*objectTable)["initComponent"]((*objectTable), variables);
     if (result.hasFailed()) {
         logError(("LuaComponent " + name + ": Ha ocurrido un error durante initComponent [" +
@@ -26,12 +24,40 @@ bool LuaComponent::initComponent(const CompMap& variables) {
     return result.wasOk();
 }
 
-void LuaComponent::start() {
-    luabridge::LuaResult result = (*objectTable)["start"]((*objectTable));
+void LuaComponent::awake() { }
+
+void LuaComponent::callSimpleFunction(std::string functionName) {
+    luabridge::LuaResult result = (*objectTable)[functionName]((*objectTable));
     if (result.hasFailed()) {
-        logError(("LuaComponent " + name + ": Ha ocurrido un error durante start [" +
-            std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
-            .c_str());
+        logError(("LuaComponent " + name + ": Ha ocurrido un error durante " + functionName + " [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
+    }
+}
+
+void LuaComponent::start() {
+    callSimpleFunction("start");
+}
+
+void LuaComponent::update(const uint64_t deltaTime) {
+    luabridge::LuaResult result = (*objectTable)["update"]((*objectTable), deltaTime);
+    if (result.hasFailed()) {
+        logError(("LuaComponent " + name + ": Ha ocurrido un error durante update [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
+    }
+}
+
+void LuaComponent::fixedUpdate() {
+    callSimpleFunction("fixedUpdate");
+}
+
+void LuaComponent::handleEvent(std::string const& id, void* info) {
+    luabridge::LuaResult result = (*objectTable)["handleEvent"]((*objectTable), id);
+    if (result.hasFailed()) {
+        logError(("LuaComponent " + name + ": Ha ocurrido un error durante handleEvent [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
     }
 }
 

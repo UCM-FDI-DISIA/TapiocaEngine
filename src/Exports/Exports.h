@@ -30,5 +30,6 @@ TAPIOCA_API void runEngine();
 
 static void createModules(MainLoop* mainLoop);
 static void createEngineBuilders();
+static void registerLuaFunctions();
 void mapInput();
 }

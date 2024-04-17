@@ -10,16 +10,25 @@ namespace Tapioca {
 class TAPIOCA_API LuaRegistry { 
 private:
     lua_State* L;
+    luabridge::LuaRef map;
 
 public:
     LuaRegistry(lua_State* L);
 
-    template<typename TClass, typename TFunc>
+    template<typename TFunc>
     void registerFunction(std::string className, std::string functionName, TFunc function) {
         luabridge::getGlobalNamespace(L)
-            .beginClass<TClass>(className)
+            .beginNamespace("Tapioca")
+            .beginNamespace(className.c_str())
             .addFunction(functionName, function)
-            .endClass();
+            .endNamespace()
+            .endNamespace();
+            
+    }
+
+    template<typename T>
+    T getValueFromLua(std::string name) {
+        return map[name].cast<T>();
     }
 };
 }

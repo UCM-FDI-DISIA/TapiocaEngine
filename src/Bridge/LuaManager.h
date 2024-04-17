@@ -19,6 +19,11 @@ private:
     lua_State* L;
     LuaRegistry* reg;
 
+    void loadBase();
+
+    bool loadScript(const std::filesystem::path& path);
+    bool loadScripts();
+
 public:
     LuaManager();
     ~LuaManager();
@@ -28,10 +33,5 @@ public:
     lua_State* getLuaState() const { return L; }
 
     LuaRegistry* getRegistry() const { return reg; }
-
-    void loadBase();
-
-    bool loadScript(const std::filesystem::path& path);
-    bool loadScripts();
 };
 }

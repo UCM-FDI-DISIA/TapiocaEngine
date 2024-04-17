@@ -52,7 +52,7 @@ scene = {
                     bounciness=0.0
                 },
                 MeshRenderer = {
-                    meshName = "racoon/pirateRaccoon/PirateRacoon.mesh",
+                    meshName = "models/cube.mesh",
                     initRotationX = -90.0,
                     initRotationY = 0.0,
                     initRotationZ = 0.0

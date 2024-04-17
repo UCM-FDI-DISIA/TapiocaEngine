@@ -11,6 +11,7 @@
 #include "UIManager.h"
 #include "SoundManager.h"
 #include "LuaManager.h"
+#include "LuaRegistry.h"
 
 // Componentes
 #include "Structure/BasicBuilder.h"
@@ -54,6 +55,7 @@ void deleteEngine() { delete mainLoop; }
 void runEngine() {
     if (mainLoop->init()) {
         createEngineBuilders();
+        registerLuaFunctions();
 
         // PRUEBAS DE SOUND
         //scenes->loadScene("archivo2.lua");
@@ -134,6 +136,19 @@ static void createEngineBuilders() {
     //Sound
     manager->addBuilder(new BasicBuilder<AudioListenerComponent>());
     manager->addBuilder(new BasicBuilder<AudioSourceComponent>());
+}
+
+static void registerLuaFunctions() {
+    LuaRegistry* reg = lua->getRegistry();
+    
+    luabridge::getGlobalNamespace(lua->getLuaState())
+        .beginNamespace("Tapioca")
+        .addFunction("loadScene", [](std::string name) -> bool {
+            logInfo("loadScene llamado desde Lua");
+            return scenes->loadScene(name) != nullptr;
+        })
+        //.addFunction("", []() -> void {})
+        .endNamespace();
 }
 
 void mapInput() {

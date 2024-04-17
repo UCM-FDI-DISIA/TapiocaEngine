@@ -12,6 +12,8 @@ private:
     luabridge::LuaRef* objectTable;
     std::string name;
 
+    void callSimpleFunction(std::string name);
+
 public:
     // Esto no va a funcionar bien
     COMPONENT_ID("LuaComponent")
@@ -19,7 +21,11 @@ public:
     LuaComponent(luabridge::LuaRef* objectTable);
     ~LuaComponent();
     bool initComponent(const CompMap& variables) override;
+    void awake() override;
     void start() override;
+    void update(const uint64_t deltaTime) override;
+    void fixedUpdate() override;
+    void handleEvent(std::string const& id, void* info) override;
 };
 
 class TAPIOCA_API LuaComponentBuilder : public ComponentBuilder {
