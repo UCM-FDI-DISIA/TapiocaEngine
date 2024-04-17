@@ -11,11 +11,15 @@ AudioSourceComponent::AudioSourceComponent()
       volumen(0.0f), playSpeed(0.0f) { }
 
 AudioSourceComponent::~AudioSourceComponent() {
-    mySource->setPaused(true);
-    delete mySource;
-    mySource = nullptr;
-    delete mySound;
-    mySound = nullptr;
+    if (mySource != nullptr) {
+        mySource->setPaused(true);
+        delete mySource;
+        mySource = nullptr;
+    }
+    if (mySound != nullptr) {
+        delete mySound;
+        mySound = nullptr;
+    }
     myTransform = nullptr;
 }
 
@@ -58,15 +62,15 @@ void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
 }
 
 //void AudioSourceComponent::playSound() { } en verdad con un set pause false ya suena
-void AudioSourceComponent::pause(bool p) { 
+void AudioSourceComponent::pause(bool p) {
     ispaused = p;
     mySource->setPaused(p);
 }
-void AudioSourceComponent::loop(bool l) { 
+void AudioSourceComponent::loop(bool l) {
     islooping = l;
     mySource->setLooped(l);
 }
-void AudioSourceComponent::setVolume(float v) { 
+void AudioSourceComponent::setVolume(float v) {
     if (v > 1.0f) {
         v = 1.0f;
     }
@@ -75,6 +79,5 @@ void AudioSourceComponent::setVolume(float v) {
     }
     volumen = v;
     mySource->setVolume(v);
-       
 }
 }

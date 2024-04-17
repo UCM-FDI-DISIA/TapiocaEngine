@@ -87,9 +87,6 @@ void MainLoop::run() {
             }
         }
 
-        // TEMPORAL
-        loadingGame(deltaTime);
-
         handleDelayedEvents();
         update();
         refresh();
@@ -143,9 +140,16 @@ void MainLoop::refresh() {
     for (auto mod : modules)
         mod->refresh();
 
-    for (Scene* sc : toDelete)
+    for (Scene* sc : toDelete) {
+        loadedScenes.erase(sc->getName());
         delete sc;
+    }
     toDelete.clear();
+
+    if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
+        exit();
+        logWarn("MainLoop: No hay escenas en el juego. Se va a cerrar la aplicacion.");
+    }
 
     for (auto s : loadedScenes)
         if (s.second->isActive()) s.second->refresh();
@@ -155,7 +159,7 @@ void MainLoop::handleDelayedEvents() {
     std::vector<Event> aux_events;
     std::swap(delayedEvents, aux_events);
     for (auto& e : aux_events) {
-        if (!e.global && e.emisor!=nullptr) {
+        if (!e.global && e.emisor != nullptr) {
             e.emisor->handleEvent(e.id, e.info);
         }
         else {
@@ -189,28 +193,8 @@ void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
 
 void MainLoop::deleteScene(std::string const& sc) {
     auto it = loadedScenes.find(sc);
-    if (it != loadedScenes.end()) {
-        toDelete.push_back(it->second);
-        loadedScenes.erase(it);
-    }
-
-    if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
-        finish = true;
-        logWarn("MainLoop: No hay escenas en el juego. Se va a cerrar la aplicacion.");
-    }
+    if (it != loadedScenes.end()) toDelete.push_back(it->second);
 }
 
 void MainLoop::loadScene(Scene* const sc) { sceneBuffer.push_back(sc); }
-
-void MainLoop::loadingGame(uint64_t deltaTime) {
-    static uint64_t timeSinceStart = 0;
-
-    if (!gameInitialized) timeSinceStart += deltaTime;
-    if (timeSinceStart >= TIME_TO_INITIALIZE_GAME && !gameInitialized) {
-        logInfo(("Ya pasaron " + std::to_string(TIME_TO_INITIALIZE_GAME) + " milisegundos").c_str());
-        if (!DynamicLibraryLoader::initGame()) finish = true;
-        deleteScene(MAIN_SCENE_NAME);
-        gameInitialized = true;
-    }
-}
 }

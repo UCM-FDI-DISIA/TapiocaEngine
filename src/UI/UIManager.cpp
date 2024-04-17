@@ -12,26 +12,12 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 #include <SDL_opengl.h>
-
-#include "Structure/MainLoop.h"
-#include "Structure/DynamicLibraryLoader.h"
-#include "Structure/Scene.h"
-#include "WindowManager.h"
-#include "GraphicsManager.h"
-#include "RenderListener.h"
-
-// TEMPORAL
-#include "Components/Image.h"
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-#include "OgreGLTextureCommon.h"
-#include "OgreGLTexture.h"
 #include "OgreTextureManager.h"
 
-#include "Components/ProgressBar.h"
-#include "Components/Slider.h"
-#include "Components/DropBox.h"
-
+#include "RenderListener.h"
+#include "Structure/MainLoop.h"
+#include "WindowManager.h"
+#include "GraphicsManager.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<UIManager>;
@@ -48,11 +34,12 @@ UIManager::~UIManager() {
     sdlWindow = nullptr;
     glContext = nullptr;
     ogreWindow = nullptr;
-    delete renderListener;
-    renderListener = nullptr;
+    if (renderListener) {
+        delete renderListener;
+        renderListener = nullptr;
+    }
 
     fonts.clear();
-    functions.clear();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -78,35 +65,6 @@ bool UIManager::init() {
     ImGui_ImplOpenGL3_Init("#version 130");
 
     loadFonts();
-    createMainFunctions();
-
-    // TEMPORAL
-    //renderListener->createImage("textures/imagetest.PNG", Tapioca::Vector2(200, 200), Tapioca::Vector2(0, 200));
-    //renderListener->createProgressBar(0.42, Vector4(00.2, 0.1, 0.6, 1), "42%", Vector2(200, 100), Vector2(10, 0));
-    //renderListener->createSlider("slide", true, 13, 22, 0, Vector2(40, 120), Vector2(10, 80));
-    //std::vector<std::string> s({"opcion", "otraopcion", "otramas"});
-    //renderListener->createDropBox("dropbox", s, 0, Vector2(100, 60), Vector2(80, 120));
-
-    return true;
-}
-
-bool UIManager::initConfig() {
-    EntryPointGetFunctions getFunctions =
-        (EntryPointGetFunctions)GetProcAddress(DynamicLibraryLoader::module, "getFunctions");
-    if (getFunctions == nullptr)
-        logError("SceneLoader: La DLL del juego no tiene la funcion \"getFunctions\". No se creara ninguna funcion.\n");
-
-    EntryPointGetFunctions getFunctionsCast = reinterpret_cast<EntryPointGetFunctions>(getFunctions);
-    if (getFunctionsCast != nullptr) {
-        // Obtiene las funciones del juego
-        Function gameFunctions[MAX_FUNCTIONS];
-        int numberGameFunctions = getFunctionsCast(gameFunctions, MAX_FUNCTIONS);
-        for (int i = 0; i < numberGameFunctions; ++i) {
-            setFunction(gameFunctions[i].functionName, gameFunctions[i].function);
-        }
-    }
-    else
-        logError("SceneLoader: getFunctions devolvio un puntero nulo. No se creara ninguna funcion.\n");
 
     return true;
 }
@@ -128,7 +86,7 @@ bool UIManager::handleEvents(const SDL_Event& event) {
             else
                 scaleFactorX = scaleFactorY = 1.0f;
 
-            //io.FontGlobalScale = std::min(scaleFactorX, scaleFactorY);
+            io.FontGlobalScale = std::min(scaleFactorX, scaleFactorY);
 
             return true;
         }
@@ -217,34 +175,5 @@ ImTextureID UIManager::getTextureId(const std::string& name) {
     GLuint glID;
     texturePtr->getCustomAttribute("GLID", &glID);
     return (ImTextureID)glID;
-}
-
-void UIManager::createMainFunctions() {
-    functions["Debug"] = []() {
-#ifdef _DEBUG
-        std::cout << "Se ha llamado a la funcion Debug!\n";
-#endif
-    };
-}
-
-void UIManager::setFunction(const std::string& functionName, std::function<void()> function) {
-    if (functions.contains(functionName))
-        logInfo(
-            ("UIManager: Ya existe un boton con el nombre \"" + functionName + "\". No se creo la funcion").c_str());
-    else
-        functions[functionName] = function;
-}
-
-std::function<void()> UIManager::getFunction(const std::string& functionName) {
-    if (functions.contains(functionName)) return functions[functionName];
-    logInfo(("UIManager: No existe una funcion con el nombre \"" + functionName + "\".").c_str());
-    return nullptr;
-}
-
-void UIManager::removeFunction(const std::string& functionName) {
-    if (functions.contains(functionName)) functions.erase(functionName);
-    else
-        logInfo(("UIManager: No existe una funcion con el nombre \"" + functionName + "\". No se elimino la funcion")
-                    .c_str());
 }
 }

@@ -1,26 +1,11 @@
 scene = {
     {
-        -- zIndex = 0, -- No importa si es 0
         components = {
-            Transform = {
-                positionX = 0.0,
-                positionY = 30.0,
-                positionZ = 0.0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0,
-                rotationX = 0.0,
-                rotationY = 0.0,
-                rotationZ = 90.0
-            },
             CameraComponent = {
-                zOrder = -1, -- Cuando se arregle lo de cargar las escenas después de haber recorrido todas las entidades, se podrá cambiar a 0
+                zOrder = -1, -- Cuando se arregle, se podrá cambiar a 0
                 bgColorR = 0.0,
                 bgColorG = 0.0,
-                bgColorB = 0.0,
-                targetToLookX = 0.0,
-                targetToLookY = 0.0,
-                targetToLookZ = 0.0
+                bgColorB = 0.0
             },
             AudioListenerComponent={},
             AudioSourceComponent=
@@ -28,22 +13,19 @@ scene = {
                 islooping= true,
                 ispaused=false,
                 sourcepath="assets/audio/OutoftheWoods.mp3"
+            },
+            SplashScreenComponent = {
+                changeTime = 2000,
+                gameName = "game"
             }
         }
     },
-    madeWithText={
+    madeWithText = {
         -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
-                positionY = WINDOW_HEIGHT / 2 - 20,
-                positionZ = 0.0, -- No importa
-                scaleX = 0.0, -- No importa
-                scaleY = 0.0, -- No importa
-                scaleZ = 0.0, -- No importa
-                rotationX = 0.0, -- No importa
-                rotationY = 0.0, -- No importa
-                rotationZ = 0.0 -- No importa
+                positionY = WINDOW_HEIGHT / 2 - 20
             },
             Text = {
                 name = "madeWithText",
@@ -58,22 +40,15 @@ scene = {
             }
         }
     },
-    StartText={
+    TapiocaText = {
         -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
-                positionY = WINDOW_HEIGHT / 2,
-                positionZ = 0.0, -- No importa
-                scaleX = 0.0, -- No importa
-                scaleY = 0.0, -- No importa
-                scaleZ = 0.0, -- No importa
-                rotationX = 0.0, -- No importa
-                rotationY = 0.0, -- No importa
-                rotationZ = 0.0 -- No importa
+                positionY = WINDOW_HEIGHT / 2
             },
             Text = {
-                name = "StartText",
+                name = "TapiocaText",
                 text = "Tapioca Engine",
                 textSize = 36.0,
                 textFontName = "AGENCYB.TTF",
@@ -85,24 +60,18 @@ scene = {
             }
         }
     }
-    -- StartButton={
+    -- StartButton = {
     --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
     --             positionX = WINDOW_WIDTH / 2,
     --             positionY = WINDOW_HEIGHT / 2,
-    --             positionZ = 0.0, -- No importa
     --             scaleX = 130.0,
-    --             scaleY = 40.0,
-    --             scaleZ = 0.0, -- No importa
-    --             rotationX = 0.0, -- No importa
-    --             rotationY = 0.0, -- No importa
-    --             rotationZ = 0.0 -- No importa
+    --             scaleY = 40.0
     --         },
     --         Button = {
     --             name = "StartButton",
     --             text = "Play",
-    --             onClickId = "Debug",
     --             textFontName = "impact.ttf",
     --             textColorNormalR = 1.0,
     --             textColorNormalG = 0.0,
@@ -124,15 +93,7 @@ scene = {
     --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
-    --             positionX = WINDOW_WIDTH / 2,
-    --             positionY = 0.0,
-    --             positionZ = 0.0, -- No importa
-    --             scaleX = WINDOW_WIDTH / 2,
-    --             scaleY = 0.0, -- No importa
-    --             scaleZ = 0.0, -- No importa
-    --             rotationX = 0.0, -- No importa
-    --             rotationY = 0.0, -- No importa
-    --             rotationZ = 0.0 -- No importa
+    --             positionX = WINDOW_WIDTH / 2
     --         },
     --         InputText = {
     --             name = "StartInputText",
@@ -160,13 +121,8 @@ scene = {
     --         Transform = {
     --             positionX = WINDOW_WIDTH / 2,
     --             positionY = 100.0,
-    --             positionZ = 0.0, -- No importa
     --             scaleX = 100.0,
-    --             scaleY = 100.0,
-    --             scaleZ = 0.0, -- No importa
-    --             rotationX = 0.0, -- No importa
-    --             rotationY = 0.0, -- No importa
-    --             rotationZ = 0.0 -- No importa
+    --             scaleY = 100.0
     --         },
     --         ImageTextButton = {
     --             name = "StartImageButton",

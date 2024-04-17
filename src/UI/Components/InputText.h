@@ -17,7 +17,6 @@ private:
     std::string placeHolderText;   // Texto que se muestra en la caja de texto
     char* buffer;                  // Buffer de la caja de texto
     int bufferSize;                // Tamano del buffer de la caja de texto
-    std::string onTextEnteredId;   // Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     std::function<void()> onTextEntered;   // Funcion que se ejecuta cuando se hace ENTER en la caja de texto
     float textSize;                        // Tamano de la fuente del texto de la caja de texto
     std::string textFontName;              // Nombre de la fuente del texto de la caja de texto
@@ -89,26 +88,10 @@ public:
     }
 
     /*
-    * @brief Establece el identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    * @param onTextEnteredId Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    */
-    inline void setOnTextEnterId(std::string onTextEnteredId) {
-        if (onTextEnteredId != this->onTextEnteredId) {
-            this->onTextEnteredId = onTextEnteredId;
-            updateOnTextEnter();
-        }
-    }
-
-    /*
     * @brief Establece la funcion que se ejecuta cuando se hace ENTER en la caja de texto
     * @param onTextEnter Funcion que se ejecuta cuando se hace ENTER en la caja de texto
     */
     inline void setOnTextEnter(std::function<void()> onTextEnter) { this->onTextEntered = onTextEnter; }
-
-    /*
-    * @brief Actualiza la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    */
-    void updateOnTextEnter();
 
     /*
     * @brief Establece el tamano del texto del boton
@@ -178,12 +161,6 @@ public:
     * @return Tamano del buffer de la caja de texto
     */
     inline size_t getBufferSize() const { return bufferSize; }
-
-    /*
-    * @brief Devuelve el identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    * @return Identificador de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-	*/
-    inline std::string getOnTextEnteredId() const { return onTextEnteredId; }
 
     /*
     * @brief Devuelve la funcion que se ejecuta cuando se hace ENTER en la caja de texto

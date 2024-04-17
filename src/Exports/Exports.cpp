@@ -12,6 +12,7 @@
 #include "SoundManager.h"
 #include "LuaManager.h"
 #include "LuaRegistry.h"
+#include "Structure/DynamicLibraryLoader.h"
 
 // Componentes
 #include "Structure/BasicBuilder.h"
@@ -39,8 +40,7 @@
 #include "Components/Image.h"
 #include "Components/ProgressBar.h"
 #include "Components/Slider.h"
-
-//Sound
+// Sound
 #include "Components/AudioListenerComponent.h"
 #include "Components/AudioSourceComponent.h"
 
@@ -56,10 +56,6 @@ void runEngine() {
     if (mainLoop->init()) {
         createEngineBuilders();
         registerLuaFunctions();
-
-        // PRUEBAS DE SOUND
-        //scenes->loadScene("archivo2.lua");
-        SoundManager::instance()->testsample();
 
         Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName());
         mainLoop->run();
@@ -132,22 +128,58 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<Image>());
     manager->addBuilder(new BasicBuilder<ProgressBar>());
     manager->addBuilder(new BasicBuilder<Slider>());
-
-    //Sound
+    // Sound
     manager->addBuilder(new BasicBuilder<AudioListenerComponent>());
     manager->addBuilder(new BasicBuilder<AudioSourceComponent>());
 }
 
 static void registerLuaFunctions() {
     LuaRegistry* reg = lua->getRegistry();
-    
+
     luabridge::getGlobalNamespace(lua->getLuaState())
         .beginNamespace("Tapioca")
-        .addFunction("loadScene", [](std::string name) -> bool {
-            logInfo("loadScene llamado desde Lua");
-            return scenes->loadScene(name) != nullptr;
-        })
+        .addFunction("loadScene",
+                     [](std::string name) -> bool {
+                         logInfo("loadScene llamado desde Lua");
+                         return scenes->loadScene(name) != nullptr;
+                     })
         //.addFunction("", []() -> void {})
+        .endNamespace();
+
+    luabridge::getGlobalNamespace(lua->getLuaState())
+        .beginNamespace("Tapioca")
+        .addFunction("initGame",
+                     [](std::string name) -> bool {
+                         logInfo("initGame llamado desde Lua");
+                         return DynamicLibraryLoader::initGame(name);
+                     })
+        .endNamespace();
+
+    luabridge::getGlobalNamespace(lua->getLuaState())
+        .beginNamespace("Tapioca")
+        .addFunction("exit",
+                     []() -> void {
+                         logInfo("exit llamado desde Lua");
+                         mainLoop->exit();
+                     })
+        .endNamespace();
+
+    luabridge::getGlobalNamespace(lua->getLuaState())
+        .beginNamespace("Tapioca")
+        .addFunction("deleteScene",
+                     [](std::string name) -> void {
+                         logInfo("deleteScene llamado desde Lua");
+                         mainLoop->deleteScene(name);
+                     })
+        .endNamespace();
+
+    luabridge::getGlobalNamespace(lua->getLuaState())
+        .beginNamespace("Tapioca")
+        .addFunction("getMainSceneName",
+                     []() -> std::string {
+                         logInfo("getMainSceneName llamado desde Lua");
+                         return mainLoop->getMainSceneName();
+                     })
         .endNamespace();
 }
 

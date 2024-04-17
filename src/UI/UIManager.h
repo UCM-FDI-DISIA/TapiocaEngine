@@ -14,7 +14,6 @@ class RenderWindow;
 
 namespace Tapioca {
 class MainLoop;
-class RenderNode;
 class WindowManager;
 class RenderListener;
 
@@ -73,42 +72,27 @@ private:
 #endif
 
     /*
-    * @brief Diccionario que contiene las funciones
-    */
-    std::unordered_map<std::string, std::function<void()>> functions;
-
-    static constexpr int MAX_FUNCTIONS = 100;   // Maximo de funciones
-
-    /*
     * @brief Inicializa a nulo los punteros
     */
     UIManager();
 
-    /*
-    * @brief Crea las funciones principales
-    */
-    void createMainFunctions();
-
 public:
-    /*
-    * @brief Termina ImGui con SDL y OpenGL y destruye el contexto
-    */
-    ~UIManager();
-
     UIManager(UIManager&) = delete;
     UIManager(UIManager&&) = delete;
     UIManager& operator=(UIManager&) = delete;
     UIManager& operator=(UIManager&&) = delete;
 
     /*
+    * @brief Termina ImGui con SDL y OpenGL y destruye el contexto
+    */
+    ~UIManager();
+
+    /*
     * @brief Inicializa ImGui con SDL y OpenGL, y anade el UIManager como listener de la ventana de Ogre
     * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
-    /*
-    * 
-    */
-    bool initConfig() override;
+
     /*
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL
@@ -159,25 +143,5 @@ public:
     * @brief Devuelve el identificador de la textura de una imagen
     */
     ImTextureID getTextureId(const std::string& name);
-
-    /*
-    * @brief Establece una funcion a partir de su nombre
-    * @param functionName Nombre de la funcion
-    * @param function Funcion
-    */
-    void setFunction(const std::string& functionName, std::function<void()> function);
-
-    /*
-    * @brief Devuelve la funcion definida a partir de su nombre
-    * @param functionName Nombre de la funcion
-    * @return Funcion definida, nullptr si no existe
-    */
-    std::function<void()> getFunction(const std::string& functionName);
-
-    /*
-    * @brief Elimina una funcion a partir de su nombre
-    * @param functionName Nombre de la funcion
-    */
-    void removeFunction(const std::string& functionName);
 };
 }

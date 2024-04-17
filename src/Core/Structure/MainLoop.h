@@ -142,10 +142,5 @@ public:
     * @return Nombre de la escena principal
     */
     inline std::string getMainSceneName() const { return MAIN_SCENE_NAME; }
-
-    /*
-    * @brief Carga el juego
-    */
-    void loadingGame(uint64_t deltaTime);
 };
 }

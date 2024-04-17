@@ -7,7 +7,7 @@
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), text("Button"), onClickId("Debug"), onClick([]() {}), textFont(nullptr),
+    : BaseWidget(), Component(), text("Button"), onClick([]() { logInfo("Se ha hecho click en el boton."); }), textFont(nullptr),
       textFontName("arial.ttf"), textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColorNormal = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -31,10 +31,6 @@ bool Button::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(text, "text", variables)) {
         logInfo("Button: No se encontro el valor de text. Se inicializo al valor predefinido.");
-    }
-
-    if (!setValueFromMap(onClickId, "onClickId", variables)) {
-        logInfo("Button: No se encontro el valor de onClickId. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
@@ -102,7 +98,6 @@ bool Button::initComponent(const CompMap& variables) {
 
 void Button::start() {
     setTransform(object->getComponent<Transform>());
-    updateOnClick();
     updateTextFont();
 }
 
@@ -166,8 +161,6 @@ void Button::render() const {
 
     ImGui::End();
 }
-
-void Button::updateOnClick() { onClick = uiManager->getFunction(onClickId); }
 
 void Button::updateTextFont() { textFont = uiManager->getFont(textFontName, textSize); }
 }

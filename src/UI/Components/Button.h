@@ -16,7 +16,6 @@ namespace Tapioca {
 class TAPIOCA_API Button : public BaseWidget, public Component {
 protected:
     std::string text;                // Texto que se muestra en el boton
-    std::string onClickId;           // Identificador de la funcion que se ejecuta cuando se hace click en el boton
     std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
     std::string textFontName;        // Nombre de la fuente del texto del boton
     float textSize;                  // Tamano de la fuente del texto del boton
@@ -64,26 +63,10 @@ public:
     inline void setText(const std::string& text) { this->text = text; }
 
     /*
-    * @brief Establece el identificador de la funcion que se ejecuta cuando se hace click en el boton
-    * @param onClickId Identificador de la funcion que se ejecuta cuando se hace click en el boton
-    */
-    inline void setOnClickId(std::string& onClickId) {
-        if (onClickId != this->onClickId) {
-            this->onClickId = onClickId;
-            updateOnClick();
-        }
-    }
-
-    /*
     * @brief Establece la funcion que se ejecuta cuando se hace click en el boton
     * @param onClick Funcion que se ejecuta cuando se hace click en el boton
     */
     inline void setOnClick(std::function<void()> onClick) { this->onClick = onClick; }
-
-    /*
-    * @brief Actualiza la funcion que se ejecuta cuando se hace click en el boton
-    */
-    void updateOnClick();
 
     /*
     * @brief Establece el tamano del texto del boton
@@ -157,12 +140,6 @@ public:
     * @return Texto del boton
     */
     inline std::string getText() const { return text; }
-
-    /*
-    * @brief Devuelve el identificador de la funcion que se ejecuta cuando se hace click en el boton
-    * @return Identificador de la funcion que se ejecuta cuando se hace click en el boton
-	*/
-    inline std::string getOnClickId() const { return onClickId; }
 
     /*
     * @brief Devuelve la funcion que se ejecuta cuando se hace click en el boton
