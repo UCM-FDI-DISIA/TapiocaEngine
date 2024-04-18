@@ -21,7 +21,7 @@ bool LuaComponent::initComponent(const CompMap& variables) {
             std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
             .c_str());
     }
-    return result.wasOk();
+    return result.wasOk() && (result.size() == 0 || result[0]);
 }
 
 void LuaComponent::awake() { }

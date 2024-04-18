@@ -11,7 +11,7 @@ template class TAPIOCA_API Singleton<MainLoop>;
 template<>
 MainLoop* Singleton<MainLoop>::instance_ = nullptr;
 
-MainLoop::MainLoop() : finish(false), deltaTime(0), gameInitialized(false) { }
+MainLoop::MainLoop() : finish(false), deltaTime(0)/*, gameInitialized(false)*/ { }
 
 MainLoop::~MainLoop() {
     for (auto sc : sceneBuffer)
@@ -60,7 +60,7 @@ void MainLoop::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
-    gameInitialized = false;
+    //gameInitialized = false;
     auto currentTime = std::chrono::high_resolution_clock::now();
     uint64_t lag = 0;
     uint64_t timeSinceStart = 0;

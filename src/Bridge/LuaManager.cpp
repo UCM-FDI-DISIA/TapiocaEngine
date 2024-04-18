@@ -15,10 +15,7 @@ LuaManager::LuaManager() : L(nullptr) {
     luaL_openlibs(L);
 
     // TODO: Revisar
-    luabridge::getGlobalNamespace(L).addFunction("print", [](const char* info) -> void {
-        if (info == nullptr) logInfo("nil");
-        else logInfo(info);
-    });
+    luabridge::getGlobalNamespace(L).addFunction("print", &print);
     luaL_dofile(L, "assets/test.lua");
 
     reg = new LuaRegistry(L);
@@ -69,6 +66,7 @@ bool LuaManager::loadScript(const std::filesystem::path & path) {
         return false;
     }
     luabridge::LuaRef* table = new luabridge::LuaRef(luabridge::getGlobal(L, "comp"));
+    luabridge::getGlobal(L, "test")(table);
     std::string name = path.filename().string();
     name = name.substr(0, name.length() - 4);
     FactoryManager::instance()->addBuilder(new LuaComponentBuilder(name, table)); // Desde 18:40 a 21:15, Desde 22:22 a 00:45
@@ -90,6 +88,49 @@ bool LuaManager::loadScripts() {
         logWarn("LuaManager: No existe ruta scripts.");
     }
     return true;
+}
+
+int LuaManager::print(lua_State* L) {
+    std::string aux;
+    int i = 1;
+    while (lua_gettop(L) >= i) {
+        if (lua_isboolean(L, i)) {
+            aux += (lua_toboolean(L, i) ? "true " : "false ");
+        }
+        else if (lua_iscfunction(L, i)) {
+            aux += "C function ";
+        }
+        else if (lua_isfunction(L, i)) {
+            aux += "Lua function ";
+        }
+        else if (lua_isnil(L, i)) {
+            aux += "nil ";
+        }
+        else if (lua_isinteger(L, i)) {
+            aux += ("%d ", lua_tointeger(L, i));
+        }
+        else if (lua_isnumber(L, i)) {
+            aux += ("%.9f ", lua_tonumber(L, i));
+        }
+        else if (lua_isstring(L, i)) {
+            aux += lua_tostring(L, i) + ' ';
+        }
+        else if (lua_istable(L, i)) {
+            aux += "table ";
+        }
+        else if (lua_isthread(L, i)) {
+            aux += "thread ";
+        }
+        else if (lua_isuserdata(L, i)) {
+            aux += "userdata ";
+        }
+        else {
+            aux += "something ";
+        }
+        i++;
+    }
+    logInfo(aux.c_str());
+    return 0;
 }
 
 }

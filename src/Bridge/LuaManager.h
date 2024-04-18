@@ -24,6 +24,8 @@ private:
     bool loadScript(const std::filesystem::path& path);
     bool loadScripts();
 
+    static int print(lua_State* L);
+
 public:
     LuaManager();
     ~LuaManager();

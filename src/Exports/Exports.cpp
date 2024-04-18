@@ -143,43 +143,27 @@ static void registerLuaFunctions() {
                          logInfo("loadScene llamado desde Lua");
                          return scenes->loadScene(name) != nullptr;
                      })
-        //.addFunction("", []() -> void {})
-        .endNamespace();
-
-    luabridge::getGlobalNamespace(lua->getLuaState())
-        .beginNamespace("Tapioca")
         .addFunction("initGame",
                      [](std::string name) -> bool {
                          logInfo("initGame llamado desde Lua");
                          return DynamicLibraryLoader::initGame(name);
                      })
-        .endNamespace();
-
-    luabridge::getGlobalNamespace(lua->getLuaState())
-        .beginNamespace("Tapioca")
         .addFunction("exit",
                      []() -> void {
                          logInfo("exit llamado desde Lua");
                          mainLoop->exit();
                      })
-        .endNamespace();
-
-    luabridge::getGlobalNamespace(lua->getLuaState())
-        .beginNamespace("Tapioca")
         .addFunction("deleteScene",
                      [](std::string name) -> void {
                          logInfo("deleteScene llamado desde Lua");
                          mainLoop->deleteScene(name);
                      })
-        .endNamespace();
-
-    luabridge::getGlobalNamespace(lua->getLuaState())
-        .beginNamespace("Tapioca")
         .addFunction("getMainSceneName",
                      []() -> std::string {
                          logInfo("getMainSceneName llamado desde Lua");
                          return mainLoop->getMainSceneName();
                      })
+        //.addFunction("", []() -> void {})
         .endNamespace();
 }
 
