@@ -1,17 +1,15 @@
-local serpent = require("assets/serpent")
+local serpent = require("serpent")
 
-function test(tab)
+_internal = { }
+
+function _internal.test(tab)
 	print(serpent.block(tab))
 end
 
-function testMeta(tab)
+function _internal.testMeta(tab)
 	print(serpent.block(getmetatable(tab)))
 end
-
-_internal = { }
 
 function _internal.call(name, parameters)
 	_G[name](table.unpack(parameters))
 end
-
-print("Cargado test.lua")
