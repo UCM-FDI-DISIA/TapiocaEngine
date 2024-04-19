@@ -1,15 +1,13 @@
 #pragma once
 #include "checkML.h"
 #include "Exports.h"
-#include "Utilities/Quaternion.h"
-#include "Utilities/Vector3.h"
 
 int main(int argc, char** argv) {
 #ifdef _DEBUG
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-
     Tapioca::initEngine();
+
     Tapioca::runEngine();
     Tapioca::deleteEngine();
 

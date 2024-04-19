@@ -129,8 +129,7 @@ int LuaManager::print(lua_State* L) {
         }
         i++;
     }
-    logInfo(aux.c_str());
+    logInfo(("LuaManager: variable auxiliar = " + aux).c_str());
     return 0;
 }
-
 }
