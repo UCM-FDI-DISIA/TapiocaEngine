@@ -7,13 +7,6 @@ scene = {
                 bgColorG = 0.0,
                 bgColorB = 0.0
             },
-            AudioListenerComponent={},
-            AudioSourceComponent=
-            {
-                islooping= true,
-                ispaused=false,
-                sourcepath="assets/audio/OutoftheWoods.mp3"
-            },
             SplashScreenComponent = {
                 changeTime = 2000,
                 gameName = "game"
@@ -21,7 +14,6 @@ scene = {
         }
     },
     madeWithText = {
-        -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
@@ -30,18 +22,11 @@ scene = {
             Text = {
                 name = "madeWithText",
                 text = "made with",
-                -- textSize = 16.0,
-                textFontName = "AGENCYB.TTF",
-                -- textColorR = 1.0,
-                -- textColorG = 0.0,
-                -- textColorB = 1.0,
-                -- textColorA = 1.0,
-                -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
+                textFontName = "AGENCYB.TTF"
             }
         }
     },
     TapiocaText = {
-        -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
@@ -51,12 +36,7 @@ scene = {
                 name = "TapiocaText",
                 text = "Tapioca Engine",
                 textSize = 36.0,
-                textFontName = "AGENCYB.TTF",
-                -- textColorR = 1.0,
-                -- textColorG = 0.0,
-                -- textColorB = 1.0,
-                -- textColorA = 1.0,
-                -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
+                textFontName = "AGENCYB.TTF"
             }
         }
     }
