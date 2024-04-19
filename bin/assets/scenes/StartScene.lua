@@ -39,6 +39,23 @@ scene = {
                 textFontName = "AGENCYB.TTF"
             }
         }
+    },
+    ImageTest = {
+        components = {
+            Transform = {
+                positionX = WINDOW_WIDTH / 2,
+                positionY = WINDOW_HEIGHT / 2,
+                scaleX = 100.0,
+                scaleY = 200.0
+            },
+            ImageUI = {
+                name = "Tapiocimagen",
+                text = "Tapioca Engine",
+                textSize = 36.0,
+                textFontName = "AGENCYB.TTF",
+                sourcefile = "Captura.PNG"
+            }
+        }
     }
     -- StartButton = {
     --     -- zIndex = 0, -- No importa si es 0
