@@ -19,7 +19,7 @@ LuaManager::LuaManager() : L(nullptr) {
 
     // TODO: Revisar
     luabridge::getGlobalNamespace(L).addFunction("print", &print);
-    luaL_dofile(L, "assets/test.lua");
+    luaL_dofile(L, "test.lua");
 
     reg = new LuaRegistry(L);
 }
