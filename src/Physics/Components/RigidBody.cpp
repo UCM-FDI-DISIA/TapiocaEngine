@@ -131,7 +131,10 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
             }
         }
         if (trackScale) {
-            rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(colliderScale*trScaleOffset));
+            if (rigidBody != nullptr)
+                rigidBody->getCollisionShape()->setLocalScaling(
+                    toBtVector3(Vector3(colliderScale.x * trScaleOffset.x, colliderScale.y * trScaleOffset.y,
+                                        colliderScale.z * trScaleOffset.z)));
         }
     }
 }
@@ -245,7 +248,7 @@ void RigidBody::setGravity(const Vector3 g) {
 }
 void RigidBody::setTrackScale(const bool b) {
     if (rigidBody == nullptr) return;
-    trackScale=b;
+    trackScale = b;
 }
 void RigidBody::addForce(const Vector3 f) {
     if (rigidBody == nullptr) return;
