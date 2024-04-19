@@ -131,6 +131,11 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
             }
         }
     }
+    else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
+        Vector3 scale = transform->getGlobalScale();
+        colliderScale = Vector3(scale.x / trScaleOffset.x, scale.y / trScaleOffset.y, scale.z / trScaleOffset.z);
+        rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(colliderScale));
+    }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
 
@@ -178,7 +183,7 @@ void RigidBody::setTrigger(const bool t) {
 void RigidBody::setColliderShape(const ColliderShape s) { colShape = s; }
 
 void RigidBody::scaleCollider(const Vector3 s) {
-    colliderScale = Vector3(colliderScale.x * s.x, colliderScale.y * s.y, colliderScale.z * s.z);
+    colliderScale = s;
     if (rigidBody == nullptr) return;
     rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s));
 
@@ -186,18 +191,6 @@ void RigidBody::scaleCollider(const Vector3 s) {
         Vector3(transform->getGlobalScale().x / colliderScale.x, transform->getGlobalScale().y / colliderScale.y,
                 transform->getGlobalScale().z / colliderScale.z);
 }
-
-void RigidBody::setColliderScale(const Vector3 s) {
-    Vector3 aux = colliderScale;
-    colliderScale = s;
-    if (rigidBody == nullptr) return;
-    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3((aux.x/s.x,aux.y/s.y,aux.z/s.z)));
-
-    trScaleOffset =
-        Vector3(transform->getGlobalScale().x / colliderScale.x, transform->getGlobalScale().y / colliderScale.y,
-                transform->getGlobalScale().z / colliderScale.z);
-}
-
 
 
 void RigidBody::setMass(const float m) { mass = m; }

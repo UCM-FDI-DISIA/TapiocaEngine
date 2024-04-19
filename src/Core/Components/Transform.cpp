@@ -151,6 +151,11 @@ void Transform::handleEvent(std::string const& id, void* info) {
             child->pushEvent("transformChanged", &b, false);
         }
     }
+    else if (id == "scaleChanged") {
+        for (Transform* child : children) {
+            child->pushEvent("scaleChanged",nullptr, false);
+        }
+    }
 }
 
 Vector3 Transform::getGlobalPosition() const {
@@ -203,6 +208,7 @@ void Transform::setRotation(const Vector3& r, bool rb) {
 }
 void Transform::setScale(const Vector3& s) {
     scale = s;
+    pushEvent("scaleChanged", nullptr, false);
     changed();
 }
 void Transform::setScaleXY(const Vector2& s) {
