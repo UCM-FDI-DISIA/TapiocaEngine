@@ -1,6 +1,7 @@
 #pragma once
 #include "Structure/Module.h"
 #include "Utilities/Singleton.h"
+#include "componentDefs.h"
 
 struct lua_State;
 namespace std {
@@ -19,7 +20,8 @@ private:
     lua_State* L;
     LuaRegistry* reg;
 
-    void loadBase();
+    const char* BASE_FILE = "BaseComponent.lua";
+    bool loadBase();
 
     bool loadScript(const std::filesystem::path& path);
     bool loadScripts();
@@ -33,6 +35,8 @@ public:
     bool init() override;
 
     lua_State* getLuaState() const { return L; }
+
+    bool callLuaFunction(std::string name, const std::vector<CompValue>& parameters);
 
     LuaRegistry* getRegistry() const { return reg; }
 };

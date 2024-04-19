@@ -2,6 +2,8 @@
 #include <lua.hpp>
 #include "LuaRegistry.h"
 #include <LuaBridge.h>
+#include <Vector.h>
+#include "VariantStack.h"
 #include <filesystem>
 #include "Components/LuaComponent.h"
 #include "Structure/FactoryManager.h"
@@ -29,46 +31,40 @@ LuaManager::~LuaManager() {
 
 
 bool LuaManager::init() {
-    loadScripts();
+    return loadBase() && loadScripts();
+}
+
+bool LuaManager::callLuaFunction(std::string name, const std::vector<CompValue>& parameters) {
+    luabridge::LuaRef function = luabridge::getGlobal(L, "_internal")["call"];
+    if (!function.isCallable()) return false;
+    luabridge::LuaResult result = function(name, parameters);
+    if (result.hasFailed()) {
+        logError(("LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
+        return false;
+    }
     return true;
 }
 
-void LuaManager::loadBase() {
-    const char* base = R"(comp = {
-    new = function(self)
-        local newObj = {}
-        setmetatable(newObj, { __index = self })
-        print("Me he creado :YIPEE:")
-        return newObj
-    end,
-    start = function(self) end,
-    awake = function(self) end,
-    initComponent = function(self) end,
-    update = function(self) end,
-    fixedUpdate = function(self) end,
-    render = function(self) end,
-    handleEvent = function(self) end,
-    -- Con implementacion
-    pushEvent = function(self) end,
-    object = nil,
-    alive = true,
-    active = true
-    })";
-    if (luaL_dostring(L, base) != 0) {
+bool LuaManager::loadBase() {
+    if (luaL_dofile(L, BASE_FILE) != 0) {
         logError(("LuaManager: Error al cargar base de LuaComponent: " + std::string(lua_tostring(L, -1))).c_str());
+        return false;
     }
+    return true;
 }
 
 bool LuaManager::loadScript(const std::filesystem::path & path) {
-    loadBase();
+    if (!loadBase()) return false;
     
     if (luaL_dofile(L, path.string().c_str()) != 0) {
         logError(("LuaManager: Error al cargar el archivo Lua: " + std::string(lua_tostring(L, -1))).c_str());
         return false;
     }
     luabridge::LuaRef* table = new luabridge::LuaRef(luabridge::getGlobal(L, "comp"));
-    luabridge::getGlobal(L, "test")(table);
     std::string name = path.filename().string();
+    // Se le quita la extension (.lua)
     name = name.substr(0, name.length() - 4);
     FactoryManager::instance()->addBuilder(new LuaComponentBuilder(name, table)); // Desde 18:40 a 21:15, Desde 22:22 a 00:45
     return true;
