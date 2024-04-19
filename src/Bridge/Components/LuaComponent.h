@@ -13,6 +13,7 @@ private:
     std::string name;
 
     void callSimpleFunction(std::string name);
+    void registerFunctions();
 
 public:
     // Esto no va a funcionar bien
