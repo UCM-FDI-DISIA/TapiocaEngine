@@ -18,7 +18,7 @@ if not exist %BAT_DIR%\Dependencies\Lua\build\x64\Debug (
 	call %SCRIPTS_DIR%\buildLua.bat
 )
 
-XCOPY %BAT_DIR%\Dependencies\IrrKlang\dlls\*.dll %BIN_DIR% /Y
+call %SCRIPTS_DIR%\buildIrrKlang.bat
 
 echo ~~Dependencias compiladas. Compilando motor...~~
 echo.
