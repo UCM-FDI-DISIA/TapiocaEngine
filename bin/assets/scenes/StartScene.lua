@@ -40,36 +40,36 @@ scene = {
             }
         }
     },
-    StartButton = {
-        -- zIndex = 0, -- No importa si es 0
-        components = {
-            Transform = {
-                positionX = WINDOW_WIDTH / 2,
-                positionY = WINDOW_HEIGHT / 2,
-                scaleX = 130.0,
-                scaleY = 40.0
-            },
-            Button = {
-                name = "StartButton",
-                text = "Play",
-                onClickId = "debug",
-                textFontName = "impact.ttf",
-                textColorNormalR = 1.0,
-                textColorNormalG = 0.0,
-                textColorNormalB = 0.0,
-                textColorNormalA = 1.0,
-                textColorHoverR = 0.0,
-                textColorHoverG = 1.0,
-                textColorHoverB = 0.0,
-                textColorHoverA = 1.0,
-                textColorActiveR = 0.0,
-                textColorActiveG = 0.0,
-                textColorActiveB = 1.0,
-                textColorActiveA = 1.0,
-                -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
-            }
-        }
-    },
+    -- StartButton = {
+    --     -- zIndex = 0, -- No importa si es 0
+    --     components = {
+    --         Transform = {
+    --             positionX = WINDOW_WIDTH / 2,
+    --             positionY = WINDOW_HEIGHT / 2,
+    --             scaleX = 130.0,
+    --             scaleY = 40.0
+    --         },
+    --         Button = {
+    --             name = "StartButton",
+    --             text = "Play",
+    --             onClickId = "debug",
+    --             textFontName = "impact.ttf",
+    --             textColorNormalR = 1.0,
+    --             textColorNormalG = 0.0,
+    --             textColorNormalB = 0.0,
+    --             textColorNormalA = 1.0,
+    --             textColorHoverR = 0.0,
+    --             textColorHoverG = 1.0,
+    --             textColorHoverB = 0.0,
+    --             textColorHoverA = 1.0,
+    --             textColorActiveR = 0.0,
+    --             textColorActiveG = 0.0,
+    --             textColorActiveB = 1.0,
+    --             textColorActiveA = 1.0,
+    --             -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
+    --         }
+    --     }
+    -- },
     -- StartInputText={
     --     -- zIndex = 0, -- No importa si es 0
     --     components = {
