@@ -142,7 +142,10 @@ bool Transform::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Transform::start() { changed(); }
+void Transform::start() {
+    changed();
+    pushEvent("scaleChanged", nullptr, false);
+}
 
 void Transform::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
