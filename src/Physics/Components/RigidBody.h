@@ -30,6 +30,8 @@ private:
     float bounciness;
 
     bool activeRigidBody;
+    bool trackScale;
+    Vector3 trScaleOffset;
 
 public:
     COMPONENT_ID("RigidBody");
@@ -165,6 +167,12 @@ public:
     * @param g Valor que se le quiere dar a la gravedad
     */
     void setGravity(const Vector3 g);
+
+    /*
+    * @brief Si se escala junto con el transform
+    */
+    void setTrackScale(const bool b);
+
     /*
     * @brief Aplica fuerza de forma gradual
     * @param f Valor de la fuerza que se quiere aplicar 

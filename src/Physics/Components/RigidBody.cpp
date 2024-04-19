@@ -5,14 +5,13 @@
 #include "PhysicsManager.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
-//#include "Collider.h"
 
 
 namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
       colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), colliderScale(Vector3(1)),
-      activeRigidBody(true) { }
+      activeRigidBody(true), trackScale(true), trScaleOffset(1) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -86,6 +85,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
         logInfo("Rigidbody: Group por defecto.");
     }
 
+
     return true;
 }
 
@@ -130,6 +130,9 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
                 rigidBody->getMotionState()->setWorldTransform(btTr);
             }
         }
+        if (trackScale) {
+            rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(colliderScale*trScaleOffset));
+        }
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
@@ -147,6 +150,10 @@ void RigidBody::awake() {
         friction, damping, bounciness, isTrigger, group, mask);
 
     rigidBody->setUserPointer(this);
+
+    trScaleOffset =
+        Vector3(transform->getGlobalScale().x / colliderScale.x, transform->getGlobalScale().y / colliderScale.y,
+                transform->getGlobalScale().z / colliderScale.z);
 }
 
 void RigidBody::setActive(const bool b) {
@@ -177,6 +184,10 @@ void RigidBody::setColliderScale(const Vector3 s) {
     colliderScale = s;
     if (rigidBody == nullptr) return;
     rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s));
+
+    trScaleOffset =
+        Vector3(transform->getGlobalScale().x / colliderScale.x, transform->getGlobalScale().y / colliderScale.y,
+                transform->getGlobalScale().z / colliderScale.z);
 }
 
 
@@ -187,7 +198,7 @@ void RigidBody::setTensor(const Vector3 t) {
     PhysicsManager::instance()->removeRigidBody(rigidBody);
     btVector3 inertia;
     btVector3 tensor = toBtVector3(t);
-   
+
     rigidBody->getCollisionShape()->calculateLocalInertia(mass, inertia);
     rigidBody->setMassProps(mass, inertia * tensor);
     PhysicsManager::instance()->addRigidBody(rigidBody);
@@ -232,7 +243,10 @@ void RigidBody::setGravity(const Vector3 g) {
     if (rigidBody == nullptr) return;
     rigidBody->setGravity(toBtVector3(g));
 }
-
+void RigidBody::setTrackScale(const bool b) {
+    if (rigidBody == nullptr) return;
+    trackScale=b;
+}
 void RigidBody::addForce(const Vector3 f) {
     if (rigidBody == nullptr) return;
     rigidBody->applyCentralForce(toBtVector3(f));
@@ -284,8 +298,7 @@ Vector3 RigidBody::getAngularVelocity() const { return toVector3(rigidBody->getA
 
 Vector3 RigidBody::getGravity() const { return toVector3(rigidBody->getGravity()); }
 
-Vector3 RigidBody::getTotalForce() const { return toVector3(rigidBody->getTotalForce());
-}
+Vector3 RigidBody::getTotalForce() const { return toVector3(rigidBody->getTotalForce()); }
 Vector3 RigidBody::getPushVelocity() const { return toVector3(rigidBody->getPushVelocity()); }
 
 
