@@ -106,10 +106,17 @@ public:
     */
     void setTrigger(const bool t);
     /*
-    * @brief Cambia la escala del collider 
+    * @brief Cambia la escala del collider relativo
+    * @param s Escala que se quiere dar al collider
+    */
+    void scaleCollider(const Vector3 s);
+
+     /*
+    * @brief Cambia la escala del collider absoluto
     * @param s Escala que se quiere dar al collider
     */
     void setColliderScale(const Vector3 s);
+
     /*
     * @brief Cambia la forma del collider 
     * @param s Forma que se quiere dar al collider
