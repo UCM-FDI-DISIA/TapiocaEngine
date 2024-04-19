@@ -14,13 +14,13 @@ function comp:initComponent(variables)
 end
 
 function comp:update(deltaTime)
-	if self.time >= self.changeTime and not self.done then
-		if not Tapioca.initGame(self.gameName) then
-			Tapioca.exit()
-		end
-		Tapioca.deleteScene(Tapioca.getMainSceneName())
-		self.done = true
-	elseif not self.done then
-		self.time = self.time + deltaTime
-	end
+	--if self.time >= self.changeTime and not self.done then
+	--	if not Tapioca.initGame(self.gameName) then
+	--		Tapioca.exit()
+	--	end
+	--	Tapioca.deleteScene(Tapioca.getMainSceneName())
+	--	self.done = true
+	--elseif not self.done then
+	--	self.time = self.time + deltaTime
+	--end
 end
