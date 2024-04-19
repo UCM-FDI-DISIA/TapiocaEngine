@@ -7,7 +7,7 @@
 
 namespace Tapioca {
 LuaComponent::LuaComponent(luabridge::LuaRef* objTable) : objectTable(objTable) {
-    
+    registerFunctions();
 }
 
 LuaComponent::~LuaComponent() {
@@ -33,6 +33,18 @@ void LuaComponent::callSimpleFunction(std::string functionName) {
                   std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
                      .c_str());
     }
+}
+
+void LuaComponent::registerFunctions() {
+    luabridge::getGlobalNamespace(LuaManager::instance()->getLuaState())
+        .beginNamespace("comp")
+        .addVariable("alive", &alive)
+        .addVariable("active", &active)
+        .addFunction("pushEvent",
+                     [&](std::string id, bool global = true, bool delay = false) -> void {
+                         pushEvent(id, nullptr, global, delay);
+                     })
+        .endNamespace();
 }
 
 void LuaComponent::start() {

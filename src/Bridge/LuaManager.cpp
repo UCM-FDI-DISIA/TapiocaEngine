@@ -5,6 +5,7 @@
 #include <filesystem>
 #include "Components/LuaComponent.h"
 #include "Structure/FactoryManager.h"
+#include <sstream>
 #include "checkML.h"
 
 namespace Tapioca {
@@ -91,45 +92,45 @@ bool LuaManager::loadScripts() {
 }
 
 int LuaManager::print(lua_State* L) {
-    std::string aux;
+    std::stringstream aux;
     int i = 1;
     while (lua_gettop(L) >= i) {
         if (lua_isboolean(L, i)) {
-            aux += (lua_toboolean(L, i) ? "true " : "false ");
+            aux << (lua_toboolean(L, i) ? "true " : "false ");
         }
         else if (lua_iscfunction(L, i)) {
-            aux += "C function ";
+            aux << "C function ";
         }
         else if (lua_isfunction(L, i)) {
-            aux += "Lua function ";
+            aux << "Lua function ";
         }
         else if (lua_isnil(L, i)) {
-            aux += "nil ";
+            aux << "nil ";
         }
         else if (lua_isinteger(L, i)) {
-            aux += ("%d ", lua_tointeger(L, i));
+            aux << lua_tointeger(L, i) << ' ';
         }
         else if (lua_isnumber(L, i)) {
-            aux += ("%.9f ", lua_tonumber(L, i));
+            aux << lua_tonumber(L, i) << ' ';
         }
         else if (lua_isstring(L, i)) {
-            aux += lua_tostring(L, i) + ' ';
+            aux << lua_tostring(L, i) << ' ';
         }
         else if (lua_istable(L, i)) {
-            aux += "table ";
+            aux << "table ";
         }
         else if (lua_isthread(L, i)) {
-            aux += "thread ";
+            aux << "thread ";
         }
         else if (lua_isuserdata(L, i)) {
-            aux += "userdata ";
+            aux << "userdata ";
         }
         else {
-            aux += "something ";
+            aux << "something ";
         }
         i++;
     }
-    logInfo(aux.c_str());
+    std::cout << "[INFO|JUEGO] " << aux.str() << '\n';
     return 0;
 }
 
