@@ -36,7 +36,7 @@ public:
 
     lua_State* getLuaState() const { return L; }
 
-    bool callLuaFunction(std::string name, const std::vector<CompValue>& parameters);
+    bool callLuaFunction(std::string name, const std::vector<CompValue>& parameters = {});
 
     LuaRegistry* getRegistry() const { return reg; }
 };

@@ -3,12 +3,12 @@
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "UIManager.h"
-#include "Structure/DynamicLibraryLoader.h"
+#include "LuaManager.h"
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), text("Button"), onClick([]() { logInfo("Se ha hecho click en el boton."); }), textFont(nullptr),
-      textFontName("arial.ttf"), textSize(16.0f) {
+    : BaseWidget(), Component(), onClickId("debug"), text("Button"), textFont(nullptr), textFontName("arial.ttf"),
+      textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColorNormal = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     textColorHover = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -27,6 +27,10 @@ bool Button::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
         logError("Button: No se pudo inicializar el nombre.");
         return false;
+    }
+
+    if (!setValueFromMap(onClickId, "onClickId", variables)) {
+        logInfo("Button: No se encontro el valor de onClick. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(text, "text", variables)) {
@@ -152,7 +156,7 @@ void Button::render() const {
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(activeColor.x, activeColor.y, activeColor.z, activeColor.w));
 
-    if (ImGui::Button(text, buttonSize)) onClick();
+    if (ImGui::Button(text, buttonSize)) luaManager->callLuaFunction(onClickId, { name });
 
     // Pop para WindowBg, los colores de los estados del boton y el color del texto
     ImGui::PopStyleColor(5);

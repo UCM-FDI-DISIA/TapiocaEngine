@@ -15,8 +15,8 @@ namespace Tapioca {
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
 protected:
+    std::string onClickId;           // Id de la funcion que se ejecuta cuando se hace click en el boton
     std::string text;                // Texto que se muestra en el boton
-    std::function<void()> onClick;   // Funcion que se ejecuta cuando se hace click en el boton
     std::string textFontName;        // Nombre de la fuente del texto del boton
     float textSize;                  // Tamano de la fuente del texto del boton
     ImFont* textFont;                // Fuente del texto del boton incluyendo tamano
@@ -57,16 +57,16 @@ public:
     virtual void render() const override;
 
     /*
+    * @brief Establece el id de la funcion que se ejecuta cuando se hace click en el boton
+    * @param onClickId Id de la funcion que se ejecuta cuando se hace click en el boton
+    */
+    inline void setOnClickId(const std::string& onClickId) { this->onClickId = onClickId; }
+
+    /*
     * @brief Establece el texto del boton
     * @param text Texto del boton
     */
     inline void setText(const std::string& text) { this->text = text; }
-
-    /*
-    * @brief Establece la funcion que se ejecuta cuando se hace click en el boton
-    * @param onClick Funcion que se ejecuta cuando se hace click en el boton
-    */
-    inline void setOnClick(std::function<void()> onClick) { this->onClick = onClick; }
 
     /*
     * @brief Establece el tamano del texto del boton
@@ -136,16 +136,16 @@ public:
     inline void setActiveColor(const Vector4& activeColor) { this->activeColor = activeColor; }
 
     /*
+    * @brief Devuelve el id de la funcion que se ejecuta cuando se hace click en el boton
+    * @return Id de la funcion que se ejecuta cuando se hace click en el boton
+    */
+    inline std::string getOnClickId() const { return onClickId; }
+
+    /*
     * @brief Devuelve el texto del boton
     * @return Texto del boton
     */
     inline std::string getText() const { return text; }
-
-    /*
-    * @brief Devuelve la funcion que se ejecuta cuando se hace click en el boton
-    * @return Funcion que se ejecuta cuando se hace click en el boton
-	*/
-    inline std::function<void()> getOnClick() const { return onClick; }
 
     /*
     * @brief Devuelve el tamano de la fuente del texto del boton

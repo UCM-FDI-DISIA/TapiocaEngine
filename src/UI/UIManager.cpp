@@ -164,15 +164,15 @@ ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
 }
 
 ImTextureID UIManager::getTextureId(const std::string& name) {
-    Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(name, "General");
-    if (texturePtr == nullptr) {
-        throw Ogre::Exception(Ogre::Exception::ERR_FILE_NOT_FOUND, "No se encontro la textura " + name,
-                              "UIManager::getTextureId");
-        return 0;
+    try {
+        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(name, "General");
+        GLuint glID;
+        texturePtr->getCustomAttribute("GLID", &glID);
+        return (ImTextureID)glID;
     }
-
-    GLuint glID;
-    texturePtr->getCustomAttribute("GLID", &glID);
-    return (ImTextureID)glID;
+    catch (...) {
+		logWarn(("UIManager: No se encontro la textura " + name + '.').c_str());
+		return 0;
+	}
 }
 }

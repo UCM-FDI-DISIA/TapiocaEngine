@@ -3,11 +3,12 @@
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "UIManager.h"
+#include "LuaManager.h"
 
 namespace Tapioca {
 InputText::InputText()
     : BaseWidget(), Component(), placeHolderText("Enter text here"), bufferSize(256), buffer(nullptr),
-      onTextEntered([]() { logInfo("Se hizo ENTER en la caja de texto"); }), textFontName("arial.ttf"), textSize(16.0f), textFont(nullptr),
+      onTextEnteredId("debug"), textFontName("arial.ttf"), textSize(16.0f), textFont(nullptr),
       flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -37,6 +38,10 @@ bool InputText::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(bufferSize, "bufferSize", variables)) {
         logInfo("InputText: No se encontro el valor de bufferSize. Se inicializo al valor predefinido.");
+    }
+
+    if (!setValueFromMap(onTextEnteredId, "onTextEnteredId", variables)) {
+        logInfo("InputText: No se encontro el valor de onTextEnteredId. Se inicializo al valor predefinido.");
     }
 
     if (!setValueFromMap(placeHolderText, "placeHolderText", variables)) {
@@ -112,7 +117,7 @@ void InputText::render() const {
 
     if (ImGui::InputText("##", buffer, bufferSize, flags)) {
         if (ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter)) {
-            onTextEntered();
+            luaManager->callLuaFunction(onTextEnteredId, { name });
         }
     }
 

@@ -40,65 +40,50 @@ scene = {
             }
         }
     },
-    ImageTest = {
+    StartButton = {
+        -- zIndex = 0, -- No importa si es 0
         components = {
             Transform = {
                 positionX = WINDOW_WIDTH / 2,
                 positionY = WINDOW_HEIGHT / 2,
-                scaleX = 100.0,
-                scaleY = 200.0
+                scaleX = 130.0,
+                scaleY = 40.0
             },
-            ImageUI = {
-                name = "Tapiocimagen",
-                text = "Tapioca Engine",
-                textSize = 36.0,
-                textFontName = "AGENCYB.TTF",
-                sourcefile = "Captura.PNG"
+            Button = {
+                name = "StartButton",
+                text = "Play",
+                onClickId = "debug",
+                textFontName = "impact.ttf",
+                textColorNormalR = 1.0,
+                textColorNormalG = 0.0,
+                textColorNormalB = 0.0,
+                textColorNormalA = 1.0,
+                textColorHoverR = 0.0,
+                textColorHoverG = 1.0,
+                textColorHoverB = 0.0,
+                textColorHoverA = 1.0,
+                textColorActiveR = 0.0,
+                textColorActiveG = 0.0,
+                textColorActiveB = 1.0,
+                textColorActiveA = 1.0,
+                -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
             }
         }
-    }
-    -- StartButton = {
-    --     -- zIndex = 0, -- No importa si es 0
-    --     components = {
-    --         Transform = {
-    --             positionX = WINDOW_WIDTH / 2,
-    --             positionY = WINDOW_HEIGHT / 2,
-    --             scaleX = 130.0,
-    --             scaleY = 40.0
-    --         },
-    --         Button = {
-    --             name = "StartButton",
-    --             text = "Play",
-    --             textFontName = "impact.ttf",
-    --             textColorNormalR = 1.0,
-    --             textColorNormalG = 0.0,
-    --             textColorNormalB = 0.0,
-    --             textColorNormalA = 1.0,
-    --             textColorHoverR = 0.0,
-    --             textColorHoverG = 1.0,
-    --             textColorHoverB = 0.0,
-    --             textColorHoverA = 1.0,
-    --             textColorActiveR = 0.0,
-    --             textColorActiveG = 0.0,
-    --             textColorActiveB = 1.0,
-    --             textColorActiveA = 1.0,
-    --             -- windowFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings
-    --         }
-    --     }
-    -- },
+    },
     -- StartInputText={
     --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
-    --             positionX = WINDOW_WIDTH / 2
+    --             positionX = WINDOW_WIDTH / 2,
+    --             scaleX = 200.0
     --         },
     --         InputText = {
     --             name = "StartInputText",
     --             placeHolderText = "Dime tu nombre...",
     --             bufferSize = 100,
-    --             onTextEnteredId = "Debug",
+    --             onTextEnteredId = "debug",
     --             textSize = 20.0,
-    --             textFontName = "impact.ttf",
+    --             textFontName = "AGENCYB.TTF",
     --             textColorR = 1.0,
     --             textColorG = 0.0,
     --             textColorB = 1.0,
@@ -112,7 +97,7 @@ scene = {
     --         }
     --     }
     -- },
-    -- StartImageButton={
+    -- StartImageTextButton={
     --     -- zIndex = 0, -- No importa si es 0
     --     components = {
     --         Transform = {
@@ -123,11 +108,11 @@ scene = {
     --         },
     --         ImageTextButton = {
     --             name = "StartImageButton",
-    --             onClickId = "Debug",
+    --             onClickId = "debug",
     --             wantText = true,
     --             text = "Play",
     --             textSize = 35.0,
-    --             textFontName = "impact.ttf",
+    --             textFontName = "arial.ttf",
     --             textColorNormalR = 1.0,
     --             textColorNormalG = 0.0,
     --             textColorNormalB = 0.0,

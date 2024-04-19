@@ -8,12 +8,15 @@ typedef int ImGuiWindowFlags;
 
 namespace Tapioca {
 class UIManager;
+class LuaManager;
+
 /*
 * @brief Clase que representa la base de un widget en la interfaz grafica
 */
 class TAPIOCA_API BaseWidget {
 protected:
-    UIManager* uiManager;   // Puntero al UIManager
+    UIManager* uiManager;     // Puntero al UIManager
+    LuaManager* luaManager;   // Puntero al LuaManager
 
     std::string name;               // Nombre del widget
     Transform* transform;           // Puntero al transform del widget

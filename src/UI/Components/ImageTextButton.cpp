@@ -1,6 +1,7 @@
 #include "ImageTextButton.h"
 #include <imgui.h>
 #include "UIManager.h"
+#include "LuaManager.h"
 
 namespace Tapioca {
 ImageTextButton::ImageTextButton()
@@ -118,7 +119,7 @@ void ImageTextButton::render() const {
     if (ImGui::ImageButton(name.c_str(), textureId, buttonSize, ImVec2(uv0.x, uv0.y), ImVec2(uv1.x, uv1.y),
                            ImVec4(imageBgColor.x, imageBgColor.y, imageBgColor.z, imageBgColor.w),
                            ImVec4(imageTint.x, imageTint.y, imageTint.z, imageTint.w)))
-        onClick();
+        luaManager->callLuaFunction(onClickId, { name });
 
     if (wantText) {
         std::string textStr = text;
