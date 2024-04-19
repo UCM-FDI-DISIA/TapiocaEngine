@@ -23,12 +23,14 @@ WindowManager::WindowManager(std::string const& windowName, const uint32_t w, co
       firstWindowWidth(w), firstWindowHeight(h), resized(true), modules(), mainLoop(nullptr) { }
 
 WindowManager::~WindowManager() {
-    // eliminar la ventana de sdl
     if (sdlWindow != nullptr) {
         SDL_DestroyWindow(sdlWindow);
         SDL_Quit();
         sdlWindow = nullptr;
     }
+    glContext = nullptr;
+    modules.clear();
+    mainLoop = nullptr;
 }
 
 bool WindowManager::init() {
@@ -73,7 +75,7 @@ void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod);
 void WindowManager::sendEvent(std::string const& id, void* info) {
     if (id == "ev_CLOSE") mainLoop->exit();
     else
-        mainLoop->pushEvent({nullptr, id, info,true});
+        mainLoop->pushEvent({nullptr, id, info, true});
 }
 
 

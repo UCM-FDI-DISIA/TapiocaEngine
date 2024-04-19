@@ -34,16 +34,14 @@ UIManager::~UIManager() {
     sdlWindow = nullptr;
     glContext = nullptr;
     ogreWindow = nullptr;
-    if (renderListener) {
+    if (renderListener != nullptr) {
         delete renderListener;
         renderListener = nullptr;
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplSDL2_Shutdown();
+        ImGui::DestroyContext();
     }
-
     fonts.clear();
-
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
 }
 
 bool UIManager::init() {
@@ -52,6 +50,7 @@ bool UIManager::init() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
+    io.IniFilename = nullptr;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
     io.WantCaptureKeyboard = true;
     io.WantCaptureMouse = true;

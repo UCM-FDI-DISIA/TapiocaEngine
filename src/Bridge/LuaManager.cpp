@@ -133,5 +133,4 @@ int LuaManager::print(lua_State* L) {
     std::cout << "[INFO|JUEGO] " << aux.str() << '\n';
     return 0;
 }
-
 }
