@@ -146,7 +146,8 @@ bool GraphicsManager::init() {
     SDL_SysWMinfo wmInfo;
     SDL_VERSION(&wmInfo.version);
     if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
-        logError(("GraphicsManager: Error al obtener informacion de la ventana de SDL: " + std::string(SDL_GetError())).c_str());
+        logError(("GraphicsManager: Error al obtener informacion de la ventana de SDL: " + std::string(SDL_GetError()))
+                     .c_str());
         return false;
     }
     // vincular ventana de SDL con Ogre
@@ -341,16 +342,16 @@ void GraphicsManager::loadResources() {
     // archivos de Ogre
 #ifdef _CREATE_EXE
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./Ogre/Main", "FileSystem",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "./Ogre/Main", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./Ogre/RTShaderLib", "FileSystem",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "./Ogre/RTShaderLib", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #endif
 
     // shaders para las sombras y material del physics debug
@@ -525,9 +526,8 @@ Plane* GraphicsManager::createPlaneWithName(RenderNode* const node, const Vector
                                             const Vector3& up_, const float width, const float height,
                                             const int xSegments, const int ySegments, std::string const& material) {
 
-    ++planeNumber;
-    Plane* plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, "Plane" + planeNumber, width, height,
-                             xSegments, ySegments);
+    string name = "Plane" + std::to_string(planeNumber++);
+    Plane* plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
     return plane;
 }
 
@@ -547,13 +547,12 @@ Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const&
 }
 
 Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName,
-                                          std::string const& name, const bool enable,
-                                          const Vector3 rkNormal, const float fConstant, const float scale,
-                                          const float tiling, const bool drawFirst, const float bow,
-                                          const int xsegments, const int ysegments) {
+                                          std::string const& name, const bool enable, const Vector3 rkNormal,
+                                          const float fConstant, const float scale, const float tiling,
+                                          const bool drawFirst, const float bow, const int xsegments,
+                                          const int ysegments) {
     return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
-                        bow,
-                        xsegments, ysegments);
+                        bow, xsegments, ysegments);
 }
 
 Ogre::ManualObject* GraphicsManager::createManualObject(RenderNode* const node) {
