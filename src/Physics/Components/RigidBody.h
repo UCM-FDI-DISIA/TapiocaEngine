@@ -111,12 +111,6 @@ public:
     */
     void scaleCollider(const Vector3 s);
 
-     /*
-    * @brief Cambia la escala del collider absoluto
-    * @param s Escala que se quiere dar al collider
-    */
-    void setColliderScale(const Vector3 s);
-
     /*
     * @brief Cambia la forma del collider 
     * @param s Forma que se quiere dar al collider
