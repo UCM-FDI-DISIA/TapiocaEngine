@@ -68,7 +68,9 @@ private:
 
     Vector3 localForward();
 
-    Vector3 getRotationPositionAux(Vector3 aux) const;
+    Vector3 getGlobalPositionWithoutRotationAux(Vector3 point) const;
+
+    Vector3 getGlobalPositionAux(Vector3 aux) const;
 
 public:
     COMPONENT_ID("Transform")
@@ -123,9 +125,9 @@ public:
     * @brief Devuelve la posicion global del transform
     * @return La posicion global del transform
     */
+    Vector3 getGlobalPositionWithoutRotation() const;
+
     Vector3 getGlobalPosition() const;
-    
-    Vector3 getRotationPosition() const;
     /*
     * @brief Devuelve la rotacion local del transform
     * @return La posicion local del transform

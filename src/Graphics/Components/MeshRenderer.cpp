@@ -64,7 +64,7 @@ void MeshRenderer::awake() {
 
 void MeshRenderer::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
-        node->setPosition(transform->getRotationPosition());
+        node->setPosition(transform->getGlobalPosition());
         node->setRotation(transform->getGlobalRotation() * Quaternion(initialRotation));
         node->setScale(transform->getGlobalScale());
     }

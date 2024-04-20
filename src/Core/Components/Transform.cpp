@@ -60,7 +60,21 @@ Vector3 Transform::localForward() {
     return v;
 }
 
-Vector3 Transform::getRotationPositionAux(Vector3 point) const {
+Vector3 Transform::getGlobalPositionWithoutRotationAux(Vector3 point) const {
+    if (parent == nullptr) {
+        return point;
+    }
+
+    Vector3 parentScale = parent->getScale();
+    point = Vector3(point.x * parentScale.x, point.y * parentScale.y, point.z * parentScale.z);
+
+    // se convierte al sistema de coordenadas del padre
+    point = point + parent->position;
+
+    return parent->getGlobalPositionWithoutRotationAux(point);
+}
+
+Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
     if (parent == nullptr) {
         return point;
     }
@@ -69,7 +83,8 @@ Vector3 Transform::getRotationPositionAux(Vector3 point) const {
     Vector3 yAxis = parent->localUp();
     Vector3 zAxis = parent->localForward();
 
-    //Vector3 point = position;
+    Vector3 parentScale = parent->getScale();
+    point = Vector3(point.x * parentScale.x, point.y * parentScale.y, point.z * parentScale.z);
 
     Vector3 pos;
     pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
@@ -79,7 +94,7 @@ Vector3 Transform::getRotationPositionAux(Vector3 point) const {
     // se convierte al sistema de coordenadas del padre
     pos = pos + parent->position;
 
-    return parent->getRotationPositionAux(pos);
+    return parent->getGlobalPositionAux(pos);
 }
 
 Transform::Transform()
@@ -125,7 +140,7 @@ bool Transform::initComponent(const CompMap& variables) {
     }*/
     rotation = Quaternion(rotationVec);
 
-    
+
     if (!setValueFromMap(scale.x, "scaleX", variables)) scale.x = 0;
     if (!setValueFromMap(scale.y, "scaleY", variables)) scale.y = 0;
     if (!setValueFromMap(scale.z, "scaleZ", variables)) scale.z = 0;
@@ -156,20 +171,26 @@ void Transform::handleEvent(std::string const& id, void* info) {
     }
     else if (id == "scaleChanged") {
         for (Transform* child : children) {
-            child->pushEvent("scaleChanged",nullptr, false);
+            child->pushEvent("scaleChanged", nullptr, false);
         }
     }
 }
 
-Vector3 Transform::getGlobalPosition() const {
+Vector3 Transform::getGlobalPositionWithoutRotation() const {
+    return getGlobalPositionWithoutRotationAux(position);
+
+    /*
     Vector3 aux = position;
     if (parent != nullptr) {
-        aux = aux + parent->getGlobalPosition();
+        Vector3 parentScale = parent->getScale();
+        aux = Vector3(aux.x * parentScale.x, aux.y * parentScale.y, aux.z * parentScale.z);
+        aux = aux + parent->getGlobalPositionWithoutRotation();
     }
     return aux;
+    */
 }
 
-Vector3 Transform::getRotationPosition() const { return getRotationPositionAux(position); }
+Vector3 Transform::getGlobalPosition() const { return getGlobalPositionAux(position); }
 
 Quaternion Transform::getGlobalRotation() const {
     /*
