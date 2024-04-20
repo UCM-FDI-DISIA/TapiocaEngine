@@ -7,21 +7,11 @@
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent()
-    : plane(nullptr), node(nullptr), transform(nullptr), fConstant(), height(), width(), xSegments(), ySegments() { }
+    : plane(nullptr), node(nullptr), transform(nullptr), height(), width(), xSegments(), ySegments() { }
 
 PlaneComponent::~PlaneComponent() { delete node; }
 
 bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha podido establecer o No hay nombre de mesh
-    // No se ha podido establecer o No hay nombre de mesh
-    /*
-    if (!setValueFromMap(planeName, "planeName", variables) || planeName == "") {
-#ifdef _DEBUG
-        std::cerr << "Error: PlaneComponent: no se pudo inicializar el nombre del plano.\n";
-#endif
-        return false;
-    }
-    */
-
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
         logInfo("PlaneComponent: No existe nombre para el material: se coloca el predefinido por la mesh.");
@@ -33,15 +23,6 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
         logInfo("PlaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
         rkNormal = Tapioca::Vector3(0.f, 0.f, 1.f);
     }
-
-    /*
-    if (!setValueFromMap(fConstant, "f", variables)) {
-#ifdef _DEBUG
-        std::cout << "No se ha definido una constante f, se usara el valor por defecto 0.\n";
-#endif
-        fConstant = 0.f;
-    }
-    */
 
     bool upSet = setValueFromMap(up.x, "upX", variables) && setValueFromMap(up.y, "upY", variables) &&
         setValueFromMap(up.z, "upZ", variables);
@@ -61,12 +42,14 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
     }
 
     if (!setValueFromMap(xSegments, "xSegments", variables)) {
-        logInfo("PlaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
+        logInfo(
+            "PlaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
         xSegments = 1;
     }
 
     if (!setValueFromMap(ySegments, "ySegments", variables)) {
-        logInfo("PlaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
+        logInfo(
+            "PlaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
         ySegments = 1;
     }
 

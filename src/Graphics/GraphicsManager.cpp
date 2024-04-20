@@ -17,6 +17,7 @@
 #include "Utilities/AnimationHelper.h"
 #include "Utilities/Skybox.h"
 #include "Utilities/Skyplane.h"
+#include "Components/CameraComponent.h"
 
 // OGRE
 // warnings de ogre
@@ -46,7 +47,7 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), mainLight(nullptr) { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), mainLight(nullptr), zOrders() { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -331,11 +332,6 @@ void GraphicsManager::setUpShadows() {
         }
 #endif
     }
-    /*
-    else {
-        scnMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-    }
-    */
 }
 
 void GraphicsManager::loadResources() {
@@ -450,6 +446,50 @@ void GraphicsManager::shutDown() {
 Ogre::SceneManager* GraphicsManager::getSceneManager() { return nullptr; }
 
 Ogre::RenderWindow* GraphicsManager::getOgreRenderTarget() { return ogreWindow; }
+
+bool GraphicsManager::checkResourceExists(string name) {
+    return Ogre::ResourceGroupManager::getSingletonPtr()->resourceExists(
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, name);
+}
+
+void GraphicsManager::removeCameraCompByZOrder(int zOrder, bool deleteCamera) {
+    auto it = cameraComps.find(zOrder);
+    if (it != cameraComps.end()) {
+        if (deleteCamera) {
+            it->second->free();
+        }
+        cameraComps.erase(zOrder);
+    }
+}
+
+void GraphicsManager::saveCameraComp(CameraComponent* cameraComp) { cameraComps[cameraComp->getZOrder()] = cameraComp; }
+
+int GraphicsManager::askForZOrder(int requiredZOrder) {
+    int zOrder = requiredZOrder;
+    if (zOrders.contains(requiredZOrder)) {
+        bool found = false;
+        for (int cont = requiredZOrder + 1; cont <= MAXIMUM_Z_ORDER && !found; ++cont) {
+            if (!zOrders.contains(cont)) {
+                zOrder = cont;
+                zOrders.insert(zOrder);
+                found = true;
+            }
+        }
+        if (!found) {
+            zOrder = -1;
+        }
+    }
+    else {
+        zOrders.insert(requiredZOrder);
+    }
+    return zOrder;
+}
+
+void GraphicsManager::removeZOrder(int zOrder) {
+    if (zOrders.contains(zOrder)) {
+        zOrders.erase(zOrder);
+    }
+}
 
 RenderNode* GraphicsManager::createNode(const Vector3 pos, const Vector3 scale) {
     return new RenderNode(scnMgr, pos, scale);

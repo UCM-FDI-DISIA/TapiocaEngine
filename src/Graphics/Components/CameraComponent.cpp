@@ -12,9 +12,10 @@ CameraComponent::CameraComponent()
       dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
       farPlane(-1.0f), targetToLookSet(false) { }
 
-CameraComponent::~CameraComponent() {
-    delete node;
-    delete viewport;
+CameraComponent::~CameraComponent() { 
+    //GraphicsManager::instance()->removeCameraCompByZOrder(zOrder, true);
+    GraphicsManager::instance()->removeZOrder(zOrder);
+    free();
 }
 
 bool CameraComponent::initComponent(const CompMap& variables) {
@@ -70,39 +71,54 @@ void CameraComponent::awake() {
     transform = getObject()->getComponent<Transform>();
 
     GraphicsManager* graphicsManager = GraphicsManager::instance();
-    node = graphicsManager->createNode();
-    camera = graphicsManager->createCamera(node, "Camera " + std::to_string(zOrder));
-    viewport = graphicsManager->createViewport(camera, zOrder);
+    //graphicsManager->removeCameraCompByZOrder(zOrder, true);
+    int zOrderAux = graphicsManager->askForZOrder(zOrder);
+    if (zOrderAux != -1) {
+        if (zOrderAux != zOrder) {
+            std::string message = "CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
+                std::to_string(zOrderAux);
+            logWarn(message.c_str());
+        }
+        zOrder = zOrderAux;
 
-    if (direction != Vector3(0.0f, 0.0f, 0.0f)) {
-        camera->setDirection(direction);
-    }
-    else if (!targetToLookSet) {
-        setDirection(INITIAL_DIR);
-    }
+        node = graphicsManager->createNode();
+        camera = graphicsManager->createCamera(node, "Camera " + std::to_string(zOrder));
+        viewport = graphicsManager->createViewport(camera, zOrder);
+        //graphicsManager->saveCameraComp(this);
 
-    if (nearPlane != -1.0f) {
-        camera->setNearClipDistance(nearPlane);
-    }
-    if (farPlane != -1.0f) {
-        camera->setFarClipDistance(farPlane);
-    }
+        if (direction != Vector3(0.0f, 0.0f, 0.0f)) {
+            camera->setDirection(direction);
+        }
+        else if (!targetToLookSet) {
+            setDirection(INITIAL_DIR);
+        }
 
-    // Viewport
-    if (color != Vector3(-1.0f, -1.0f, -1.0f)) {
-        viewport->setBackground(Vector4(color, 1.0f));
+        if (nearPlane != -1.0f) {
+            camera->setNearClipDistance(nearPlane);
+        }
+        if (farPlane != -1.0f) {
+            camera->setFarClipDistance(farPlane);
+        }
+
+        // Viewport
+        if (color != Vector3(-1.0f, -1.0f, -1.0f)) {
+            viewport->setBackground(Vector4(color, 1.0f));
+        }
+        if (dimensions.x != 0.0f) {
+            viewport->setLeft(dimensions.x);
+        }
+        if (dimensions.y != 0.0f) {
+            viewport->setTop(dimensions.y);
+        }
+        if (dimensions.z != 1.0f) {
+            viewport->setWidth(dimensions.z);
+        }
+        if (dimensions.w != 1.0f) {
+            viewport->setHeight(dimensions.z);
+        }
     }
-    if (dimensions.x != 0.0f) {
-        viewport->setLeft(dimensions.x);
-    }
-    if (dimensions.y != 0.0f) {
-        viewport->setTop(dimensions.y);
-    }
-    if (dimensions.z != 1.0f) {
-        viewport->setWidth(dimensions.z);
-    }
-    if (dimensions.w != 1.0f) {
-        viewport->setHeight(dimensions.z);
+    else {
+        logError("CameraComponent: No queda nigun zOrder disponible");
     }
 }
 
@@ -114,6 +130,17 @@ void CameraComponent::handleEvent(std::string const& id, void* info) {
             targetToLookSet = false;
             lookAt(targetToLook);
         }
+    }
+}
+
+void CameraComponent::free() {
+    if (node != nullptr) {
+        delete node;
+        node = nullptr;
+    }
+    if (viewport != nullptr) {
+        delete viewport;
+        viewport = nullptr;
     }
 }
 
@@ -162,7 +189,24 @@ void CameraComponent::setBackground(const Vector3 color) {
 }
 
 void CameraComponent::setZOrder(const int zOrder) {
-    this->zOrder = zOrder;
-    viewport->setZOrder(zOrder);
+    GraphicsManager* graphicsManager = GraphicsManager::instance();
+    graphicsManager->removeZOrder(this->zOrder);
+    //graphicsManager->removeCameraCompByZOrder(this->zOrder, false);
+    this->zOrder = graphicsManager->askForZOrder(zOrder);
+    if (this->zOrder != -1) {
+        if (zOrder != this->zOrder) {
+            std::string message = "CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
+                std::to_string(this->zOrder);
+            logWarn(message.c_str());
+        }
+        //graphicsManager->removeCameraCompByZOrder(this->zOrder, true);
+        viewport->setZOrder(this->zOrder);
+        //graphicsManager->saveCameraComp(this);
+    }
+    else {
+        logError("CameraComponent: No queda nigun zOrder disponible");
+    }
 }
+
+int CameraComponent::getZOrder() const { return this->zOrder; }
 }

@@ -2,10 +2,10 @@ scene = {
     {
         components = {
             CameraComponent = {
-                zOrder = -1, -- Cuando se arregle, se podrá cambiar a 0
+                zOrder = 0,
                 bgColorR = 0.0,
-                bgColorG = 0.0,
-                bgColorB = 0.0
+                bgColorG = 0.659,
+                bgColorB = 0.929
             },
             SplashScreenComponent = {
                 changeTime = 2000,

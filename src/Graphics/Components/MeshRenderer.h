@@ -24,8 +24,8 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string meshName;
     std::string materialName;
+    std::string meshName;
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -66,8 +66,9 @@ public:
     */
     void handleEvent(std::string const& id, void* info) override;
 
-    void setMeshName(const std::string& n);
-    void setMaterialName(const std::string& n);
+    void setMaterialName(const std::string& name);
+
+    void setMeshName(const std::string& name);
 
     void setVisible(const bool enable);
     bool isVisible() const;

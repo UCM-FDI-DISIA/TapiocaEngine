@@ -7,15 +7,22 @@
 
 namespace Tapioca {
 MeshRenderer::MeshRenderer()
-    : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), meshName(), materialName(""),
-      castShadows(true) { }
+    : mesh(nullptr), node(nullptr), transform(nullptr), initialRotation(Vector3(0.0f)), materialName(""),
+      castShadows(true), meshName("") { }
 
-MeshRenderer::~MeshRenderer() { delete node; }
+MeshRenderer::~MeshRenderer() {
+    if (node != nullptr) {
+        delete node;
+    }
+}
 
 bool MeshRenderer::initComponent(const CompMap& variables) {
     // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(meshName, "meshName", variables) || meshName == "") {
         logError("MeshRenderer: No se pudo inicializar el nombre del mesh.");
+        return false;
+    }
+    if (!GraphicsManager::instance()->checkResourceExists(meshName)) {
         return false;
     }
 
@@ -39,23 +46,24 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 }
 
 void MeshRenderer::awake() {
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
-    GraphicsManager* g = GraphicsManager::instance();
-    node = g->createNode();
-    mesh = g->createMesh(node, meshName);
+    if (meshName != "") {
+        GameObject* gameobject = getObject();
+        transform = gameobject->getComponent<Transform>();
+        GraphicsManager* g = GraphicsManager::instance();
+        node = g->createNode();
+        mesh = g->createMesh(node, meshName);
 
-    if (materialName != "") {
-        mesh->setMaterial(materialName);
-    }
-    if (!castShadows) {
-        mesh->castShadows(false);
+        if (materialName != "") {
+            mesh->setMaterial(materialName);
+        }
+        if (!castShadows) {
+            mesh->castShadows(false);
+        }
     }
 }
 
 void MeshRenderer::handleEvent(std::string const& id, void* info) {
     if (id == "transformChanged") {
-        //node->setPosition(transform->getGlobalPosition());
         node->setPosition(transform->getRotationPosition());
         node->setRotation(transform->getGlobalRotation() * Quaternion(initialRotation));
         node->setScale(transform->getGlobalScale());
@@ -64,9 +72,13 @@ void MeshRenderer::handleEvent(std::string const& id, void* info) {
 
 Mesh* MeshRenderer::getMesh() const { return mesh; }
 
-void MeshRenderer::setMeshName(const std::string& n) { meshName = n; }
+void MeshRenderer::setMaterialName(const std::string& name) { materialName = name; }
 
-void MeshRenderer::setMaterialName(const std::string& n) { materialName = n; }
+void MeshRenderer::setMeshName(const std::string& name) {
+    if (GraphicsManager::instance()->checkResourceExists(name)) {
+        meshName = name;
+    }
+}
 
 void MeshRenderer::setVisible(const bool enable) { mesh->setVisible(enable); }
 bool MeshRenderer::isVisible() const { return mesh->isVisible(); }

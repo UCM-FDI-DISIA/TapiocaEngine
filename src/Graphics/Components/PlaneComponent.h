@@ -14,7 +14,6 @@ private:
     Transform* transform;
     Vector3 rkNormal;
     Vector3 up;
-    float fConstant;
     float width;
     float height;
     int xSegments;

@@ -62,6 +62,8 @@ public:
     */
     void handleEvent(std::string const& id, void* info) override;
 
+    void free();
+
     // Camera
     /*
     * @brief Cambia la direccion a la que mira la camara.
@@ -120,5 +122,6 @@ public:
     int getHeightInPixels() const;
     void setBackground(const Vector3 color);
     void setZOrder(const int zOrder);
+    int getZOrder() const;
 };
 }

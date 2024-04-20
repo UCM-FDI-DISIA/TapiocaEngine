@@ -20,7 +20,7 @@ private:
     friend GraphicsManager;
     friend AnimationHelper;
 
-    Ogre::Entity* mesh;         // Mesh de Ogre
+    Ogre::Entity* mesh;   // Mesh de Ogre
 
     Ogre::Entity* const getMesh() const;
 

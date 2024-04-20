@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include "Utilities/Singleton.h"
 #include "WindowModule.h"
 #include "Utilities/Vector3.h"
@@ -42,6 +43,7 @@ class Plane;
 class AnimationHelper;
 class Skybox;
 class Skyplane;
+class CameraComponent;
 
 class WindowManager;
 
@@ -50,6 +52,7 @@ private:
     friend Singleton<GraphicsManager>;
 
     const int NUM_TEXTURES = 3;
+    const int MAXIMUM_Z_ORDER = 20;
 
     // Ogre
     Ogre::FileSystemLayer* fsLayer;                      // Sistema de busqueda de archivos de configuracion
@@ -93,8 +96,10 @@ private:
 #pragma warning(default : 4251)
 #endif
     int planeNumber;
+    std::unordered_set<int> zOrders;
     // la luz principal es aquella luz direccional que produce sombras
     LightDirectional* mainLight;
+    std::unordered_map<int, CameraComponent*> cameraComps;
 
     // TODO: se carga de archivo, se puede borrar
     /*
@@ -165,6 +170,16 @@ public:
     * Nos proporciona la superficie sobre la qeu redneriza ogre la que nos permite subscribirnos a varios callbacks
     */
     Ogre::RenderWindow* getOgreRenderTarget();
+
+    bool checkResourceExists(std::string name);
+
+    void removeCameraCompByZOrder(int zOrder, bool deleteCamera);
+
+    void saveCameraComp(CameraComponent* cameraComp);
+
+    int askForZOrder(int requiredZOrder);
+
+    void removeZOrder(int zOrder);
 
     /*
     * @brief Crea un nodo
