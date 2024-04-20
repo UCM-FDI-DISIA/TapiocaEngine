@@ -47,7 +47,8 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), mainLight(nullptr), zOrders() { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), billboardNumber(0), mainLight(nullptr),
+      zOrders() { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -551,6 +552,11 @@ BillboardSet* GraphicsManager::createBillboardSet(RenderNode* const node, std::s
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
+BillboardSet* GraphicsManager::createBillboardSetWithName(RenderNode* const node, const unsigned int poolSize) {
+    string name = "Billboard" + std::to_string(billboardNumber++);
+    return new BillboardSet(scnMgr, node, name, poolSize);
+}
+
 ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, std::string const& name,
                                                       std::string const& templateName, const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
@@ -567,8 +573,7 @@ Plane* GraphicsManager::createPlaneWithName(RenderNode* const node, const Vector
                                             const int xSegments, const int ySegments, std::string const& material) {
 
     string name = "Plane" + std::to_string(planeNumber++);
-    Plane* plane = new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
-    return plane;
+    return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up_, name, width, height, xSegments, ySegments);
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,

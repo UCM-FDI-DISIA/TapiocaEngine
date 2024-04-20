@@ -55,7 +55,13 @@ void AudioSourceComponent::awake() {
 }
 
 void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
+    /*
     if (id == "transformchanged") {
+        position = myTransform->getGlobalPosition();
+        mySource->setPosition(position);
+    }
+    */
+    if (id == "posChanged") {
         position = myTransform->getGlobalPosition();
         mySource->setPosition(position);
     }

@@ -22,8 +22,6 @@ Tapioca::BillboardSet::~BillboardSet() {
     for (auto& billboard : billboards) {
         delete billboard;
     }
-    // ya lo hace la destructora padre
-    //if (mBillboardSet != nullptr) delete mBillboardSet;   // ??
     billboards.clear();
 }
 

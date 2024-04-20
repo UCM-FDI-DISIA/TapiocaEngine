@@ -4,12 +4,14 @@
 
 namespace Tapioca {
 class Billboard;
+class BillboardSet;
 class RenderNode;
 class Transform;
 
 class TAPIOCA_API SpriteRenderer : public Component {
 private:
     RenderNode* node;
+    BillboardSet* billboardSet;
     Billboard* billboard;
     Transform* transform;
     Vector4 color;
@@ -18,7 +20,6 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    std::string billboardName;
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -30,5 +31,9 @@ public:
 
     bool initComponent(const CompMap& variables) override;
     void start() override;
+    void handleEvent(std::string const& id, void* info) override;
+
+    void setVisible(const bool enable);
+    bool isVisible() const;
 };
 }

@@ -36,10 +36,6 @@ protected:
 
 public:
     /*
-    * @brief Destructora de la clase Billboard.
-    */
-    virtual ~Billboard();
-    /*
     * @brief Devuelve la posicion del billboard
     * @param Posicion del billboard
     */

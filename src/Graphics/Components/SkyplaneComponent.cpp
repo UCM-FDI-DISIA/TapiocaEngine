@@ -29,7 +29,8 @@ bool SkyplaneComponent::initComponent(const CompMap& variables) {
     bool normalSet = setValueFromMap(rkNormal.x, "rkNormalX", variables) &&
         setValueFromMap(rkNormal.y, "rkNormalY", variables) && setValueFromMap(rkNormal.z, "rkNormalZ", variables);
     if (!normalSet) {
-        logInfo("SkyplaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
+        logInfo(
+            "SkyplaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
         rkNormal = Tapioca::Vector3(0.f, 0.f, 1.f);
     }
 
@@ -60,12 +61,14 @@ bool SkyplaneComponent::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(xSegments, "xSegments", variables)) {
-        logInfo("SkyplaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
+        logInfo("SkyplaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por "
+                "defecto 1.");
         xSegments = 1;
     }
 
     if (!setValueFromMap(ySegments, "ySegments", variables)) {
-        logInfo("SkyplaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
+        logInfo("SkyplaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por "
+                "defecto 1.");
         ySegments = 1;
     }
 

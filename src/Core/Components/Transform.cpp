@@ -2,7 +2,13 @@
 #include "Structure/GameObject.h"
 
 namespace Tapioca {
-void Transform::changed(bool rb) { pushEvent("transformChanged", &rb, false); }
+//void Transform::changed(bool rb) { pushEvent("transformChanged", &rb, false); }
+
+void Transform::posChanged(bool rb) { pushEvent("posChanged", &rb, false); }
+
+void Transform::rotChanged(bool rb) { pushEvent("rotChanged", &rb, false); }
+
+void Transform::scaleChanged() { pushEvent("scaleChanged", nullptr, false); }
 
 void Transform::getAllChildrenAux(std::vector<Transform*>& allChildren) const {
     for (auto child : children) {
@@ -158,11 +164,15 @@ bool Transform::initComponent(const CompMap& variables) {
 }
 
 void Transform::start() {
-    changed();
-    pushEvent("scaleChanged", nullptr, false);
+    //changed();
+    //pushEvent("scaleChanged", nullptr, false);
+    posChanged();
+    rotChanged();
+    scaleChanged();
 }
 
 void Transform::handleEvent(std::string const& id, void* info) {
+    /*
     if (id == "transformChanged") {
         for (Transform* child : children) {
             bool b = false;
@@ -172,6 +182,22 @@ void Transform::handleEvent(std::string const& id, void* info) {
     else if (id == "scaleChanged") {
         for (Transform* child : children) {
             child->pushEvent("scaleChanged", nullptr, false);
+        }
+    }
+    */
+    if (id == "posChanged") {
+        for (Transform* child : children) {
+            child->posChanged();
+        }
+    }
+    else if (id == "rotChanged") {
+        for (Transform* child : children) {
+            child->rotChanged();
+        }
+    }
+    else if (id == "scaleChanged") {
+        for (Transform* child : children) {
+            child->scaleChanged();
         }
     }
 }
@@ -219,36 +245,46 @@ Vector3 Transform::getGlobalScale() const {
 
 void Transform::setPosition(const Vector3& p, bool rb) {
     position = p;
-    changed(rb);
+    posChanged(rb);
+    //changed(rb);
 }
 void Transform::setPositionXY(const Vector2& p, bool rb) {
     position = p;
-    changed(rb);
+    posChanged(rb);
+    //changed(rb);
 }
 void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = Quaternion(r);
     //rotation = r;
-    changed(rb);
+    posChanged(rb);
+    rotChanged(rb);
+    //changed(rb);
 }
 void Transform::setScale(const Vector3& s) {
     scale = s;
-    pushEvent("scaleChanged", nullptr, false);
-    changed();
+    posChanged();
+    scaleChanged();
+    //pushEvent("scaleChanged", nullptr, false);
+    //changed();
 }
 void Transform::setScaleXY(const Vector2& s) {
     scale = s;
-    changed();
+    posChanged();
+    scaleChanged();
+    //changed();
 }
 
 void Transform::translate(const Vector3& p) {
     position += p;
-    changed();
+    posChanged();
+    //changed();
 }
 void Transform::rotate(const Vector3& r) {
     Quaternion q = Quaternion(r);
     rotation = rotation * q;
-    //rotation += r;
-    changed();
+    posChanged();
+    rotChanged();
+    //changed();
 }
 
 Vector3 Transform::right() {

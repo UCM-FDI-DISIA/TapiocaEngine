@@ -11,7 +11,7 @@ SkyboxComponent::SkyboxComponent()
 
 SkyboxComponent::~SkyboxComponent() { delete node; }
 
-bool SkyboxComponent::initComponent(const CompMap& variables) { 
+bool SkyboxComponent::initComponent(const CompMap& variables) {
 
     // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(skyboxName, "planeName", variables) || skyboxName == "") {
@@ -26,19 +26,21 @@ bool SkyboxComponent::initComponent(const CompMap& variables) {
 
     bool bDistC = setValueFromMap(distC, "distC", variables);
     if (!bDistC) {
-        logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y la cámara, se usara el valor por defecto 5000s.");
+        logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y la cámara, se usara el valor por "
+                "defecto 5000s.");
         distC = 5000.f;
     }
 
     if (!setValueFromMap(orderC, "orderC", variables)) {
-        logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes o después de la escena, se usara el valor por defecto true.");
+        logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes o después de la escena, se usara el "
+                "valor por defecto true.");
         orderC = true;
     }
 
     return true;
 }
 
-void SkyboxComponent::awake() { 
+void SkyboxComponent::awake() {
     GameObject* gameobject = getObject();
     transform = gameobject->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();

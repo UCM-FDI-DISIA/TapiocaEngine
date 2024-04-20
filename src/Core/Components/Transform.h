@@ -36,7 +36,13 @@ private:
     /*
     * @brief Envia un evento para informar que se ha modificado el transform
     */
-    void changed(bool rb = false);
+    //void changed(bool rb = false);
+
+    void posChanged(bool rb = false);
+
+    void rotChanged(bool rb = false);
+
+    void scaleChanged();
 
     /*
     * @brief Devuelve en el vector que se pasa como parametro, los hijos de este transfom

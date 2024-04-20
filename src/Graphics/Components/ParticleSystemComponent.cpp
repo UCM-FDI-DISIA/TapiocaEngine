@@ -36,10 +36,18 @@ void ParticleSystemComponent::awake() {
 }
 
 void ParticleSystemComponent::handleEvent(std::string const& id, void* info) {
+    if (id == "posChanged") {
+        node->setPosition(transform->getGlobalPosition());
+    }
+    else if (id == "scaleChanged") {
+        node->setScale(transform->getGlobalScale());
+    }
+    /*
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
         node->setScale(transform->getGlobalScale());
     }
+    */
 }
 
 void ParticleSystemComponent::setEmitting(const bool emitting) { pSys->setEmitting(emitting); }

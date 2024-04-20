@@ -63,11 +63,22 @@ void MeshRenderer::awake() {
 }
 
 void MeshRenderer::handleEvent(std::string const& id, void* info) {
+    if (id == "posChanged") {
+        node->setPosition(transform->getGlobalPosition());
+    }
+    else if (id == "rotChanged") {
+        node->setRotation(transform->getGlobalRotation() * Quaternion(initialRotation));
+    }
+    else if (id == "scaleChanged") {
+        node->setScale(transform->getGlobalScale());
+    }
+    /*
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPosition());
         node->setRotation(transform->getGlobalRotation() * Quaternion(initialRotation));
         node->setScale(transform->getGlobalScale());
     }
+    */
 }
 
 Mesh* MeshRenderer::getMesh() const { return mesh; }

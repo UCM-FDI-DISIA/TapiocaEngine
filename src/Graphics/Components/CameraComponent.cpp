@@ -123,9 +123,22 @@ void CameraComponent::awake() {
 }
 
 void CameraComponent::handleEvent(std::string const& id, void* info) {
+    /*
     if (id == "transformChanged") {
         node->setPosition(transform->getGlobalPositionWithoutRotation());
 
+        if (targetToLookSet) {
+            targetToLookSet = false;
+            lookAt(targetToLook);
+        }
+    }
+    */
+    if (id == "posChanged") {
+        node->setPosition(transform->getGlobalPositionWithoutRotation());
+
+        // hacer que la camara mire al lugar correcto si se indica desde el .lua
+        // que funcion con targetToLook
+        // se hace de esta manera porque no se cambia su posicion hasta que llega el mensaje
         if (targetToLookSet) {
             targetToLookSet = false;
             lookAt(targetToLook);

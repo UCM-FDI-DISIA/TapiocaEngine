@@ -106,6 +106,7 @@ void RigidBody::fixedUpdate() {
     }
 }
 void RigidBody::handleEvent(std::string const& id, void* info) {
+    /*
     if (id == "transformChanged") {
         bool b = *((bool*)info);
         if (!b) {
@@ -127,6 +128,41 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
                 btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
                 btTr.setRotation(btQ);
                 //btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
+                rigidBody->getMotionState()->setWorldTransform(btTr);
+            }
+        }
+    }
+    */
+    if (id == "posChanged") {
+        bool b = *((bool*)info);
+        if (!b) {
+            if (movementType == DYNAMIC_OBJECT) {
+                btTransform& btTr = rigidBody->getWorldTransform();
+                btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+            }
+            else if (movementType == KINEMATIC_OBJECT) {
+                btTransform btTr;
+                rigidBody->getMotionState()->getWorldTransform(btTr);
+                btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
+                rigidBody->getMotionState()->setWorldTransform(btTr);
+            }
+        }
+    }
+    else if (id == "rotChanged") {
+        bool b = *((bool*)info);
+        if (!b) {
+            if (movementType == DYNAMIC_OBJECT) {
+                btTransform& btTr = rigidBody->getWorldTransform();
+                Quaternion q = transform->getGlobalRotation();
+                btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
+                btTr.setRotation(btQ);
+            }
+            else if (movementType == KINEMATIC_OBJECT) {
+                btTransform btTr;
+                rigidBody->getMotionState()->getWorldTransform(btTr);
+                Quaternion q = transform->getGlobalRotation();
+                btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
+                btTr.setRotation(btQ);
                 rigidBody->getMotionState()->setWorldTransform(btTr);
             }
         }

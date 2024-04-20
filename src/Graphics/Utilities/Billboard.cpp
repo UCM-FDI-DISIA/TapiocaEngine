@@ -16,11 +16,6 @@ Billboard::Billboard(Ogre::Billboard* const oBillboard) : mBillboard(oBillboard)
 
 Ogre::Billboard* Tapioca::Billboard::getBillboard() { return mBillboard; }
 
-Tapioca::Billboard::~Billboard() {
-    // NO HACE FALTA, PRODUCE ERROR (CON SACARLO ES SUFICENTE)
-    //if (mBillboard != nullptr) delete mBillboard;
-}
-
 Tapioca::Vector3 Tapioca::Billboard::getPosition() const {
     return Tapioca::Vector3(mBillboard->getPosition().x, mBillboard->getPosition().y, mBillboard->getPosition().z);
 }

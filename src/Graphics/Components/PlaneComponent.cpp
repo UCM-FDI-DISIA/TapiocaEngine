@@ -67,7 +67,12 @@ void PlaneComponent::awake() {
 }
 
 void PlaneComponent::handleEvent(std::string const& id, void* info) {
+    /*
     if (id == "transformChanged") {
+        node->setPosition(transform->getGlobalPositionWithoutRotation());
+    }
+    */
+    if (id == "posChanged") {
         node->setPosition(transform->getGlobalPositionWithoutRotation());
     }
 }

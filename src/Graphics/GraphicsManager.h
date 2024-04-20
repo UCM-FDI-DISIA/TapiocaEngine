@@ -96,6 +96,7 @@ private:
 #pragma warning(default : 4251)
 #endif
     int planeNumber;
+    int billboardNumber;
     std::unordered_set<int> zOrders;
     // la luz principal es aquella luz direccional que produce sombras
     LightDirectional* mainLight;
@@ -287,6 +288,8 @@ public:
     * @return Puntero al billboard creado
     */
     BillboardSet* createBillboardSet(RenderNode* const node, std::string const& name, unsigned int poolSize);
+
+    BillboardSet* createBillboardSetWithName(RenderNode* const node, const unsigned int poolSize);
 
     /*
     * @brief Crea un particleSystem
