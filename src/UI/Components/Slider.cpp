@@ -1,5 +1,6 @@
 #include "imgui.h"
 #include "Slider.h"
+#include "UIManager.h"
 namespace Tapioca {
 Tapioca::Slider::Slider() { }
 
@@ -28,8 +29,14 @@ bool Tapioca::Slider::initComponent(const CompMap& variables) {
 void Tapioca::Slider::start() { setTransform(object->getComponent<Transform>()); }
 
 void Tapioca::Slider::render() const {
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x, getSize().y));
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
+    ImVec2 sliderSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
+    ImVec2 sliderPos(getPosition().x * scaleFactorX - sliderSize.x / 2.0f,
+                      getPosition().y * scaleFactorY - sliderSize.y / 2.0f);
+    ImGui::SetNextWindowPos(sliderPos);
+    ImGui::SetNextWindowSize(sliderSize);
 
 
     ImGui::Begin(name.c_str(), nullptr, getWindowFlags());

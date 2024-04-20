@@ -1,6 +1,6 @@
 #include "imgui.h"
 #include "DropBox.h"
-
+#include "UIManager.h"
 #include "Structure/GameObject.h"
 
 namespace Tapioca {
@@ -47,8 +47,14 @@ void DropBox::start() {
 
 void DropBox::render() const {
     
-     ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x, getSize().y));
+     float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
+    ImVec2 dropBoxSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
+    ImVec2 dropBoxPos(getPosition().x * scaleFactorX - dropBoxSize.x / 2.0f,
+                    getPosition().y * scaleFactorY - dropBoxSize.y / 2.0f);
+     ImGui::SetNextWindowPos(dropBoxSize);
+    ImGui::SetNextWindowSize(dropBoxPos);
 
     ImGui::Begin(name.c_str(), nullptr, getWindowFlags());
     //ImGui::Begin(dbox.second->getName().c_str(), nullptr, dbox.second->getWindowFlags());

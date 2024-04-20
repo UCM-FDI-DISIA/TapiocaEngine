@@ -1,6 +1,6 @@
 #include "imgui.h"
 #include "ProgressBar.h"
-
+#include "UIManager.h"
 Tapioca::ProgressBar::ProgressBar() { }
 
 Tapioca::ProgressBar::~ProgressBar() { }
@@ -43,9 +43,14 @@ setTransform(object->getComponent<Transform>());
 }
 
 void Tapioca::ProgressBar::render() const { 
-    ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
-    ImGui::SetNextWindowSize(ImVec2(getSize().x,getSize().y));
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
 
+    ImVec2 progressBarSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
+    ImVec2 progressBarPos(getPosition().x * scaleFactorX - progressBarSize.x / 2.0f,
+                      getPosition().y * scaleFactorY - progressBarSize.y / 2.0f);
+    ImGui::SetNextWindowPos(progressBarPos);
+    ImGui::SetNextWindowSize(progressBarSize);
 
     ImGui::Begin(name.c_str(), nullptr, getWindowFlags());
     //ImGui::Begin(progb.second->getName().c_str(), nullptr, progb.second->getWindowFlags());
