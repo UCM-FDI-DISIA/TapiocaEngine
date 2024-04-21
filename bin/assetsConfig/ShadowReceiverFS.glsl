@@ -13,6 +13,9 @@ uniform sampler2D shadowMap2;
 //uniform float gradientClamp;
 //uniform float gradientScaleBias;
 
+in float outShadowColor;
+in vec4 outLightColour;
+
 in vec4 outColor;
 
 // PSSM
@@ -71,15 +74,30 @@ void shadowFilter( sampler2D shadowMap, vec4 oUv, vec3 splitColour )
             shadowFactor += texture2DShadowLerp(shadowMap, 1/vec2(inverseShadowmapSize, inverseShadowmapSize), shadowUV.xy + offsets, shadowUV.z);
         }
 	}
+    // shadowFactor va desde 0 hasta 1
 	shadowFactor= shadowFactor*0.11111111;
- 
-    fFragColor = vec4(outColor.xyz * shadowFactor, 1.0);
+
+    // SE HAN ACLARADO LAS SOMBRAS QUE REFLEJAN UNOS OBJETOS EN OTROS
+
+    // SI SE QUIERE QUE EL COLOR DE LA SOMBRAS NO SEA DE UN TONO DE LA ESCALA DE GRISES
+    // CAMBIAR EL COLOR DE LA LUZ Y HACER QUE EL shadowColor SEA UN GRIS
+    // (si es negro, las partes totalmente sombreadas se van a seguir viendo negras)
+
+    // hacer que las sombras que se proyectan cambien con el color de la luz
+    vec4 lightShadowColor = outLightColour * outShadowColor;
+
+    // mix hace una interpolacion lineal entre dos valores a partir de un tercer valor
+    vec3 finalColor = mix(lightShadowColor.rgb, outColor.rgb, shadowFactor);
+    fFragColor = vec4(finalColor, 1.0);
+
+    //fFragColor = vec4(outColor.xyz * shadowFactor, 1.0);
 
     //fFragColor = (centerdepth > shadowUV.z) ? vec4(outColor.xyz * splitColour, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
 }
  
 void main()
 {
+    // CALCULO DE LAS SOMBRAS QUE PROYECTAN UNOS OBJETOS EN OTROS (PARA ESO ES EL SHADOW MAPPING)
     if( depth <= pssmSplitPoints.y )
     {
         shadowFilter(shadowMap0, oUv0, vec3( 1.0, 0.0, 0.0 ) );

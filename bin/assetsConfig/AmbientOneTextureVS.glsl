@@ -6,7 +6,6 @@
 in vec4 position;
 in vec2 uv0;
 
-
 uniform mat4 worldViewProj;
 uniform vec4 ambient;
 

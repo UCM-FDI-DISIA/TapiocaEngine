@@ -1,5 +1,7 @@
 #version 330 core
 
+uniform float shadowColor;
+
 uniform mat4 modelMat;
 uniform mat4 normalModelMat;
 uniform mat4 worldViewProjMatrix;
@@ -15,7 +17,10 @@ uniform mat4 texViewProj2;
  
 layout (location = 0) in vec4 vertex;
 layout (location = 2) in vec3 normal;
- 
+
+out float outShadowColor;
+out vec4 outLightColour;
+
 out vec4 outColor;
 
 // PSSM
@@ -37,7 +42,9 @@ void main()
     // transformar la normal a espacio de mundo
     vec3 worldNorm = normalize((normalModelMat * vec4(normal, 0.0)).xyz);
 
-    // calcular la luz (como en IF)
+    // CALCULO DE LAS AUTOSOMBRAS
+
+    // calcular la luz (como en IG)
     // lightPosition.w = 0 -> luz dir   lightPosition.w = 1 -> luz pos
     // sacar la dir de la luz
     // si es dir, se saca directamente
@@ -45,7 +52,10 @@ void main()
     vec3 lightDir = normalize(lightPosition.xyz - (normalize(worldPos.xyz) * lightPosition.w));
 
     // comprobar si la luz esta debajo del objeto o no
-    outColor = lightColour * max(dot(lightDir, worldNorm), 0.0);
+    outColor = lightColour * max(dot(lightDir, worldNorm), shadowColor);    // antes 0.0
+    
+    outShadowColor = shadowColor;
+    outLightColour = lightColour;
 
     // calculate shadow map coords
     oUv0 = texViewProj0 * worldPos;

@@ -18,6 +18,9 @@ vertex_program ShadowReceiverVS glsl {
     source ShadowReceiverVS.glsl
 
 	default_params{
+        // TIENE QUE SER DE UN COLOR DE LA ESCALA DE GRISES
+        param_named shadowColor float 0.29
+
         // TODO SE HACE EN COORDENADAS DE GLOBALES/MUNDO
         // matriz de modelado (se utiliza para transformar los vertices desde el espacio local del objeto al espacio de mundo)
         param_named_auto modelMat world_matrix
@@ -95,7 +98,6 @@ vertex_program ShadowReceiverTextVS glsl {
         // posicion y color de la primera luz (por lo tanto, solo soporta las sombras con UNA luz)
 		param_named_auto lightPosition light_position 0
 		param_named_auto lightColour light_diffuse_colour 0
-
         // se utiliza para transformar un objeto desde el espacio de mundo al espacio de coordenadas de la luz
 		param_named_auto texViewProj texture_viewproj_matrix
     }
