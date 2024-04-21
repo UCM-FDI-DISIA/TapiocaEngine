@@ -18,7 +18,8 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
     luaL_openlibs(L);
 
     luabridge::getGlobalNamespace(L).addFunction("print", &print);
-    if (!luaL_dofile(L, "test.lua")) {
+
+    if (luaL_dofile(L, "test.lua")!=0) {
         logError(("LuaManager: Error al cargar test.lua: " + std::string(lua_tostring(L, -1))).c_str());
         initialized = false;
     }
