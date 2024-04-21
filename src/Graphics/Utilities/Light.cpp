@@ -14,6 +14,7 @@ Light::Light(Ogre::SceneManager* const scnMgr, RenderNode* const node, const Vec
     : RenderObject(node, scnMgr), mLight(scnMgr->createLight()), mColor(color) {
     init(mLight);
     mLight->setDiffuseColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
+    mLight->setSpecularColour(Ogre::ColourValue(1.0f, 1.0f, 1.0f, 1.0f));
 
     // elegir si la luz puede proyectar sombras o no
     mLight->setCastShadows(false);

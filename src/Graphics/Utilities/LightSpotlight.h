@@ -19,6 +19,7 @@ private:
     // (POR LO TANTO, REQUIERE DE UNA POSICION Y UNA DIRECCION)
     LightSpotlight(Ogre::SceneManager* sceneManager, RenderNode* node, Vector4 color, Vector3 direction);
 
+public:
     /*
     Un cono de luz esta definido por dos angulos:
         - Inner angle: la intensidad es mayor
@@ -41,14 +42,14 @@ private:
 
     /*
     * @brief Caida de la intensidad de la luz desde la zona interior hasta la exterior
-    * @param falloff Define como es es caida. De forma predeterminda es 1.0f (lineal)
+    * @param falloff Define como es la caida. De forma predeterminda es 1.0f (lineal)
     */
     void setFalloff(float falloff);
 
     /*
     * @brief Desde que punto comienza a emitir la luz. Por ejemplo, si emite desde el punto de origen
-    * o si se recortar la parte principal, de modo que quedaria como un cono truncado
-    * @param distance Distancia desde la que comienza a emitir
+    * o si se recorta la parte principal, de modo que quedaria como un cono truncado
+    * @param distance Distancia desde la que comienza a emitir. De forma predeterminada es 0.0f
     */
     void setNearClipDistance(float distance);
 
@@ -62,5 +63,7 @@ private:
     * @param quadratic Factor cuadratico en la atenuacion (0-1)
     */
     void setAttenuation(float maximumRange, float constant, float linear, float quadratic);
+
+    void setDirection(Vector3 direction);
 };
 }

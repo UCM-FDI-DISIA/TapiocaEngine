@@ -34,4 +34,6 @@ void LightSpotlight::setNearClipDistance(float distance) { mLight->setSpotlightN
 void LightSpotlight::setAttenuation(float maximumRange, float constant, float linear, float quadratic) {
     mLight->setAttenuation(maximumRange, constant, linear, quadratic);
 }
+
+void LightSpotlight::setDirection(Vector3 direction) { node->setDirection(direction); }
 }

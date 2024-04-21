@@ -29,6 +29,9 @@
 #include "Components/PlaneComponent.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/LightDirComp.h"
+#include "Components/LightPointComp.h"
+#include "Components/LightRectComp.h"
+#include "Components/LightSpotComp.h"
 #include "Components/SkyplaneComponent.h"
 #include "Components/SkyboxComponent.h"
 // UI
@@ -118,6 +121,9 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<SpriteRenderer>());
     manager->addBuilder(new BasicBuilder<PlaneComponent>());
     manager->addBuilder(new BasicBuilder<LightDirComp>());
+    manager->addBuilder(new BasicBuilder<LightPointComp>());
+    manager->addBuilder(new BasicBuilder<LightRectComp>());
+    manager->addBuilder(new BasicBuilder<LightSpotComp>());
     manager->addBuilder(new BasicBuilder<SkyplaneComponent>());
     manager->addBuilder(new BasicBuilder<SkyboxComponent>());
     // UI

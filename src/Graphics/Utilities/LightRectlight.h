@@ -15,13 +15,13 @@ class TAPIOCA_API LightRectlight : public Light {
 private:
     friend GraphicsManager;
 
-public:
     // SIMULA UN AREA RECTANGULAR DE LUZ
     // REQUIERE DE UNA POSICION, UNA DIRECCION Y UN TAM DEL AREA
 
     LightRectlight(Ogre::SceneManager* const sceneManager, RenderNode* const node, Vector4 const color,
                    const float width, const float height, Vector3 direction);
 
+public:
     void setSize(float width, float height);
 
     void setDirection(Vector3 direction);

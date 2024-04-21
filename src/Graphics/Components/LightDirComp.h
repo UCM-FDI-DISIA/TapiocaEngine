@@ -28,6 +28,7 @@ public:
 
     bool initComponent(const CompMap& variables) override;
 
+    // puede estar en el start porque no toma nada del transform
     void start() override;
 
     void setColor(const Vector4 color);

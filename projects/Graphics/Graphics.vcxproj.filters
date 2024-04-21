@@ -104,6 +104,15 @@
     <ClCompile Include="..\..\src\Graphics\Utilities\Viewport.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\LightPointComp.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\LightRectComp.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\LightSpotComp.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -190,6 +199,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Utilities\Viewport.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\LightPointComp.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\LightRectComp.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\LightSpotComp.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
