@@ -8,7 +8,7 @@
 
 namespace Tapioca {
 CameraComponent::CameraComponent()
-    : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(),
+    : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
       dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
       farPlane(-1.0f), targetToLookSet(false) { }
 
@@ -41,8 +41,7 @@ bool CameraComponent::initComponent(const CompMap& variables) {
 
     // Viewport
     if (!setValueFromMap(zOrder, "zOrder", variables)) {
-        logError("CameraComponent: No se pudo inicializar el zOrder.");
-        return false;
+        logInfo("CameraComponent: No se pudo inicializar el zOrder. Se usa zOrder 0 por defecto.");
     }
 
     bool colorSet = setValueFromMap(color.x, "bgColorR", variables) &&
