@@ -13,13 +13,15 @@
 namespace Tapioca {
 LuaManager* LuaManager::instance_ = nullptr;
 
-LuaManager::LuaManager() : L(nullptr) {
+LuaManager::LuaManager() : L(nullptr), initialized(true) {
     L = luaL_newstate();
     luaL_openlibs(L);
 
-    // TODO: Revisar
     luabridge::getGlobalNamespace(L).addFunction("print", &print);
-    luaL_dofile(L, "test.lua");
+    if (!luaL_dofile(L, "test.lua")) {
+        logError(("LuaManager: Error al cargar test.lua: " + std::string(lua_tostring(L, -1))).c_str());
+        initialized = false;
+    }
 
     reg = new LuaRegistry(L);
 }
@@ -31,7 +33,7 @@ LuaManager::~LuaManager() {
 
 
 bool LuaManager::init() {
-    return loadBase() && loadScripts();
+    return initialized && loadBase() && loadScripts();
 }
 
 bool LuaManager::callLuaFunction(std::string name, const std::vector<CompValue>& parameters) {

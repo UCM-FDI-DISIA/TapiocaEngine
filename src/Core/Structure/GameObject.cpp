@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Component.h"
+#include "FactoryManager.h"
 
 namespace Tapioca {
 GameObject::GameObject() : scene(nullptr), alive(true), handler("") { }
@@ -14,6 +15,36 @@ void GameObject::addComponent(Component* const comp, std::string const& id) {
     components.insert(std::pair<std::string, Component*>(id, comp));
     cmpOrder.push_back(comp);
     comp->object = this;
+}
+
+Component* GameObject::addComponent(const std::string& id, const CompMap& variables) {
+    Component* comp = FactoryManager::instance()->createComponent(id);
+    if (!comp->initComponent(variables)) {
+        delete comp;
+        return nullptr;
+    }
+    addComponent(comp, id);
+    comp->awake();
+    comp->start();
+    return nullptr;
+}
+
+std::vector<Component*> GameObject::addComponents(const std::vector<std::pair<std::string, CompMap>>& idAndVars) {
+    std::vector<Component*> vec;
+    for (auto& [id, params] : idAndVars) {
+        Component* comp = FactoryManager::instance()->createComponent(id);
+        vec.push_back(comp);
+        if (!comp->initComponent(params)) {
+            // Si un componente no se puede inicializar, se cancela la operación completa.
+            for (Component* c : vec)
+                delete c;
+            return vec;
+        }
+        addComponent(comp, id);
+    }
+    for (auto& comp : vec) comp->awake();
+    for (auto& comp : vec) comp->start();
+    return vec;
 }
 
 Component* GameObject::getComponent(std::string const& id) {
@@ -75,11 +106,6 @@ void GameObject::update(const uint64_t deltaTime) {
 void GameObject::handleEvent(std::string const& id, void* info) {
     for (auto comp : cmpOrder)
         comp->handleEvent(id, info);
-}
-
-void GameObject::initComponents(const CompMap& variables) {
-    for (auto comp : cmpOrder)
-        comp->initComponent(variables);
 }
 
 void GameObject::fixedUpdate() {

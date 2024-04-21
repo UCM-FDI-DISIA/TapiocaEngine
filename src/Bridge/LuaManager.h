@@ -20,6 +20,8 @@ private:
     lua_State* L;
     LuaRegistry* reg;
 
+    bool initialized;
+
     const char* BASE_FILE = "BaseComponent.lua";
     bool loadBase();
 
