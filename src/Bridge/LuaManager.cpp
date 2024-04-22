@@ -9,8 +9,10 @@
 #include "Structure/FactoryManager.h"
 #include <sstream>
 #include "checkML.h"
+#include <functional>
 
 namespace Tapioca {
+
 LuaManager* LuaManager::instance_ = nullptr;
 
 LuaManager::LuaManager() : L(nullptr), initialized(true) {
@@ -32,7 +34,6 @@ LuaManager::~LuaManager() {
     lua_close(L);
 }
 
-
 bool LuaManager::init() {
     return initialized && loadBase() && loadScripts();
 }
@@ -50,6 +51,12 @@ bool LuaManager::callLuaFunction(std::string name, const std::vector<CompValue>&
     return true;
 }
 
+bool LuaManager::addLuaFunction(const std::string& name, std::function<void()> f) {
+    luabridge::getGlobalNamespace(L).addFunction(name.c_str(), f);
+    return true;
+}
+
+
 bool LuaManager::loadBase() {
     if (luaL_dofile(L, BASE_FILE) != 0) {
         logError(("LuaManager: Error al cargar base de LuaComponent: " + std::string(lua_tostring(L, -1))).c_str());
@@ -58,9 +65,9 @@ bool LuaManager::loadBase() {
     return true;
 }
 
-bool LuaManager::loadScript(const std::filesystem::path & path) {
+bool LuaManager::loadScript(const std::filesystem::path& path) {
     if (!loadBase()) return false;
-    
+
     if (luaL_dofile(L, path.string().c_str()) != 0) {
         logError(("LuaManager: Error al cargar el archivo Lua: " + std::string(lua_tostring(L, -1))).c_str());
         return false;
@@ -69,7 +76,8 @@ bool LuaManager::loadScript(const std::filesystem::path & path) {
     std::string name = path.filename().string();
     // Se le quita la extension (.lua)
     name = name.substr(0, name.length() - 4);
-    FactoryManager::instance()->addBuilder(new LuaComponentBuilder(name, table)); // Desde 18:40 a 21:15, Desde 22:22 a 00:45
+    FactoryManager::instance()->addBuilder(
+        new LuaComponentBuilder(name, table));   // Desde 18:40 a 21:15, Desde 22:22 a 00:45
     return true;
 }
 
@@ -132,4 +140,5 @@ int LuaManager::print(lua_State* L) {
     std::cout << "[INFO|JUEGO] " << aux.str() << '\n';
     return 0;
 }
+
 }

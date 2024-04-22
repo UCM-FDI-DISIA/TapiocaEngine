@@ -144,6 +144,8 @@ static void createEngineBuilders() {
 
 static void registerLuaFunctions() {
     LuaRegistry* reg = lua->getRegistry();
+    std::function<void()> hola = []() { Tapioca::logInfo("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); };
+    lua->addLuaFunction("Holaa",hola );
 
     luabridge::getGlobalNamespace(lua->getLuaState())
         .beginNamespace("Tapioca")

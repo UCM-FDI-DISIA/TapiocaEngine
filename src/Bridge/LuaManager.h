@@ -2,6 +2,7 @@
 #include "Structure/Module.h"
 #include "Utilities/Singleton.h"
 #include "componentDefs.h"
+#include <functional>
 
 struct lua_State;
 namespace std {
@@ -34,12 +35,16 @@ public:
     LuaManager();
     ~LuaManager();
 
+
     bool init() override;
 
     lua_State* getLuaState() const { return L; }
 
     bool callLuaFunction(std::string name, const std::vector<CompValue>& parameters = {});
+    bool addLuaFunction(const std::string& name, std::function<void()> f);
 
     LuaRegistry* getRegistry() const { return reg; }
+
+    
 };
 }
