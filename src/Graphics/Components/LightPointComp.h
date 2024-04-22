@@ -7,7 +7,7 @@ class RenderNode;
 class LightPoint;
 class Transform;
 
-class LightPointComp : public Component {
+class TAPIOCA_API LightPointComp : public Component {
 private:
     RenderNode* node;
     LightPoint* light;

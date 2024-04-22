@@ -18,6 +18,7 @@ class Camera;
 class LightDirectional;
 class LightSpotlight;
 class LightRectlight;
+class NodeAnimator;
 
 class TAPIOCA_API RenderNode {
 private:
@@ -27,6 +28,7 @@ private:
     friend LightDirectional;
     friend LightSpotlight;
     friend LightRectlight;
+    friend NodeAnimator;
 
     Ogre::SceneManager* sceneManager;       // Puntero al manager de escenas de ogre
     Ogre::SceneNode* node;                  // Nodo para renderizado
@@ -41,6 +43,8 @@ private:
     void setDirection(const Vector3 dir);
 
     RenderNode(Ogre::SceneManager* const sceneManager, const Vector3 pos, const Vector3 scale);
+
+    Ogre::SceneNode* getNode() const;
 
 public:
     virtual ~RenderNode();

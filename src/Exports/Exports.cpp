@@ -34,6 +34,7 @@
 #include "Components/LightSpotComp.h"
 #include "Components/SkyplaneComponent.h"
 #include "Components/SkyboxComponent.h"
+#include "Components/KeyFrameAnimator.h"
 // UI
 #include "Components/Button.h"
 #include "Components/InputText.h"
@@ -60,7 +61,7 @@ void runEngine() {
         createEngineBuilders();
         registerLuaFunctions();
 
-        //scenes->loadScene("Prueba");
+        //scenes->loadScene("Prueba2");
         Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName());
         mainLoop->run();
     }
@@ -117,6 +118,7 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<MeshRenderer>());
     manager->addBuilder(new BasicBuilder<CameraComponent>());
     manager->addBuilder(new BasicBuilder<Animator>());
+    manager->addBuilder(new BasicBuilder<KeyFrameAnimator>());
     manager->addBuilder(new BasicBuilder<ParticleSystemComponent>());
     manager->addBuilder(new BasicBuilder<SpriteRenderer>());
     manager->addBuilder(new BasicBuilder<PlaneComponent>());

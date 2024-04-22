@@ -44,6 +44,7 @@ class AnimationHelper;
 class Skybox;
 class Skyplane;
 class CameraComponent;
+class NodeAnimator;
 
 class WindowManager;
 
@@ -95,6 +96,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+    int nodeAnimatorNumber;
     int planeNumber;
     int billboardNumber;
     std::unordered_set<int> zOrders;
@@ -346,6 +348,10 @@ public:
                        const int xSegments, const int ySegments, std::string const& material = "");
 
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
+
+    NodeAnimator* createNodeAnimator(RenderNode* const node, const float duration, const std::string& name);
+
+    NodeAnimator* createNodeAnimatorWithName(RenderNode* const node, const float duration);
 
     /*
     * @brief Crea un skybox

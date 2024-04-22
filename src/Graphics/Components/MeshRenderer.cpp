@@ -83,6 +83,8 @@ void MeshRenderer::handleEvent(std::string const& id, void* info) {
 
 Mesh* MeshRenderer::getMesh() const { return mesh; }
 
+RenderNode* MeshRenderer::getNode() const { return node; }
+
 void MeshRenderer::setMaterialName(const std::string& name) { materialName = name; }
 
 void MeshRenderer::setMeshName(const std::string& name) {

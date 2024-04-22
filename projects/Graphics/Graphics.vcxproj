@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\CameraComponent.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Components\KeyFrameAnimator.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\LightDirComp.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\LightPointComp.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\LightRectComp.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\..\src\Graphics\Utilities\LightRectlight.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\LightSpotlight.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Mesh.cpp" />
+    <ClCompile Include="..\..\src\Graphics\Utilities\NodeAnimator.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Plane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderNode.cpp" />
@@ -46,6 +48,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\Animator.h" />
     <ClInclude Include="..\..\src\Graphics\Components\CameraComponent.h" />
+    <ClInclude Include="..\..\src\Graphics\Components\KeyFrameAnimator.h" />
     <ClInclude Include="..\..\src\Graphics\Components\LightDirComp.h" />
     <ClInclude Include="..\..\src\Graphics\Components\LightPointComp.h" />
     <ClInclude Include="..\..\src\Graphics\Components\LightRectComp.h" />
@@ -68,6 +71,7 @@
     <ClInclude Include="..\..\src\Graphics\Utilities\LightRectlight.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\LightSpotlight.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Mesh.h" />
+    <ClInclude Include="..\..\src\Graphics\Utilities\NodeAnimator.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\ParticleSystem.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Plane.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderNode.h" />

@@ -113,6 +113,12 @@
     <ClCompile Include="..\..\src\Graphics\Components\LightSpotComp.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Utilities\NodeAnimator.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Components\KeyFrameAnimator.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h">
@@ -207,6 +213,12 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Components\LightSpotComp.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Utilities\NodeAnimator.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\Components\KeyFrameAnimator.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

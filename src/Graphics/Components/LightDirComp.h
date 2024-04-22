@@ -8,7 +8,7 @@ class RenderNode;
 class LightDirectional;
 class Vector4;
 
-class LightDirComp : public Component {
+class TAPIOCA_API LightDirComp : public Component {
 private:
     const Vector3 INITIAL_DIR = Vector3(0.0f, 0.0f, -1.0f);
 

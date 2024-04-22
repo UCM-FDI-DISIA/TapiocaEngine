@@ -18,6 +18,7 @@
 #include "Utilities/Skybox.h"
 #include "Utilities/Skyplane.h"
 #include "Components/CameraComponent.h"
+#include "Utilities/NodeAnimator.h"
 
 // OGRE
 // warnings de ogre
@@ -47,8 +48,8 @@ GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), billboardNumber(0), mainLight(nullptr),
-      zOrders() { }
+      sdlWindow(nullptr), mwindowName(windowName), glContext(), planeNumber(0), billboardNumber(0),
+      nodeAnimatorNumber(0), mainLight(nullptr), zOrders() { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -584,6 +585,15 @@ Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const
 
 AnimationHelper* GraphicsManager::createAnimationHelper(Mesh* const object, const bool autoPlay, const bool loop) {
     return new AnimationHelper(object, autoPlay, loop);
+}
+
+NodeAnimator* GraphicsManager::createNodeAnimator(RenderNode* const node, const float duration, const string& name) {
+    return new NodeAnimator(scnMgr, node, duration, name);
+}
+
+NodeAnimator* GraphicsManager::createNodeAnimatorWithName(RenderNode* const node, const float duration) {
+    string name = "Anim" + std::to_string(nodeAnimatorNumber++);
+    return new NodeAnimator(scnMgr, node, duration, name);
 }
 
 Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& material, std::string const& name,

@@ -7,9 +7,11 @@ class Mesh;
 class RenderNode;
 class Transform;
 class Animator;
+class KeyFrameAnimator;
 
 class TAPIOCA_API MeshRenderer : public Component {
     friend Animator;
+    friend KeyFrameAnimator;
 
 private:
     RenderNode* node;
@@ -33,6 +35,8 @@ private:
     bool castShadows;
 
     Mesh* getMesh() const;
+
+    RenderNode* getNode() const;
 
 public:
     COMPONENT_ID("MeshRenderer")

@@ -54,6 +54,8 @@ RenderNode::RenderNode(Ogre::SceneManager* const sceneManager, const Vector3 pos
     setScale(scale);
 }
 
+Ogre::SceneNode* RenderNode::getNode() const { return node; }
+
 RenderNode::~RenderNode() {
     delete object;
     object = nullptr;

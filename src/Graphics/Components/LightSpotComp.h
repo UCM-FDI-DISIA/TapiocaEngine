@@ -8,7 +8,7 @@ class RenderNode;
 class LightSpotlight;
 class Transform;
 
-class LightSpotComp : public Component {
+class TAPIOCA_API LightSpotComp : public Component {
 private:
     RenderNode* node;
     LightSpotlight* light;

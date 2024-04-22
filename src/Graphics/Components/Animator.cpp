@@ -16,15 +16,13 @@ Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f) { }
 Animator::~Animator() { delete anim; }
 
 bool Animator::initComponent(const CompMap& variables) {
-    if (!setValueFromMap(speed, "playbackSpeed", variables)) speed = 1.f;
+    if (!setValueFromMap(speed, "playbackSpeed", variables)) speed = 1.0f;
     return true;
 }
 
 void Animator::start() {
     meshRenderer = object->getComponent<MeshRenderer>();
     anim = GraphicsManager::instance()->createAnimationHelper(meshRenderer->getMesh(), true, true);
-
-    //anim->playAnim("CatMouth2");
 }
 
 void Animator::update(uint64_t delt) { anim->updateAnim(delt, speed); }
