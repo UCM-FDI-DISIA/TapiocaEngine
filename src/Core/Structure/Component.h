@@ -88,9 +88,7 @@ public:
 
         // Si la variante no tiene el tipo T
         if (!std::holds_alternative<T>(v->second)) {
-#ifdef _DEBUG
-            std::cerr << "Incompatibilidad de tipo.\n";
-#endif
+            logError(("SetValueFromMap: Incompatibilidad de tipo en la variable \"" + varName + "\".").c_str());
             return false;
         }
 

@@ -18,12 +18,8 @@ template<>
 PhysicsManager* Singleton<PhysicsManager>::instance_ = nullptr;
 
 void onCollisionEnter(btPersistentManifold* const& manifold) {
-
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-    //#ifdef _DEBUG
-    //    std::cout << "Entro\n";
-    //#endif
 
     if (obj1 != nullptr && obj2 != nullptr) {
         RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
@@ -36,12 +32,9 @@ void onCollisionEnter(btPersistentManifold* const& manifold) {
 }
 
 void onCollisionExit(btPersistentManifold* const& manifold) {
-
     const btCollisionObject* obj1 = manifold->getBody0();
     const btCollisionObject* obj2 = manifold->getBody1();
-    //#ifdef _DEBUG
-    //    std::cout << "Salgo\n";
-    //#endif
+
     if (obj1 != nullptr && obj2 != nullptr) {
         RigidBody* col1 = static_cast<RigidBody*>(obj1->getUserPointer());
         RigidBody* col2 = static_cast<RigidBody*>(obj2->getUserPointer());
@@ -53,13 +46,8 @@ void onCollisionExit(btPersistentManifold* const& manifold) {
 }
 
 bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
-
     const btCollisionObject* body1 = static_cast<btCollisionObject*>(obj1);
     const btCollisionObject* body2 = static_cast<btCollisionObject*>(obj2);
-
-    //#ifdef _DEBUG
-    //    std::cout << "Stay\n";
-    //#endif
 
     if (body1 != nullptr && body2 != nullptr) {
 
@@ -71,7 +59,6 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
             col2->onCollisionStay(col1->getObject());
         }
     }
-
     return true;
 }
 
@@ -79,20 +66,19 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
 PhysicsManager::PhysicsManager(bool debug)
     : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), constraintSolver(nullptr), dynamicsWorld(nullptr)
 #ifdef _DEBUG
-      ,pdd(nullptr), debug(debug)
+      ,
+      pdd(nullptr), debug(debug)
 #else
-      , debug(false)
+      ,
+      debug(false)
 #endif
-{ }
+{
+}
 
 PhysicsManager::~PhysicsManager() { destroy(); }
 
 bool PhysicsManager::init() {
-    // CONTROLAR LOS POSIBLES ERRORES PARA DEVOLVER FALSE
-
-#ifdef _DEBUG
-    std::cout << "Object: ";
-#endif
+    logInfo("PhysicsManager: Object:");
 
     colConfig = new btDefaultCollisionConfiguration();
     colDispatch = new btCollisionDispatcher(colConfig);
@@ -105,28 +91,21 @@ bool PhysicsManager::init() {
     gContactStartedCallback = onCollisionEnter;
     gContactEndedCallback = onCollisionExit;
     gContactProcessedCallback = onCollisionStay;
-    //createRigidBody(Vector3(-5, 0, 0), Vector3(0), Vector3(5.f), SPHERE_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 1,
-    //                (1 << 2) | (0 << 1) | (1 << 0));   //PRUEBA
-    //createRigidBody(Vector3(0, 0, 0), Vector3(0), Vector3(2.f), BOX_SHAPE, DYNAMIC_OBJECT, 1, 1, 0.4, 10, 0, 4,
-    //                1);   //PRUEBA
 
 #ifdef _DEBUG
     pdd = new PhysicsDebugDrawer();
     dynamicsWorld->setDebugDrawer(pdd);
-#endif   // _DEBUG
+#endif
 
     return true;
 }
 
-
 void PhysicsManager::update(const uint64_t deltaTime) {
-    // dynamicsWorld->stepSimulation(MainLoop::FIXED_DELTA_TIME, 10);
-
 #ifdef _DEBUG
-    if(debug) dynamicsWorld->debugDrawWorld();
-
-#endif }
+    if (debug) dynamicsWorld->debugDrawWorld();
+#endif
 }
+
 void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(MainLoop::FIXED_DELTA_TIME, 1); }
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quaternion rotation,
                                              const Vector3 shapeScale, const ColliderShape colliderShape,
@@ -136,8 +115,6 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
-    //btQuaternion rot = toBtQuaternion(rotation);
-
     btCollisionShape* shape;
 
     switch (colliderShape) {
@@ -156,19 +133,19 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     else
         mass = 0;
 
-    //settear Transform (posicion y rotacion)
+    // Establece el Transform (posicion y rotacion)
     btTransform transform;
     transform.setIdentity();
     transform.setOrigin(pos);
     transform.setRotation(rot);
 
-    //para sincronizar el transform con el grafico
+    // Para sincronizar el transform con el grafico
     btMotionState* motionState = new btDefaultMotionState(transform);
 
     btRigidBody* rb = new btRigidBody(mass, motionState, shape, inertia);
     rigidBodies.insert(rb);
 
-    //si es un cuerpo dinamico, tiene que estar siempre activo para actualizar su movimiento y detectar colision
+    // Si es un cuerpo dinamico, tiene que estar siempre activo para actualizar su movimiento y detectar colision
     if (type != STATIC_OBJECT) rb->setActivationState(DISABLE_DEACTIVATION);
 
     rb->setCollisionFlags(rb->getCollisionFlags() | type);
@@ -183,9 +160,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     return rb;
 }
 
-
 void PhysicsManager::destroy() {
-
     auto it = rigidBodies.begin();
     while (it != rigidBodies.end()) {
         auto itAux = it;
@@ -216,7 +191,7 @@ void PhysicsManager::destroy() {
 
 btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return dynamicsWorld; }
 
-void PhysicsManager::activateDebug(bool d) { 
+void PhysicsManager::activateDebug(bool d) {
 #ifdef _DEBUG
     debug = d;
 #else
@@ -234,7 +209,5 @@ void PhysicsManager::destroyRigidBody(btRigidBody* const rb) {
 
 void PhysicsManager::removeRigidBody(btRigidBody* const rb) { dynamicsWorld->removeCollisionObject(rb); }
 
-
 void PhysicsManager::addRigidBody(btRigidBody* const rb) { dynamicsWorld->addRigidBody(rb); }
-
 }

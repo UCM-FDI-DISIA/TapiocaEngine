@@ -15,11 +15,11 @@ namespace Tapioca {
 */
 class TAPIOCA_API Transform : public Component {
 private:
-    Vector3 position;
-    Quaternion rotation;
-    Vector3 scale;
+    Vector3 position;      // Posicion del objeto
+    Quaternion rotation;   // Rotacion del objeto
+    Vector3 scale;         // Escala del objeto
 
-    Transform* parent;
+    Transform* parent;   // Padre del objeto
 
     // warning C4251 'Tapioca::Transform::children' :
     // class 'std::unordered_set<Tapioca::Transform *,std::hash<Tapioca::Transform *>,
@@ -28,20 +28,23 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<Transform*> children;
+    std::unordered_set<Transform*> children;   // Hijos del objeto
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-
     /*
-    * @brief Envia un evento para informar que se ha modificado el transform
+    * @brief Genera el evento "posChanged"
     */
-    //void changed(bool rb = false);
-
     void posChanged(bool rb = false);
 
+    /*
+    * @brief Genera el evento "rotChanged"
+    */
     void rotChanged(bool rb = false);
 
+    /*
+    * @brief Genera el evento "scaleChanged"
+    */
     void scaleChanged();
 
     /*
@@ -68,14 +71,36 @@ private:
     */
     void removeParent();
 
+    /*
+    * @brief 
+    * @return
+    */
     Vector3 localRight();
 
+    /*
+    * @brief 
+    * @return
+    */
     Vector3 localUp();
 
+    /*
+    * @brief 
+    * @return
+    */
     Vector3 localForward();
 
+    /*
+    * @brief Devuelve la posicion global del transform sin tener en cuenta la rotacion
+    * @param point Punto al que se le quiere calcular la posicion global
+    * @return La posicion global del transform sin tener en cuenta la rotacion
+    */
     Vector3 getGlobalPositionWithoutRotationAux(Vector3 point) const;
 
+    /*
+    * @brief Devuelve la posicion global del transform
+    * @param aux Vector auxiliar
+    * @return La posicion global del transform
+    */
     Vector3 getGlobalPositionAux(Vector3 aux) const;
 
 public:
@@ -99,6 +124,7 @@ public:
     bool initComponent(const CompMap& variables) override;
 
     /*
+    * @brief Manda eventos de cambio de transform
     */
     void start() override;
 
@@ -122,18 +148,17 @@ public:
     inline Vector2 getPositionXY() const { return Vector2(position.x, position.y); }
 
     /*
-    * @brief Devuelve la posicion XY local del transform
-    * @return La posicion XY local del transform
-    */
-    //inline ImVec2 getImPositionXY() const { return ImVec2(position.x, position.y); }
-
-    /*
     * @brief Devuelve la posicion global del transform
     * @return La posicion global del transform
     */
     Vector3 getGlobalPositionWithoutRotation() const;
 
+    /*
+    * @brief Devuelve la posicion global del transform
+    * @return La posicion global del transform
+    */
     Vector3 getGlobalPosition() const;
+
     /*
     * @brief Devuelve la rotacion local del transform
     * @return La posicion local del transform
@@ -154,11 +179,6 @@ public:
     * @return La escala XY local del transform
     */
     inline Vector2 getScaleXY() const { return Vector2(scale.x, scale.y); }
-    /*
-    * @brief Devuelve la escala XY local del transform
-    * @return La escala XY local del transform
-    */
-    //inline ImVec2 getImScaleXY() const { return ImVec2(scale.x, scale.y); }
     /*
     * @brief Devuelve la escala global del transform
     * @return La escala global del transform

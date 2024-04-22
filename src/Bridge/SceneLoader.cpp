@@ -106,9 +106,9 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
         std::string gameObjectName = "";
 
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
-#ifdef _DEBUG
-        std::cout << "\tGameObject: " << gameObjectName << "\n";
-#endif
+
+        logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
+
         int zIndex = 0;
         if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
             delete gameObject;
@@ -151,9 +151,8 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
 }
 
 bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjects) {
-#ifdef _DEBUG
-    std::cout << "Children: start\n";
-#endif
+    logInfo("SceneLoader: Children: start");
+
     std::string name = "";
     std::string gameObjectName = "";
     int zIndex = 0;
@@ -168,19 +167,16 @@ bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& 
         else {
             gameObjects.push_back(gameObject);
             gameObjectName = name;
-#ifdef _DEBUG
-            std::cout << "\tGameObject: " << gameObjectName << "\n";
-#endif
+
+            logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
+
             if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex))
                 return false;
         }
 
         lua_pop(luaState, 1);
     }
-
-#ifdef _DEBUG
-    std::cout << "Children: end\n";
-#endif
+    logInfo("SceneLoader: Children: end");
     return true;
 }
 
@@ -189,19 +185,15 @@ bool SceneLoader::loadComponents(GameObject* const gameObject) {
     std::string componentName = "";
     while (lua_next(luaState, -2) != 0) {
         componentName = lua_tostring(luaState, -2);
-
-#ifdef _DEBUG
-        std::cout << "\t\tComponent: " << componentName << "\n";
-#endif
+        logInfo(("SceneLoader: \t\tComponent: " + componentName).c_str());
         component = loadComponent(componentName);
         if (component == nullptr) return false;
         // Si no tengo creado el componente
         gameObject->addComponent(component, componentName);
         lua_pop(luaState, 1);
     }
-    if (gameObject->getComponent<Transform>() == nullptr) {
-        gameObject->addComponent(new Transform(), Transform::id);
-    }
+    // Si no tiene transform, le anado uno por defecto
+    if (gameObject->getComponent<Transform>() == nullptr) gameObject->addComponent(new Transform(), Transform::id);
     return true;
 }
 
@@ -224,29 +216,20 @@ Component* SceneLoader::loadComponent(std::string const& name) {
 
             if (lua_isboolean(luaState, -1)) {
                 value = lua_toboolean(luaState, -1) == 1;
-#ifdef _DEBUG
-                std::cout << "\t\tvariable: " << key << " valor: " << (get<bool>(value) ? "true" : "false") << "\n";
-#endif
+                logInfo(("SceneLoader: \t\tvariable: " + key + " valor: " + std::to_string(get<bool>(value))).c_str());
             }
             else if (lua_isinteger(luaState, -1)) {
                 value = (int)lua_tointeger(luaState, -1);
-#ifdef _DEBUG
-                std::cout << "\t\tvariable: " << key << " valor: " << get<int>(value) << "\n";
-#endif
+                logInfo(("SceneLoader: \t\tvariable: " + key + " valor: " + std::to_string(get<int>(value))).c_str());
             }
             else if (lua_isnumber(luaState, -1)) {
                 value = (float)lua_tonumber(luaState, -1);
-#ifdef _DEBUG
-                std::cout << "\t\tvariable: " << key << " valor: " << get<float>(value) << "\n";
-#endif
+                logInfo(("SceneLoader: \t\tvariable: " + key + " valor: " + std::to_string(get<float>(value))).c_str());
             }
             else if (lua_isstring(luaState, -1)) {
                 value = lua_tostring(luaState, -1);
-#ifdef _DEBUG
-                std::cout << "\t\tvariable: " << key << " valor: " << get<std::string>(value) << "\n";
-#endif
+                logInfo(("SceneLoader: \t\tvariable: " + key + " valor: " + get<std::string>(value)).c_str());
             }
-
             map[key] = value;
             lua_pop(luaState, 1);
         }

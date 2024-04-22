@@ -2,16 +2,13 @@
 #include "BaseWidget.h"
 #include "Structure/Component.h"
 #include <string>
-#include <functional>
-#include <unordered_map>
-#include "Utilities/Vector2.h"
 #include "Utilities/Vector4.h"
 
 struct ImFont;
 
 namespace Tapioca {
 /*
-* @brief Clase que representa un botón en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
+* @brief Clase que representa un boton en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
 protected:
@@ -42,7 +39,7 @@ public:
 
     /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
-    * @param variables unordered_map con los parametros iniciales
+    * @param Variables unordered_map con los parametros iniciales
     */
     virtual bool initComponent(const CompMap& variables) override;
 

@@ -1,60 +1,83 @@
 #pragma once
 #include "BaseWidget.h"
 #include "Structure/Component.h"
-#include "Core.h"
+#include <string>
+#include "Utilities/Vector4.h"
 
 namespace Tapioca {
-class TAPIOCA_API ProgressBar : public BaseWidget, public Component  { 
+/*
+* @brief Clase que representa una barra de progreso en la interfaz grafica
+*/
+class TAPIOCA_API ProgressBar : public BaseWidget, public Component {
 private:
-    //valor entre 0 y 1 que indica como de llena esta la barra
-    float progress = 0;
-    //El color de llebado de la barra r , g , b ,a
-    Vector4 color;
-    // x e y
-    Vector2 position;
-    //width y heitgh
-    Vector2 size;
-    std::string backgroundtext;
-    std::string name;
-
+    float progress;               // Progreso actual
+    Vector4 barColor;             // Color de la barra de progreso
+    std::string backgroundText;   // Texto de fondo
 
 public:
     COMPONENT_ID("ProgressBar")
-    //@brief constructora vacia
+
+    /*
+    * @brief Constructor por defecto
+    */
     ProgressBar();
-    //@brief destructora por defecto
-    ~ProgressBar();
+
     /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
-    * @param variables unordered_map con los parametros iniciales
+    * @param Variables unordered_map con los parametros iniciales
     */
     virtual bool initComponent(const CompMap& variables) override;
+
     /*
     * @brief Asigna el transform del objeto al texto e inicializa la fuente del texto
     */
     virtual void start() override;
+
     /*
     * @brief Metodo que se usa para renderizar 
     */
     virtual void render() const override;
 
     /*
-    * @brief devuelve el progreso actual
+    * @brief Establece el progreso actual
+    * @param progress Progreso actual
     */
-    float getProgress() { return progress; }
+    inline void setProgress(float progress) { this->progress = progress; }
+
     /*
-    * @brief aumenta en p el progreso
+    * @brief Establece el color de la barra de progreso
+    * @param barColor Color de la barra de progreso
+    */
+    inline void setBarColor(const Vector4& barColor) { this->barColor = barColor; }
+
+    /*
+    * @brief Establece el texto de fondo
+    * @param backgroundText Texto de fondo
+    */
+    inline void setBackgroundText(const std::string& backgroundText) { this->backgroundText = backgroundText; }
+
+    /*
+    * @brief Devuelve el progreso actual
+    * @return Progreso actual
+    */
+    inline float getProgress() const { return progress; }
+
+    /*
+    * @brief Aumenta en p el progreso
+    * @param p Cantidad de progreso a aumentar
     */
     void addProgress(float p);
 
     /*
-    *  @brief devuelve el color
+    * @brief Devuelve el color de la barra de progreso
+    * @return Color de la barra de progreso
     */
-    Vector4 getColor() { return color; }
+    inline Vector4 getBarColor() const { return barColor; }
+
     /*
-    * @brief devuelve el texto de fondo
+    * @brief Devuelve el texto de fondo
+    * @return Texto de fondo
     */
-    std::string getText() { return backgroundtext; }
-    
+    inline std::string getBackgroundText() const { return backgroundText; }
 };
 }

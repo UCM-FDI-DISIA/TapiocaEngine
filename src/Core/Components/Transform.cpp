@@ -2,7 +2,83 @@
 #include "Structure/GameObject.h"
 
 namespace Tapioca {
-//void Transform::changed(bool rb) { pushEvent("transformChanged", &rb, false); }
+Transform::Transform()
+    : Component(), position(Vector3(0)), rotation(Vector3(0.0f)), scale(Vector3(1.0f)), parent(nullptr) { }
+
+Transform::~Transform() {
+    for (Transform* child : getAllChildren()) {
+        GameObject* childGameObject = child->getObject();
+        childGameObject->die();
+    }
+
+    removeConnections();
+    if (object != nullptr) object->die();
+}
+
+bool Transform::initComponent(const CompMap& variables) {
+    if (!setValueFromMap(position.x, "positionX", variables)) {
+        logInfo(("Transform: No se encontro el valor de positionX. Se inicializo al valor predefinido: \"" +
+                 std::to_string(position.x) + "\".").c_str());
+    }
+    if (!setValueFromMap(position.y, "positionY", variables)) {
+        logInfo(("Transform: No se encontro el valor de positionY. Se inicializo al valor predefinido: \"" +
+                 std::to_string(position.y) + "\".").c_str());
+    }
+    if (!setValueFromMap(position.z, "positionZ", variables)) {
+        logInfo(("Transform: No se encontro el valor de positionZ. Se inicializo al valor predefinido: \"" +
+                 std::to_string(position.z) + "\".").c_str());
+    }
+
+    Vector3 rotationVec;
+    if (!setValueFromMap(rotationVec.x, "rotationX", variables)) {
+        logInfo(("Transform: No se encontro el valor de rotationX. Se inicializo al valor predefinido: \"" +
+                 std::to_string(rotationVec.x) + "\".").c_str());
+    }
+    if (!setValueFromMap(rotationVec.y, "rotationY", variables)) {
+        logInfo(("Transform: No se encontro el valor de rotationY. Se inicializo al valor predefinido: \"" +
+                 std::to_string(rotationVec.y) + "\".").c_str());
+    }
+    if (!setValueFromMap(rotationVec.z, "rotationZ", variables)) {
+        logInfo(("Transform: No se encontro el valor de rotationZ. Se inicializo al valor predefinido: \"" +
+                 std::to_string(rotationVec.z) + "\".").c_str());
+    }
+    rotation = Quaternion(rotationVec);
+
+    if (!setValueFromMap(scale.x, "scaleX", variables)) {
+        logInfo(("Transform: No se encontro el valor de scaleX. Se inicializo al valor predefinido: \"" +
+                 std::to_string(scale.x) + "\".").c_str());
+    }
+    if (!setValueFromMap(scale.y, "scaleY", variables)) {
+        logInfo(("Transform: No se encontro el valor de scaleY. Se inicializo al valor predefinido: \"" +
+                 std::to_string(scale.y) + "\".").c_str());
+    }
+    if (!setValueFromMap(scale.z, "scaleZ", variables)) {
+        logInfo(("Transform: No se encontro el valor de scaleZ. Se inicializo al valor predefinido: \"" +
+                 std::to_string(scale.z) + "\".").c_str());
+    }
+    return true;
+}
+
+void Transform::start() {
+    posChanged();
+    rotChanged();
+    scaleChanged();
+}
+
+void Transform::handleEvent(std::string const& id, void* info) {
+    if (id == "posChanged") {
+        for (Transform* child : children)
+            child->posChanged();
+    }
+    else if (id == "rotChanged") {
+        for (Transform* child : children)
+            child->rotChanged();
+    }
+    else if (id == "scaleChanged") {
+        for (Transform* child : children)
+            child->scaleChanged();
+    }
+}
 
 void Transform::posChanged(bool rb) { pushEvent("posChanged", &rb, false); }
 
@@ -28,7 +104,8 @@ void Transform::removeChild(Transform* const child) {
 
 void Transform::removeConnections() {
     removeParent();
-    // eliminar todos los hijos directos
+
+    // Elimina todos los hijos directos
     for (auto it = children.begin(), itAnt = children.begin(); it != children.end();) {
         ++itAnt;
         (*it)->removeParent();
@@ -38,21 +115,19 @@ void Transform::removeConnections() {
 }
 
 void Transform::removeParent() {
-    if (parent != nullptr) {
-        parent->removeChild(this);
-    }
+    if (parent != nullptr) parent->removeChild(this);
     parent = nullptr;
 }
 
 Vector3 Transform::localRight() {
-    Vector3 r(-1, 0, 0);   //X
+    Vector3 r(-1, 0, 0);   // X
     Vector3 v = rotation.rotatePoint(r);
     v.normalize();
     return v;
 }
 
 Vector3 Transform::localUp() {
-    Vector3 u(0, 1, 0);   //Y
+    Vector3 u(0, 1, 0);   // Y
     Vector3 v = rotation.rotatePoint(u);
     v.normalize();
     return v;
@@ -67,23 +142,19 @@ Vector3 Transform::localForward() {
 }
 
 Vector3 Transform::getGlobalPositionWithoutRotationAux(Vector3 point) const {
-    if (parent == nullptr) {
-        return point;
-    }
+    if (parent == nullptr) return point;
 
     Vector3 parentScale = parent->getScale();
     point = Vector3(point.x * parentScale.x, point.y * parentScale.y, point.z * parentScale.z);
 
-    // se convierte al sistema de coordenadas del padre
+    // Se convierte al sistema de coordenadas del padre
     point = point + parent->position;
 
     return parent->getGlobalPositionWithoutRotationAux(point);
 }
 
 Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
-    if (parent == nullptr) {
-        return point;
-    }
+    if (parent == nullptr) return point;
 
     Vector3 xAxis = -parent->localRight();
     Vector3 yAxis = parent->localUp();
@@ -97,109 +168,10 @@ Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
     pos.y = point.x * xAxis.y + point.y * yAxis.y + point.z * zAxis.y;
     pos.z = point.x * xAxis.z + point.y * yAxis.z + point.z * zAxis.z;
 
-    // se convierte al sistema de coordenadas del padre
+    // Se convierte al sistema de coordenadas del padre
     pos = pos + parent->position;
 
     return parent->getGlobalPositionAux(pos);
-}
-
-Transform::Transform()
-    : Component(), position(Vector3(0)), rotation(Vector3(0.0f)), scale(Vector3(1.0f)), parent(nullptr) { }
-
-Transform::~Transform() {
-    for (Transform* child : getAllChildren()) {
-        GameObject* childGameObject = child->getObject();
-        childGameObject->die();
-    }
-
-    removeConnections();
-    if (object != nullptr) object->die();
-}
-
-bool Transform::initComponent(const CompMap& variables) {
-    if (!setValueFromMap(position.x, "positionX", variables)) position.x = 0;
-    if (!setValueFromMap(position.y, "positionY", variables)) position.y = 0;
-    if (!setValueFromMap(position.z, "positionZ", variables)) position.z = 0;
-
-    /*bool positionSet = setValueFromMap(position.x, "positionX", variables) &&
-        setValueFromMap(position.y, "positionY", variables) && setValueFromMap(position.z, "positionZ", variables);
-    if (!positionSet) {
-#ifdef _DEBUG
-        std::cerr << "Error: Transform: no se pudo inicializar la posicion.\n";
-#endif
-        return false;
-    }*/
-
-    Vector3 rotationVec;
-    if (!setValueFromMap(rotationVec.x, "rotationX", variables)) rotationVec.x = 0;
-    if (!setValueFromMap(rotationVec.y, "rotationY", variables)) rotationVec.y = 0;
-    if (!setValueFromMap(rotationVec.z, "rotationZ", variables)) rotationVec.z = 0;
-
-    /*bool rotationSet = setValueFromMap(rotationVec.x, "rotationX", variables) &&
-        setValueFromMap(rotationVec.y, "rotationY", variables) &&
-        setValueFromMap(rotationVec.z, "rotationZ", variables);
-    if (!rotationSet) {
-#ifdef _DEBUG
-        std::cerr << "Error: Transform: no se pudo inicializar la rotacion.\n";
-#endif
-        return false;
-    }*/
-    rotation = Quaternion(rotationVec);
-
-
-    if (!setValueFromMap(scale.x, "scaleX", variables)) scale.x = 0;
-    if (!setValueFromMap(scale.y, "scaleY", variables)) scale.y = 0;
-    if (!setValueFromMap(scale.z, "scaleZ", variables)) scale.z = 0;
-
-    /*bool scaleSet = setValueFromMap(scale.x, "scaleX", variables) && setValueFromMap(scale.y, "scaleY", variables) &&
-        setValueFromMap(scale.z, "scaleZ", variables);
-    if (!scaleSet) {
-#ifdef _DEBUG
-        std::cerr << "Error: Transform: no se pudo inicializar la escala.\n";
-#endif
-        return false;
-    }*/
-
-    return true;
-}
-
-void Transform::start() {
-    //changed();
-    //pushEvent("scaleChanged", nullptr, false);
-    posChanged();
-    rotChanged();
-    scaleChanged();
-}
-
-void Transform::handleEvent(std::string const& id, void* info) {
-    /*
-    if (id == "transformChanged") {
-        for (Transform* child : children) {
-            bool b = false;
-            child->pushEvent("transformChanged", &b, false);
-        }
-    }
-    else if (id == "scaleChanged") {
-        for (Transform* child : children) {
-            child->pushEvent("scaleChanged", nullptr, false);
-        }
-    }
-    */
-    if (id == "posChanged") {
-        for (Transform* child : children) {
-            child->posChanged();
-        }
-    }
-    else if (id == "rotChanged") {
-        for (Transform* child : children) {
-            child->rotChanged();
-        }
-    }
-    else if (id == "scaleChanged") {
-        for (Transform* child : children) {
-            child->scaleChanged();
-        }
-    }
 }
 
 Vector3 Transform::getGlobalPositionWithoutRotation() const {
@@ -224,13 +196,11 @@ Quaternion Transform::getGlobalRotation() const {
     if (parent != nullptr) {
         aux = parent->getGlobalRotation() + aux;
     }
-
     return aux;
     */
+
     Quaternion aux = rotation;
-    if (parent != nullptr) {
-        aux = Quaternion(parent->getGlobalRotation()) * aux;
-    }
+    if (parent != nullptr) aux = Quaternion(parent->getGlobalRotation()) * aux;
     return aux;
 }
 
@@ -246,50 +216,45 @@ Vector3 Transform::getGlobalScale() const {
 void Transform::setPosition(const Vector3& p, bool rb) {
     position = p;
     posChanged(rb);
-    //changed(rb);
 }
+
 void Transform::setPositionXY(const Vector2& p, bool rb) {
     position = p;
     posChanged(rb);
-    //changed(rb);
 }
+
 void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = Quaternion(r);
-    //rotation = r;
     posChanged(rb);
     rotChanged(rb);
-    //changed(rb);
 }
+
 void Transform::setScale(const Vector3& s) {
     scale = s;
     posChanged();
     scaleChanged();
-    //pushEvent("scaleChanged", nullptr, false);
-    //changed();
 }
+
 void Transform::setScaleXY(const Vector2& s) {
     scale = s;
     posChanged();
     scaleChanged();
-    //changed();
 }
 
 void Transform::translate(const Vector3& p) {
     position += p;
     posChanged();
-    //changed();
 }
 void Transform::rotate(const Vector3& r) {
     Quaternion q = Quaternion(r);
     rotation = rotation * q;
     posChanged();
     rotChanged();
-    //changed();
 }
 
 Vector3 Transform::right() {
 
-    Vector3 r(-1, 0, 0);   //X
+    Vector3 r(-1, 0, 0);   // X
 
     // Crear cuaterniones para las rotaciones en cada eje
     //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
@@ -299,7 +264,6 @@ Vector3 Transform::right() {
     //// Multiplicar los cuaterniones en orden (Z * Y * X)
     //Quaternion combinedRotation = q_z * q_y * q_x;
 
-
     // Rotar el vector forward utilizando el cuaternion combinado
     Vector3 v = getGlobalRotation().rotatePoint(r);
 
@@ -307,9 +271,10 @@ Vector3 Transform::right() {
 
     return v;
 }
+
 Vector3 Transform::up() {
 
-    Vector3 u(0, 1, 0);   //Y
+    Vector3 u(0, 1, 0);   // Y
 
     // Crear cuaterniones para las rotaciones en cada eje
     //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
@@ -327,10 +292,9 @@ Vector3 Transform::up() {
 
     return v;
 }
+
 Vector3 Transform::forward() {
-
-
-    //Vector3 f(0, 0, 1);   //Z
+    //Vector3 f(0, 0, 1);   // Z
 
     ///*  f.x = cosf(rotation.x) * sin(rotation.y);
     //f.y = -sinf(rotation.x);
@@ -344,7 +308,6 @@ Vector3 Transform::forward() {
 
     //return f;
     ///* return v;*/
-
 
     //Vector3 u(0, 0, 1);   //Z
 

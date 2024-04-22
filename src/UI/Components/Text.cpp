@@ -20,28 +20,50 @@ bool Text::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(text, "text", variables)) {
-        logInfo("Text: No se encontro el valor de text. Se inicializo al valor predefinido.");
+        logInfo(
+            ("Text: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + text + "\".").c_str());
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
-        logInfo("Text: No se encontro el valor de textSize. Se inicializo al valor predefinido.");
+        logInfo(("Text: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textSize) + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-        logInfo("Text: No se encontro el valor de text. Se inicializo al valor predefinido.");
+        logInfo(("Text: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + textFontName + "\".")
+                    .c_str());
     }
 
-    bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
-        setValueFromMap(textColor.y, "textColorG", variables) &&
-        setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
-    if (!textColorSet) {
-        logInfo("Text: No se encontro el valor de textColor. Se inicializo a los valores predefinidos.");
+    if (!setValueFromMap(textColor.x, "textColorR", variables)) {
+        logInfo(("Text: No se encontro el valor de textColorR. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.x) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(textColor.y, "textColorG", variables)) {
+        logInfo(("Text: No se encontro el valor de textColorG. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.y) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(textColor.z, "textColorB", variables)) {
+        logInfo(("Text: No se encontro el valor de textColorB. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.z) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(textColor.w, "textColorA", variables)) {
+        logInfo(("Text: No se encontro el valor de textColorA. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.w) + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
-        logInfo("Text: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos.");
+        logInfo("Text: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos: "
+                "\"ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | "
+                "ImGuiWindowFlags_NoSavedSettings\".");
     }
-
     return true;
 }
 

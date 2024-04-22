@@ -1,6 +1,6 @@
 #pragma once
 #include "Button.h"
-#include <string>
+#include "Utilities/Vector2.h"
 
 typedef void* ImTextureID;
 
@@ -10,7 +10,7 @@ namespace Tapioca {
 */
 class TAPIOCA_API ImageTextButton : public Button {
 private:
-    bool wantText;			  // Indica si se quiere mostrar el texto en el boton
+    bool wantText;			          // Indica si se quiere mostrar el texto en el boton
     std::string imagePathNormal;      // Ruta de la imagen que se muestra en el boton en estado normal
     std::string imagePathHover;       // Ruta de la imagen que se muestra en el boton en estado hover
     std::string imagePathActive;      // Ruta de la imagen que se muestra en el boton en estado active
@@ -29,11 +29,6 @@ public:
     * @brief Constructor por defecto
     */
     ImageTextButton();
-
-    /*
-    * @brief Destructor por defecto
-    */
-    ~ImageTextButton() { }
 
     /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start

@@ -1,36 +1,34 @@
 #pragma once
 #include "BaseWidget.h"
 #include "Structure/Component.h"
-#include "Core.h"
+#include <vector>
 #include <string>
 
-
 namespace Tapioca {
- class TAPIOCA_API DropBox : public BaseWidget, public Component {
-
+/*
+* @brief Clase que representa un DropBox en la interfaz grafica con el que el usuario puede interactuar para seleccionar una opcion
+*/
+class TAPIOCA_API DropBox : public BaseWidget, public Component {
 private:
-   // std::string name;
-    std::vector< std::string> items;
-    int currentItem;
-    //a e y
-    Vector2 position;
-    //width y heitgh
-    Vector2 size;
+    std::vector<std::string> items;   // Vector con las distintas opciones
+    int currentItem;                  // Indice del elemento seleccionado
 
 public:
     COMPONENT_ID("DropBox")
-   //@brief constructora vacia
-     DropBox();
-   //@brief destructora por defecto
-    ~DropBox();
-     /*
+
+    /*
+    * @brief Constructor por defecto
+    */
+    DropBox();
+
+    /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
-    * @param variables unordered_map con los parametros iniciales
+    * @param Variables unordered_map con los parametros iniciales
     */
     virtual bool initComponent(const CompMap& variables) override;
 
     /*
-    * @brief Asigna el transform del objeto al texto e inicializa la fuente del texto
+    * @brief Asigna el transform del objeto al texto
     */
     virtual void start() override;
 
@@ -38,18 +36,29 @@ public:
     * @brief Metodo que se usa para renderizar 
     */
     virtual void render() const override;
+
     /*
-    * @brief devuelve el nombre
+    * @brief Establece el vector con las distintas opciones
+    * @param items Vector con las distintas opciones
     */
-    std::string getName() { return name; }
+    inline void setItems(const std::vector<std::string>& items) { this->items = items; }
+
     /*
-    * @brief delvueve un vector con las distintas opciones
+    * @brief Establece el indice del elemento seleccionado
+    * @param currentItem Indice del elemento seleccionado
     */
-    std::vector<std::string> getContent() { return items; }
+    inline void setCurrentItem(int currentItem) { this->currentItem = currentItem; }
+
     /*
-    * @brief devuelve el indice del elemento seleccionado
+    * @brief Devuelve el vector con las distintas opciones
+    * @return Vector con las distintas opciones
     */
-    int* getCurrent() { return &currentItem;}
+    inline std::vector<std::string> getItems() { return items; }
+
+    /*
+    * @brief Devuelve el indice del elemento seleccionado
+    * @return Indice del elemento seleccionado
+    */
+    inline int* getCurrentItem() { return &currentItem; }
 };
 }
-

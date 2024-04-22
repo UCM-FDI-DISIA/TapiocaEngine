@@ -3,7 +3,9 @@
 #include "defs.h"
 
 namespace Tapioca {
-// Clase singleton para hacer que las clases hijas sean singleton
+/*
+* @brief Clase singleton para hacer que las clases hijas sean singleton
+*/
 template<typename T>
 class Singleton {
 private:
@@ -23,12 +25,9 @@ public:
     // Inicializa la instancia con los parametros deseados (... args)
     template<typename... T_args>
     static T* create(T_args&&... args) {
-        //assert(instance_.get() == nullptr, "Instance already exists");
         if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
-#ifdef _DEBUG
         else
-            std::cout << "Instance already exists\n";
-#endif
+            logInfo("Singleton: Instance already exists");
         return instance_;
     }
 
@@ -36,49 +35,8 @@ public:
     static T* instance() {
         // Si no existe, se crea
         if (instance_ == nullptr) create();
-
         // Entonces, devuelve el puntero
         return instance_;
     }
 };
 }
-
-
-/*
-* Ejemplo de uso:
-*
-*	class A : public Singleton<A> {
-*		friend Singleton<A>;
-*
-*	private:
-*		// Las constructoras tienen que ser privadas y la clase debe tener al menos 
-		// un constructor sin argumentos por si create() es llamado sin argumentos
-*		A() { ... };
-*		A(args1) { ... };
-*		A(args2) { ...};
-*
-*		method1() { ... };
-*		method2() { ... };
-*		...
-*
-*	public:
-*		// Para evitar copiar/mover la instancia
-*		A(A&) = delete;
-*		A(A&&) = delete;
-*		A& operator=(A&) = delete;
-*		A& operator=(A&&) = delete;
-* 
-*		// La destructora tambien puede ser virtual
-*		~A() { ... }
-*
-*		method3() { ... };
-*		method4() { ... };
-*		...
-*	}
-*
-*
-* La clase hija debe ser instanciada asi:
-*	// args depende de los argumentos de la(s) constructora(s) de A
-*	A::create(args);
-*
-*/

@@ -14,7 +14,9 @@ bool ImageTextButton::initComponent(const CompMap& variables) {
     if (!Button::initComponent(variables)) return false;
 
     if (!setValueFromMap(wantText, "wantText", variables)) {
-        logInfo("ImageTextButton: No se encontro el valor de wantText. Se inicializo al valor predefinido.");
+        logInfo(("ImageTextButton: No se encontro el valor de wantText. Se inicializo al valor predefinido: \"" +
+                 std::to_string(wantText) + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(imagePathNormal, "imagePathNormal", variables)) {
@@ -32,31 +34,77 @@ bool ImageTextButton::initComponent(const CompMap& variables) {
         return false;
     }
 
-    bool uv0Set = setValueFromMap(uv0.x, "uv0X", variables) && setValueFromMap(uv0.y, "uv0Y", variables);
-    if (!uv0Set) {
-        logInfo("ImageTextButton: No se encontro el valor de uv0. Se inicializo a los valores predefinidos.");
+    if (!setValueFromMap(uv0.x, "uv0X", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de uv0X. Se inicializo al predefinido: \"" +
+                 std::to_string(uv0.x) + "\".")
+                    .c_str());
     }
 
-    bool uv1Set = setValueFromMap(uv1.x, "uv1X", variables) && setValueFromMap(uv1.y, "uv1Y", variables);
-    if (!uv0Set) {
-        logInfo("ImageTextButton: No se encontro el valor de uv1. Se inicializo a los valores predefinidos.");
+    if (!setValueFromMap(uv0.y, "uv0Y", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de uv0Y. Se inicializo al predefinido: \"" +
+                 std::to_string(uv0.y) + "\".")
+                    .c_str());
     }
 
-    bool imageBgColorSet = setValueFromMap(imageBgColor.x, "imageBgColorR", variables) &&
-        setValueFromMap(imageBgColor.y, "imageBgColorG", variables) &&
-        setValueFromMap(imageBgColor.z, "imageBgColorB", variables) &&
-        setValueFromMap(imageBgColor.w, "imageBgColorA", variables);
-    if (!imageBgColorSet) {
-        logInfo("ImageTextButton: No se encontro el valor de imageBgColor. Se inicializo a los valores predefinidos.");
+    if (!setValueFromMap(uv1.x, "uv1X", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de uv1X. Se inicializo al predefinido: \"" +
+                 std::to_string(uv1.x) + "\".")
+                    .c_str());
     }
 
-    bool imageTintSet = setValueFromMap(imageTint.x, "imageTintR", variables) &&
-        setValueFromMap(imageTint.y, "imageTintG", variables) &&
-        setValueFromMap(imageTint.z, "imageTintB", variables) && setValueFromMap(imageTint.w, "imageTintA", variables);
-    if (!imageTintSet) {
-        logInfo("ImageTextButton: No se encontro el valor de imageTint. Se inicializo a los valores predefinidos.");
+    if (!setValueFromMap(uv1.y, "uv1Y", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de uv1Y. Se inicializo al predefinido: \"" +
+                 std::to_string(uv1.y) + "\".")
+                    .c_str());
     }
 
+    if (!setValueFromMap(imageBgColor.x, "imageBgColorR", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageBgColorR. Se inicializo al predefinido: \"" +
+                 std::to_string(imageBgColor.x) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageBgColor.y, "imageBgColorG", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageBgColorG. Se inicializo al predefinido: \"" +
+                 std::to_string(imageBgColor.y) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageBgColor.z, "imageBgColorB", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageBgColorB. Se inicializo al predefinido: \"" +
+                 std::to_string(imageBgColor.z) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageBgColor.w, "imageBgColorA", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageBgColorA. Se inicializo al predefinido: \"" +
+                 std::to_string(imageBgColor.w) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageTint.x, "imageTintR", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageTintR. Se inicializo al predefinido: \"" +
+                 std::to_string(imageTint.x) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageTint.y, "imageTintG", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageTintG. Se inicializo al predefinido: \"" +
+                 std::to_string(imageTint.y) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageTint.z, "imageTintB", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageTintB. Se inicializo al predefinido: \"" +
+                 std::to_string(imageTint.z) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(imageTint.w, "imageTintA", variables)) {
+        logInfo(("ImageTextButton: No se encontro el valor de imageTintA. Se inicializo al predefinido: \"" +
+                 std::to_string(imageTint.w) + "\".")
+                    .c_str());
+    }
     return true;
 }
 
@@ -119,7 +167,7 @@ void ImageTextButton::render() const {
     if (ImGui::ImageButton(name.c_str(), textureId, buttonSize, ImVec2(uv0.x, uv0.y), ImVec2(uv1.x, uv1.y),
                            ImVec4(imageBgColor.x, imageBgColor.y, imageBgColor.z, imageBgColor.w),
                            ImVec4(imageTint.x, imageTint.y, imageTint.z, imageTint.w)))
-        luaManager->callLuaFunction(onClickId, { name });
+        luaManager->callLuaFunction(onClickId, {name});
 
     if (wantText) {
         std::string textStr = text;
@@ -154,6 +202,7 @@ void ImageTextButton::updateTextures() {
     updateTextureHover();
     updateTextureActive();
 }
+
 void ImageTextButton::updateTextureNormal() { textureIdNormal = uiManager->getTextureId(imagePathNormal); }
 void ImageTextButton::updateTextureHover() { textureIdHover = uiManager->getTextureId(imagePathHover); }
 void ImageTextButton::updateTextureActive() { textureIdActive = uiManager->getTextureId(imagePathActive); }

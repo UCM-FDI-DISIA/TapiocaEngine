@@ -12,11 +12,10 @@
 #include "checkML.h"
 
 namespace Tapioca {
-
 PhysicsDebugDrawer::PhysicsDebugDrawer()
     : mode(DBG_DrawWireframe), node(GraphicsManager::instance()->createSelfManagedNode()) { }
 
-PhysicsDebugDrawer::~PhysicsDebugDrawer() { }
+PhysicsDebugDrawer::~PhysicsDebugDrawer() { node = nullptr; }
 
 void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) {
     auto g = GraphicsManager::instance();
@@ -32,7 +31,8 @@ void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, co
 
 void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
 #ifdef _DEBUG
-    std::cout << warningString << '\n';
+    std::string message = "PhysicsDebugDrawer: " + std::string(warningString);
+    logWarn(message.c_str());
 #endif
 }
 
@@ -57,6 +57,4 @@ void PhysicsDebugDrawer::clearLines() {
         it = lines.erase(it);
     }
 }
-
-
 }

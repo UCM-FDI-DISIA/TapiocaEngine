@@ -12,15 +12,19 @@
 namespace Tapioca {
 AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true, const bool loop = true)
     : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()), playing(autoPlay), looping(loop) {
-    //#ifdef _DEBUG
-    //    auto aux = object->getMesh()->getAllAnimationStates();
-    //    for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
-    //        std::cout << it->first << '\n';
-    //    }
-    //#endif   // _DEBUG
+#ifdef _DEBUG
+    logInfo("AnimationHelper: Animaciones:");
+    auto aux = object->getMesh()->getAllAnimationStates();
+    for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
+        logInfo(("AnimationHelper: \t" + it->first).c_str());
+    }
+#endif
 }
 
-AnimationHelper::~AnimationHelper() { }
+AnimationHelper::~AnimationHelper() {
+    animState = nullptr;
+    animStateSet = nullptr;
+}
 
 void AnimationHelper::updateAnim(const uint64_t delt, const float speed) {
     if (animState != nullptr) {
@@ -45,9 +49,4 @@ void AnimationHelper::setPlaying(const bool p) {
     playing = p;
     if (animState != nullptr) animState->setEnabled(playing);
 }
-
-bool AnimationHelper::getLoop() const { return looping; }
-
-bool AnimationHelper::getPlaying() const { return playing; }
-
 }

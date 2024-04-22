@@ -2,7 +2,6 @@
 #include "BaseWidget.h"
 #include "Structure/Component.h"
 #include <string>
-#include <functional>
 #include "Utilities/Vector4.h"
 
 struct ImFont;

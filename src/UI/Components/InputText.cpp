@@ -37,47 +37,93 @@ bool InputText::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(bufferSize, "bufferSize", variables)) {
-        logInfo("InputText: No se encontro el valor de bufferSize. Se inicializo al valor predefinido.");
+        logInfo(("InputText: No se encontro el valor de bufferSize. Se inicializo al valor predefinido: \"" +
+                 std::to_string(bufferSize) + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(onTextEnteredId, "onTextEnteredId", variables)) {
-        logInfo("InputText: No se encontro el valor de onTextEnteredId. Se inicializo al valor predefinido.");
+        logInfo(("InputText: No se encontro el valor de onTextEnteredId. Se inicializo al valor predefinido: \"" +
+                 onTextEnteredId + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(placeHolderText, "placeHolderText", variables)) {
-        logInfo("InputText: No se encontro el valor de placeHolderText. Se inicializo al valor predefinido.");
+        logInfo(("InputText: No se encontro el valor de placeHolderText. Se inicializo al valor predefinido: \"" +
+                 placeHolderText + "\.")
+                    .c_str());
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-        logInfo("InputText: No se encontro el valor de textFontName. Se inicializo al valor predefinido.");
+        logInfo(("InputText: No se encontro el valor de textFontName. Se inicializo al valor predefinido: \"" +
+                 textFontName + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
-        logInfo("InputText: No se encontro el valor de textSize. Se inicializo al valor predefinido.");
+        logInfo(("InputText: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textSize) + "\".")
+                    .c_str());
     }
 
-    bool textColorSet = setValueFromMap(textColor.x, "textColorR", variables) &&
-        setValueFromMap(textColor.y, "textColorG", variables) &&
-        setValueFromMap(textColor.z, "textColorB", variables) && setValueFromMap(textColor.w, "textColorA", variables);
-    if (!textColorSet) {
-        logInfo("InputText: No se encontro el valor de textColor. Se inicializo a los valores predefinidos");
+    if (!setValueFromMap(textColor.x, "textColorR", variables)) {
+        logInfo(("InputText: No se encontro el valor de textColorR. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.x) + "\".")
+                    .c_str());
     }
 
-    bool bgColorSet = setValueFromMap(bgColor.x, "bgColorR", variables) &&
-        setValueFromMap(bgColor.y, "bgColorG", variables) && setValueFromMap(bgColor.z, "bgColorB", variables) &&
-        setValueFromMap(bgColor.w, "bgColorA", variables);
-    if (!bgColorSet) {
-        logInfo("InputText: No se encontro el valor de bgColor. Se inicializo a los valores predefinidos.");
+    if (!setValueFromMap(textColor.y, "textColorG", variables)) {
+        logInfo(("InputText: No se encontro el valor de textColorG. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.y) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(textColor.z, "textColorB", variables)) {
+        logInfo(("InputText: No se encontro el valor de textColorB. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.z) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(textColor.w, "textColorA", variables)) {
+        logInfo(("InputText: No se encontro el valor de textColorA. Se inicializo al valor predefinido: \"" +
+                 std::to_string(textColor.w) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(bgColor.x, "bgColorR", variables)) {
+        logInfo(("InputText: No se encontro el valor de bgColorR. Se inicializo al valor predefinido: \"" +
+                 std::to_string(bgColor.x) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(bgColor.y, "bgColorG", variables)) {
+        logInfo(("InputText: No se encontro el valor de bgColorG. Se inicializo al valor predefinido: \"" +
+                 std::to_string(bgColor.y) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(bgColor.z, "bgColorB", variables)) {
+        logInfo(("InputText: No se encontro el valor de bgColorB. Se inicializo al valor predefinido: \"" +
+                 std::to_string(bgColor.z) + "\".")
+                    .c_str());
+    }
+
+    if (!setValueFromMap(bgColor.w, "bgColorA", variables)) {
+        logInfo(("InputText: No se encontro el valor de bgColorA. Se inicializo al valor predefinido: \"" +
+                 std::to_string(bgColor.w) + "\".")
+                    .c_str());
     }
 
     if (!setValueFromMap(flags, "flags", variables)) {
-        logInfo("InputText: No se encontro el valor de flags. Se inicializo al valor predefinido.");
+        logInfo("InputText: No se encontro el valor de flags. Se inicializo al valor predefinido: "
+                "\"ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue\".");
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
-        logInfo("InputText: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos.");
+        logInfo("InputText: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos: "
+                "\"ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | "
+                "ImGuiWindowFlags_NoSavedSettings\".");
     }
-
     return true;
 }
 
@@ -117,7 +163,7 @@ void InputText::render() const {
 
     if (ImGui::InputText("##", buffer, bufferSize, flags)) {
         if (ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter)) {
-            luaManager->callLuaFunction(onTextEnteredId, { name });
+            luaManager->callLuaFunction(onTextEnteredId, {name});
         }
     }
 
