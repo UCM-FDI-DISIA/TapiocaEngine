@@ -105,7 +105,7 @@ public:
     * @brief Cambia la escala del collider relativo
     * @param s Escala que se quiere dar al collider
     */
-    void scaleCollider(const Vector3 s);
+    //void scaleCollider(const Vector3 s);
 
     /*
     * @brief Cambia la forma del collider 

@@ -131,10 +131,10 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
         }
     }
     else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
-        rigidBody->getCollisionShape()->setLocalScaling(
-            toBtVector3(Vector3(colliderInitialScale.x * transform->getGlobalScale().x,
-                                colliderInitialScale.y * transform->getGlobalScale().y,
-                                colliderInitialScale.z * transform->getGlobalScale().z)));
+        Vector3 globalScale = transform->getGlobalScale();
+        Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x, colliderInitialScale.y * globalScale.y,
+                                colliderInitialScale.z * globalScale.z);
+        rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(scale));
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
@@ -147,15 +147,18 @@ void RigidBody::awake() {
 
     transform = object->getComponent<Transform>();
 
+    /*
+    Vector3 globalScale = transform->getGlobalScale();
+    Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x, colliderInitialScale.y * globalScale.y,
+                            colliderInitialScale.z * globalScale.z);
+                            */
+
+    // el objeto se escala a partir del tam. inicial indicado
     rigidBody = PhysicsManager::instance()->createRigidBody(
-        transform->getGlobalPosition(), transform->getGlobalRotation(),
-        Vector3(colliderInitialScale.x * transform->getGlobalScale().x,
-                                colliderInitialScale.y * transform->getGlobalScale().y,
-                                colliderInitialScale.z * transform->getGlobalScale().z), colShape, movementType,
+        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, colShape, movementType,
         mass, friction, damping, bounciness, isTrigger, group, mask);
 
     rigidBody->setUserPointer(this);
-
 }
 
 void RigidBody::setActive(const bool b) {
@@ -182,13 +185,16 @@ void RigidBody::setTrigger(const bool t) {
 
 void RigidBody::setColliderShape(const ColliderShape s) { colShape = s; }
 
+/*
 void RigidBody::scaleCollider(const Vector3 s) {
+    TODO: se tendria que hacer que se volviera a crear la figura con el nuevo tam. inicial
     colliderInitialScale = s;
     if (rigidBody == nullptr) return;
-    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(Vector3(colliderInitialScale.x * transform->getGlobalScale().x,
-                                colliderInitialScale.y * transform->getGlobalScale().y,
-                                colliderInitialScale.z * transform->getGlobalScale().z)));
+    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(Vector3(
+        colliderInitialScale.x * transform->getGlobalScale().x, colliderInitialScale.y * transform->getGlobalScale().y,
+        colliderInitialScale.z * transform->getGlobalScale().z)));
 }
+*/
 
 
 void RigidBody::setMass(const float m) { mass = m; }
