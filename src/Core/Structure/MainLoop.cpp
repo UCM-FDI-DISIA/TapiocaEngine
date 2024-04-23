@@ -11,7 +11,7 @@ template class TAPIOCA_API Singleton<MainLoop>;
 template<>
 MainLoop* Singleton<MainLoop>::instance_ = nullptr;
 
-MainLoop::MainLoop() : finish(false), deltaTime(0)/*, gameInitialized(false)*/ { }
+MainLoop::MainLoop() : finish(false), deltaTime(0) { }
 
 MainLoop::~MainLoop() {
     for (auto sc : sceneBuffer)

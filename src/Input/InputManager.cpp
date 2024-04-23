@@ -128,5 +128,4 @@ bool InputManager::handleEvents(const SDL_Event& event) {
 
     return happened;
 }
-
 }

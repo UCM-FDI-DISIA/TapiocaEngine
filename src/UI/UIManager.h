@@ -1,7 +1,8 @@
 #pragma once
-#include <functional>
 #include "Utilities/Singleton.h"
 #include "WindowModule.h"
+#include <string>
+#include <unordered_map>
 
 struct SDL_Window;
 

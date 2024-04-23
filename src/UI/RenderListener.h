@@ -1,5 +1,4 @@
 #pragma once
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -22,17 +21,19 @@ private:
 
 public:
     /*
-    * @brief Inicializa el puntero al Game
+    * @brief Inicializa el puntero al MainLoop
+    * @param mainLoop Puntero al MainLoop
     */
     RenderListener(MainLoop* mainLoop);
 
     /*
-    * @brief Pone a nullptr el puntero al Game
+    * @brief Pone a nullptr el puntero al MainLoop y al WindowManager
     */
     ~RenderListener();
 
     /*
-    * @brief Se llama cuando Ogre termine de renderizar en el viewport al que hemos asignado el RenderListener como listener
+    * @brief Se llama cuando Ogre termina de renderizar en el viewport
+    * @param evt Evento de Ogre
     */
     void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) override;
 };

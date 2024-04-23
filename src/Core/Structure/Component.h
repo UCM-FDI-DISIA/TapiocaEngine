@@ -31,7 +31,7 @@ public:
     * @param variables unordered_map con los parametros iniciales
     * @return true si se ha inicializado correctamente, false si no
     */
-    virtual bool initComponent(const CompMap& variables) = 0;
+    virtual bool initComponent(const CompMap& variables) { return true; }
     /*
     * @brief Inicializa el componente. Se ejecuta antes que el start
     * Garantiza que todos los componentes iniciales esten creados
