@@ -38,7 +38,7 @@ bool LuaManager::init() {
     return initialized && loadBase() && loadScripts();
 }
 
-bool LuaManager::callLuaFunction(std::string name, const std::vector<CompValue>& parameters) {
+bool LuaManager::callLuaFunction(const std::string& name, const std::vector<CompValue>& parameters) {
     luabridge::LuaRef function = luabridge::getGlobal(L, "_internal")["call"];
     if (!function.isCallable()) return false;
     luabridge::LuaResult result = function(name, parameters);
@@ -56,6 +56,23 @@ bool LuaManager::addLuaFunction(const std::string& name, std::function<void()> f
     return true;
 }
 
+CompValue LuaManager::getValueFromLua(const std::string& name) {
+    luabridge::LuaRef value = luabridge::getGlobal(L, name.c_str());
+    luabridge::TypeResult<CompValue> result = value.cast<CompValue>();
+    if (!result) {
+        logError("LuaManager: Se ha intentado sacar un valor invalido.");
+        return nullptr;
+    }
+    return result.value();
+}
+
+bool LuaManager::setValueOnLua(const std::string& name, CompValue value) {
+    bool done = luabridge::setGlobal(L, value, name.c_str());
+    if (!done) {
+        logError("LuaManager: Se ha intentado poner un nombre invalido.");
+    }
+    return done;
+}
 
 bool LuaManager::loadBase() {
     if (luaL_dofile(L, BASE_FILE) != 0) {
@@ -91,8 +108,7 @@ bool LuaManager::loadScripts() {
                 if (!loadScript(entry.path().string())) return false;
             }
         }
-        // TODO Cambiar a excepci�n correcta (std::filesystem_error?????)
-    } catch (...) {
+    } catch (std::filesystem::filesystem_error& aaa) {
         logWarn("LuaManager: No existe ruta scripts.");
     }
     return true;

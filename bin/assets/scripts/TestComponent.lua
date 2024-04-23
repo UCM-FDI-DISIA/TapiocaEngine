@@ -2,13 +2,12 @@
 comp.start = function(self)
 	print("Hola!")
 end
-
 -- Se pueden definir variables propias de la clase de esta manera, fuera de las funciones.
 comp.time = 0
 
 function comp:initComponent(variables)
 	-- "test" es una funcion creada por nosotros usando una biblioteca para mostrar por pantalla toda variable.
-	test(variables)
+	_internal.test(variables)
 	-- Para usar los datos del objeto, usar "self".
 	-- No usar "comp" dentro de las funciones, ya que es un acceso temporal a la tabla de la clase.
 	self:createAlgo(variables.aaa)

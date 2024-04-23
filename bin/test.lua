@@ -1,6 +1,9 @@
 local serpent = require("serpent")
 
-_internal = { }
+_internal = {
+	showGlobal = { }
+}
+setmetatable(_G, { __index = _internal.showGlobal })
 
 function _internal.test(tab)
 	print(serpent.block(tab))

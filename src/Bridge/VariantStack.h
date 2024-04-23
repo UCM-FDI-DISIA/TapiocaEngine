@@ -15,10 +15,11 @@ struct Stack<CompValue> {
         case 2: return Stack<float>::push(L, std::get<float>(value));
         case 3: return Stack<bool>::push(L, std::get<bool>(value));
         case 4: return Stack<std::string>::push(L, std::get<std::string>(value));
+        case 5: return Stack<std ::nullptr_t>::push(L, std::get<std::nullptr_t>(value));
         default: break;
         }
-        // TODO: Enviar error si se llega aquí
-        return {};
+        // TODO Mirar si hay otro codigo de error mejor
+        return makeErrorCode(ErrorCode::InvalidTypeCast);
     }
 
     [[nodiscard]] static TypeResult<CompValue> get(lua_State* L, int index) {
@@ -34,7 +35,11 @@ struct Stack<CompValue> {
         else if (lua_isstring(L, index)) {
             return lua_tostring(L, index);
         }
-        // TODO: Enviar error si se llega aquí
+        else if (lua_isnil(L, index)) {
+            return nullptr;
+        }
+        // TODO Mirar si hay otro codigo de error mejor
+        return makeErrorCode(ErrorCode::InvalidTypeCast);
     }
 
     [[nodiscard]] static bool isInstance(lua_State* L, int index) { return lua_isstring(L, index); }
