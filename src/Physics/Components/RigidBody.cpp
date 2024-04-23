@@ -146,7 +146,8 @@ void RigidBody::awake() {
     transform = object->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(
-        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, colShape, movementType,
+        transform->getGlobalPosition(), transform->getGlobalRotation(),
+        colliderInitialScale * transform->getGlobalScale(), colShape, movementType,
         mass, friction, damping, bounciness, isTrigger, group, mask);
 
     rigidBody->setUserPointer(this);
