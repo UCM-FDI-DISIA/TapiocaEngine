@@ -10,8 +10,8 @@
 namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
-      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), colliderScale(Vector3(1)),
-      activeRigidBody(true), trackScale(true), trScaleOffset(1) { }
+      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), colliderInitialScale(Vector3(1)),
+      activeRigidBody(true), trackScale(true) { }
 
 RigidBody::~RigidBody() {
     if (rigidBody != nullptr) {
@@ -30,9 +30,9 @@ bool RigidBody::initComponent(const CompMap& variables) {
     }
     colShape = (ColliderShape)colShapeAux;
 
-    bool colliderScaleSet = setValueFromMap(colliderScale.x, "colliderScaleX", variables) &&
-        setValueFromMap(colliderScale.y, "colliderScaleY", variables) &&
-        setValueFromMap(colliderScale.z, "colliderScaleZ", variables);
+    bool colliderScaleSet = setValueFromMap(colliderInitialScale.x, "colliderScaleX", variables) &&
+        setValueFromMap(colliderInitialScale.y, "colliderScaleY", variables) &&
+        setValueFromMap(colliderInitialScale.z, "colliderScaleZ", variables);
     if (!colliderScaleSet) {
         logError("RigidBody: No se pudo inicializar colliderScale.");
         return false;
@@ -89,16 +89,6 @@ bool RigidBody::initComponent(const CompMap& variables) {
     return true;
 }
 
-
-void RigidBody::update(const uint64_t deltaTime) {
-    /* if (movementType == KINEMATIC_OBJECT) {
-
-        btTransform& btTr = rigidBody->getWorldTransform();
-        btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-        btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-        rigidBody->setWorldTransform(btTr);
-    }*/
-}
 void RigidBody::fixedUpdate() {
     if (movementType == DYNAMIC_OBJECT) {
         transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()), true);
@@ -106,33 +96,6 @@ void RigidBody::fixedUpdate() {
     }
 }
 void RigidBody::handleEvent(std::string const& id, void* info) {
-    /*
-    if (id == "transformChanged") {
-        bool b = *((bool*)info);
-        if (!b) {
-            if (movementType == DYNAMIC_OBJECT) {
-                btTransform& btTr = rigidBody->getWorldTransform();
-                btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-
-                Quaternion q = transform->getGlobalRotation();
-                btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
-                btTr.setRotation(btQ);
-                //btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-            }
-            else if (movementType == KINEMATIC_OBJECT) {
-                btTransform btTr;
-                rigidBody->getMotionState()->getWorldTransform(btTr);
-                btTr.setOrigin(toBtVector3(transform->getGlobalPosition()));
-
-                Quaternion q = transform->getGlobalRotation();
-                btQuaternion btQ = btQuaternion(q.vector.x, q.vector.y, q.vector.z, q.scalar);
-                btTr.setRotation(btQ);
-                //btTr.setRotation(toBtQuaternion(transform->getGlobalRotation()));
-                rigidBody->getMotionState()->setWorldTransform(btTr);
-            }
-        }
-    }
-    */
     if (id == "posChanged") {
         bool b = *((bool*)info);
         if (!b) {
@@ -168,9 +131,8 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
         }
     }
     else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
-        Vector3 scale = transform->getGlobalScale();
-        colliderScale = Vector3(scale.x / trScaleOffset.x, scale.y / trScaleOffset.y, scale.z / trScaleOffset.z);
-        rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(colliderScale));
+        rigidBody->getCollisionShape()->setLocalScaling(
+            toBtVector3(colliderInitialScale * transform->getGlobalScale()));
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
@@ -184,14 +146,11 @@ void RigidBody::awake() {
     transform = object->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(
-        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderScale, colShape, movementType, mass,
-        friction, damping, bounciness, isTrigger, group, mask);
+        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, colShape, movementType,
+        mass, friction, damping, bounciness, isTrigger, group, mask);
 
     rigidBody->setUserPointer(this);
 
-    trScaleOffset =
-        Vector3(transform->getGlobalScale().x / colliderScale.x, transform->getGlobalScale().y / colliderScale.y,
-                transform->getGlobalScale().z / colliderScale.z);
 }
 
 void RigidBody::setActive(const bool b) {
@@ -219,13 +178,9 @@ void RigidBody::setTrigger(const bool t) {
 void RigidBody::setColliderShape(const ColliderShape s) { colShape = s; }
 
 void RigidBody::scaleCollider(const Vector3 s) {
-    colliderScale = s;
+    colliderInitialScale = s;
     if (rigidBody == nullptr) return;
-    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s));
-
-    trScaleOffset =
-        Vector3(transform->getGlobalScale().x / colliderScale.x, transform->getGlobalScale().y / colliderScale.y,
-                transform->getGlobalScale().z / colliderScale.z);
+    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s*transform->getGlobalScale()));
 }
 
 
@@ -315,7 +270,9 @@ bool RigidBody::getTrigger() const { return isTrigger; }
 
 int RigidBody::getColliderShape() const { return colShape; }
 
-Vector3 RigidBody::getColliderScale() const { return colliderScale; }
+Vector3 RigidBody::getColliderScale() const { return colliderInitialScale; }
+
+Vector3 RigidBody::getColliderTrueScale() const { return toVector3(rigidBody->getCollisionShape()->getLocalScaling()); }
 
 
 float RigidBody::getMass() const { return mass; }

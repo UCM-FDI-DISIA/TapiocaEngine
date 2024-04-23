@@ -16,7 +16,7 @@ private:
     Transform* transform;
     // Collider* collider;
     ColliderShape colShape;
-    Vector3 colliderScale;
+    Vector3 colliderInitialScale;
     MovementType movementType;
     bool isTrigger;
     //indica con que grupo se puede colisionar (en binario)
@@ -31,7 +31,7 @@ private:
 
     bool activeRigidBody;
     bool trackScale;
-    Vector3 trScaleOffset;
+    //Vector3 trScaleOffset;
 
 public:
     COMPONENT_ID("RigidBody");
@@ -56,11 +56,7 @@ public:
     * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
     */
     void fixedUpdate() override;
-    /*
-    * @brief Metodo que se usa para actualizar el estado de un componente
-    * Se llama cada cierto tiempo ,
-    */
-    void update(const uint64_t deltaTime) override;
+
     /*
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
@@ -196,10 +192,17 @@ public:
     */
     int getColliderShape() const;
     /*
-    * @brief Devuelve la escala del collider 
+    * @brief Devuelve la escala inicial del collider 
     * @return Escala del collider perteneciente a este rigidbody
     */
     Vector3 getColliderScale() const;
+
+     /*
+    * @brief Devuelve la escala verdadera del collider en bullet
+    * @return Escala del collider perteneciente a este rigidbody
+    */
+    Vector3 getColliderTrueScale() const;
+
     /*
     * @brief Devuelve el tipo de movimiento (dinamica, estatico o cinematico)
     * @return Tipo de movimiento
