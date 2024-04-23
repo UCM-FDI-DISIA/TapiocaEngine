@@ -132,7 +132,9 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     }
     else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
         rigidBody->getCollisionShape()->setLocalScaling(
-            toBtVector3(colliderInitialScale * transform->getGlobalScale()));
+            toBtVector3(Vector3(colliderInitialScale.x * transform->getGlobalScale().x,
+                                colliderInitialScale.y * transform->getGlobalScale().y,
+                                colliderInitialScale.z * transform->getGlobalScale().z)));
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
@@ -147,7 +149,9 @@ void RigidBody::awake() {
 
     rigidBody = PhysicsManager::instance()->createRigidBody(
         transform->getGlobalPosition(), transform->getGlobalRotation(),
-        colliderInitialScale * transform->getGlobalScale(), colShape, movementType,
+        Vector3(colliderInitialScale.x * transform->getGlobalScale().x,
+                                colliderInitialScale.y * transform->getGlobalScale().y,
+                                colliderInitialScale.z * transform->getGlobalScale().z), colShape, movementType,
         mass, friction, damping, bounciness, isTrigger, group, mask);
 
     rigidBody->setUserPointer(this);
@@ -181,7 +185,9 @@ void RigidBody::setColliderShape(const ColliderShape s) { colShape = s; }
 void RigidBody::scaleCollider(const Vector3 s) {
     colliderInitialScale = s;
     if (rigidBody == nullptr) return;
-    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(s*transform->getGlobalScale()));
+    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(Vector3(colliderInitialScale.x * transform->getGlobalScale().x,
+                                colliderInitialScale.y * transform->getGlobalScale().y,
+                                colliderInitialScale.z * transform->getGlobalScale().z)));
 }
 
 
