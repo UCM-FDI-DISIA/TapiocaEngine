@@ -6,7 +6,11 @@ namespace Tapioca {
 Line::Line()
     : Component(), startPosition(Vector2()), endPosition(Vector2(100.0f, 100.0f)),
       lineColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f)), lineThickness(5.0f), addBorder(false),
-      borderColor(Vector4(0.0f, 0.0f, 0.0f, 1.0f)), borderThickness(1.0f) { }
+      borderColor(Vector4(0.0f, 0.0f, 0.0f, 1.0f)), borderThickness(1.0f), uiManager(nullptr) { }
+
+Line::~Line() { uiManager = nullptr; }
+
+void Line::start() { uiManager = UIManager::instance(); }
 
 bool Line::initComponent(const CompMap& variables) {
     if (!setValueFromMap(startPosition.x, "startPositionX", variables)) {
@@ -109,14 +113,20 @@ bool Line::initComponent(const CompMap& variables) {
 }
 
 void Line::render() const {
-    ImVec2 p1 = ImVec2(startPosition.x, startPosition.y);
-    ImVec2 p2 = ImVec2(endPosition.x, endPosition.y);
+    float scaleFactorX = uiManager->getScaleFactorX();
+    float scaleFactorY = uiManager->getScaleFactorY();
+
+    ImVec2 lineStartPos(startPosition.x * scaleFactorX, startPosition.y * scaleFactorY);
+    ImVec2 lineEndPos(endPosition.x * scaleFactorX, endPosition.y * scaleFactorY);
+    float lineThicknessScaled = lineThickness * (scaleFactorX + scaleFactorY) / 2.0;
+    float borderThicknessScaled = borderThickness * (scaleFactorX + scaleFactorY) / 2.0;
+
     ImDrawList* drawList = ImGui::GetForegroundDrawList();
     ImU32 line = IM_COL32(lineColor.x * 255, lineColor.y * 255, lineColor.z * 255, lineColor.w * 255);
     if (addBorder) {
         ImU32 border = IM_COL32(borderColor.x * 255, borderColor.y * 255, borderColor.z * 255, borderColor.w * 255);
-        drawList->AddLine(p1, p2, border, borderThickness + lineThickness);
+        drawList->AddLine(lineStartPos, lineEndPos, border, borderThicknessScaled + lineThicknessScaled);
     }
-    drawList->AddLine(p1, p2, line, lineThickness);
+    drawList->AddLine(lineStartPos, lineEndPos, line, lineThicknessScaled);
 }
 }

@@ -5,6 +5,8 @@
 #include "Utilities/Vector4.h"
 
 namespace Tapioca {
+class UIManager;
+
 /*
 * @brief Clase que representa una linea en la interfaz grafica
 */
@@ -18,6 +20,8 @@ private:
     Vector4 borderColor;     // Color del borde de la linea
     float borderThickness;   // Grosor del borde de la linea
 
+    UIManager* uiManager;   // Puntero al UIManager
+
 public:
     COMPONENT_ID("Line")
 
@@ -27,10 +31,20 @@ public:
     Line();
 
     /*
+    * @brief Destructor por defecto
+    */
+    ~Line();
+
+    /*
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
     * @param variables unordered_map con los parametros iniciales
     */
     bool initComponent(const CompMap& variables) override;
+
+    /*
+    * @brief Coge referencia al UIManager
+    */
+    void start() override;
 
     /*
     * @brief Metodo que se usa para renderizar la linea
