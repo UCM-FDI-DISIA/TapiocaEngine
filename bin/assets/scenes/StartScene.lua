@@ -19,9 +19,8 @@ scene = {
                 positionY = WINDOW_HEIGHT / 2 - 20
             },
             Text = {
-                name = "madeWithText",
                 text = "made with",
-                textFontName = "AGENCYB.TTF"
+                textFontName = "AGENCYB.TTF",
             }
         }
     },
@@ -32,7 +31,6 @@ scene = {
                 positionY = WINDOW_HEIGHT / 2
             },
             Text = {
-                name = "TapiocaText",
                 text = "Tapioca Engine",
                 textSize = 36.0,
                 textFontName = "AGENCYB.TTF"

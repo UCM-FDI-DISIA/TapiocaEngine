@@ -9,8 +9,7 @@ Slider::Slider() : isVertical(false), currentValue(0), maxLimit(100), minLimit(0
 
 bool Slider::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        logError("Slider: No se pudo inicializar el nombre.");
-        return false;
+        logInfo(("Slider: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
     if (!setValueFromMap(isVertical, "isVertical", variables)) {

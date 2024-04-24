@@ -11,8 +11,7 @@ ProgressBar::ProgressBar() : progress(0), backgroundText("") {
 
 bool ProgressBar::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        logError("ProgressBar: No se pudo inicializar el nombre.");
-        return false;
+        logInfo(("ProgressBar: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
     if (!setValueFromMap(progress, "progress", variables)) {

@@ -32,8 +32,7 @@ void InputText::startBuffer() {
 
 bool InputText::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        logError("InputText: No se pudo inicializar el nombre.");
-        return false;
+        logInfo(("InputText: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
     if (!setValueFromMap(bufferSize, "bufferSize", variables)) {

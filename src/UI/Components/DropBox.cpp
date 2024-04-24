@@ -8,8 +8,7 @@ DropBox::DropBox() : currentItem(0) { }
 
 bool DropBox::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        logError("DropBox: No se pudo inicializar el nombre.");
-        return false;
+        logInfo(("DropBox: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
     int itemCuantity = 0;

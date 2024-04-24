@@ -8,8 +8,7 @@ Image::Image() : imagePath(""), textureId() { }
 
 bool Image::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        logError("Image: No se pudo inicializar el nombre.");
-        return false;
+        logInfo(("Image: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
     if (!setValueFromMap(imagePath, "imagePath", variables)) {

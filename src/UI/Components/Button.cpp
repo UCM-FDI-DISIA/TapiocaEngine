@@ -25,8 +25,7 @@ Button::~Button() { textFont = nullptr; }
 
 bool Button::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        logError("Button: No se pudo inicializar el nombre.");
-        return false;
+        logInfo(("Button: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
     if (!setValueFromMap(onClickId, "onClickId", variables)) {
