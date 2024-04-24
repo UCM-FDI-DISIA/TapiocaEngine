@@ -257,9 +257,9 @@ void SceneLoader::exposeUIvalues() {
 
     luaL_openlibs(luaState);
 
-    lua_pushinteger(luaState, WindowManager::instance()->getWindowW());
+    lua_pushnumber(luaState, WindowManager::instance()->getWindowW());
     lua_setglobal(luaState, "WINDOW_WIDTH");
-    lua_pushinteger(luaState, WindowManager::instance()->getWindowH());
+    lua_pushnumber(luaState, WindowManager::instance()->getWindowH());
     lua_setglobal(luaState, "WINDOW_HEIGHT");
 
     // Window flags

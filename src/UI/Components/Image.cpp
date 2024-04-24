@@ -38,16 +38,24 @@ void Image::render() const {
     ImVec2 imagePos(getPosition().x * scaleFactorX - imageSize.x / 2.0f,
                     getPosition().y * scaleFactorY - imageSize.y / 2.0f);
 
-    //ImGui::SetNextWindowPos(ImVec2(getPosition().x, getPosition().y));
-    //ImGui::SetNextWindowSize(ImVec2(getSize().x, getSize().y));
+    // Establece la posicion y el tamano de la ventana de fondo a la correspondiente de la imagen
     ImGui::SetNextWindowPos(imagePos);
     ImGui::SetNextWindowSize(imageSize);
 
+    // Establece los estilos de la ventana de fondo, sin borde, sin padding y transparente
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2());
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4());
+
     ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
-    ImVec2 imagesize = ImVec2(getSize().x, getSize().y);
-    ImVec2 offset = ImGui::GetContentRegionMax();
-    ImGui::Image(textureId, ImVec2(getSize().x - (getSize().x - offset.x), getSize().y - (getSize().y - offset.y)));
+    // Pop para WindowBorderSize y WindowPadding
+    ImGui::PopStyleVar(2);
+
+    ImGui::Image(textureId, imageSize);
+
+    // Pop para WindowBg
+    ImGui::PopStyleColor();
 
     ImGui::End();
 }
