@@ -37,13 +37,14 @@
 #include "Components/KeyFrameAnimator.h"
 // UI
 #include "Components/Button.h"
-#include "Components/InputText.h"
-#include "Components/Text.h"
-#include "Components/ImageTextButton.h"
 #include "Components/DropBox.h"
 #include "Components/Image.h"
+#include "Components/ImageTextButton.h"
+#include "Components/InputText.h"
+#include "Components/Line.h"
 #include "Components/ProgressBar.h"
 #include "Components/Slider.h"
+#include "Components/Text.h"
 // Sound
 #include "Components/AudioListenerComponent.h"
 #include "Components/AudioSourceComponent.h"
@@ -130,13 +131,14 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<SkyboxComponent>());
     // UI
     manager->addBuilder(new BasicBuilder<Button>());
-    manager->addBuilder(new BasicBuilder<InputText>());
-    manager->addBuilder(new BasicBuilder<Text>());
-    manager->addBuilder(new BasicBuilder<ImageTextButton>());
     manager->addBuilder(new BasicBuilder<DropBox>());
     manager->addBuilder(new BasicBuilder<Image>());
+    manager->addBuilder(new BasicBuilder<ImageTextButton>());
+    manager->addBuilder(new BasicBuilder<InputText>());
+    manager->addBuilder(new BasicBuilder<Line>());
     manager->addBuilder(new BasicBuilder<ProgressBar>());
     manager->addBuilder(new BasicBuilder<Slider>());
+    manager->addBuilder(new BasicBuilder<Text>());
     // Sound
     manager->addBuilder(new BasicBuilder<AudioListenerComponent>());
     manager->addBuilder(new BasicBuilder<AudioSourceComponent>());

@@ -19,6 +19,7 @@
     <ClCompile Include="..\..\src\UI\Components\Image.cpp" />
     <ClCompile Include="..\..\src\UI\Components\ImageTextButton.cpp" />
     <ClCompile Include="..\..\src\UI\Components\InputText.cpp" />
+    <ClCompile Include="..\..\src\UI\Components\Line.cpp" />
     <ClCompile Include="..\..\src\UI\Components\ProgressBar.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Slider.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Text.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\..\src\UI\Components\Image.h" />
     <ClInclude Include="..\..\src\UI\Components\ImageTextButton.h" />
     <ClInclude Include="..\..\src\UI\Components\InputText.h" />
+    <ClInclude Include="..\..\src\UI\Components\Line.h" />
     <ClInclude Include="..\..\src\UI\Components\ProgressBar.h" />
     <ClInclude Include="..\..\src\UI\Components\Slider.h" />
     <ClInclude Include="..\..\src\UI\Components\Text.h" />

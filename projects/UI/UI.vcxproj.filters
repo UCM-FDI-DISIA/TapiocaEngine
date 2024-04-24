@@ -54,6 +54,9 @@
     <ClCompile Include="..\..\src\UI\RenderListener.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\UI\Components\Line.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h">
@@ -95,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\UI\RenderListener.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UI\Components\Line.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
