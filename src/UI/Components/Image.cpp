@@ -18,9 +18,10 @@ bool Image::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
+        windowFlags |= ImGuiWindowFlags_NoBringToFrontOnFocus;
         logInfo("Image: No se encontro el valor de windowFlags. Se inicializo a los valores predefinidos: "
                 "\"ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | "
-                "ImGuiWindowFlags_NoSavedSettings\".");
+                "ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBringToFrontOnFocus\".");
     }
     return true;
 }
