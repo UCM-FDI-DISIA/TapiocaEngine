@@ -26,7 +26,7 @@ bool LuaComponent::initComponent(const CompMap& variables) {
 
 void LuaComponent::awake() { }
 
-void LuaComponent::callSimpleFunction(std::string functionName) {
+void LuaComponent::callSimpleFunction(const std::string& functionName) {
     luabridge::LuaResult result = (*objectTable)[functionName]((*objectTable));
     if (result.hasFailed()) {
         logError(("LuaComponent " + name + ": Ha ocurrido un error durante " + functionName + " [" +
@@ -73,8 +73,37 @@ void LuaComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-LuaComponentBuilder::LuaComponentBuilder(std::string name, luabridge::LuaRef* table)
-    : ComponentBuilder(name.c_str()), classTable(table) {
+std::vector<CompValue> LuaComponent::callFunction(const std::string& name, const std::vector<CompValue>& parameters, bool* success) {
+    std::vector<CompValue> out;
+    luabridge::LuaRef function = luabridge::getGlobal(LuaManager::instance()->getLuaState(), "_internal")["call"];
+    if (!function.isCallable()) {
+        if (success != nullptr) *success = false;
+        return out;
+    }
+    luabridge::LuaResult result = function(*objectTable, name, parameters);
+    if (result.hasFailed()) {
+        logError(("LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
+        if (success != nullptr) *success = false;
+        return out;
+    }
+    for (int i = 0; i < result.size(); i++) {
+        luabridge::LuaRef param = result[0];
+        luabridge::TypeResult<CompValue> safeValue = param.cast<CompValue>();
+        if (!safeValue) {
+            out.push_back(nullptr);
+        }
+        else {
+            out.push_back(safeValue.value());
+        }
+    }
+    if (success != nullptr) *success = true;
+    return out;
+}
+
+LuaComponentBuilder::LuaComponentBuilder(const std::string& name, luabridge::LuaRef* table)
+    : ComponentBuilder(name), classTable(table) {
 	
 }
 

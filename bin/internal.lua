@@ -13,6 +13,10 @@ function _internal.testMeta(tab)
 	print(serpent.block(getmetatable(tab)))
 end
 
-function _internal.call(name, parameters)
+function _internal.callGlobal(name, parameters)
 	_G[name](table.unpack(parameters))
+end
+
+function _internal.call(object, name, parameters)
+	object[name](object, table.unpack(parameters))
 end

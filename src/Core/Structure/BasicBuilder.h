@@ -9,8 +9,8 @@ public:
     BasicBuilder() : ComponentBuilder(TComp::id) { }
 
     /*
-    * @brief Crea una componente
-    * @return Puntero al componente creado
+    * @brief Crea un componente.
+    * @return Puntero al componente creado.
     */
 	inline Component* createComponent() override { return new TComp(); }
 };

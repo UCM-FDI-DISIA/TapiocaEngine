@@ -6,20 +6,20 @@ class Component;
 
 class TAPIOCA_API ComponentBuilder {
 public:
-    ComponentBuilder(const char* id) : id(nullptr) {
-        size_t len = strlen(id) + 1;
-        this->id = new char[len];
-        strcpy_s(this->id, len, id);
-    }
-    virtual ~ComponentBuilder() {
-        delete[] id;
-    }
+    ComponentBuilder(const std::string& id) : id(id) { }
+    virtual ~ComponentBuilder() { }
     /*
-    * @brief Id del componente que crea
+    * @brief Id del componente que crea.
     */
-    char* id;
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string id;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     /*
-    * @brief Crea un componente
+    * @brief Crea un componente.
     */
     virtual Component* createComponent() = 0;
 };

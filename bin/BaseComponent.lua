@@ -2,7 +2,6 @@ comp = {
     new = function(self)
         local newObj = {}
         setmetatable(newObj, { __index = self })
-        print("Me he creado :YIPEE:")
         return newObj
     end,
     start = function(self) end,

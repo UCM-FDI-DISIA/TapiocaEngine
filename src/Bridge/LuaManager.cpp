@@ -21,8 +21,8 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
 
     luabridge::getGlobalNamespace(L).addFunction("print", &print);
 
-    if (luaL_dofile(L, "test.lua")!=0) {
-        logError(("LuaManager: Error al cargar test.lua: " + std::string(lua_tostring(L, -1))).c_str());
+    if (luaL_dofile(L, "internal.lua")!=0) {
+        logError(("LuaManager: Error al cargar internal.lua: " + std::string(lua_tostring(L, -1))).c_str());
         initialized = false;
     }
 
@@ -38,17 +38,33 @@ bool LuaManager::init() {
     return initialized && loadBase() && loadScripts();
 }
 
-bool LuaManager::callLuaFunction(const std::string& name, const std::vector<CompValue>& parameters) {
-    luabridge::LuaRef function = luabridge::getGlobal(L, "_internal")["call"];
-    if (!function.isCallable()) return false;
+std::vector<CompValue> LuaManager::callLuaFunction(const std::string& name, const std::vector<CompValue>& parameters, bool* success) {
+    std::vector<CompValue> out;
+    luabridge::LuaRef function = luabridge::getGlobal(L, "_internal")["callGlobal"];
+    if (!function.isCallable()) {
+        if(success != nullptr) *success = false;
+        return out;
+    }
     luabridge::LuaResult result = function(name, parameters);
     if (result.hasFailed()) {
         logError(("LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
                   std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
                      .c_str());
-        return false;
+        if (success != nullptr) *success = false;
+        return out;
     }
-    return true;
+    for (int i = 0; i < result.size(); i++) {
+        luabridge::LuaRef param = result[0];
+        luabridge::TypeResult<CompValue> safeValue = param.cast<CompValue>();
+        if (!safeValue) {
+            out.push_back(nullptr);
+        }
+        else {
+            out.push_back(safeValue.value());
+        }
+    }
+    if (success != nullptr) *success = true;
+    return out;
 }
 
 bool LuaManager::addLuaFunction(const std::string& name, std::function<void()> f) {

@@ -34,22 +34,16 @@ private:
 
     Scene* scene;   // Escena a la que pertenece el objeto.
     bool alive;     // Indica si se deberia borrar el objeto.
-    // warning C4251 'Tapioca::GameObject::handler' :
-    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::string handler;   // Handler del objeto.
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
 
     /*
     * @brief Elimina una componente del objeto.
     * @param comp Componente que se quiere eliminar.
     */
     void deleteCompVector(Component* const comp);
+
+    // warning C4251 'Tapioca::GameObject::handler' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
     // warning C4251 'Tapioca::GameObject::components' :
     // class 'std::unordered_multimap<std::string,Tapioca::Component *,std::hash<std::string>,
     // std::equal_to<std::string>,std::allocator<std::pair<const std::string,Tapioca::Component *>>>' necesita
@@ -60,8 +54,8 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_multimap<std::string, Component*>
-        components;                     // Componentes que tiene el objeto, cada una asociada a una id
+    std::string handler;                                         // Handler del objeto.
+    std::unordered_multimap<std::string, Component*> components; // Componentes del objeto, cada uno asociado a una id.
     std::vector<Component*> cmpOrder;   // TODO: Hace falta??????
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -76,13 +70,13 @@ public:
     * @brief Destructora de la clase GameObject.
     */
     ~GameObject();
+
     /*
     * @brief Procesa un evento recibido.
     * @param id String que indica el tipo de evento.
     * @param info Parametros del mensaje, cada evento gestiona sus propios parametros.
     */
     void handleEvent(std::string const& id, void* info);
-
     /*
     * @brief Inicializa los componentes del objeto. Se ejecuta antes del start.
     * Garantiza que todos los componentes iniciales esten creados.
@@ -111,25 +105,25 @@ public:
     inline void die() { alive = false; }
 
     /*
-    * @brief Cambia la escena a la que pertence el gameObject
-    * @param sc Escena a la que se quiere mover el objeto
+    * @brief Cambia la escena a la que pertence el gameObject.
+    * @param sc Escena a la que se quiere mover el objeto.
     */
     void setScene(Scene* const sc);
     /*
-    * @brief Devuelve puntero de la escena a la que pertenece el objeto
-    * @return Escena a la que pertenece el objeto
+    * @brief Devuelve puntero de la escena a la que pertenece el objeto.
+    * @return Escena a la que pertenece el objeto.
     */
     inline virtual Scene* getScene() const { return scene; }
 
     /*
     * @brief Aniade un componente al objeto, no se deberia de usar en ejecucion.
-    * @param comp Componente que se quiere aniadir al objeto
-    * @param id Id de la componenete que se quiere aniadir
+    * @param comp Componente que se quiere aniadir al objeto.
+    * @param id Id del componenete que se quiere aniadir.
     */
     void addComponent(Component* const comp, std::string const& id);
     /*
     * @brief Aniade un componente al objeto.
-    * @param id Id del componente que se quiere aniadir
+    * @param id Id del componente que se quiere aniadir.
     * @param variables Variables con las que se inicializa el componente.
     * @return Puntero al componente aniadido, nullptr si no se ha podido inicializar.
     */
@@ -153,11 +147,11 @@ public:
     }
     /*
     * @brief Aniade varios componentes al objeto.
-    * @param idAndVars Pareja de ids y variables para los componentes.
+    * @param idsAndVariables Pareja de ids y variables para los componentes.
     * @return Vector de punteros. Si no se ha podido inicializar un componente, se cancela la operacion completamente,
     * borrando los componentes ya inicializados y devolviendo un vector vacio.
     */
-    std::vector<Component*> addComponents(const std::vector<std::pair<std::string, CompMap>>& idAndVars);
+    std::vector<Component*> addComponents(const std::vector<std::pair<std::string, CompMap>>& idsAndVariables);
     /*
     * @brief Devuelve un puntero a un componente del objeto.
     * @param id Id del componente que se quiere conseguir del objeto.
