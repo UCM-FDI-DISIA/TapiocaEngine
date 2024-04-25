@@ -18,43 +18,52 @@ Transform::~Transform() {
 bool Transform::initComponent(const CompMap& variables) {
     if (!setValueFromMap(position.x, "positionX", variables)) {
         logInfo(("Transform: No se encontro el valor de positionX. Se inicializo al valor predefinido: \"" +
-                 std::to_string(position.x) + "\".").c_str());
+                 std::to_string(position.x) + "\".")
+                    .c_str());
     }
     if (!setValueFromMap(position.y, "positionY", variables)) {
         logInfo(("Transform: No se encontro el valor de positionY. Se inicializo al valor predefinido: \"" +
-                 std::to_string(position.y) + "\".").c_str());
+                 std::to_string(position.y) + "\".")
+                    .c_str());
     }
     if (!setValueFromMap(position.z, "positionZ", variables)) {
         logInfo(("Transform: No se encontro el valor de positionZ. Se inicializo al valor predefinido: \"" +
-                 std::to_string(position.z) + "\".").c_str());
+                 std::to_string(position.z) + "\".")
+                    .c_str());
     }
 
     Vector3 rotationVec;
     if (!setValueFromMap(rotationVec.x, "rotationX", variables)) {
         logInfo(("Transform: No se encontro el valor de rotationX. Se inicializo al valor predefinido: \"" +
-                 std::to_string(rotationVec.x) + "\".").c_str());
+                 std::to_string(rotationVec.x) + "\".")
+                    .c_str());
     }
     if (!setValueFromMap(rotationVec.y, "rotationY", variables)) {
         logInfo(("Transform: No se encontro el valor de rotationY. Se inicializo al valor predefinido: \"" +
-                 std::to_string(rotationVec.y) + "\".").c_str());
+                 std::to_string(rotationVec.y) + "\".")
+                    .c_str());
     }
     if (!setValueFromMap(rotationVec.z, "rotationZ", variables)) {
         logInfo(("Transform: No se encontro el valor de rotationZ. Se inicializo al valor predefinido: \"" +
-                 std::to_string(rotationVec.z) + "\".").c_str());
+                 std::to_string(rotationVec.z) + "\".")
+                    .c_str());
     }
     rotation = Quaternion(rotationVec);
 
     if (!setValueFromMap(scale.x, "scaleX", variables)) {
         logInfo(("Transform: No se encontro el valor de scaleX. Se inicializo al valor predefinido: \"" +
-                 std::to_string(scale.x) + "\".").c_str());
+                 std::to_string(scale.x) + "\".")
+                    .c_str());
     }
     if (!setValueFromMap(scale.y, "scaleY", variables)) {
         logInfo(("Transform: No se encontro el valor de scaleY. Se inicializo al valor predefinido: \"" +
-                 std::to_string(scale.y) + "\".").c_str());
+                 std::to_string(scale.y) + "\".")
+                    .c_str());
     }
     if (!setValueFromMap(scale.z, "scaleZ", variables)) {
         logInfo(("Transform: No se encontro el valor de scaleZ. Se inicializo al valor predefinido: \"" +
-                 std::to_string(scale.z) + "\".").c_str());
+                 std::to_string(scale.z) + "\".")
+                    .c_str());
     }
     return true;
 }
@@ -225,6 +234,12 @@ void Transform::setPositionXY(const Vector2& p, bool rb) {
 
 void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = Quaternion(r);
+    posChanged(rb);
+    rotChanged(rb);
+}
+
+void Transform::setRotation(const Quaternion& q, bool rb = false) {
+    rotation = q;
     posChanged(rb);
     rotChanged(rb);
 }

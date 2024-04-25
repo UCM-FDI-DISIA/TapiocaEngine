@@ -204,6 +204,8 @@ public:
     * @param rb Indica si es movido por f�sicas
     */
     void setRotation(const Vector3& r, bool rb = false);
+
+    void setRotation(const Quaternion& q, bool rb = false);
     /*
     * @brief Cambia la escala del transform
     * @param s Tamanio al que se quiere escalar el transform
