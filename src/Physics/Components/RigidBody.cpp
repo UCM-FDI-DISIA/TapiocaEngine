@@ -132,9 +132,11 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     }
     else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
         Vector3 globalScale = transform->getGlobalScale();
-        Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x, colliderInitialScale.y * globalScale.y,
-                                colliderInitialScale.z * globalScale.z);
-        rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(scale));
+        btVector3 s = rigidBody->getCollisionShape()->getLocalScaling();
+
+        Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x / s.x(), colliderInitialScale.y * globalScale.y /s.y(),
+                                colliderInitialScale.z * globalScale.z / s.z());
+        rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(globalScale));
     }
 }
 void RigidBody::onCollisionEnter(GameObject* const other) { pushEvent("onCollisionEnter", other, false); }
