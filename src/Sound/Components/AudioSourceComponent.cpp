@@ -54,6 +54,9 @@ void AudioSourceComponent::awake() {
     }
 }
 
+void AudioSourceComponent::start() { //playOnce();
+}
+
 void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
     /*
     if (id == "transformchanged") {
@@ -66,6 +69,8 @@ void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
         mySource->setPosition(position);
     }
 }
+
+void AudioSourceComponent::playOnce() { mySource->playOnce(); }
 
 //void AudioSourceComponent::playSound() { } en verdad con un set pause false ya suena
 void AudioSourceComponent::pause(bool p) {

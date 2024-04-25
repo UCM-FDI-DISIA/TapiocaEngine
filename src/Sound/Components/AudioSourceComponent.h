@@ -37,8 +37,9 @@ public:
     ~AudioSourceComponent();
     bool initComponent(const CompMap& variables) override;
     void awake() override;
+    void start() override;
     void handleEvent(std::string const& id, void* info) override;
-    void playSound();
+    void playOnce();
     void pause(bool p);
     void loop(bool l);
     void setVolume(float v);

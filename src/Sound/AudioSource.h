@@ -71,5 +71,9 @@ public:
     void setLooped(bool l);
     void setVolume(float v);
     void setPosition(Vector3 p);
+    /*
+    * Reproduce el sonido una vez desde el principio.
+    */
+    void playOnce();
 };
 }

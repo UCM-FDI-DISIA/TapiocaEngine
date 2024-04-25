@@ -92,3 +92,12 @@ void Tapioca::AudioSource::setPosition(Vector3 p) {
     
 }
 
+void Tapioca::AudioSource::playOnce() {
+    if (mysound != nullptr) {
+        mysound->setPlayPosition(0);//nos aseguramos de que el audio empieza desde el principio
+        setLooped(false);
+        setPaused(false);
+    }
+
+}
+

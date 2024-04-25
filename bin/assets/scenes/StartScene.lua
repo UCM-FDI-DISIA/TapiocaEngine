@@ -21,6 +21,11 @@ scene = {
             Text = {
                 text = "made with",
                 textFontName = "AGENCYB.TTF",
+            },
+            AudioSourceComponent={
+                sourcepath="assets/BlankSpace.mp3",
+                ispaused = false
+
             }
         }
     },
