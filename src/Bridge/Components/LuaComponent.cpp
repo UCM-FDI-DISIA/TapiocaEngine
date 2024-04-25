@@ -6,25 +6,13 @@
 #include "../VariantStack.h"
 
 namespace Tapioca {
-LuaComponent::LuaComponent(luabridge::LuaRef* objTable) : objectTable(objTable) {
+LuaComponent::LuaComponent(luabridge::LuaRef* objTable, const std::string& name) : objectTable(objTable), name(name) {
     registerFunctions();
 }
 
 LuaComponent::~LuaComponent() {
 	delete objectTable;
 }
-
-bool LuaComponent::initComponent(const CompMap& variables) {
-    luabridge::LuaResult result = (*objectTable)["initComponent"]((*objectTable), variables);
-    if (result.hasFailed()) {
-        logError(("LuaComponent " + name + ": Ha ocurrido un error durante initComponent [" +
-            std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
-            .c_str());
-    }
-    return result.wasOk() && (result.size() == 0 || result[0]);
-}
-
-void LuaComponent::awake() { }
 
 void LuaComponent::callSimpleFunction(const std::string& functionName) {
     luabridge::LuaResult result = (*objectTable)[functionName]((*objectTable));
@@ -37,16 +25,38 @@ void LuaComponent::callSimpleFunction(const std::string& functionName) {
 
 void LuaComponent::registerFunctions() {
     luabridge::getGlobalNamespace(LuaManager::instance()->getLuaState())
+        .beginNamespace("_internal")
+        .addVariable("comp", *objectTable)
+        .endNamespace();
+
+    luabridge::getGlobalNamespace(LuaManager::instance()->getLuaState())
+        .beginNamespace("_internal")
         .beginNamespace("comp")
         .addVariable("alive", &alive)
         .addVariable("active", &active)
         .addFunction("pushEvent",
-                     [&](const std::string& id, bool global = true, bool delay = false) {
+                     [&](const luabridge::LuaRef& comp, const std::string& id, bool global = true, bool delay = false) {
                          pushEvent(id, nullptr, global, delay);
                      })
         .addVariable("object", &object)
         .addVariable("component", this)
+        .endNamespace()
         .endNamespace();
+}
+
+bool LuaComponent::initComponent(const CompMap& variables) {
+    luabridge::LuaResult result = (*objectTable)["initComponent"]((*objectTable), variables);
+    if (result.hasFailed()) {
+        logError(("LuaComponent " + name + ": Ha ocurrido un error durante initComponent [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
+    }
+    return result.wasOk() && (result.size() == 0 || result[0]);
+}
+
+void LuaComponent::awake() {
+    registerFunctions();
+    callSimpleFunction("awake");
 }
 
 void LuaComponent::start() {
@@ -118,11 +128,11 @@ Component* LuaComponentBuilder::createComponent() {
     luabridge::LuaRef* aux = new luabridge::LuaRef(L);
     luabridge::LuaResult result = (*classTable)["new"]((*classTable));
     if (result.hasFailed() || result.size() == 0) {
-        logError(("LuaComponent " + std::string(id) + ": Ha ocurrido un error durante createComponent [" +
+        logError(("LuaComponent " + id + ": Ha ocurrido un error durante createComponent [" +
             std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
             .c_str());
     }
     *aux = result[0];
-	return new LuaComponent(aux);
+	return new LuaComponent(aux, id);
 }
 }

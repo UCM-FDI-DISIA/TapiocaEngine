@@ -34,7 +34,6 @@ private:
 
     bool initialized;
 
-    const char* BASE_FILE = "BaseComponent.lua";
     bool loadBase();
 
     bool loadScript(const std::filesystem::path& path);

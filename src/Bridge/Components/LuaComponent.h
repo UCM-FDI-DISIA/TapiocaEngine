@@ -24,12 +24,11 @@ private:
     void registerFunctions();
 
 public:
-    // Esto no va a funcionar bien
-    COMPONENT_ID("LuaComponent")
+    // Este componente no usa la macro COMPONENT_ID para que no sea capaz de meterse en las templates de addComponent y getComponent.
     /*
     * @brief Constructora del componente. Para crear un componente, usar addComponent en los GameObject con la id.
     */
-    LuaComponent(luabridge::LuaRef* objectTable);
+    LuaComponent(luabridge::LuaRef* objectTable, const std::string& name);
     /*
     * @brief Destructora del componente. Para borrar un componente, usar Component::die().
     */

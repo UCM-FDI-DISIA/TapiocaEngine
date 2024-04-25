@@ -21,12 +21,14 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
     L = luaL_newstate();
     luaL_openlibs(L);
 
-    luabridge::getGlobalNamespace(L).addFunction("print", &print);
-
-    if (luaL_dofile(L, "internal.lua")!=0) {
+    if (luaL_dofile(L, "TapiocaFiles/Lua/internal.lua") != 0) {
         logError(("LuaManager: Error al cargar internal.lua: " + std::string(lua_tostring(L, -1))).c_str());
         initialized = false;
     }
+
+    luabridge::getGlobalNamespace(L).beginNamespace("_internal").beginNamespace("showGlobal")
+        .addFunction("print", &print)
+        .endNamespace().endNamespace();
 
     luabridge::getGlobalNamespace(L)
         .beginNamespace("Tapioca")
@@ -42,7 +44,7 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("die", &GameObject::die)
         .addProperty("scene", &GameObject::getScene)
         .addFunction("addComponent",
-            +[](GameObject* obj, const std::string& id, const CompMap& variables) -> Component* {
+            +[](GameObject* obj, const std::string& id, const CompMap& variables = {}) -> Component* {
                 return obj->addComponent(id, variables);
             })
         .addFunction("addComponents", &GameObject::addComponents)
@@ -54,6 +56,33 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("getComponents",
             +[](GameObject* obj, const std::string& id) -> std::vector<Component*> {
                 return obj->getComponents(id);
+            })
+        // Funciones anadidas para ayudar con scripting de Lua
+        .addFunction("addLuaComponent",
+            +[](GameObject* obj, const std::string& id, const CompMap& variables = {}) -> LuaComponent* {
+                return static_cast<LuaComponent*>(obj->addComponent(id, variables));
+            })
+        .addFunction("addLuaComponents", +[](GameObject* obj,
+                const std::vector<std::pair<std::string, CompMap>>& idsAndVariables) -> std::vector<LuaComponent*> {
+                std::vector<LuaComponent*> out;
+                std::vector<Component*> aux = obj->addComponents(idsAndVariables);
+                for (auto& comp : aux) {
+                    out.push_back(static_cast<LuaComponent*>(comp));
+                }
+                return out;
+            })
+        .addFunction("getLuaComponent",
+            +[](GameObject* obj, const std::string& id) -> LuaComponent* {
+                return static_cast<LuaComponent*>(obj->getComponent(id));
+            })
+        .addFunction("getLuaComponents",
+            +[](GameObject* obj, const std::string& id) -> std::vector<LuaComponent*> {
+                std::vector<LuaComponent*> out;
+                std::vector<Component*> aux = obj->getComponents(id);
+                for (auto& comp : aux) {
+                    out.push_back(static_cast<LuaComponent*>(comp));
+                }
+                return out;
             })
         .endClass()
         .beginClass<Component>("Component")
@@ -68,6 +97,11 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .endClass()
         .deriveClass<LuaComponent, Component>("LuaComponent")
         .addProperty("table", [](LuaComponent* comp) -> luabridge::LuaRef* { return comp->getTable(); })
+        // Funcion anadida para ayudar con scripting de Lua
+        .addFunction("toLuaComponent",
+            +[](LuaComponent* self, Component* comp) -> LuaComponent* {
+                return static_cast<LuaComponent*>(comp);
+            })
         .endClass()
         .endNamespace();
 
@@ -136,7 +170,7 @@ bool LuaManager::setValueOnLua(const std::string& name, CompValue value) {
 }
 
 bool LuaManager::loadBase() {
-    if (luaL_dofile(L, BASE_FILE) != 0) {
+    if (luaL_dofile(L, "TapiocaFiles/Lua/BaseComponent.lua") != 0) {
         logError(("LuaManager: Error al cargar base de LuaComponent: " + std::string(lua_tostring(L, -1))).c_str());
         return false;
     }
