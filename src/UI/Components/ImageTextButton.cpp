@@ -167,7 +167,7 @@ void ImageTextButton::render() const {
     if (ImGui::ImageButton(name.c_str(), textureId, buttonSize, ImVec2(uv0.x, uv0.y), ImVec2(uv1.x, uv1.y),
                            ImVec4(imageBgColor.x, imageBgColor.y, imageBgColor.z, imageBgColor.w),
                            ImVec4(imageTint.x, imageTint.y, imageTint.z, imageTint.w)))
-        luaManager->callLuaFunction(onClickId, {name});
+        luaManager->callLuaFunction(onClickId);
 
     if (wantText) {
         std::string textStr = text;

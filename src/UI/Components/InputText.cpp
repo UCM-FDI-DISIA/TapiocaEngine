@@ -8,7 +8,7 @@
 namespace Tapioca {
 InputText::InputText()
     : BaseWidget(), Component(), placeHolderText("Enter text here"), bufferSize(256), buffer(nullptr),
-      onTextEnteredId("debug"), textFontName("arial.ttf"), textSize(16.0f), textFont(nullptr),
+      onTextEnteredId(""), textFontName(""), textSize(16.0f), textFont(nullptr),
       flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -32,9 +32,9 @@ void InputText::startBuffer() {
 
 bool InputText::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        name = uiManager->generateName("InputText");
-        logInfo(("InputText: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
+        logInfo("InputText: No se encontro el valor de name. Se inicializo a un valor random");
     }
+    uiManager->addWidgetName(name);
 
     if (!setValueFromMap(bufferSize, "bufferSize", variables)) {
         logInfo(("InputText: No se encontro el valor de bufferSize. Se inicializo al valor predefinido: \"" +
@@ -55,9 +55,7 @@ bool InputText::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-        logInfo(("InputText: No se encontro el valor de textFontName. Se inicializo al valor predefinido: \"" +
-                 textFontName + "\".")
-                    .c_str());
+        logInfo("InputText: No se encontro el valor de textFontName. Se inicializara con la fuente por predefinida.");
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
@@ -163,7 +161,7 @@ void InputText::render() const {
 
     if (ImGui::InputText("##", buffer, bufferSize, flags)) {
         if (ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter)) {
-            luaManager->callLuaFunction(onTextEnteredId, {name});
+            luaManager->callLuaFunction(onTextEnteredId);
         }
     }
 

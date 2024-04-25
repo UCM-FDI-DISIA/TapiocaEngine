@@ -26,7 +26,8 @@ UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
     : mainLoop(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), ogreWindow(nullptr),
-      renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/"), widgetCounter(0) { }
+      renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/"),
+      texturesPath("assets/textures/"), widgetCounter(0) { }
 
 UIManager::~UIManager() {
     mainLoop = nullptr;
@@ -62,8 +63,7 @@ bool UIManager::init() {
     ogreWindow->addListener(renderListener);
     ImGui_ImplSDL2_InitForOpenGL(sdlWindow, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
-
-    loadFonts();
+    check();
 
     return true;
 }
@@ -94,31 +94,47 @@ bool UIManager::handleEvents(const SDL_Event& event) {
     return false;
 }
 
+void UIManager::check() {
+    if (!fontsFolderExists()) {
+        try {
+            if (std::filesystem::create_directory(fontsPath))
+                logInfo("UIManager: Carpeta de fuentes creada correctamente.");
+        } catch (const std::filesystem::filesystem_error& e) {
+            logError(("UIManager: No se pudo crear la carpeta de fuentes. " + std::string(e.what())).c_str());
+        }
+    }
+    if (!texturesFolderExists()) {
+        try {
+            if (std::filesystem::create_directory(texturesPath))
+                logInfo("UIManager: Carpeta de imagenes creada correctamente.");
+        } catch (const std::filesystem::filesystem_error& e) {
+            logError(("UIManager: No se pudo crear la carpeta de imagenes. " + std::string(e.what())).c_str());
+        }
+    }
+}
+
 bool UIManager::fontsFolderExists() {
     if (!std::filesystem::exists(fontsPath)) {
-        logError(("UIManager: La carpeta \"" + fontsPath + " no existe.").c_str());
+        logWarn(("UIManager: La carpeta \"" + fontsPath + " no existe.").c_str());
         return false;
     }
     return true;
 }
 
-void UIManager::loadFonts(float pixelSize) {
-
-    if (!fontsFolderExists()) {
-        logInfo("UIManager: No se han cargado las fuentes.");
+bool UIManager::texturesFolderExists() {
+    if (!std::filesystem::exists(texturesPath)) {
+        logWarn(("UIManager: La carpeta \"" + texturesPath + "\" no existe.").c_str());
+        return false;
     }
+    return true;
+}
 
-    for (const auto& entry : std::filesystem::directory_iterator(fontsPath)) {
-        if (entry.is_regular_file()) {
-            auto path = entry.path();
-            std::string extension = path.extension().string();
-            if (extension == ".ttf" || extension == ".TTF" || extension == ".otf" || extension == ".OTF")
-                if (loadFont(path.stem().string() + extension, pixelSize) == nullptr) {
-                    logError(("UIManager: No se ha podido cargar la fuente " + path.stem().string() + extension + '.')
-                                 .c_str());
-                }
-        }
+bool UIManager::fontsFolderEmpty() {
+    if (std::filesystem::directory_iterator(fontsPath) == std::filesystem::directory_iterator {}) {
+        logWarn(("UIManager: La carpeta \"" + fontsPath + "\" esta vacia.").c_str());
+        return true;
     }
+    return false;
 }
 
 ImFont* UIManager::loadFont(const std::string& name, float pixelSize) {
@@ -126,7 +142,7 @@ ImFont* UIManager::loadFont(const std::string& name, float pixelSize) {
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->AddFontFromFileTTF(path.c_str(), pixelSize);
     if (font == nullptr) {
-        logError(("UIManager: No se pudo cargar la fuente \"" + name + "\".").c_str());
+        logError(("UIManager: No se pudo cargar la fuente \"" + path + "\".").c_str());
         return nullptr;
     }
     ImGui_ImplOpenGL3_CreateFontsTexture();
@@ -137,43 +153,57 @@ ImFont* UIManager::loadFont(const std::string& name, float pixelSize) {
 }
 
 ImFont* UIManager::getFont(const std::string& name, float pixelSize) {
-    // Si el tamano de la fuente es la que hay por defecto y ya se ha cargado, se devuelve
-    if (pixelSize == fontDefaultSize && fonts.contains({name, pixelSize})) return fonts[{name, pixelSize}];
-    // Si el tamano de la fuente es la que hay por defecto y no se ha cargado, se devuelve nullptr
-    else if (pixelSize == fontDefaultSize && !fonts.contains({name, pixelSize})) {
-        logInfo(("UIManager: No existe la fuente con el nombre \"" + name + "\" con el tamano predeterminado de " +
-                 std::to_string(fontDefaultSize) + ". Se usara la fuente por defecto.")
-                    .c_str());
+    if (fonts.contains({name, pixelSize})) return fonts[{name, pixelSize}];
+    // Se comprueba si existe la carpeta de fuentes o si esta vacia
+    if (!fontsFolderExists() || fontsFolderEmpty() || name == "") {
+        logInfo("UIManager: Se usara la fuente por defecto.");
         return ImGui::GetIO().FontDefault;
     }
-    // Si no es el tamano de fuente por defecto, se intenta cargar
-    else {
-        // Se comprueba si existe la carpeta de fuentes
-        if (!fontsFolderExists()) {
-            logInfo("UIManager: Se usara la fuente por defecto.");
-            return ImGui::GetIO().FontDefault;
-        }
-
-        // Se intenta cargar la fuente
-        if (!loadFont(name, pixelSize)) {
-            logInfo("UIManager: Se usara la fuente por defecto.");
-            return ImGui::GetIO().FontDefault;
-        }
-        return fonts[{name, pixelSize}];
+    // Se intenta cargar la fuente
+    if (loadFont(name, pixelSize) == nullptr) {
+        logInfo("UIManager: Se usara la fuente por defecto.");
+        return ImGui::GetIO().FontDefault;
     }
+    return fonts[{name, pixelSize}];
 }
 
 ImTextureID UIManager::getTextureId(const std::string& name) {
     try {
-        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(name, "General");
+        std::string path = "textures/" + name;
+        Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(path, "General");
         GLuint glID;
         texturePtr->getCustomAttribute("GLID", &glID);
         return (ImTextureID)glID;
     } catch (...) {
-        logWarn(("UIManager: No se encontro la textura " + name + '.').c_str());
+        logError(("UIManager: No se pudo cargar la textura " + name + '.').c_str());
         return 0;
     }
 }
 
-std::string UIManager::generateName(std::string widget) { return widget + std::to_string(widgetCounter++); }
+std::string UIManager::generateName(const std::string& widget) { return widget + std::to_string(widgetCounter++); }
+
+void UIManager::addWidgetName(std::string& name) {
+    std::string nameToAdd = name;
+    if (widgetNameExists(name) || name == "") {
+        nameToAdd = generateName(name);
+        if (name == "") {
+            logWarn(("UIManager: El widget \"" + name + "\" no se permite.").c_str());
+            logWarn(("UIManager: El widget recibira el nombre de \"" + nameToAdd + "\".").c_str());
+        }
+        else {
+            logWarn(("UIManager: El nombre de widget \"" + name + "\" ya existe.").c_str());
+            logWarn(("UIManager: El widget \"" + name + "\" recibira el nombre de \"" + nameToAdd + "\".").c_str());
+        }
+    }
+    widgetNames.insert(nameToAdd);
+    name = nameToAdd;
+}
+
+void UIManager::removeWidgetName(const std::string& name) {
+    if (!widgetNames.contains(name)) logWarn(("UIManager: El nombre de widget \"" + name + "\" no existe.").c_str());
+    else
+        widgetNames.erase(name);
+}
+
+bool UIManager::widgetNameExists(const std::string& name) { return widgetNames.contains(name); }
 }

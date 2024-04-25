@@ -3,6 +3,7 @@
 #include "WindowModule.h"
 #include <string>
 #include <unordered_map>
+#include <set>
 
 struct SDL_Window;
 
@@ -51,28 +52,39 @@ private:
     // 'Tapioca::UIManager::fontsPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::string fontsPath;   // Ruta de la carpeta de fuentes
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
-
-    static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
-
+    // 'Tapioca::UIManager::texturesPath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
     // 'Tapioca::UIManager::fonts' :
     // class 'std::unordered_map<std::pair<std::string,float>,ImFont *,Tapioca::pair_hash,std::equal_to<std::pair<std::string,float>>,std::allocator<std::pair<const std::pair<std::string,float>,ImFont *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
+    std::string fontsPath;                                                         // Ruta de la carpeta de fuentes
+    std::string texturesPath;                                                      // Ruta de la carpeta de imagenes
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
 
-    long long int widgetCounter;   // Contador de widgets
+    static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
+
+    std::set<std::string> widgetNames;   // Nombres de los widgets
+    long long int widgetCounter;         // Contador de widgets
+
+    /*
+    * @brief Genera un nombre para un widget
+    * @param widget Nombre del widget
+    * @return Nombre generado
+    */
+    std::string generateName(const std::string& widget);
+
+    /*
+    * @brief Comprueba si existe la carpeta de fuentes y la carpeta de imagenes.
+    * Si no existen, las crea
+    */
+    void check();
 
     /*
     * @brief Inicializa a nulo los punteros
@@ -121,10 +133,16 @@ public:
     bool fontsFolderExists();
 
     /*
-    * @brief Carga todas las fuentes de letra de la carpeta de fuentes
-    * @param pixelSize Tamano de la fuente, por defecto 16.0f
+    * @brief Devuelve si existe o no la carpeta de imagenes
+    * @return true si existe, false si no
     */
-    void loadFonts(float pixelSize = fontDefaultSize);
+    bool texturesFolderExists();
+
+    /*
+    * @brief Devuelve si esta vacia o no la carpeta de fuentes
+    * @return true si esta vacia, false si no
+    */
+    bool fontsFolderEmpty();
 
     /*
     * @brief Carga una fuente de la carpeta de fuentes
@@ -148,9 +166,23 @@ public:
     ImTextureID getTextureId(const std::string& name);
 
     /*
-    * @brief Genera un nombre para un widget
-    * @return Nombre generado
+    * @brief Anade un nombre de widget a la lista
+    * @param name Nombre del widget
+    * @return Nombre del widget anadido
     */
-    std::string generateName(std::string widget);
+    void addWidgetName(std::string& name);
+
+    /*
+    * @brief Elimina un nombre de widget de la lista
+    * @param name Nombre del widget
+    */
+    void removeWidgetName(const std::string& name);
+
+    /*
+    * @brief Devuelve si un nombre de widget esta en la lista
+    * @param name Nombre del widget
+    * @return true si esta, false si no
+    */
+    bool widgetNameExists(const std::string& name);
 };
 }

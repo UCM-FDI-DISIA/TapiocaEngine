@@ -61,8 +61,6 @@ void runEngine() {
     if (mainLoop->init()) {
         createEngineBuilders();
         registerLuaFunctions();
-
-        //scenes->loadScene("Prueba2");
         Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName());
         mainLoop->run();
     }

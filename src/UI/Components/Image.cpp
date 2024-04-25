@@ -8,9 +8,9 @@ Image::Image() : imagePath(""), textureId() { }
 
 bool Image::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        name = uiManager->generateName("Image");
-        logInfo(("Image: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
+        logInfo("Image: No se encontro el valor de name. Se inicializo a un valor random");
     }
+    uiManager->addWidgetName(name);
 
     if (!setValueFromMap(imagePath, "imagePath", variables)) {
         logError("Image: No se encontro la ruta del archivo de origen para la imagen.");

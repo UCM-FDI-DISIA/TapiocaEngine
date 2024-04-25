@@ -5,8 +5,7 @@
 #include "UIManager.h"
 
 namespace Tapioca {
-Text::Text()
-    : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), textFontName("arial.ttf"), textFont(nullptr) {
+Text::Text() : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), textFontName(""), textFont(nullptr) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
 }
@@ -15,9 +14,9 @@ Text::~Text() { textFont = nullptr; }
 
 bool Text::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        name = uiManager->generateName("Text");
-        logInfo(("Text: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
+        logInfo("Text: No se encontro el valor de name. Se inicializo a un valor random");
     }
+    uiManager->addWidgetName(name);
 
     if (!setValueFromMap(text, "text", variables)) {
         logInfo(
@@ -31,8 +30,7 @@ bool Text::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-        logInfo(("Text: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + textFontName + "\".")
-                    .c_str());
+        logInfo("Text: No se encontro el valor de textFontName. Se inicializara con la fuente por predefinida.");
     }
 
     if (!setValueFromMap(textColor.x, "textColorR", variables)) {

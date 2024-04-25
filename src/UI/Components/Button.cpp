@@ -7,7 +7,7 @@
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), onClickId("debug"), text("Button"), textFont(nullptr), textFontName("arial.ttf"),
+    : BaseWidget(), Component(), onClickId(""), text("Button"), textFont(nullptr), textFontName(""),
       textSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColorNormal = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -25,9 +25,9 @@ Button::~Button() { textFont = nullptr; }
 
 bool Button::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        name = uiManager->generateName("Button");
-        logInfo(("Button: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
+        logInfo("Button: No se encontro el valor de name. Se inicializo a un valor random");
     }
+    uiManager->addWidgetName(name);
 
     if (!setValueFromMap(onClickId, "onClickId", variables)) {
         logInfo(
@@ -41,9 +41,7 @@ bool Button::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
-        logInfo(("Button: No se encontro el valor de textFontName. Se inicializo al valor predefinido: \"" +
-                 textFontName + "\".")
-                    .c_str());
+        logInfo("Button: No se encontro el valor de textFontName. Se inicializara con la fuente por predefinida.");
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
@@ -260,7 +258,7 @@ void Button::render() const {
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(hoverColor.x, hoverColor.y, hoverColor.z, hoverColor.w));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(activeColor.x, activeColor.y, activeColor.z, activeColor.w));
 
-    if (ImGui::Button(text, buttonSize)) luaManager->callLuaFunction(onClickId, {name});
+    if (ImGui::Button(text, buttonSize)) luaManager->callLuaFunction(onClickId);
 
     // Pop para WindowBg, los colores de los estados del boton y el color del texto
     ImGui::PopStyleColor(5);

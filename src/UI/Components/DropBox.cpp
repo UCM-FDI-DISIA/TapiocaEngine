@@ -8,9 +8,9 @@ DropBox::DropBox() : currentItem(0) { }
 
 bool DropBox::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
-        name = uiManager->generateName("DropBox");
-        logInfo(("DropBox: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
+        logInfo("DropBox: No se encontro el valor de name. Se inicializo a un valor random");
     }
+    uiManager->addWidgetName(name);
 
     int itemCuantity = 0;
     if (!setValueFromMap(itemCuantity, "itemCuantity", variables)) {
