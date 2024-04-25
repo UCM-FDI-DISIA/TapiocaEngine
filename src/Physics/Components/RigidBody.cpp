@@ -83,7 +83,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(group, "group", variables)) {
         logInfo("Rigidbody: Group por defecto.");
-    }
+    } 
 
 
     return true;
@@ -91,7 +91,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
 void RigidBody::fixedUpdate() {
     if (movementType == DYNAMIC_OBJECT) {
-        transform->setPosition(toVector3(rigidBody->getWorldTransform().getOrigin()), true);
+        transform->setGlobalPosition(toVector3(rigidBody->getWorldTransform().getOrigin()), false);
         transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()), true);
     }
 }

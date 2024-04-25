@@ -172,15 +172,34 @@ Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
     Vector3 parentScale = parent->getScale();
     point = Vector3(point.x * parentScale.x, point.y * parentScale.y, point.z * parentScale.z);
 
-    Vector3 pos;
-    pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
+    Vector3 pos = xAxis * point.x + yAxis * point.y + zAxis * point.z;
+   /* pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
     pos.y = point.x * xAxis.y + point.y * yAxis.y + point.z * zAxis.y;
-    pos.z = point.x * xAxis.z + point.y * yAxis.z + point.z * zAxis.z;
+    pos.z = point.x * xAxis.z + point.y * yAxis.z + point.z * zAxis.z;*/
 
     // Se convierte al sistema de coordenadas del padre
     pos = pos + parent->position;
 
     return parent->getGlobalPositionAux(pos);
+}
+
+Vector3 Transform::getLocalPosition(Vector3 point) const {
+    if (parent == nullptr) return point-position;
+    point = parent->getLocalPosition(point);
+    
+    Vector3 xAxis = -parent->localRight();
+    Vector3 yAxis = parent->localUp();
+    Vector3 zAxis = parent->localForward();
+
+    Vector3 localPos;
+    localPos.x = point.dot(xAxis);
+    localPos.y = point.dot(yAxis);
+    localPos.z = point.dot(zAxis);
+
+    Vector3 parentScale = parent->getScale();
+    //localPos = localPos/parentScale;
+    localPos = Vector3(localPos.x / parentScale.x, localPos.y / parentScale.y, localPos.z / parentScale.z);
+    return localPos;
 }
 
 Vector3 Transform::getGlobalPositionWithoutRotation() const {
@@ -224,6 +243,11 @@ Vector3 Transform::getGlobalScale() const {
 
 void Transform::setPosition(const Vector3& p, bool rb) {
     position = p;
+    posChanged(rb);
+}
+
+void Transform::setGlobalPosition(const Vector3& p, bool rb) {
+    position = getLocalPosition(p);
     posChanged(rb);
 }
 

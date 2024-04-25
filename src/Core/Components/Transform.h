@@ -103,6 +103,13 @@ private:
     */
     Vector3 getGlobalPositionAux(Vector3 aux) const;
 
+    /*
+    * @brief Devuelve la posicion local del transform
+    * @param point Vector en coordenadas global
+    * @return La coordenadas local respecto del transform
+    */
+    Vector3 getLocalPosition(Vector3 point) const;
+
 public:
     COMPONENT_ID("Transform")
 
@@ -192,6 +199,14 @@ public:
     * @param rb Indica si es movido por f�sicas
     */
     void setPosition(const Vector3& p, bool rb = false);
+
+     /*
+    * @brief Cambia la posicion del transform
+    * @param p Posicion en coordenadas global a la que se quiere mover el transform
+    * @param rb Indica si es movido por f�sicas
+    */
+    void setGlobalPosition(const Vector3& p, bool rb = false);
+
     /*
     * @brief Cambia la posicion XY del transform
     * @param pXY Posicion XY a la que se quiere mover el transform
