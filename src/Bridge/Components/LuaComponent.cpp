@@ -41,9 +41,11 @@ void LuaComponent::registerFunctions() {
         .addVariable("alive", &alive)
         .addVariable("active", &active)
         .addFunction("pushEvent",
-                     [&](std::string id, bool global = true, bool delay = false) -> void {
+                     [&](const std::string& id, bool global = true, bool delay = false) {
                          pushEvent(id, nullptr, global, delay);
                      })
+        .addVariable("object", &object)
+        .addVariable("component", this)
         .endNamespace();
 }
 

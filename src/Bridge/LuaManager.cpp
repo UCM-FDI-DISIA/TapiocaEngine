@@ -10,6 +10,8 @@
 #include <sstream>
 #include "checkML.h"
 #include <functional>
+#include "Structure/GameObject.h"
+#include "Structure/Scene.h"
 
 namespace Tapioca {
 
@@ -25,6 +27,49 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         logError(("LuaManager: Error al cargar internal.lua: " + std::string(lua_tostring(L, -1))).c_str());
         initialized = false;
     }
+
+    luabridge::getGlobalNamespace(L)
+        .beginNamespace("Tapioca")
+        .beginClass<Scene>("Scene")
+        .addFunction("getObjects", &Scene::getObjects)
+        .addFunction("getHandler", &Scene::getHandler)
+        .addProperty("name", &Scene::getName)
+        .addProperty("active", &Scene::isActive, &Scene::setActive)
+        .endClass()
+        .beginClass<GameObject>("GameObject")
+        .addFunction("getHandler", &GameObject::getHandler)
+        .addProperty("alive", &GameObject::isAlive)
+        .addFunction("die", &GameObject::die)
+        .addProperty("scene", &GameObject::getScene)
+        .addFunction("addComponent",
+            +[](GameObject* obj, const std::string& id, const CompMap& variables) -> Component* {
+                return obj->addComponent(id, variables);
+            })
+        .addFunction("addComponents", &GameObject::addComponents)
+        .addFunction("getComponent",
+            +[](GameObject* obj, const std::string& id) -> Component* {
+                return obj->getComponent(id);
+            })
+        .addFunction("getAllComponents", &GameObject::getAllComponents)
+        .addFunction("getComponents",
+            +[](GameObject* obj, const std::string& id) -> std::vector<Component*> {
+                return obj->getComponents(id);
+            })
+        .endClass()
+        .beginClass<Component>("Component")
+        .addFunction("pushEvent",
+            +[](Component* comp, const std::string& id, bool global = true, bool delay = false) {
+                comp->pushEvent(id, nullptr, global, delay);
+            })
+        .addProperty("object", &Component::getObject)
+        .addProperty("alive", &Component::isAlive)
+        .addFunction("die", &Component::die)
+        .addProperty("active", &Component::isActive, &Component::setActive)
+        .endClass()
+        .deriveClass<LuaComponent, Component>("LuaComponent")
+        .addProperty("table", [](LuaComponent* comp) -> luabridge::LuaRef* { return comp->getTable(); })
+        .endClass()
+        .endNamespace();
 
     reg = new LuaRegistry(L);
 }
