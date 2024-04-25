@@ -54,9 +54,10 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string handler;                                         // Handler del objeto.
-    std::unordered_multimap<std::string, Component*> components; // Componentes del objeto, cada uno asociado a una id.
-    std::vector<Component*> cmpOrder;   // TODO: Hace falta??????
+    std::string handler;   // Handler del objeto.
+    std::unordered_multimap<std::string, Component*>
+        components;                     // Componentes del objeto, cada uno asociado a una id.
+    std::vector<Component*> cmpOrder;   // Vector que contiene los componentes en el orden en el que se han aniadido.
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -200,6 +201,6 @@ public:
     * @param global Indica si el evento debe ser enviado glabalmente.
     * @param delay Indica si el evento se recibira un ciclo mas tarde. Si es false, se recibe immediatamente.
     */
-    void pushEvent(std::string const& id, void* info, const bool global = true, const bool delay=false);
+    void pushEvent(std::string const& id, void* info, const bool global = true, const bool delay = false);
 };
 }

@@ -34,12 +34,6 @@ public:
     ~BaseWidget();
 
     /*
-    * @brief Genera un nombre aleatorio para el widget
-    * @return Nombre aleatorio
-    */
-    std::string generateRandomName();
-
-    /*
     * @brief Establece el nombre del widget
     * @param name Nombre del widget
     */

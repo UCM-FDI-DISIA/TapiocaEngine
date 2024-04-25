@@ -42,8 +42,10 @@ std::vector<Component*> GameObject::addComponents(const std::vector<std::pair<st
         }
         addComponent(comp, id);
     }
-    for (auto& comp : vec) comp->awake();
-    for (auto& comp : vec) comp->start();
+    for (auto& comp : vec)
+        comp->awake();
+    for (auto& comp : vec)
+        comp->start();
     return vec;
 }
 
@@ -115,8 +117,9 @@ void GameObject::fixedUpdate() {
 }
 
 void GameObject::render() const {
-    for (auto comp : cmpOrder)
-        comp->render();
+    for (auto comp : cmpOrder) {
+        if (comp->isActive()) comp->render();
+    }
 }
 
 void GameObject::awake() {

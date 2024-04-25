@@ -72,6 +72,8 @@ private:
 #pragma warning(default : 4251)
 #endif
 
+    long long int widgetCounter;   // Contador de widgets
+
     /*
     * @brief Inicializa a nulo los punteros
     */
@@ -144,5 +146,11 @@ public:
     * @brief Devuelve el identificador de la textura de una imagen
     */
     ImTextureID getTextureId(const std::string& name);
+
+    /*
+    * @brief Genera un nombre para un widget
+    * @return Nombre generado
+    */
+    std::string generateName(std::string widget);
 };
 }

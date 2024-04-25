@@ -15,6 +15,7 @@ Text::~Text() { textFont = nullptr; }
 
 bool Text::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
+        name = uiManager->generateName("Text");
         logInfo(("Text: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 

@@ -32,6 +32,7 @@ void InputText::startBuffer() {
 
 bool InputText::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
+        name = uiManager->generateName("InputText");
         logInfo(("InputText: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 

@@ -26,7 +26,7 @@ UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
     : mainLoop(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), ogreWindow(nullptr),
-      renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/") { }
+      renderListener(nullptr), scaleFactorX(1.0f), scaleFactorY(1.0f), fontsPath("assets/fonts/"), widgetCounter(0) { }
 
 UIManager::~UIManager() {
     mainLoop = nullptr;
@@ -169,10 +169,11 @@ ImTextureID UIManager::getTextureId(const std::string& name) {
         GLuint glID;
         texturePtr->getCustomAttribute("GLID", &glID);
         return (ImTextureID)glID;
+    } catch (...) {
+        logWarn(("UIManager: No se encontro la textura " + name + '.').c_str());
+        return 0;
     }
-    catch (...) {
-		logWarn(("UIManager: No se encontro la textura " + name + '.').c_str());
-		return 0;
-	}
 }
+
+std::string UIManager::generateName(std::string widget) { return widget + std::to_string(widgetCounter++); }
 }

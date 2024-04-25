@@ -9,6 +9,7 @@ Slider::Slider() : isVertical(false), currentValue(0), maxLimit(100), minLimit(0
 
 bool Slider::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
+        name = uiManager->generateName("Slider");
         logInfo(("Slider: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 

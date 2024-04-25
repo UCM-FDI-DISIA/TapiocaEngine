@@ -25,6 +25,7 @@ Button::~Button() { textFont = nullptr; }
 
 bool Button::initComponent(const CompMap& variables) {
     if (!setValueFromMap(name, "name", variables)) {
+        name = uiManager->generateName("Button");
         logInfo(("Button: No se encontro el valor de name. Se inicializo a un valor random: \"" + name + "\".").c_str());
     }
 
