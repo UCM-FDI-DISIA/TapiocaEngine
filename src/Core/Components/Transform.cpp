@@ -238,7 +238,7 @@ void Transform::setRotation(const Vector3& r, bool rb) {
     rotChanged(rb);
 }
 
-void Transform::setRotation(const Quaternion& q, bool rb = false) {
+void Transform::setRotation(const Quaternion& q, bool rb) {
     rotation = q;
     posChanged(rb);
     rotChanged(rb);
