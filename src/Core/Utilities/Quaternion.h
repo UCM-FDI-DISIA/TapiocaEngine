@@ -40,14 +40,14 @@ public:
     * @params alfa Rotacion del vector en grados sexagesimales
     * @params vec Vector que define el giro
     */
-    Quaternion(const float alfa, const Vector3 vec);
+    Quaternion(const float alfa, const Vector3 &vec);
 
     /*
     * @brief Constructora de la clase Quaternion. 
     * Se construye a partir de rotaciones en los 3 ejes globales (x y z) en grados sexagesimales
     * @param euler Rotacion en los 3 ejes globales
     */
-    Quaternion(const Vector3 euler);
+    Quaternion(const Vector3 &euler);
     /*
     * @brief Devuelve el quaternion inverso (el conjugado entre la magnitud)
     * @return Inverso del quaternion
@@ -65,21 +65,22 @@ public:
     float magnitude();
     /*
     * @brief Devuelve un vector con la rotacion en angulos sexadecimales  pitch , yaw, roll (x,y,z) en un sistema y up
-    * @return Vector con la rotacion en angulos sexadecimales
+    * @return Vector con la rotacion en angulos sexadecimales en sistema ZYX
+    * 
     */
-    Vector3 taitBryan(); //puede que en verdad sea Tait-Bryan
+    Vector3 toEuler(); 
 
     /*
     *  @brief  devuelve rotacion absoluta en 3 ejes de rotaticon (x,y,z)
     */
-    Vector3 eulerAxis();
+   // Vector3 eulerAxis();
     /*
     * @brief Multiplica el cuaternion por rhs.
     * Para rotar un punto se puede hacer q * p * q(conjugado).
     * @param rhs Elemento diestro de la multiplicacion
     * @return Resultado de multiplicar el quaternion por rhs
     */
-    Quaternion operator*(const Quaternion rhs);//right hand side
+    Quaternion operator*(const Quaternion &rhs);//right hand side
 
     /*
     * @brief Multiplicacio por un escalar
@@ -102,7 +103,7 @@ public:
     * @param point Punto por el que se multiplica
     * @return Resultado de multiplicar el quaternion por el punto 
     */
-    Vector3 rotatePoint(const Vector3 point);
+    Vector3 rotatePoint(const Vector3 &point);
 
     Quaternion normalized();
 
