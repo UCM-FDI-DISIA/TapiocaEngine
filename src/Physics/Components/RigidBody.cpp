@@ -83,7 +83,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(group, "group", variables)) {
         logInfo("Rigidbody: Group por defecto.");
-    } 
+    }
 
 
     return true;
@@ -132,10 +132,9 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     }
     else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
         Vector3 globalScale = transform->getGlobalScale();
-        btVector3 s = rigidBody->getCollisionShape()->getLocalScaling();
-
+        /*btVector3 s = rigidBody->getCollisionShape()->getLocalScaling();
         Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x / s.x(), colliderInitialScale.y * globalScale.y /s.y(),
-                                colliderInitialScale.z * globalScale.z / s.z());
+                                colliderInitialScale.z * globalScale.z / s.z());*/
         rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(globalScale));
     }
 }
