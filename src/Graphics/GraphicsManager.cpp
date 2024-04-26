@@ -82,7 +82,7 @@ bool GraphicsManager::init() {
     pluginsPath = fsLayer->getConfigFilePath("plugins.cfg");
 
     // tratamiento de errores
-    if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
+    if (!Ogre::FileSystemLayer::fileExists("./plugins.cfg")) {
         delete fsLayer;
         logError("GraphicsManager: No existe la ruta de plugins.cfg.");
         return false;
@@ -91,14 +91,14 @@ bool GraphicsManager::init() {
     cfgPath = pluginsPath;
     cfgPath.erase(cfgPath.find_last_of("\\") + 1, cfgPath.size() - 1);   // "\\" equivale a "\"
 
-    fsLayer->setHomePath(cfgPath);
+    fsLayer->setHomePath("./");
 
     // (ruta plugins.cfg, ruta ogre.cfg, ruta ogre.log)
     // ogre.cfg sirve para guardar y restaurar la configuracion de render
     // ogre.log guarda un mensaje de depuracion
     // getWritablePath parte del homePath (asignado arriba)
     try {
-        mRoot = new Ogre::Root(pluginsPath, "", fsLayer->getWritablePath("ogre.log"));
+        mRoot = new Ogre::Root("./plugins.cfg", "", fsLayer->getWritablePath("ogre.log"));
     } catch (Ogre::Exception& e) {
         logError(("GraphicsEngine: Error al cargar root: " + e.getFullDescription()).c_str());
         return false;
