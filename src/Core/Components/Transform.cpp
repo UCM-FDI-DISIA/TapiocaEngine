@@ -184,8 +184,8 @@ Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
 }
 
 Vector3 Transform::getLocalFromGlobalPos(Vector3 point) const {
-    if (parent == nullptr) return point - position;
-    point = parent->getLocalFromGlobalPos(point);
+    if (parent == nullptr) return point;
+    point = parent->getLocalFromGlobalPos(point) - parent->getPosition();
 
     Vector3 xAxis = -parent->localRight();
     Vector3 yAxis = parent->localUp();

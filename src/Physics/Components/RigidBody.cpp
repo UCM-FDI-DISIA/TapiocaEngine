@@ -91,7 +91,7 @@ bool RigidBody::initComponent(const CompMap& variables) {
 
 void RigidBody::fixedUpdate() {
     if (movementType == DYNAMIC_OBJECT) {
-        transform->setGlobalPosition(toVector3(rigidBody->getWorldTransform().getOrigin()), false);
+        transform->setGlobalPosition(toVector3(rigidBody->getWorldTransform().getOrigin()), true);
         transform->setRotation(toEuler(rigidBody->getWorldTransform().getRotation()), true);
     }
 }
