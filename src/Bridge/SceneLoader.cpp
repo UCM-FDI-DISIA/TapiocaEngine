@@ -54,7 +54,7 @@ bool SceneLoader::initConfig() {
     return loadScene(initScene()) != nullptr;
 }
 
-Scene* SceneLoader::loadScene(std::string const& sceneName) {
+Scene* SceneLoader::loadScene(std::string const& sceneName, const bool active) {
     logInfo(("SceneLoader: Cargando escena \"" + sceneName + "\"...").c_str());
     luaState = luaL_newstate();
     if (luaState == nullptr) {
@@ -85,6 +85,7 @@ Scene* SceneLoader::loadScene(std::string const& sceneName) {
         delete scene;
         return nullptr;
     }
+    scene->setActive(active);
 
     mainLoop->loadScene(scene);
     lua_close(luaState);

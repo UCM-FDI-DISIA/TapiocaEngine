@@ -104,6 +104,6 @@ public:
     * @param sceneName Nombre de escena
     * @return Puntero a la escena cargada
 	*/
-    Scene* loadScene(std::string const& sceneName);
+    Scene* loadScene(std::string const& sceneName, const bool active = true);
 };
 }
