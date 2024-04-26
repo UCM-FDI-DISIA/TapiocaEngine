@@ -263,6 +263,8 @@ public:
     */
     void setMainLight(LightDirectional* lightDir);
 
+    void removeMainLight(LightDirectional* lightDir);
+
     /*
     * @brief Crea una malla
     * @param node Nodo para renderizado

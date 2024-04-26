@@ -356,7 +356,8 @@ void GraphicsManager::loadResources() {
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./TapiocaFiles/Graphics/Shadows", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        "./TapiocaFiles/Graphics/ColliderDrawer", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+        "./TapiocaFiles/Graphics/ColliderDrawer", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+        true);
 
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
@@ -534,6 +535,14 @@ void GraphicsManager::setMainLight(LightDirectional* lightDir) {
         mainLight->produceShadows(false);
     }
     mainLight = lightDir;
+}
+
+void GraphicsManager::removeMainLight(LightDirectional* lightDir) {
+    if (mainLight == lightDir) {
+        logWarn("GraphicsManager: No hay ninguna luz principal (la que produce sombras)");
+        lightDir->produceShadows(false);
+        mainLight = nullptr;
+    }
 }
 
 Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& meshName) {

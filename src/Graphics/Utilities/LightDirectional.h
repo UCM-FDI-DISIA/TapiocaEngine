@@ -32,6 +32,8 @@ private:
     LightDirectional(Ogre::SceneManager* const scnManager, RenderNode* const node, const Vector4 color,
                      const Vector3 direction);
 
+    ~LightDirectional();
+
 public:
     /*
     * @brief Cambia la direccion a la que apunta la luz

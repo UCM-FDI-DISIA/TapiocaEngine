@@ -19,6 +19,8 @@ LightDirectional::LightDirectional(Ogre::SceneManager* const scnManager, RenderN
     node->setDirection(direction);
 }
 
+LightDirectional::~LightDirectional() { GraphicsManager::instance()->removeMainLight(this); }
+
 void LightDirectional::setDirection(const Vector3 direction) { node->setDirection(direction); }
 
 void LightDirectional::produceShadows(const bool enable) {
