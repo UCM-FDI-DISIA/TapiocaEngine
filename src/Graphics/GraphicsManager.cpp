@@ -26,7 +26,7 @@
 #pragma warning(disable : 4251)
 #endif
 #include <Ogre.h>
-#include "Utilities/SGTechniqueResolverListener.h"
+#include "SGTechniqueResolverListener.h"
 #include <OgreOverlaySystem.h>
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -354,15 +354,13 @@ void GraphicsManager::loadResources() {
 
     // shaders para las sombras y material del physics debug
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./assetsConfig", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        "./TapiocaFiles/Graphics/Shadows", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+        "./TapiocaFiles/Graphics/ColliderDrawer", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 
-#ifdef _RESOURCES_DIR
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
-#else
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
-#endif
+
     Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 }

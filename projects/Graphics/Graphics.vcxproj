@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsManager.cpp" />
+    <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\AnimationHelper.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Billboard.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\BillboardSet.cpp" />
@@ -40,7 +41,6 @@
     <ClCompile Include="..\..\src\Graphics\Utilities\Plane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderNode.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderObject.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Utilities\SGTechniqueResolverListener.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Skybox.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Skyplane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Viewport.cpp" />
@@ -61,6 +61,7 @@
     <ClInclude Include="..\..\src\Graphics\Graphics.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SpriteRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
+    <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\AnimationHelper.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Billboard.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\BillboardSet.h" />
@@ -76,7 +77,6 @@
     <ClInclude Include="..\..\src\Graphics\Utilities\Plane.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderNode.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderObject.h" />
-    <ClInclude Include="..\..\src\Graphics\Utilities\SGTechniqueResolverListener.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Skybox.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Skyplane.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Viewport.h" />
@@ -135,7 +135,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;_RESOURCES_DIR;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TAPIOCA_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);OGREOVERLAY_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)Dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\SDL2-2.28.0\include\;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GL3Plus\include\;$(SolutionDir)Dependencies\Ogre\src\RenderSystems\GLSupport\include\;$(SolutionDir)Dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)Dependencies\Ogre\src\Components\Overlay\include\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\;$(SolutionDir)Dependencies\Ogre\build\$(Platform)\imgui-1.89.8\backends\;$(SolutionDir)src\Core\;$(SolutionDir)src\Window\;$(SolutionDir)src\Graphics\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>

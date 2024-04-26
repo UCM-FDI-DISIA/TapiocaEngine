@@ -20,7 +20,7 @@ PhysicsDebugDrawer::~PhysicsDebugDrawer() { node = nullptr; }
 void PhysicsDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color) {
     auto g = GraphicsManager::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
-    line->begin("white", Ogre::RenderOperation::OT_LINE_LIST);
+    line->begin("whiteDebug", Ogre::RenderOperation::OT_LINE_LIST);
     line->position(from.x(), from.y(), from.z());
     line->position(to.x(), to.y(), to.z());
     line->colour(color.x(), color.y(), color.z());

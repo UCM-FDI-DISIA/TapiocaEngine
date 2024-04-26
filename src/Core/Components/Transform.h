@@ -108,7 +108,7 @@ private:
     * @param point Vector en coordenadas global
     * @return La coordenadas local respecto del transform
     */
-    Vector3 getLocalPosition(Vector3 point) const;
+    Vector3 getLocalFromGlobalPos(Vector3 point) const;
 
 public:
     COMPONENT_ID("Transform")

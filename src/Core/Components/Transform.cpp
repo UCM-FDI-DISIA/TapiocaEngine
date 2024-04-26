@@ -173,7 +173,7 @@ Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
     point = Vector3(point.x * parentScale.x, point.y * parentScale.y, point.z * parentScale.z);
 
     Vector3 pos = xAxis * point.x + yAxis * point.y + zAxis * point.z;
-   /* pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
+    /* pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
     pos.y = point.x * xAxis.y + point.y * yAxis.y + point.z * zAxis.y;
     pos.z = point.x * xAxis.z + point.y * yAxis.z + point.z * zAxis.z;*/
 
@@ -183,10 +183,10 @@ Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
     return parent->getGlobalPositionAux(pos);
 }
 
-Vector3 Transform::getLocalPosition(Vector3 point) const {
-    if (parent == nullptr) return point-position;
-    point = parent->getLocalPosition(point);
-    
+Vector3 Transform::getLocalFromGlobalPos(Vector3 point) const {
+    if (parent == nullptr) return point - position;
+    point = parent->getLocalFromGlobalPos(point);
+
     Vector3 xAxis = -parent->localRight();
     Vector3 yAxis = parent->localUp();
     Vector3 zAxis = parent->localForward();
@@ -247,7 +247,7 @@ void Transform::setPosition(const Vector3& p, bool rb) {
 }
 
 void Transform::setGlobalPosition(const Vector3& p, bool rb) {
-    position = getLocalPosition(p);
+    position = getLocalFromGlobalPos(p);
     posChanged(rb);
 }
 

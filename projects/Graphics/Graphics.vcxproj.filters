@@ -92,9 +92,6 @@
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderObject.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Utilities\SGTechniqueResolverListener.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Graphics\Utilities\Skybox.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Graphics\Components\KeyFrameAnimator.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +194,6 @@
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderObject.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Utilities\SGTechniqueResolverListener.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Utilities\Skybox.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -220,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Components\KeyFrameAnimator.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Graphics\SGTechniqueResolverListener.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
