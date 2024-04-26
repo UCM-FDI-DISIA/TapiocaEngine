@@ -131,6 +131,7 @@ Component* LuaComponentBuilder::createComponent() {
         logError(("LuaComponent " + id + ": Ha ocurrido un error durante createComponent [" +
             std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
             .c_str());
+        return nullptr;
     }
     *aux = result[0];
 	return new LuaComponent(aux, id);

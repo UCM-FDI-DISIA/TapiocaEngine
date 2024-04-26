@@ -175,6 +175,10 @@ static void registerLuaFunctions() {
                          return mainLoop->getMainSceneName();
                      })
         //.addFunction("", []() -> void {})
+
+        .deriveClass<Transform, Component>("Transform")
+        //.addProperty("pos")
+        .endClass()
         .endNamespace();
 }
 

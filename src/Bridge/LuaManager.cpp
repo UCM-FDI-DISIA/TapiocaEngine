@@ -12,6 +12,10 @@
 #include <functional>
 #include "Structure/GameObject.h"
 #include "Structure/Scene.h"
+#include "Utilities/Vector2.h"
+#include "Utilities/Vector3.h"
+#include "Utilities/Vector4.h"
+#include "Utilities/Quaternion.h"
 
 namespace Tapioca {
 
@@ -103,6 +107,102 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
                 return static_cast<LuaComponent*>(comp);
             })
         .endClass()
+        .beginClass<Vector2>("Vector2")
+        .addConstructor<void (*)(const float)>()
+        .addConstructor<void (*)(const float, const float)>()
+        .addConstructor<void (*)(const Vector2&)>()
+        .addProperty("x", &Vector2::x)
+        .addProperty("y", &Vector2::y)
+        .addFunction("magnitudeSquared", &Vector2::magnitudeSquared)
+        .addFunction("magnitude", &Vector2::magnitude)
+        .addFunction("getNormalized", &Vector2::getNormalized)
+        .addFunction("normalize", &Vector2::normalize)
+        .addFunction("__add", &Vector2::operator+)
+        .addFunction("__unm", luabridge::overload<>(&Vector2::operator-))
+        .addFunction("__sub", luabridge::overload<const Vector2&>(&Vector2::operator-))
+        .addFunction("__mul", &Vector2::operator*)
+        .addFunction("__div", &Vector2::operator/)
+        .addFunction("__eq", &Vector2::operator==)
+        .addFunction("lerp", &Vector2::lerp)
+        .addFunction("distance", &Vector2::distance)
+        .endClass()
+        .addFunction("clamp", &Vector2::clamp)
+        .beginClass<Vector3>("Vector3")
+        .addConstructor<void (*)(const float)>()
+        .addConstructor<void (*)(const float, const float)>()
+        .addConstructor<void (*)(const float, const float, const float)>()
+        .addConstructor<void (*)(const Vector3&)>()
+        .addConstructor<void (*)(const Vector2&)>()
+        .addConstructor<void (*)(const Vector2&, const float)>()
+        .addProperty("x", &Vector3::x)
+        .addProperty("y", &Vector3::y)
+        .addProperty("z", &Vector3::z)
+        .addFunction("magnitudeSquared", &Vector3::magnitudeSquared)
+        .addFunction("magnitude", &Vector3::magnitude)
+        .addFunction("getNormalized", &Vector3::getNormalized)
+        .addFunction("normalize", &Vector3::normalize)
+        .addFunction("rotateX", &Vector3::rotateX)
+        .addFunction("rotateY", &Vector3::rotateY)
+        .addFunction("rotateZ", &Vector3::rotateZ)
+        .addFunction("cross", &Vector3::cross)
+        .addFunction("dot", &Vector3::dot)
+        .addFunction("__add", &Vector3::operator+)
+        .addFunction("__unm", luabridge::overload<>(&Vector3::operator-))
+        .addFunction("__sub", luabridge::overload<const Vector3&>(&Vector3::operator-))
+        .addFunction("__mul", luabridge::overload<const float&>(&Vector3::operator*),
+            luabridge::overload<const Vector3&>(&Vector3::operator*))
+        .addFunction("__div", &Vector3::operator/)
+        .addFunction("__eq", &Vector3::operator==)
+        .addFunction("lerp", &Vector3::lerp)
+        .addFunction("distance", &Vector3::distance)
+        .endClass()
+        .beginClass<Vector4>("Vector4")
+        .addConstructor<const float>()
+        .addConstructor<const float, const float>()
+        .addConstructor<const float, const float, const float>()
+        .addConstructor<const float, const float, const float, const float>()
+        .addConstructor<const Vector4&>()
+        .addConstructor<const Vector3&>()
+        .addConstructor<const Vector3&, const float>()
+        .addConstructor<const Vector2&>()
+        .addConstructor<const Vector2&, const float>()
+        .addConstructor<const Vector2&, const float, const float>()
+        .addProperty("x", &Vector4::x)
+        .addProperty("y", &Vector4::y)
+        .addProperty("z", &Vector4::z)
+        .addProperty("w", &Vector4::w)
+        .addFunction("magnitudeSquared", &Vector4::magnitudeSquared)
+        .addFunction("magnitude", &Vector4::magnitude)
+        .addFunction("getNormalized", &Vector4::getNormalized)
+        .addFunction("normalize", &Vector4::normalize)
+        .addFunction("__add", &Vector4::operator+)
+        .addFunction("__unm", luabridge::overload<>(&Vector4::operator-))
+        .addFunction("__sub", luabridge::overload<const Vector4&>(&Vector4::operator-))
+        .addFunction("__mul", &Vector4::operator*)
+        .addFunction("__div", &Vector4::operator/)
+        .addFunction("__eq", &Vector4::operator==)
+        .addFunction("lerp", &Vector4::lerp)
+        .addFunction("distance", &Vector4::distance)
+        .endClass()
+        .beginClass<Quaternion>("Quaternion")
+        .addConstructor<void (*)(const float, const float, const float, const float)>()
+        .addConstructor<void (*)(const float, const Vector3&)>()
+        .addConstructor<void (*)(const Vector3&)>()
+        .addProperty("scalar", &Quaternion::scalar)
+        .addProperty("vector", &Quaternion::vector)
+        .addProperty("angle", &Quaternion::angle)
+        .addFunction("inverse", &Quaternion::inverse)
+        .addFunction("conjugate", &Quaternion::conjugate)
+        .addFunction("magnitude", &Quaternion::magnitude)
+        .addFunction("taitBryan", &Quaternion::taitBryan)
+        .addFunction("eulerAxis", &Quaternion::eulerAxis)
+        .addFunction("__mul", luabridge::overload<const Quaternion&>(&Quaternion::operator*),
+            luabridge::overload<const float>(&Quaternion::operator*))
+        .addFunction("__div", &Quaternion::operator/)
+        .addFunction("rotatePoint", &Quaternion::rotatePoint)
+        .addFunction("normalized", &Quaternion::normalized)
+        .addFunction("normalize", &Quaternion::normalize)
+        .endClass()
         .endNamespace();
 
     reg = new LuaRegistry(L);
@@ -189,7 +289,7 @@ bool LuaManager::loadScript(const std::filesystem::path& path) {
     // Se le quita la extension (.lua)
     name = name.substr(0, name.length() - 4);
     FactoryManager::instance()->addBuilder(
-        new LuaComponentBuilder(name, table));   // Desde 18:40 a 21:15, Desde 22:22 a 00:45
+        new LuaComponentBuilder(name, table));
     return true;
 }
 
