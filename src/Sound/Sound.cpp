@@ -5,7 +5,7 @@
 namespace Tapioca {
 Sound::Sound(std::string source) {
 
-
+    mysource = nullptr;
     sourceFile = source;
 
     //is3D = load3D; ira al audio source
