@@ -187,10 +187,7 @@ bool SceneLoader::loadComponents(GameObject* const gameObject) {
     while (lua_next(luaState, -2) != 0) {
         componentName = lua_tostring(luaState, -2);
         logInfo(("SceneLoader: \t\tComponent: " + componentName).c_str());
-        component = loadComponent(componentName);
-        if (component == nullptr) return false;
-        // Si no tengo creado el componente
-        gameObject->addComponent(component, componentName);
+        if (!loadComponent(componentName, gameObject)) return false;
         lua_pop(luaState, 1);
     }
     // Si no tiene transform, le anado uno por defecto
@@ -198,19 +195,20 @@ bool SceneLoader::loadComponents(GameObject* const gameObject) {
     return true;
 }
 
-Component* SceneLoader::loadComponent(std::string const& name) {
-    if (!lua_istable(luaState, -1)) return nullptr;
+bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameObject) {
+    if (!lua_istable(luaState, -1)) return false;
 
     lua_pushnil(luaState);
     CompMap map;
     std::string key = "";
     CompValue value;
     bool load = true;
-
+    bool hasTable = false;
     while (lua_next(luaState, -2) != 0 && load) {
         if (lua_istable(luaState, -1)) {
+            hasTable = true;
+            load= loadComponent(name, gameObject);
             lua_pop(luaState, 1);
-            load = false;
         }
         else {
             key = lua_tostring(luaState, -2);
@@ -235,6 +233,7 @@ Component* SceneLoader::loadComponent(std::string const& name) {
             lua_pop(luaState, 1);
         }
     }
+    if (hasTable) return true;
 
     Component* comp = nullptr;
     if (load) {
@@ -242,16 +241,16 @@ Component* SceneLoader::loadComponent(std::string const& name) {
     }
     if (comp == nullptr) {
         logError(("SceneLoader: No existe el componente \"" + name + "\".").c_str());
-        return nullptr;
+        return false;
     }
-
     if (!comp->initComponent(map)) {
         logError(("SceneLoader: Error al inicializar el componente \"" + name + "\".").c_str());
         delete comp;
-        return nullptr;
+        return false;
     }
+    gameObject->addComponent(comp, name);
 
-    return comp;
+    return true;
 }
 
 void SceneLoader::exposeUIvalues() {

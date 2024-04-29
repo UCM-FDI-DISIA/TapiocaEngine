@@ -81,7 +81,7 @@ private:
     * @param name Nombre del componente
     * @return Puntero al componente cargado
 	*/
-    Component* loadComponent(std::string const& name);
+    bool loadComponent(std::string const& name, GameObject* const gameObject);
 
     /*
     * @brief Expone los valores de la interfaz grafica
