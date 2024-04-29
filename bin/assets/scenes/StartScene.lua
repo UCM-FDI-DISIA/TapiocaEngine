@@ -5,10 +5,6 @@ scene = {
                 bgColorR = 0.0,
                 bgColorG = 0.659,
                 bgColorB = 0.929
-            },
-            SplashScreenComponent = {
-                changeTime = 2000,
-                gameName = "game"
             }
         }
     },
