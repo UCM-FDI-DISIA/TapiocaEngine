@@ -194,7 +194,7 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("inverse", &Quaternion::inverse)
         .addFunction("conjugate", &Quaternion::conjugate)
         .addFunction("magnitude", &Quaternion::magnitude)
-        //.addFunction("taitBryan", &Quaternion::taitBryan)
+        .addFunction("toEuler", &Quaternion::toEuler)
         //.addFunction("eulerAxis", &Quaternion::eulerAxis)
         .addFunction("__mul", luabridge::overload<const Quaternion&>(&Quaternion::operator*),
             luabridge::overload<const float>(&Quaternion::operator*))

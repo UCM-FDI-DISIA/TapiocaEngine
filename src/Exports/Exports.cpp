@@ -61,7 +61,7 @@ void runEngine() {
     if (mainLoop->init()) {
         createEngineBuilders();
         registerLuaFunctions();
-        Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName());
+        Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName()); // QUITAR
         mainLoop->run();
     }
     else
@@ -85,7 +85,7 @@ static void createModules(Tapioca::MainLoop* mainLoop) {
     factories = Tapioca::FactoryManager::create();
     mainLoop->addModule(factories);
 
-    physics = Tapioca::PhysicsManager::create(/*true*/);
+    physics = Tapioca::PhysicsManager::create();
     mainLoop->addModule(physics);
 
     scenes = Tapioca::SceneLoader::create();
@@ -253,7 +253,7 @@ void mapInput() {
                         else if (key == "control")
                             ctrl = stoi(value);
                     }
-                    // A�ade el evento al mapa de input
+                    // Anade el evento al mapa de input
 
                     input->mapInput(evt, src, ctrl);
 

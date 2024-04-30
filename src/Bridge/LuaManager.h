@@ -96,7 +96,5 @@ public:
     bool setValueOnLua(const std::string& name, CompValue value);
 
     LuaRegistry* getRegistry() const { return reg; }
-
-    
 };
 }
