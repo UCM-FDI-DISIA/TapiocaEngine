@@ -44,5 +44,7 @@ if exist %OGRE_SLN% (
     msbuild %OGRE_SLN% /p:configuration=Release /t:ALL_BUILD /p:Platform=x64 /p:PlatformToolset=v143
     XCOPY %BAT_DIR%..\Ogre\build\x64\bin\release\*.dll %BIN_DIR% /Y
     XCOPY %BAT_DIR%..\Ogre\build\x64\bin\debug\*.dll %BIN_DIR% /Y
+    XCOPY %BAT_DIR%..\Ogre\src\Media\Main\ %BIN_DIR%\TapiocaFiles\Graphics\OgreFiles\Main\ /Y 
+    XCOPY %BAT_DIR%..\Ogre\src\Media\RTShaderLib\ %BIN_DIR%\TapiocaFiles\Graphics\OgreFiles\RTShaderLib\ /Y  
     echo Terminada la build de Ogre
 ) else echo No se ha encontrado el archivo %OGRE_SLN%
