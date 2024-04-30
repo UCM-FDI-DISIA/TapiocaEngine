@@ -1,18 +1,19 @@
 @echo off
 
-:parse
-if "%~1"=="" goto endparse
-if "%~1"=="--nodeb" set /a nodeb=1
-if "%~1"=="--norel" set /a norel=1
-if "%~1"=="--nopause" set /a nopause=1
-echo Parameter "%~1" not supported.
-:endparse
-
 rem Directorios
 set BAT_DIR=%~dp0
 set SCRIPTS_DIR=%BAT_DIR%\Dependencies\Scripts\
 set SLN_PATH=%BAT_DIR%\TapiocaEngine.sln
 set BIN_DIR=%BAT_DIR%\bin
+
+:parse
+if "%~1"=="" goto endparse
+if "%~1"=="--nodeb" set /a nodeb=1
+if "%~1"=="--norel" set /a norel=1
+if "%~1"=="--nopause" set /a nopause=1
+shift
+goto parse
+:endparse
 
 echo ~~Compilando dependencias...~~
 echo.
@@ -30,8 +31,8 @@ call %SCRIPTS_DIR%\buildIrrKlang.bat
 
 echo ~~Dependencias compiladas. Compilando motor...~~
 echo.
-if not %nodeb%==1 msbuild %SLN_PATH% /p:configuration=Debug /p:Platform=x64 /p:PlatformToolset=v143
-if not %norel%==1 msbuild %SLN_PATH% /p:configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
+if not defined nodeb msbuild %SLN_PATH% /p:configuration=Debug /p:Platform=x64 /p:PlatformToolset=v143
+if not defined norel msbuild %SLN_PATH% /p:configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
 
 echo ~~Todo compilado. :YIPEEE:~~
-if not %nopause%==1 pause
+if not defined nopause pause
