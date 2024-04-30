@@ -39,6 +39,10 @@ scene = {
                 text = "Tapioca Engine",
                 textSize = 36.0,
                 textFontName = "AGENCYB.TTF"
+            },
+            MeshRenderer={
+                meshName="PirateRacoon.mesh"
+
             }
         }
     }

@@ -345,10 +345,10 @@ void GraphicsManager::loadResources() {
         cfgPath + "./Ogre/RTShaderLib", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/Main", "FileSystem",
+        cfgPath + "./TapiocaFiles/Graphics/OgreFiles/Main", "FileSystem",
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "../Dependencies/Ogre/src/Media/RTShaderLib", "FileSystem",
+        cfgPath + "./TapiocaFiles/Graphics/OgreFiles/RTShaderLib", "FileSystem",
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #endif
 
