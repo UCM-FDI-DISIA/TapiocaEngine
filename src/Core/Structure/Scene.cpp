@@ -47,14 +47,11 @@ void Scene::refresh() {
 }
 
 void Scene::handleEvent(std::string const& id, void* info) {
-    for (auto obj : objects) {
+    for (auto obj : objects)
         if (obj->isAlive()) obj->handleEvent(id, info);
-    }
 }
 
-void Scene::pushEvent(Event const& e,bool const delay) {
-    MainLoop::instance()->pushEvent(e,delay);
-}
+void Scene::pushEvent(Event const& e, bool const delay) { MainLoop::instance()->pushEvent(e, delay); }
 
 std::vector<GameObject*> Scene::getObjects() const { return objects; }
 
@@ -66,23 +63,21 @@ GameObject* Scene::getHandler(std::string const& handler) const {
 }
 
 void Scene::update(const uint64_t deltaTime) {
-    for (auto obj : objects) {
+    for (auto obj : objects)
         if (obj->isAlive()) obj->update(deltaTime);
-    }
 }
 
 void Scene::fixedUpdate() {
-    for (auto obj : objects) {
+    for (auto obj : objects)
         if (obj->isAlive()) obj->fixedUpdate();
-    }
 }
 
 void Scene::render() const {
+    if (!active) return;
     // Mayor zIndex implica que se dibuje antes para que quede por debajo
-    for (auto it = layers.rbegin(); it != layers.rend(); ++it) {
+    for (auto it = layers.rbegin(); it != layers.rend(); ++it)
         for (auto obj : it->second)
             obj->render();
-    }
 }
 
 void Scene::awake() {
@@ -97,13 +92,7 @@ void Scene::start() {
 
 std::string const& Scene::getName() const { return name; }
 
-void Scene::setActive(const bool a) { active = a;
-    if (!active) {
-        for (auto o : objects) {
-            o->getComponent<Mesh
-        }
-    }
-}
+void Scene::setActive(const bool a) { active = a; }
 
 bool Scene::isActive() const { return active; }
 

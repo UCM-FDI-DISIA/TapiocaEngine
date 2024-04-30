@@ -7,7 +7,6 @@
 #include <SDL_syswm.h>
 #undef main
 
-
 #ifdef _DEBUG
 #include <iostream>
 #endif
@@ -77,7 +76,6 @@ void WindowManager::sendEvent(std::string const& id, void* info) {
     else
         mainLoop->pushEvent({nullptr, id, info, true});
 }
-
 
 void WindowManager::update(const uint64_t deltaTime) {
     SDL_Event event;
