@@ -19,6 +19,7 @@
 #include "Utilities/Skyplane.h"
 #include "Components/CameraComponent.h"
 #include "Utilities/NodeAnimator.h"
+#include "..\Core\Structure\MainLoop.h"
 
 // OGRE
 // warnings de ogre
@@ -377,7 +378,17 @@ void GraphicsManager::loadShaders() {
     }
 }
 
-void GraphicsManager::render() { mRoot->renderOneFrame(); }
+void GraphicsManager::render() {
+    try {
+        mRoot->renderOneFrame();
+    } 
+    catch (Ogre::Exception e) {
+        Tapioca::logError(("GraphicsManager: Error al renderizar frame. Detalles:\n" + e.getDescription()).c_str());
+     
+        Tapioca::MainLoop::instance()->exit();
+       
+    }
+}
 
 bool GraphicsManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
