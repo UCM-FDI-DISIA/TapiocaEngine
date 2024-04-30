@@ -13,9 +13,15 @@ namespace Tapioca {
 Ogre::Entity* const Mesh::getMesh() const { return mesh; }
 
 Mesh::Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::string const& meshName)
-    : RenderObject(node, sceneManager), mesh(sceneManager->createEntity(meshName)) {
-    init(mesh);
+    : RenderObject(node, sceneManager) {
 
+    try {
+        mesh = sceneManager->createEntity(meshName);
+    } catch (Ogre::Exception& e) {
+        logError(("GraphicsEngine: Error al cargar recursos: " + e.getFullDescription()).c_str());
+    }
+
+    init(mesh);
     mesh->setCastShadows(true);
 }
 

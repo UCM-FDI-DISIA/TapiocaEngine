@@ -97,7 +97,13 @@ void Scene::start() {
 
 std::string const& Scene::getName() const { return name; }
 
-void Scene::setActive(const bool a) { active = a; }
+void Scene::setActive(const bool a) { active = a;
+    if (!active) {
+        for (auto o : objects) {
+            o->getComponent<Mesh
+        }
+    }
+}
 
 bool Scene::isActive() const { return active; }
 
