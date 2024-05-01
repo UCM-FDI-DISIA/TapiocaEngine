@@ -40,8 +40,6 @@ private:
     static const uint64_t MAX_NUM_FIXED_UDPATES = 150;   // Numero maximo de fixedUpdates
     bool finish;                                         // True si va a terminar la ejecucion, false en caso contrario
 
-    const char* MAIN_SCENE_NAME = "StartScene";   // Nombre de la escena principal // QUITAR
-
     /*
     * @brief Comienza los modulos
     */
@@ -134,11 +132,5 @@ public:
     * @brief Envia un evento a las escenas
     */
     void pushEvent(Event const& e, bool const delay=false);
-
-    /*
-    * @brief Devuelve el nombre de la escena principal
-    * @return Nombre de la escena principal
-    */
-    inline std::string getMainSceneName() const { return MAIN_SCENE_NAME; } // QUITAR
 };
 }

@@ -61,7 +61,7 @@ void runEngine() {
     if (mainLoop->init()) {
         createEngineBuilders();
         registerLuaFunctions();
-        Scene* mainScene = scenes->loadScene(mainLoop->getMainSceneName()); // QUITAR
+        DynamicLibraryLoader::initGame();
         mainLoop->run();
     }
     else
@@ -144,41 +144,25 @@ static void createEngineBuilders() {
 
 static void registerLuaFunctions() {
     LuaRegistry* reg = lua->getRegistry();
-    std::function<void()> hola = []() { Tapioca::logInfo("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); };
-    lua->addLuaFunction("Holaa",hola );
 
     luabridge::getGlobalNamespace(lua->getLuaState())
         .beginNamespace("Tapioca")
         .addFunction("loadScene",
                      [](std::string name) -> bool {
-                         logInfo("loadScene llamado desde Lua");
+                         //logInfo("loadScene llamado desde Lua");
                          return scenes->loadScene(name) != nullptr;
-                     })
-        .addFunction("initGame",
-                     [](std::string name) -> bool {
-                         logInfo("initGame llamado desde Lua");
-                         return DynamicLibraryLoader::initGame(name);
                      })
         .addFunction("exit",
                      []() -> void {
-                         logInfo("exit llamado desde Lua");
+                         //logInfo("exit llamado desde Lua");
                          mainLoop->exit();
                      })
         .addFunction("deleteScene",
                      [](std::string name) -> void {
-                         logInfo("deleteScene llamado desde Lua");
+                         //logInfo("deleteScene llamado desde Lua");
                          mainLoop->deleteScene(name);
                      })
-        .addFunction("getMainSceneName",
-                     []() -> std::string {
-                         logInfo("getMainSceneName llamado desde Lua");
-                         return mainLoop->getMainSceneName();
-                     })
         //.addFunction("", []() -> void {})
-
-        .deriveClass<Transform, Component>("Transform")
-        //.addProperty("pos")
-        .endClass()
         .endNamespace();
 }
 
@@ -188,12 +172,13 @@ void mapInput() {
 
     // Construye la ruta completa al archivo LUA
     const std::string MAP_FILE = "controlsMapping.lua";
-    std::string path = "assets\\controls\\" + MAP_FILE;
+    std::string path = "assets\\" + MAP_FILE;
 
     // Si no puede cargar el archivo, se muestra un mensaje y cierra la instancia de LUA
     if (luaL_dofile(luaState, path.c_str()) != 0) {
         logError(("MapInput: Error al cargar el archivo Lua: " + std::string(lua_tostring(luaState, -1))).c_str());
         lua_close(luaState);
+        return;
     }
     else {
         logInfo("MapInput: Mapa de controles cargado correctamente.");
