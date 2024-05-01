@@ -25,17 +25,17 @@ public:
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
     * @param Variables unordered_map con los parametros iniciales
     */
-    virtual bool initComponent(const CompMap& variables) override;
+    bool initComponent(const CompMap& variables) override;
 
     /*
     * @brief Asigna el transform del objeto al texto
     */
-    virtual void start() override;
+    void start() override;
 
     /*
     * @brief Metodo que se usa para renderizar 
     */
-    virtual void render() const override;
+    void render() const override;
 
     /*
     * @brief Establece el vector con las distintas opciones

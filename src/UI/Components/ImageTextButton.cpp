@@ -1,5 +1,7 @@
 #include "ImageTextButton.h"
 #include <imgui.h>
+#include "Structure/GameObject.h"
+#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "LuaManager.h"
 
@@ -114,8 +116,8 @@ void ImageTextButton::start() {
 }
 
 void ImageTextButton::render() const {
-    float scaleFactorX = uiManager->getScaleFactorX();
-    float scaleFactorY = uiManager->getScaleFactorY();
+    float scaleFactorX = object->getScene()->getScaleFactorX();
+    float scaleFactorY = object->getScene()->getScaleFactorY();
 
     ImVec2 buttonSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
     ImVec2 buttonPos(getPosition().x * scaleFactorX - buttonSize.x / 2.0f,

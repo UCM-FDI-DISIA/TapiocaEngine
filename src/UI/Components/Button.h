@@ -12,17 +12,18 @@ namespace Tapioca {
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
 protected:
-    std::string onClickId;           // Id de la funcion que se ejecuta cuando se hace click en el boton
-    std::string text;                // Texto que se muestra en el boton
-    std::string textFontName;        // Nombre de la fuente del texto del boton
-    float textSize;                  // Tamano de la fuente del texto del boton
-    ImFont* textFont;                // Fuente del texto del boton incluyendo tamano
-    Vector4 textColorNormal;         // Color del texto del boton en estado "normal"
-    Vector4 textColorHover;          // Color del texto del boton en estado "hover"
-    Vector4 textColorActive;         // Color del texto del boton en estado "active"
-    Vector4 normalColor;             // Color del boton para el estado "normal"
-    Vector4 hoverColor;              // Color del boton para el estado "hover"
-    Vector4 activeColor;             // Color del boton para el estado "active"
+    std::string onClickId;      // Id de la funcion que se ejecuta cuando se hace click en el boton
+    std::string text;           // Texto que se muestra en el boton
+    std::string textFontName;   // Nombre de la fuente del texto del boton
+    float textSize;             // Tamano de la fuente del texto del boton
+    float initialTextSize;      // Tamano inicial de la fuente del texto del boton
+    ImFont* textFont;           // Fuente del texto del boton incluyendo tamano
+    Vector4 textColorNormal;    // Color del texto del boton en estado "normal"
+    Vector4 textColorHover;     // Color del texto del boton en estado "hover"
+    Vector4 textColorActive;    // Color del texto del boton en estado "active"
+    Vector4 normalColor;        // Color del boton para el estado "normal"
+    Vector4 hoverColor;         // Color del boton para el estado "hover"
+    Vector4 activeColor;        // Color del boton para el estado "active"
 
 public:
     COMPONENT_ID("Button")
@@ -47,6 +48,11 @@ public:
     * @brief Asigna el transform del objeto al boton, inicializa la funcion que se ejecuta cuando se hace click en el boton y la fuente del texto
     */
     virtual void start() override;
+
+    /*
+    * 
+    */
+    virtual void updateUI() override;
 
     /*
     * @brief Metodo que se usa para renderizar el boton

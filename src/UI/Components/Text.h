@@ -14,6 +14,7 @@ class TAPIOCA_API Text : public BaseWidget, public Component {
 private:
     std::string text;           // Texto
     float textSize;             // Tamano del texto
+    float initialTextSize;      // Tamano inicial del texto
     std::string textFontName;   // Nombre de la fuente del texto
     ImFont* textFont;           // Fuente del texto
     Vector4 textColor;          // Color del texto
@@ -41,6 +42,11 @@ public:
     * @brief Asigna el transform del objeto al texto e inicializa la fuente del texto
     */
     void start() override;
+
+    /*
+    * 
+    */
+    void updateUI() override;
 
     /*
     * @brief Metodo que se usa para renderizar el texto

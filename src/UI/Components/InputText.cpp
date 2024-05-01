@@ -2,8 +2,10 @@
 #include <imgui.h>
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
+#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "LuaManager.h"
+#include "WindowManager.h"
 
 namespace Tapioca {
 InputText::InputText()
@@ -127,13 +129,19 @@ bool InputText::initComponent(const CompMap& variables) {
 
 void InputText::start() {
     setTransform(object->getComponent<Transform>());
+    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
+        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
+        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
+                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
+        if (min > 0.0f) transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+    }
     startBuffer();
     updateTextFont();
 }
 
 void InputText::render() const {
-    float scaleFactorX = uiManager->getScaleFactorX();
-    float scaleFactorY = uiManager->getScaleFactorY();
+    float scaleFactorX = object->getScene()->getScaleFactorX();
+    float scaleFactorY = object->getScene()->getScaleFactorY();
 
     ImVec2 inputTextSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
     ImVec2 inputTextPos(getPosition().x * scaleFactorX - inputTextSize.x / 2.0f,

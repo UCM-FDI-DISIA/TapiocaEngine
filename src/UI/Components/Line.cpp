@@ -1,6 +1,8 @@
 #include "Line.h"
 #include <imgui.h>
 #include "UIManager.h"
+#include "Structure/GameObject.h"
+#include "Structure/Scene.h"
 
 namespace Tapioca {
 Line::Line()
@@ -113,8 +115,8 @@ bool Line::initComponent(const CompMap& variables) {
 }
 
 void Line::render() const {
-    float scaleFactorX = uiManager->getScaleFactorX();
-    float scaleFactorY = uiManager->getScaleFactorY();
+    float scaleFactorX = object->getScene()->getScaleFactorX();
+    float scaleFactorY = object->getScene()->getScaleFactorY();
 
     ImVec2 lineStartPos(startPosition.x * scaleFactorX, startPosition.y * scaleFactorY);
     ImVec2 lineEndPos(endPosition.x * scaleFactorX, endPosition.y * scaleFactorY);

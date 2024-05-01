@@ -1,11 +1,16 @@
 #include "Text.h"
 #include <imgui.h>
+#include <limits>
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
+#include "Structure/Scene.h"
 #include "UIManager.h"
+#include "WindowManager.h"
 
 namespace Tapioca {
-Text::Text() : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), textFontName(""), textFont(nullptr) {
+Text::Text()
+    : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), initialTextSize(textSize), textFontName(""),
+      textFont(nullptr) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
 }
@@ -67,15 +72,32 @@ bool Text::initComponent(const CompMap& variables) {
 
 void Text::start() {
     setTransform(object->getComponent<Transform>());
+    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
+        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
+        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
+                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
+        if (min > 0.0f) textSize *= min;
+    }
+    initialTextSize = textSize;
     updateTextFont();
+}
+
+void Text::updateUI() {
+    if (!windowManager->getResized()) {
+        float scaleFactorX = object->getScene()->getScaleFactorX();
+        float scaleFactorY = object->getScene()->getScaleFactorY();
+        float min = std::min(scaleFactorX, scaleFactorY);
+        if (min > 0.0f) textSize = initialTextSize * min;
+        updateTextFont();
+    }
 }
 
 void Text::render() const {
     std::string textStr = text;
     const char* text = textStr.c_str();
 
-    float scaleFactorX = uiManager->getScaleFactorX();
-    float scaleFactorY = uiManager->getScaleFactorY();
+    float scaleFactorX = object->getScene()->getScaleFactorX();
+    float scaleFactorY = object->getScene()->getScaleFactorY();
 
     ImGui::PushFont(textFont);
 

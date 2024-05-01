@@ -3,7 +3,9 @@
 #include "MainLoop.h"
 
 namespace Tapioca {
-Scene::Scene(std::string const& name) : name(name), active(true) { }
+Scene::Scene(std::string const& name)
+    : name(name), active(true), firstWindowWidth(680), firstWindowHeight(480), windowWidth(firstWindowWidth),
+      windowHeight(firstWindowHeight) { }
 
 Scene::~Scene() {
     for (auto obj : objects)
