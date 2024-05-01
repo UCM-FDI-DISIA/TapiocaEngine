@@ -381,12 +381,10 @@ void GraphicsManager::loadShaders() {
 void GraphicsManager::render() {
     try {
         mRoot->renderOneFrame();
-    } 
-    catch (Ogre::Exception e) {
+    } catch (Ogre::Exception e) {
         Tapioca::logError(("GraphicsManager: Error al renderizar frame. Detalles:\n" + e.getDescription()).c_str());
-     
+
         Tapioca::MainLoop::instance()->exit();
-       
     }
 }
 
@@ -557,7 +555,13 @@ void GraphicsManager::removeMainLight(LightDirectional* lightDir) {
 }
 
 Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& meshName) {
-    return new Mesh(scnMgr, node, meshName);
+    try {
+        return new Mesh(scnMgr, node, meshName);
+    } catch (const Ogre::Exception& exception) {
+        logError(
+            ("GraphicsManager: No se ha podido crear la mesh. Detalles:\n" + exception.getFullDescription()).c_str());
+    }
+    return nullptr;
 }
 
 Billboard* GraphicsManager::createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,

@@ -52,12 +52,16 @@ void MeshRenderer::awake() {
         GraphicsManager* g = GraphicsManager::instance();
         node = g->createNode();
         mesh = g->createMesh(node, meshName);
-
-        if (materialName != "") {
-            mesh->setMaterial(materialName);
+        if (mesh != nullptr) {
+            if (materialName != "") {
+                mesh->setMaterial(materialName);
+            }
+            if (!castShadows) {
+                mesh->castShadows(false);
+            }
         }
-        if (!castShadows) {
-            mesh->castShadows(false);
+        else {
+            alive = false;
         }
     }
 }
@@ -93,6 +97,15 @@ void MeshRenderer::setMeshName(const std::string& name) {
     }
 }
 
-void MeshRenderer::setVisible(const bool enable) { mesh->setVisible(enable); }
-bool MeshRenderer::isVisible() const { return mesh->isVisible(); }
+void MeshRenderer::setVisible(const bool enable) {
+    if (mesh != nullptr) {
+        mesh->setVisible(enable);
+    }
+}
+bool MeshRenderer::isVisible() const {
+    if (mesh != nullptr) {
+        return mesh->isVisible();
+    }
+    return false;
+}
 }
