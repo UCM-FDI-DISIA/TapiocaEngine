@@ -1,4 +1,4 @@
-scene = {
+scene = { -- ELIMINAR ESTE ARCHIVO
     {
         components = {
             CameraComponent = {
@@ -21,7 +21,6 @@ scene = {
             AudioSourceComponent={
                 sourcepath="assets/BlankSpace.mp3",
                 ispaused = false
-
             }
         }
     },
@@ -35,10 +34,6 @@ scene = {
                 text = "Tapioca Engine",
                 textSize = 36.0,
                 textFontName = "AGENCYB.TTF"
-            },
-            MeshRenderer={
-                meshName="PirateRacoon.mesh"
-
             }
         }
     }
