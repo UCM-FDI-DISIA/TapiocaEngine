@@ -193,8 +193,8 @@ void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }
 
 void MainLoop::deleteScene(std::string const& sc) {
     auto it = loadedScenes.find(sc);
-    if (it != loadedScenes.end()) toDelete.push_back(it->second);
+    if (it != loadedScenes.end()) toDelete.insert(it->second);
 }
 
-void MainLoop::loadScene(Scene* const sc) { sceneBuffer.push_back(sc); }
+void MainLoop::loadScene(Scene* const sc) { sceneBuffer.insert(sc); }
 }
