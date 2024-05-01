@@ -66,64 +66,10 @@ public:
     bool initConfig() override;
 
     /*
-    * @brief Establece el nombre de la ventana de SDL
+    * @brief Maneja los eventos de la ventana
+    * @param deltaTime Tiempo transcurrido desde el ultimo frame
     */
-    void setWindowName(std::string const& name);
-    /*
-    * @brief Devuelve el nombre de la ventana de SDL
-    * @return String con el nombre de la ventana de SDL
-    */
-    inline std::string const& getWindowName() { return windowName; }
-
-    /*
-    * @brief Establece el contexto de OpenGL
-    */
-    inline void setGLContext(void* context) { glContext = context; }
-    /*
-    * @brief Devuelve un puntero al contexto de OpenGL
-    */
-    inline void* getGLContext() { return glContext; }
-
-    /*
-    * @brief Devuelve un puntero a la ventana de SDL
-    * @return Puntero a la ventana de SDL
-    */
-    inline SDL_Window* getWindow() { return sdlWindow; }
-
-    /*
-    * @brief Devuelve el ancho de ventana de SDL
-    * @return Ancho de la ventana de SDL
-    */
-    inline uint32_t getWindowW() { return windowWidth; }
-
-    /*
-    * @brief Devuelve el alto de ventana de SDL
-    * @return Alto de la ventana de SDL
-    */
-    inline uint32_t getWindowH() { return windowHeight; }
-
-    /*
-    * @brief Devuelve el ancho de ventana antes de escalarse
-    * @return Ancho de la ventana antes de escalarse
-    */
-    inline uint32_t getFirstWindowW() { return firstWindowWidth; }
-
-    /*
-    * @brief Devuelve el alto de la primera ventana
-    * @return Alto de la primera ventana
-    */
-    inline uint32_t getFirstWindowH() { return firstWindowHeight; }
-
-    /*
-    * @brief Devuelve si se ha redimensionado
-    * @return true si se ha redimensionado, false si no
-    */
-    inline bool getResized() const { return resized; }
-    /*
-    * @brief Establece si se ha redimensionado
-    * @param resizedY true si se ha redimensionado, false si no
-    */
-    inline void setResized(bool resized) { this->resized = resized; }
+    void update(const uint64_t deltaTime) override;
 
     /*
     * @brief Agrega un modulo al vector de modulos
@@ -138,7 +84,74 @@ public:
     */
     void sendEvent(std::string const& id, void* info);
 
-    void update(const uint64_t deltaTime) override;
+    /*
+    * @brief Establece el nombre de la ventana de SDL
+    * @param name Nombre de la ventana de SDL
+    */
+    void setWindowName(std::string const& name);
+    /*
+    * @brief Devuelve el nombre de la ventana de SDL
+    * @return String con el nombre de la ventana de SDL
+    */
+    inline std::string getWindowName() const { return windowName; }
+
+    /*
+    * @brief Establece el contexto de OpenGL
+    * @param context Puntero al contexto de OpenGL
+    */
+    inline void setGLContext(void* context) { glContext = context; }
+    /*
+    * @brief Devuelve un puntero al contexto de OpenGL
+    * @return Puntero al contexto de OpenGL
+    */
+    inline void* getGLContext() const { return glContext; }
+
+    /*
+    * @brief Devuelve un puntero a la ventana de SDL
+    * @return Puntero a la ventana de SDL
+    */
+    inline SDL_Window* getWindow() const { return sdlWindow; }
+
+    /*
+    * @brief Devuelve el ancho de ventana de SDL
+    * @return Ancho de la ventana de SDL
+    */
+    inline uint32_t getWindowW() const { return windowWidth; }
+
+    /*
+    * @brief Devuelve el alto de ventana de SDL
+    * @return Alto de la ventana de SDL
+    */
+    inline uint32_t getWindowH() const { return windowHeight; }
+
+    /*
+    * @brief Establece el ancho de ventana antes de escalarse
+    * @param w Ancho de la ventana antes de escalarse
+    */
+    inline void setFirstWindowW(uint32_t w) { firstWindowWidth = w; }
+
+    /*
+    * @brief Devuelve el ancho de ventana antes de escalarse
+    * @return Ancho de la ventana antes de escalarse
+    */
+    inline uint32_t getFirstWindowW() const { return firstWindowWidth; }
+
+    /*
+    * @brief Devuelve el alto de la primera ventana
+    * @return Alto de la primera ventana
+    */
+    inline uint32_t getFirstWindowH() const { return firstWindowHeight; }
+
+    /*
+    * @brief Devuelve si se ha redimensionado
+    * @return true si se ha redimensionado, false si no
+    */
+    inline bool getResized() const { return resized; }
+    /*
+    * @brief Establece si se ha redimensionado
+    * @param resizedY true si se ha redimensionado, false si no
+    */
+    inline void setResized(bool resized) { this->resized = resized; }
 };
 
 /*

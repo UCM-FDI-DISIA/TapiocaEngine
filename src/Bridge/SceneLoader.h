@@ -12,6 +12,7 @@ class MainLoop;
 class FactoryManager;
 class GameObject;
 class Component;
+class WindowManager;
 
 /*
 * @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
@@ -21,10 +22,11 @@ private:
     friend Singleton<SceneLoader>;
     friend class Scene;
 
-    lua_State* luaState;        // Estado de lua
-    MainLoop* mainLoop;         // Puntero a MainLoop
-    FactoryManager* factMngr;   // Puntero a FactoryManager
-    std::string scenesPath;     // Ruta de las escenas
+    lua_State* luaState;         // Estado de lua
+    MainLoop* mainLoop;          // Puntero a MainLoop
+    FactoryManager* factMngr;    // Puntero a FactoryManager
+    WindowManager* windowMngr;   // Puntero a WindowManager
+    std::string scenesPath;      // Ruta de las escenas
 
     /*
     * @brief Constructor por defecto

@@ -1,7 +1,9 @@
 #include "ProgressBar.h"
 #include <imgui.h>
 #include "Structure/GameObject.h"
+#include "Structure/Scene.h"
 #include "UIManager.h"
+#include "WindowManager.h"
 
 namespace Tapioca {
 ProgressBar::ProgressBar() : progress(0), backgroundText("") {
@@ -57,11 +59,19 @@ bool ProgressBar::initComponent(const CompMap& variables) {
     return true;
 }
 
-void ProgressBar::start() { setTransform(object->getComponent<Transform>()); }
+void ProgressBar::start() {
+    setTransform(object->getComponent<Transform>());
+    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
+        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
+        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
+                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
+        if (min > 0.0f) transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+    }
+}
 
 void ProgressBar::render() const {
-    float scaleFactorX = uiManager->getScaleFactorX();
-    float scaleFactorY = uiManager->getScaleFactorY();
+    float scaleFactorX = object->getScene()->getScaleFactorX();
+    float scaleFactorY = object->getScene()->getScaleFactorY();
 
     ImVec2 progressBarSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
     ImVec2 progressBarPos(getPosition().x * scaleFactorX - progressBarSize.x / 2.0f,

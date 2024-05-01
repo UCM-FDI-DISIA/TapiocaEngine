@@ -64,19 +64,6 @@ bool WindowManager::initConfig() {
     return true;
 }
 
-void WindowManager::setWindowName(std::string const& name) {
-    SDL_SetWindowTitle(sdlWindow, name.c_str());
-    windowName = name;
-}
-
-void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
-
-void WindowManager::sendEvent(std::string const& id, void* info) {
-    if (id == "ev_CLOSE") mainLoop->exit();
-    else
-        mainLoop->pushEvent({nullptr, id, info, true});
-}
-
 void WindowManager::update(const uint64_t deltaTime) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
@@ -98,5 +85,18 @@ void WindowManager::update(const uint64_t deltaTime) {
         for (int i = 0; i < modules.size() && !UIEvent; i++)
             UIEvent = modules[i]->handleEvents(event);
     }
+}
+
+void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod); }
+
+void WindowManager::sendEvent(std::string const& id, void* info) {
+    if (id == "ev_CLOSE") mainLoop->exit();
+    else
+        mainLoop->pushEvent({nullptr, id, info, true});
+}
+
+void WindowManager::setWindowName(std::string const& name) {
+    SDL_SetWindowTitle(sdlWindow, name.c_str());
+    windowName = name;
 }
 }

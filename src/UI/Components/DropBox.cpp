@@ -1,7 +1,9 @@
 #include "DropBox.h"
 #include <imgui.h>
-#include "UIManager.h"
 #include "Structure/GameObject.h"
+#include "Structure/Scene.h"
+#include "UIManager.h"
+#include "WindowManager.h"
 
 namespace Tapioca {
 DropBox::DropBox() : currentItem(0) { }
@@ -38,11 +40,19 @@ bool DropBox::initComponent(const CompMap& variables) {
     return true;
 }
 
-void DropBox::start() { setTransform(object->getComponent<Transform>()); }
+void DropBox::start() {
+    setTransform(object->getComponent<Transform>());
+    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
+        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
+        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
+                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
+        if (min > 0.0f) transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+    }
+}
 
 void DropBox::render() const {
-    float scaleFactorX = uiManager->getScaleFactorX();
-    float scaleFactorY = uiManager->getScaleFactorY();
+    float scaleFactorX = object->getScene()->getScaleFactorX();
+    float scaleFactorY = object->getScene()->getScaleFactorY();
 
     ImVec2 dropBoxSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
     ImVec2 dropBoxPos(getPosition().x * scaleFactorX - dropBoxSize.x / 2.0f,

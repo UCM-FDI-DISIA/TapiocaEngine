@@ -19,18 +19,19 @@ template class TAPIOCA_API Singleton<SceneLoader>;
 template<>
 SceneLoader* Singleton<SceneLoader>::instance_ = nullptr;
 
-SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factMngr(nullptr), scenesPath("assets\\scenes\\") { }
+SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factMngr(nullptr), windowMngr(nullptr), scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
     luaState = nullptr;
     mainLoop = nullptr;
     factMngr = nullptr;
+    windowMngr = nullptr;
 }
 
 bool SceneLoader::init() {
     mainLoop = MainLoop::instance();
     factMngr = FactoryManager::instance();
-
+    windowMngr = WindowManager::instance();
     if (mainLoop == nullptr) {
         logError("SceneLoader: Instancia de MainLoop invalida.");
         return false;
@@ -39,6 +40,10 @@ bool SceneLoader::init() {
         logError("SceneLoader: Instancia de FactoryManager invalida.");
         return false;
     }
+    if (windowMngr == nullptr) {
+		logError("SceneLoader: Instancia de WindowManager invalida.");
+		return false;
+	}
     return true;
 }
 
@@ -86,6 +91,8 @@ Scene* SceneLoader::loadScene(std::string const& sceneName, const bool active) {
         return nullptr;
     }
     scene->setActive(active);
+    scene->setFirstWindowSize(windowMngr->getWindowW(), windowMngr->getWindowH());
+    scene->setWindowSize(windowMngr->getWindowW(), windowMngr->getWindowH());
 
     mainLoop->loadScene(scene);
     lua_close(luaState);
