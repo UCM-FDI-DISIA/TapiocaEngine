@@ -24,7 +24,7 @@ Tapioca::AudioSource::AudioSource(Sound sound, Vector3 pos , bool ispaused, bool
 }
 
 Tapioca::AudioSource::AudioSource(Sound sound, bool ispaused, bool islooped) { 
-
+   
     paused = ispaused;
      looped = islooped;
     //tienes que crearlo pausado si luego quieres acceder al el
@@ -92,12 +92,43 @@ void Tapioca::AudioSource::setPosition(Vector3 p) {
     
 }
 
-void Tapioca::AudioSource::playOnce() {
+void Tapioca::AudioSource::playOnce(bool spatialised) {
     if (mysound != nullptr) {
-        mysound->setPlayPosition(0);//nos aseguramos de que el audio empieza desde el principio
+        mysound->stop();
+       // mysound->drop();
+        mysound->setPlayPosition(0);   //nos aseguramos de que el audio empieza desde el principio
         setLooped(false);
+        if (spatialised) {
+            irrklang ::vec3df p(position.x, position.y, position.z);
+            mysound = Tapioca::SoundManager::instance()->soundEngine->play3D(mysound->getSoundSource(), p,looped,true);  
+        }
+        else {
+            mysound = Tapioca::SoundManager::instance()->soundEngine->play2D(mysound->getSoundSource(),looped,true);  
+        }
+        setPaused(false);
+        
+    }
+
+}
+
+void Tapioca::AudioSource::playLooped(bool spatialised) { 
+    if (mysound != nullptr) {
+        mysound->stop();
+       // mysound->drop();
+        mysound->setPlayPosition(0);   //nos aseguramos de que el audio empieza desde el principio
+        setLooped(true);
+        if (spatialised) {
+            irrklang ::vec3df p(position.x, position.y, position.z);
+            mysound =
+                Tapioca::SoundManager::instance()->soundEngine->play3D(mysound->getSoundSource(), p, looped, true);
+        }
+        else {
+            mysound = Tapioca::SoundManager::instance()->soundEngine->play2D(mysound->getSoundSource(), looped, true);
+        }
         setPaused(false);
     }
 
 }
+
+void Tapioca::AudioSource::stop() { mysound->stop(); }
 

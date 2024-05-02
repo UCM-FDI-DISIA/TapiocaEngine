@@ -5,13 +5,13 @@ namespace irrklang {
 class ISound;
 }
 namespace Tapioca {
-//class Sound;
+class Sound;
 //class Vector3;
 class TAPIOCA_API AudioSource { 
    
 
 private:
-	//Tapioca::Sound* mysound;
+	//Tapioca::Sound* mysoundsource;
     irrklang ::ISound* mysound;
     //bool is3D;//esto se marca al crearlo y luego no se puede cambiar  creo que ira al audiosource
     bool paused;
@@ -64,6 +64,7 @@ public:
     * @brief Constructora para una fuente de audio 2D 
     */
     AudioSource(Sound sound, bool ispaused = true, bool islooped = false);//Construye una fuente 2D
+    ~AudioSource() {};
     void setPaused(bool p);
     void setAtenuation(float minDist, float maxDist);
     void setPan(float p);
@@ -72,8 +73,16 @@ public:
     void setVolume(float v);
     void setPosition(Vector3 p);
     /*
-    * Reproduce el sonido una vez desde el principio.
+    * @brief Reproduce el sonido una vez desde el principio.
     */
-    void playOnce();
+    void playOnce(bool spatialised);
+    /*
+    * @brief Reproduce el sonido en bucle desde el principio.
+    */
+    void playLooped(bool spatialised);
+    /*
+    * @brief detiene  el sonido 
+    */
+    void stop();
 };
 }

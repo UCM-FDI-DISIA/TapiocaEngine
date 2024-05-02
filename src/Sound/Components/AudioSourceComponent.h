@@ -40,6 +40,8 @@ public:
     void start() override;
     void handleEvent(std::string const& id, void* info) override;
     void playOnce();
+    void playLooped();
+    void Stop();
     void pause(bool p);
     void loop(bool l);
     void setVolume(float v);

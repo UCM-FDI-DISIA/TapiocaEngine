@@ -54,7 +54,8 @@ void AudioSourceComponent::awake() {
     }
 }
 
-void AudioSourceComponent::start() { //playOnce();
+void AudioSourceComponent::start() { 
+   
 }
 
 void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
@@ -70,7 +71,11 @@ void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-void AudioSourceComponent::playOnce() { mySource->playOnce(); }
+void AudioSourceComponent::playOnce() { mySource->playOnce(is3D); }
+
+void AudioSourceComponent::playLooped() { mySource->playLooped(is3D); }
+
+void AudioSourceComponent::Stop() { mySource->stop(); }
 
 //void AudioSourceComponent::playSound() { } en verdad con un set pause false ya suena
 void AudioSourceComponent::pause(bool p) {

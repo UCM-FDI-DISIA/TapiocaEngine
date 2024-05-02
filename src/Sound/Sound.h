@@ -4,6 +4,7 @@
 
 namespace irrklang{
 class ISoundSource;
+class ISound;
 }
 
 namespace Tapioca {
@@ -18,8 +19,8 @@ private:
     friend SoundManager;
 
 protected:
-   // irrklang::ISound* mysound;
-    irrklang::ISoundSource* mysource;
+   // irrklang::ISound* mysound;//handler de la instancia que se esta reproduciendo
+    irrklang::ISoundSource* mysource;//recurso cargado
     // warning C4251 'Tapioca::Sound::sourceFile' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Sound'
@@ -36,6 +37,7 @@ protected:
 
 public:
     Sound(std::string source);
+   
     
     
 

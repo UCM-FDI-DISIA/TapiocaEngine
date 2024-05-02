@@ -22,4 +22,5 @@ Sound::Sound(std::string source) {
     }
     length = mysource->getPlayLength();
 }
+
 }
