@@ -10,7 +10,7 @@
 #include "Utilities/AnimationHelper.h"
 
 namespace Tapioca {
-Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f) { }
+Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f), initAnim("") { }
 
 Animator::~Animator() {
     meshRenderer = nullptr;
@@ -24,6 +24,9 @@ bool Animator::initComponent(const CompMap& variables) {
                  std::to_string(speed) + "\".")
                     .c_str());
     }
+    if (!setValueFromMap(initAnim, "initAnim", variables)) {
+        logInfo("Animator: No se encontro el valor de initAnim. Se inicializa sin animacion inicial. \"");
+    }
     return true;
 }
 
@@ -31,6 +34,7 @@ void Animator::start() {
     meshRenderer = object->getComponent<MeshRenderer>();
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     if (graphicsManager != nullptr) anim = graphicsManager->createAnimationHelper(meshRenderer->getMesh(), true, true);
+    if (initAnim != "") playAnim(initAnim);
 }
 
 void Animator::update(uint64_t delt) { anim->updateAnim(delt, speed); }

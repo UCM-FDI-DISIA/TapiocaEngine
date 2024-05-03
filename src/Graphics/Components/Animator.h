@@ -14,6 +14,7 @@ private:
     MeshRenderer* meshRenderer;   // Componente MeshRenderer del objeto
     AnimationHelper* anim;        // Componente AnimationHelper del objeto
     float speed;                  // Velocidad a la que se actualiza la animacion
+    std::string initAnim;
 
 public:
     COMPONENT_ID("Animator")
