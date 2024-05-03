@@ -5,14 +5,18 @@
 #include "Utilities/RenderNode.h"
 
 namespace Tapioca {
-
 SkyboxComponent::SkyboxComponent()
-    : skybox(nullptr), node(nullptr), transform(nullptr), materialName(), skyboxName(), distC(), orderC() { }
+    : node(nullptr), transform(nullptr), skybox(nullptr), materialName(""), skyboxName(""), distC(5000.0f),
+      orderC(true) { }
 
-SkyboxComponent::~SkyboxComponent() { delete node; }
+SkyboxComponent::~SkyboxComponent() {
+    if (node != nullptr) delete node;
+    node = nullptr;
+    transform = nullptr;
+    skybox = nullptr;
+}
 
 bool SkyboxComponent::initComponent(const CompMap& variables) {
-
     // No se ha podido establecer o No hay nombre de mesh
     if (!setValueFromMap(skyboxName, "planeName", variables) || skyboxName == "") {
         logError("SkyboxComponent: No se pudo inicializar el nombre del skybox.");
@@ -28,13 +32,11 @@ bool SkyboxComponent::initComponent(const CompMap& variables) {
     if (!bDistC) {
         logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y la cámara, se usara el valor por "
                 "defecto 5000s.");
-        distC = 5000.f;
     }
 
     if (!setValueFromMap(orderC, "orderC", variables)) {
         logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes o después de la escena, se usara el "
                 "valor por defecto true.");
-        orderC = true;
     }
 
     return true;
@@ -46,7 +48,5 @@ void SkyboxComponent::awake() {
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     skybox = g->createSkybox(node, materialName, skyboxName, distC, orderC);
-
-    //if (materialName != "") skybox->setMaterial(materialName);
 }
 }

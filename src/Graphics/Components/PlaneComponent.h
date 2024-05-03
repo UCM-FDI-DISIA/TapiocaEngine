@@ -7,36 +7,33 @@ class Plane;
 class RenderNode;
 class Transform;
 
+/*
+* @brief Clase que se encarga de crear un plano en la escena
+*/
 class TAPIOCA_API PlaneComponent : public Component {
 private:
-    RenderNode* node;
-    Plane* plane;
-    Transform* transform;
-    Vector3 rkNormal;
-    Vector3 up;
-    float width;
-    float height;
-    int xSegments;
-    int ySegments;
-
-// FALTA PONER EL WARNING
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
-    std::string planeName;
-    std::string materialName;
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
+    RenderNode* node;           // Nodo de renderizado
+    Transform* transform;       // Transform del nodo
+    Plane* plane;               // Plano
+    Vector3 rkNormal;           // Vector normal del plano
+    Vector3 up;                 // Vector perpendicular del plano
+    float width;                // Ancho del plano
+    float height;               // Alto del plano
+    int xSegments;              // Numero de segmentos en x
+    int ySegments;              // Numero de segmentos en y
+    std::string planeName;      // Nombre del plano
+    std::string materialName;   // Nombre del material
 
 public:
     COMPONENT_ID("PlaneComponent")
+
     /*
-    * @brief Constructor de la clase PlaneComponent
+    * @brief Constructor por defecto
     */
     PlaneComponent();
+
     /*
-    * @brief Destructor de la clase PlaneComponent
+    * @brief Destructor por defecto
     */
     ~PlaneComponent();
 
@@ -60,7 +57,15 @@ public:
     */
     void handleEvent(std::string const& id, void* info) override;
 
-    void setVisible(const bool enable);
+    /*
+    * @brief Hace que el sistema de particulas sea o no visible
+    * @param v True para que sea visible, false para que no lo sea
+    */
+    void setVisible(const bool v);
+    /*
+    * @brief Devuelve si el sistema de particulas es visible o no
+    * @return True si es visible, false en caso contrario
+    */
     bool isVisible() const;
 };
 }

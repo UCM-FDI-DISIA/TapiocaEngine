@@ -9,36 +9,38 @@ class Camera;
 class Viewport;
 class Transform;
 
+/*
+* @brief Componente que se encarga de gestionar la camara y el viewport
+*/
 class TAPIOCA_API CameraComponent : public Component {
 private:
     const Vector3 INITIAL_DIR = Vector3(0.0f, 0.0f, -1.0f);
 
-    RenderNode* node;
-    Camera* camera;
-    Viewport* viewport;
-    Transform* transform;
+    RenderNode* node;       // Nodo al que pertenece el componente
+    Transform* transform;   // Transform del nodo
+    Camera* camera;         // Camara
+    Viewport* viewport;     // Viewport
 
     // Camera
-    bool targetToLookSet;
-    Vector3 targetToLook;   // la camara de Ogre apunta por defecto a (0,0,0) global
-    Vector3 direction;
-    float nearPlane;
-    float farPlane;
+    bool targetToLookSet;   // Indica si se ha establecido el target al que mira la camara
+    Vector3 targetToLook;   // Objetivo al que mira la camara
+    Vector3 direction;      // Direccion de la camara
+    float nearPlane;        // Distancia del near plane
+    float farPlane;         // Distancia del far plane
 
     // Viewport
-    // x - left, y - top, z - width, w - height
-    Vector4 dimensions;
-    int zOrder;
-    Vector3 color;
+    Vector4 dimensions;   // Dimensiones del viewport. x - left, y - top, z - width, w - height
+    int zOrder;           // Orden de renderizado
+    Vector3 color;        // Color de fondo del viewport
 
 public:
     COMPONENT_ID("CameraComponent")
     /*
-    * @brief Constructor de la clase CameraComponent
+    * @brief Constructor por defecto
     */
     CameraComponent();
     /*
-    * @brief Destructor de la clase CameraComponent
+    * @brief Destructor por defecto
     */
     ~CameraComponent();
 
@@ -61,7 +63,9 @@ public:
     * @param info puntero a void para pasar parametros
     */
     void handleEvent(std::string const& id, void* info) override;
-
+    /*
+    * @brief Elimina el nodo y el viewport
+    */
     void free();
 
     // Camera
@@ -91,10 +95,6 @@ public:
     * @param dist Distancia a la que se quiere poner de la camara el regtangulo. Si es 0 es infinita.
     */
     void setFarClipDistance(const float dist);
-    // Otra forma de establecer el nearPlane
-    // Se establece a partir del angulo de vision vertical (el horizonal se establece solo,
-    // a partir del angulo vertical y del tam de la ventana, que corresponde con el del nearPlane)
-    // A mayor angulo, el nearPlane esta mas cerca
     /*
     * @brief Cambia el valor del rectangulo cercano que define el frustum. 
     * Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos,
@@ -117,11 +117,34 @@ public:
     void setFOVYDegrees(const float degrees);
 
     // Viewport
+    /*
+    * @brief Establece las dimensiones del viewport
+    */
     void setDimensions(const Vector4 dimensions);
+    /*
+    * @brief Devuelve la anchura del viewport en pixeles
+    * @return Anchura del viewport en pixeles
+    */
     int getWidthInPixels() const;
+    /*
+    * @brief Devuelve la altura del viewport en pixeles
+    * @return Altura del viewport en pixeles
+    */
     int getHeightInPixels() const;
+    /*
+    * @brief Establece el color de fondo del viewport
+    * @param color Color de fondo del viewport
+    */
     void setBackground(const Vector3 color);
+    /*
+    * @brief Establece el orden de renderizado de la camara
+    * @param zOrder Orden de renderizado de la camara
+    */
     void setZOrder(const int zOrder);
-    int getZOrder() const;
+    /*
+    * @brief Devuelve el orden de renderizado de la camara
+    * @return Orden de renderizado de la camara
+    */
+    inline int getZOrder() const { return zOrder; }
 };
 }

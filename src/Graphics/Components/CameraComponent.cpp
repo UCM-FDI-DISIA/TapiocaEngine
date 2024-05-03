@@ -8,13 +8,14 @@
 
 namespace Tapioca {
 CameraComponent::CameraComponent()
-    : transform(nullptr), node(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
+    : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
       dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
       farPlane(-1.0f), targetToLookSet(false) { }
 
-CameraComponent::~CameraComponent() { 
-    //GraphicsManager::instance()->removeCameraCompByZOrder(zOrder, true);
+CameraComponent::~CameraComponent() {
     GraphicsManager::instance()->removeZOrder(zOrder);
+    camera = nullptr;
+    transform = nullptr;
     free();
 }
 
@@ -70,7 +71,6 @@ void CameraComponent::awake() {
     transform = getObject()->getComponent<Transform>();
 
     GraphicsManager* graphicsManager = GraphicsManager::instance();
-    //graphicsManager->removeCameraCompByZOrder(zOrder, true);
     int zOrderAux = graphicsManager->askForZOrder(zOrder);
     if (zOrderAux != -1) {
         if (zOrderAux != zOrder) {
@@ -83,61 +83,28 @@ void CameraComponent::awake() {
         node = graphicsManager->createNode();
         camera = graphicsManager->createCamera(node, "Camera " + std::to_string(zOrder));
         viewport = graphicsManager->createViewport(camera, zOrder);
-        //graphicsManager->saveCameraComp(this);
 
-        if (direction != Vector3(0.0f, 0.0f, 0.0f)) {
-            camera->setDirection(direction);
-        }
-        else if (!targetToLookSet) {
+        if (direction != Vector3(0.0f, 0.0f, 0.0f)) camera->setDirection(direction);
+        else if (!targetToLookSet)
             setDirection(INITIAL_DIR);
-        }
 
-        if (nearPlane != -1.0f) {
-            camera->setNearClipDistance(nearPlane);
-        }
-        if (farPlane != -1.0f) {
-            camera->setFarClipDistance(farPlane);
-        }
+        if (nearPlane != -1.0f) camera->setNearClipDistance(nearPlane);
+        if (farPlane != -1.0f) camera->setFarClipDistance(farPlane);
 
         // Viewport
-        if (color != Vector3(-1.0f, -1.0f, -1.0f)) {
-            viewport->setBackground(Vector4(color, 1.0f));
-        }
-        if (dimensions.x != 0.0f) {
-            viewport->setLeft(dimensions.x);
-        }
-        if (dimensions.y != 0.0f) {
-            viewport->setTop(dimensions.y);
-        }
-        if (dimensions.z != 1.0f) {
-            viewport->setWidth(dimensions.z);
-        }
-        if (dimensions.w != 1.0f) {
-            viewport->setHeight(dimensions.z);
-        }
+        if (color != Vector3(-1.0f, -1.0f, -1.0f)) viewport->setBackground(Vector4(color, 1.0f));
+        if (dimensions.x != 0.0f) viewport->setLeft(dimensions.x);
+        if (dimensions.y != 0.0f) viewport->setTop(dimensions.y);
+        if (dimensions.z != 1.0f) viewport->setWidth(dimensions.z);
+        if (dimensions.w != 1.0f) viewport->setHeight(dimensions.z);
     }
-    else {
+    else
         logError("CameraComponent: No queda nigun zOrder disponible");
-    }
 }
 
 void CameraComponent::handleEvent(std::string const& id, void* info) {
-    /*
-    if (id == "transformChanged") {
-        node->setPosition(transform->getGlobalPositionWithoutRotation());
-
-        if (targetToLookSet) {
-            targetToLookSet = false;
-            lookAt(targetToLook);
-        }
-    }
-    */
     if (id == "posChanged") {
         node->setPosition(transform->getGlobalPositionWithoutRotation());
-
-        // hacer que la camara mire al lugar correcto si se indica desde el .lua
-        // que funcion con targetToLook
-        // se hace de esta manera porque no se cambia su posicion hasta que llega el mensaje
         if (targetToLookSet) {
             targetToLookSet = false;
             lookAt(targetToLook);
@@ -203,7 +170,6 @@ void CameraComponent::setBackground(const Vector3 color) {
 void CameraComponent::setZOrder(const int zOrder) {
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     graphicsManager->removeZOrder(this->zOrder);
-    //graphicsManager->removeCameraCompByZOrder(this->zOrder, false);
     this->zOrder = graphicsManager->askForZOrder(zOrder);
     if (this->zOrder != -1) {
         if (zOrder != this->zOrder) {
@@ -211,14 +177,9 @@ void CameraComponent::setZOrder(const int zOrder) {
                 std::to_string(this->zOrder);
             logWarn(message.c_str());
         }
-        //graphicsManager->removeCameraCompByZOrder(this->zOrder, true);
         viewport->setZOrder(this->zOrder);
-        //graphicsManager->saveCameraComp(this);
     }
-    else {
+    else
         logError("CameraComponent: No queda nigun zOrder disponible");
-    }
 }
-
-int CameraComponent::getZOrder() const { return this->zOrder; }
 }

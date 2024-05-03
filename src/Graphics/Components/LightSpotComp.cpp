@@ -7,11 +7,16 @@
 
 namespace Tapioca {
 LightSpotComp::LightSpotComp()
-    : light(nullptr), node(nullptr), transform(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f),
+    : node(nullptr), transform(nullptr), light(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f),
       attenuationFactor(), attenuationSet(false), direction(), nearClipDist(0.0f), falloff(1.0f), innerAngle(),
       innerAngleSet(false), outerAngle(), outerAngleSet(false) { }
 
-LightSpotComp::~LightSpotComp() { delete node; }
+LightSpotComp::~LightSpotComp() {
+    if (node != nullptr) delete node;
+    node = nullptr;
+    transform = nullptr;
+    light = nullptr;
+}
 
 bool LightSpotComp::initComponent(const CompMap& variables) {
     bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
@@ -29,17 +34,15 @@ bool LightSpotComp::initComponent(const CompMap& variables) {
     if (!colorSet) {
         logInfo("LightSpotComp: Luz blanca.");
     }
-    else {
+    else
         color = colorAux;
-    }
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
         logInfo("LightSpotComp: La potencia de la luz por defecto es 1.0f.");
     }
-    else {
+    else
         powerScale = powerAux;
-    }
 
     attenuationSet = setValueFromMap(attenuationFactor, "attenuationFactor", variables);
     if (!attenuationSet) {
@@ -50,18 +53,16 @@ bool LightSpotComp::initComponent(const CompMap& variables) {
     if (!setValueFromMap(nearClipDistAux, "nearClipDistance", variables) || nearClipDistAux == nearClipDist) {
         logInfo("LightSpotComp: El punto desde el que se comienza a emitir luz es el origen.");
     }
-    else {
+    else
         nearClipDist = nearClipDistAux;
-    }
 
     float falloffAux;
     if (!setValueFromMap(falloffAux, "falloff", variables) || falloffAux == falloff) {
         logInfo(
             "LightSpotComp: La caida de la intensidad de la luz desde la zona interior hasta la exterior es lineal.");
     }
-    else {
+    else
         falloff = falloffAux;
-    }
 
     innerAngleSet = setValueFromMap(innerAngle, "innerAngle", variables);
     if (!innerAngleSet) {
@@ -82,30 +83,16 @@ void LightSpotComp::awake() {
     node = graphicsManager->createNode();
     light = graphicsManager->createLightSpotlight(node, direction, color);
 
-    if (powerScale != 1.0f) {
-        setPowerScale(powerScale);
-    }
-    if (attenuationSet) {
-        setAttenuation(attenuationFactor);
-    }
-    if (nearClipDist != 0.0f) {
-        setNearClipDistance(nearClipDist);
-    }
-    if (falloff != 1.0f) {
-        setFalloff(falloff);
-    }
-    if (innerAngleSet) {
-        setInnerAngle(innerAngle);
-    }
-    if (outerAngleSet) {
-        setOuterAngle(outerAngle);
-    }
+    if (powerScale != 1.0f) setPowerScale(powerScale);
+    if (attenuationSet) setAttenuation(attenuationFactor);
+    if (nearClipDist != 0.0f) setNearClipDistance(nearClipDist);
+    if (falloff != 1.0f) setFalloff(falloff);
+    if (innerAngleSet) setInnerAngle(innerAngle);
+    if (outerAngleSet) setOuterAngle(outerAngle);
 }
 
 void LightSpotComp::handleEvent(std::string const& id, void* info) {
-    if (id == "posChanged") {
-        node->setPosition(transform->getGlobalPosition());
-    }
+    if (id == "posChanged") node->setPosition(transform->getGlobalPosition());
 }
 
 void LightSpotComp::setColor(const Vector4 color) {
@@ -121,8 +108,7 @@ void LightSpotComp::setPowerScale(const float power) {
 void LightSpotComp::setAttenuation(const float attenuationFactor) {
     this->attenuationFactor = attenuationFactor;
     float maximumRange = 100.0f;
-    float constant = 1.0f;   // hay durante toda la distancia
-    // se va atenuando
+    float constant = 1.0f;
     float linear = 0.045f * attenuationFactor;
     float quadratic = 0.0075f * attenuationFactor * attenuationFactor;
 

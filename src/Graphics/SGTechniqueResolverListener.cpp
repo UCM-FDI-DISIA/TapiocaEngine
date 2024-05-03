@@ -8,39 +8,26 @@
 #pragma warning(default : 4251)
 #endif
 
-SGTechniqueResolverListener::SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* const pShaderGenerator) {
-    mShaderGenerator = pShaderGenerator;
-}
+SGTechniqueResolverListener::SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* const pShaderGenerator)
+    : mShaderGenerator(pShaderGenerator) { }
 
 Ogre::Technique* SGTechniqueResolverListener::handleSchemeNotFound(const unsigned short schemeIndex,
                                                                    const Ogre::String& schemeName,
                                                                    Ogre::Material* const originalMaterial,
                                                                    const unsigned short lodIndex,
                                                                    const Ogre::Renderable* const rend) {
-    if (!mShaderGenerator->hasRenderState(schemeName)) {
-        return NULL;
-    }
-    // Case this is the default shader generator scheme.
+    if (!mShaderGenerator->hasRenderState(schemeName)) return NULL;
 
-    // Create shader generated technique for this material.
     bool techniqueCreated = mShaderGenerator->createShaderBasedTechnique(
         *originalMaterial, Ogre::MaterialManager::DEFAULT_SCHEME_NAME, schemeName);
 
-    if (!techniqueCreated) {
-        return NULL;
-    }
-    // Case technique registration succeeded.
+    if (!techniqueCreated) return NULL;
 
-    // Force creating the shaders for the generated technique.
     mShaderGenerator->validateMaterial(schemeName, *originalMaterial);
 
-    // Grab the generated technique.
     for (auto* t : originalMaterial->getTechniques()) {
-        if (t->getSchemeName() == schemeName) {
-            return t;
-        }
+        if (t->getSchemeName() == schemeName) return t;
     }
-
     return NULL;
 }
 

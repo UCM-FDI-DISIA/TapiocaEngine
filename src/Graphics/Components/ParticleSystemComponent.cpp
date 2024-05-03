@@ -11,10 +11,14 @@ namespace Tapioca {
 ParticleSystemComponent::ParticleSystemComponent()
     : node(nullptr), transform(nullptr), pSys(nullptr), pSysName(""), templateName(""), emitting(false) { }
 
-ParticleSystemComponent::~ParticleSystemComponent() { delete node; }
+ParticleSystemComponent::~ParticleSystemComponent() {
+    if (node != nullptr) delete node;
+    node = nullptr;
+    transform = nullptr;
+    pSys = nullptr;
+}
 
 bool ParticleSystemComponent::initComponent(const CompMap& variables) {
-    // Da igual si no hay nombre para el sistema de particulas o si tiene un nombre vacio
     if (!setValueFromMap(pSysName, "pSysName", variables) || pSysName == "") {
         logInfo("ParticleSystem: No existe nombre para el sistema de particulas: se creara sin nombre.");
     }
@@ -24,7 +28,6 @@ bool ParticleSystemComponent::initComponent(const CompMap& variables) {
     if (!setValueFromMap(emitting, "emitting", variables)) {
         logInfo("ParticleSystem: \"emitting\" no esta establecido: se pondra a false por defecto.");
     }
-
     return true;
 }
 
@@ -36,15 +39,7 @@ void ParticleSystemComponent::awake() {
 }
 
 void ParticleSystemComponent::handleEvent(std::string const& id, void* info) {
-    if (id == "posChanged") {
-        node->setPosition(transform->getGlobalPosition());
-    }
-    /*
-    if (id == "transformChanged") {
-        node->setPosition(transform->getGlobalPosition());
-        node->setScale(transform->getGlobalScale());
-    }
-    */
+    if (id == "posChanged") node->setPosition(transform->getGlobalPosition());
 }
 
 void ParticleSystemComponent::setEmitting(const bool emitting) { pSys->setEmitting(emitting); }
@@ -60,5 +55,4 @@ void ParticleSystemComponent::setVisible(const bool v) { pSys->setVisible(v); }
 bool ParticleSystemComponent::isVisible() const { return pSys->isVisible(); }
 
 void ParticleSystemComponent::fastForward(const float time, const float interval) { pSys->fastForward(time, interval); }
-
 }

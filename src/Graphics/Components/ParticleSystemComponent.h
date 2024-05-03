@@ -6,37 +6,28 @@ class RenderNode;
 class Transform;
 class ParticleSystem;
 
+/*
+* @brief Componente que se encarga de gestionar un sistema de particulas
+*/
 class TAPIOCA_API ParticleSystemComponent : public Component {
 private:
-    RenderNode* node;
-    Transform* transform;
-    ParticleSystem* pSys;
-
-    // warning C4251 'Tapioca::ParticleSystemComponent::pSysName' :
-    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent' Graphics
-    // warning C4251 'Tapioca::ParticleSystemComponent::templateName' :
-    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent'
-    //#ifdef _MSC_VER
-    //#pragma warning(disable : 4251)
-    //#endif
-    std::string pSysName;
-    std::string templateName;
-    //#ifdef _MSC_VER
-    //#pragma warning(default : 4251)
-    //#endif
-    bool emitting;
+    RenderNode* node;           // Nodo de renderizado
+    Transform* transform;       // Transform del nodo
+    ParticleSystem* pSys;       // Sistema de particulas
+    std::string pSysName;       // Nombre del sistema de particulas
+    std::string templateName;   // Nombre del template del sistema de particulas
+    bool emitting;              // Indica si el sistema de particulas esta emitiendo
 
 public:
     COMPONENT_ID("ParticleSystemComponent")
 
     /*
-    * @brief Constructor de la clase ParticleSystemComponent
+    * @brief Constructor por defecto
     */
     ParticleSystemComponent();
+
     /*
-    * @brief Destructor de la clase ParticleSystemComponent
+    * @brief Destructor por defecto
     */
     ~ParticleSystemComponent();
 
@@ -52,7 +43,6 @@ public:
     * Garantiza que todos los componentes iniciales esten creados
     */
     void awake() override;
-
     /*
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
@@ -61,9 +51,8 @@ public:
     */
     void handleEvent(std::string const& id, void* info) override;
 
-
     /*
-    * @brief Comienza o para el sistema de particulas
+    * @brief Establece si el sistema de particulas esta emitiendo o no
     * @param emitting True para que emita particulas, false para que no emita
     */
     void setEmitting(const bool emitting);
@@ -75,7 +64,7 @@ public:
 
     /*
     * @brief Cambia el numero maximo de particulas que puede haber en el sistema
-    * @param q Quota nueva del sistem a de particulas
+    * @param q Quota nueva del sistema de particulas
     */
     void setQuota(const int q);
     /*

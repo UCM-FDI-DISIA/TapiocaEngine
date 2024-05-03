@@ -6,22 +6,24 @@ namespace Tapioca {
 class MeshRenderer;
 class AnimationHelper;
 
+/*
+* @brief Componente que se encarga de gestionar las animaciones de un objeto
+*/
 class TAPIOCA_API Animator : public Component {
-
 private:
-    MeshRenderer* meshRenderer;
-    AnimationHelper* anim;
-
-    float speed;   //Velocidad a la que se actualiza la animacion
+    MeshRenderer* meshRenderer;   // Componente MeshRenderer del objeto
+    AnimationHelper* anim;        // Componente AnimationHelper del objeto
+    float speed;                  // Velocidad a la que se actualiza la animacion
 
 public:
     COMPONENT_ID("Animator")
     /*
-    * @brief Constructor de la clase Animator
+    * @brief Inicializa la velocidad de la animacion a 1
     */
     Animator();
+
     /*
-    * @brief Destructor de la clase Animator
+    * @brief Elimina la animacion
     */
     ~Animator();
 
@@ -53,7 +55,7 @@ public:
     * @brief Cambia la velocidad a la que se reproduce la animacion. Valor por defecto a 1
     * @param s Velocidad a la que se quiere cambiar
     */
-    void setSpeed(const float s);
+    inline void setSpeed(const float s) { speed = s; }
     /*
     * @brief Cambia si la animacion se repite al terminar. Valor por defecto a true
     * @param l true si se quiere repetir, false en caso contrario
@@ -69,7 +71,7 @@ public:
     * @brief Devuelve la velocidad a la que se reproduce la animacion
     * @return Velocidad a la que se reproduce la animacion
     */
-    float getSpeed() const;
+    inline float getSpeed() const { return speed; }
     /*
     * @brief Devuelve si la animacion esta en bucle
     * @return true si la animacion esta en bucle, false en caso contrario

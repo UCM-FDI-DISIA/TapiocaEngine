@@ -26,7 +26,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string material;
+    std::string material;   // Nombre del material
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

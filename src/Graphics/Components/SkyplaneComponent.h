@@ -7,30 +7,35 @@ class Skyplane;
 class RenderNode;
 class Transform;
 
+/*
+* @brief Componente que se encarga de crear un plano en el cielo
+*/
 class TAPIOCA_API SkyplaneComponent : public Component {
 private:
-    RenderNode* node;
-    Skyplane* skyplane;
-    Transform* transform;
-    std::string materialName;
-    std::string skyplaneName;
-    Vector3 rkNormal;
-    float fConstant;
-    float scale;
-    float tiling;
-    bool drawFirst;
-    float bow;
-    int xSegments;
-    int ySegments;
+    RenderNode* node;           // Nodo de renderizado
+    Transform* transform;       // Transform del nodo
+    Skyplane* skyplane;         // Plano en el cielo
+    std::string materialName;   // Nombre del material
+    std::string skyplaneName;   // Nombre del skyplane
+    Vector3 rkNormal;           // Vector normal del plano
+    float fConstant;            // Distancia que se desplaza el plano en la direccion de la normal
+    float scale;                // Escala del plano
+    float tiling;               // Tiling del plano
+    bool drawFirst;             // Si se dibuja primero
+    float bow;                  // Curvatura del plano
+    int xSegments;              // Numero de segmentos en x
+    int ySegments;              // Numero de segmentos en y
 
 public:
     COMPONENT_ID("SkyplaneComponent");
+
     /*
-    * @brief Constructor de la clase SkyplaneComponent
+    * @brief Constructor por defecto
     */
     SkyplaneComponent();
+
     /*
-    * @brief Destructor de la clase SkyplaneComponent
+    * @brief Destructor por defecto
     */
     ~SkyplaneComponent();
 
@@ -46,6 +51,5 @@ public:
     * Garantiza que todos los componentes iniciales esten creados
     */
     void awake() override;
-    void update(uint64_t delt) override;
 };
 }

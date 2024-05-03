@@ -5,10 +5,14 @@
 
 namespace Tapioca {
 LightDirComp::LightDirComp()
-    : light(nullptr), node(nullptr), direction(INITIAL_DIR), shadows(false), color(1.0f, 1.0f, 1.0f, 1.0f),
+    : node(nullptr), light(nullptr), direction(INITIAL_DIR), shadows(false), color(1.0f, 1.0f, 1.0f, 1.0f),
       powerScale(1.0f) { }
 
-LightDirComp::~LightDirComp() { delete node; }
+LightDirComp::~LightDirComp() {
+    if (node != nullptr) delete node;
+    node = nullptr;
+    light = nullptr;
+}
 
 bool LightDirComp::initComponent(const CompMap& variables) {
     Vector3 directionAux;
@@ -19,9 +23,8 @@ bool LightDirComp::initComponent(const CompMap& variables) {
     if (!directionSet) {
         logInfo("LightDirComp: Apunta hacia (0,0,-1) global.");
     }
-    else {
+    else
         direction = directionAux;
-    }
 
     if (!setValueFromMap(shadows, "mainLight", variables)) {
         logInfo("LightDirComp: No produce sombras.");
@@ -35,17 +38,15 @@ bool LightDirComp::initComponent(const CompMap& variables) {
     if (!colorSet) {
         logInfo("LightDirComp: Luz blanca.");
     }
-    else {
+    else
         color = colorAux;
-    }
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
         logInfo("LightDirComp: La potencia de la luz por defecto es 1.0f.");
     }
-    else {
+    else
         powerScale = powerAux;
-    }
 
     return true;
 }
@@ -55,12 +56,8 @@ void LightDirComp::start() {
     node = g->createNode();
     light = g->createLightDirectional(node, direction, color);
 
-    if (shadows) {
-        produceShadows(true);
-    }
-    if (powerScale != 1.0f) {
-        setPowerScale(powerScale);
-    }
+    if (shadows) produceShadows(true);
+    if (powerScale != 1.0f) setPowerScale(powerScale);
 }
 
 void LightDirComp::setColor(const Vector4 color) {

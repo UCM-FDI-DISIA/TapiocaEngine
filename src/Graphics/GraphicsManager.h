@@ -45,17 +45,18 @@ class Skybox;
 class Skyplane;
 class CameraComponent;
 class NodeAnimator;
-
 class WindowManager;
 
+/*
+* @brief Clase que se encarga de la gestion de la grafica del motor
+*/
 class TAPIOCA_API GraphicsManager : public Singleton<GraphicsManager>, public WindowModule {
 private:
     friend Singleton<GraphicsManager>;
 
-    const int NUM_TEXTURES = 3;
-    const int MAXIMUM_Z_ORDER = 20;
+    const int NUM_TEXTURES = 3;       // Numero de texturas por cada directional light
+    const int MAXIMUM_Z_ORDER = 20;   // Numero maximo de zOrder que se pueden tener
 
-    // Ogre
     Ogre::FileSystemLayer* fsLayer;                      // Sistema de busqueda de archivos de configuracion
     Ogre::RTShader::ShaderGenerator* mShaderGenerator;   // Generador de shaders
     Ogre::Root* mRoot;                                   // Root de Ogre
@@ -64,27 +65,13 @@ private:
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
     SGTechniqueResolverListener*
         mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
+
     // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
     // warning C4251 'Tapioca::GraphicsManager::mwindowName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::string cfgPath;       // Ruta donde se guardar los archivos de config (bin)
-    std::string mwindowName;   // Nombre de la ventana
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
-    Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
-
-    // Ventana
-    WindowManager* windowManager;
-    SDL_Window* sdlWindow;   // Ventana de SDL
-    void* glContext;         // Contexto de OpenGL
-
     // warning C4251 'Tapioca::GraphicsManager::selfManagedNodes' :
     // class 'std::unordered_set<Tapioca::RenderNode *,std::hash<Tapioca::RenderNode *>,
     // std::equal_to<Tapioca::RenderNode *>,std::allocator<Tapioca::RenderNode *>>' necesita
@@ -92,24 +79,35 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
+    std::string cfgPath;      // Ruta donde se guardar los archivos de config (bin)
+    std::string windowName;   // Nombre de la ventana
+
     std::unordered_set<RenderNode*> selfManagedNodes;   // Nodos gestionados por GraphicsManager
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    int nodeAnimatorNumber;
-    int planeNumber;
-    int billboardNumber;
-    std::unordered_set<int> zOrders;
-    // la luz principal es aquella luz direccional que produce sombras
-    LightDirectional* mainLight;
-    std::unordered_map<int, CameraComponent*> cameraComps;
 
-    // TODO: se carga de archivo, se puede borrar
+    Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
+
+    WindowManager* windowManager;   // Puntero al WindowManager
+    SDL_Window* sdlWindow;          // Ventana de SDL
+    void* glContext;                // Contexto de OpenGL
+
+    int nodeAnimatorNumber;                                  // Numero de animadores de nodos
+    int planeNumber;                                         // Numero de planos
+    int billboardNumber;                                     // Numero de billboards
+    std::unordered_set<int> zOrders;                         // ZOrders usados
+    LightDirectional* mainLight;                             // Luz principal
+    std::unordered_map<int, CameraComponent*> cameraComps;   // Camaras
+
     /*
     * @brief Carga plugIns especificados desde codigo
     */
     void loadPlugIns();
 
+    /*
+    * @brief Configura las sombras 
+    */
     void setUpShadows();
 
     /*
@@ -167,23 +165,40 @@ public:
     void shutDown();
 
     /*
-    * @brief Devuelve un puntero al gestor de escenas de Ogre
+    * @brief Devuelve la ventana de ogre
+    * @return Puntero a la ventana de ogre
     */
-    Ogre::SceneManager* getSceneManager();
+    inline Ogre::RenderWindow* getOgreRenderTarget() const { return ogreWindow; }
 
     /*
-    * Nos proporciona la superficie sobre la qeu redneriza ogre la que nos permite subscribirnos a varios callbacks
+    * @brief Comprueba si existe un recurso con el nombre especificado
+    * @param name Nombre del recurso
+    * @return true si existe, false si no
     */
-    Ogre::RenderWindow* getOgreRenderTarget();
-
     bool checkResourceExists(std::string name);
 
+    /*
+    * @brief Elimina una camara en un zOrder especifico
+    * @param zOrder ZOrder de la camara
+    * @param deleteCamera Indica si se debe eliminar la camara
+    */
     void removeCameraCompByZOrder(int zOrder, bool deleteCamera);
 
+    /*
+    * @brief Guarda el componente de camara
+    * @param cameraComp Componente de camara a guardar
+    */
     void saveCameraComp(CameraComponent* cameraComp);
 
+    /*
+    * @brief 
+    */
     int askForZOrder(int requiredZOrder);
 
+    /*
+    * @brief Elimina un zOrder
+    * @param zOrder ZOrder a eliminar
+    */
     void removeZOrder(int zOrder);
 
     /*
@@ -265,6 +280,10 @@ public:
     */
     void setMainLight(LightDirectional* lightDir);
 
+    /*
+    * @brief Se elimina la luz principal
+    * @param Luz principal a eliminar
+    */
     void removeMainLight(LightDirectional* lightDir);
 
     /*
@@ -295,6 +314,12 @@ public:
     */
     BillboardSet* createBillboardSet(RenderNode* const node, std::string const& name, unsigned int poolSize);
 
+    /*
+    * @brief Crea un billboardSet sin nombre especificado
+    * @param node Nodo para renderizado
+    * @param poolSize Numero maximo de billboards que puede tener
+    * @return Puntero al billboard creado
+    */
     BillboardSet* createBillboardSetWithName(RenderNode* const node, const unsigned int poolSize);
 
     /*
@@ -315,6 +340,7 @@ public:
     * @param mshMgr Puntero al manager de mallas de ogre
     * @param rkNormal Normal del plano
     * @param fConstant Distancia que se mueve el plano a traves de la normal
+    * @param up Vector que indica la direccion de arriba
     * @param name Nombre del plano
     * @param width Anchura del plano
     * @param height Altura del plano
@@ -322,12 +348,25 @@ public:
     * @param ySegments Numero de segmentos del plano en la direccion y
     * @param material Nombre del material
     */
-    Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, const Vector3& up_,
+    Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, const Vector3& up,
                        std::string const& name, const float width, const float height, const int xSegments,
                        const int ySegments, std::string const& material = "");
-
+    /*
+    * @brief Crea un plane sin nombre especificado
+    * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
+    * @param node Nodo para renderizado
+    * @param mshMgr Puntero al manager de mallas de ogre
+    * @param rkNormal Normal del plano
+    * @param fConstant Distancia que se mueve el plano a traves de la normal
+    * @param up Vector que indica la direccion de arriba
+    * @param width Anchura del plano
+    * @param height Altura del plano
+    * @param xSegments Numero de segmentos del plano en la direccion x
+    * @param ySegments Numero de segmentos del plano en la direccion y
+    * @param material Nombre del material
+    */
     Plane* createPlaneWithName(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
-                               const Vector3& up_, const float width, const float height, const int xSegments,
+                               const Vector3& up, const float width, const float height, const int xSegments,
                                const int ySegments, std::string const& material = "");
 
     /*
@@ -338,7 +377,7 @@ public:
     * @param a Componente x del vector normal
     * @param b Componente y del vector normal
     * @param c Componente z del vector normal
-    * @param _d Distancia del plano al origen en la direccion de la normal
+    * @param d Distancia del plano al origen en la direccion de la normal
     * @param fConstant Distancia que se mueve el plano a traves de la normal
     * @param name Nombre del plano
     * @param width Anchura del plano
@@ -347,19 +386,40 @@ public:
     * @param ySegments Numero de segmentos del plano en la direccion y
     * @param material Nombre del material
     */
-    Plane* createPlane(RenderNode* const node, const float a, const float b, const float c, const float _d,
-                       const Vector3& up_, std::string const& name, const float width, const float height,
+    Plane* createPlane(RenderNode* const node, const float a, const float b, const float c, const float d,
+                       const Vector3& up, std::string const& name, const float width, const float height,
                        const int xSegments, const int ySegments, std::string const& material = "");
 
+    /*
+    * @brief Crea una animacion
+    * @param object Malla a animar
+    * @param autoPlay Indica si se reproduce automaticamente
+    * @param loop Indica si se reproduce en bucle
+    * @return Puntero a la animacion creada
+    */
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
-
+    /*
+    * @brief Crea una animacion
+    * @param node Nodo a animar
+    * @param duration Duracion de la animacion
+    * @param name Nombre de la animacion
+    * @return Puntero a la animacion creada
+    */
     NodeAnimator* createNodeAnimator(RenderNode* const node, const float duration, const std::string& name);
-
+    /*
+    * @brief Crea una animacion sin nombre especificado
+    * @param node Nodo a animar
+    * @param duration Duracion de la animacion
+    */
     NodeAnimator* createNodeAnimatorWithName(RenderNode* const node, const float duration);
 
     /*
     * @brief Crea un skybox
     * @param node Nodo para renderizado
+    * @param material Material del skybox
+    * @param name Nombre del skybox
+    * @param distC Distancia del plano a la camara
+    * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
     */
     Skybox* createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
                          const float distC = 5000, const bool orderC = true);
@@ -367,14 +427,33 @@ public:
     /*
     * @brief Crea un skyplane
     * @param node Nodo para renderizado
+    * @param materialName Nombre del material
+    * @param name Nombre del skyplane
+    * @param enable Indica si se activa el skyplane
+    * @param rkNormal Normal del plano
+    * @param fConstant Distancia que se mueve el plano a traves de la normal
+    * @param scale Escala del skyplane
+    * @param tiling Tiling del skyplane
+    * @param drawFirst Indica si se dibuja primero
+    * @param bow Curvatura del skyplane
+    * @param xsegments Numero de segmentos en x
+    * @param ysegments Numero de segmentos en y
     */
     Skyplane* createSkyplane(RenderNode* const node, std::string const& materialName, std::string const& name,
                              const bool enable, const Vector3 rkNormal, const float fConstant, const float scale,
                              const float tiling, const bool drawFirst, const float bow, const int xsegments,
                              const int ysegments);
 
+    /*
+    * @brief Crea un manual object
+    * @param node Nodo para renderizado
+    * @return Puntero al manual object creado
+    */
     Ogre::ManualObject* createManualObject(RenderNode* const node);
-
+    /*
+    * @brief Elimina un manual object
+    * @param object Manual object a eliminar
+    */
     void destroyManualObject(Ogre::ManualObject* const object);
 };
 }

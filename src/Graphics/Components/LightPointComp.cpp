@@ -7,10 +7,15 @@
 
 namespace Tapioca {
 LightPointComp::LightPointComp()
-    : light(nullptr), node(nullptr), transform(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f),
+    : node(nullptr), transform(nullptr), light(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f),
       attenuationFactor(), attenuationSet(false) { }
 
-LightPointComp::~LightPointComp() { delete node; }
+LightPointComp::~LightPointComp() {
+    if (node != nullptr) delete node;
+    node = nullptr;
+    transform = nullptr;
+    light = nullptr;
+}
 
 bool LightPointComp::initComponent(const CompMap& variables) {
     Vector4 colorAux;
@@ -21,17 +26,15 @@ bool LightPointComp::initComponent(const CompMap& variables) {
     if (!colorSet) {
         logInfo("LightPointComp: Luz blanca.");
     }
-    else {
+    else
         color = colorAux;
-    }
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
         logInfo("LightPointComp: La potencia de la luz por defecto es 1.0f.");
     }
-    else {
+    else
         powerScale = powerAux;
-    }
 
     attenuationSet = setValueFromMap(attenuationFactor, "attenuationFactor", variables);
     if (!attenuationSet) {
@@ -47,13 +50,8 @@ void LightPointComp::awake() {
     node = graphicsManager->createNode();
     light = graphicsManager->createLightPoint(node, color);
 
-    if (powerScale != 1.0f) {
-        setPowerScale(powerScale);
-    }
-
-    if (attenuationSet) {
-        setAttenuation(attenuationFactor);
-    }
+    if (powerScale != 1.0f) setPowerScale(powerScale);
+    if (attenuationSet) setAttenuation(attenuationFactor);
 }
 
 void LightPointComp::handleEvent(std::string const& id, void* info) {
@@ -75,8 +73,7 @@ void LightPointComp::setPowerScale(const float power) {
 void LightPointComp::setAttenuation(const float attenuationFactor) {
     this->attenuationFactor = attenuationFactor;
     float maximumRange = 100.0f;
-    float constant = 1.0f;   // hay durante toda la distancia
-    // se va atenuando
+    float constant = 1.0f;
     float linear = 0.045f * attenuationFactor;
     float quadratic = 0.0075f * attenuationFactor * attenuationFactor;
 

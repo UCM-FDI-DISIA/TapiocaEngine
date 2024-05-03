@@ -7,12 +7,18 @@
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent()
-    : plane(nullptr), node(nullptr), transform(nullptr), height(), width(), xSegments(), ySegments() { }
+    : node(nullptr), transform(nullptr), plane(nullptr), rkNormal(Vector3(0.0f, 0.0f, 1.0f)),
+      up(Vector3(0.0f, 1.0f, 0.0f)), width(1.0f), height(1.0f), xSegments(1), ySegments(1), planeName(""),
+      materialName("") { }
 
-PlaneComponent::~PlaneComponent() { delete node; }
+PlaneComponent::~PlaneComponent() {
+    if (node != nullptr) delete node;
+    node = nullptr;
+    transform = nullptr;
+    plane = nullptr;
+}
 
-bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha podido establecer o No hay nombre de mesh
-    // Da igual si no hay material o si el material tiene un nombre vacio
+bool PlaneComponent::initComponent(const CompMap& variables) {
     if (!setValueFromMap(materialName, "materialName", variables)) {
         logInfo("PlaneComponent: No existe nombre para el material: se coloca el predefinido por la mesh.");
     }
@@ -21,36 +27,30 @@ bool PlaneComponent::initComponent(const CompMap& variables) {   // No se ha pod
         setValueFromMap(rkNormal.y, "rkNormalY", variables) && setValueFromMap(rkNormal.z, "rkNormalZ", variables);
     if (!normalSet) {
         logInfo("PlaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
-        rkNormal = Tapioca::Vector3(0.f, 0.f, 1.f);
     }
 
     bool upSet = setValueFromMap(up.x, "upX", variables) && setValueFromMap(up.y, "upY", variables) &&
         setValueFromMap(up.z, "upZ", variables);
     if (!upSet) {
         logInfo("PlaneComponent: No se ha definido un up para el plano, se usara el valor por defecto (0, 1, 0).");
-        up = Tapioca::Vector3(0.f, 1.f, 0.f);
     }
 
     if (!setValueFromMap(width, "width", variables)) {
         logInfo("PlaneComponent: No se ha definido una anchura, se usara el valor por defecto 1.");
-        width = 1.f;
     }
 
     if (!setValueFromMap(height, "height", variables)) {
         logInfo("PlaneComponent: No se ha definido una altura, se usara el valor por defecto 1.");
-        height = 1.f;
     }
 
     if (!setValueFromMap(xSegments, "xSegments", variables)) {
         logInfo(
             "PlaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
-        xSegments = 1;
     }
 
     if (!setValueFromMap(ySegments, "ySegments", variables)) {
         logInfo(
             "PlaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
-        ySegments = 1;
     }
 
     return true;
@@ -67,16 +67,10 @@ void PlaneComponent::awake() {
 }
 
 void PlaneComponent::handleEvent(std::string const& id, void* info) {
-    /*
-    if (id == "transformChanged") {
-        node->setPosition(transform->getGlobalPositionWithoutRotation());
-    }
-    */
-    if (id == "posChanged") {
-        node->setPosition(transform->getGlobalPositionWithoutRotation());
-    }
+    if (id == "posChanged") node->setPosition(transform->getGlobalPositionWithoutRotation());
 }
 
 void PlaneComponent::setVisible(const bool enable) { plane->setVisible(enable); }
+
 bool PlaneComponent::isVisible() const { return plane->isVisible(); }
 }

@@ -7,14 +7,16 @@
 
 namespace Tapioca {
 KeyFrameAnimator::KeyFrameAnimator()
-    : nodeAnimator(nullptr), speed(0.0f), duration(0.0f), info(), playByDefault(true), loop(true) { }
+    : nodeAnimator(nullptr), speed(1.0f), duration(0.0f), info(), playByDefault(true), loop(true) { }
 
-KeyFrameAnimator::~KeyFrameAnimator() { delete nodeAnimator; }
+KeyFrameAnimator::~KeyFrameAnimator() {
+    if (nodeAnimator != nullptr) delete nodeAnimator;
+    nodeAnimator = nullptr;
+}
 
 bool KeyFrameAnimator::initComponent(const CompMap& variables) {
     if (!setValueFromMap(speed, "playbackSpeed", variables) || speed == 0.0f) {
         logInfo("KeyFrameAnimator: La velocidad inicial es 1.0f.");
-        speed = 1.0f;
     }
 
     if (!setValueFromMap(duration, "duration", variables)) {
@@ -40,17 +42,13 @@ bool KeyFrameAnimator::initComponent(const CompMap& variables) {
         bool posSet = setValueFromMap(pos.x, "posKeyX" + std::to_string(info.size + 1), variables) &&
             setValueFromMap(pos.y, "posKeyY" + std::to_string(info.size + 1), variables) &&
             setValueFromMap(pos.z, "posKeyZ" + std::to_string(info.size + 1), variables);
-        if (posSet) {
-            info.pos[info.size] = pos;
-        }
+        if (posSet) info.pos[info.size] = pos;
 
         Vector3 scale;
         bool scaleSet = setValueFromMap(scale.x, "scaleKeyX" + std::to_string(info.size + 1), variables) &&
             setValueFromMap(scale.y, "scaleKeyY" + std::to_string(info.size + 1), variables) &&
             setValueFromMap(scale.z, "scaleKeyZ" + std::to_string(info.size + 1), variables);
-        if (scaleSet) {
-            info.scale[info.size] = scale;
-        }
+        if (scaleSet) info.scale[info.size] = scale;
 
         Vector3 rot;
         bool rotSet = setValueFromMap(rot.x, "rotKeyX" + std::to_string(info.size + 1), variables) &&
@@ -60,17 +58,11 @@ bool KeyFrameAnimator::initComponent(const CompMap& variables) {
             info.rot[info.size] = rot;
         }
 
-        if (!posSet && !scaleSet && !rotSet) {
-            end = true;
-        }
-        else {
+        if (!posSet && !scaleSet && !rotSet) end = true;
+        else
             ++info.size;
-        }
     }
-    if (info.size <= 0) {
-        return false;
-    }
-
+    if (info.size <= 0) return false;
     return true;
 }
 
@@ -87,24 +79,15 @@ void KeyFrameAnimator::start() {
     for (int i = 0; i < info.size; ++i) {
         KeyFrame* keyFrame = nodeAnimator->addKeyFrame();
         auto itPos = info.pos.find(i);
-        if (itPos != info.pos.end()) {
-            keyFrame->pos = itPos->second;
-        }
+        if (itPos != info.pos.end()) keyFrame->pos = itPos->second;
         auto itScale = info.scale.find(i);
-        if (itScale != info.scale.end()) {
-            keyFrame->scale = itScale->second;
-        }
+        if (itScale != info.scale.end()) keyFrame->scale = itScale->second;
         auto itRot = info.rot.find(i);
-        if (itRot != info.rot.end()) {
-            keyFrame->rot = Quaternion(itRot->second);
-        }
+        if (itRot != info.rot.end()) keyFrame->rot = Quaternion(itRot->second);
     }
 
     nodeAnimator->init();
-
-    if (playByDefault) {
-        play(loop);
-    }
+    if (playByDefault) play(loop);
 }
 
 void KeyFrameAnimator::update(uint64_t delt) { nodeAnimator->updateAnim(delt, speed); }
