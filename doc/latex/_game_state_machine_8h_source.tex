@@ -1,0 +1,40 @@
+\doxysection{Game\+State\+Machine.\+h}
+\hypertarget{_game_state_machine_8h_source}{}\label{_game_state_machine_8h_source}\index{src/Main/GameStateMachine.h@{src/Main/GameStateMachine.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}../utils/Singleton.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameState.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\ :\ \textcolor{keyword}{public}\ Singleton<GameStateMachine>\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{friend}\ Singleton<GameStateMachine>;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ std::stack<GameState*>\ gameStates\_;}
+\DoxyCodeLine{00013\ \ \ \ \ GameState*\ deleting\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}()\ :\ gameStates\_()\ \{\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_game_state_machine}{\string~GameStateMachine}}();}
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ To\ avoid\ the\ FGM\ from\ getting\ copied/moved}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}(\mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}(\mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\&\ operator=(\mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\&\ operator=(\mbox{\hyperlink{class_game_state_machine}{GameStateMachine}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ GameState*\ currentState()\ \{\ \textcolor{keywordflow}{return}\ gameStates\_.top();\ \};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ pushState(GameState*\ state);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ changeState(GameState*\ state);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ popState();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ run(\textcolor{keywordtype}{float}\ frameTime\ =\ 1);}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+
+\end{DoxyCode}

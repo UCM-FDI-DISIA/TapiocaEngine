@@ -1,0 +1,631 @@
+\doxysection{Referencia de la clase Tapioca\+::Image\+Text\+Button}
+\hypertarget{class_tapioca_1_1_image_text_button}{}\label{class_tapioca_1_1_image_text_button}\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+
+
+Clase que representa un bot�n con imagen en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion.  
+
+
+
+
+{\ttfamily \#include $<$Image\+Text\+Button.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Image\+Text\+Button\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_tapioca_1_1_image_text_button}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_image_text_button_a39d21fea7cc966ade327a4af72615769}{Image\+Text\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_image_text_button_aa243ce5208c251904e4765454d4fdda7}{init\+Component}} (const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&variables) override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ab9ad0befae9bb0547b96bfbeb7b8be25}{start}} () override
+\begin{DoxyCompactList}\small\item\em Asigna el transform del objeto al boton, inicializa la funcion que se ejecuta cuando se hace click en el boton y la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ae2f8926a6d819a3584f0dd4b93eb199c}{render}} () const override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para renderizar el boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a2dd826777840703b80c2fb2739241a88}{update\+Textures}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza las texturas de las imagenes del boton en los diferentes estados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ad45e58a59b786e28d1e2058e46189127}{update\+Texture\+Normal}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la textura de la imagen del boton en estado normal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_af76819191c73c3f2048544a94bdc84c8}{update\+Texture\+Hover}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la textura de la imagen del boton en estado hover. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a2682bd05d41a99f59d08ff7fb0250bbc}{update\+Texture\+Active}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la textura de la imagen del boton en estado active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_af0b6db2c33d502c508e6b24979acfa34}{set\+Image\+Path\+Normal}} (const std\+::string \&image\+Path)
+\begin{DoxyCompactList}\small\item\em Establece la ruta de la imagen que se muestra en el boton en estado normal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a6b811bb950f3b385c1e91263fafcf0b6}{set\+Image\+Path\+Hover}} (const std\+::string \&image\+Path)
+\begin{DoxyCompactList}\small\item\em Establece la ruta de la imagen que se muestra en el boton en estado hover. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a066273740c229bd6262c3165421c91b6}{set\+Image\+Path\+Active}} (const std\+::string \&image\+Path)
+\begin{DoxyCompactList}\small\item\em Establece la ruta de la imagen que se muestra en el boton en estado active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a91d6b8f8837c5e4045bb5bd6c90fe3cc}{set\+Texture\+Id\+Normal}} (\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} texture\+Id\+Normal)
+\begin{DoxyCompactList}\small\item\em Establece el identificador de la textura de la imagen que se muestra en el boton en estado normal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ac630bafcb82e33a17f93baace0a702fd}{set\+Texture\+Id\+Hover}} (\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} texture\+Id\+Hover)
+\begin{DoxyCompactList}\small\item\em Establece el identificador de la textura de la imagen que se muestra en el boton en estado hover. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a34296f6df225799996b9a0df72ec13a5}{set\+Texture\+Id\+Active}} (\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} texture\+Id\+Active)
+\begin{DoxyCompactList}\small\item\em Establece el identificador de la textura de la imagen que se muestra en el boton en estado active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a742b615f53ce2ebd0adcc3f736945881}{set\+UV0}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&uv0)
+\begin{DoxyCompactList}\small\item\em Establece las coordenadas de la esquina superior izquierda de la imagen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a72963502b18195fa6a283a513e41cff4}{set\+UV1}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&uv1)
+\begin{DoxyCompactList}\small\item\em Establece las coordenadas de la esquina inferior derecha de la imagen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_addc43a2786a3771ea77d30353b39e0ee}{set\+Image\+Bg\+Color}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&image\+Bg\+Color)
+\begin{DoxyCompactList}\small\item\em Establece el color de fondo de la imagen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a82b54e826478586d83c637e06b9173c4}{set\+Image\+Tint}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&image\+Tint)
+\begin{DoxyCompactList}\small\item\em Establece el tinte de la imagen. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ab5684eeaa6873ba55b9cf296e9a1a952}{get\+Image\+Path\+Normal}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la ruta de la imagen que se muestra en el boton en estado normal. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a7e32058552447f6a3584421c45d40ea3}{get\+Image\+Path\+Hover}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la ruta de la imagen que se muestra en el boton en estado hover. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a4e3bba9fefec2d0444d0d8c86ce2191c}{get\+Image\+Path\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la ruta de la imagen que se muestra en el boton en estado active. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a711f3f109500186f5cd01fd65f4c5e7f}{get\+Texture\+Id\+Normal}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado normal. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a895e0bd04499b702d77cc183f5966d99}{get\+Texture\+Id\+Hover}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado hover. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a1e915bf1949631de6f7be7917b70464f}{get\+Texture\+Id\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado active. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ad118422826f1d28253d1495788a33cfc}{get\+UV0}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve las coordenadas de la esquina superior izquierda de la imagen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a44522a47dd460d45291c3bfb1b7ea214}{get\+UV1}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve las coordenadas de la esquina inferior derecha de la imagen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_afd7242b629fb3030325face797491c92}{get\+Image\+Bg\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color de fondo de la imagen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ac9816bf80c2a3e39631d7c14ac39497d}{get\+Image\+Tint}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tinte de la imagen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_button}{Tapioca\+::\+Button}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_button_ad23f7906e551ee14e08f5cb257f0a352}{Button}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_button_a57d11ed9c32cb73964a655f2ae7576ff}{\texorpdfstring{$\sim$}{\string~}\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_button_acb7ce486e66305a70883313d8a6f3d95}{update\+UI}} () override
+\begin{DoxyCompactList}\small\item\em Actualiza el tamano de la fuente del texto del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_a862454b755efbe3e8bb77685f8f73ea4}{set\+On\+Click\+Id}} (const std\+::string \&\mbox{\hyperlink{class_tapioca_1_1_button_a7d403fc5b7464f758c29459d3786df9f}{on\+Click\+Id}})
+\begin{DoxyCompactList}\small\item\em Establece el id de la funcion que se ejecuta cuando se hace click en el boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_a372725fbc6d8aa21281fd6104fb8b2bc}{set\+Text}} (const std\+::string \&\mbox{\hyperlink{class_tapioca_1_1_button_a02ed95586bfb32eb2bdea65aaecbe302}{text}})
+\begin{DoxyCompactList}\small\item\em Establece el texto del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_a45343ae1ade209852f718cf710c3208d}{set\+Text\+Size}} (float \mbox{\hyperlink{class_tapioca_1_1_button_a32b4f1a5beb882b13521fbb27a80d3fa}{text\+Size}})
+\begin{DoxyCompactList}\small\item\em Establece el tamano del texto del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_ad1e45e7bb5a6b19712950381ed8ac177}{set\+Text\+Font\+Name}} (std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_aa47dcd06ea48be11dbb219085dabc6eb}{text\+Font\+Name}})
+\begin{DoxyCompactList}\small\item\em Establece el tamano del texto del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_aedd8b414567e0ce98320e669ce7b43e6}{set\+Text\+Font}} (Im\+Font \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_tapioca_1_1_button_a118f3f9d2496e7d5a311cb978c7298a1}{text\+Font}})
+\begin{DoxyCompactList}\small\item\em Establece la fuente del texto del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_aeed53bb159dba743b4d07036248b01bc}{update\+Text\+Font}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la fuente del texto del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_aafbe7aa289692a7dca08db39ce8fa277}{set\+Text\+Color\+Normal}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&text\+Color)
+\begin{DoxyCompactList}\small\item\em Establece el color del texto del boton en estado "{}normal"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_a9ca60dfd06286f8fb81b4612f9bb8539}{set\+Text\+Color\+Hover}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&text\+Color)
+\begin{DoxyCompactList}\small\item\em Establece el color del texto del boton en estado "{}hover"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_aad4a740833f3e3da8d10c92c4349d563}{set\+Text\+Color\+Active}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&text\+Color)
+\begin{DoxyCompactList}\small\item\em Establece el color del texto del boton en estado "{}active"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_ad5166810dc46073446c6beff08003be7}{set\+Normal\+Color}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&\mbox{\hyperlink{class_tapioca_1_1_button_a07c73a3b01e22fea229176903817ae5c}{normal\+Color}})
+\begin{DoxyCompactList}\small\item\em Establece el color del boton para el estado "{}normal"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_a0c259def33d222d9e2dd4d472205fbe2}{set\+Hover\+Color}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&\mbox{\hyperlink{class_tapioca_1_1_button_a241c130288eb07cf4fde733463b74b27}{hover\+Color}})
+\begin{DoxyCompactList}\small\item\em Establece el color del boton para el estado "{}hover"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_button_a609e7ac061689a1011a0e5f4fa770a37}{set\+Active\+Color}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&\mbox{\hyperlink{class_tapioca_1_1_button_a24c7dc123614bd1c2856d7afbf0b8318}{active\+Color}})
+\begin{DoxyCompactList}\small\item\em Establece el color del boton para el estado "{}active"{}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_ae61fb236ef30ddc115c34b3d8de4ef5a}{get\+On\+Click\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el id de la funcion que se ejecuta cuando se hace click en el boton. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_a17fe6e65c782bbea59e391108f260933}{get\+Text}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el texto del boton. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_button_a8395835fad3e2e0e55e1abf5fc1129e5}{get\+Text\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tamano de la fuente del texto del boton. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_a2697ed31ffefe4914f135711cc6f2508}{get\+Text\+Font\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre de la fuente del texto del boton. \end{DoxyCompactList}\item 
+Im\+Font \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_button_ac4158e25484eb0e3097c1149c10d8650}{get\+Text\+Font}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la fuente del texto del boton. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a81e33747a68af348880947f6e00f9b9c}{get\+Text\+Color\+Normal}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del texto del boton en estado "{}normal"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a297a6afebc08ec95e673492ea1e52774}{get\+Text\+Color\+Hover}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del texto del boton en estado "{}hover"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a9d6c114ea9f1c7b96f4363c01191e3f2}{get\+Text\+Color\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del texto del boton en estado "{}active"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a35b63faffd09669d4afa8f89c1d59d5e}{get\+Normal\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del boton para el estado "{}normal"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_ab682de1fb25698773692b99856a5d7f6}{get\+Hover\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del boton para el estado "{}hover"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a32df7dffffa82389f8185d35324363aa}{get\+Active\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del boton para el estado "{}active"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a8766d01825e52229e15545804ac3d4d2}{Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a598300c3479a22a48f14c2d50dd0164f}{\texorpdfstring{$\sim$}{\string~}\+Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a67ab31882485f7de34efc37d81f6282a}{set\+Name}} (const std\+::string \&\mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}})
+\begin{DoxyCompactList}\small\item\em Establece el nombre del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aa353df99344dc677da2b3a8ac1b8dbc5}{set\+Transform}} (\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}})
+\begin{DoxyCompactList}\small\item\em Establece el puntero al transform del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aedb9535d57ce06003545e3bc9c38929c}{set\+Position}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&position)
+\begin{DoxyCompactList}\small\item\em Establece la posicion del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9de26411857691c5948c2131b6b93007}{set\+Size}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&size)
+\begin{DoxyCompactList}\small\item\em Establece el tamano del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a402adb7468a7885ac03e09ef23e792de}{set\+Window\+Flags}} (\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}})
+\begin{DoxyCompactList}\small\item\em Establece los flags de la ventana. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a586427cda4bf91ecc335b88aec71568c}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad33e50b346466c8e1a7bf16891fe489b}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el puntero al transform del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac1f93543afdbd37af0d494cd87184e38}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la posicion del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9dc0acf2ec9a1eb7a792b95e7161dd9b}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tamano del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a27810f9e8702e2b997dd4f921c800249}{get\+Window\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve los flags de la ventana. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_component_a54e3ac405643adf97dab7c13f200411a}{Component}} ()
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_component_a8875dd4e409d534a7df9f43cdf205b20}{\texorpdfstring{$\sim$}{\string~}\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a9286bd66970caa5e1eee3190ffb9d959}{update}} (const uint64\+\_\+t delta\+Time)
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente. Se llama todas las veces posibles. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2156ae36e3faf359ed3a51c970baf647}{fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente Se llama cada cierto tiempo fijo (Game\+::\+FIXED\+\_\+\+DELTA\+\_\+\+TIME),. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2d17067b33af77e72f17aba93893c955}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info)
+\begin{DoxyCompactList}\small\item\em Recibe eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_a35580bd5f80f3e56ce3920d6b217375e}{push\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info, const bool global=true, const bool delay=false)
+\begin{DoxyCompactList}\small\item\em Envia un evento. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_tapioca_1_1_component_aac0eaed499f8fb51eccf6e174dfc4c88}{set\+Value\+From\+Map}} (T \&var, std\+::string const \&var\+Name, const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&map)
+\begin{DoxyCompactList}\small\item\em Da valor a una variable declarada en un Comp\+Map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_ad7eb69656f01eba0df85a629e703f1a5}{get\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el objeto al que esta adjunto este componente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a602cbc09011f937088126913d8569c8f}{is\+Alive}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta "{}vivo"{} (si se actualizan update, handle\+Events, ...) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a026b71524d3ebe56c75f8bedd61cd707}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta activo (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{die}} ()
+\begin{DoxyCompactList}\small\item\em Borra el componente. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a3447fee4073f813f62a388c63cc4aa55}{set\+Active}} (const bool b)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el componente (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_button}{Tapioca\+::\+Button}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_a7d403fc5b7464f758c29459d3786df9f}{on\+Click\+Id}}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_a02ed95586bfb32eb2bdea65aaecbe302}{text}}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_button_aa47dcd06ea48be11dbb219085dabc6eb}{text\+Font\+Name}}
+\item 
+float \mbox{\hyperlink{class_tapioca_1_1_button_a32b4f1a5beb882b13521fbb27a80d3fa}{text\+Size}}
+\item 
+float \mbox{\hyperlink{class_tapioca_1_1_button_a36a774545f4bf8f31fb0e62b2c6ec0d6}{initial\+Text\+Size}}
+\item 
+Im\+Font \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_button_a118f3f9d2496e7d5a311cb978c7298a1}{text\+Font}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a4b5c8ed16fcc45679dbfc8af1ac0ae59}{text\+Color\+Normal}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a0b975bcb1f8b32d584716f126d88c681}{text\+Color\+Hover}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a1fb25649e08e058971baebd216a549c6}{text\+Color\+Active}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a07c73a3b01e22fea229176903817ae5c}{normal\+Color}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a241c130288eb07cf4fde733463b74b27}{hover\+Color}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_button_a24c7dc123614bd1c2856d7afbf0b8318}{active\+Color}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad77a1f58aca8fad0de5f798620128279}{ui\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_lua_manager}{Lua\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9f18710d9e1070b446131167ecc7a293}{lua\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_window_manager}{Window\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac36c8dfd58acf245ac61eb49402b73a3}{window\+Manager}}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}}
+\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_a378ef13ec4f4ca22d314998a2c3bf310}{object}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a9d3a7537fda9a0303b1ed57c6051ed45}{alive}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3ead7}{active}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que representa un bot�n con imagen en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_image_text_button_a39d21fea7cc966ade327a4af72615769}\label{class_tapioca_1_1_image_text_button_a39d21fea7cc966ade327a4af72615769} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!ImageTextButton@{ImageTextButton}}
+\index{ImageTextButton@{ImageTextButton}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{ImageTextButton()}{ImageTextButton()}}
+{\footnotesize\ttfamily Tapioca\+::\+Image\+Text\+Button\+::\+Image\+Text\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_image_text_button_afd7242b629fb3030325face797491c92}\label{class_tapioca_1_1_image_text_button_afd7242b629fb3030325face797491c92} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getImageBgColor@{getImageBgColor}}
+\index{getImageBgColor@{getImageBgColor}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getImageBgColor()}{getImageBgColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Image\+Text\+Button\+::get\+Image\+Bg\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el color de fondo de la imagen. 
+
+\begin{DoxyReturn}{Devuelve}
+Color de fondo de la imagen 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_a4e3bba9fefec2d0444d0d8c86ce2191c}\label{class_tapioca_1_1_image_text_button_a4e3bba9fefec2d0444d0d8c86ce2191c} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getImagePathActive@{getImagePathActive}}
+\index{getImagePathActive@{getImagePathActive}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getImagePathActive()}{getImagePathActive()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Image\+Text\+Button\+::get\+Image\+Path\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la ruta de la imagen que se muestra en el boton en estado active. 
+
+\begin{DoxyReturn}{Devuelve}
+Ruta de la imagen en estado active 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_a7e32058552447f6a3584421c45d40ea3}\label{class_tapioca_1_1_image_text_button_a7e32058552447f6a3584421c45d40ea3} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getImagePathHover@{getImagePathHover}}
+\index{getImagePathHover@{getImagePathHover}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getImagePathHover()}{getImagePathHover()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Image\+Text\+Button\+::get\+Image\+Path\+Hover (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la ruta de la imagen que se muestra en el boton en estado hover. 
+
+\begin{DoxyReturn}{Devuelve}
+Ruta de la imagen en estado hover 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_ab5684eeaa6873ba55b9cf296e9a1a952}\label{class_tapioca_1_1_image_text_button_ab5684eeaa6873ba55b9cf296e9a1a952} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getImagePathNormal@{getImagePathNormal}}
+\index{getImagePathNormal@{getImagePathNormal}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getImagePathNormal()}{getImagePathNormal()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Image\+Text\+Button\+::get\+Image\+Path\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la ruta de la imagen que se muestra en el boton en estado normal. 
+
+\begin{DoxyReturn}{Devuelve}
+Ruta de la imagen en estado normal 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_ac9816bf80c2a3e39631d7c14ac39497d}\label{class_tapioca_1_1_image_text_button_ac9816bf80c2a3e39631d7c14ac39497d} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getImageTint@{getImageTint}}
+\index{getImageTint@{getImageTint}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getImageTint()}{getImageTint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Image\+Text\+Button\+::get\+Image\+Tint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el tinte de la imagen. 
+
+\begin{DoxyReturn}{Devuelve}
+Tinte de la imagen 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_a1e915bf1949631de6f7be7917b70464f}\label{class_tapioca_1_1_image_text_button_a1e915bf1949631de6f7be7917b70464f} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getTextureIdActive@{getTextureIdActive}}
+\index{getTextureIdActive@{getTextureIdActive}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getTextureIdActive()}{getTextureIdActive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} Tapioca\+::\+Image\+Text\+Button\+::get\+Texture\+Id\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado active. 
+
+\begin{DoxyReturn}{Devuelve}
+Identificador de la textura de la imagen en estado active 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_a895e0bd04499b702d77cc183f5966d99}\label{class_tapioca_1_1_image_text_button_a895e0bd04499b702d77cc183f5966d99} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getTextureIdHover@{getTextureIdHover}}
+\index{getTextureIdHover@{getTextureIdHover}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getTextureIdHover()}{getTextureIdHover()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} Tapioca\+::\+Image\+Text\+Button\+::get\+Texture\+Id\+Hover (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado hover. 
+
+\begin{DoxyReturn}{Devuelve}
+Identificador de la textura de la imagen en estado hover 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_a711f3f109500186f5cd01fd65f4c5e7f}\label{class_tapioca_1_1_image_text_button_a711f3f109500186f5cd01fd65f4c5e7f} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getTextureIdNormal@{getTextureIdNormal}}
+\index{getTextureIdNormal@{getTextureIdNormal}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getTextureIdNormal()}{getTextureIdNormal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}} Tapioca\+::\+Image\+Text\+Button\+::get\+Texture\+Id\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado normal. 
+
+\begin{DoxyReturn}{Devuelve}
+Identificador de la textura de la imagen en estado normal 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_ad118422826f1d28253d1495788a33cfc}\label{class_tapioca_1_1_image_text_button_ad118422826f1d28253d1495788a33cfc} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getUV0@{getUV0}}
+\index{getUV0@{getUV0}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getUV0()}{getUV0()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} Tapioca\+::\+Image\+Text\+Button\+::get\+UV0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve las coordenadas de la esquina superior izquierda de la imagen. 
+
+\begin{DoxyReturn}{Devuelve}
+Coordenadas de la esquina superior izquierda 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_a44522a47dd460d45291c3bfb1b7ea214}\label{class_tapioca_1_1_image_text_button_a44522a47dd460d45291c3bfb1b7ea214} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!getUV1@{getUV1}}
+\index{getUV1@{getUV1}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{getUV1()}{getUV1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} Tapioca\+::\+Image\+Text\+Button\+::get\+UV1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve las coordenadas de la esquina inferior derecha de la imagen. 
+
+\begin{DoxyReturn}{Devuelve}
+Coordenadas de la esquina inferior derecha 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_image_text_button_aa243ce5208c251904e4765454d4fdda7}\label{class_tapioca_1_1_image_text_button_aa243ce5208c251904e4765454d4fdda7} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!initComponent@{initComponent}}
+\index{initComponent@{initComponent}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{initComponent()}{initComponent()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Image\+Text\+Button\+::init\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&}]{variables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em variables} & unordered\+\_\+map con los parametros iniciales \\
+\hline
+\end{DoxyParams}
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_button_ac426b43e33ee904da75122adb9fd00d7}{Tapioca\+::\+Button}}.
+
+\Hypertarget{class_tapioca_1_1_image_text_button_ae2f8926a6d819a3584f0dd4b93eb199c}\label{class_tapioca_1_1_image_text_button_ae2f8926a6d819a3584f0dd4b93eb199c} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!render@{render}}
+\index{render@{render}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para renderizar el boton. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_button_a53a6d12d9c7fc9c5cedc3cadd301939a}{Tapioca\+::\+Button}}.
+
+\Hypertarget{class_tapioca_1_1_image_text_button_addc43a2786a3771ea77d30353b39e0ee}\label{class_tapioca_1_1_image_text_button_addc43a2786a3771ea77d30353b39e0ee} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setImageBgColor@{setImageBgColor}}
+\index{setImageBgColor@{setImageBgColor}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setImageBgColor()}{setImageBgColor()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Image\+Bg\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{image\+Bg\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el color de fondo de la imagen. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em image\+Bg\+Color} & Color de fondo de la imagen \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a066273740c229bd6262c3165421c91b6}\label{class_tapioca_1_1_image_text_button_a066273740c229bd6262c3165421c91b6} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setImagePathActive@{setImagePathActive}}
+\index{setImagePathActive@{setImagePathActive}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setImagePathActive()}{setImagePathActive()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Image\+Path\+Active (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{image\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece la ruta de la imagen que se muestra en el boton en estado active. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em image\+Path} & Ruta de la imagen en estado active \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a6b811bb950f3b385c1e91263fafcf0b6}\label{class_tapioca_1_1_image_text_button_a6b811bb950f3b385c1e91263fafcf0b6} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setImagePathHover@{setImagePathHover}}
+\index{setImagePathHover@{setImagePathHover}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setImagePathHover()}{setImagePathHover()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Image\+Path\+Hover (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{image\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece la ruta de la imagen que se muestra en el boton en estado hover. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em image\+Path} & Ruta de la imagen en estado hover \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_af0b6db2c33d502c508e6b24979acfa34}\label{class_tapioca_1_1_image_text_button_af0b6db2c33d502c508e6b24979acfa34} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setImagePathNormal@{setImagePathNormal}}
+\index{setImagePathNormal@{setImagePathNormal}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setImagePathNormal()}{setImagePathNormal()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Image\+Path\+Normal (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{image\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece la ruta de la imagen que se muestra en el boton en estado normal. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em image\+Path} & Ruta de la imagen en estado normal \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a82b54e826478586d83c637e06b9173c4}\label{class_tapioca_1_1_image_text_button_a82b54e826478586d83c637e06b9173c4} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setImageTint@{setImageTint}}
+\index{setImageTint@{setImageTint}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setImageTint()}{setImageTint()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Image\+Tint (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{image\+Tint }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el tinte de la imagen. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em image\+Tint} & Tinte de la imagen \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a34296f6df225799996b9a0df72ec13a5}\label{class_tapioca_1_1_image_text_button_a34296f6df225799996b9a0df72ec13a5} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setTextureIdActive@{setTextureIdActive}}
+\index{setTextureIdActive@{setTextureIdActive}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setTextureIdActive()}{setTextureIdActive()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Texture\+Id\+Active (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}}}]{texture\+Id\+Active }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el identificador de la textura de la imagen que se muestra en el boton en estado active. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em texture\+Id\+Active} & Identificador de la textura de la imagen en estado active \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_ac630bafcb82e33a17f93baace0a702fd}\label{class_tapioca_1_1_image_text_button_ac630bafcb82e33a17f93baace0a702fd} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setTextureIdHover@{setTextureIdHover}}
+\index{setTextureIdHover@{setTextureIdHover}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setTextureIdHover()}{setTextureIdHover()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Texture\+Id\+Hover (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}}}]{texture\+Id\+Hover }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el identificador de la textura de la imagen que se muestra en el boton en estado hover. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em texture\+Id\+Hover} & Identificador de la textura de la imagen en estado hover \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a91d6b8f8837c5e4045bb5bd6c90fe3cc}\label{class_tapioca_1_1_image_text_button_a91d6b8f8837c5e4045bb5bd6c90fe3cc} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setTextureIdNormal@{setTextureIdNormal}}
+\index{setTextureIdNormal@{setTextureIdNormal}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setTextureIdNormal()}{setTextureIdNormal()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+Texture\+Id\+Normal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{Im\+Texture\+ID}}}]{texture\+Id\+Normal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el identificador de la textura de la imagen que se muestra en el boton en estado normal. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em texture\+Id\+Normal} & Identificador de la textura de la imagen en estado normal \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a742b615f53ce2ebd0adcc3f736945881}\label{class_tapioca_1_1_image_text_button_a742b615f53ce2ebd0adcc3f736945881} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setUV0@{setUV0}}
+\index{setUV0@{setUV0}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setUV0()}{setUV0()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+UV0 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&}]{uv0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece las coordenadas de la esquina superior izquierda de la imagen. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em uv0} & Coordenadas de la esquina superior izquierda \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_a72963502b18195fa6a283a513e41cff4}\label{class_tapioca_1_1_image_text_button_a72963502b18195fa6a283a513e41cff4} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!setUV1@{setUV1}}
+\index{setUV1@{setUV1}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{setUV1()}{setUV1()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::set\+UV1 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&}]{uv1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece las coordenadas de la esquina inferior derecha de la imagen. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em uv1} & Coordenadas de la esquina inferior derecha \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_image_text_button_ab9ad0befae9bb0547b96bfbeb7b8be25}\label{class_tapioca_1_1_image_text_button_ab9ad0befae9bb0547b96bfbeb7b8be25} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!start@{start}}
+\index{start@{start}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Asigna el transform del objeto al boton, inicializa la funcion que se ejecuta cuando se hace click en el boton y la fuente del texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_button_a737b7b8d07340ef47db1d6e6a9f1d694}{Tapioca\+::\+Button}}.
+
+\Hypertarget{class_tapioca_1_1_image_text_button_a2682bd05d41a99f59d08ff7fb0250bbc}\label{class_tapioca_1_1_image_text_button_a2682bd05d41a99f59d08ff7fb0250bbc} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!updateTextureActive@{updateTextureActive}}
+\index{updateTextureActive@{updateTextureActive}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{updateTextureActive()}{updateTextureActive()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::update\+Texture\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Actualiza la textura de la imagen del boton en estado active. 
+
+\Hypertarget{class_tapioca_1_1_image_text_button_af76819191c73c3f2048544a94bdc84c8}\label{class_tapioca_1_1_image_text_button_af76819191c73c3f2048544a94bdc84c8} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!updateTextureHover@{updateTextureHover}}
+\index{updateTextureHover@{updateTextureHover}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{updateTextureHover()}{updateTextureHover()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::update\+Texture\+Hover (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Actualiza la textura de la imagen del boton en estado hover. 
+
+\Hypertarget{class_tapioca_1_1_image_text_button_ad45e58a59b786e28d1e2058e46189127}\label{class_tapioca_1_1_image_text_button_ad45e58a59b786e28d1e2058e46189127} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!updateTextureNormal@{updateTextureNormal}}
+\index{updateTextureNormal@{updateTextureNormal}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{updateTextureNormal()}{updateTextureNormal()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::update\+Texture\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Actualiza la textura de la imagen del boton en estado normal. 
+
+\Hypertarget{class_tapioca_1_1_image_text_button_a2dd826777840703b80c2fb2739241a88}\label{class_tapioca_1_1_image_text_button_a2dd826777840703b80c2fb2739241a88} 
+\index{Tapioca::ImageTextButton@{Tapioca::ImageTextButton}!updateTextures@{updateTextures}}
+\index{updateTextures@{updateTextures}!Tapioca::ImageTextButton@{Tapioca::ImageTextButton}}
+\doxysubsubsection{\texorpdfstring{updateTextures()}{updateTextures()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Image\+Text\+Button\+::update\+Textures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Actualiza las texturas de las imagenes del boton en los diferentes estados. 
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_image_text_button_8h}{Image\+Text\+Button.\+h}}\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_image_text_button_8cpp}{Image\+Text\+Button.\+cpp}}\end{DoxyCompactItemize}

@@ -16,7 +16,7 @@ class RenderNode;
 #ifdef _MSC_VER
 #pragma warning(disable : 4275)
 #endif
-/*
+/**
 * @brief Clase que se encarga de dibujar las lineas de debug de Bullet
 */
 class TAPIOCA_API PhysicsDebugDrawer : public btIDebugDraw {
@@ -40,23 +40,23 @@ private:
 #endif
 
 public:
-    /*
+    /**
     * @brief Constructor por defecto
     */
     PhysicsDebugDrawer();
-    /*
+    /**
     * @brief Destructor por defecto
     */
     ~PhysicsDebugDrawer();
 
-    /*
+    /**
     * @brief Dibuja una linea
     * @param from Origen de la linea
     * @param to Fin de la linea
     * @param color Color de la linea
     */
     void drawLine(const btVector3& from, const btVector3& to, const btVector3& color) override;
-    /*
+    /**
     * @brief Dibuja un linea desde el punto de contacto al objeto que ha contactado
     * @param PointOnB Punto donde ha contactado
     * @param normalOnB Normal que con direccion formada por el punto de contacto y el objeto contactado
@@ -66,28 +66,28 @@ public:
     */
     void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime,
                           const btVector3& color) override;
-    /*
+    /**
     * @brief Avisa de un error por consola
     * @param warningString Error que se va a avisar
     */
     void reportErrorWarning(const char* warningString) override;
-    /*
+    /**
     * @brief Dibuja un texto en 3D
     * @param location Posicion donde se va a dibujar el texto
     * @param textString Texto que se va a dibujar
     */
     void draw3dText(const btVector3& location, const char* textString) override {};
 
-    /* 
+    /** 
     * @brief Elimina las lines dibujadas
     */
     void clearLines() override;
-    /*
+    /**
     * @brief Cambia el modo de debug
     * @param debugMode Modo al que se quiere cambiar
     */
     inline void setDebugMode(const int debugMode) override { mode = DebugDrawModes(debugMode); }
-    /*
+    /**
     * @brief Devuelve el modo de debug
     * @return Modo de debug
     */

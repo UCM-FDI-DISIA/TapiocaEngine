@@ -1,0 +1,57 @@
+\doxysection{Lua\+Component.\+h}
+\hypertarget{_lua_component_8h_source}{}\label{_lua_component_8h_source}\index{src/Bridge/Components/LuaComponent.h@{src/Bridge/Components/LuaComponent.h}}
+\mbox{\hyperlink{_lua_component_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_component_8h}{Structure/Component.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_component_builder_8h}{Structure/ComponentBuilder.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ VALORES\ VALIDOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Se\ usa\ CompValue\ para\ representar\ variables\ sacadas\ de\ Lua\ o\ usadas\ en\ Lua.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Los\ tipos\ validos\ son\ char,\ int,\ float,\ bool,\ string\ y\ nullptr/nil.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Realmente\ CompValue\ es\ un\ std::variant,\ asi\ que\ para\ coger\ un\ valor\ hay\ que\ usar\ los\ metodos\ de\ la\ biblioteca\ "{}std"{}:}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ std::get\ para\ coger\ un\ valor,\ std::holds\_alternative\ para\ saber\ si\ el\ valor\ es\ capaz\ de\ convertirse\ a\ ese\ tipo.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ (Tambien\ se\ puede\ usar\ la\ funcion\ std::variant::index()\ para\ saber\ el\ tipo\ que\ tiene\ segun\ el\ indice.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ Los\ indices\ siguen\ el\ orden\ especificado\ arriba.)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceluabridge}{luabridge}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }LuaRef;}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_lua_component}{LuaComponent}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ luabridge::LuaRef*\ objectTable;}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ callSimpleFunction(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ registerFunctions();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Este\ componente\ no\ usa\ la\ macro\ COMPONENT\_ID\ para\ que\ no\ sea\ capaz\ de\ meterse\ en\ las\ templates\ de\ addComponent\ y\ getComponent.}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_lua_component}{LuaComponent}}(luabridge::LuaRef*\ objectTable,\ \textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_lua_component}{\string~LuaComponent}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ uint64\_t\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ fixedUpdate()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ luabridge::LuaRef*\ \mbox{\hyperlink{class_tapioca_1_1_lua_component_acce771b9e1504d5f7192e6eea770d6b0}{getTable}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ objectTable;\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ std::vector<CompValue>\ callFunction(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ std::vector<CompValue>\&\ parameters\ =\ \{\},\ \textcolor{keywordtype}{bool}*\ success\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_lua_component_builder}{LuaComponentBuilder}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component_builder}{ComponentBuilder}}\ \{}
+\DoxyCodeLine{00086\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ \ \ luabridge::LuaRef*\ classTable;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_lua_component_builder}{LuaComponentBuilder}}(\textcolor{keyword}{const}\ std::string\&\ name,\ luabridge::LuaRef*\ table);}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_lua_component_builder}{\string~LuaComponentBuilder}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}*\ createComponent()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ \}}
+
+\end{DoxyCode}

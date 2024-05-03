@@ -3,7 +3,7 @@
 #include "defs.h"
 
 namespace Tapioca {
-/*
+/**
 * @brief Patron de diseno Singleton para crear una unica instancia de una clase
 */
 template<typename T>
@@ -12,7 +12,7 @@ private:
     static T* instance_; // Instancia unica
 
 protected:
-    /*
+    /**
     * @brief Constructor vacio
     */
     Singleton() {};
@@ -21,7 +21,7 @@ public:
     Singleton<T>& operator=(const Singleton<T>& s) = delete;
     Singleton(const Singleton<T>& s) = delete;
 
-    /*
+    /**
     * @brief Destructor vacio
     */
     virtual ~Singleton() {};

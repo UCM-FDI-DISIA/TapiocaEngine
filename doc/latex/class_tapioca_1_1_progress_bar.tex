@@ -1,0 +1,296 @@
+\doxysection{Referencia de la clase Tapioca\+::Progress\+Bar}
+\hypertarget{class_tapioca_1_1_progress_bar}{}\label{class_tapioca_1_1_progress_bar}\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+
+
+Clase que representa una barra de progreso en la interfaz grafica.  
+
+
+
+
+{\ttfamily \#include $<$Progress\+Bar.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Progress\+Bar\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_progress_bar}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_progress_bar_a372a76569fe38511163410dcd3f0e270}{Progress\+Bar}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_progress_bar_a81ff698f562bbf10a70af3e47e6fc440}{init\+Component}} (const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&variables) override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_progress_bar_af131371584cb397528a10826bb07259c}{start}} () override
+\begin{DoxyCompactList}\small\item\em Asigna el transform del objeto al texto e inicializa la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_progress_bar_abb289ee99ffaa71e3d946e91526284a5}{render}} () const override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para renderizar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_progress_bar_a9a9cbc6ae27b0e9c6ffc27da649646e1}{set\+Progress}} (float progress)
+\begin{DoxyCompactList}\small\item\em Establece el progreso actual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_progress_bar_ab0d2a2e212409ebb68b8062aa7584a99}{set\+Bar\+Color}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&bar\+Color)
+\begin{DoxyCompactList}\small\item\em Establece el color de la barra de progreso. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_progress_bar_ab303a1fed874dfebe59aa341bf197032}{set\+Background\+Text}} (const std\+::string \&background\+Text)
+\begin{DoxyCompactList}\small\item\em Establece el texto de fondo. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_progress_bar_afc495a72f9bc7584508f045eb34df14f}{get\+Progress}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el progreso actual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_progress_bar_a1c609bbcf19194b9c9dd46d1575c05e8}{add\+Progress}} (float p)
+\begin{DoxyCompactList}\small\item\em Aumenta en p el progreso. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_progress_bar_ae2bd0a0d3b936950932870aaccfc7dd9}{get\+Bar\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color de la barra de progreso. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_progress_bar_abf7fbeae59ba6f30325bbb203ea4809f}{get\+Background\+Text}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el texto de fondo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a8766d01825e52229e15545804ac3d4d2}{Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a598300c3479a22a48f14c2d50dd0164f}{\texorpdfstring{$\sim$}{\string~}\+Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a67ab31882485f7de34efc37d81f6282a}{set\+Name}} (const std\+::string \&\mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}})
+\begin{DoxyCompactList}\small\item\em Establece el nombre del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aa353df99344dc677da2b3a8ac1b8dbc5}{set\+Transform}} (\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}})
+\begin{DoxyCompactList}\small\item\em Establece el puntero al transform del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aedb9535d57ce06003545e3bc9c38929c}{set\+Position}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&position)
+\begin{DoxyCompactList}\small\item\em Establece la posicion del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9de26411857691c5948c2131b6b93007}{set\+Size}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&size)
+\begin{DoxyCompactList}\small\item\em Establece el tamano del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a402adb7468a7885ac03e09ef23e792de}{set\+Window\+Flags}} (\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}})
+\begin{DoxyCompactList}\small\item\em Establece los flags de la ventana. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a586427cda4bf91ecc335b88aec71568c}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad33e50b346466c8e1a7bf16891fe489b}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el puntero al transform del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac1f93543afdbd37af0d494cd87184e38}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la posicion del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9dc0acf2ec9a1eb7a792b95e7161dd9b}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tamano del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a27810f9e8702e2b997dd4f921c800249}{get\+Window\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve los flags de la ventana. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_component_a54e3ac405643adf97dab7c13f200411a}{Component}} ()
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_component_a8875dd4e409d534a7df9f43cdf205b20}{\texorpdfstring{$\sim$}{\string~}\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a9286bd66970caa5e1eee3190ffb9d959}{update}} (const uint64\+\_\+t delta\+Time)
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente. Se llama todas las veces posibles. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2156ae36e3faf359ed3a51c970baf647}{fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente Se llama cada cierto tiempo fijo (Game\+::\+FIXED\+\_\+\+DELTA\+\_\+\+TIME),. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_aaf132dc7cb3116e3843c1dc51f43c64f}{update\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la interfaz de usuario. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2d17067b33af77e72f17aba93893c955}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info)
+\begin{DoxyCompactList}\small\item\em Recibe eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_a35580bd5f80f3e56ce3920d6b217375e}{push\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info, const bool global=true, const bool delay=false)
+\begin{DoxyCompactList}\small\item\em Envia un evento. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_tapioca_1_1_component_aac0eaed499f8fb51eccf6e174dfc4c88}{set\+Value\+From\+Map}} (T \&var, std\+::string const \&var\+Name, const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&map)
+\begin{DoxyCompactList}\small\item\em Da valor a una variable declarada en un Comp\+Map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_ad7eb69656f01eba0df85a629e703f1a5}{get\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el objeto al que esta adjunto este componente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a602cbc09011f937088126913d8569c8f}{is\+Alive}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta "{}vivo"{} (si se actualizan update, handle\+Events, ...) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a026b71524d3ebe56c75f8bedd61cd707}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta activo (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{die}} ()
+\begin{DoxyCompactList}\small\item\em Borra el componente. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a3447fee4073f813f62a388c63cc4aa55}{set\+Active}} (const bool b)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el componente (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad77a1f58aca8fad0de5f798620128279}{ui\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_lua_manager}{Lua\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9f18710d9e1070b446131167ecc7a293}{lua\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_window_manager}{Window\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac36c8dfd58acf245ac61eb49402b73a3}{window\+Manager}}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}}
+\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_a378ef13ec4f4ca22d314998a2c3bf310}{object}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a9d3a7537fda9a0303b1ed57c6051ed45}{alive}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3ead7}{active}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que representa una barra de progreso en la interfaz grafica. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_progress_bar_a372a76569fe38511163410dcd3f0e270}\label{class_tapioca_1_1_progress_bar_a372a76569fe38511163410dcd3f0e270} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!ProgressBar@{ProgressBar}}
+\index{ProgressBar@{ProgressBar}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{ProgressBar()}{ProgressBar()}}
+{\footnotesize\ttfamily Tapioca\+::\+Progress\+Bar\+::\+Progress\+Bar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_progress_bar_a1c609bbcf19194b9c9dd46d1575c05e8}\label{class_tapioca_1_1_progress_bar_a1c609bbcf19194b9c9dd46d1575c05e8} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!addProgress@{addProgress}}
+\index{addProgress@{addProgress}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{addProgress()}{addProgress()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Progress\+Bar\+::add\+Progress (\begin{DoxyParamCaption}\item[{float}]{p }\end{DoxyParamCaption})}
+
+
+
+Aumenta en p el progreso. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em p} & Cantidad de progreso a aumentar \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_progress_bar_abf7fbeae59ba6f30325bbb203ea4809f}\label{class_tapioca_1_1_progress_bar_abf7fbeae59ba6f30325bbb203ea4809f} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!getBackgroundText@{getBackgroundText}}
+\index{getBackgroundText@{getBackgroundText}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{getBackgroundText()}{getBackgroundText()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Progress\+Bar\+::get\+Background\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el texto de fondo. 
+
+\begin{DoxyReturn}{Devuelve}
+Texto de fondo 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_progress_bar_ae2bd0a0d3b936950932870aaccfc7dd9}\label{class_tapioca_1_1_progress_bar_ae2bd0a0d3b936950932870aaccfc7dd9} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!getBarColor@{getBarColor}}
+\index{getBarColor@{getBarColor}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{getBarColor()}{getBarColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Progress\+Bar\+::get\+Bar\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el color de la barra de progreso. 
+
+\begin{DoxyReturn}{Devuelve}
+Color de la barra de progreso 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_progress_bar_afc495a72f9bc7584508f045eb34df14f}\label{class_tapioca_1_1_progress_bar_afc495a72f9bc7584508f045eb34df14f} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!getProgress@{getProgress}}
+\index{getProgress@{getProgress}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{getProgress()}{getProgress()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Progress\+Bar\+::get\+Progress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el progreso actual. 
+
+\begin{DoxyReturn}{Devuelve}
+Progreso actual 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_progress_bar_a81ff698f562bbf10a70af3e47e6fc440}\label{class_tapioca_1_1_progress_bar_a81ff698f562bbf10a70af3e47e6fc440} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!initComponent@{initComponent}}
+\index{initComponent@{initComponent}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{initComponent()}{initComponent()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Progress\+Bar\+::init\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&}]{variables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em Variables} & unordered\+\_\+map con los parametros iniciales \\
+\hline
+\end{DoxyParams}
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aa7e9e31ef1222a0881b9b7e7b023eec2}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_progress_bar_abb289ee99ffaa71e3d946e91526284a5}\label{class_tapioca_1_1_progress_bar_abb289ee99ffaa71e3d946e91526284a5} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!render@{render}}
+\index{render@{render}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Progress\+Bar\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para renderizar. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_afef1b4492f720349e080d15baf48fec6}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_progress_bar_ab303a1fed874dfebe59aa341bf197032}\label{class_tapioca_1_1_progress_bar_ab303a1fed874dfebe59aa341bf197032} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!setBackgroundText@{setBackgroundText}}
+\index{setBackgroundText@{setBackgroundText}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{setBackgroundText()}{setBackgroundText()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Progress\+Bar\+::set\+Background\+Text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{background\+Text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el texto de fondo. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em background\+Text} & Texto de fondo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_progress_bar_ab0d2a2e212409ebb68b8062aa7584a99}\label{class_tapioca_1_1_progress_bar_ab0d2a2e212409ebb68b8062aa7584a99} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!setBarColor@{setBarColor}}
+\index{setBarColor@{setBarColor}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{setBarColor()}{setBarColor()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Progress\+Bar\+::set\+Bar\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{bar\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el color de la barra de progreso. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em bar\+Color} & Color de la barra de progreso \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_progress_bar_a9a9cbc6ae27b0e9c6ffc27da649646e1}\label{class_tapioca_1_1_progress_bar_a9a9cbc6ae27b0e9c6ffc27da649646e1} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!setProgress@{setProgress}}
+\index{setProgress@{setProgress}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{setProgress()}{setProgress()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Progress\+Bar\+::set\+Progress (\begin{DoxyParamCaption}\item[{float}]{progress }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el progreso actual. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em progress} & Progreso actual \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_progress_bar_af131371584cb397528a10826bb07259c}\label{class_tapioca_1_1_progress_bar_af131371584cb397528a10826bb07259c} 
+\index{Tapioca::ProgressBar@{Tapioca::ProgressBar}!start@{start}}
+\index{start@{start}!Tapioca::ProgressBar@{Tapioca::ProgressBar}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Progress\+Bar\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Asigna el transform del objeto al texto e inicializa la fuente del texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aac3a9c2eed1b91ac013cf8926ae66e50}{Tapioca\+::\+Component}}.
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_progress_bar_8h}{Progress\+Bar.\+h}}\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_progress_bar_8cpp}{Progress\+Bar.\+cpp}}\end{DoxyCompactItemize}

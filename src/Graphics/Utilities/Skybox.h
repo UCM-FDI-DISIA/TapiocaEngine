@@ -9,7 +9,7 @@ class ManualObject;
 }
 
 namespace Tapioca {
-/*
+/**
 * @brief Wrapper de la clase Skybox de Ogre
 */
 class TAPIOCA_API Skybox : public RenderObject {
@@ -32,7 +32,7 @@ private:
     bool orderC;   // True se pinta el plano antes que la escena False despues
 
 public:
-    /*
+    /**
     * @brief Construye un skybox con la textura texture a una distancia distC de la camara
     * e indicando si se pinta antes o después del resto de elementos en función de orderC
     * @param scnMngr Puntero al manager de escenas de ogre
@@ -43,12 +43,12 @@ public:
     Skybox(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& material,
            std::string const& skyboxName, const float distC = 5000, const bool orderC = true);
 
-    /*
+    /**
     * @brief Activa o desactiva el Skybox
     * @param enable True si se quiere activar, false en caso contrario
     */
     void setEnable(const bool enable);
-    /*
+    /**
     * @brief Devuelve si esta activo
     * @return True si esta activo, false en caso contrario
     */

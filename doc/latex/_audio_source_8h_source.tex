@@ -1,0 +1,49 @@
+\doxysection{Audio\+Source.\+h}
+\hypertarget{_audio_source_8h_source}{}\label{_audio_source_8h_source}\index{src/Sound/AudioSource.h@{src/Sound/AudioSource.h}}
+\mbox{\hyperlink{_audio_source_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector3_8h}{Utilities/Vector3.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceirrklang}{irrklang}}\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }ISound;}
+\DoxyCodeLine{00007\ \}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Sound;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_audio_source}{AudioSource}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ irrklang::ISound*\ iSound;\ \ \ \textcolor{comment}{//\ Puntero\ al\ sonido\ que\ se\ reproduce}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPaused;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ el\ sonido\ esta\ pausado\ o\ no}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ maxDistance;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distancia\ a\ partir\ de\ la\ cual\ el\ sonido\ ya\ no\ se\ atenua}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ minDistance;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distancia\ a\ partir\ de\ la\ cual\ el\ sonido\ empieza\ a\ atenuarse}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ pan;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0\ es\ el\ centro\ ,\ -\/1\ la\ derecha\ \ y\ 1\ la\ izquierda\ ,\ solo\ aplicable\ a\ fuentes\ 2D}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ playbackSpeed;\ \ \ \ \ \ \ \textcolor{comment}{//\ Velocidad\ a\ la\ que\ se\ reproduce\ el\ sound,\ variarla\ afecta\ al\ pitch\ del\ sonido}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ currentTimeStamp;\ \ \ \ \textcolor{comment}{//\ Segundo\ por\ el\ que\ va\ el\ sonido}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLooped;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ el\ sonido\ se\ reproduce\ en\ bucle\ o\ no}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ volume;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Volumen\ del\ sonido.\ Valor\ entre\ 0\ (muteado)\ y\ 1\ el\ maximo}}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ position;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Position\ del\ sonido\ (solo\ util\ para\ sonidos\ 3D)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source}{AudioSource}}(\mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}}\ \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}},\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \textcolor{keywordtype}{bool}\ ispaused\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ islooped\ =\ \textcolor{keyword}{false});\ \ \ \textcolor{comment}{//construye\ una\ fuente\ 3D}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source}{AudioSource}}(\mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}}\ \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}},\ \textcolor{keywordtype}{bool}\ ispaused\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ islooped\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source_a6f55b14274afa5c5bd2c62434cb08ca2}{\string~AudioSource}}()\ \{\};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ setPaused(\textcolor{keywordtype}{bool}\ p);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ setAtenuation(\textcolor{keywordtype}{float}\ minDist,\ \textcolor{keywordtype}{float}\ maxDist);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ setPan(\textcolor{keywordtype}{float}\ p);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ setSpeed(\textcolor{keywordtype}{float}\ s);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ setLooped(\textcolor{keywordtype}{bool}\ l);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ setVolume(\textcolor{keywordtype}{float}\ v);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ p);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ playOnce(\textcolor{keywordtype}{bool}\ spatialised);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ playLooped(\textcolor{keywordtype}{bool}\ spatialised);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,74 @@
+\doxysection{Render\+Node.\+h}
+\hypertarget{_render_node_8h_source}{}\label{_render_node_8h_source}\index{src/Graphics/Utilities/RenderNode.h@{src/Graphics/Utilities/RenderNode.h}}
+\mbox{\hyperlink{_render_node_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }SceneManager;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }SceneNode;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }MovableObject;}
+\DoxyCodeLine{00010\ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }Vector3;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }Quaternion;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }RenderObject;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Camera;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }LightDirectional;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }LightSpotlight;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }LightRectlight;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }NodeAnimator;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_render_object}{RenderObject}};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_light_spotlight}{LightSpotlight}};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_light_rectlight}{LightRectlight}};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ Ogre::SceneManager*\ sceneManager;\ \ \ \ \ \ \ \textcolor{comment}{//\ Puntero\ al\ manager\ de\ escenas\ de\ ogre}}
+\DoxyCodeLine{00037\ \ \ \ \ Ogre::SceneNode*\ node;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nodo\ para\ renderizado}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_object}{RenderObject}}*\ object;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Objecto\ para\ renderizar}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ attachObject(\mbox{\hyperlink{class_tapioca_1_1_render_object}{RenderObject}}*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ attachObject(Ogre::MovableObject*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ detachObject();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ lookAt(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ target);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ setDirection(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ dir);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{inline}\ Ogre::SceneNode*\ \mbox{\hyperlink{class_tapioca_1_1_render_node_a8b08d43a0814f39af14b03e88456016a}{getNode}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ node;\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{\string~RenderNode}}();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos);}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ translate(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ t);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ setScale(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ sc);}
+\DoxyCodeLine{00100\ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ scale(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ s);}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ setRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ q);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ setRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rot);}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ rotate(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ r);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ roll(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ yaw(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ pitch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ \}}
+
+\end{DoxyCode}

@@ -7,7 +7,7 @@ class Plane;
 class RenderNode;
 class Transform;
 
-/*
+/**
 * @brief Clase que se encarga de crear un plano en la escena
 */
 class TAPIOCA_API PlaneComponent : public Component {
@@ -27,29 +27,29 @@ private:
 public:
     COMPONENT_ID("PlaneComponent")
 
-    /*
+    /**
     * @brief Constructor por defecto
     */
     PlaneComponent();
 
-    /*
+    /**
     * @brief Destructor por defecto
     */
     ~PlaneComponent();
 
-    /*
+    /**
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
     * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
     */
     bool initComponent(const CompMap& variables) override;
-    /*
+    /**
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
     void awake() override;
-    /*
+    /**
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
     * @param Id indica el tipo de mensaje
@@ -57,12 +57,12 @@ public:
     */
     void handleEvent(std::string const& id, void* info) override;
 
-    /*
+    /**
     * @brief Hace que el sistema de particulas sea o no visible
     * @param v True para que sea visible, false para que no lo sea
     */
     void setVisible(const bool v);
-    /*
+    /**
     * @brief Devuelve si el sistema de particulas es visible o no
     * @return True si es visible, false en caso contrario
     */

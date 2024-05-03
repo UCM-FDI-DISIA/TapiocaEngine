@@ -1,0 +1,474 @@
+\doxysection{Referencia de la clase Tapioca\+::Vector4}
+\hypertarget{class_tapioca_1_1_vector4}{}\label{class_tapioca_1_1_vector4}\index{Tapioca::Vector4@{Tapioca::Vector4}}
+
+
+{\ttfamily \#include $<$Vector4.\+h$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4_a49c664b91e6fd587ca258d8f3d89437b}{Vector4}} (const float xyzw=0)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_vector4}{Vector4}. Genera un vector que inicializa "{}x"{}, "{}y"{}, "{}z"{} y "{}w"{} al numero dado. Si no se da un numero, este se considera cero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4_acf0f1a19321a3499b4e21c840578f2ce}{Vector4}} (const float \mbox{\hyperlink{class_tapioca_1_1_vector4_ae3eda24fbefdacf1317f036b0e02b8c4}{x}}, const float \mbox{\hyperlink{class_tapioca_1_1_vector4_a92586225e87dd86316f7eb70408c0a11}{y}}, const float \mbox{\hyperlink{class_tapioca_1_1_vector4_ac0ac0f30d76973282b15a22bbe8856db}{z}}=0, const float \mbox{\hyperlink{class_tapioca_1_1_vector4_a9b0206beb96fd86d3dcb35270b680298}{w}}=0)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_vector4}{Vector4}. Genera un vector que inicializa "{}x"{}, "{}y"{}, "{}z"{} y "{}w"{} a sus valores correspondientes. Si no se da un numero, este se considera cero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4_ab29b72dd1f366782ad5f8153dd57d62e}{Vector4}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_vector4}{Vector4}. Genera una copia del vector dado. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4_a64af674952a829aec0a2ec205d6051c1}{Vector4}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&other, const float \mbox{\hyperlink{class_tapioca_1_1_vector4_a9b0206beb96fd86d3dcb35270b680298}{w}}=0)
+\begin{DoxyCompactList}\small\item\em Genera un vector con "{}x"{}, "{}y"{} y "{}z"{} tal como estan en el vector dado. "{}w"{} se inicializa segun el numero dado. Si no se da un numero, este se considera cero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4_ace9c40292ae8af96ae63fa605ec4ff1e}{Vector4}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&other, const float \mbox{\hyperlink{class_tapioca_1_1_vector4_ac0ac0f30d76973282b15a22bbe8856db}{z}}=0, const float \mbox{\hyperlink{class_tapioca_1_1_vector4_a9b0206beb96fd86d3dcb35270b680298}{w}}=0)
+\begin{DoxyCompactList}\small\item\em Genera un vector con "{}x"{} e "{}y"{} tal como estan en el vector dado. "{}z"{} y "{}w"{} se inicializan segun el numero dado. Si no se da algun numero, este se considera cero. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_afb7d76b2fe5d751ea8afc85bcf8f040f}{magnitude\+Squared}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la magnitud al cuadrado del vector. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_a4ad0f653cc3bc6d997c3be42e09f09a3}{magnitude}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la magnitud del vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_ad4f1576674e238cbac6d83062c22a9e6}{get\+Normalized}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve este vector, pero normalizado. Si este vector tiene magnitud cero, devuelve un vector de magnitud cero. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_a2b289765b28407cfc75ab4d521629410}{normalize}} ()
+\begin{DoxyCompactList}\small\item\em Normaliza este vector y devuelve la magnitud que tenia anteriormente. No ocurre nada si su magnitud es 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_a30d494898b0e78a9d18eba272ca2dc9e}{operator+}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la suma de este vector con otro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_a51a1df780f6601aba169bc24925007ea}{operator-\/}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de este vector cambiandole el signo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_ae4410cba0838b3911a3e774ebcb45630}{operator-\/}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la resta de este vector con otro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_a546c72cfdcefc683bfaf6018a33e8abc}{operator\texorpdfstring{$\ast$}{*}}} (const float \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la multiplicacion de este vector por un escalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_ab74b3ea230f840aaf463e6a6ddb2e436}{operator/}} (const float \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la division de este vector por un escalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& \mbox{\hyperlink{class_tapioca_1_1_vector4_aeaae9fc437fce6ca1605f4eeca8416c9}{operator+=}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other)
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la suma de este vector con otro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& \mbox{\hyperlink{class_tapioca_1_1_vector4_a4bcc9ee05edd98a57f93702133ac512b}{operator-\/=}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other)
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la resta de este vector con otro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& \mbox{\hyperlink{class_tapioca_1_1_vector4_af74df0897b48a3fd69625496627795cb}{operator\texorpdfstring{$\ast$}{*}=}} (const float \&other)
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la multiplicacion de este vector por un escalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& \mbox{\hyperlink{class_tapioca_1_1_vector4_ac281c080e12f101ffbd896f8981c87ea}{operator/=}} (const float \&other)
+\begin{DoxyCompactList}\small\item\em Devuelve el vector resultante de la division de este vector por un escalar. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_vector4_a4eeb4077a527e5b6e1fc84cef9135bf5}{operator==}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve si este vector es igual a otro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_vector4_ae0f1780390339c7497f1758c34b8a8c0}{operator!=}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve si este vector es diferente a otro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_vector4_ac31cbbe7af40d6a11990da7b4b283d68}{lerp}} (\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} const \&end, float t) const
+\begin{DoxyCompactList}\small\item\em Devuelve la interpolacion entre este vector y otro segun un factor de interpolacion. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_a6474eba935dc092eff42bcb1dbc9541d}{distance}} (\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} const \&other) const
+\begin{DoxyCompactList}\small\item\em Devuelve la distancia entre este vector y otro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_ae3eda24fbefdacf1317f036b0e02b8c4}{x}}
+\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_a92586225e87dd86316f7eb70408c0a11}{y}}
+\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_ac0ac0f30d76973282b15a22bbe8856db}{z}}
+\item 
+float \mbox{\hyperlink{class_tapioca_1_1_vector4_a9b0206beb96fd86d3dcb35270b680298}{w}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que implementa un vector geometrico de cuatro dimensiones 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_vector4_a49c664b91e6fd587ca258d8f3d89437b}\label{class_tapioca_1_1_vector4_a49c664b91e6fd587ca258d8f3d89437b} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily Tapioca\+::\+Vector4\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const float}]{xyzw = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_tapioca_1_1_vector4}{Vector4}. Genera un vector que inicializa "{}x"{}, "{}y"{}, "{}z"{} y "{}w"{} al numero dado. Si no se da un numero, este se considera cero. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em xyz} & Valor al que se inicializan "{}x"{}, "{}y"{}, "{}z"{} y "{}w"{} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_vector4_acf0f1a19321a3499b4e21c840578f2ce}\label{class_tapioca_1_1_vector4_acf0f1a19321a3499b4e21c840578f2ce} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Tapioca\+::\+Vector4\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const float}]{x,  }\item[{const float}]{y,  }\item[{const float}]{z = {\ttfamily 0},  }\item[{const float}]{w = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_tapioca_1_1_vector4}{Vector4}. Genera un vector que inicializa "{}x"{}, "{}y"{}, "{}z"{} y "{}w"{} a sus valores correspondientes. Si no se da un numero, este se considera cero. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em x} & Valor al que se inicializa "{}x"{} \\
+\hline
+{\em y} & Valor al que se inicializa "{}y"{} \\
+\hline
+{\em z} & Valor al que se inicializa "{}z"{} \\
+\hline
+{\em w} & Valor al que se inicializa "{}w"{} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_vector4_ab29b72dd1f366782ad5f8153dd57d62e}\label{class_tapioca_1_1_vector4_ab29b72dd1f366782ad5f8153dd57d62e} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Tapioca\+::\+Vector4\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_tapioca_1_1_vector4}{Vector4}. Genera una copia del vector dado. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector que se quiere copiar \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_vector4_a64af674952a829aec0a2ec205d6051c1}\label{class_tapioca_1_1_vector4_a64af674952a829aec0a2ec205d6051c1} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Tapioca\+::\+Vector4\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{other,  }\item[{const float}]{w = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Genera un vector con "{}x"{}, "{}y"{} y "{}z"{} tal como estan en el vector dado. "{}w"{} se inicializa segun el numero dado. Si no se da un numero, este se considera cero. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & \doxylink{class_tapioca_1_1_vector3}{Vector3} del que se quiere copiar "{}x"{}, "{}y"{} y "{}z"{} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_vector4_ace9c40292ae8af96ae63fa605ec4ff1e}\label{class_tapioca_1_1_vector4_ace9c40292ae8af96ae63fa605ec4ff1e} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Tapioca\+::\+Vector4\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&}]{other,  }\item[{const float}]{z = {\ttfamily 0},  }\item[{const float}]{w = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Genera un vector con "{}x"{} e "{}y"{} tal como estan en el vector dado. "{}z"{} y "{}w"{} se inicializan segun el numero dado. Si no se da algun numero, este se considera cero. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & \doxylink{class_tapioca_1_1_vector2}{Vector2} del que se quiere copiar "{}x"{} e "{}y"{} \\
+\hline
+{\em z} & Valor al que se inicializa "{}z"{} \\
+\hline
+{\em w} & Valor al que se inicializa "{}w"{} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_vector4_a6474eba935dc092eff42bcb1dbc9541d}\label{class_tapioca_1_1_vector4_a6474eba935dc092eff42bcb1dbc9541d} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!distance@{distance}}
+\index{distance@{distance}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la distancia entre este vector y otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector hasta el que se quiere calcular la distancia. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Distancia entre los 2 vectores 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_ad4f1576674e238cbac6d83062c22a9e6}\label{class_tapioca_1_1_vector4_ad4f1576674e238cbac6d83062c22a9e6} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!getNormalized@{getNormalized}}
+\index{getNormalized@{getNormalized}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{getNormalized()}{getNormalized()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::get\+Normalized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve este vector, pero normalizado. Si este vector tiene magnitud cero, devuelve un vector de magnitud cero. 
+
+\begin{DoxyReturn}{Devuelve}
+Vector normalizado 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_ac31cbbe7af40d6a11990da7b4b283d68}\label{class_tapioca_1_1_vector4_ac31cbbe7af40d6a11990da7b4b283d68} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!lerp@{lerp}}
+\index{lerp@{lerp}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{lerp()}{lerp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::lerp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} const \&}]{end,  }\item[{float}]{t }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la interpolacion entre este vector y otro segun un factor de interpolacion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em end} & Punto hasta el que se quiere interpolar. \\
+\hline
+{\em t} & factor de interpolacion (debe ser un valor entre 0 y 1. Si no, se redondeara al limite mas cercano) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Valor interpolado entre los 2 valores con el factor t 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a4ad0f653cc3bc6d997c3be42e09f09a3}\label{class_tapioca_1_1_vector4_a4ad0f653cc3bc6d997c3be42e09f09a3} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!magnitude@{magnitude}}
+\index{magnitude@{magnitude}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{magnitude()}{magnitude()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::magnitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la magnitud del vector. 
+
+\begin{DoxyReturn}{Devuelve}
+Magnitud del vector 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_afb7d76b2fe5d751ea8afc85bcf8f040f}\label{class_tapioca_1_1_vector4_afb7d76b2fe5d751ea8afc85bcf8f040f} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!magnitudeSquared@{magnitudeSquared}}
+\index{magnitudeSquared@{magnitudeSquared}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{magnitudeSquared()}{magnitudeSquared()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::magnitude\+Squared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la magnitud al cuadrado del vector. 
+
+\begin{DoxyReturn}{Devuelve}
+Magnitud al cuadrado del vector 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a2b289765b28407cfc75ab4d521629410}\label{class_tapioca_1_1_vector4_a2b289765b28407cfc75ab4d521629410} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!normalize@{normalize}}
+\index{normalize@{normalize}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Normaliza este vector y devuelve la magnitud que tenia anteriormente. No ocurre nada si su magnitud es 0. 
+
+\begin{DoxyReturn}{Devuelve}
+Magnitud del vector antes de ser normalizado 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_ae0f1780390339c7497f1758c34b8a8c0}\label{class_tapioca_1_1_vector4_ae0f1780390339c7497f1758c34b8a8c0} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Vector4\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si este vector es diferente a otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector con el que se quiere comparar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true si son diferentes, false si no 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a546c72cfdcefc683bfaf6018a33e8abc}\label{class_tapioca_1_1_vector4_a546c72cfdcefc683bfaf6018a33e8abc} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const float \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la multiplicacion de este vector por un escalar. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Escalar por el que se quiere multiplicar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la multiplicacion 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_af74df0897b48a3fd69625496627795cb}\label{class_tapioca_1_1_vector4_af74df0897b48a3fd69625496627795cb} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}}
+\index{operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}=()}{operator*=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& Tapioca\+::\+Vector4\+::operator\texorpdfstring{$\ast$}{*}= (\begin{DoxyParamCaption}\item[{const float \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la multiplicacion de este vector por un escalar. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Escalar por el que se quiere multiplicar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la multiplicacion 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a30d494898b0e78a9d18eba272ca2dc9e}\label{class_tapioca_1_1_vector4_a30d494898b0e78a9d18eba272ca2dc9e} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator+@{operator+}}
+\index{operator+@{operator+}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la suma de este vector con otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector con el que se quiere sumar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la suma 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_aeaae9fc437fce6ca1605f4eeca8416c9}\label{class_tapioca_1_1_vector4_aeaae9fc437fce6ca1605f4eeca8416c9} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& Tapioca\+::\+Vector4\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la suma de este vector con otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector con el que se quiere sumar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la suma 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a51a1df780f6601aba169bc24925007ea}\label{class_tapioca_1_1_vector4_a51a1df780f6601aba169bc24925007ea} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de este vector cambiandole el signo. 
+
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de este vector cambiandole el signo 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_ae4410cba0838b3911a3e774ebcb45630}\label{class_tapioca_1_1_vector4_ae4410cba0838b3911a3e774ebcb45630} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la resta de este vector con otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector con el que se quiere restar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la resta 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a4bcc9ee05edd98a57f93702133ac512b}\label{class_tapioca_1_1_vector4_a4bcc9ee05edd98a57f93702133ac512b} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& Tapioca\+::\+Vector4\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la resta de este vector con otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector con el que se quiere restar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la resta 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_ab74b3ea230f840aaf463e6a6ddb2e436}\label{class_tapioca_1_1_vector4_ab74b3ea230f840aaf463e6a6ddb2e436} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator/@{operator/}}
+\index{operator/@{operator/}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Vector4\+::operator/ (\begin{DoxyParamCaption}\item[{const float \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la division de este vector por un escalar. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Escalar por el que se quiere dividir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la division 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_ac281c080e12f101ffbd896f8981c87ea}\label{class_tapioca_1_1_vector4_ac281c080e12f101ffbd896f8981c87ea} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \& Tapioca\+::\+Vector4\+::operator/= (\begin{DoxyParamCaption}\item[{const float \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el vector resultante de la division de este vector por un escalar. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Escalar por el que se quiere dividir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector resultante de la division 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_vector4_a4eeb4077a527e5b6e1fc84cef9135bf5}\label{class_tapioca_1_1_vector4_a4eeb4077a527e5b6e1fc84cef9135bf5} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!operator==@{operator==}}
+\index{operator==@{operator==}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Vector4\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si este vector es igual a otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em other} & Vector con el que se quiere comparar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true si son iguales, false si no 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_tapioca_1_1_vector4_a9b0206beb96fd86d3dcb35270b680298}\label{class_tapioca_1_1_vector4_a9b0206beb96fd86d3dcb35270b680298} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!w@{w}}
+\index{w@{w}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::w}
+
+\Hypertarget{class_tapioca_1_1_vector4_ae3eda24fbefdacf1317f036b0e02b8c4}\label{class_tapioca_1_1_vector4_ae3eda24fbefdacf1317f036b0e02b8c4} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!x@{x}}
+\index{x@{x}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::x}
+
+\Hypertarget{class_tapioca_1_1_vector4_a92586225e87dd86316f7eb70408c0a11}\label{class_tapioca_1_1_vector4_a92586225e87dd86316f7eb70408c0a11} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!y@{y}}
+\index{y@{y}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::y}
+
+\Hypertarget{class_tapioca_1_1_vector4_ac0ac0f30d76973282b15a22bbe8856db}\label{class_tapioca_1_1_vector4_ac0ac0f30d76973282b15a22bbe8856db} 
+\index{Tapioca::Vector4@{Tapioca::Vector4}!z@{z}}
+\index{z@{z}!Tapioca::Vector4@{Tapioca::Vector4}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily float Tapioca\+::\+Vector4\+::z}
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Core/\+Utilities/\mbox{\hyperlink{_vector4_8h}{Vector4.\+h}}\item 
+src/\+Core/\+Utilities/\mbox{\hyperlink{_vector4_8cpp}{Vector4.\+cpp}}\end{DoxyCompactItemize}

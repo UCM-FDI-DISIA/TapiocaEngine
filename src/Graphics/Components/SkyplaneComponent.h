@@ -7,7 +7,7 @@ class Skyplane;
 class RenderNode;
 class Transform;
 
-/*
+/**
 * @brief Componente que se encarga de crear un plano en el cielo
 */
 class TAPIOCA_API SkyplaneComponent : public Component {
@@ -29,24 +29,24 @@ private:
 public:
     COMPONENT_ID("SkyplaneComponent");
 
-    /*
+    /**
     * @brief Constructor por defecto
     */
     SkyplaneComponent();
 
-    /*
+    /**
     * @brief Destructor por defecto
     */
     ~SkyplaneComponent();
 
-    /*
+    /**
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
     * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
     */
     bool initComponent(const CompMap& variables) override;
-    /*
+    /**
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */

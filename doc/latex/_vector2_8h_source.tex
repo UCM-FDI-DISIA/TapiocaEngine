@@ -1,0 +1,45 @@
+\doxysection{Vector2.\+h}
+\hypertarget{_vector2_8h_source}{}\label{_vector2_8h_source}\index{src/Core/Utilities/Vector2.h@{src/Core/Utilities/Vector2.h}}
+\mbox{\hyperlink{_vector2_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_acdad3f716aafb05a26213e158a6bd2f8}{x}};\ \textcolor{comment}{//\ Coordenada\ x\ del\ vector}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_a208b43492707e5c950003d131b8c9efb}{y}};\ \textcolor{comment}{//\ Coordenada\ y\ del\ vector}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ xy\ =\ 0);}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ magnitudeSquared()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ magnitude()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ getNormalized()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{float}\ normalize();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_ad52381e3d7ed6e0ff344bf1cc8d30887}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(x\ +\ other.\mbox{\hyperlink{class_tapioca_1_1_vector2_acdad3f716aafb05a26213e158a6bd2f8}{x}},\ y\ +\ other.\mbox{\hyperlink{class_tapioca_1_1_vector2_a208b43492707e5c950003d131b8c9efb}{y}});\ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_a2da2937b490d8f2cbde4da9f3053c509}{operator-\/}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(-\/x,\ -\/y);\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_acc2382e722d931ef3142ab09e1c57e4b}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(x\ -\/\ other.\mbox{\hyperlink{class_tapioca_1_1_vector2_acdad3f716aafb05a26213e158a6bd2f8}{x}},\ y\ -\/\ other.\mbox{\hyperlink{class_tapioca_1_1_vector2_a208b43492707e5c950003d131b8c9efb}{y}});\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_aa375855cf89459265f2ed10eaf0538cb}{operator*}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(x\ *\ other,\ y\ *\ other);\ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_a2da654af01f0ccba5665d9884253b6f6}{operator/}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}(x\ /\ other,\ y\ /\ other);\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ \mbox{\hyperlink{class_tapioca_1_1_vector2_a19bb0211801f36762763fd174880ebfb}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other)\ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ *\textcolor{keyword}{this}\ +\ other;\ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ \mbox{\hyperlink{class_tapioca_1_1_vector2_a002547e58a2394508c36163a06d492dd}{operator-\/=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other)\ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ *\textcolor{keyword}{this}\ -\/\ other;\ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ \mbox{\hyperlink{class_tapioca_1_1_vector2_a9ff1d298b597adf7b71d7e4800edb481}{operator*=}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ other)\ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ *\textcolor{keyword}{this}\ *\ other;\ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ \mbox{\hyperlink{class_tapioca_1_1_vector2_af25c40b7914921e0c0e55f12d3fefc5c}{operator/=}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ other)\ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ *\textcolor{keyword}{this}\ /\ other;\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_acfea0b622aeaa862e8c481dc70d73124}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (x\ ==\ other.\mbox{\hyperlink{class_tapioca_1_1_vector2_acdad3f716aafb05a26213e158a6bd2f8}{x}}\ \&\&\ y\ ==\ other.\mbox{\hyperlink{class_tapioca_1_1_vector2_a208b43492707e5c950003d131b8c9efb}{y}});\ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_vector2_aa5b5406d18d4b896280333c9a3e8a71b}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ lerp(\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \textcolor{keyword}{const}\&\ end,\ \textcolor{keywordtype}{float}\ t)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{float}\ distance(\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \textcolor{keyword}{const}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ clamp(\textcolor{keywordtype}{float}\ v,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max);}
+\DoxyCodeLine{00148\ \};}
+\DoxyCodeLine{00149\ \}}
+
+\end{DoxyCode}

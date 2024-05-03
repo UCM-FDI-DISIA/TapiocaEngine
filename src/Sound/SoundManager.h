@@ -11,7 +11,7 @@ class Sound;
 class AudioSource;
 class AudioListener;
 
-/*
+/**
 * @brief Clase que gestiona el audio del juego
 */
 class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
@@ -22,29 +22,29 @@ class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
 
 private:
     AudioListener* al;
-    irrklang::ISoundEngine* soundEngine;
+    irrklang::ISoundEngine* soundEngine; // Puntero al ISoundEngine de irrKlang
 
     // TEMPORAL
     Sound* snd;
     AudioSource* au;
 
-    /*
-    * @brief Constructor de la clase SoundManager
+    /**
+    * @brief Constructor por defecto
     */
     SoundManager();
 
 public:
-    /*
-    * @brief Destructor de la clase SoundManager
+    /**
+    * @brief Destructor por defecto
     */
     ~SoundManager();
 
-    /*
-    * @brief crea un irrKlang device para gestionarlo todo
+    /**
+    * @brief Crea un irrKlang device para gestionarlo todo
     */
     bool init() override;
 
-    /*
+    /**
     * @brief Actualiza el audioListener
     * @params al AudioListener al que se quiere actualizar
     */

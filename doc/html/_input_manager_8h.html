@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Referencia del archivo src/Input/InputManager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_25af87635f61d97ebff867d1c53b4626.html">Input</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Clases</a> &#124;
+<a href="#namespaces">Espacios de nombres</a> &#124;
+<a href="#typedef-members">typedefs</a> &#124;
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo InputManager.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="_singleton_8h_source.html">Utilities/Singleton.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_window_module_8h_source.html">WindowModule.h</a>&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+</div>
+<p><a href="_input_manager_8h_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Clases</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_input_manager.html">Tapioca::InputManager</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Espacios de nombres</h2></td></tr>
+<tr class="memitem:namespace_tapioca" id="r_namespace_tapioca"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html">Tapioca</a></td></tr>
+<tr class="memdesc:namespace_tapioca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+typedefs</h2></td></tr>
+<tr class="memitem:a98cdbe6b27b158b49d877b4dfb80a4b2" id="r_a98cdbe6b27b158b49d877b4dfb80a4b2"><td class="memItemLeft" align="right" valign="top">typedef _SDL_GameController&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98cdbe6b27b158b49d877b4dfb80a4b2">SDL_GameController</a></td></tr>
+<tr class="separator:a98cdbe6b27b158b49d877b4dfb80a4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:aa20f7f23c41ddbba31ff0d473860a11c" id="r_aa20f7f23c41ddbba31ff0d473860a11c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_input_manager.html">InputManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html#aa20f7f23c41ddbba31ff0d473860a11c">Tapioca::inputManager</a> ()</td></tr>
+<tr class="memdesc:aa20f7f23c41ddbba31ff0d473860a11c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Para acortar el metodo <a class="el" href="class_tapioca_1_1_singleton.html#a5fdf6e2b9dae0a4fe65216cea6310d37">InputManager::instance()</a>-&gt;method() a <a class="el" href="namespace_tapioca.html#aa20f7f23c41ddbba31ff0d473860a11c" title="Para acortar el metodo InputManager::instance()-&gt;method() a inputManager().method()">inputManager()</a>.method()  <br /></td></tr>
+<tr class="separator:aa20f7f23c41ddbba31ff0d473860a11c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «typedef»</h2>
+<a id="a98cdbe6b27b158b49d877b4dfb80a4b2" name="a98cdbe6b27b158b49d877b4dfb80a4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98cdbe6b27b158b49d877b4dfb80a4b2">&#9670;&#160;</a></span>SDL_GameController</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef _SDL_GameController <a class="el" href="#a98cdbe6b27b158b49d877b4dfb80a4b2">SDL_GameController</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

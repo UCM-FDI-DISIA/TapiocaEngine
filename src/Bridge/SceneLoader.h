@@ -14,7 +14,7 @@ class WindowManager;
 class GameObject;
 class Component;
 
-/*
+/**
 * @brief Carga las escenas del juego incluyendo los gameobjects y sus componentes
 */
 class TAPIOCA_API SceneLoader : public Singleton<SceneLoader>, public Module {
@@ -28,43 +28,43 @@ private:
     WindowManager* windowManager;   // Puntero a WindowManager
     std::string scenesPath;         // Ruta de las escenas
 
-    /*
+    /**
     * @brief Inicializa la ruta de las escenas
     */
     SceneLoader();
 
-    /*
+    /**
     * @brief Inicializa los punteros a MainLoop, FactoryManager y WindowManager
     * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
-    /*
+    /**
     * @brief Consigue el nombre de la escena inicial a cargar y la carga
     * @return true si se ha inicializado correctamente, false si no
     */
     bool initConfig() override;
 
-    /*
+    /**
     * @brief Carga una escena
     * @param scene Escena a cargar
     * @return true si se ha cargado correctamente, false si no
     */
     bool loadScene(Scene* const scene);
 
-    /*
+    /**
     * @brief Carga los MainLoopobjects de una escena
     * @param scene Escena a la que se le van a cargar los gameobjects
     * @return true si se ha cargado correctamente, false si no
     */
     bool loadGameObjects(Scene* const scene);
-    /*
+    /**
     * @brief Carga un gameobject y sus hijos recursivamente
     * @param gameObject GameObject a cargar, si tiene padre se le asigna
     * @param zIndex Indice de la capa en la que se va a cargar
     * @return true si se ha cargado correctamente, false si no
     */
     bool loadGameObject(GameObject* const gameObject, int& zIndex);
-    /*
+    /**
     * @brief Carga los gameobjects de una escena con un padre
     * @param scene Escena a la que se le van a cargar los gameobjects
     * @param gameObjectList Lista de gameobjects ya cargados a la que se le van a anadir los nuevos
@@ -72,13 +72,13 @@ private:
     */
     bool loadGameObjects(Scene* const scene, std::vector<GameObject*>& gameObjectList);
 
-    /*
+    /**
     * @brief Carga los componentes de un gameobject
     * @param gameObject Gameobject al que se le van a cargar los componentes
     * @return true si se ha cargado correctamente, false si no
 	*/
     bool loadComponents(GameObject* const gameObject);
-    /*
+    /**
     * @brief Carga un componente
     * @param name Nombre del componente
     * @param gameObject Gameobject al que se le va a cargar el componente
@@ -86,7 +86,7 @@ private:
 	*/
     bool loadComponent(std::string const& name, GameObject* const gameObject);
 
-    /*
+    /**
     * @brief Expone los valores de la interfaz grafica
     */
     void exposeUIvalues();
@@ -97,12 +97,12 @@ public:
     SceneLoader& operator=(SceneLoader&) = delete;
     SceneLoader& operator=(SceneLoader&&) = delete;
 
-    /*
+    /**
     * @brief Elimina las escenas, gameobjects y componentes
     */
     ~SceneLoader();
 
-    /*
+    /**
     * @brief Carga la escena solicitada
     * @param sceneName Nombre de escena
     * @param active Si la escena se va a actualizar o no. Por defecto es true

@@ -1,0 +1,183 @@
+\doxysection{Referencia de la clase Tapioca\+::Particle\+System}
+\hypertarget{class_tapioca_1_1_particle_system}{}\label{class_tapioca_1_1_particle_system}\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+
+
+Wrapper de la clase \doxylink{class_tapioca_1_1_particle_system}{Particle\+System} de \doxylink{namespace_ogre}{Ogre}.  
+
+
+
+
+{\ttfamily \#include $<$Particle\+System.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Particle\+System\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_particle_system}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_particle_system_accd00d7c4e4a7ddddfba9c0491448836}{Particle\+System}} (Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr, \mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, std\+::string const \&name, std\+::string const \&template\+Name, const bool emitting=false)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_particle_system}{Particle\+System}. Se crea a partir de un sistema ya creado en un .particle. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_particle_system_a516f5c742ce5a864f2a12b1e1cc4b277}{\texorpdfstring{$\sim$}{\string~}\+Particle\+System}} ()
+\begin{DoxyCompactList}\small\item\em Destructor vacio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_particle_system_a6aa8aa490017355fc6eee631468d45e7}{set\+Emitting}} (const bool emitting)
+\begin{DoxyCompactList}\small\item\em Establece si se emiten particulas o no. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_particle_system_a4a1f3d79a0a504068dcc661894f4a45f}{is\+Emitting}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve si el sistema de particulas esta emitiendo o no. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_particle_system_a3abe68a96ad2105510c6671dac294c6b}{set\+Quota}} (const int q)
+\begin{DoxyCompactList}\small\item\em Establece el numero maximo de particulas que puede haber en el sistema. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_tapioca_1_1_particle_system_aee8fcfae006525c50ceb2bbe0d474918}{get\+Quota}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve el numero maximo de particulas que puede haber en el sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_particle_system_a0b7f17b5136220ea5aeab15c461cb4b6}{fast\+Forward}} (const float time, const float interval)
+\begin{DoxyCompactList}\small\item\em Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_render_object_ab3ed27893516054e73eb2ae73daeb2fb}{\texorpdfstring{$\sim$}{\string~}\+Render\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Se libera del nodo al que pertenecia y se destruye el objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a662aa51e331c05252c29545df14e720a}{set\+Visible}} (const bool enable)
+\begin{DoxyCompactList}\small\item\em Cambia la visibilidad del objeto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_render_object_ab2f0842c78da56eb1d1cbc8685f3fc5e}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la visibilidad del objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Métodos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_abfa33a0b4666638a605196b3cc661853}{get\+Mov\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el movable object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_object_ad2d0833a5f9ae58671a95398cd63f171}{Render\+Object}} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_render_object}{Render\+Object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a6d8060f65c9ec9c550453b594c92a47f}{init}} (Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*}const mov\+Object)
+\begin{DoxyCompactList}\small\item\em Inicializa el movable\+Object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_afd17592781a4015a2fa92be64e69e722}{detach\+From\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Quita este objeto del nodo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_aed9edc57ab6cd785e43ff31d8ce3c570}{scene\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Wrapper de la clase \doxylink{class_tapioca_1_1_particle_system}{Particle\+System} de \doxylink{namespace_ogre}{Ogre}. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_particle_system_accd00d7c4e4a7ddddfba9c0491448836}\label{class_tapioca_1_1_particle_system_accd00d7c4e4a7ddddfba9c0491448836} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\index{ParticleSystem@{ParticleSystem}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{ParticleSystem()}{ParticleSystem()}}
+{\footnotesize\ttfamily Tapioca\+::\+Particle\+System\+::\+Particle\+System (\begin{DoxyParamCaption}\item[{Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const}]{scn\+Mngr,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const}]{node,  }\item[{std\+::string const \&}]{name,  }\item[{std\+::string const \&}]{template\+Name,  }\item[{const bool}]{emitting = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_tapioca_1_1_particle_system}{Particle\+System}. Se crea a partir de un sistema ya creado en un .particle. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em scn\+Mngr} & Scene\+Manager de ogre \\
+\hline
+{\em node} & Nodo para renderizado \\
+\hline
+{\em name} & Nombre del \doxylink{class_tapioca_1_1_particle_system}{Particle\+System} \\
+\hline
+{\em template\+Name} & Nombre del sistema de particulas definido en el .particle \\
+\hline
+{\em emitting} & True si el sistema comienza emitiendo por defecto, false en caso contrario \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_particle_system_a516f5c742ce5a864f2a12b1e1cc4b277}\label{class_tapioca_1_1_particle_system_a516f5c742ce5a864f2a12b1e1cc4b277} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!````~ParticleSystem@{\texorpdfstring{$\sim$}{\string~}ParticleSystem}}
+\index{````~ParticleSystem@{\texorpdfstring{$\sim$}{\string~}ParticleSystem}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ParticleSystem()}{\string~ParticleSystem()}}
+{\footnotesize\ttfamily virtual Tapioca\+::\+Particle\+System\+::\texorpdfstring{$\sim$}{\string~}\+Particle\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destructor vacio. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_particle_system_a0b7f17b5136220ea5aeab15c461cb4b6}\label{class_tapioca_1_1_particle_system_a0b7f17b5136220ea5aeab15c461cb4b6} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!fastForward@{fastForward}}
+\index{fastForward@{fastForward}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{fastForward()}{fastForward()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Particle\+System\+::fast\+Forward (\begin{DoxyParamCaption}\item[{const float}]{time,  }\item[{const float}]{interval }\end{DoxyParamCaption})}
+
+
+
+Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em time} & Tiempo en segundos que se adelantan \\
+\hline
+{\em interval} & Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_particle_system_aee8fcfae006525c50ceb2bbe0d474918}\label{class_tapioca_1_1_particle_system_aee8fcfae006525c50ceb2bbe0d474918} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!getQuota@{getQuota}}
+\index{getQuota@{getQuota}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{getQuota()}{getQuota()}}
+{\footnotesize\ttfamily int Tapioca\+::\+Particle\+System\+::get\+Quota (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Devuelve el numero maximo de particulas que puede haber en el sistema. 
+
+\begin{DoxyReturn}{Devuelve}
+Quota actual del sistema de particulas 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_particle_system_a4a1f3d79a0a504068dcc661894f4a45f}\label{class_tapioca_1_1_particle_system_a4a1f3d79a0a504068dcc661894f4a45f} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!isEmitting@{isEmitting}}
+\index{isEmitting@{isEmitting}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{isEmitting()}{isEmitting()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Particle\+System\+::is\+Emitting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Devuelve si el sistema de particulas esta emitiendo o no. 
+
+\begin{DoxyReturn}{Devuelve}
+True si emite particulas, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_particle_system_a6aa8aa490017355fc6eee631468d45e7}\label{class_tapioca_1_1_particle_system_a6aa8aa490017355fc6eee631468d45e7} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!setEmitting@{setEmitting}}
+\index{setEmitting@{setEmitting}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{setEmitting()}{setEmitting()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Particle\+System\+::set\+Emitting (\begin{DoxyParamCaption}\item[{const bool}]{emitting }\end{DoxyParamCaption})}
+
+
+
+Establece si se emiten particulas o no. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em emitting} & True para que emita particulas, false para que no emita \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_particle_system_a3abe68a96ad2105510c6671dac294c6b}\label{class_tapioca_1_1_particle_system_a3abe68a96ad2105510c6671dac294c6b} 
+\index{Tapioca::ParticleSystem@{Tapioca::ParticleSystem}!setQuota@{setQuota}}
+\index{setQuota@{setQuota}!Tapioca::ParticleSystem@{Tapioca::ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{setQuota()}{setQuota()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Particle\+System\+::set\+Quota (\begin{DoxyParamCaption}\item[{const int}]{q }\end{DoxyParamCaption})}
+
+
+
+Establece el numero maximo de particulas que puede haber en el sistema. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em q} & Quota nueva del sistem a de particulas \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_particle_system_8h}{Particle\+System.\+h}}\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_particle_system_8cpp}{Particle\+System.\+cpp}}\end{DoxyCompactItemize}

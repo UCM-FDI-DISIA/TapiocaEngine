@@ -1,0 +1,84 @@
+\doxysection{Input\+Manager.\+h}
+\hypertarget{_input_manager_8h_source}{}\label{_input_manager_8h_source}\index{src/Input/InputManager.h@{src/Input/InputManager.h}}
+\mbox{\hyperlink{_input_manager_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_singleton_8h}{Utilities/Singleton.h}}>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_window_module_8h}{WindowModule.h}}>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{union\ }SDL\_Event;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{struct\ }\_SDL\_GameController;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{typedef}\ \_SDL\_GameController\ \mbox{\hyperlink{_input_manager_8h_a98cdbe6b27b158b49d877b4dfb80a4b2}{SDL\_GameController}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_input_manager}{InputManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}<InputManager>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_window_module}{WindowModule}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton<InputManager>}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ DEFAULT\_DEADZONE\ =\ 1000;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MOUSE\_MOTION\_VALUE\ =\ -\/2;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MOUSE\_WHEEL\_VALUE\ =\ -\/3;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::InputManager::mousePos'\ :}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ struct\ 'std::pair<int32\_t,int32\_t>'\ necesita\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ los\ clientes\ de\ class\ 'Tapioca::InputManager'}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::InputManager::deadZones'\ :}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unordered\_map<int,int,std::hash<int>,std::equal\_to<int>,std::allocator<std::pair<const\ int,int>>>'}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ necesita\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::InputManager'}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::InputManager::controllers'\ :}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unordered\_map<int,SDL\_GameController\ *,std::hash<int>,std::equal\_to<int>,}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ std::allocator<std::pair<const\ int,SDL\_GameController\ *>>>'\ necesita}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::InputManager'}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::InputManager::inputMap'\ :}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unordered\_map<std::string,std::unordered\_map<int,std::vector<std::string,}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ std::allocator<std::string>>,std::hash<int>,std::equal\_to<int>,std::allocator<std::pair<const\ int,}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ std::vector<std::string,std::allocator<std::string>>>>>,std::hash<std::string>,std::equal\_to<std::string>,}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ std::allocator<std::pair<const\ std::string,std::unordered\_map<int,std::vector<std::string,}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ std::allocator<std::string>>,std::hash<int>,std::equal\_to<int>,std::allocator<std::pair<const\ int,}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ std::vector<std::string,std::allocator<std::string>>>>>>>>'\ necesita}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::InputManager'}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ \ \ \ \ std::pair<int32\_t,\ int32\_t>\ mousePos;\ \ \ \textcolor{comment}{//\ Posicion\ del\ raton}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ std::unordered\_map<int,\ int>\ deadZones;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Deadzones\ de\ los\ mandos}}
+\DoxyCodeLine{00049\ \ \ \ \ std::unordered\_map<int,\ SDL\_GameController*>\ controllers;\ \ \ \textcolor{comment}{//\ Mandos}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ los\ controles}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ (se\ agrupan\ por\ tipo\ de\ evento\ de\ SDL\ que\ los\ produce.\ Luego,\ segun\ el\ evento,\ se\ agrupan}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ por\ valor\ de\ la\ tecla/boton/etc.,\ y\ ya\ cada\ uno\ guarda\ un\ vector\ con\ todos\ los\ eventos\ que\ envia)}}
+\DoxyCodeLine{00054\ \ \ \ \ std::unordered\_map<std::string,\ std::unordered\_map<int,\ std::vector<std::string>>>\ inputMap;}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_input_manager}{InputManager}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ initControllers();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ addController(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ removeController(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ sendEvent(std::string\ \textcolor{keyword}{const}\&\ eventName,\ SDL\_Event\ \textcolor{keyword}{const}\&\ event,\ \textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\&\ value);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ init()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_tapioca_1_1_input_manager}{\string~InputManager}}();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ handleEvents(\textcolor{keyword}{const}\ SDL\_Event\&\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a2d8fe2a1c21488fb443cd4a8b8a528aa}{mapInput}}(std::string\ \textcolor{keyword}{const}\&\ evt,\ std::string\ \textcolor{keyword}{const}\&\ src,\ \textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\&\ ctrl);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::pair<int32\_t,\ int32\_t>\&\ \mbox{\hyperlink{class_tapioca_1_1_input_manager_ac9898753de4956e2212969ebcae6eec1}{getMousePos}}()\ \{\ \textcolor{keywordflow}{return}\ mousePos;\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_input_manager_af1744f5eafa387fd109e5ae9df62dc6d}{isControllerConnected}}()\ \{\ \textcolor{keywordflow}{return}\ !controllers.empty();\ \}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_input_manager}{InputManager}}\&\ \mbox{\hyperlink{namespace_tapioca_aa20f7f23c41ddbba31ff0d473860a11c}{inputManager}}()\ \{\ \textcolor{keywordflow}{return}\ *\mbox{\hyperlink{class_tapioca_1_1_singleton_a5fdf6e2b9dae0a4fe65216cea6310d37}{InputManager::instance}}();\ \}}
+\DoxyCodeLine{00128\ \}}
+
+\end{DoxyCode}

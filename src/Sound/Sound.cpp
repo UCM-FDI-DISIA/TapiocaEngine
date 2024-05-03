@@ -3,24 +3,15 @@
 #include <irrKlang.h>
 
 namespace Tapioca {
-Sound::Sound(std::string source) {
+Sound::Sound(std::string sourceFile) : source(nullptr), sourceFile(sourceFile), length(0) {
+    soundManager = Tapioca::SoundManager::instance();
+    if (soundManager != nullptr) {
+        source = soundManager->soundEngine->addSoundSourceFromFile(sourceFile.c_str(), irrklang::ESM_AUTO_DETECT, true);
 
-    mysource = nullptr;
-    sourceFile = source;
-
-    //is3D = load3D; ira al audio source
-
-    //irrKlang se asegura de solo cargar los arvhivos con un mismo nombre 1 sola vez
-
-    mysource = Tapioca::SoundManager::instance()->soundEngine->addSoundSourceFromFile(source.c_str(),
-      
-                                                                                irrklang::ESM_AUTO_DETECT, true);
-    
-    //si el sonido ya se ha cargado
-    if (mysource == nullptr) {
-        mysource = Tapioca::SoundManager::instance()->soundEngine->getSoundSource(source.c_str());
+        // Si el sonido ya se ha cargado
+        if (source == nullptr)
+            source = Tapioca::SoundManager::instance()->soundEngine->getSoundSource(sourceFile.c_str());
+        length = source->getPlayLength();
     }
-    length = mysource->getPlayLength();
 }
-
 }

@@ -1,0 +1,138 @@
+\doxysection{Referencia de la clase Tapioca\+::Skyplane}
+\hypertarget{class_tapioca_1_1_skyplane}{}\label{class_tapioca_1_1_skyplane}\index{Tapioca::Skyplane@{Tapioca::Skyplane}}
+
+
+Wrapper de la clase \doxylink{class_tapioca_1_1_skyplane}{Skyplane} de \doxylink{namespace_ogre}{Ogre}.  
+
+
+
+
+{\ttfamily \#include $<$Skyplane.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Skyplane\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_skyplane}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_skyplane_aa5a9769c071b4b9d8a488d714be15f3c}{Skyplane}} (Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr, \mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, Ogre\+::\+Mesh\+Manager \texorpdfstring{$\ast$}{*}const msh\+Mgr, std\+::string const \&material\+Name, std\+::string const \&skyplane\+Name, const bool enable=true, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} rk\+Normal=\{0.\+0f, 0.\+0f, 1.\+0f\}, const float f\+Constant=-\/20.\+0f, const float scale=0.\+3f, const float tiling=1.\+0f, const bool draw\+First=true, const float bow=1.\+0f, const int xsegments=100, const int ysegments=100)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_skyplane}{Skyplane}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_skyplane_adc428ecac14520947faf268bc9a75270}{set\+Enable}} (const bool enable)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el \doxylink{class_tapioca_1_1_skybox}{Skybox}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_skyplane_a68a8b064eccae3148535817df2b3bd93}{is\+Enabled}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve si esta activo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_render_object_ab3ed27893516054e73eb2ae73daeb2fb}{\texorpdfstring{$\sim$}{\string~}\+Render\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Se libera del nodo al que pertenecia y se destruye el objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a662aa51e331c05252c29545df14e720a}{set\+Visible}} (const bool enable)
+\begin{DoxyCompactList}\small\item\em Cambia la visibilidad del objeto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_render_object_ab2f0842c78da56eb1d1cbc8685f3fc5e}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la visibilidad del objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Métodos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_abfa33a0b4666638a605196b3cc661853}{get\+Mov\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el movable object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_object_ad2d0833a5f9ae58671a95398cd63f171}{Render\+Object}} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_render_object}{Render\+Object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a6d8060f65c9ec9c550453b594c92a47f}{init}} (Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*}const mov\+Object)
+\begin{DoxyCompactList}\small\item\em Inicializa el movable\+Object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_afd17592781a4015a2fa92be64e69e722}{detach\+From\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Quita este objeto del nodo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_aed9edc57ab6cd785e43ff31d8ce3c570}{scene\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Wrapper de la clase \doxylink{class_tapioca_1_1_skyplane}{Skyplane} de \doxylink{namespace_ogre}{Ogre}. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_skyplane_aa5a9769c071b4b9d8a488d714be15f3c}\label{class_tapioca_1_1_skyplane_aa5a9769c071b4b9d8a488d714be15f3c} 
+\index{Tapioca::Skyplane@{Tapioca::Skyplane}!Skyplane@{Skyplane}}
+\index{Skyplane@{Skyplane}!Tapioca::Skyplane@{Tapioca::Skyplane}}
+\doxysubsubsection{\texorpdfstring{Skyplane()}{Skyplane()}}
+{\footnotesize\ttfamily Tapioca\+::\+Skyplane\+::\+Skyplane (\begin{DoxyParamCaption}\item[{Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const}]{scn\+Mngr,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const}]{node,  }\item[{Ogre\+::\+Mesh\+Manager \texorpdfstring{$\ast$}{*}const}]{msh\+Mgr,  }\item[{std\+::string const \&}]{material\+Name,  }\item[{std\+::string const \&}]{skyplane\+Name,  }\item[{const bool}]{enable = {\ttfamily true},  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{rk\+Normal = {\ttfamily \{0.0f,~0.0f,~1.0f\}},  }\item[{const float}]{f\+Constant = {\ttfamily -\/20.0f},  }\item[{const float}]{scale = {\ttfamily 0.3f},  }\item[{const float}]{tiling = {\ttfamily 1.0f},  }\item[{const bool}]{draw\+First = {\ttfamily true},  }\item[{const float}]{bow = {\ttfamily 1.0f},  }\item[{const int}]{xsegments = {\ttfamily 100},  }\item[{const int}]{ysegments = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_tapioca_1_1_skyplane}{Skyplane}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em scn\+Mngr} & Puntero al manager de escenas de ogre \\
+\hline
+{\em node} & Nodo de renderizado al que se asocia el skyplane \\
+\hline
+{\em msh\+Mgr} & Puntero al manager de mallas de ogre \\
+\hline
+{\em material\+Name} & Nombre del material \\
+\hline
+{\em skyplane\+Name} & Nombre del skyplane \\
+\hline
+{\em enable} & True si esta activo, false en caso contrario \\
+\hline
+{\em rk\+Normal} & Vector normal del plano \\
+\hline
+{\em f\+Constant} & Distancia que se desplaza el plano en la direccion de la normal \\
+\hline
+{\em scale} & Escala del skyplane \\
+\hline
+{\em tiling} & Tiling del skyplane \\
+\hline
+{\em draw\+First} & Indica si se dibuja primero \\
+\hline
+{\em bow} & Curvatura del skyplane \\
+\hline
+{\em xsegments} & Numero de segmentos en x \\
+\hline
+{\em ysegments} & Numero de segmentos en y \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_skyplane_a68a8b064eccae3148535817df2b3bd93}\label{class_tapioca_1_1_skyplane_a68a8b064eccae3148535817df2b3bd93} 
+\index{Tapioca::Skyplane@{Tapioca::Skyplane}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!Tapioca::Skyplane@{Tapioca::Skyplane}}
+\doxysubsubsection{\texorpdfstring{isEnabled()}{isEnabled()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Skyplane\+::is\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Devuelve si esta activo. 
+
+\begin{DoxyReturn}{Devuelve}
+True si esta activo, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_skyplane_adc428ecac14520947faf268bc9a75270}\label{class_tapioca_1_1_skyplane_adc428ecac14520947faf268bc9a75270} 
+\index{Tapioca::Skyplane@{Tapioca::Skyplane}!setEnable@{setEnable}}
+\index{setEnable@{setEnable}!Tapioca::Skyplane@{Tapioca::Skyplane}}
+\doxysubsubsection{\texorpdfstring{setEnable()}{setEnable()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Skyplane\+::set\+Enable (\begin{DoxyParamCaption}\item[{const bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Activa o desactiva el \doxylink{class_tapioca_1_1_skybox}{Skybox}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em enable} & True si se quiere activar, false en caso contrario \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_skyplane_8h}{Skyplane.\+h}}\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_skyplane_8cpp}{Skyplane.\+cpp}}\end{DoxyCompactItemize}

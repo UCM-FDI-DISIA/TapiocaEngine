@@ -1,0 +1,167 @@
+\doxysection{Referencia de la clase Tapioca\+::Audio\+Source}
+\hypertarget{class_tapioca_1_1_audio_source}{}\label{class_tapioca_1_1_audio_source}\index{Tapioca::AudioSource@{Tapioca::AudioSource}}
+
+
+Clase que representa una fuente de audio, ya sea 2D o 3D.  
+
+
+
+
+{\ttfamily \#include $<$Audio\+Source.\+h$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_audio_source_aa445932df71fce69df530240bc2c158f}{Audio\+Source}} (\mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}} \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}}, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos, bool ispaused=true, bool islooped=false)
+\begin{DoxyCompactList}\small\item\em Constructor para una fuente de sonido espacializada en 3D. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_audio_source_a2a429327e8aa5261beeda56450b174f3}{Audio\+Source}} (\mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}} \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}}, bool ispaused=true, bool islooped=false)
+\begin{DoxyCompactList}\small\item\em Constructor para una fuente de audio 2D. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_audio_source_a6f55b14274afa5c5bd2c62434cb08ca2}{\texorpdfstring{$\sim$}{\string~}\+Audio\+Source}} ()
+\begin{DoxyCompactList}\small\item\em Destructor vacio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a951d44f46cffeff9f6f1e774f9d91448}{set\+Paused}} (bool p)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a0c7c6b60f0d67590d155f6e7f8a6a7c9}{set\+Atenuation}} (float min\+Dist, float max\+Dist)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_ab96c5d28495cbf778492299023b69fdf}{set\+Pan}} (float p)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a4c33fae0d5eecae09f668cf657d2896e}{set\+Speed}} (float s)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_af5a8ff04fa74b8fb67c4544ddc2b7a85}{set\+Looped}} (bool l)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a3e81a76f062538049994071fb05c84ce}{set\+Volume}} (float v)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a334ccc9fc2148e727e3e2e8ad1138bdd}{set\+Position}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} p)
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a67767cfd7dffd181590b567e2c2580b9}{play\+Once}} (bool spatialised)
+\begin{DoxyCompactList}\small\item\em Reproduce el sonido una vez desde el principio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_ac62228694c821b31685c2321bbf72aca}{play\+Looped}} (bool spatialised)
+\begin{DoxyCompactList}\small\item\em Reproduce el sonido en bucle desde el principio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_audio_source_a1145d52b2e16a9f2f312d8ba5d5f9a49}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Detiene el sonido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que representa una fuente de audio, ya sea 2D o 3D. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_audio_source_aa445932df71fce69df530240bc2c158f}\label{class_tapioca_1_1_audio_source_aa445932df71fce69df530240bc2c158f} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!AudioSource@{AudioSource}}
+\index{AudioSource@{AudioSource}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{AudioSource()}{AudioSource()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Tapioca\+::\+Audio\+Source\+::\+Audio\+Source (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}}}]{sound,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos,  }\item[{bool}]{ispaused = {\ttfamily true},  }\item[{bool}]{islooped = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructor para una fuente de sonido espacializada en 3D. 
+
+\Hypertarget{class_tapioca_1_1_audio_source_a2a429327e8aa5261beeda56450b174f3}\label{class_tapioca_1_1_audio_source_a2a429327e8aa5261beeda56450b174f3} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!AudioSource@{AudioSource}}
+\index{AudioSource@{AudioSource}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{AudioSource()}{AudioSource()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Tapioca\+::\+Audio\+Source\+::\+Audio\+Source (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}}}]{sound,  }\item[{bool}]{ispaused = {\ttfamily true},  }\item[{bool}]{islooped = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructor para una fuente de audio 2D. 
+
+\Hypertarget{class_tapioca_1_1_audio_source_a6f55b14274afa5c5bd2c62434cb08ca2}\label{class_tapioca_1_1_audio_source_a6f55b14274afa5c5bd2c62434cb08ca2} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!````~AudioSource@{\texorpdfstring{$\sim$}{\string~}AudioSource}}
+\index{````~AudioSource@{\texorpdfstring{$\sim$}{\string~}AudioSource}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AudioSource()}{\string~AudioSource()}}
+{\footnotesize\ttfamily Tapioca\+::\+Audio\+Source\+::\texorpdfstring{$\sim$}{\string~}\+Audio\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor vacio. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_audio_source_ac62228694c821b31685c2321bbf72aca}\label{class_tapioca_1_1_audio_source_ac62228694c821b31685c2321bbf72aca} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!playLooped@{playLooped}}
+\index{playLooped@{playLooped}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{playLooped()}{playLooped()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::play\+Looped (\begin{DoxyParamCaption}\item[{bool}]{spatialised }\end{DoxyParamCaption})}
+
+
+
+Reproduce el sonido en bucle desde el principio. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em spatialised} & indica si el sonido es 3D o 2D \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_audio_source_a67767cfd7dffd181590b567e2c2580b9}\label{class_tapioca_1_1_audio_source_a67767cfd7dffd181590b567e2c2580b9} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!playOnce@{playOnce}}
+\index{playOnce@{playOnce}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{playOnce()}{playOnce()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::play\+Once (\begin{DoxyParamCaption}\item[{bool}]{spatialised }\end{DoxyParamCaption})}
+
+
+
+Reproduce el sonido una vez desde el principio. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em spatialised} & indica si el sonido es 3D o 2D \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_audio_source_a0c7c6b60f0d67590d155f6e7f8a6a7c9}\label{class_tapioca_1_1_audio_source_a0c7c6b60f0d67590d155f6e7f8a6a7c9} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setAtenuation@{setAtenuation}}
+\index{setAtenuation@{setAtenuation}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setAtenuation()}{setAtenuation()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Atenuation (\begin{DoxyParamCaption}\item[{float}]{min\+Dist,  }\item[{float}]{max\+Dist }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_af5a8ff04fa74b8fb67c4544ddc2b7a85}\label{class_tapioca_1_1_audio_source_af5a8ff04fa74b8fb67c4544ddc2b7a85} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setLooped@{setLooped}}
+\index{setLooped@{setLooped}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setLooped()}{setLooped()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Looped (\begin{DoxyParamCaption}\item[{bool}]{l }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_ab96c5d28495cbf778492299023b69fdf}\label{class_tapioca_1_1_audio_source_ab96c5d28495cbf778492299023b69fdf} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setPan@{setPan}}
+\index{setPan@{setPan}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setPan()}{setPan()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Pan (\begin{DoxyParamCaption}\item[{float}]{p }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_a951d44f46cffeff9f6f1e774f9d91448}\label{class_tapioca_1_1_audio_source_a951d44f46cffeff9f6f1e774f9d91448} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setPaused@{setPaused}}
+\index{setPaused@{setPaused}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setPaused()}{setPaused()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Paused (\begin{DoxyParamCaption}\item[{bool}]{p }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_a334ccc9fc2148e727e3e2e8ad1138bdd}\label{class_tapioca_1_1_audio_source_a334ccc9fc2148e727e3e2e8ad1138bdd} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{p }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_a4c33fae0d5eecae09f668cf657d2896e}\label{class_tapioca_1_1_audio_source_a4c33fae0d5eecae09f668cf657d2896e} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{s }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_a3e81a76f062538049994071fb05c84ce}\label{class_tapioca_1_1_audio_source_a3e81a76f062538049994071fb05c84ce} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!setVolume@{setVolume}}
+\index{setVolume@{setVolume}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{setVolume()}{setVolume()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::set\+Volume (\begin{DoxyParamCaption}\item[{float}]{v }\end{DoxyParamCaption})}
+
+\Hypertarget{class_tapioca_1_1_audio_source_a1145d52b2e16a9f2f312d8ba5d5f9a49}\label{class_tapioca_1_1_audio_source_a1145d52b2e16a9f2f312d8ba5d5f9a49} 
+\index{Tapioca::AudioSource@{Tapioca::AudioSource}!stop@{stop}}
+\index{stop@{stop}!Tapioca::AudioSource@{Tapioca::AudioSource}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Audio\+Source\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Detiene el sonido. 
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Sound/\mbox{\hyperlink{_audio_source_8h}{Audio\+Source.\+h}}\item 
+src/\+Sound/\mbox{\hyperlink{_audio_source_8cpp}{Audio\+Source.\+cpp}}\end{DoxyCompactItemize}

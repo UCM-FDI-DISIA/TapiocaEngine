@@ -1,0 +1,34 @@
+\doxysection{Light\+Rectlight.\+h}
+\hypertarget{_light_rectlight_8h_source}{}\label{_light_rectlight_8h_source}\index{src/Graphics/Utilities/LightRectlight.h@{src/Graphics/Utilities/LightRectlight.h}}
+\mbox{\hyperlink{_light_rectlight_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_light_8h}{Light.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }SceneManager;}
+\DoxyCodeLine{00006\ \}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Vector4;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }Vector3;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_light_rectlight}{LightRectlight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_light}{Light}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_rectlight}{LightRectlight}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \textcolor{keyword}{const}\ color,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ setSize(\textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ setDirection(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttenuation(\textcolor{keywordtype}{float}\ maximumRange,\ \textcolor{keywordtype}{float}\ constant,\ \textcolor{keywordtype}{float}\ linear,\ \textcolor{keywordtype}{float}\ quadratic);}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ \}}
+
+\end{DoxyCode}

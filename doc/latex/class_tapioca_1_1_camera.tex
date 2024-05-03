@@ -1,0 +1,229 @@
+\doxysection{Referencia de la clase Tapioca\+::Camera}
+\hypertarget{class_tapioca_1_1_camera}{}\label{class_tapioca_1_1_camera}\index{Tapioca::Camera@{Tapioca::Camera}}
+
+
+Wrapper de la clase \doxylink{class_tapioca_1_1_camera}{Camera} de \doxylink{namespace_ogre}{Ogre}.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Camera\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_camera}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_aeefc26530f02472dc42ce9c03ba32415}{look\+At}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} target\+To\+Look)
+\begin{DoxyCompactList}\small\item\em Cambia la direccion a la que mira la camara. Por debajo funciona como un set\+Direction, por lo tanto, rota la camara (en este caso en torno al espacio mundial, pero se podria cambiar) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_a36ad6130353bb4b1c90527142cd176b5}{set\+Direction}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} dir)
+\begin{DoxyCompactList}\small\item\em Cambia la direccion de la camara. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_a72297a4ae92a97d3536304dbcc671d48}{set\+Near\+Clip\+Distance}} (const float dist)
+\begin{DoxyCompactList}\small\item\em Cambia el valor del rectangulo cercano que define el frustum. Se indica la distancia. Cuanto mas lejos este el near plane y mayor sea la distancia entre el near plane y el far plane, menos preciso sera el buffer Z de profundidad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_a7051d5b841979e987d75af8a5f06099e}{set\+Far\+Clip\+Distance}} (const float dist)
+\begin{DoxyCompactList}\small\item\em Cambia el valor del rectangulo lejano que define el frustum. Si es muy grande la distancia, puede haber problemas de tartamudeo (por precision), por ejemplo con las luces o sombras si se encuentran muy lejos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_aa51b0103ec3b0c69744f26173715183d}{set\+FOVYRadians}} (const float radians)
+\begin{DoxyCompactList}\small\item\em Cambia el valor del rectangulo cercano que define el frustum. Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos, el angulo que forma con la posicion de la camara es mayor o menor, respectivamente Se puede indicar este angulo para ajustar la distancia del near plane X ej, un angulo de 90� corresponde con que tenemos una vision de 90� en el eje vertical (el horizontal se calcula solo, a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_a09090e4bdb7f8ad4db70062bb50e14e3}{set\+FOVYDegrees}} (const float degrees)
+\begin{DoxyCompactList}\small\item\em Cambia el valor del rectangulo cercano que define el frustum. Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos, el angulo que forma con la posicion de la camara es mayor o menor, respectivamente Se puede indicar este angulo para ajustar la distancia del near plane X ej, un angulo de 90� corresponde con que tenemos una vision de 90� en el eje vertical (el horizontal se calcula solo, a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_camera_a349e76e51c15c7f06c6fbcba4c23f6fc}{set\+Aspect\+Ratio}} (const float aspect\+Ratio)
+\begin{DoxyCompactList}\small\item\em Cambia el valor de la relacion de aspecto que tiene la camara. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_camera_aa47197b4cd489a7d8b4495a43d4a7361}{get\+Near\+Clip\+Distance}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el valor del rectangulo cercano que define el frustum. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_camera_a61b9a08f3113ebc17ccecccae9c78830}{get\+Far\+Clip\+Distance}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el valor del rectangulo lejano que define el frustum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_render_object_ab3ed27893516054e73eb2ae73daeb2fb}{\texorpdfstring{$\sim$}{\string~}\+Render\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Se libera del nodo al que pertenecia y se destruye el objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a662aa51e331c05252c29545df14e720a}{set\+Visible}} (const bool enable)
+\begin{DoxyCompactList}\small\item\em Cambia la visibilidad del objeto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_render_object_ab2f0842c78da56eb1d1cbc8685f3fc5e}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la visibilidad del objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Camera \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_camera_a4af2506c954cd1a403cb31afe8526aae}{get\+Camera}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve un puntero a la camara de \doxylink{namespace_ogre}{Ogre}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_abfa33a0b4666638a605196b3cc661853}{get\+Mov\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el movable object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_object_ad2d0833a5f9ae58671a95398cd63f171}{Render\+Object}} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_render_object}{Render\+Object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a6d8060f65c9ec9c550453b594c92a47f}{init}} (Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*}const mov\+Object)
+\begin{DoxyCompactList}\small\item\em Inicializa el movable\+Object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_afd17592781a4015a2fa92be64e69e722}{detach\+From\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Quita este objeto del nodo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_aed9edc57ab6cd785e43ff31d8ce3c570}{scene\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Wrapper de la clase \doxylink{class_tapioca_1_1_camera}{Camera} de \doxylink{namespace_ogre}{Ogre}. 
+
+El frustum representa el espacio en el mundo al alcance de nuestra vision Se trata de una piramide truncada definida por un plano mas cercano (near\+Plano, que corresponde con la ventana grafica y su tam no cambia) y el plano mas lejano (far\+Plane) Se puede renderizar todo y mostrar solo lo que esta en esta piramida o solo renderizar lo que hay dentro (frustum culling) 
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_camera_a4af2506c954cd1a403cb31afe8526aae}\label{class_tapioca_1_1_camera_a4af2506c954cd1a403cb31afe8526aae} 
+\index{Tapioca::Camera@{Tapioca::Camera}!getCamera@{getCamera}}
+\index{getCamera@{getCamera}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{getCamera()}{getCamera()}}
+{\footnotesize\ttfamily Ogre\+::\+Camera \texorpdfstring{$\ast$}{*} Tapioca\+::\+Camera\+::get\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Devuelve un puntero a la camara de \doxylink{namespace_ogre}{Ogre}. 
+
+\begin{DoxyReturn}{Devuelve}
+Puntero a la camara de \doxylink{namespace_ogre}{Ogre} 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_camera_a61b9a08f3113ebc17ccecccae9c78830}\label{class_tapioca_1_1_camera_a61b9a08f3113ebc17ccecccae9c78830} 
+\index{Tapioca::Camera@{Tapioca::Camera}!getFarClipDistance@{getFarClipDistance}}
+\index{getFarClipDistance@{getFarClipDistance}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{getFarClipDistance()}{getFarClipDistance()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Camera\+::get\+Far\+Clip\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el valor del rectangulo lejano que define el frustum. 
+
+\begin{DoxyReturn}{Devuelve}
+Distancia a la que se encuentra el segundo rectangulo que define el frustum 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_camera_aa47197b4cd489a7d8b4495a43d4a7361}\label{class_tapioca_1_1_camera_aa47197b4cd489a7d8b4495a43d4a7361} 
+\index{Tapioca::Camera@{Tapioca::Camera}!getNearClipDistance@{getNearClipDistance}}
+\index{getNearClipDistance@{getNearClipDistance}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{getNearClipDistance()}{getNearClipDistance()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Camera\+::get\+Near\+Clip\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el valor del rectangulo cercano que define el frustum. 
+
+\begin{DoxyReturn}{Devuelve}
+Distancia a la que se encuentra el primer rectangulo que define el frustum 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_camera_aeefc26530f02472dc42ce9c03ba32415}\label{class_tapioca_1_1_camera_aeefc26530f02472dc42ce9c03ba32415} 
+\index{Tapioca::Camera@{Tapioca::Camera}!lookAt@{lookAt}}
+\index{lookAt@{lookAt}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{lookAt()}{lookAt()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::look\+At (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{target\+To\+Look }\end{DoxyParamCaption})}
+
+
+
+Cambia la direccion a la que mira la camara. Por debajo funciona como un set\+Direction, por lo tanto, rota la camara (en este caso en torno al espacio mundial, pero se podria cambiar) 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em target\+To\+Look} & Direccion a la que se quiere que mire la camara \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_camera_a349e76e51c15c7f06c6fbcba4c23f6fc}\label{class_tapioca_1_1_camera_a349e76e51c15c7f06c6fbcba4c23f6fc} 
+\index{Tapioca::Camera@{Tapioca::Camera}!setAspectRatio@{setAspectRatio}}
+\index{setAspectRatio@{setAspectRatio}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{setAspectRatio()}{setAspectRatio()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::set\+Aspect\+Ratio (\begin{DoxyParamCaption}\item[{const float}]{aspect\+Ratio }\end{DoxyParamCaption})}
+
+
+
+Cambia el valor de la relacion de aspecto que tiene la camara. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em aspect\+Ratio} & Relacion de aspecto a la que se quiere poner de la camara \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_camera_a36ad6130353bb4b1c90527142cd176b5}\label{class_tapioca_1_1_camera_a36ad6130353bb4b1c90527142cd176b5} 
+\index{Tapioca::Camera@{Tapioca::Camera}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::set\+Direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{dir }\end{DoxyParamCaption})}
+
+
+
+Cambia la direccion de la camara. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em target\+To\+Look} & Direccion a la que se quiere que poner la camara \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_camera_a7051d5b841979e987d75af8a5f06099e}\label{class_tapioca_1_1_camera_a7051d5b841979e987d75af8a5f06099e} 
+\index{Tapioca::Camera@{Tapioca::Camera}!setFarClipDistance@{setFarClipDistance}}
+\index{setFarClipDistance@{setFarClipDistance}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{setFarClipDistance()}{setFarClipDistance()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::set\+Far\+Clip\+Distance (\begin{DoxyParamCaption}\item[{const float}]{dist }\end{DoxyParamCaption})}
+
+
+
+Cambia el valor del rectangulo lejano que define el frustum. Si es muy grande la distancia, puede haber problemas de tartamudeo (por precision), por ejemplo con las luces o sombras si se encuentran muy lejos. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em dist} & Distancia a la que se quiere poner de la camara el rectangulo. Si es 0 es infinita \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_camera_a09090e4bdb7f8ad4db70062bb50e14e3}\label{class_tapioca_1_1_camera_a09090e4bdb7f8ad4db70062bb50e14e3} 
+\index{Tapioca::Camera@{Tapioca::Camera}!setFOVYDegrees@{setFOVYDegrees}}
+\index{setFOVYDegrees@{setFOVYDegrees}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{setFOVYDegrees()}{setFOVYDegrees()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::set\+FOVYDegrees (\begin{DoxyParamCaption}\item[{const float}]{degrees }\end{DoxyParamCaption})}
+
+
+
+Cambia el valor del rectangulo cercano que define el frustum. Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos, el angulo que forma con la posicion de la camara es mayor o menor, respectivamente Se puede indicar este angulo para ajustar la distancia del near plane X ej, un angulo de 90� corresponde con que tenemos una vision de 90� en el eje vertical (el horizontal se calcula solo, a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane) 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em radians} & Angulo en grados al que se cambia el trangulo que forma la camara con el rectangulo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_camera_aa51b0103ec3b0c69744f26173715183d}\label{class_tapioca_1_1_camera_aa51b0103ec3b0c69744f26173715183d} 
+\index{Tapioca::Camera@{Tapioca::Camera}!setFOVYRadians@{setFOVYRadians}}
+\index{setFOVYRadians@{setFOVYRadians}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{setFOVYRadians()}{setFOVYRadians()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::set\+FOVYRadians (\begin{DoxyParamCaption}\item[{const float}]{radians }\end{DoxyParamCaption})}
+
+
+
+Cambia el valor del rectangulo cercano que define el frustum. Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos, el angulo que forma con la posicion de la camara es mayor o menor, respectivamente Se puede indicar este angulo para ajustar la distancia del near plane X ej, un angulo de 90� corresponde con que tenemos una vision de 90� en el eje vertical (el horizontal se calcula solo, a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane) 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em radians} & Angulo en radianes al que se cambia el trangulo que forma la camara con el rectangulo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_camera_a72297a4ae92a97d3536304dbcc671d48}\label{class_tapioca_1_1_camera_a72297a4ae92a97d3536304dbcc671d48} 
+\index{Tapioca::Camera@{Tapioca::Camera}!setNearClipDistance@{setNearClipDistance}}
+\index{setNearClipDistance@{setNearClipDistance}!Tapioca::Camera@{Tapioca::Camera}}
+\doxysubsubsection{\texorpdfstring{setNearClipDistance()}{setNearClipDistance()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Camera\+::set\+Near\+Clip\+Distance (\begin{DoxyParamCaption}\item[{const float}]{dist }\end{DoxyParamCaption})}
+
+
+
+Cambia el valor del rectangulo cercano que define el frustum. Se indica la distancia. Cuanto mas lejos este el near plane y mayor sea la distancia entre el near plane y el far plane, menos preciso sera el buffer Z de profundidad. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em dist} & Distancia a la que se quiere poner de la camara el rectangulo \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_camera_8h}{Camera.\+h}}\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_camera_8cpp}{Camera.\+cpp}}\end{DoxyCompactItemize}

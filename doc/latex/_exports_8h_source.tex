@@ -1,0 +1,40 @@
+\doxysection{Exports.\+h}
+\hypertarget{_exports_8h_source}{}\label{_exports_8h_source}\index{src/Exports/Exports.h@{src/Exports/Exports.h}}
+\mbox{\hyperlink{_exports_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }MainLoop;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }WindowManager;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }InputManager;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }FactoryManager;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }SceneLoader;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }PhysicsManager;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }UIManager;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }SoundManager;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }LuaManager;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{MainLoop}}*\ \mbox{\hyperlink{namespace_tapioca_aee221b2de416281b1f7bda9823acd63b}{mainLoop}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ MainLoop}}
+\DoxyCodeLine{00017\ \mbox{\hyperlink{class_tapioca_1_1_window_manager}{WindowManager}}*\ \mbox{\hyperlink{namespace_tapioca_aeca1d9808d3f5410eaaecdecf591c835}{window}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ WindowManager}}
+\DoxyCodeLine{00018\ \mbox{\hyperlink{class_tapioca_1_1_input_manager}{InputManager}}*\ \mbox{\hyperlink{namespace_tapioca_a4ea6e8a78ba288b982640bdc141be80a}{input}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ InputManager}}
+\DoxyCodeLine{00019\ \mbox{\hyperlink{class_tapioca_1_1_factory_manager}{FactoryManager}}*\ \mbox{\hyperlink{namespace_tapioca_a47f590853fa1ba50e268876737658141}{factories}};\ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ FactoryManager}}
+\DoxyCodeLine{00020\ \mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}*\ \mbox{\hyperlink{namespace_tapioca_a8091c5c547cbdb3cb13ef937770d5c63}{scenes}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ SceneLoader}}
+\DoxyCodeLine{00021\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}*\ \mbox{\hyperlink{namespace_tapioca_a9e4629da607fe1f8ed0634c7b22d82eb}{graphics}};\ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ GraphicsManager}}
+\DoxyCodeLine{00022\ \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}*\ \mbox{\hyperlink{namespace_tapioca_a750cbed8d63642c8f71e7a92fe11f6bf}{physics}};\ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ PhysicsManager}}
+\DoxyCodeLine{00023\ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}*\ \mbox{\hyperlink{namespace_tapioca_ad9dee97e83ed3ad4bfd2164574694692}{ui}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ UIManager}}
+\DoxyCodeLine{00024\ \mbox{\hyperlink{class_tapioca_1_1_sound_manager}{SoundManager}}*\ \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ SoundManager}}
+\DoxyCodeLine{00025\ \mbox{\hyperlink{class_tapioca_1_1_lua_manager}{LuaManager}}*\ \mbox{\hyperlink{namespace_tapioca_a85ca432515663e64f186e5945d2469f5}{lua}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ instancia\ de\ LuaManager}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00030\ \mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a91f4dd1a4fcb2d361ff8602c07d81965}{initEngine}}();}
+\DoxyCodeLine{00034\ \mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_ac96ce5b8b203c55a5ff4902eafb26dd0}{deleteEngine}}();}
+\DoxyCodeLine{00039\ \mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a6df4de0d4ac41ed120ae9bb5662ae617}{runEngine}}();}
+\DoxyCodeLine{00043\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ createModules(\mbox{\hyperlink{class_tapioca_1_1_main_loop}{MainLoop}}*\ \mbox{\hyperlink{namespace_tapioca_aee221b2de416281b1f7bda9823acd63b}{mainLoop}});}
+\DoxyCodeLine{00047\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ createEngineBuilders();}
+\DoxyCodeLine{00051\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ registerLuaFunctions();}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a2d8fe2a1c21488fb443cd4a8b8a528aa}{mapInput}}();}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}

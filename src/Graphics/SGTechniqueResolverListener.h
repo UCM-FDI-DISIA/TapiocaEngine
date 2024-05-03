@@ -9,7 +9,7 @@
 #pragma warning(default : 4251)
 #endif
 
-/*
+/**
 * @brief Clase encargada de generar Shaders para los materiales que no tengan
 * https://ogrecave.github.io/ogre/api/latest/class_ogre_bites_1_1_s_g_technique_resolver_listener.html
 */
@@ -20,7 +20,7 @@ protected:
 public:
     explicit SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* const pShaderGenerator);
 
-    /*
+    /**
     * This is the hook point where shader based technique will be created.
     * It will be called whenever the material manager won't find appropriate technique
     * that satisfy the target scheme name. If the scheme name is out target RT Shader System

@@ -133,10 +133,24 @@ void InputText::start() {
         object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
         float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
                              (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+        if (min > 0.0f) {
+            textSize *= min;
+            transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+        }
     }
+    initialTextSize = textSize;
     startBuffer();
     updateTextFont();
+}
+
+void InputText::updateUI() {
+    if (!windowManager->getResized()) {
+        float scaleFactorX = object->getScene()->getScaleFactorX();
+        float scaleFactorY = object->getScene()->getScaleFactorY();
+        float min = std::min(scaleFactorX, scaleFactorY);
+        if (min > 0.0f) textSize = initialTextSize * min;
+        updateTextFont();
+    }
 }
 
 void InputText::render() const {

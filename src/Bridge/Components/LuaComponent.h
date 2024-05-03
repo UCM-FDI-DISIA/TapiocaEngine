@@ -25,51 +25,51 @@ private:
 
 public:
     // Este componente no usa la macro COMPONENT_ID para que no sea capaz de meterse en las templates de addComponent y getComponent.
-    /*
+    /**
     * @brief Constructor del componente. Para crear un componente, usar addComponent en los GameObject con la id.
     */
     LuaComponent(luabridge::LuaRef* objectTable, const std::string& name);
-    /*
+    /**
     * @brief Destructor del componente. Para borrar un componente, usar Component::die().
     */
     ~LuaComponent();
-    /*
+    /**
     * @brief Funcion para inicializar un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
     */
     bool initComponent(const CompMap& variables) override;
-    /*
+    /**
     * @brief Funcion para inicializar un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
     */
     void awake() override;
-    /*
+    /**
     * @brief Funcion para inicializar un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
     */
     void start() override;
-    /*
+    /**
     * @brief Funcion para actualizar el estado de un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
     */
     void update(const uint64_t deltaTime) override;
-    /*
+    /**
     * @brief Funcion para actualizar el estado de un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
     */
     void fixedUpdate() override;
-    /*
+    /**
     * @brief Funcion para recibir eventos. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
     */
     void handleEvent(std::string const& id, void* info) override;
 
-    /*
+    /**
     * @brief Devuelve la tabla del objeto de Lua. Para usarla hay que incluir lua.hpp y LuaBridge.h.
     * @return Tabla del objeto de Lua.
     */
     luabridge::LuaRef* getTable() const { return objectTable; }
-    /*
+    /**
     * @brief Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error usar el parametro success.
     * @param name Nombre de la funcion a llamar.
     * @param parameters Parametros validos (mirar al principio del archivo) a pasar en la funcion.

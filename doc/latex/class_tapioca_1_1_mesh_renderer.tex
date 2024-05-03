@@ -1,0 +1,262 @@
+\doxysection{Referencia de la clase Tapioca\+::Mesh\+Renderer}
+\hypertarget{class_tapioca_1_1_mesh_renderer}{}\label{class_tapioca_1_1_mesh_renderer}\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+
+
+Componente que renderiza un mesh en la escena.  
+
+
+
+
+{\ttfamily \#include $<$Mesh\+Renderer.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Mesh\+Renderer\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_mesh_renderer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a038e139a14ac2c700e0ff3e39b2e3179}{Mesh\+Renderer}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_ada3a15a9848169566e4edcd8242ac541}{\texorpdfstring{$\sim$}{\string~}\+Mesh\+Renderer}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a22dfdbae85b6e578078069176a44d9ee}{init\+Component}} (const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&variables) override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para recibir los parametros iniciales y guardarlos. No garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a46e5cc4470a140a65c86e430296747c6}{awake}} () override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_ad59f91625a5332d2bfafa4efd929aaa1}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info) override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a050cea0b3d14691c36330654a54ca90d}{set\+Material\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Establece el nombre del material. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a9941d642632770586a91afc827593258}{set\+Mesh\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Establece el nombre de la mesh. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_acf4be2cc6c8ff09c6dd0a27439719e9b}{set\+Visible}} (const bool enable)
+\begin{DoxyCompactList}\small\item\em Establece si la luz es visible o no. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a4a570c2f2b6496f7373547a80bd74813}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la luz es visible o no. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_component_a54e3ac405643adf97dab7c13f200411a}{Component}} ()
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_component_a8875dd4e409d534a7df9f43cdf205b20}{\texorpdfstring{$\sim$}{\string~}\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_aac3a9c2eed1b91ac013cf8926ae66e50}{start}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el componente Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a9286bd66970caa5e1eee3190ffb9d959}{update}} (const uint64\+\_\+t delta\+Time)
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente. Se llama todas las veces posibles. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2156ae36e3faf359ed3a51c970baf647}{fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente Se llama cada cierto tiempo fijo (Game\+::\+FIXED\+\_\+\+DELTA\+\_\+\+TIME),. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_afef1b4492f720349e080d15baf48fec6}{render}} () const
+\begin{DoxyCompactList}\small\item\em Renderizado de un componente. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_aaf132dc7cb3116e3843c1dc51f43c64f}{update\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la interfaz de usuario. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_a35580bd5f80f3e56ce3920d6b217375e}{push\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info, const bool global=true, const bool delay=false)
+\begin{DoxyCompactList}\small\item\em Envia un evento. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_tapioca_1_1_component_aac0eaed499f8fb51eccf6e174dfc4c88}{set\+Value\+From\+Map}} (T \&var, std\+::string const \&var\+Name, const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&map)
+\begin{DoxyCompactList}\small\item\em Da valor a una variable declarada en un Comp\+Map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_ad7eb69656f01eba0df85a629e703f1a5}{get\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el objeto al que esta adjunto este componente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a602cbc09011f937088126913d8569c8f}{is\+Alive}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta "{}vivo"{} (si se actualizan update, handle\+Events, ...) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a026b71524d3ebe56c75f8bedd61cd707}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta activo (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{die}} ()
+\begin{DoxyCompactList}\small\item\em Borra el componente. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a3447fee4073f813f62a388c63cc4aa55}{set\+Active}} (const bool b)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el componente (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a47d86433314569c577ff1df4dc737796}{get\+Mesh}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la mesh. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_aaf1251409c05793cb72cecc05600787f}{get\+Node}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nodo de renderizado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_a378ef13ec4f4ca22d314998a2c3bf310}{object}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a9d3a7537fda9a0303b1ed57c6051ed45}{alive}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3ead7}{active}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Componente que renderiza un mesh en la escena. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a038e139a14ac2c700e0ff3e39b2e3179}\label{class_tapioca_1_1_mesh_renderer_a038e139a14ac2c700e0ff3e39b2e3179} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!MeshRenderer@{MeshRenderer}}
+\index{MeshRenderer@{MeshRenderer}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{MeshRenderer()}{MeshRenderer()}}
+{\footnotesize\ttfamily Tapioca\+::\+Mesh\+Renderer\+::\+Mesh\+Renderer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+\Hypertarget{class_tapioca_1_1_mesh_renderer_ada3a15a9848169566e4edcd8242ac541}\label{class_tapioca_1_1_mesh_renderer_ada3a15a9848169566e4edcd8242ac541} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!````~MeshRenderer@{\texorpdfstring{$\sim$}{\string~}MeshRenderer}}
+\index{````~MeshRenderer@{\texorpdfstring{$\sim$}{\string~}MeshRenderer}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MeshRenderer()}{\string~MeshRenderer()}}
+{\footnotesize\ttfamily Tapioca\+::\+Mesh\+Renderer\+::\texorpdfstring{$\sim$}{\string~}\+Mesh\+Renderer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor por defecto. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a46e5cc4470a140a65c86e430296747c6}\label{class_tapioca_1_1_mesh_renderer_a46e5cc4470a140a65c86e430296747c6} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!awake@{awake}}
+\index{awake@{awake}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{awake()}{awake()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para inicializar el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a47d86433314569c577ff1df4dc737796}\label{class_tapioca_1_1_mesh_renderer_a47d86433314569c577ff1df4dc737796} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!getMesh@{getMesh}}
+\index{getMesh@{getMesh}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{getMesh()}{getMesh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}} \texorpdfstring{$\ast$}{*} Tapioca\+::\+Mesh\+Renderer\+::get\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Devuelve la mesh. 
+
+\begin{DoxyReturn}{Devuelve}
+Puntero a la mesh 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_aaf1251409c05793cb72cecc05600787f}\label{class_tapioca_1_1_mesh_renderer_aaf1251409c05793cb72cecc05600787f} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!getNode@{getNode}}
+\index{getNode@{getNode}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{getNode()}{getNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} Tapioca\+::\+Mesh\+Renderer\+::get\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Devuelve el nodo de renderizado. 
+
+\begin{DoxyReturn}{Devuelve}
+Puntero al nodo de renderizado 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_ad59f91625a5332d2bfafa4efd929aaa1}\label{class_tapioca_1_1_mesh_renderer_ad59f91625a5332d2bfafa4efd929aaa1} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::handle\+Event (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{id,  }\item[{void \texorpdfstring{$\ast$}{*}}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em Id} & indica el tipo de mensaje \\
+\hline
+{\em info} & puntero a void para pasar parametros \\
+\hline
+\end{DoxyParams}
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_a2d17067b33af77e72f17aba93893c955}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a22dfdbae85b6e578078069176a44d9ee}\label{class_tapioca_1_1_mesh_renderer_a22dfdbae85b6e578078069176a44d9ee} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!initComponent@{initComponent}}
+\index{initComponent@{initComponent}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{initComponent()}{initComponent()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Mesh\+Renderer\+::init\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&}]{variables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para recibir los parametros iniciales y guardarlos. No garantiza que todos los componentes iniciales esten creados. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em variables} & unordered\+\_\+map con los parametros iniciales \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devuelve true si se ha inicializado correctamente, false en caso contrario 
+\end{DoxyReturn}
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aa7e9e31ef1222a0881b9b7e7b023eec2}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a4a570c2f2b6496f7373547a80bd74813}\label{class_tapioca_1_1_mesh_renderer_a4a570c2f2b6496f7373547a80bd74813} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!isVisible@{isVisible}}
+\index{isVisible@{isVisible}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{isVisible()}{isVisible()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Mesh\+Renderer\+::is\+Visible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve si la luz es visible o no. 
+
+\begin{DoxyReturn}{Devuelve}
+true si la luz es visible, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a050cea0b3d14691c36330654a54ca90d}\label{class_tapioca_1_1_mesh_renderer_a050cea0b3d14691c36330654a54ca90d} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setMaterialName@{setMaterialName}}
+\index{setMaterialName@{setMaterialName}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{setMaterialName()}{setMaterialName()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Material\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el nombre del material. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em name} & Nombre del material \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_a9941d642632770586a91afc827593258}\label{class_tapioca_1_1_mesh_renderer_a9941d642632770586a91afc827593258} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setMeshName@{setMeshName}}
+\index{setMeshName@{setMeshName}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{setMeshName()}{setMeshName()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Mesh\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Establece el nombre de la mesh. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em name} & Nombre de la mesh \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_acf4be2cc6c8ff09c6dd0a27439719e9b}\label{class_tapioca_1_1_mesh_renderer_acf4be2cc6c8ff09c6dd0a27439719e9b} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setVisible@{setVisible}}
+\index{setVisible@{setVisible}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{setVisible()}{setVisible()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Visible (\begin{DoxyParamCaption}\item[{const bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Establece si la luz es visible o no. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em enable} & Indica si la luz es visible o no \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Components/\mbox{\hyperlink{_mesh_renderer_8h}{Mesh\+Renderer.\+h}}\item 
+src/\+Graphics/\+Components/\mbox{\hyperlink{_mesh_renderer_8cpp}{Mesh\+Renderer.\+cpp}}\end{DoxyCompactItemize}

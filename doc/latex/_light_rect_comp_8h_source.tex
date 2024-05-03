@@ -1,0 +1,59 @@
+\doxysection{Light\+Rect\+Comp.\+h}
+\hypertarget{_light_rect_comp_8h_source}{}\label{_light_rect_comp_8h_source}\index{src/Graphics/Components/LightRectComp.h@{src/Graphics/Components/LightRectComp.h}}
+\mbox{\hyperlink{_light_rect_comp_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_component_8h}{Structure/Component.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector4_8h}{Utilities/Vector4.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector3_8h}{Utilities/Vector3.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }LightRectlight;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }Transform;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_light_rect_comp}{LightRectComp}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ node;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nodo\ que\ contiene\ el\ LightPoint}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform;\ \ \ \ \ \ \textcolor{comment}{//\ Transform\ del\ nodo}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_rectlight}{LightRectlight}}*\ light;\ \ \ \ \ \textcolor{comment}{//\ LightPoint\ que\ se\ encarga\ de\ la\ iluminacion}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Direccion\ de\ la\ luz}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ de\ la\ luz}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ powerScale;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escala\ de\ la\ potencia\ de\ la\ luz}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ attenuationFactor;\ \ \ \textcolor{comment}{//\ Factor\ de\ atenuacion\ de\ la\ luz}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ attenuationSet;\ \ \ \ \ \ \ \textcolor{comment}{//\ Flag\ que\ indica\ si\ se\ ha\ seteado\ el\ factor\ de\ atenuacion}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ width;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ancho\ de\ la\ luz}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ height;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alto\ de\ la\ luz}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}LightRectComp"{}})}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_rect_comp}{LightRectComp}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_rect_comp}{\string~LightRectComp}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ setColor(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ setPowerScale(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ power);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttenuation(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ attenuationFactor);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ setDirection(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ setWidth(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width);}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ setHeight(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ setSize(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ setVisible(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ isVisible()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ \}}
+
+\end{DoxyCode}

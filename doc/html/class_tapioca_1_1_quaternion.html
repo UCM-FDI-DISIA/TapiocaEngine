@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Referencia de la clase Tapioca::Quaternion</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_tapioca.html">Tapioca</a></li><li class="navelem"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pub-attribs">Atributos públicos</a> &#124;
+<a href="class_tapioca_1_1_quaternion-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle"><div class="title">Referencia de la clase Tapioca::Quaternion</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Usamos el sistema diestro <a href="https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html">https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html</a>. Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector.  
+ <a href="#details">Más...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_quaternion_8h_source.html">Quaternion.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:aaf71223f6eca194cf93ab2c4a5521ac4" id="r_aaf71223f6eca194cf93ab2c4a5521ac4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf71223f6eca194cf93ab2c4a5521ac4">Quaternion</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q0</a>, <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q1</a>, <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q2</a>, <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q3</a>)</td></tr>
+<tr class="memdesc:aaf71223f6eca194cf93ab2c4a5521ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a>. Se contruye un a partir de 4 floats que describen el angulo y vector que definen el quaternion.  <br /></td></tr>
+<tr class="separator:aaf71223f6eca194cf93ab2c4a5521ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38859778b467f67e7edf8a76912159a" id="r_ab38859778b467f67e7edf8a76912159a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab38859778b467f67e7edf8a76912159a">Quaternion</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">alfa</a>, <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">vec</a>)</td></tr>
+<tr class="memdesc:ab38859778b467f67e7edf8a76912159a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a>. Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec @params alfa Rotacion del vector en grados sexagesimales @params vec Vector que define el giro.  <br /></td></tr>
+<tr class="separator:ab38859778b467f67e7edf8a76912159a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3a6a69996d9354800c513d0baaea562" id="r_ab3a6a69996d9354800c513d0baaea562"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3a6a69996d9354800c513d0baaea562">Quaternion</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">euler</a>)</td></tr>
+<tr class="memdesc:ab3a6a69996d9354800c513d0baaea562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a>. Se construye a partir de rotaciones en los 3 ejes globales (x y z) en grados sexagesimales.  <br /></td></tr>
+<tr class="separator:ab3a6a69996d9354800c513d0baaea562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3546178554a66b51f12b8516c21b6cc" id="r_af3546178554a66b51f12b8516c21b6cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3546178554a66b51f12b8516c21b6cc">inverse</a> ()</td></tr>
+<tr class="memdesc:af3546178554a66b51f12b8516c21b6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el quaternion inverso (el conjugado entre la magnitud)  <br /></td></tr>
+<tr class="separator:af3546178554a66b51f12b8516c21b6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adabf44d48c2b5ebfdab665f436a74a86" id="r_adabf44d48c2b5ebfdab665f436a74a86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adabf44d48c2b5ebfdab665f436a74a86">conjugate</a> ()</td></tr>
+<tr class="memdesc:adabf44d48c2b5ebfdab665f436a74a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el cuaternion conjugado.  <br /></td></tr>
+<tr class="separator:adabf44d48c2b5ebfdab665f436a74a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2d0f335d81f597776230768e67b534" id="r_a4a2d0f335d81f597776230768e67b534"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a2d0f335d81f597776230768e67b534">magnitude</a> ()</td></tr>
+<tr class="memdesc:a4a2d0f335d81f597776230768e67b534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la magnitud del quaternion.  <br /></td></tr>
+<tr class="separator:a4a2d0f335d81f597776230768e67b534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86dc8a3880cd955786f8b03350be2369" id="r_a86dc8a3880cd955786f8b03350be2369"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86dc8a3880cd955786f8b03350be2369">toEuler</a> ()</td></tr>
+<tr class="memdesc:a86dc8a3880cd955786f8b03350be2369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve un vector con la rotacion en angulos sexadecimales pitch, yaw, roll (x,y,z) en un sistema y up.  <br /></td></tr>
+<tr class="separator:a86dc8a3880cd955786f8b03350be2369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65e3825676956560f8f35f031e8c0e5" id="r_ad65e3825676956560f8f35f031e8c0e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad65e3825676956560f8f35f031e8c0e5">operator*</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> &amp;<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">rhs</a>)</td></tr>
+<tr class="memdesc:ad65e3825676956560f8f35f031e8c0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplica el cuaternion por rhs. Para rotar un punto se puede hacer q * p * <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q(conjugado)</a>  <br /></td></tr>
+<tr class="separator:ad65e3825676956560f8f35f031e8c0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d31c2233cbecd1d07ef378ae84fb79" id="r_a59d31c2233cbecd1d07ef378ae84fb79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59d31c2233cbecd1d07ef378ae84fb79">operator*</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">s</a>)</td></tr>
+<tr class="memdesc:a59d31c2233cbecd1d07ef378ae84fb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplicacio por un escalar.  <br /></td></tr>
+<tr class="separator:a59d31c2233cbecd1d07ef378ae84fb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f1d8261d1f41cf5b328ca0678f3fe6" id="r_a16f1d8261d1f41cf5b328ca0678f3fe6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16f1d8261d1f41cf5b328ca0678f3fe6">operator/</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">s</a>)</td></tr>
+<tr class="memdesc:a16f1d8261d1f41cf5b328ca0678f3fe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide el cuaternion por un escalar Para rotar un punto se puede hacer q * p * <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q(conjugado)</a>.  <br /></td></tr>
+<tr class="separator:a16f1d8261d1f41cf5b328ca0678f3fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a0ff4fffcfc67d73ba480d5842bf526" id="r_a1a0ff4fffcfc67d73ba480d5842bf526"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a0ff4fffcfc67d73ba480d5842bf526">rotatePoint</a> (<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;<a class="el" href="#adecdd63921919eea843937c5fc74e2c5">point</a>)</td></tr>
+<tr class="memdesc:a1a0ff4fffcfc67d73ba480d5842bf526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplicacion "vectorizada" con la "Formula Rodrigues" Para rotar un punto se puede hacer q * p * <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q(conjugado)</a>  <br /></td></tr>
+<tr class="separator:a1a0ff4fffcfc67d73ba480d5842bf526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89a545fd6166eb1ae565ab8524b49953" id="r_a89a545fd6166eb1ae565ab8524b49953"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89a545fd6166eb1ae565ab8524b49953">normalized</a> ()</td></tr>
+<tr class="memdesc:a89a545fd6166eb1ae565ab8524b49953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el quaternion normalizado.  <br /></td></tr>
+<tr class="separator:a89a545fd6166eb1ae565ab8524b49953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada3f54d4e43b9365549e27b6f0904974" id="r_ada3f54d4e43b9365549e27b6f0904974"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada3f54d4e43b9365549e27b6f0904974">normalize</a> ()</td></tr>
+<tr class="memdesc:ada3f54d4e43b9365549e27b6f0904974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normaliza el quaternion.  <br /></td></tr>
+<tr class="separator:ada3f54d4e43b9365549e27b6f0904974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Atributos públicos</h2></td></tr>
+<tr class="memitem:a699dceab40c6a7db87b782f00b9e0051" id="r_a699dceab40c6a7db87b782f00b9e0051"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a699dceab40c6a7db87b782f00b9e0051">scalar</a></td></tr>
+<tr class="separator:a699dceab40c6a7db87b782f00b9e0051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adecdd63921919eea843937c5fc74e2c5" id="r_adecdd63921919eea843937c5fc74e2c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">vector</a></td></tr>
+<tr class="separator:adecdd63921919eea843937c5fc74e2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8032368bad5872b566e5dd8e821a5245" id="r_a8032368bad5872b566e5dd8e821a5245"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8032368bad5872b566e5dd8e821a5245">angle</a></td></tr>
+<tr class="separator:a8032368bad5872b566e5dd8e821a5245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Usamos el sistema diestro <a href="https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html">https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html</a>. Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector. </p>
+<p>q = x + yi + zj +wk, donde x y z w son numeros reales y ddone i j k son numeros complejos, vectores unitarios ortogonales entre si. i^2 = j^2 = k^2 = -1</p>
+<p>Para pasar de eje + angulo a quaternion: 0 + (x,y,z), q = q0 + q1 + q2 + q3, q0 = cos(0/2), q1 = xsin(0/2), q2 = ysin(0/2), q3 = zsin(0/2)</p>
+<p>Para rotar un punto se multiplica por el cuaternion y luego por su conjugado: pr = q*p*qc </p>
+</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a id="aaf71223f6eca194cf93ab2c4a5521ac4" name="aaf71223f6eca194cf93ab2c4a5521ac4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf71223f6eca194cf93ab2c4a5521ac4">&#9670;&#160;</a></span>Quaternion() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tapioca::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>q0</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>q1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>q2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>q3</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor de la clase <a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a>. Se contruye un a partir de 4 floats que describen el angulo y vector que definen el quaternion. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q0</td><td>Cantidad de giro que se aplica sobre el vector </td></tr>
+    <tr><td class="paramname">q1</td><td>Valor de la componente x del vector </td></tr>
+    <tr><td class="paramname">q2</td><td>Valor de la componente y del vector </td></tr>
+    <tr><td class="paramname">q3</td><td>Valor de la componente z del vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab38859778b467f67e7edf8a76912159a" name="ab38859778b467f67e7edf8a76912159a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab38859778b467f67e7edf8a76912159a">&#9670;&#160;</a></span>Quaternion() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tapioca::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>alfa</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor de la clase <a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a>. Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec @params alfa Rotacion del vector en grados sexagesimales @params vec Vector que define el giro. </p>
+
+</div>
+</div>
+<a id="ab3a6a69996d9354800c513d0baaea562" name="ab3a6a69996d9354800c513d0baaea562"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3a6a69996d9354800c513d0baaea562">&#9670;&#160;</a></span>Quaternion() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tapioca::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>euler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor de la clase <a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a>. Se construye a partir de rotaciones en los 3 ejes globales (x y z) en grados sexagesimales. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">euler</td><td>Rotacion en los 3 ejes globales </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones miembro</h2>
+<a id="adabf44d48c2b5ebfdab665f436a74a86" name="adabf44d48c2b5ebfdab665f436a74a86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adabf44d48c2b5ebfdab665f436a74a86">&#9670;&#160;</a></span>conjugate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> Tapioca::Quaternion::conjugate </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el cuaternion conjugado. </p>
+<dl class="section return"><dt>Devuelve</dt><dd><a class="el" href="class_tapioca_1_1_quaternion.html" title="Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions....">Quaternion</a> conjugado </dd></dl>
+
+</div>
+</div>
+<a id="af3546178554a66b51f12b8516c21b6cc" name="af3546178554a66b51f12b8516c21b6cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3546178554a66b51f12b8516c21b6cc">&#9670;&#160;</a></span>inverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> Tapioca::Quaternion::inverse </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el quaternion inverso (el conjugado entre la magnitud) </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Inverso del quaternion </dd></dl>
+
+</div>
+</div>
+<a id="a4a2d0f335d81f597776230768e67b534" name="a4a2d0f335d81f597776230768e67b534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2d0f335d81f597776230768e67b534">&#9670;&#160;</a></span>magnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> Tapioca::Quaternion::magnitude </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve la magnitud del quaternion. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Magnitud del quaternion </dd></dl>
+
+</div>
+</div>
+<a id="ada3f54d4e43b9365549e27b6f0904974" name="ada3f54d4e43b9365549e27b6f0904974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada3f54d4e43b9365549e27b6f0904974">&#9670;&#160;</a></span>normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">void</a> Tapioca::Quaternion::normalize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Normaliza el quaternion. </p>
+
+</div>
+</div>
+<a id="a89a545fd6166eb1ae565ab8524b49953" name="a89a545fd6166eb1ae565ab8524b49953"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89a545fd6166eb1ae565ab8524b49953">&#9670;&#160;</a></span>normalized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> Tapioca::Quaternion::normalized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el quaternion normalizado. </p>
+
+</div>
+</div>
+<a id="a59d31c2233cbecd1d07ef378ae84fb79" name="a59d31c2233cbecd1d07ef378ae84fb79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59d31c2233cbecd1d07ef378ae84fb79">&#9670;&#160;</a></span>operator*() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">Tapioca::Quaternion::operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Multiplicacio por un escalar. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Escalar por el que se multiplican todos los miembros del quaternion </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Resultado de multiplicar el quaternion por s </dd></dl>
+
+</div>
+</div>
+<a id="ad65e3825676956560f8f35f031e8c0e5" name="ad65e3825676956560f8f35f031e8c0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad65e3825676956560f8f35f031e8c0e5">&#9670;&#160;</a></span>operator*() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">Tapioca::Quaternion::operator</a>* </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Multiplica el cuaternion por rhs. Para rotar un punto se puede hacer q * p * <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q(conjugado)</a> </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>Elemento diestro de la multiplicacion (right hand side) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Resultado de multiplicar el quaternion por rhs </dd></dl>
+
+</div>
+</div>
+<a id="a16f1d8261d1f41cf5b328ca0678f3fe6" name="a16f1d8261d1f41cf5b328ca0678f3fe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16f1d8261d1f41cf5b328ca0678f3fe6">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">Tapioca::Quaternion::operator</a>/ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a></td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Divide el cuaternion por un escalar Para rotar un punto se puede hacer q * p * <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q(conjugado)</a>. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Escalar por el que se dividen todos los miembros del quaternion </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Resultado de multiplicar el quaternion por rhs </dd></dl>
+
+</div>
+</div>
+<a id="a1a0ff4fffcfc67d73ba480d5842bf526" name="a1a0ff4fffcfc67d73ba480d5842bf526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a0ff4fffcfc67d73ba480d5842bf526">&#9670;&#160;</a></span>rotatePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> Tapioca::Quaternion::rotatePoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">const</a> <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>point</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Multiplicacion "vectorizada" con la "Formula Rodrigues" Para rotar un punto se puede hacer q * p * <a class="el" href="#adecdd63921919eea843937c5fc74e2c5">q(conjugado)</a> </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>Punto por el que se multiplica </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Resultado de multiplicar el quaternion por el punto </dd></dl>
+
+</div>
+</div>
+<a id="a86dc8a3880cd955786f8b03350be2369" name="a86dc8a3880cd955786f8b03350be2369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86dc8a3880cd955786f8b03350be2369">&#9670;&#160;</a></span>toEuler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> Tapioca::Quaternion::toEuler </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve un vector con la rotacion en angulos sexadecimales pitch, yaw, roll (x,y,z) en un sistema y up. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con la rotacion en angulos sexadecimales en sistema ZYX </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de datos miembro</h2>
+<a id="a8032368bad5872b566e5dd8e821a5245" name="a8032368bad5872b566e5dd8e821a5245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8032368bad5872b566e5dd8e821a5245">&#9670;&#160;</a></span>angle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> Tapioca::Quaternion::angle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a699dceab40c6a7db87b782f00b9e0051" name="a699dceab40c6a7db87b782f00b9e0051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a699dceab40c6a7db87b782f00b9e0051">&#9670;&#160;</a></span>scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#adecdd63921919eea843937c5fc74e2c5">float</a> Tapioca::Quaternion::scalar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adecdd63921919eea843937c5fc74e2c5" name="adecdd63921919eea843937c5fc74e2c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adecdd63921919eea843937c5fc74e2c5">&#9670;&#160;</a></span>vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> Tapioca::Quaternion::vector</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>La documentación de esta clase está generada de los siguientes archivos:<ul>
+<li>src/Core/Utilities/<a class="el" href="_quaternion_8h_source.html">Quaternion.h</a></li>
+<li>src/Core/Utilities/<a class="el" href="_quaternion_8cpp.html">Quaternion.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

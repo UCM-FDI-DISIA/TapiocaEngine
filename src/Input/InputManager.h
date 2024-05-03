@@ -9,7 +9,7 @@ union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
 
-/*
+/**
 * @brief Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios
 
 */
@@ -56,29 +56,29 @@ private:
 #pragma warning(disable : 4251)
 #endif
 
-    /*
+    /**
     * @brief Constructor por defecto
     */
     InputManager();
 
-    /*
+    /**
     * @brief Comprueba si hay algun joystick conectado y si hay al menos uno, empieza a escuchar eventos de joystick
     */
     void initControllers();
 
-    /*
+    /**
     * @brief Añade el mando con su deadzone por defecto al mapa de mandos
     * @param i Indice del controller
     */
     void addController(const int i);
 
-    /*
+    /**
     * @brief Elimina el mando y su deadzone del mapa de mandos
     * @param i Indice del controller
     */
     void removeController(const int i);
 
-    /*
+    /**
     * @brief Envia el evento propio si alguno de los eventos mapeados coincide con el producido
     * @param eventName El nombre del evento de input
     * @param event Evento del input
@@ -87,23 +87,23 @@ private:
     void sendEvent(std::string const& eventName, SDL_Event const& event, int const& value);
 
 public:
-    /*
+    /**
     * @brief Inicializa el inputManager
     */
     bool init() override;
-    /*
+    /**
     * @brief Destructor por defecto
     */
     virtual ~InputManager();
 
-    /*
+    /**
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL
     * @return true si se ha manejado el evento, false si no
     */
     bool handleEvents(const SDL_Event& event) override;
 
-    /*
+    /**
     * @brief Asociar eventos propios a eventos de input
     * @param evt El nombre del evento propio
     * @param src El nombre del evento de input
@@ -111,17 +111,17 @@ public:
     */
     void mapInput(std::string const& evt, std::string const& src, int const& ctrl);
 
-    /*
+    /**
     * @brief Devuelve la posicion del raton
     */
     inline const std::pair<int32_t, int32_t>& getMousePos() { return mousePos; };
 
-    /*
+    /**
     * @brief Devuelve true si hay al menos 1 mando conectado
     */
     inline bool isControllerConnected() { return !controllers.empty(); }
 };
-/*
+/**
 * @brief Para acortar el metodo InputManager::instance()->method() a inputManager().method()
 */
 inline InputManager& inputManager() { return *InputManager::instance(); }

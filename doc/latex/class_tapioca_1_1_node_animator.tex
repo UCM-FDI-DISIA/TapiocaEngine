@@ -1,0 +1,368 @@
+\doxysection{Referencia de la clase Tapioca\+::Node\+Animator}
+\hypertarget{class_tapioca_1_1_node_animator}{}\label{class_tapioca_1_1_node_animator}\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+
+
+{\ttfamily \#include $<$Node\+Animator.\+h$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a227c4919a56de0c79abba214f659b851}{init}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa la animacion. Crea los keyframes y la animacion en ogre. Establece si esta activado y si se quiere repetir la animacion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a5922b0be746cd27082b64fcaac6d3cf2}{update\+Anim}} (const uint64\+\_\+t delt, const float speed)
+\begin{DoxyCompactList}\small\item\em Actualiza la animacion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a1adc69951a9f640d665d023fbf3211a5}{play}} (const bool loop)
+\begin{DoxyCompactList}\small\item\em Reproduce la animacion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_adccd5272e4ded57709f8189d33de7ef6}{enable}} (const bool enabled)
+\begin{DoxyCompactList}\small\item\em Establece si la animacion esta activa. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a5117808f67f30fa0bc6253605f4f0af2}{set\+Loop}} (const bool loop)
+\begin{DoxyCompactList}\small\item\em Establece si la animacion se repite. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_node_animator_aad68a1e6185957db954e4345fdd3bb82}{is\+Looping}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion se repite. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_node_animator_ae49dc6222e027dca9a1bc30a4cb03f9b}{is\+Enabled}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta activa. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_node_animator_a4432857134ed33a4539d9e8ddd11d012}{has\+Ended}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion ha terminado. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_tapioca_1_1_key_frame}{Key\+Frame}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_node_animator_ab9d9b815fb32b46f53b9852122fabfc7}{add\+Key\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion y lo devuelve. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_acb2be8917ca9c825e3728df75cff3da3}{add\+Key\+Frame\+Pos\+Scale\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la posicion, escala y rotacion dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a902c1e775d82fcdece5f1a31bf383783}{add\+Key\+Frame\+Pos\+Scale\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale, \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la posicion, escala y rotacion dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a3b416ab8f2a835461fd563e80509cef7}{add\+Key\+Frame\+Pos\+Scale}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la posicion y escala dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_abc2618d768f0270e2b126586830171e7}{add\+Key\+Frame\+Pos\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la posicion y rotacion dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a2f2c29268a62e782c972112ff085c5b0}{add\+Key\+Frame\+Pos\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos, \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la posicion y rotacion dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a3869b5b42543eceb97fe921e146f437a}{add\+Key\+Frame\+Scale\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale, \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la escala y rotacion dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a6507dc717e176e71a96251ba7c120716}{add\+Key\+Frame\+Scale\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale, \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la escala y rotacion dadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_ace90961737a17bfbb295c03b045b9095}{add\+Key\+Frame\+Pos}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la posicion dada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a280d59442dbf97b98179c6f1e15accfd}{add\+Key\+Frame\+Scale}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la escala dada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_a5d4483874fb8b91c25474b90a82a389e}{add\+Key\+Frame\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la rotacion dada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_node_animator_ae85106d0ded41dd859f374d52fa295f1}{add\+Key\+Frame\+Rot}} (\mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} rot)
+\begin{DoxyCompactList}\small\item\em Anade un keyframe a la animacion con la rotacion dada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que se encarga de animar un nodo de la escena 
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_node_animator_ab9d9b815fb32b46f53b9852122fabfc7}\label{class_tapioca_1_1_node_animator_ab9d9b815fb32b46f53b9852122fabfc7} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFrame@{addKeyFrame}}
+\index{addKeyFrame@{addKeyFrame}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFrame()}{addKeyFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_tapioca_1_1_key_frame}{Key\+Frame}} \texorpdfstring{$\ast$}{*} Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion y lo devuelve. 
+
+\begin{DoxyReturn}{Devuelve}
+Puntero al keyframe anadido 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_node_animator_ace90961737a17bfbb295c03b045b9095}\label{class_tapioca_1_1_node_animator_ace90961737a17bfbb295c03b045b9095} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFramePos@{addKeyFramePos}}
+\index{addKeyFramePos@{addKeyFramePos}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFramePos()}{addKeyFramePos()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la posicion dada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posicion del keyframe \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a2f2c29268a62e782c972112ff085c5b0}\label{class_tapioca_1_1_node_animator_a2f2c29268a62e782c972112ff085c5b0} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFramePosRot@{addKeyFramePosRot}}
+\index{addKeyFramePosRot@{addKeyFramePosRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFramePosRot()}{addKeyFramePosRot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Pos\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la posicion y rotacion dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posicion del keyframe \\
+\hline
+{\em rot} & Rotacion del keyframe (en quaternion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_abc2618d768f0270e2b126586830171e7}\label{class_tapioca_1_1_node_animator_abc2618d768f0270e2b126586830171e7} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFramePosRot@{addKeyFramePosRot}}
+\index{addKeyFramePosRot@{addKeyFramePosRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFramePosRot()}{addKeyFramePosRot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Pos\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la posicion y rotacion dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posicion del keyframe \\
+\hline
+{\em rot} & Rotacion del keyframe (en grados) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a3b416ab8f2a835461fd563e80509cef7}\label{class_tapioca_1_1_node_animator_a3b416ab8f2a835461fd563e80509cef7} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFramePosScale@{addKeyFramePosScale}}
+\index{addKeyFramePosScale@{addKeyFramePosScale}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFramePosScale()}{addKeyFramePosScale()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Pos\+Scale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{scale }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la posicion y escala dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posicion del keyframe \\
+\hline
+{\em scale} & Escala del keyframe \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a902c1e775d82fcdece5f1a31bf383783}\label{class_tapioca_1_1_node_animator_a902c1e775d82fcdece5f1a31bf383783} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFramePosScaleRot@{addKeyFramePosScaleRot}}
+\index{addKeyFramePosScaleRot@{addKeyFramePosScaleRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFramePosScaleRot()}{addKeyFramePosScaleRot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Pos\+Scale\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{scale,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la posicion, escala y rotacion dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posicion del keyframe \\
+\hline
+{\em scale} & Escala del keyframe \\
+\hline
+{\em rot} & Rotacion del keyframe (en quaternion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_acb2be8917ca9c825e3728df75cff3da3}\label{class_tapioca_1_1_node_animator_acb2be8917ca9c825e3728df75cff3da3} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFramePosScaleRot@{addKeyFramePosScaleRot}}
+\index{addKeyFramePosScaleRot@{addKeyFramePosScaleRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFramePosScaleRot()}{addKeyFramePosScaleRot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Pos\+Scale\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{pos,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{scale,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la posicion, escala y rotacion dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posicion del keyframe \\
+\hline
+{\em scale} & Escala del keyframe \\
+\hline
+{\em rot} & Rotacion del keyframe (en grados) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_ae85106d0ded41dd859f374d52fa295f1}\label{class_tapioca_1_1_node_animator_ae85106d0ded41dd859f374d52fa295f1} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFrameRot@{addKeyFrameRot}}
+\index{addKeyFrameRot@{addKeyFrameRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFrameRot()}{addKeyFrameRot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la rotacion dada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em rot} & Rotacion del keyframe (en quaternion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a5d4483874fb8b91c25474b90a82a389e}\label{class_tapioca_1_1_node_animator_a5d4483874fb8b91c25474b90a82a389e} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFrameRot@{addKeyFrameRot}}
+\index{addKeyFrameRot@{addKeyFrameRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFrameRot()}{addKeyFrameRot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la rotacion dada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em rot} & Rotacion del keyframe (en grados) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a280d59442dbf97b98179c6f1e15accfd}\label{class_tapioca_1_1_node_animator_a280d59442dbf97b98179c6f1e15accfd} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFrameScale@{addKeyFrameScale}}
+\index{addKeyFrameScale@{addKeyFrameScale}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFrameScale()}{addKeyFrameScale()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Scale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{scale }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la escala dada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em scale} & Escala del keyframe \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a6507dc717e176e71a96251ba7c120716}\label{class_tapioca_1_1_node_animator_a6507dc717e176e71a96251ba7c120716} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFrameScaleRot@{addKeyFrameScaleRot}}
+\index{addKeyFrameScaleRot@{addKeyFrameScaleRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFrameScaleRot()}{addKeyFrameScaleRot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Scale\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{scale,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la escala y rotacion dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em scale} & Escala del keyframe \\
+\hline
+{\em rot} & Rotacion del keyframe (en quaternion) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a3869b5b42543eceb97fe921e146f437a}\label{class_tapioca_1_1_node_animator_a3869b5b42543eceb97fe921e146f437a} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!addKeyFrameScaleRot@{addKeyFrameScaleRot}}
+\index{addKeyFrameScaleRot@{addKeyFrameScaleRot}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{addKeyFrameScaleRot()}{addKeyFrameScaleRot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::add\+Key\+Frame\+Scale\+Rot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{scale,  }\item[{\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{rot }\end{DoxyParamCaption})}
+
+
+
+Anade un keyframe a la animacion con la escala y rotacion dadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em scale} & Escala del keyframe \\
+\hline
+{\em rot} & Rotacion del keyframe (en grados) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_adccd5272e4ded57709f8189d33de7ef6}\label{class_tapioca_1_1_node_animator_adccd5272e4ded57709f8189d33de7ef6} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!enable@{enable}}
+\index{enable@{enable}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{enable()}{enable()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::enable (\begin{DoxyParamCaption}\item[{const bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+Establece si la animacion esta activa. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em enabled} & Indica si la animacion esta activa \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a4432857134ed33a4539d9e8ddd11d012}\label{class_tapioca_1_1_node_animator_a4432857134ed33a4539d9e8ddd11d012} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!hasEnded@{hasEnded}}
+\index{hasEnded@{hasEnded}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{hasEnded()}{hasEnded()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Node\+Animator\+::has\+Ended (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve si la animacion ha terminado. 
+
+\begin{DoxyReturn}{Devuelve}
+true si la animacion ha terminado, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_node_animator_a227c4919a56de0c79abba214f659b851}\label{class_tapioca_1_1_node_animator_a227c4919a56de0c79abba214f659b851} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!init@{init}}
+\index{init@{init}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicializa la animacion. Crea los keyframes y la animacion en ogre. Establece si esta activado y si se quiere repetir la animacion. 
+
+\Hypertarget{class_tapioca_1_1_node_animator_ae49dc6222e027dca9a1bc30a4cb03f9b}\label{class_tapioca_1_1_node_animator_ae49dc6222e027dca9a1bc30a4cb03f9b} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{isEnabled()}{isEnabled()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Node\+Animator\+::is\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si la animacion esta activa. 
+
+\begin{DoxyReturn}{Devuelve}
+true si la animacion esta activa, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_node_animator_aad68a1e6185957db954e4345fdd3bb82}\label{class_tapioca_1_1_node_animator_aad68a1e6185957db954e4345fdd3bb82} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!isLooping@{isLooping}}
+\index{isLooping@{isLooping}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{isLooping()}{isLooping()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Node\+Animator\+::is\+Looping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si la animacion se repite. 
+
+\begin{DoxyReturn}{Devuelve}
+true si la animacion se repite, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_node_animator_a1adc69951a9f640d665d023fbf3211a5}\label{class_tapioca_1_1_node_animator_a1adc69951a9f640d665d023fbf3211a5} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!play@{play}}
+\index{play@{play}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::play (\begin{DoxyParamCaption}\item[{const bool}]{loop }\end{DoxyParamCaption})}
+
+
+
+Reproduce la animacion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em loop} & Indica si la animacion se repite \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a5117808f67f30fa0bc6253605f4f0af2}\label{class_tapioca_1_1_node_animator_a5117808f67f30fa0bc6253605f4f0af2} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!setLoop@{setLoop}}
+\index{setLoop@{setLoop}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{setLoop()}{setLoop()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::set\+Loop (\begin{DoxyParamCaption}\item[{const bool}]{loop }\end{DoxyParamCaption})}
+
+
+
+Establece si la animacion se repite. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em loop} & Indica si la animacion se repite \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_node_animator_a5922b0be746cd27082b64fcaac6d3cf2}\label{class_tapioca_1_1_node_animator_a5922b0be746cd27082b64fcaac6d3cf2} 
+\index{Tapioca::NodeAnimator@{Tapioca::NodeAnimator}!updateAnim@{updateAnim}}
+\index{updateAnim@{updateAnim}!Tapioca::NodeAnimator@{Tapioca::NodeAnimator}}
+\doxysubsubsection{\texorpdfstring{updateAnim()}{updateAnim()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Node\+Animator\+::update\+Anim (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{delt,  }\item[{const float}]{speed }\end{DoxyParamCaption})}
+
+
+
+Actualiza la animacion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em delt} & Tiempo transcurrido desde el ultimo frame \\
+\hline
+{\em speed} & Velocidad de la animacion \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_node_animator_8h}{Node\+Animator.\+h}}\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_node_animator_8cpp}{Node\+Animator.\+cpp}}\end{DoxyCompactItemize}

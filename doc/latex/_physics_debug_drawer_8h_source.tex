@@ -1,0 +1,59 @@
+\doxysection{Physics\+Debug\+Drawer.\+h}
+\hypertarget{_physics_debug_drawer_8h_source}{}\label{_physics_debug_drawer_8h_source}\index{src/Physics/PhysicsDebugDrawer.h@{src/Physics/PhysicsDebugDrawer.h}}
+\mbox{\hyperlink{_physics_debug_drawer_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <LinearMath/btIDebugDraw.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }ManualObject;}
+\DoxyCodeLine{00008\ \}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ warning\ C4275\ se\ ha\ utilizado\ una\ interfaz\ no\ de\ DLL\ class\ 'btIDebugDraw'}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ como\ base\ para\ la\ interfaz\ DLL\ class\ 'Tapioca::PhysicsDebugDrawer'}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4275)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer}{PhysicsDebugDrawer}}\ :\ \textcolor{keyword}{public}\ btIDebugDraw\ \{}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4275)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ mode;\ \ \ \textcolor{comment}{//\ Modo\ de\ debug}}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}*\ graphicsManager;\ \ \ \textcolor{comment}{//\ Puntero\ al\ GraphicsManager}}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ node;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nodo\ de\ renderizado}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::PhysicsDebugDrawer::lines'\ :}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::list<Ogre::ManualObject\ *,std::allocator<Ogre::ManualObject\ *>>'\ necesita}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::PhysicsDebugDrawer'}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ \ \ \ \ std::list<Ogre::ManualObject*>\ lines;\ \ \ \textcolor{comment}{//\ Lista\ de\ lineas}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer}{PhysicsDebugDrawer}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer}{\string~PhysicsDebugDrawer}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ drawLine(\textcolor{keyword}{const}\ btVector3\&\ from,\ \textcolor{keyword}{const}\ btVector3\&\ to,\ \textcolor{keyword}{const}\ btVector3\&\ color)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ drawContactPoint(\textcolor{keyword}{const}\ btVector3\&\ PointOnB,\ \textcolor{keyword}{const}\ btVector3\&\ normalOnB,\ btScalar\ distance,\ \textcolor{keywordtype}{int}\ lifeTime,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ btVector3\&\ color)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ reportErrorWarning(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ warningString)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer_acf65844d6f95b4269a5d07ca9fc4f4ae}{draw3dText}}(\textcolor{keyword}{const}\ btVector3\&\ location,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ textString)\textcolor{keyword}{\ override\ }\{\};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ clearLines()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer_a414f3ed71a16daa63b56695862a2ead5}{setDebugMode}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ debugMode)\textcolor{keyword}{\ override\ }\{\ mode\ =\ DebugDrawModes(debugMode);\ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer_ae28e1adfba78282f2b35d62527c7bf24}{getDebugMode}}()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ mode;\ \}}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Archivo de código fuente src/Core/Utilities/Vector2.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li><li class="navelem"><a class="el" href="dir_ef45e45aec05f26eee9d9a3bc88d5d9e.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Vector2.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_vector2_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="defs_8h.html">defs.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_tapioca.html">Tapioca</a> {</div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html">    8</a></span><span class="keyword">class </span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8">   10</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8">x</a>; <span class="comment">// Coordenada x del vector</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb">   11</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb">y</a>; <span class="comment">// Coordenada y del vector</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> xy = 0);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> x, <span class="keyword">const</span> <span class="keywordtype">float</span> y);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">float</span> magnitudeSquared() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">float</span> magnitude() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> getNormalized() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">float</span> normalize();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#ad52381e3d7ed6e0ff344bf1cc8d30887">   62</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#ad52381e3d7ed6e0ff344bf1cc8d30887">operator+</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(x + other.<a class="code hl_variable" href="class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8">x</a>, y + other.<a class="code hl_variable" href="class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb">y</a>); }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#a2da2937b490d8f2cbde4da9f3053c509">   67</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#a2da2937b490d8f2cbde4da9f3053c509">operator-</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(-x, -y); }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#acc2382e722d931ef3142ab09e1c57e4b">   73</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#acc2382e722d931ef3142ab09e1c57e4b">operator-</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(x - other.<a class="code hl_variable" href="class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8">x</a>, y - other.<a class="code hl_variable" href="class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb">y</a>); }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#aa375855cf89459265f2ed10eaf0538cb">   79</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#aa375855cf89459265f2ed10eaf0538cb">operator*</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(x * other, y * other); }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#a2da654af01f0ccba5665d9884253b6f6">   85</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#a2da654af01f0ccba5665d9884253b6f6">operator/</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>(x / other, y / other); }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#a19bb0211801f36762763fd174880ebfb">   92</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_vector2.html#a19bb0211801f36762763fd174880ebfb">operator+=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other) { <span class="keywordflow">return</span> *<span class="keyword">this</span> = *<span class="keyword">this</span> + other; }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#a002547e58a2394508c36163a06d492dd">   98</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_vector2.html#a002547e58a2394508c36163a06d492dd">operator-=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other) { <span class="keywordflow">return</span> *<span class="keyword">this</span> = *<span class="keyword">this</span> - other; }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#a9ff1d298b597adf7b71d7e4800edb481">  104</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_vector2.html#a9ff1d298b597adf7b71d7e4800edb481">operator*=</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; other) { <span class="keywordflow">return</span> *<span class="keyword">this</span> = *<span class="keyword">this</span> * other; }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#af25c40b7914921e0c0e55f12d3fefc5c">  110</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_vector2.html#af25c40b7914921e0c0e55f12d3fefc5c">operator/=</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; other) { <span class="keywordflow">return</span> *<span class="keyword">this</span> = *<span class="keyword">this</span> / other; }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#acfea0b622aeaa862e8c481dc70d73124">  117</a></span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#acfea0b622aeaa862e8c481dc70d73124">operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (x == other.<a class="code hl_variable" href="class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8">x</a> &amp;&amp; y == other.<a class="code hl_variable" href="class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb">y</a>); }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_vector2.html#aa5b5406d18d4b896280333c9a3e8a71b">  123</a></span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_tapioca_1_1_vector2.html#aa5b5406d18d4b896280333c9a3e8a71b">operator!=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == other); }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> lerp(<a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <span class="keyword">const</span>&amp; end, <span class="keywordtype">float</span> t) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">float</span> distance(<a class="code hl_class" href="class_tapioca_1_1_vector2.html">Vector2</a> <span class="keyword">const</span>&amp; other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">static</span> <span class="keywordtype">float</span> clamp(<span class="keywordtype">float</span> v, <span class="keywordtype">float</span> min, <span class="keywordtype">float</span> max);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>};</div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html"><div class="ttname"><a href="class_tapioca_1_1_vector2.html">Tapioca::Vector2</a></div><div class="ttdef"><b>Definition</b> Vector2.h:8</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_a002547e58a2394508c36163a06d492dd"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#a002547e58a2394508c36163a06d492dd">Tapioca::Vector2::operator-=</a></div><div class="ttdeci">Vector2 &amp; operator-=(const Vector2 &amp;other)</div><div class="ttdoc">Devuelve el vector resultante de la resta de este vector con otro.</div><div class="ttdef"><b>Definition</b> Vector2.h:98</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_a19bb0211801f36762763fd174880ebfb"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#a19bb0211801f36762763fd174880ebfb">Tapioca::Vector2::operator+=</a></div><div class="ttdeci">Vector2 &amp; operator+=(const Vector2 &amp;other)</div><div class="ttdoc">Devuelve el vector resultante de la suma de este vector con otro.</div><div class="ttdef"><b>Definition</b> Vector2.h:92</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_a208b43492707e5c950003d131b8c9efb"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb">Tapioca::Vector2::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition</b> Vector2.h:11</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_a2da2937b490d8f2cbde4da9f3053c509"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#a2da2937b490d8f2cbde4da9f3053c509">Tapioca::Vector2::operator-</a></div><div class="ttdeci">Vector2 operator-() const</div><div class="ttdoc">Devuelve el vector resultante de este vector cambiandole el signo.</div><div class="ttdef"><b>Definition</b> Vector2.h:67</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_a2da654af01f0ccba5665d9884253b6f6"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#a2da654af01f0ccba5665d9884253b6f6">Tapioca::Vector2::operator/</a></div><div class="ttdeci">Vector2 operator/(const float &amp;other) const</div><div class="ttdoc">Devuelve el vector resultante de la division de este vector por un escalar.</div><div class="ttdef"><b>Definition</b> Vector2.h:85</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_a9ff1d298b597adf7b71d7e4800edb481"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#a9ff1d298b597adf7b71d7e4800edb481">Tapioca::Vector2::operator*=</a></div><div class="ttdeci">Vector2 &amp; operator*=(const float &amp;other)</div><div class="ttdoc">Devuelve el vector resultante de la multiplicacion de este vector por un escalar.</div><div class="ttdef"><b>Definition</b> Vector2.h:104</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_aa375855cf89459265f2ed10eaf0538cb"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#aa375855cf89459265f2ed10eaf0538cb">Tapioca::Vector2::operator*</a></div><div class="ttdeci">Vector2 operator*(const float &amp;other) const</div><div class="ttdoc">Devuelve el vector resultante de la multiplicacion de este vector por un escalar.</div><div class="ttdef"><b>Definition</b> Vector2.h:79</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_aa5b5406d18d4b896280333c9a3e8a71b"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#aa5b5406d18d4b896280333c9a3e8a71b">Tapioca::Vector2::operator!=</a></div><div class="ttdeci">bool operator!=(const Vector2 &amp;other) const</div><div class="ttdoc">Devuelve si este vector es distinto a otro.</div><div class="ttdef"><b>Definition</b> Vector2.h:123</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_acc2382e722d931ef3142ab09e1c57e4b"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#acc2382e722d931ef3142ab09e1c57e4b">Tapioca::Vector2::operator-</a></div><div class="ttdeci">Vector2 operator-(const Vector2 &amp;other) const</div><div class="ttdoc">Devuelve el vector resultante de la resta de este vector con otro.</div><div class="ttdef"><b>Definition</b> Vector2.h:73</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_acdad3f716aafb05a26213e158a6bd2f8"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8">Tapioca::Vector2::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition</b> Vector2.h:10</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_acfea0b622aeaa862e8c481dc70d73124"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#acfea0b622aeaa862e8c481dc70d73124">Tapioca::Vector2::operator==</a></div><div class="ttdeci">bool operator==(const Vector2 &amp;other) const</div><div class="ttdoc">Devuelve si este vector es igual a otro.</div><div class="ttdef"><b>Definition</b> Vector2.h:117</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_ad52381e3d7ed6e0ff344bf1cc8d30887"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#ad52381e3d7ed6e0ff344bf1cc8d30887">Tapioca::Vector2::operator+</a></div><div class="ttdeci">Vector2 operator+(const Vector2 &amp;other) const</div><div class="ttdoc">Devuelve el vector resultante de la suma de este vector con otro.</div><div class="ttdef"><b>Definition</b> Vector2.h:62</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector2_html_af25c40b7914921e0c0e55f12d3fefc5c"><div class="ttname"><a href="class_tapioca_1_1_vector2.html#af25c40b7914921e0c0e55f12d3fefc5c">Tapioca::Vector2::operator/=</a></div><div class="ttdeci">Vector2 &amp; operator/=(const float &amp;other)</div><div class="ttdoc">Devuelve el vector resultante de la division de este vector por un escalar.</div><div class="ttdef"><b>Definition</b> Vector2.h:110</div></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

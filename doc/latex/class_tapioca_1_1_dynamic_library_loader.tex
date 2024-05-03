@@ -1,0 +1,80 @@
+\doxysection{Referencia de la clase Tapioca\+::Dynamic\+Library\+Loader}
+\hypertarget{class_tapioca_1_1_dynamic_library_loader}{}\label{class_tapioca_1_1_dynamic_library_loader}\index{Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}}
+
+
+Carga de bibliotecas dinamicas.  
+
+
+
+
+{\ttfamily \#include $<$Dynamic\+Library\+Loader.\+h$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_dynamic_library_loader_aaf6b49f2306704a56ff1f3abcd7d9818}{\texorpdfstring{$\sim$}{\string~}\+Dynamic\+Library\+Loader}} ()=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static HMODULE \mbox{\hyperlink{class_tapioca_1_1_dynamic_library_loader_a0b271722b591e4d8ce8f5173f7c71df4}{Dynamic\+Library\+Loader}} ()=delete
+\item 
+static bool \mbox{\hyperlink{class_tapioca_1_1_dynamic_library_loader_ad81fab523c07d38b2701036afc4a9603}{init\+Game}} (std\+::string const \&game\+Name="{}game"{})
+\begin{DoxyCompactList}\small\item\em Carga la dll del juego y llama a su funcion de inicializacion. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_tapioca_1_1_dynamic_library_loader_a41edb3973bb7b1108e725ebe9ec28b11}{free\+Module}} ()
+\begin{DoxyCompactList}\small\item\em Libera el modulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Carga de bibliotecas dinamicas. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_dynamic_library_loader_a0b271722b591e4d8ce8f5173f7c71df4}\label{class_tapioca_1_1_dynamic_library_loader_a0b271722b591e4d8ce8f5173f7c71df4} 
+\index{Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}!DynamicLibraryLoader@{DynamicLibraryLoader}}
+\index{DynamicLibraryLoader@{DynamicLibraryLoader}!Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}}
+\doxysubsubsection{\texorpdfstring{DynamicLibraryLoader()}{DynamicLibraryLoader()}}
+{\footnotesize\ttfamily static HMODULE Tapioca\+::\+Dynamic\+Library\+Loader\+::\+Dynamic\+Library\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [delete]}}
+
+\Hypertarget{class_tapioca_1_1_dynamic_library_loader_aaf6b49f2306704a56ff1f3abcd7d9818}\label{class_tapioca_1_1_dynamic_library_loader_aaf6b49f2306704a56ff1f3abcd7d9818} 
+\index{Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}!````~DynamicLibraryLoader@{\texorpdfstring{$\sim$}{\string~}DynamicLibraryLoader}}
+\index{````~DynamicLibraryLoader@{\texorpdfstring{$\sim$}{\string~}DynamicLibraryLoader}!Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}DynamicLibraryLoader()}{\string~DynamicLibraryLoader()}}
+{\footnotesize\ttfamily Tapioca\+::\+Dynamic\+Library\+Loader\+::\texorpdfstring{$\sim$}{\string~}\+Dynamic\+Library\+Loader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_dynamic_library_loader_a41edb3973bb7b1108e725ebe9ec28b11}\label{class_tapioca_1_1_dynamic_library_loader_a41edb3973bb7b1108e725ebe9ec28b11} 
+\index{Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}!freeModule@{freeModule}}
+\index{freeModule@{freeModule}!Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}}
+\doxysubsubsection{\texorpdfstring{freeModule()}{freeModule()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Dynamic\+Library\+Loader\+::free\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Libera el modulo. 
+
+\Hypertarget{class_tapioca_1_1_dynamic_library_loader_ad81fab523c07d38b2701036afc4a9603}\label{class_tapioca_1_1_dynamic_library_loader_ad81fab523c07d38b2701036afc4a9603} 
+\index{Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}!initGame@{initGame}}
+\index{initGame@{initGame}!Tapioca::DynamicLibraryLoader@{Tapioca::DynamicLibraryLoader}}
+\doxysubsubsection{\texorpdfstring{initGame()}{initGame()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Dynamic\+Library\+Loader\+::init\+Game (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{game\+Name = {\ttfamily "{}game"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Carga la dll del juego y llama a su funcion de inicializacion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em game\+Name} & Nombre del juego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Si se ha podido cargar correctamente o no 
+\end{DoxyReturn}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Core/\+Structure/\mbox{\hyperlink{_dynamic_library_loader_8h}{Dynamic\+Library\+Loader.\+h}}\item 
+src/\+Core/\+Structure/\mbox{\hyperlink{_dynamic_library_loader_8cpp}{Dynamic\+Library\+Loader.\+cpp}}\end{DoxyCompactItemize}

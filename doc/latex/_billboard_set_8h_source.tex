@@ -1,0 +1,75 @@
+\doxysection{Billboard\+Set.\+h}
+\hypertarget{_billboard_set_8h_source}{}\label{_billboard_set_8h_source}\index{src/Graphics/Utilities/BillboardSet.h@{src/Graphics/Utilities/BillboardSet.h}}
+\mbox{\hyperlink{_billboard_set_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_render_object_8h}{RenderObject.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector3_8h}{Utilities/Vector3.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector4_8h}{Utilities/Vector4.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }SceneManager;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }BillboardSet;}
+\DoxyCodeLine{00011\ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }Billboard;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1}{BillboardType}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1a70a71e59c05944ee0aa85e43ebbe628b}{BBT\_POINT}},}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1af960c145f3984a21086dfcfb26933bff}{BBT\_ORIENTED\_COMMON}},}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1a2aa16066df3e813c73364aad56566439}{BBT\_ORIENTED\_SELF}},}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1a214bc5d11baaf4caf90e2857c6c75a12}{BBT\_PERPENDICULAR\_COMMON}},}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1ad0c28e925862b71986517060e04b9ff2}{BBT\_PERPENDICULAR\_SELF}}}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{BillboardSet}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_render_object}{RenderObject}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00034\ \ \ \ \ Ogre::BillboardSet*\ \mbox{\hyperlink{class_tapioca_1_1_billboard_set_a7e4111c8552abe202aa1cc531d6fb6f5}{mBillboardSet}};\ \ \ \textcolor{comment}{//\ BillboardSet\ de\ Ogre}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::BillboardSet::billboards'\ :}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Billboard\ *,std::allocator<Tapioca::Billboard\ *>>'\ necesita}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::BillboardSet'}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::BillboardSet::mName'\ :}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::BillboardSet'}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ \ \ \ \ std::vector<Tapioca::Billboard*>\ \mbox{\hyperlink{class_tapioca_1_1_billboard_set_aaf5712eeeb5e980053e679b0e0ba0563}{billboards}};\ \ \ \textcolor{comment}{//\ UnorderedSet\ de\ Billboards\ de\ Tapioca}}
+\DoxyCodeLine{00046\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_billboard_set_a8783d2d8b4fbff133de73aab0537eebf}{mName}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nombre\ identificador}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{BillboardSet}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ poolSize);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{\string~BillboardSet}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ getName()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ setPoolSize(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ getPoolSize()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ getNumBillboards()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ clear();}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ removeBillboard(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ removeBillboard(\mbox{\hyperlink{class_tapioca_1_1_billboard}{Billboard}}*\ \textcolor{keyword}{const}\ bb);}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard}{Billboard}}*\ addBillboard(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ position,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ colour\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard}{Billboard}}*\ getBillboard(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ setBillboardType(\mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1}{BillboardType}}\ billboardType);}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_a6f53bac25da5fb5b286cc50a234161a1}{BillboardType}}\ getBillboardType()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaterialName(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ getMaterialName(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ \}}
+
+\end{DoxyCode}

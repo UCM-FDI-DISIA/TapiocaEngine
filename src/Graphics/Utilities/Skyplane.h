@@ -11,7 +11,7 @@ class SceneManager;
 
 namespace Tapioca {
 class RenderNode;
-/*
+/**
 * @brief Wrapper de la clase Skyplane de Ogre
 */
 class TAPIOCA_API Skyplane : public RenderObject {
@@ -41,7 +41,7 @@ private:
     int ySegments;      // Numero de segmentos en y
 
 public:
-    /*
+    /**
     * @brief Constructor de la clase Skyplane
     * @param scnMngr Puntero al manager de escenas de ogre
     * @param node Nodo de renderizado al que se asocia el skyplane
@@ -63,12 +63,12 @@ public:
              const Vector3 rkNormal = {0.0f, 0.0f, 1.0f}, const float fConstant = -20.0f, const float scale = 0.3f,
              const float tiling = 1.0f, const bool drawFirst = true, const float bow = 1.0f, const int xsegments = 100,
              const int ysegments = 100);
-    /*
+    /**
     * @brief Activa o desactiva el Skybox
     * @param enable True si se quiere activar, false en caso contrario
     */
     void setEnable(const bool enable);
-    /*
+    /**
     * @brief Devuelve si esta activo
     * @return True si esta activo, false en caso contrario
     */

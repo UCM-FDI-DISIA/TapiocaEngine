@@ -1,0 +1,99 @@
+\doxysection{Rigid\+Body.\+h}
+\hypertarget{_rigid_body_8h_source}{}\label{_rigid_body_8h_source}\index{src/Physics/Components/RigidBody.h@{src/Physics/Components/RigidBody.h}}
+\mbox{\hyperlink{_rigid_body_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_component_8h}{Structure/Component.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector3_8h}{Utilities/Vector3.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{physics_defs_8h}{physicsDefs.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }btRigidBody;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }Vector3;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Transform;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body}{RigidBody}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ btRigidBody*\ rigidBody;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RigidBody\ de\ bullet}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ del\ objeto}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{ColliderShape}}\ colShape;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Forma\ del\ collider}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ colliderInitialScale;\ \ \ \textcolor{comment}{//\ Escala\ inicial\ del\ collider}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{MovementType}}\ movementType;\ \ \ \ \ \ \textcolor{comment}{//\ Tipo\ de\ movimiento}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ isTrigger;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ es\ un\ trigger\ o\ no}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ mask;\ \ \ \ \textcolor{comment}{//\ Indica\ con\ que\ grupo\ se\ puede\ colisionar\ (en\ binario)}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ group;\ \ \ \textcolor{comment}{//\ Filtro\ de\ colision}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{float}\ mass;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Masa}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ friction;\ \ \ \ \ \textcolor{comment}{//\ Friccion}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ damping;\ \ \ \ \ \ \textcolor{comment}{//\ Damping}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ bounciness;\ \ \ \textcolor{comment}{//\ Bote}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ activeRigidBody;\ \ \ \textcolor{comment}{//\ Indica\ si\ el\ rigidbody\ esta\ activo\ o\ no}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ trackScale;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ el\ rigidbody\ escala\ con\ el\ transform}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a0673c48bdbb3c259a0a180737bc57400}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}RigidBody"{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_rigid_body}{RigidBody}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_rigid_body}{\string~RigidBody}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ fixedUpdate()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a5aa0ed2a1ab94e4befcd2bfb0417391a}{onCollisionEnter}}(\mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \textcolor{keyword}{const}\ other);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_ac7c9fda0f21bc2694d940be6b4966fe3}{onCollisionExit}}(\mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \textcolor{keyword}{const}\ other);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a8cb922fe061d2a93675a582a6a01ca17}{onCollisionStay}}(\mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \textcolor{keyword}{const}\ other);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ setActive(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ b)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ setMomeventType(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{MovementType}}\ t);}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ setTrigger(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ t);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_ad41202f626bffce7a388697ce46ac212}{setColliderShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{ColliderShape}}\ s)\ \{\ colShape\ =\ s;\ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setMask(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ m);}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ setGroup(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ g);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a6426c2d9e3ad0cdca5b558fd447d03a6}{setMass}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ m)\ \{\ mass\ =\ m;\ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ setTensor(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ t);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ setFriction(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ f);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ setDamping(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ f);}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{void}\ setBounciness(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ b);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ setVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ v);}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ setGravity(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ g);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ setTrackScale(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ b);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ addForce(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ f);}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ addImpulse(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ f);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a3cca9e36a871ba44d6cf455ad4fe36a6}{getTrigger}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ isTrigger;\ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a84f79c2d19e976e7a6335c6e7b40f1ae}{getColliderShape}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ colShape;\ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a5e21145a04215e5d06ac7c80771cd66b}{getColliderScale}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ colliderInitialScale;\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getColliderTrueScale()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a639e620b993192c32392e696838682ee}{getMovementType}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ movementType;\ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a2a86d7f2d90b66ee61613bbbb369588f}{getMask}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mask;\ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_abbce564524cd11c8378554884c3c6452}{getGroup}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ group;\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a58e6a7ceaf5d5941c91658d542704df6}{getMass}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mass;\ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getTensor()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a2d125316602f360572272c7c16ec44c0}{getFriction}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ friction;\ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a9b45ff7a8139be8edccffbea2ae61b58}{getDamping}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ damping;\ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_ac92c8f723e973af24b708abf46c18e66}{getBounciness}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ bounciness;\ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getVelocity()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getAngularVelocity()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00256\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getGravity()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getTotalForce()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ getPushVelocity()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_rigid_body_aaed8ed9fb8a5483aa602eceb8adc9485}{getActiveRB}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ activeRigidBody;\ \}}
+\DoxyCodeLine{00272\ \};}
+\DoxyCodeLine{00273\ \}}
+
+\end{DoxyCode}

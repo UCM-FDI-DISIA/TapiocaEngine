@@ -2,7 +2,7 @@
 #include "defs.h"
 #include <string>
 
-namespace irrklang{
+namespace irrklang {
 class ISoundSource;
 class ISound;
 }
@@ -11,7 +11,8 @@ namespace Tapioca {
 class AudioSource;
 class SoundManager;
 
-/*
+/**
+* Clase que representa un recurso de sonido
 */
 class TAPIOCA_API Sound {
 private:
@@ -19,8 +20,9 @@ private:
     friend SoundManager;
 
 protected:
-   // irrklang::ISound* mysound;//handler de la instancia que se esta reproduciendo
-    irrklang::ISoundSource* mysource;//recurso cargado
+    SoundManager* soundManager;       // Puntero al SoundManager
+    irrklang::ISoundSource* source;   // Fuente de sonido
+
     // warning C4251 'Tapioca::Sound::sourceFile' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Sound'
@@ -31,15 +33,14 @@ protected:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-   
-    unsigned int length; // en milisegundos
-   
+
+    unsigned int length;   // Duracion del sonido en milisegundos
 
 public:
-    Sound(std::string source);
-   
-    
-    
-
+    /**
+    * @brief Constructor por defecto
+    * @param sourceFile Ruta del archivo de sonido
+    */
+    Sound(std::string sourceFile);
 };
 }

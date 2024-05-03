@@ -6,7 +6,7 @@
 namespace Tapioca {
 class GameObject;
 
-/*
+/**
 * @brief Clase base de todos los componentes
 */
 class TAPIOCA_API Component {
@@ -19,57 +19,57 @@ protected:
     bool active;          // Indica si el componente esta activo (si se actualizan update y fixedUpdate)
 
 public:
-    /*
+    /**
     * @brief Constructor de la clase Component
     */
     Component();
-    /*
+    /**
     * @brief Destructor de la clase Component
     */
     virtual ~Component() { }
 
-    /*
+    /**
     * @brief Recibe los parametros iniciales y se inicializan los atributos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
     * @return true si se ha inicializado correctamente, false si no
     */
     virtual bool initComponent(const CompMap& variables) { return true; }
-    /*
+    /**
     * @brief Inicializa el componente. Se ejecuta antes que el start
     * Garantiza que todos los componentes iniciales esten creados
     */
     virtual void awake() { }
-    /*
+    /**
     * @brief Inicializa el componente
     * Garantiza que todos los componentes iniciales esten creados
     */
     virtual void start() { }
-    /*
+    /**
     * @brief Actualiza el estado de un componente. Se llama todas las veces posibles
     * @param deltaTime Tiempo que ha pasado desde la ultima llamada
     */
     virtual void update(const uint64_t deltaTime) { }
-    /*
+    /**
     * @brief Actualiza el estado de un componente
     * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME),
     */
     virtual void fixedUpdate() { }
-    /*
+    /**
     * @brief Renderizado de un componente
     */
     virtual void render() const { }
-    /*
+    /**
     * @brief Actualiza la interfaz de usuario
     */
     virtual void updateUI() { }
-    /*
+    /**
     * @brief Recibe eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent
     * @param id Indica el tipo de mensaje
     * @param info Puntero a void para pasar parametros
     */
     virtual void handleEvent(std::string const& id, void* info) { }
-    /*
+    /**
     * @brief Envia un evento
     * @param id Indica el tipo de mensaje
     * @param info Puntero a void para pasar parametros
@@ -78,7 +78,7 @@ public:
     */
     void pushEvent(std::string const& id, void* info, const bool global = true, const bool delay = false);
 
-    /*
+    /**
     * @brief Da valor a una variable declarada en un CompMap
     * @param var Tipo de variable que se quiere actualizar
     * @param varName Nombre de la variable que se quiere actualizar
@@ -103,33 +103,33 @@ public:
         return true;
     }
 
-    /*
+    /**
     * @brief Devuelve el objeto al que esta adjunto este componente
     * @return Objeto al que esta adjunto este componente
     */
     inline GameObject* getObject() const { return object; }
 
-    /*
+    /**
     * @brief Devuelve si el componente esta "vivo" (si se actualizan update, handleEvents, ...)
     * @return true si esta "vivo", false si no
     */
     inline bool isAlive() const { return alive; }
-    /*
+    /**
     * @brief Devuelve si el componente esta activo (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
     * @return true si esta activo, false si no
     */
     inline bool isActive() const { return active; }
-    /*
+    /**
     * @brief Borra el componente
     */
     inline void die() { alive = false; }
-    /*
+    /**
     * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
     * @param b true si se quiere activar, false si no
     */
     inline virtual void setActive(const bool b) { active = b; }
 };
-/*
+/**
 * @brief Id del componente
 * Se necesita especificar para usar BasicBuilder y para poder ser llamado desde los metodos que usen template
 */

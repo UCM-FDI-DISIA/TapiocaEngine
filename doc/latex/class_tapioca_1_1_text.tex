@@ -1,0 +1,381 @@
+\doxysection{Referencia de la clase Tapioca\+::Text}
+\hypertarget{class_tapioca_1_1_text}{}\label{class_tapioca_1_1_text}\index{Tapioca::Text@{Tapioca::Text}}
+
+
+Clase que representa un texto en la interfaz grafica.  
+
+
+
+
+{\ttfamily \#include $<$Text.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Text\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_text}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_text_a5e693f6e9f7d8c0ba7d499c9207fb8c8}{Text}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_text_aaa2ae195257d22943a72c80d6ad6de87}{\texorpdfstring{$\sim$}{\string~}\+Text}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_text_a9a959bf113cea394b30600214f49961d}{init\+Component}} (const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&variables) override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_aa83f9e06a07775796bcf109460f53966}{start}} () override
+\begin{DoxyCompactList}\small\item\em Asigna el transform del objeto al texto e inicializa la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_a8921a50d10804e1840f7460e7a586412}{update\+UI}} () override
+\begin{DoxyCompactList}\small\item\em Actualiza el tamano de la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_a47073ecd850f7af13f40220ed1644a4c}{render}} () const override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para renderizar el texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_a2ba4ad3296af12ccd1756f207490e44c}{set\+Text}} (const std\+::string \&text)
+\begin{DoxyCompactList}\small\item\em Establece el texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_a6b21d9c16b9f681c35338b5a72839ee6}{set\+Text\+Size}} (float text\+Size)
+\begin{DoxyCompactList}\small\item\em Establece el tamano de la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_a2d88f34ceac452df29347ff638edbe2b}{set\+Text\+Font\+Name}} (std\+::string text\+Font\+Name)
+\begin{DoxyCompactList}\small\item\em Establece el nombre de la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_af2e5174c20cf33518863f117f7047ea3}{set\+Text\+Font}} (Im\+Font \texorpdfstring{$\ast$}{*}text\+Font)
+\begin{DoxyCompactList}\small\item\em Establece la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_a98477d8f1023fec5ce671db21e4ac885}{update\+Text\+Font}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_text_abfe073a93c61098777c3ca25aad63654}{set\+Text\+Color}} (const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&text\+Color)
+\begin{DoxyCompactList}\small\item\em Establece el color del texto. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_text_a7de4baf30d9f4ecb698f9a526c606196}{get\+Text}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el texto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_text_ae8b79217987e5fdaea4dd6a6f8dd11c5}{get\+Text\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tamano de la fuente del texto. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_text_ab4180510f93ef05e04f18bd604b81c1b}{get\+Text\+Font\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre de la fuente del texto. \end{DoxyCompactList}\item 
+Im\+Font \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_text_a80fcfbc41136e1370ce2c883e1ae09cf}{get\+Text\+Font}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la fuente del texto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \mbox{\hyperlink{class_tapioca_1_1_text_a266844207bec74b55343fae1118b63c4}{get\+Text\+Color}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el color del texto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a8766d01825e52229e15545804ac3d4d2}{Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a598300c3479a22a48f14c2d50dd0164f}{\texorpdfstring{$\sim$}{\string~}\+Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a67ab31882485f7de34efc37d81f6282a}{set\+Name}} (const std\+::string \&\mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}})
+\begin{DoxyCompactList}\small\item\em Establece el nombre del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aa353df99344dc677da2b3a8ac1b8dbc5}{set\+Transform}} (\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}})
+\begin{DoxyCompactList}\small\item\em Establece el puntero al transform del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aedb9535d57ce06003545e3bc9c38929c}{set\+Position}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&position)
+\begin{DoxyCompactList}\small\item\em Establece la posicion del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9de26411857691c5948c2131b6b93007}{set\+Size}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&size)
+\begin{DoxyCompactList}\small\item\em Establece el tamano del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a402adb7468a7885ac03e09ef23e792de}{set\+Window\+Flags}} (\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}})
+\begin{DoxyCompactList}\small\item\em Establece los flags de la ventana. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a586427cda4bf91ecc335b88aec71568c}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad33e50b346466c8e1a7bf16891fe489b}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el puntero al transform del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac1f93543afdbd37af0d494cd87184e38}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la posicion del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9dc0acf2ec9a1eb7a792b95e7161dd9b}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tamano del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a27810f9e8702e2b997dd4f921c800249}{get\+Window\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve los flags de la ventana. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_component_a54e3ac405643adf97dab7c13f200411a}{Component}} ()
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_component_a8875dd4e409d534a7df9f43cdf205b20}{\texorpdfstring{$\sim$}{\string~}\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a9286bd66970caa5e1eee3190ffb9d959}{update}} (const uint64\+\_\+t delta\+Time)
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente. Se llama todas las veces posibles. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2156ae36e3faf359ed3a51c970baf647}{fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente Se llama cada cierto tiempo fijo (Game\+::\+FIXED\+\_\+\+DELTA\+\_\+\+TIME),. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2d17067b33af77e72f17aba93893c955}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info)
+\begin{DoxyCompactList}\small\item\em Recibe eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_a35580bd5f80f3e56ce3920d6b217375e}{push\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info, const bool global=true, const bool delay=false)
+\begin{DoxyCompactList}\small\item\em Envia un evento. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_tapioca_1_1_component_aac0eaed499f8fb51eccf6e174dfc4c88}{set\+Value\+From\+Map}} (T \&var, std\+::string const \&var\+Name, const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&map)
+\begin{DoxyCompactList}\small\item\em Da valor a una variable declarada en un Comp\+Map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_ad7eb69656f01eba0df85a629e703f1a5}{get\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el objeto al que esta adjunto este componente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a602cbc09011f937088126913d8569c8f}{is\+Alive}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta "{}vivo"{} (si se actualizan update, handle\+Events, ...) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a026b71524d3ebe56c75f8bedd61cd707}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta activo (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{die}} ()
+\begin{DoxyCompactList}\small\item\em Borra el componente. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a3447fee4073f813f62a388c63cc4aa55}{set\+Active}} (const bool b)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el componente (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad77a1f58aca8fad0de5f798620128279}{ui\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_lua_manager}{Lua\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9f18710d9e1070b446131167ecc7a293}{lua\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_window_manager}{Window\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac36c8dfd58acf245ac61eb49402b73a3}{window\+Manager}}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}}
+\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_a378ef13ec4f4ca22d314998a2c3bf310}{object}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a9d3a7537fda9a0303b1ed57c6051ed45}{alive}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3ead7}{active}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que representa un texto en la interfaz grafica. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_text_a5e693f6e9f7d8c0ba7d499c9207fb8c8}\label{class_tapioca_1_1_text_a5e693f6e9f7d8c0ba7d499c9207fb8c8} 
+\index{Tapioca::Text@{Tapioca::Text}!Text@{Text}}
+\index{Text@{Text}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{Text()}{Text()}}
+{\footnotesize\ttfamily Tapioca\+::\+Text\+::\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+\Hypertarget{class_tapioca_1_1_text_aaa2ae195257d22943a72c80d6ad6de87}\label{class_tapioca_1_1_text_aaa2ae195257d22943a72c80d6ad6de87} 
+\index{Tapioca::Text@{Tapioca::Text}!````~Text@{\texorpdfstring{$\sim$}{\string~}Text}}
+\index{````~Text@{\texorpdfstring{$\sim$}{\string~}Text}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Text()}{\string~Text()}}
+{\footnotesize\ttfamily Tapioca\+::\+Text\+::\texorpdfstring{$\sim$}{\string~}\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor por defecto. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_text_a7de4baf30d9f4ecb698f9a526c606196}\label{class_tapioca_1_1_text_a7de4baf30d9f4ecb698f9a526c606196} 
+\index{Tapioca::Text@{Tapioca::Text}!getText@{getText}}
+\index{getText@{getText}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{getText()}{getText()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Text\+::get\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el texto. 
+
+\begin{DoxyReturn}{Devuelve}
+Texto 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_text_a266844207bec74b55343fae1118b63c4}\label{class_tapioca_1_1_text_a266844207bec74b55343fae1118b63c4} 
+\index{Tapioca::Text@{Tapioca::Text}!getTextColor@{getTextColor}}
+\index{getTextColor@{getTextColor}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{getTextColor()}{getTextColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} Tapioca\+::\+Text\+::get\+Text\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el color del texto. 
+
+\begin{DoxyReturn}{Devuelve}
+Color del texto 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_text_a80fcfbc41136e1370ce2c883e1ae09cf}\label{class_tapioca_1_1_text_a80fcfbc41136e1370ce2c883e1ae09cf} 
+\index{Tapioca::Text@{Tapioca::Text}!getTextFont@{getTextFont}}
+\index{getTextFont@{getTextFont}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{getTextFont()}{getTextFont()}}
+{\footnotesize\ttfamily Im\+Font \texorpdfstring{$\ast$}{*} Tapioca\+::\+Text\+::get\+Text\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la fuente del texto. 
+
+\begin{DoxyReturn}{Devuelve}
+Fuente del texto 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_text_ab4180510f93ef05e04f18bd604b81c1b}\label{class_tapioca_1_1_text_ab4180510f93ef05e04f18bd604b81c1b} 
+\index{Tapioca::Text@{Tapioca::Text}!getTextFontName@{getTextFontName}}
+\index{getTextFontName@{getTextFontName}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{getTextFontName()}{getTextFontName()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Text\+::get\+Text\+Font\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el nombre de la fuente del texto. 
+
+\begin{DoxyReturn}{Devuelve}
+Nombre de la fuente del texto 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_text_ae8b79217987e5fdaea4dd6a6f8dd11c5}\label{class_tapioca_1_1_text_ae8b79217987e5fdaea4dd6a6f8dd11c5} 
+\index{Tapioca::Text@{Tapioca::Text}!getTextSize@{getTextSize}}
+\index{getTextSize@{getTextSize}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{getTextSize()}{getTextSize()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Text\+::get\+Text\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el tamano de la fuente del texto. 
+
+\begin{DoxyReturn}{Devuelve}
+Tamano de la fuente del texto 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_text_a9a959bf113cea394b30600214f49961d}\label{class_tapioca_1_1_text_a9a959bf113cea394b30600214f49961d} 
+\index{Tapioca::Text@{Tapioca::Text}!initComponent@{initComponent}}
+\index{initComponent@{initComponent}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{initComponent()}{initComponent()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Text\+::init\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&}]{variables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em variables} & unordered\+\_\+map con los parametros iniciales \\
+\hline
+\end{DoxyParams}
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aa7e9e31ef1222a0881b9b7e7b023eec2}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_text_a47073ecd850f7af13f40220ed1644a4c}\label{class_tapioca_1_1_text_a47073ecd850f7af13f40220ed1644a4c} 
+\index{Tapioca::Text@{Tapioca::Text}!render@{render}}
+\index{render@{render}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para renderizar el texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_afef1b4492f720349e080d15baf48fec6}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_text_a2ba4ad3296af12ccd1756f207490e44c}\label{class_tapioca_1_1_text_a2ba4ad3296af12ccd1756f207490e44c} 
+\index{Tapioca::Text@{Tapioca::Text}!setText@{setText}}
+\index{setText@{setText}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{setText()}{setText()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::set\+Text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el texto. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em text} & Texto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_text_abfe073a93c61098777c3ca25aad63654}\label{class_tapioca_1_1_text_abfe073a93c61098777c3ca25aad63654} 
+\index{Tapioca::Text@{Tapioca::Text}!setTextColor@{setTextColor}}
+\index{setTextColor@{setTextColor}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{setTextColor()}{setTextColor()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::set\+Text\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} \&}]{text\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el color del texto. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em text\+Color} & Color del texto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_text_af2e5174c20cf33518863f117f7047ea3}\label{class_tapioca_1_1_text_af2e5174c20cf33518863f117f7047ea3} 
+\index{Tapioca::Text@{Tapioca::Text}!setTextFont@{setTextFont}}
+\index{setTextFont@{setTextFont}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{setTextFont()}{setTextFont()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::set\+Text\+Font (\begin{DoxyParamCaption}\item[{Im\+Font \texorpdfstring{$\ast$}{*}}]{text\+Font }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece la fuente del texto. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em text\+Font} & Fuente del texto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_text_a2d88f34ceac452df29347ff638edbe2b}\label{class_tapioca_1_1_text_a2d88f34ceac452df29347ff638edbe2b} 
+\index{Tapioca::Text@{Tapioca::Text}!setTextFontName@{setTextFontName}}
+\index{setTextFontName@{setTextFontName}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{setTextFontName()}{setTextFontName()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::set\+Text\+Font\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{text\+Font\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el nombre de la fuente del texto. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em text\+Font\+Name} & Nombre de la fuente del texto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_text_a6b21d9c16b9f681c35338b5a72839ee6}\label{class_tapioca_1_1_text_a6b21d9c16b9f681c35338b5a72839ee6} 
+\index{Tapioca::Text@{Tapioca::Text}!setTextSize@{setTextSize}}
+\index{setTextSize@{setTextSize}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{setTextSize()}{setTextSize()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::set\+Text\+Size (\begin{DoxyParamCaption}\item[{float}]{text\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el tamano de la fuente del texto. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em text\+Size} & Tamano de la fuente del texto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_text_aa83f9e06a07775796bcf109460f53966}\label{class_tapioca_1_1_text_aa83f9e06a07775796bcf109460f53966} 
+\index{Tapioca::Text@{Tapioca::Text}!start@{start}}
+\index{start@{start}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Asigna el transform del objeto al texto e inicializa la fuente del texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aac3a9c2eed1b91ac013cf8926ae66e50}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_text_a98477d8f1023fec5ce671db21e4ac885}\label{class_tapioca_1_1_text_a98477d8f1023fec5ce671db21e4ac885} 
+\index{Tapioca::Text@{Tapioca::Text}!updateTextFont@{updateTextFont}}
+\index{updateTextFont@{updateTextFont}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{updateTextFont()}{updateTextFont()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::update\+Text\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Actualiza la fuente del texto. 
+
+\Hypertarget{class_tapioca_1_1_text_a8921a50d10804e1840f7460e7a586412}\label{class_tapioca_1_1_text_a8921a50d10804e1840f7460e7a586412} 
+\index{Tapioca::Text@{Tapioca::Text}!updateUI@{updateUI}}
+\index{updateUI@{updateUI}!Tapioca::Text@{Tapioca::Text}}
+\doxysubsubsection{\texorpdfstring{updateUI()}{updateUI()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Text\+::update\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Actualiza el tamano de la fuente del texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aaf132dc7cb3116e3843c1dc51f43c64f}{Tapioca\+::\+Component}}.
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_text_8h}{Text.\+h}}\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_text_8cpp}{Text.\+cpp}}\end{DoxyCompactItemize}

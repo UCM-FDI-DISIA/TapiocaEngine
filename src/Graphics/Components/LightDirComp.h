@@ -7,7 +7,7 @@ namespace Tapioca {
 class RenderNode;
 class LightDirectional;
 
-/*
+/**
 * @brief Componente que se encarga de la iluminacion de tipo direccional
 */
 class TAPIOCA_API LightDirComp : public Component {
@@ -24,17 +24,17 @@ private:
 public:
     COMPONENT_ID("LightDirComp")
 
-    /*
+    /**
     * @brief Constructor por defecto
     */
     LightDirComp();
 
-    /*
+    /**
     * @brief Destructor por defecto
     */
     ~LightDirComp();
 
-    /*
+    /**
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
@@ -42,30 +42,30 @@ public:
     */
     bool initComponent(const CompMap& variables) override;
 
-    /*
+    /**
     * @brief Crea un LightDirectional, crea un nodo y le asigna el LightDirectional
     */
     void start() override;
 
-    /*
+    /**
     * @brief Establece el color de la luz
     * @param color Vector4 con el color de la luz
     */
     void setColor(const Vector4 color);
 
-    /*
+    /**
     * @brief Establece la intensidad de la luz
     * @param power float con la intensidad de la luz
     */
     void setPowerScale(const float power);
 
-    /*
+    /**
     * @brief Establece la direccion de la luz
     * @param direction Vector3 con la direccion de la luz
     */
     void setDirection(const Vector3 direction);
 
-    /*
+    /**
     * @brief Activa o desactiva las sombras
     * @param enable bool que indica si se activan o desactivan las sombras
     */

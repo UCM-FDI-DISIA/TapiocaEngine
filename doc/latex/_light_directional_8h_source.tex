@@ -1,0 +1,33 @@
+\doxysection{Light\+Directional.\+h}
+\hypertarget{_light_directional_8h_source}{}\label{_light_directional_8h_source}\index{src/Graphics/Utilities/LightDirectional.h@{src/Graphics/Utilities/LightDirectional.h}}
+\mbox{\hyperlink{_light_directional_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_light_8h}{Light.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }SceneManager;}
+\DoxyCodeLine{00006\ \}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }Vector3;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }Vector4;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_light}{Light}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnManager,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction);}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{\string~LightDirectional}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ setDirection(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ produceShadows(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}

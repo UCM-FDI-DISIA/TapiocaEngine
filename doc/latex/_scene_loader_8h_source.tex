@@ -1,0 +1,60 @@
+\doxysection{Scene\+Loader.\+h}
+\hypertarget{_scene_loader_8h_source}{}\label{_scene_loader_8h_source}\index{src/Bridge/SceneLoader.h@{src/Bridge/SceneLoader.h}}
+\mbox{\hyperlink{_scene_loader_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_singleton_8h}{Utilities/Singleton.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_module_8h}{Structure/Module.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }lua\_State;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Scene;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }MainLoop;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }FactoryManager;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }WindowManager;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }GameObject;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }Component;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}<SceneLoader>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_module}{Module}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton<SceneLoader>}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ lua\_State*\ luaState;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Estado\ de\ lua}}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{MainLoop}}*\ \mbox{\hyperlink{namespace_tapioca_aee221b2de416281b1f7bda9823acd63b}{mainLoop}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Puntero\ a\ MainLoop}}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_factory_manager}{FactoryManager}}*\ factManager;\ \ \ \ \textcolor{comment}{//\ Puntero\ a\ FactoryManager}}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_window_manager}{WindowManager}}*\ \mbox{\hyperlink{namespace_tapioca_afb4ee25f71d312e899486f225ce94aff}{windowManager}};\ \ \ \textcolor{comment}{//\ Puntero\ a\ WindowManager}}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ scenesPath;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ruta\ de\ las\ escenas}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ init()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ initConfig()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadScene(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ scene);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadGameObjects(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ scene);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadGameObject(\mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \textcolor{keyword}{const}\ gameObject,\ \textcolor{keywordtype}{int}\&\ zIndex);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadGameObjects(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ scene,\ std::vector<GameObject*>\&\ gameObjectList);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadComponents(\mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \textcolor{keyword}{const}\ gameObject);}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadComponent(std::string\ \textcolor{keyword}{const}\&\ name,\ \mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \textcolor{keyword}{const}\ gameObject);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ exposeUIvalues();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene_loader_af2571f87e80f788a2bab7b5db8c58a9f}{SceneLoader}}(\mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene_loader_a0b2041a87f79a1153de956759c43e53d}{SceneLoader}}(\mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\&\ \mbox{\hyperlink{class_tapioca_1_1_scene_loader_a7bc82435b118cb2326644a7d3556d0eb}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\&\ \mbox{\hyperlink{class_tapioca_1_1_scene_loader_a4cc431ccfe8fbcd077de3d9dbde085ac}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_scene_loader}{SceneLoader}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene_loader}{\string~SceneLoader}}();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ loadScene(std::string\ \textcolor{keyword}{const}\&\ sceneName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ active\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ \}}
+
+\end{DoxyCode}

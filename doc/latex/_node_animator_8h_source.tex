@@ -1,0 +1,74 @@
+\doxysection{Node\+Animator.\+h}
+\hypertarget{_node_animator_8h_source}{}\label{_node_animator_8h_source}\index{src/Graphics/Utilities/NodeAnimator.h@{src/Graphics/Utilities/NodeAnimator.h}}
+\mbox{\hyperlink{_node_animator_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector3_8h}{Utilities/Vector3.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_quaternion_8h}{Utilities/Quaternion.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }AnimationState;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }SceneManager;}
+\DoxyCodeLine{00010\ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_tapioca_1_1_key_frame}{KeyFrame}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{struct_tapioca_1_1_key_frame_ac84fc185795a8397b61ed4d1c8e79e32}{pos}}\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{struct_tapioca_1_1_key_frame_a1fa6d55c17c7e94b93e5777f77cd98bf}{scale}}\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ \mbox{\hyperlink{struct_tapioca_1_1_key_frame_afe829dd4bef5bc554247a4a6b6152b0e}{rot}}\ =\ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ 1.0f));}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ Ogre::SceneManager*\ sceneManager;\ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ al\ SceneManager}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ node;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ al\ nodo\ que\ se\ va\ a\ animar}}
+\DoxyCodeLine{00031\ \ \ \ \ Ogre::AnimationState*\ animationState;\ \ \ \textcolor{comment}{//\ Referencia\ al\ estado\ de\ la\ animacion}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{float}\ duration;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Duracion\ de\ la\ animacion\ en\ segundos}}
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<KeyFrame>\ keyFrames;\ \ \ \textcolor{comment}{//\ Lista\ de\ keyframes}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ enabled;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ la\ animacion\ esta\ activa}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ loop;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ la\ animacion\ se\ repite}}
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nombre\ de\ la\ animacion}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keywordtype}{float}\ duration,\ std::string\ name);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ init();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ updateAnim(\textcolor{keyword}{const}\ uint64\_t\ delt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ play(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ loop);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ enable(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ setLoop(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ loop);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_node_animator_aad68a1e6185957db954e4345fdd3bb82}{isLooping}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ loop;\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_node_animator_ae49dc6222e027dca9a1bc30a4cb03f9b}{isEnabled}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ enabled;\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasEnded()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{struct_tapioca_1_1_key_frame}{KeyFrame}}*\ addKeyFrame();}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFramePosScaleRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rot);}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFramePosScaleRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale,\ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ rot);}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFramePosScale(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale);}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFramePosRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rot);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFramePosRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos,\ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ rot);}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFrameScaleRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale,\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rot);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFrameScaleRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale,\ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ rot);}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFramePos(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos);}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFrameScale(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale);}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFrameRot(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rot);}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ addKeyFrameRot(\mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ rot);}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,137 @@
+\doxysection{Referencia de la clase Tapioca\+::Graphics\+Engine}
+\hypertarget{class_tapioca_1_1_graphics_engine}{}\label{class_tapioca_1_1_graphics_engine}\index{Tapioca::GraphicsEngine@{Tapioca::GraphicsEngine}}
+Diagrama de herencia de Tapioca\+::Graphics\+Engine\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_graphics_engine}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a639e2b775ac3cf433dafa49822545448}\label{class_tapioca_1_1_graphics_engine_a639e2b775ac3cf433dafa49822545448} 
+{\bfseries Graphics\+Engine} (\mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \&)=delete
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a61d404a926a07eaa7376064fd99b58d7}\label{class_tapioca_1_1_graphics_engine_a61d404a926a07eaa7376064fd99b58d7} 
+{\bfseries Graphics\+Engine} (\mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \&\&)=delete
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_ad337761e3c3d7e48882c4d33a8e758a9}\label{class_tapioca_1_1_graphics_engine_ad337761e3c3d7e48882c4d33a8e758a9} 
+\mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \& {\bfseries operator=} (\mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \&)=delete
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_acd9dec63f3e83ad29c12d906c39263ba}\label{class_tapioca_1_1_graphics_engine_acd9dec63f3e83ad29c12d906c39263ba} 
+\mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \& {\bfseries operator=} (\mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \&\&)=delete
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_graphics_engine_ad05a14d51f5b165e840545ab6d97d3e9}{init}} () override
+\item 
+void \mbox{\hyperlink{class_tapioca_1_1_graphics_engine_adb721e7cdbbe1c363e4fd1bed6ef2eec}{render}} () override
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a9a9c632f5b9dc087e38cdec1c4cb1f90}\label{class_tapioca_1_1_graphics_engine_a9a9c632f5b9dc087e38cdec1c4cb1f90} 
+void {\bfseries shut\+Down} ()
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a0cde141a32d644a9bd1085ce051acd9f}\label{class_tapioca_1_1_graphics_engine_a0cde141a32d644a9bd1085ce051acd9f} 
+SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*} {\bfseries get\+SDLWindow} ()
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a86b3cfff576f168908a847e1dd3cefcd}\label{class_tapioca_1_1_graphics_engine_a86b3cfff576f168908a847e1dd3cefcd} 
+Ogre\+::\+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries get\+Ogre\+Window} ()
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a1ee625f3d289355b56546c79af422e5b}\label{class_tapioca_1_1_graphics_engine_a1ee625f3d289355b56546c79af422e5b} 
+void \texorpdfstring{$\ast$}{*} {\bfseries get\+GLContext} ()
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_afcf4c04fea898f04bfebff566728ae46}\label{class_tapioca_1_1_graphics_engine_afcf4c04fea898f04bfebff566728ae46} 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Node} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos=\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.\+0f, 0.\+0f, 0.\+0f), const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale=\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.\+0f, 1.\+0f, 1.\+0f))
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a9dceeec0fdd3bf50591c5d866a73448c}\label{class_tapioca_1_1_graphics_engine_a9dceeec0fdd3bf50591c5d866a73448c} 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Self\+Managed\+Node} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} pos=\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.\+0f, 0.\+0f, 0.\+0f), const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} scale=\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.\+0f, 1.\+0f, 1.\+0f))
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_acbd566e6ccf546b3263a230ac28e5a80}\label{class_tapioca_1_1_graphics_engine_acbd566e6ccf546b3263a230ac28e5a80} 
+\mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Camera} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, std\+::string const \&name)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a8e839ceb0545dbc3c1da833030223a11}\label{class_tapioca_1_1_graphics_engine_a8e839ceb0545dbc3c1da833030223a11} 
+\mbox{\hyperlink{class_tapioca_1_1_viewport}{Viewport}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Viewport} (\mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}} \texorpdfstring{$\ast$}{*}const camera, const int z\+Order)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a1d30386fb8a52837cb5fe932d88205ff}\label{class_tapioca_1_1_graphics_engine_a1d30386fb8a52837cb5fe932d88205ff} 
+\mbox{\hyperlink{class_tapioca_1_1_light_directional}{Light\+Directional}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Light\+Directional} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} direction, const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} color=\mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f))
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a644758f5638afeea61d2e641d505c1c1}\label{class_tapioca_1_1_graphics_engine_a644758f5638afeea61d2e641d505c1c1} 
+\mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Mesh} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, std\+::string const \&mesh\+Name)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a23a4c76880894748918296cf009dbe7d}\label{class_tapioca_1_1_graphics_engine_a23a4c76880894748918296cf009dbe7d} 
+\mbox{\hyperlink{class_tapioca_1_1_billboard}{Billboard}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Billboard} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, std\+::string const \&name, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} position, const \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}} colour)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a3723e890635b5374bf12a0efc3f56e1a}\label{class_tapioca_1_1_graphics_engine_a3723e890635b5374bf12a0efc3f56e1a} 
+\mbox{\hyperlink{class_tapioca_1_1_billboard_set}{Billboard\+Set}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Billboard\+Set} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, std\+::string const \&name, unsigned int pool\+Size)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_aff3b9ef69c59ce731409d429fc0c20c9}\label{class_tapioca_1_1_graphics_engine_aff3b9ef69c59ce731409d429fc0c20c9} 
+\mbox{\hyperlink{class_tapioca_1_1_particle_system}{Particle\+System}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Particle\+System} (Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mgr, \mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, std\+::string const \&name, std\+::string const \&template\+Name, const bool emitting)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_a40e98420f37a4666dc1d497125d802b3}\label{class_tapioca_1_1_graphics_engine_a40e98420f37a4666dc1d497125d802b3} 
+\mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Plane} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&rk\+Normal, const float f\+Constant, std\+::string const \&name, const float width, const float height, const int x\+Segments, const int y\+Segments, const float x, const float y, const float z, std\+::string const \&material="{}"{})
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_abb2d76de8d681ecf8c6a7974a006c70b}\label{class_tapioca_1_1_graphics_engine_abb2d76de8d681ecf8c6a7974a006c70b} 
+\mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Plane} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node, const float a, const float b, const float c, const float \+\_\+d, std\+::string const \&name, const float width, const float height, const int x\+Segments, const int y\+Segments, const float x, const float y, const float z, std\+::string const \&material="{}"{})
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_af6f8d13f46766a61e098078fe8e49f1f}\label{class_tapioca_1_1_graphics_engine_af6f8d13f46766a61e098078fe8e49f1f} 
+Ogre\+::\+Manual\+Object \texorpdfstring{$\ast$}{*} {\bfseries create\+Manual\+Object} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const node)
+\item 
+\Hypertarget{class_tapioca_1_1_graphics_engine_aaa9a550922122b3ef89d962771a63044}\label{class_tapioca_1_1_graphics_engine_aaa9a550922122b3ef89d962771a63044} 
+void {\bfseries destroy\+Manual\+Object} (Ogre\+::\+Manual\+Object \texorpdfstring{$\ast$}{*}const object)
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Graphics\+Engine $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Singleton} (const \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}$<$ \mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} $>$ \&s)=delete
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}$<$ \mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}$<$ \mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} $>$ \&s)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_module}{Tapioca\+::\+Module}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries start} ()
+\item 
+virtual void {\bfseries update} (const uint64\+\_\+t delta\+Time)
+\item 
+virtual void {\bfseries send\+Events} ()
+\item 
+virtual void {\bfseries handle\+Event} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info)
+\item 
+virtual void {\bfseries fixed\+Update} ()
+\item 
+virtual void {\bfseries refresh} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Graphics\+Engine $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \texorpdfstring{$\ast$}{*} {\bfseries create} (T\+\_\+args \&\&... args)
+\item 
+static \mbox{\hyperlink{class_tapioca_1_1_graphics_engine}{Graphics\+Engine}} \texorpdfstring{$\ast$}{*} {\bfseries instance} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_graphics_engine_ad05a14d51f5b165e840545ab6d97d3e9}\label{class_tapioca_1_1_graphics_engine_ad05a14d51f5b165e840545ab6d97d3e9} 
+\index{Tapioca::GraphicsEngine@{Tapioca::GraphicsEngine}!init@{init}}
+\index{init@{init}!Tapioca::GraphicsEngine@{Tapioca::GraphicsEngine}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Graphics\+Engine\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_module}{Tapioca\+::\+Module}}.
+
+\Hypertarget{class_tapioca_1_1_graphics_engine_adb721e7cdbbe1c363e4fd1bed6ef2eec}\label{class_tapioca_1_1_graphics_engine_adb721e7cdbbe1c363e4fd1bed6ef2eec} 
+\index{Tapioca::GraphicsEngine@{Tapioca::GraphicsEngine}!render@{render}}
+\index{render@{render}!Tapioca::GraphicsEngine@{Tapioca::GraphicsEngine}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Graphics\+Engine\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_module}{Tapioca\+::\+Module}}.
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/Graphics\+Engine.\+h\item 
+src/\+Graphics/Graphics\+Engine.\+cpp\end{DoxyCompactItemize}

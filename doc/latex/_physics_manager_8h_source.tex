@@ -1,0 +1,95 @@
+\doxysection{Physics\+Manager.\+h}
+\hypertarget{_physics_manager_8h_source}{}\label{_physics_manager_8h_source}\index{src/Physics/PhysicsManager.h@{src/Physics/PhysicsManager.h}}
+\mbox{\hyperlink{_physics_manager_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_singleton_8h}{Utilities/Singleton.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_module_8h}{Structure/Module.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{physics_defs_8h}{physicsDefs.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }btDefaultCollisionConfiguration;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }btCollisionDispatcher;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }btSequentialImpulseConstraintSolver;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }btBroadphaseInterface;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }btConstraintSolver;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }btDynamicsWorld;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }btCollisionObject;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }btManifoldPoint;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }btVector3;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }btCollisionShape;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }btDiscreteDynamicsWorld;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }btRigidBody;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }Collider;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }Vector3;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }Quaternion;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }PhysicsDebugDrawer;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}<PhysicsManager>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_module}{Module}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton<PhysicsManager>}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ btDefaultCollisionConfiguration*\ colConfig;\ \ \ \textcolor{comment}{//\ Configuracion\ predeterminada\ para\ la\ deteccion\ de\ colisiones}}
+\DoxyCodeLine{00034\ \ \ \ \ btBroadphaseInterface*\ broadphase;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Detecta\ pares\ de\ objetos\ de\ la\ misma\ region}}
+\DoxyCodeLine{00035\ \ \ \ \ btCollisionDispatcher*\ colDispatch;\ \ \ \textcolor{comment}{//\ Confirma\ la\ colision,\ notificar\ a\ los\ objetos\ que\ se\ colisionan\ y\ callbacks}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Resuelve\ la\ interaccion\ de\ colisiones\ y\ calculos\ de\ fuerzas\ resultantes}}
+\DoxyCodeLine{00038\ \ \ \ \ btSequentialImpulseConstraintSolver*\ constraintSolver;}
+\DoxyCodeLine{00039\ \ \ \ \ btDiscreteDynamicsWorld*\ dynamicsWorld;\ \ \ \textcolor{comment}{//\ Mundo\ de\ fisicas}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ warning\ C4251:\ 'Tapioca::PhysicsManager::rigidBodies':}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ class\ '\ std::unordered\_set<btRigidBody*,\ std::hash<btRigidBody*>,\ std::equal\_to<btRigidBody*>,}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ std::allocator<btRigidBody*>>'\ necesita\ tener\ una\ interfaz\ DLL\ para\ que\ la}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::PhysicsManager'}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ \ \ \ \ std::unordered\_set<btRigidBody*>\ rigidBodies;\ \ \ \textcolor{comment}{//\ Almacena\ todos\ los\ rigidbodies}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ debug;\ \ \ \textcolor{comment}{//\ Indica\ si\ se\ quiere\ debugear\ las\ fisicas}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_debug_drawer}{PhysicsDebugDrawer}}*\ pdd;\ \ \ \textcolor{comment}{//\ Si\ debug\ es\ true,\ se\ crea\ un\ drawer\ para\ debugear}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}(\textcolor{keywordtype}{bool}\ debug\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{\string~PhysicsManager}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_manager_ab78777109168337fe80f600d13789285}{PhysicsManager}}(\mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_manager_a2bc771aaaaba1d3b33efd0601bc3e3c3}{PhysicsManager}}(\mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_physics_manager_ade5a05c546906a15a222448fb778e114}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_physics_manager_ab5f50c2ecbdbaddd1228638625663905}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_physics_manager}{PhysicsManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ fixedUpdate()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ uint64\_t\ deltaTime);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00099\ \ \ \ \ btRigidBody*\ createRigidBody(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ position,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}\ rotation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ shapeScale,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{ColliderShape}}\ colliderShape\ =\ BOX\_SHAPE,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{MovementType}}\ type\ =\ STATIC\_OBJECT,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ mass\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ friction\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ damping\ =\ 0,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ bounciness\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isTrigger\ =\ \textcolor{keyword}{false},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ group\ =\ 1,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ mask\ =\ -\/1);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyRigidBody(btRigidBody*\ \textcolor{keyword}{const}\ rb);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ removeRigidBody(btRigidBody*\ \textcolor{keyword}{const}\ rb);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ addRigidBody(btRigidBody*\ \textcolor{keyword}{const}\ rb);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ destroy();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{inline}\ btDiscreteDynamicsWorld*\ \mbox{\hyperlink{class_tapioca_1_1_physics_manager_a6ede41fd261cb5d6fc05b343ff3e4c22}{getWorld}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ dynamicsWorld;\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ activateDebug(\textcolor{keywordtype}{bool}\ d);}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ \}}
+
+\end{DoxyCode}

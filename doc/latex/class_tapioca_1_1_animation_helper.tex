@@ -1,0 +1,162 @@
+\doxysection{Referencia de la clase Tapioca\+::Animation\+Helper}
+\hypertarget{class_tapioca_1_1_animation_helper}{}\label{class_tapioca_1_1_animation_helper}\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+
+
+Clase que gestiona las animaciones de un objeto.  
+
+
+
+
+{\ttfamily \#include $<$Animation\+Helper.\+h$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_animation_helper_a9da0a2451f093c61573a3f90292ebb98}{Animation\+Helper}} (\mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}} \texorpdfstring{$\ast$}{*}const object, const bool auto\+Play, const bool loop)
+\begin{DoxyCompactList}\small\item\em Inicializa los valores de la animacion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_animation_helper_a88ec5e618caac88aec904a83c4be9501}{\texorpdfstring{$\sim$}{\string~}\+Animation\+Helper}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_animation_helper_ad8f8b1b934a8f3ad211bc38160c069eb}{update\+Anim}} (const uint64\+\_\+t delt, const float speed)
+\begin{DoxyCompactList}\small\item\em Actualiza la animacion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_animation_helper_ab3bb29eb107d6238b41abb40f8d46841}{play\+Anim}} (std\+::string const \&anim)
+\begin{DoxyCompactList}\small\item\em Establece la animacion a reproducir. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_animation_helper_a8d11e2861bbcf9d331b1d93e136132df}{set\+Loop}} (const bool l)
+\begin{DoxyCompactList}\small\item\em Establece si la animacion esta en bucle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_animation_helper_af5cb880b39ba524e67d00c54c15d245a}{set\+Playing}} (const bool p)
+\begin{DoxyCompactList}\small\item\em Establece si la animacion esta en reproduccion. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_animation_helper_ae849967da06ff966e97bd363f3e5b810}{get\+Loop}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta en bucle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_animation_helper_a7cd6652dd5ac9ce34cf769bffb3354e6}{get\+Playing}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta en reproduccion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que gestiona las animaciones de un objeto. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_animation_helper_a9da0a2451f093c61573a3f90292ebb98}\label{class_tapioca_1_1_animation_helper_a9da0a2451f093c61573a3f90292ebb98} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!AnimationHelper@{AnimationHelper}}
+\index{AnimationHelper@{AnimationHelper}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{AnimationHelper()}{AnimationHelper()}}
+{\footnotesize\ttfamily Tapioca\+::\+Animation\+Helper\+::\+Animation\+Helper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}} \texorpdfstring{$\ast$}{*}const}]{object,  }\item[{const bool}]{auto\+Play = {\ttfamily true},  }\item[{const bool}]{loop = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Inicializa los valores de la animacion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em object} & Objeto al que se le aplicara la animacion \\
+\hline
+{\em auto\+Play} & Indica si la animacion se reproduce automaticamente \\
+\hline
+{\em loop} & Indica si la animacion esta en bucle \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_animation_helper_a88ec5e618caac88aec904a83c4be9501}\label{class_tapioca_1_1_animation_helper_a88ec5e618caac88aec904a83c4be9501} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!````~AnimationHelper@{\texorpdfstring{$\sim$}{\string~}AnimationHelper}}
+\index{````~AnimationHelper@{\texorpdfstring{$\sim$}{\string~}AnimationHelper}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AnimationHelper()}{\string~AnimationHelper()}}
+{\footnotesize\ttfamily Tapioca\+::\+Animation\+Helper\+::\texorpdfstring{$\sim$}{\string~}\+Animation\+Helper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor por defecto. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_animation_helper_ae849967da06ff966e97bd363f3e5b810}\label{class_tapioca_1_1_animation_helper_ae849967da06ff966e97bd363f3e5b810} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!getLoop@{getLoop}}
+\index{getLoop@{getLoop}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{getLoop()}{getLoop()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Animation\+Helper\+::get\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si la animacion esta en bucle. 
+
+\begin{DoxyReturn}{Devuelve}
+True si la animacion esta en bucle, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_animation_helper_a7cd6652dd5ac9ce34cf769bffb3354e6}\label{class_tapioca_1_1_animation_helper_a7cd6652dd5ac9ce34cf769bffb3354e6} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!getPlaying@{getPlaying}}
+\index{getPlaying@{getPlaying}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{getPlaying()}{getPlaying()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Animation\+Helper\+::get\+Playing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si la animacion esta en reproduccion. 
+
+\begin{DoxyReturn}{Devuelve}
+True si la animacion esta en reproduccion, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_animation_helper_ab3bb29eb107d6238b41abb40f8d46841}\label{class_tapioca_1_1_animation_helper_ab3bb29eb107d6238b41abb40f8d46841} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!playAnim@{playAnim}}
+\index{playAnim@{playAnim}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{playAnim()}{playAnim()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Animation\+Helper\+::play\+Anim (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{anim }\end{DoxyParamCaption})}
+
+
+
+Establece la animacion a reproducir. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em anim} & Nombre de la animacion \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_animation_helper_a8d11e2861bbcf9d331b1d93e136132df}\label{class_tapioca_1_1_animation_helper_a8d11e2861bbcf9d331b1d93e136132df} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!setLoop@{setLoop}}
+\index{setLoop@{setLoop}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{setLoop()}{setLoop()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Animation\+Helper\+::set\+Loop (\begin{DoxyParamCaption}\item[{const bool}]{l }\end{DoxyParamCaption})}
+
+
+
+Establece si la animacion esta en bucle. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em l} & True si la animacion esta en bucle, false en caso contrario \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_animation_helper_af5cb880b39ba524e67d00c54c15d245a}\label{class_tapioca_1_1_animation_helper_af5cb880b39ba524e67d00c54c15d245a} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!setPlaying@{setPlaying}}
+\index{setPlaying@{setPlaying}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{setPlaying()}{setPlaying()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Animation\+Helper\+::set\+Playing (\begin{DoxyParamCaption}\item[{const bool}]{p }\end{DoxyParamCaption})}
+
+
+
+Establece si la animacion esta en reproduccion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em p} & True si la animacion esta en reproduccion, false en caso contrario \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_animation_helper_ad8f8b1b934a8f3ad211bc38160c069eb}\label{class_tapioca_1_1_animation_helper_ad8f8b1b934a8f3ad211bc38160c069eb} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!updateAnim@{updateAnim}}
+\index{updateAnim@{updateAnim}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{updateAnim()}{updateAnim()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Animation\+Helper\+::update\+Anim (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{delt,  }\item[{const float}]{speed }\end{DoxyParamCaption})}
+
+
+
+Actualiza la animacion. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em delt} & Tiempo transcurrido desde el ultimo frame \\
+\hline
+{\em speed} & Velocidad de la animacion \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_animation_helper_8h}{Animation\+Helper.\+h}}\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_animation_helper_8cpp}{Animation\+Helper.\+cpp}}\end{DoxyCompactItemize}

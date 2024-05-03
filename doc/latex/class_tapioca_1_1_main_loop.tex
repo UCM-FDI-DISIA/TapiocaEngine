@@ -1,0 +1,259 @@
+\doxysection{Referencia de la clase Tapioca\+::Main\+Loop}
+\hypertarget{class_tapioca_1_1_main_loop}{}\label{class_tapioca_1_1_main_loop}\index{Tapioca::MainLoop@{Tapioca::MainLoop}}
+
+
+Clase que contiene el bucle principal del motor.  
+
+
+
+
+{\ttfamily \#include $<$Main\+Loop.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Main\+Loop\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_main_loop}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_main_loop_ae4615b1c74907c039783a1c6f955a342}{\texorpdfstring{$\sim$}{\string~}\+Main\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Libera las escenas cargadas, los modulos y la biblioteca cargada desde \doxylink{class_tapioca_1_1_dynamic_library_loader}{Dynamic\+Library\+Loader}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_a3dfd40f125b55c530350d4fbefefcfbe}{exit}} ()
+\begin{DoxyCompactList}\small\item\em Detiene el bucle principal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_main_loop_ac26e604758f99c050b9bd66d242f5fd8}{init}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa los modulos. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_main_loop_a4029cfeebc041e725328eb02d87352c9}{init\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa la configuracion del juego. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_ab986523bf888ef2155d2beeeeaf90978}{run}} ()
+\begin{DoxyCompactList}\small\item\em Metodo que contiene el bucle principal del juego. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_a530fdcc62ef09186efc0eaab3b5372c8}{load\+Scene}} (\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*}const sc)
+\begin{DoxyCompactList}\small\item\em Carga una escena que se ejecutara a la vez que el resto de escenas cargadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_a86f54569df56e1c6333ec40c12037432}{delete\+Scene}} (\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*}const sc)
+\begin{DoxyCompactList}\small\item\em Elimina la escena indicada para que deje de ejecutarse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_adaa814c7a713e55ee6aaea4f89c91a62}{delete\+Scene}} (std\+::string const \&sc)
+\begin{DoxyCompactList}\small\item\em Elimina la escena indicada para que deje de ejecutarse. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_tapioca_1_1_main_loop_a1fe03afec7698e56c2b213499c8fbd66}{get\+Loaded\+Scenes}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve todas las escenas cargadas. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_main_loop_a361b5282096417a4ee712094bdf815fc}{get\+Scene}} (std\+::string sc)
+\begin{DoxyCompactList}\small\item\em Devuelve la escena. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_ac02310cb39f970a2735f94c2b57c3a40}{add\+Module}} (\mbox{\hyperlink{class_tapioca_1_1_module}{Module}} \texorpdfstring{$\ast$}{*}const m)
+\begin{DoxyCompactList}\small\item\em Anade un modulo al vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_main_loop_a10a0187b0cc1d68ff129bbc7cd7bee20}{push\+Event}} (\mbox{\hyperlink{struct_tapioca_1_1_event}{Event}} const \&e, bool const delay=false)
+\begin{DoxyCompactList}\small\item\em Envia un evento a las escenas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Main\+Loop $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_singleton_aa9f71b77e3c9d61fa3a306b60b48afd8}{Singleton}} (const \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}$<$ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} $>$ \&s)=delete
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}$<$ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} $>$ \& \mbox{\hyperlink{class_tapioca_1_1_singleton_a685fd488217c86dbf17ed3ae5caeeb5c}{operator=}} (const \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}$<$ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} $>$ \&s)=delete
+\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_singleton_aaafd5502089cff986b8fba7ed58764a7}{\texorpdfstring{$\sim$}{\string~}\+Singleton}} ()
+\begin{DoxyCompactList}\small\item\em Destructor vacio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_tapioca_1_1_main_loop_a48cecd30d240147b25076733257e7277}{FIXED\+\_\+\+DELTA\+\_\+\+TIME}} = 1000 / 60
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Main\+Loop $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_singleton_a4da95f71ad7b208bbf97efdd940c4ea6}{create}} (T\+\_\+args \&\&... args)
+\item 
+static \mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_singleton_a5fdf6e2b9dae0a4fe65216cea6310d37}{instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Main\+Loop $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_singleton_a5d0ccbc86446ed937dfafd0219f77b16}{Singleton}} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que contiene el bucle principal del motor. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_main_loop_ae4615b1c74907c039783a1c6f955a342}\label{class_tapioca_1_1_main_loop_ae4615b1c74907c039783a1c6f955a342} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!````~MainLoop@{\texorpdfstring{$\sim$}{\string~}MainLoop}}
+\index{````~MainLoop@{\texorpdfstring{$\sim$}{\string~}MainLoop}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MainLoop()}{\string~MainLoop()}}
+{\footnotesize\ttfamily Tapioca\+::\+Main\+Loop\+::\texorpdfstring{$\sim$}{\string~}\+Main\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Libera las escenas cargadas, los modulos y la biblioteca cargada desde \doxylink{class_tapioca_1_1_dynamic_library_loader}{Dynamic\+Library\+Loader}. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_main_loop_ac02310cb39f970a2735f94c2b57c3a40}\label{class_tapioca_1_1_main_loop_ac02310cb39f970a2735f94c2b57c3a40} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!addModule@{addModule}}
+\index{addModule@{addModule}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{addModule()}{addModule()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::add\+Module (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_module}{Module}} \texorpdfstring{$\ast$}{*}const}]{m }\end{DoxyParamCaption})}
+
+
+
+Anade un modulo al vector. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em m} & Modulo que se quiere anadir \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_main_loop_a86f54569df56e1c6333ec40c12037432}\label{class_tapioca_1_1_main_loop_a86f54569df56e1c6333ec40c12037432} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!deleteScene@{deleteScene}}
+\index{deleteScene@{deleteScene}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{deleteScene()}{deleteScene()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::delete\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*}const}]{sc }\end{DoxyParamCaption})}
+
+
+
+Elimina la escena indicada para que deje de ejecutarse. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sc} & Puntero a la escena que se quiere borrar \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_main_loop_adaa814c7a713e55ee6aaea4f89c91a62}\label{class_tapioca_1_1_main_loop_adaa814c7a713e55ee6aaea4f89c91a62} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!deleteScene@{deleteScene}}
+\index{deleteScene@{deleteScene}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{deleteScene()}{deleteScene()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::delete\+Scene (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{sc }\end{DoxyParamCaption})}
+
+
+
+Elimina la escena indicada para que deje de ejecutarse. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sc} & Nombre de la escena que se quiere borrar \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_main_loop_a3dfd40f125b55c530350d4fbefefcfbe}\label{class_tapioca_1_1_main_loop_a3dfd40f125b55c530350d4fbefefcfbe} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!exit@{exit}}
+\index{exit@{exit}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{exit()}{exit()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Detiene el bucle principal. 
+
+\Hypertarget{class_tapioca_1_1_main_loop_a1fe03afec7698e56c2b213499c8fbd66}\label{class_tapioca_1_1_main_loop_a1fe03afec7698e56c2b213499c8fbd66} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!getLoadedScenes@{getLoadedScenes}}
+\index{getLoadedScenes@{getLoadedScenes}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{getLoadedScenes()}{getLoadedScenes()}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} $>$ Tapioca\+::\+Main\+Loop\+::get\+Loaded\+Scenes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve todas las escenas cargadas. 
+
+\begin{DoxyReturn}{Devuelve}
+unordered\+\_\+map con las escenas cargadas 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_main_loop_a361b5282096417a4ee712094bdf815fc}\label{class_tapioca_1_1_main_loop_a361b5282096417a4ee712094bdf815fc} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!getScene@{getScene}}
+\index{getScene@{getScene}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{getScene()}{getScene()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} Tapioca\+::\+Main\+Loop\+::get\+Scene (\begin{DoxyParamCaption}\item[{std\+::string}]{sc }\end{DoxyParamCaption})}
+
+
+
+Devuelve la escena. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sc} & Nombre de la escena que se quiere obtener \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Puntero a la escena con el nombre indicado, si la escena no existe, devuelve nullptr 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_main_loop_ac26e604758f99c050b9bd66d242f5fd8}\label{class_tapioca_1_1_main_loop_ac26e604758f99c050b9bd66d242f5fd8} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!init@{init}}
+\index{init@{init}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Main\+Loop\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicializa los modulos. 
+
+\begin{DoxyReturn}{Devuelve}
+true si se ha inicializado correctamente, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_main_loop_a4029cfeebc041e725328eb02d87352c9}\label{class_tapioca_1_1_main_loop_a4029cfeebc041e725328eb02d87352c9} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!initConfig@{initConfig}}
+\index{initConfig@{initConfig}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{initConfig()}{initConfig()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Main\+Loop\+::init\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicializa la configuracion del juego. 
+
+\begin{DoxyReturn}{Devuelve}
+true si se ha inicializado correctamente, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_main_loop_a530fdcc62ef09186efc0eaab3b5372c8}\label{class_tapioca_1_1_main_loop_a530fdcc62ef09186efc0eaab3b5372c8} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!loadScene@{loadScene}}
+\index{loadScene@{loadScene}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{loadScene()}{loadScene()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::load\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*}const}]{sc }\end{DoxyParamCaption})}
+
+
+
+Carga una escena que se ejecutara a la vez que el resto de escenas cargadas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sc} & Puntero a la escena que se quiere cargar \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_main_loop_a10a0187b0cc1d68ff129bbc7cd7bee20}\label{class_tapioca_1_1_main_loop_a10a0187b0cc1d68ff129bbc7cd7bee20} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!pushEvent@{pushEvent}}
+\index{pushEvent@{pushEvent}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{pushEvent()}{pushEvent()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::push\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tapioca_1_1_event}{Event}} const \&}]{e,  }\item[{bool const}]{delay = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Envia un evento a las escenas. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em e} & Evento que se quiere enviar \\
+\hline
+{\em delay} & True si se quiere enviar el evento en el siguiente tick, false en caso contrario \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_main_loop_ab986523bf888ef2155d2beeeeaf90978}\label{class_tapioca_1_1_main_loop_ab986523bf888ef2155d2beeeeaf90978} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!run@{run}}
+\index{run@{run}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Main\+Loop\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Metodo que contiene el bucle principal del juego. 
+
+
+
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_tapioca_1_1_main_loop_a48cecd30d240147b25076733257e7277}\label{class_tapioca_1_1_main_loop_a48cecd30d240147b25076733257e7277} 
+\index{Tapioca::MainLoop@{Tapioca::MainLoop}!FIXED\_DELTA\_TIME@{FIXED\_DELTA\_TIME}}
+\index{FIXED\_DELTA\_TIME@{FIXED\_DELTA\_TIME}!Tapioca::MainLoop@{Tapioca::MainLoop}}
+\doxysubsubsection{\texorpdfstring{FIXED\_DELTA\_TIME}{FIXED\_DELTA\_TIME}}
+{\footnotesize\ttfamily const uint64\+\_\+t Tapioca\+::\+Main\+Loop\+::\+FIXED\+\_\+\+DELTA\+\_\+\+TIME = 1000 / 60\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Core/\+Structure/\mbox{\hyperlink{_main_loop_8h}{Main\+Loop.\+h}}\item 
+src/\+Core/\+Structure/\mbox{\hyperlink{_main_loop_8cpp}{Main\+Loop.\+cpp}}\end{DoxyCompactItemize}

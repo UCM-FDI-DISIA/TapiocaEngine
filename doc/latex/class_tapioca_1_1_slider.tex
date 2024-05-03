@@ -1,0 +1,311 @@
+\doxysection{Referencia de la clase Tapioca\+::Slider}
+\hypertarget{class_tapioca_1_1_slider}{}\label{class_tapioca_1_1_slider}\index{Tapioca::Slider@{Tapioca::Slider}}
+
+
+Clase que representa un slider en la interfaz de usuario.  
+
+
+
+
+{\ttfamily \#include $<$Slider.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Slider\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_slider}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_slider_a869edfb18bf1346e516655ab1138cef8}{Slider}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_slider_a0bff5d5a38b0c193d245911269c7687a}{init\+Component}} (const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&variables) override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_slider_a76021e782699effa3ed4c1d7f5454d48}{start}} () override
+\begin{DoxyCompactList}\small\item\em Asigna el transform del objeto al texto e inicializa la fuente del texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_slider_a79604e274d04317c5a8809c2e7ab8360}{render}} () const override
+\begin{DoxyCompactList}\small\item\em Metodo que se usa para renderizar el texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_slider_a2763a7937ed925b999b39ecd0cb0b233}{set\+Is\+Vertical}} (bool is\+Vertical)
+\begin{DoxyCompactList}\small\item\em Establece el flag de verticalidad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_slider_ae467b98cce1f0efe5d96d7ea603d0f7e}{set\+Current\+Value}} (float current\+Value)
+\begin{DoxyCompactList}\small\item\em Establece el valor del slider actual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_slider_af98138a3e252ba24039a255d9f9fe34a}{set\+Max\+Limit}} (float max\+Limit)
+\begin{DoxyCompactList}\small\item\em Establece el limite superior del slider. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_slider_a383e7d6f5771a64656d8a563cc85c405}{set\+Min\+Limit}} (float min\+Limit)
+\begin{DoxyCompactList}\small\item\em Establece el limite inferior del slider. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_slider_a05a5c7980a926b6822efbddded3fc573}{get\+Is\+Vertical}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el flag de verticalidad. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_slider_a671fea80c8e80713264ba91f564c7008}{get\+Current\+Value}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el valor del slider actual. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_slider_aadc8bd06ea123d053f28fee80c38faa4}{get\+Max\+Limit}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el limite superior del slider. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_slider_a26e14a8a9a461541d67a87d9a96451c7}{get\+Min\+Limit}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el limite inferior del slider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a8766d01825e52229e15545804ac3d4d2}{Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_base_widget_a598300c3479a22a48f14c2d50dd0164f}{\texorpdfstring{$\sim$}{\string~}\+Base\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Destructor por defecto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a67ab31882485f7de34efc37d81f6282a}{set\+Name}} (const std\+::string \&\mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}})
+\begin{DoxyCompactList}\small\item\em Establece el nombre del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aa353df99344dc677da2b3a8ac1b8dbc5}{set\+Transform}} (\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}})
+\begin{DoxyCompactList}\small\item\em Establece el puntero al transform del widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_aedb9535d57ce06003545e3bc9c38929c}{set\+Position}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&position)
+\begin{DoxyCompactList}\small\item\em Establece la posicion del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9de26411857691c5948c2131b6b93007}{set\+Size}} (const \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \&size)
+\begin{DoxyCompactList}\small\item\em Establece el tamano del boton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_base_widget_a402adb7468a7885ac03e09ef23e792de}{set\+Window\+Flags}} (\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}})
+\begin{DoxyCompactList}\small\item\em Establece los flags de la ventana. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a586427cda4bf91ecc335b88aec71568c}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad33e50b346466c8e1a7bf16891fe489b}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el puntero al transform del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac1f93543afdbd37af0d494cd87184e38}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la posicion del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9dc0acf2ec9a1eb7a792b95e7161dd9b}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tamano del widget. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a27810f9e8702e2b997dd4f921c800249}{get\+Window\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve los flags de la ventana. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_component_a54e3ac405643adf97dab7c13f200411a}{Component}} ()
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_component_a8875dd4e409d534a7df9f43cdf205b20}{\texorpdfstring{$\sim$}{\string~}\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{awake}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a9286bd66970caa5e1eee3190ffb9d959}{update}} (const uint64\+\_\+t delta\+Time)
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente. Se llama todas las veces posibles. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2156ae36e3faf359ed3a51c970baf647}{fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de un componente Se llama cada cierto tiempo fijo (Game\+::\+FIXED\+\_\+\+DELTA\+\_\+\+TIME),. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_aaf132dc7cb3116e3843c1dc51f43c64f}{update\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza la interfaz de usuario. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a2d17067b33af77e72f17aba93893c955}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info)
+\begin{DoxyCompactList}\small\item\em Recibe eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_a35580bd5f80f3e56ce3920d6b217375e}{push\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info, const bool global=true, const bool delay=false)
+\begin{DoxyCompactList}\small\item\em Envia un evento. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_tapioca_1_1_component_aac0eaed499f8fb51eccf6e174dfc4c88}{set\+Value\+From\+Map}} (T \&var, std\+::string const \&var\+Name, const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&map)
+\begin{DoxyCompactList}\small\item\em Da valor a una variable declarada en un Comp\+Map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_ad7eb69656f01eba0df85a629e703f1a5}{get\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el objeto al que esta adjunto este componente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a602cbc09011f937088126913d8569c8f}{is\+Alive}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta "{}vivo"{} (si se actualizan update, handle\+Events, ...) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a026b71524d3ebe56c75f8bedd61cd707}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si el componente esta activo (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{die}} ()
+\begin{DoxyCompactList}\small\item\em Borra el componente. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_tapioca_1_1_component_a3447fee4073f813f62a388c63cc4aa55}{set\+Active}} (const bool b)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el componente (si es \textquotesingle{}false\textquotesingle{} no se llama a ningun metodo excepto \textquotesingle{}receive\+Event\textquotesingle{}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_base_widget}{Tapioca\+::\+Base\+Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad77a1f58aca8fad0de5f798620128279}{ui\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_lua_manager}{Lua\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9f18710d9e1070b446131167ecc7a293}{lua\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_window_manager}{Window\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac36c8dfd58acf245ac61eb49402b73a3}{window\+Manager}}
+\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}}
+\item 
+\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{Im\+Gui\+Window\+Flags}} \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{window\+Flags}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_game_object}{Game\+Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_component_a378ef13ec4f4ca22d314998a2c3bf310}{object}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a9d3a7537fda9a0303b1ed57c6051ed45}{alive}}
+\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3ead7}{active}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que representa un slider en la interfaz de usuario. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_slider_a869edfb18bf1346e516655ab1138cef8}\label{class_tapioca_1_1_slider_a869edfb18bf1346e516655ab1138cef8} 
+\index{Tapioca::Slider@{Tapioca::Slider}!Slider@{Slider}}
+\index{Slider@{Slider}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{Slider()}{Slider()}}
+{\footnotesize\ttfamily Tapioca\+::\+Slider\+::\+Slider (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_slider_a671fea80c8e80713264ba91f564c7008}\label{class_tapioca_1_1_slider_a671fea80c8e80713264ba91f564c7008} 
+\index{Tapioca::Slider@{Tapioca::Slider}!getCurrentValue@{getCurrentValue}}
+\index{getCurrentValue@{getCurrentValue}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{getCurrentValue()}{getCurrentValue()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Slider\+::get\+Current\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el valor del slider actual. 
+
+\begin{DoxyReturn}{Devuelve}
+Valor del slider actual 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_slider_a05a5c7980a926b6822efbddded3fc573}\label{class_tapioca_1_1_slider_a05a5c7980a926b6822efbddded3fc573} 
+\index{Tapioca::Slider@{Tapioca::Slider}!getIsVertical@{getIsVertical}}
+\index{getIsVertical@{getIsVertical}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{getIsVertical()}{getIsVertical()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Slider\+::get\+Is\+Vertical (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el flag de verticalidad. 
+
+\begin{DoxyReturn}{Devuelve}
+Flag de verticalidad 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_slider_aadc8bd06ea123d053f28fee80c38faa4}\label{class_tapioca_1_1_slider_aadc8bd06ea123d053f28fee80c38faa4} 
+\index{Tapioca::Slider@{Tapioca::Slider}!getMaxLimit@{getMaxLimit}}
+\index{getMaxLimit@{getMaxLimit}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{getMaxLimit()}{getMaxLimit()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Slider\+::get\+Max\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el limite superior del slider. 
+
+\begin{DoxyReturn}{Devuelve}
+Limite superior del slider 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_slider_a26e14a8a9a461541d67a87d9a96451c7}\label{class_tapioca_1_1_slider_a26e14a8a9a461541d67a87d9a96451c7} 
+\index{Tapioca::Slider@{Tapioca::Slider}!getMinLimit@{getMinLimit}}
+\index{getMinLimit@{getMinLimit}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{getMinLimit()}{getMinLimit()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Slider\+::get\+Min\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el limite inferior del slider. 
+
+\begin{DoxyReturn}{Devuelve}
+Limite inferior del slider 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_slider_a0bff5d5a38b0c193d245911269c7687a}\label{class_tapioca_1_1_slider_a0bff5d5a38b0c193d245911269c7687a} 
+\index{Tapioca::Slider@{Tapioca::Slider}!initComponent@{initComponent}}
+\index{initComponent@{initComponent}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{initComponent()}{initComponent()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Slider\+::init\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&}]{variables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para inicializar el componente. Se ejecuta antes que el start. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em Variables} & unordered\+\_\+map con los parametros iniciales \\
+\hline
+\end{DoxyParams}
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aa7e9e31ef1222a0881b9b7e7b023eec2}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_slider_a79604e274d04317c5a8809c2e7ab8360}\label{class_tapioca_1_1_slider_a79604e274d04317c5a8809c2e7ab8360} 
+\index{Tapioca::Slider@{Tapioca::Slider}!render@{render}}
+\index{render@{render}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Slider\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Metodo que se usa para renderizar el texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_afef1b4492f720349e080d15baf48fec6}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_slider_ae467b98cce1f0efe5d96d7ea603d0f7e}\label{class_tapioca_1_1_slider_ae467b98cce1f0efe5d96d7ea603d0f7e} 
+\index{Tapioca::Slider@{Tapioca::Slider}!setCurrentValue@{setCurrentValue}}
+\index{setCurrentValue@{setCurrentValue}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{setCurrentValue()}{setCurrentValue()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Slider\+::set\+Current\+Value (\begin{DoxyParamCaption}\item[{float}]{current\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el valor del slider actual. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em current\+Value} & Valor del slider actual \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_slider_a2763a7937ed925b999b39ecd0cb0b233}\label{class_tapioca_1_1_slider_a2763a7937ed925b999b39ecd0cb0b233} 
+\index{Tapioca::Slider@{Tapioca::Slider}!setIsVertical@{setIsVertical}}
+\index{setIsVertical@{setIsVertical}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{setIsVertical()}{setIsVertical()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Slider\+::set\+Is\+Vertical (\begin{DoxyParamCaption}\item[{bool}]{is\+Vertical }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el flag de verticalidad. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em is\+Vertical} & Flag de verticalidad \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_slider_af98138a3e252ba24039a255d9f9fe34a}\label{class_tapioca_1_1_slider_af98138a3e252ba24039a255d9f9fe34a} 
+\index{Tapioca::Slider@{Tapioca::Slider}!setMaxLimit@{setMaxLimit}}
+\index{setMaxLimit@{setMaxLimit}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{setMaxLimit()}{setMaxLimit()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Slider\+::set\+Max\+Limit (\begin{DoxyParamCaption}\item[{float}]{max\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el limite superior del slider. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em max\+Limit} & Limite superior del slider \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_slider_a383e7d6f5771a64656d8a563cc85c405}\label{class_tapioca_1_1_slider_a383e7d6f5771a64656d8a563cc85c405} 
+\index{Tapioca::Slider@{Tapioca::Slider}!setMinLimit@{setMinLimit}}
+\index{setMinLimit@{setMinLimit}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{setMinLimit()}{setMinLimit()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Slider\+::set\+Min\+Limit (\begin{DoxyParamCaption}\item[{float}]{min\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Establece el limite inferior del slider. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em min\+Limit} & Limite inferior del slider \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_slider_a76021e782699effa3ed4c1d7f5454d48}\label{class_tapioca_1_1_slider_a76021e782699effa3ed4c1d7f5454d48} 
+\index{Tapioca::Slider@{Tapioca::Slider}!start@{start}}
+\index{start@{start}!Tapioca::Slider@{Tapioca::Slider}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Slider\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Asigna el transform del objeto al texto e inicializa la fuente del texto. 
+
+
+
+Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aac3a9c2eed1b91ac013cf8926ae66e50}{Tapioca\+::\+Component}}.
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_slider_8h}{Slider.\+h}}\item 
+src/\+UI/\+Components/\mbox{\hyperlink{_slider_8cpp}{Slider.\+cpp}}\end{DoxyCompactItemize}

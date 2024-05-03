@@ -311,6 +311,7 @@ bool LuaManager::loadScripts() {
 }
 
 int LuaManager::print(lua_State* L) {
+#ifdef _DEBUG
     std::stringstream aux;
     int i = 1;
     while (lua_gettop(L) >= i) {
@@ -338,6 +339,7 @@ int LuaManager::print(lua_State* L) {
         i++;
     }
     std::cout << "[INFO|JUEGO] " << aux.str() << '\n';
+#endif
     return 0;
 }
 }

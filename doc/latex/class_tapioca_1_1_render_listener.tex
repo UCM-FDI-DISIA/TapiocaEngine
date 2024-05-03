@@ -1,0 +1,81 @@
+\doxysection{Referencia de la clase Tapioca\+::Render\+Listener}
+\hypertarget{class_tapioca_1_1_render_listener}{}\label{class_tapioca_1_1_render_listener}\index{Tapioca::RenderListener@{Tapioca::RenderListener}}
+
+
+Clase que se encarga de renderizar cuando \doxylink{namespace_ogre}{Ogre} termine de renderizar en el viewport.  
+
+
+
+
+{\ttfamily \#include $<$Render\+Listener.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Render\+Listener\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_render_listener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_listener_adb6b0b306a9bd83f07d01363350df40c}{Render\+Listener}} (\mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} \texorpdfstring{$\ast$}{*}main\+Loop)
+\begin{DoxyCompactList}\small\item\em Inicializa el puntero al \doxylink{class_tapioca_1_1_main_loop}{Main\+Loop}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_listener_ad542979c9a250e2ba455c1d567f22939}{\texorpdfstring{$\sim$}{\string~}\+Render\+Listener}} ()
+\begin{DoxyCompactList}\small\item\em Pone a nullptr el puntero al \doxylink{class_tapioca_1_1_main_loop}{Main\+Loop} y al \doxylink{class_tapioca_1_1_window_manager}{Window\+Manager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_listener_ae2e1b62a3a583c05fbfcb1390b23d402}{post\+Render\+Target\+Update}} (const Ogre\+::\+Render\+Target\+Event \&evt) override
+\begin{DoxyCompactList}\small\item\em Se llama cuando \doxylink{namespace_ogre}{Ogre} termina de renderizar en el viewport. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que se encarga de renderizar cuando \doxylink{namespace_ogre}{Ogre} termine de renderizar en el viewport. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_render_listener_adb6b0b306a9bd83f07d01363350df40c}\label{class_tapioca_1_1_render_listener_adb6b0b306a9bd83f07d01363350df40c} 
+\index{Tapioca::RenderListener@{Tapioca::RenderListener}!RenderListener@{RenderListener}}
+\index{RenderListener@{RenderListener}!Tapioca::RenderListener@{Tapioca::RenderListener}}
+\doxysubsubsection{\texorpdfstring{RenderListener()}{RenderListener()}}
+{\footnotesize\ttfamily Tapioca\+::\+Render\+Listener\+::\+Render\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tapioca_1_1_main_loop}{Main\+Loop}} \texorpdfstring{$\ast$}{*}}]{main\+Loop }\end{DoxyParamCaption})}
+
+
+
+Inicializa el puntero al \doxylink{class_tapioca_1_1_main_loop}{Main\+Loop}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em main\+Loop} & Puntero al \doxylink{class_tapioca_1_1_main_loop}{Main\+Loop} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_render_listener_ad542979c9a250e2ba455c1d567f22939}\label{class_tapioca_1_1_render_listener_ad542979c9a250e2ba455c1d567f22939} 
+\index{Tapioca::RenderListener@{Tapioca::RenderListener}!````~RenderListener@{\texorpdfstring{$\sim$}{\string~}RenderListener}}
+\index{````~RenderListener@{\texorpdfstring{$\sim$}{\string~}RenderListener}!Tapioca::RenderListener@{Tapioca::RenderListener}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RenderListener()}{\string~RenderListener()}}
+{\footnotesize\ttfamily Tapioca\+::\+Render\+Listener\+::\texorpdfstring{$\sim$}{\string~}\+Render\+Listener (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pone a nullptr el puntero al \doxylink{class_tapioca_1_1_main_loop}{Main\+Loop} y al \doxylink{class_tapioca_1_1_window_manager}{Window\+Manager}. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_render_listener_ae2e1b62a3a583c05fbfcb1390b23d402}\label{class_tapioca_1_1_render_listener_ae2e1b62a3a583c05fbfcb1390b23d402} 
+\index{Tapioca::RenderListener@{Tapioca::RenderListener}!postRenderTargetUpdate@{postRenderTargetUpdate}}
+\index{postRenderTargetUpdate@{postRenderTargetUpdate}!Tapioca::RenderListener@{Tapioca::RenderListener}}
+\doxysubsubsection{\texorpdfstring{postRenderTargetUpdate()}{postRenderTargetUpdate()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Render\+Listener\+::post\+Render\+Target\+Update (\begin{DoxyParamCaption}\item[{const Ogre\+::\+Render\+Target\+Event \&}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Se llama cuando \doxylink{namespace_ogre}{Ogre} termina de renderizar en el viewport. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em evt} & Evento de \doxylink{namespace_ogre}{Ogre} \\
+\hline
+\end{DoxyParams}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+UI/\mbox{\hyperlink{_render_listener_8h}{Render\+Listener.\+h}}\item 
+src/\+UI/\mbox{\hyperlink{_render_listener_8cpp}{Render\+Listener.\+cpp}}\end{DoxyCompactItemize}

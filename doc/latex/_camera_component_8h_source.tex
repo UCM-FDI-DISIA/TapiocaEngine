@@ -1,0 +1,65 @@
+\doxysection{Camera\+Component.\+h}
+\hypertarget{_camera_component_8h_source}{}\label{_camera_component_8h_source}\index{src/Graphics/Components/CameraComponent.h@{src/Graphics/Components/CameraComponent.h}}
+\mbox{\hyperlink{_camera_component_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_component_8h}{Structure/Component.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector4_8h}{Utilities/Vector4.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector3_8h}{Utilities/Vector3.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }Camera;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }Viewport;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Transform;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_camera_component}{CameraComponent}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ INITIAL\_DIR\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ -\/1.0f);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ node;\ \ \ \ \ \ \ \textcolor{comment}{//\ Nodo\ al\ que\ pertenece\ el\ componente}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform;\ \ \ \textcolor{comment}{//\ Transform\ del\ nodo}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}}*\ camera;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Camara}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_viewport}{Viewport}}*\ viewport;\ \ \ \ \ \textcolor{comment}{//\ Viewport}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Camera}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ targetToLookSet;\ \ \ \textcolor{comment}{//\ Indica\ si\ se\ ha\ establecido\ el\ target\ al\ que\ mira\ la\ camara}}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ targetToLook;\ \ \ \textcolor{comment}{//\ Objetivo\ al\ que\ mira\ la\ camara}}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction;\ \ \ \ \ \ \textcolor{comment}{//\ Direccion\ de\ la\ camara}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ nearPlane;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distancia\ del\ near\ plane}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ farPlane;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distancia\ del\ far\ plane}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Viewport}}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ dimensions;\ \ \ \textcolor{comment}{//\ Dimensiones\ del\ viewport.\ x\ -\/\ left,\ y\ -\/\ top,\ z\ -\/\ width,\ w\ -\/\ height}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ zOrder;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Orden\ de\ renderizado}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ color;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ de\ fondo\ del\ viewport}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}CameraComponent"{}})}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_camera_component}{CameraComponent}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_camera_component}{\string~CameraComponent}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ free();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Camera}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ lookAt(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ targetToLook);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ setDirection(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ dir);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ setNearClipDistance(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ dist);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ setFarClipDistance(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ dist);}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ setFOVYRadians(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ radians);}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ setFOVYDegrees(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ degrees);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Viewport}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ setDimensions(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ dimensions);}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{int}\ getWidthInPixels()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{int}\ getHeightInPixels()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ setBackground(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ color);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ setZOrder(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ zOrder);}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_camera_component_a20bdd1174056db12c744e414739fd4c7}{getZOrder}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ zOrder;\ \}}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ \}}
+
+\end{DoxyCode}

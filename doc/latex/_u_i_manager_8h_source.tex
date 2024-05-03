@@ -1,0 +1,110 @@
+\doxysection{UIManager.\+h}
+\hypertarget{_u_i_manager_8h_source}{}\label{_u_i_manager_8h_source}\index{src/UI/UIManager.h@{src/UI/UIManager.h}}
+\mbox{\hyperlink{_u_i_manager_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_singleton_8h}{Utilities/Singleton.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_window_module_8h}{WindowModule.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{struct\ }SDL\_Window;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }ImFont;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{_u_i_manager_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }RenderWindow;}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }MainLoop;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }WindowManager;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }GraphicsManager;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }RenderListener;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_tapioca_1_1pair__hash}{pair\_hash}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>}
+\DoxyCodeLine{00029\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{struct_tapioca_1_1pair__hash_ac76dadea51f1071ebe2d8c4eecadb88b}{operator()}}(\textcolor{keyword}{const}\ std::pair<T1,\ T2>\&\ pair)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ hash1\ =\ std::hash<T1>\ \{\}(pair.first);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ hash2\ =\ std::hash<T2>\ \{\}(pair.second);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hash1\ \string^\ hash2;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}<UIManager>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_window_module}{WindowModule}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton<UIManager>}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{MainLoop}}*\ \mbox{\hyperlink{namespace_tapioca_aee221b2de416281b1f7bda9823acd63b}{mainLoop}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ al\ MainLoop}}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_window_manager}{WindowManager}}*\ \mbox{\hyperlink{namespace_tapioca_afb4ee25f71d312e899486f225ce94aff}{windowManager}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ al\ WindowManager}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}*\ graphicsManager;\ \ \ \textcolor{comment}{//\ Referencia\ al\ GraphicsManager}}
+\DoxyCodeLine{00046\ \ \ \ \ SDL\_Window*\ sdlWindow;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ ventana\ de\ SDL}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}*\ glContext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Referencia\ al\ contexto\ de\ OpenGL}}
+\DoxyCodeLine{00048\ \ \ \ \ Ogre::RenderWindow*\ ogreWindow;\ \ \ \ \ \textcolor{comment}{//\ Referencia\ a\ la\ superficie\ de\ renderizado\ de\ Ogre}}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_listener}{RenderListener}}*\ renderListener;\ \ \ \ \ \textcolor{comment}{//\ Listener\ de\ renderizado\ de\ Ogre}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ 'Tapioca::UIManager::fontsPath'\ :}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::UIManager'}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ 'Tapioca::UIManager::texturesPath'\ :}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::UIManager'}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ 'Tapioca::UIManager::fonts'\ :}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unordered\_map<std::pair<std::string,float>,ImFont\ *,Tapioca::pair\_hash,std::equal\_to<std::pair<std::string,float>>,std::allocator<std::pair<const\ std::pair<std::string,float>,ImFont\ *>>>'\ necesita}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::UIManager'}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ \ \ \ \ std::string\ fontsPath;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ruta\ de\ la\ carpeta\ de\ fuentes}}
+\DoxyCodeLine{00064\ \ \ \ \ std::string\ texturesPath;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ruta\ de\ la\ carpeta\ de\ imagenes}}
+\DoxyCodeLine{00065\ \ \ \ \ std::unordered\_map<std::pair<std::string,\ float>,\ ImFont*,\ \mbox{\hyperlink{struct_tapioca_1_1pair__hash}{pair\_hash}}>\ fonts;\ \ \ \textcolor{comment}{//\ Fuentes\ de\ la\ interfaz\ de\ usuario}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ fontDefaultSize\ =\ 16.0f;\ \ \ \textcolor{comment}{//\ Tamano\ por\ defecto\ de\ las\ fuentes}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ std::set<std::string>\ widgetNames;\ \ \ \textcolor{comment}{//\ Nombres\ de\ los\ widgets}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ widgetCounter;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Contador\ de\ widgets}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::string\ generateName(\textcolor{keyword}{const}\ std::string\&\ widget);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ check();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a55c27aeb497131330a3a185a5984f065}{UIManager}}(\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_aaad3099899da4bdcec46de8b0170c0cd}{UIManager}}(\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a2a30856b474e5956f379a80711ddbbf9}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a9a068fec5bf2c03f3955148dc9c1fd1f}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{UIManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_u_i_manager}{\string~UIManager}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ init()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{bool}\ initConfig()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ handleEvents(\textcolor{keyword}{const}\ SDL\_Event\&\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ fontsFolderExists();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{bool}\ texturesFolderExists();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{bool}\ fontsFolderEmpty();}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00144\ \ \ \ \ ImFont*\ loadFont(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keywordtype}{float}\ pixelSize\ =\ fontDefaultSize);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \ \ \ \ ImFont*\ getFont(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keywordtype}{float}\ pixelSize\ =\ fontDefaultSize);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ getTextureId(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ addWidgetName(std::string\&\ name);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ removeWidgetName(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{bool}\ widgetNameExists(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00178\ \};}
+\DoxyCodeLine{00179\ \}}
+
+\end{DoxyCode}

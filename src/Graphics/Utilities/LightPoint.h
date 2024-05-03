@@ -11,7 +11,7 @@ class RenderNode;
 class GraphicsManager;
 class Vector4;
 
-/*
+/**
 * @brief Wrapper de la clase LightPoint de Ogre
 * @brief Punto de luz que emite la misma cantidad de luz en todas las direcciones
 */
@@ -19,7 +19,7 @@ class TAPIOCA_API LightPoint : public Light {
 private:
     friend GraphicsManager;
 
-    /*
+    /**
     * @brief Constructor de la clase LightPoint
     * @param scnMngr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
@@ -28,7 +28,7 @@ private:
     LightPoint(Ogre::SceneManager* const scnMngr, RenderNode* const node, const Vector4 color);
 
 public:
-    /*
+    /**
     * @brief Cambia la atenuacion de la luz, es decir, como disminuye con la distancia
     * @brief Attenuation = Constant + Linear * Distance + Quadratic * Distance^2
     * @brief Por ejemplo, si constant es 0,5 quiere decir que es la mitad de brillante en todas las distancias

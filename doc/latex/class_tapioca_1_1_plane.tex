@@ -1,0 +1,269 @@
+\doxysection{Referencia de la clase Tapioca\+::Plane}
+\hypertarget{class_tapioca_1_1_plane}{}\label{class_tapioca_1_1_plane}\index{Tapioca::Plane@{Tapioca::Plane}}
+
+
+Wrapper de la clase \doxylink{class_tapioca_1_1_plane}{Plane} de \doxylink{namespace_ogre}{Ogre}.  
+
+
+
+
+{\ttfamily \#include $<$Plane.\+h$>$}
+
+Diagrama de herencia de Tapioca\+::Plane\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tapioca_1_1_plane}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_plane_a0586d0d60253b7743ea407fb284d7e48}{\texorpdfstring{$\sim$}{\string~}\+Plane}} ()
+\begin{DoxyCompactList}\small\item\em Destructor vacio. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \mbox{\hyperlink{class_tapioca_1_1_plane_a4c787475ea165aa13a5636036d5af5f2}{get\+Normal}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la normal que forma el plano. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_plane_adfdeb8f357ecdc7fa7be2402e622bafc}{getD}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la distancia desde el plano al origen. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_plane_a76eb4ff9b0e229048fae4e9ee32ea017}{get\+Distance}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&rk\+Point) const
+\begin{DoxyCompactList}\small\item\em Devuelve distancia desde un punto al plano. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_plane_a49866f36e98bda4642164601fae88988}{redefine}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&p0, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&p1, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&p2)
+\begin{DoxyCompactList}\small\item\em Redefine el plano a partir de 3 puntos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_plane_aacbbb58bf00c60086ed099115d1ff0d4}{redefine}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&rk\+Normal, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&rk\+Point)
+\begin{DoxyCompactList}\small\item\em Redefine el plano a partir de una normal y un punto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \mbox{\hyperlink{class_tapioca_1_1_plane_a2af42e86d5fb5e301e01e66d9606c116}{project\+Vector}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&v) const
+\begin{DoxyCompactList}\small\item\em Proyecta un vector sobre el plano. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_tapioca_1_1_plane_a4796cbb82f5505fe5cb82838cb368a71}{normalise}} ()
+\begin{DoxyCompactList}\small\item\em Normaliza la normal y la distancia d del plano. Devuelve la longitud de la normal antes de ser normalizada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_plane_a66cbf35ae1accf34a5ca6a8046b2f1ee}{set\+Material}} (std\+::string const \&material)
+\begin{DoxyCompactList}\small\item\em Cambia el material del plano @params material Nombre del material al que se quiere cambiar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_plane_a80769a96f0b6cfb9184f5280d5d8b90b}{cast\+Shadows}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva las sombras del plano. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_plane_ae27843f26cb6c11b17c3071cadf478d4}{operator==}} (const \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}} \&rhs) const
+\begin{DoxyCompactList}\small\item\em Devuelve si el plano es igual a otro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_plane_a1bb6abd70ad52b3ef3da4e6ba5f81f4e}{operator!=}} (const \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}} \&rhs) const
+\begin{DoxyCompactList}\small\item\em Devuelve si el plano es distinto a otro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_tapioca_1_1_render_object_ab3ed27893516054e73eb2ae73daeb2fb}{\texorpdfstring{$\sim$}{\string~}\+Render\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Se libera del nodo al que pertenecia y se destruye el objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a662aa51e331c05252c29545df14e720a}{set\+Visible}} (const bool enable)
+\begin{DoxyCompactList}\small\item\em Cambia la visibilidad del objeto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_render_object_ab2f0842c78da56eb1d1cbc8685f3fc5e}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la visibilidad del objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Otros miembros heredados}
+\doxysubsection*{Métodos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_abfa33a0b4666638a605196b3cc661853}{get\+Mov\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el movable object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_object_ad2d0833a5f9ae58671a95398cd63f171}{Render\+Object}} (\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_render_object}{Render\+Object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_a6d8060f65c9ec9c550453b594c92a47f}{init}} (Ogre\+::\+Movable\+Object \texorpdfstring{$\ast$}{*}const mov\+Object)
+\begin{DoxyCompactList}\small\item\em Inicializa el movable\+Object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_render_object_afd17592781a4015a2fa92be64e69e722}{detach\+From\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Quita este objeto del nodo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos protegidos heredados de \mbox{\hyperlink{class_tapioca_1_1_render_object}{Tapioca\+::\+Render\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_aed9edc57ab6cd785e43ff31d8ce3c570}{scene\+Manager}}
+\item 
+\mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Wrapper de la clase \doxylink{class_tapioca_1_1_plane}{Plane} de \doxylink{namespace_ogre}{Ogre}. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_tapioca_1_1_plane_a0586d0d60253b7743ea407fb284d7e48}\label{class_tapioca_1_1_plane_a0586d0d60253b7743ea407fb284d7e48} 
+\index{Tapioca::Plane@{Tapioca::Plane}!````~Plane@{\texorpdfstring{$\sim$}{\string~}Plane}}
+\index{````~Plane@{\texorpdfstring{$\sim$}{\string~}Plane}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Plane()}{\string~Plane()}}
+{\footnotesize\ttfamily virtual Tapioca\+::\+Plane\+::\texorpdfstring{$\sim$}{\string~}\+Plane (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destructor vacio. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_plane_a80769a96f0b6cfb9184f5280d5d8b90b}\label{class_tapioca_1_1_plane_a80769a96f0b6cfb9184f5280d5d8b90b} 
+\index{Tapioca::Plane@{Tapioca::Plane}!castShadows@{castShadows}}
+\index{castShadows@{castShadows}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{castShadows()}{castShadows()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Plane\+::cast\+Shadows (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Activa o desactiva las sombras del plano. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em enable} & True para activar las sombras, false para desactivarlas \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_plane_adfdeb8f357ecdc7fa7be2402e622bafc}\label{class_tapioca_1_1_plane_adfdeb8f357ecdc7fa7be2402e622bafc} 
+\index{Tapioca::Plane@{Tapioca::Plane}!getD@{getD}}
+\index{getD@{getD}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{getD()}{getD()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Plane\+::getD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la distancia desde el plano al origen. 
+
+\begin{DoxyReturn}{Devuelve}
+Distancia desde el plano al origen 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_a76eb4ff9b0e229048fae4e9ee32ea017}\label{class_tapioca_1_1_plane_a76eb4ff9b0e229048fae4e9ee32ea017} 
+\index{Tapioca::Plane@{Tapioca::Plane}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Plane\+::get\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{rk\+Point }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve distancia desde un punto al plano. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em rk\+Point} & Punto del que se quiere calcular la distancia \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Distancia desde el punto al plano 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_a4c787475ea165aa13a5636036d5af5f2}\label{class_tapioca_1_1_plane_a4c787475ea165aa13a5636036d5af5f2} 
+\index{Tapioca::Plane@{Tapioca::Plane}!getNormal@{getNormal}}
+\index{getNormal@{getNormal}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{getNormal()}{getNormal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} Tapioca\+::\+Plane\+::get\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la normal que forma el plano. 
+
+\begin{DoxyReturn}{Devuelve}
+\doxylink{class_tapioca_1_1_vector3}{Vector3} con la normal del plano 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_a4796cbb82f5505fe5cb82838cb368a71}\label{class_tapioca_1_1_plane_a4796cbb82f5505fe5cb82838cb368a71} 
+\index{Tapioca::Plane@{Tapioca::Plane}!normalise@{normalise}}
+\index{normalise@{normalise}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{normalise()}{normalise()}}
+{\footnotesize\ttfamily float Tapioca\+::\+Plane\+::normalise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Normaliza la normal y la distancia d del plano. Devuelve la longitud de la normal antes de ser normalizada. 
+
+\begin{DoxyReturn}{Devuelve}
+Longitud de la normal antes de ser normalizada 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_a1bb6abd70ad52b3ef3da4e6ba5f81f4e}\label{class_tapioca_1_1_plane_a1bb6abd70ad52b3ef3da4e6ba5f81f4e} 
+\index{Tapioca::Plane@{Tapioca::Plane}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Plane\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}} \&}]{rhs }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve si el plano es distinto a otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em rhs} & Plano con el que se quiere comparar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+True si los planos son distintos, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_ae27843f26cb6c11b17c3071cadf478d4}\label{class_tapioca_1_1_plane_ae27843f26cb6c11b17c3071cadf478d4} 
+\index{Tapioca::Plane@{Tapioca::Plane}!operator==@{operator==}}
+\index{operator==@{operator==}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Plane\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}} \&}]{rhs }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve si el plano es igual a otro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em rhs} & Plano con el que se quiere comparar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+True si los planos son iguales, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_a2af42e86d5fb5e301e01e66d9606c116}\label{class_tapioca_1_1_plane_a2af42e86d5fb5e301e01e66d9606c116} 
+\index{Tapioca::Plane@{Tapioca::Plane}!projectVector@{projectVector}}
+\index{projectVector@{projectVector}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{projectVector()}{projectVector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} Tapioca\+::\+Plane\+::project\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{v }\end{DoxyParamCaption}) const}
+
+
+
+Proyecta un vector sobre el plano. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em v} & Vector que se quiere proyectar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Vector proyectado sobre el plano 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_plane_a49866f36e98bda4642164601fae88988}\label{class_tapioca_1_1_plane_a49866f36e98bda4642164601fae88988} 
+\index{Tapioca::Plane@{Tapioca::Plane}!redefine@{redefine}}
+\index{redefine@{redefine}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{redefine()}{redefine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Plane\+::redefine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{p0,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{p1,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{p2 }\end{DoxyParamCaption})}
+
+
+
+Redefine el plano a partir de 3 puntos. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em p0} & Primer punto \\
+\hline
+{\em p1} & Segundo punto \\
+\hline
+{\em p2} & Tercer punto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_plane_aacbbb58bf00c60086ed099115d1ff0d4}\label{class_tapioca_1_1_plane_aacbbb58bf00c60086ed099115d1ff0d4} 
+\index{Tapioca::Plane@{Tapioca::Plane}!redefine@{redefine}}
+\index{redefine@{redefine}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{redefine()}{redefine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Plane\+::redefine (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{rk\+Normal,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&}]{rk\+Point }\end{DoxyParamCaption})}
+
+
+
+Redefine el plano a partir de una normal y un punto. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em rk\+Normal} & Normal del plano \\
+\hline
+{\em rk\+Point} & Punto del plano \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_tapioca_1_1_plane_a66cbf35ae1accf34a5ca6a8046b2f1ee}\label{class_tapioca_1_1_plane_a66cbf35ae1accf34a5ca6a8046b2f1ee} 
+\index{Tapioca::Plane@{Tapioca::Plane}!setMaterial@{setMaterial}}
+\index{setMaterial@{setMaterial}!Tapioca::Plane@{Tapioca::Plane}}
+\doxysubsubsection{\texorpdfstring{setMaterial()}{setMaterial()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Plane\+::set\+Material (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{material }\end{DoxyParamCaption})}
+
+
+
+Cambia el material del plano @params material Nombre del material al que se quiere cambiar. 
+
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_plane_8h}{Plane.\+h}}\item 
+src/\+Graphics/\+Utilities/\mbox{\hyperlink{_plane_8cpp}{Plane.\+cpp}}\end{DoxyCompactItemize}

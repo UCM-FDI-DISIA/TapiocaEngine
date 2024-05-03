@@ -23,7 +23,7 @@ class Vector3;
 class Quaternion;
 class PhysicsDebugDrawer;
 
-/*
+/**
 * @brief Clase que se encarga de gestionar las fisicas del juego
 */
 class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager>, public Module {
@@ -56,18 +56,18 @@ private:
     PhysicsDebugDrawer* pdd;   // Si debug es true, se crea un drawer para debugear
 #endif
 
-    /*
+    /**
     * @brief Constructor por defecto
     */
     PhysicsManager(bool debug = false);
 
-    /*
+    /**
     * @brief Inicializa el manager
     */
     void start() override;
 
 public:
-    /*
+    /**
     * @brief Destructor por defecto
     */
     ~PhysicsManager();
@@ -80,7 +80,7 @@ public:
     void fixedUpdate() override;
     void update(const uint64_t deltaTime);
 
-    /*
+    /**
     * @brief  Crea un rigidbody
     * @param  position Posicion inicial del rb
     * @param  rotation Rotacion inicial del rb
@@ -102,36 +102,36 @@ public:
                                  const float bounciness = 0, const bool isTrigger = false, const int group = 1,
                                  const int mask = -1);
 
-    /*
+    /**
     * @brief Destruye un rigidBody
     * @param rb puntero al rb que se quiere destruir
     */
     void destroyRigidBody(btRigidBody* const rb);
 
-    /*
+    /**
     * @brief Elimina un rigidBody del mundo
     * @param rb puntero al rb que se quiere quitar
     */
     void removeRigidBody(btRigidBody* const rb);
 
-    /*
+    /**
     * @brief Anade un rigibody al mundo
     * @param rb puntero al rb que se quiere anadir
     */
     void addRigidBody(btRigidBody* const rb);
 
-    /*
+    /**
     * @brief Destruye el mundo de fisicas
     */
     void destroy();
 
-    /*
+    /**
     * @brief Devuelve el mundo de fisicas
     * @return Puntero al mundo de fisicas
     */
     inline btDiscreteDynamicsWorld* getWorld() const { return dynamicsWorld; }
 
-    /*
+    /**
     * @brief Establece si se quiere debugear las fisicas
     * @param d True para activar el debug, false en caso contrario
     */

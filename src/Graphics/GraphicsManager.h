@@ -47,7 +47,7 @@ class CameraComponent;
 class NodeAnimator;
 class WindowManager;
 
-/*
+/**
 * @brief Clase que se encarga de la gestion de la grafica del motor
 */
 class TAPIOCA_API GraphicsManager : public Singleton<GraphicsManager>, public WindowModule {
@@ -100,28 +100,28 @@ private:
     LightDirectional* mainLight;                             // Luz principal
     std::unordered_map<int, CameraComponent*> cameraComps;   // Camaras
 
-    /*
+    /**
     * @brief Carga plugIns especificados desde codigo
     */
     void loadPlugIns();
 
-    /*
+    /**
     * @brief Configura las sombras 
     */
     void setUpShadows();
 
-    /*
+    /**
     * @brief cargar las rutas donde se ubican los assets para que ogre pueda encontrarlos y usarlos
     */
     void loadResources();
 
-    /*
+    /**
     * @brief crea el constructor de shaders y anade el listener al gestor de materiales para que a aquellos assets que vengan sin shaders 
     * se les asignen shaders pass through generados automaticamente. Debe invocarse tras crear el RenderSys
     */
     void loadShaders();
 
-    /*
+    /**
     * @brief Constructor de la clase GraphicsManager
     * @param windowName Nombre de la ventana
     * @param w Anchura de la ventana
@@ -135,73 +135,73 @@ public:
     GraphicsManager& operator=(GraphicsManager&) = delete;
     GraphicsManager& operator=(GraphicsManager&&) = delete;
 
-    /*
+    /**
     * @brief Destructor de la clase GraphicsManager.
     */
     virtual ~GraphicsManager();
 
-    /*
+    /**
     * @brief Inicializa el puntero al WindowManager
     */
     bool init() override;
-    /*
+    /**
     * @brief Crea el root de Ogre y prepara los recursos para empezar a renderizar
     */
     bool initConfig() override;
-    /*
+    /**
     * @brief Renderiza 1 frame
     */
     void render() override;
-    /*
+    /**
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL
     * @return true si se ha manejado el evento, false si no
     */
     bool handleEvents(const SDL_Event& event) override;
 
-    /*
+    /**
     * @brief Libera la memoria que usa GraphicsManager
     */
     void shutDown();
 
-    /*
+    /**
     * @brief Devuelve la ventana de ogre
     * @return Puntero a la ventana de ogre
     */
     inline Ogre::RenderWindow* getOgreRenderTarget() const { return ogreWindow; }
 
-    /*
+    /**
     * @brief Comprueba si existe un recurso con el nombre especificado
     * @param name Nombre del recurso
     * @return true si existe, false si no
     */
     bool checkResourceExists(std::string name);
 
-    /*
+    /**
     * @brief Elimina una camara en un zOrder especifico
     * @param zOrder ZOrder de la camara
     * @param deleteCamera Indica si se debe eliminar la camara
     */
     void removeCameraCompByZOrder(int zOrder, bool deleteCamera);
 
-    /*
+    /**
     * @brief Guarda el componente de camara
     * @param cameraComp Componente de camara a guardar
     */
     void saveCameraComp(CameraComponent* cameraComp);
 
-    /*
+    /**
     * @brief 
     */
     int askForZOrder(int requiredZOrder);
 
-    /*
+    /**
     * @brief Elimina un zOrder
     * @param zOrder ZOrder a eliminar
     */
     void removeZOrder(int zOrder);
 
-    /*
+    /**
     * @brief Crea un nodo
     * @param pos Posicion inicial del nodo. Se crea en el origen (0, 0, 0) si no se especifica
     * @param scale Escala inicial del nodo. Se inicia con escala "normal" (1, 1, 1) si no se especifica
@@ -210,7 +210,7 @@ public:
     RenderNode* createNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
                            const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
-    /*
+    /**
     * @brief Crea un nodo solo para manual object
     * @param pos Posicion inicial del nodo. Se crea en el origen (0, 0, 0) si no se especifica
     * @param scale Escala inicial del nodo. Se inicia con escala "normal" (1, 1, 1) si no se especifica
@@ -219,7 +219,7 @@ public:
     RenderNode* createSelfManagedNode(const Vector3 pos = Vector3(0.0f, 0.0f, 0.0f),
                                       const Vector3 scale = Vector3(1.0f, 1.0f, 1.0f));
 
-    /*
+    /**
     * @brief Crea una camara 
     * @param node Nodo para renderizado
     * @param name Nombre de la camara
@@ -227,7 +227,7 @@ public:
     */
     Camera* createCamera(RenderNode* const node, std::string const& name);
 
-    /*
+    /**
     * @brief Crea un viewport a partir de una camara y un indice
     * @param camera Camara para el viewport
     * @param zOrder Orden por el cual se renderiza el viewport
@@ -235,7 +235,7 @@ public:
     */
     Viewport* createViewport(Camera* const camera, const int zOrder);
 
-    /*
+    /**
     * @brief Crea una luz direccional
     * @param node Nodo para renderizado
     * @param direction Direccion a la que apunta
@@ -245,7 +245,7 @@ public:
     LightDirectional* createLightDirectional(RenderNode* const node, const Vector3 direction,
                                              const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    /*
+    /**
     * @brief Crea una luz posicional
     * @param node Nodo para renderizado
     * @param color Color de la luz
@@ -253,7 +253,7 @@ public:
     */
     LightPoint* createLightPoint(RenderNode* const node, const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    /*
+    /**
     * @brief Crea una luz rectangular
     * @param node Nodo para renderizado
     * @param direction Direccion a la que apunta
@@ -265,7 +265,7 @@ public:
     LightRectlight* createLightRectlight(RenderNode* const node, const Vector3 direction, const float width,
                                          const float height, const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 
-    /*
+    /**
     * @brief Crea un foco de luz
     * @param node Nodo para renderizado
     * @param direction Direccion a la que apunta
@@ -274,19 +274,19 @@ public:
     */
     LightSpotlight* createLightSpotlight(RenderNode* const node, const Vector3 direction,
                                          const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
-    /*
+    /**
     * @brief Se establece la luz principal, es decir, la luz direccional que produce sombras. Solo puede haber una
     * @param Nueva luz principal
     */
     void setMainLight(LightDirectional* lightDir);
 
-    /*
+    /**
     * @brief Se elimina la luz principal
     * @param Luz principal a eliminar
     */
     void removeMainLight(LightDirectional* lightDir);
 
-    /*
+    /**
     * @brief Crea una malla
     * @param node Nodo para renderizado
     * @param meshName Nombre de la malla
@@ -294,7 +294,7 @@ public:
     */
     Mesh* createMesh(RenderNode* const node, std::string const& meshName);
 
-    /*
+    /**
     * @brief Crea un billboard
     * @param node Nodo para renderizado
     * @param name Nombre del billboard
@@ -305,7 +305,7 @@ public:
     Billboard* createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,
                                const Vector4 colour);
 
-    /*
+    /**
     * @brief Crea un billboardSet
     * @param node Nodo para renderizado
     * @param name Nombre del billboardSet
@@ -314,7 +314,7 @@ public:
     */
     BillboardSet* createBillboardSet(RenderNode* const node, std::string const& name, unsigned int poolSize);
 
-    /*
+    /**
     * @brief Crea un billboardSet sin nombre especificado
     * @param node Nodo para renderizado
     * @param poolSize Numero maximo de billboards que puede tener
@@ -322,7 +322,7 @@ public:
     */
     BillboardSet* createBillboardSetWithName(RenderNode* const node, const unsigned int poolSize);
 
-    /*
+    /**
     * @brief Crea un particleSystem
     * @param node Nodo para renderizado
     * @param name Nombre del particleSystem
@@ -333,7 +333,7 @@ public:
     ParticleSystem* createParticleSystem(RenderNode* const node, std::string const& name,
                                          std::string const& templateName, const bool emitting);
 
-    /*
+    /**
     * @brief Crea un plane
     * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
     * @param node Nodo para renderizado
@@ -351,7 +351,7 @@ public:
     Plane* createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant, const Vector3& up,
                        std::string const& name, const float width, const float height, const int xSegments,
                        const int ySegments, std::string const& material = "");
-    /*
+    /**
     * @brief Crea un plane sin nombre especificado
     * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
     * @param node Nodo para renderizado
@@ -369,7 +369,7 @@ public:
                                const Vector3& up, const float width, const float height, const int xSegments,
                                const int ySegments, std::string const& material = "");
 
-    /*
+    /**
     * @brief Crea un plane
     * Construye un plano usando 4 constantes
     * @param node Nodo para renderizado
@@ -390,7 +390,7 @@ public:
                        const Vector3& up, std::string const& name, const float width, const float height,
                        const int xSegments, const int ySegments, std::string const& material = "");
 
-    /*
+    /**
     * @brief Crea una animacion
     * @param object Malla a animar
     * @param autoPlay Indica si se reproduce automaticamente
@@ -398,7 +398,7 @@ public:
     * @return Puntero a la animacion creada
     */
     AnimationHelper* createAnimationHelper(Mesh* const object, bool autoPlay = true, const bool loop = true);
-    /*
+    /**
     * @brief Crea una animacion
     * @param node Nodo a animar
     * @param duration Duracion de la animacion
@@ -406,14 +406,14 @@ public:
     * @return Puntero a la animacion creada
     */
     NodeAnimator* createNodeAnimator(RenderNode* const node, const float duration, const std::string& name);
-    /*
+    /**
     * @brief Crea una animacion sin nombre especificado
     * @param node Nodo a animar
     * @param duration Duracion de la animacion
     */
     NodeAnimator* createNodeAnimatorWithName(RenderNode* const node, const float duration);
 
-    /*
+    /**
     * @brief Crea un skybox
     * @param node Nodo para renderizado
     * @param material Material del skybox
@@ -424,7 +424,7 @@ public:
     Skybox* createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
                          const float distC = 5000, const bool orderC = true);
 
-    /*
+    /**
     * @brief Crea un skyplane
     * @param node Nodo para renderizado
     * @param materialName Nombre del material
@@ -444,13 +444,13 @@ public:
                              const float tiling, const bool drawFirst, const float bow, const int xsegments,
                              const int ysegments);
 
-    /*
+    /**
     * @brief Crea un manual object
     * @param node Nodo para renderizado
     * @return Puntero al manual object creado
     */
     Ogre::ManualObject* createManualObject(RenderNode* const node);
-    /*
+    /**
     * @brief Elimina un manual object
     * @param object Manual object a eliminar
     */

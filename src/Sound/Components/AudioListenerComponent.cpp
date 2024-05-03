@@ -5,65 +5,69 @@
 #include "SoundManager.h"
 
 namespace Tapioca {
-AudioListenerComponent::AudioListenerComponent() : listener(nullptr), myTransform(nullptr) { }
+AudioListenerComponent::AudioListenerComponent()
+    : soundManager(nullptr), listener(nullptr), transform(nullptr), position(Vector3()), look(Vector3()),
+      velocity(Vector3()), up(Vector3()) { }
 
 AudioListenerComponent::~AudioListenerComponent() {
-
-    delete listener;
-    // delete myTransform;
+    if (listener != nullptr) delete listener;
+    listener = nullptr;
+    transform = nullptr;
 }
 
 bool AudioListenerComponent::initComponent(const CompMap& variables) {
-    //3 opciones para paramentros
-    // es obligatorio envia un error si no lo han puesto en el lua
-    //Es un parametro opcional si no esta no pasa nada pones uno por defecto
-    if (!setValueFromMap(velocity.x, "velocityX", variables))
-        velocity.x = 0;   // si no se indica velocidad en el lua se asume que esta quieto
-    if (!setValueFromMap(velocity.y, "velocityY", variables))
-        velocity.y = 0;   // si no se indica velocidad en el lua se asume que esta quieto
-    if (!setValueFromMap(velocity.z, "velocityZ", variables))
-        velocity.z = 0;   // si no se indica velocidad en el lua se asume que esta quieto
-    //los valores se guardan en variables en el init y es en el awake donde se setean las cosas
+    if (!setValueFromMap(velocity.x, "velocityX", variables)) {
+        logInfo(
+            ("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
+             std::to_string(velocity.x) + "\".")
+                .c_str());
+    }
+    if (!setValueFromMap(velocity.y, "velocityY", variables)) {
+        logInfo(
+            ("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
+             std::to_string(velocity.y) + "\".")
+                .c_str());
+    }
+    if (!setValueFromMap(velocity.z, "velocityZ", variables)) {
+        logInfo(
+            ("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
+             std::to_string(velocity.z) + "\".")
+                .c_str());
+    }
     return true;
 }
 void AudioListenerComponent::awake() {
-    myTransform = getObject()->getComponent<Transform>();
-    position = myTransform->getGlobalPosition();
-    look = myTransform->forward();
-    up = myTransform->up();
+    transform = getObject()->getComponent<Transform>();
+    if (transform != nullptr) {
+        position = transform->getGlobalPosition();
+        look = transform->forward();
+        up = transform->up();
+    }
     listener = new AudioListener(position, look, velocity, up);
-    SoundManager::instance()->setListener(*listener);
+    soundManager = SoundManager::instance();
+    if (soundManager != nullptr) soundManager->setListener(*listener);
 }
 void AudioListenerComponent::handleEvent(std::string const& id, void* info) {
-    /*
-    if (id == "transformchanged") {
-        position = myTransform->getGlobalPosition();
-        listener->setPosition(position);
-        look = myTransform->forward();
-        listener->setDirection(look);
-        up = myTransform->up();
-        listener->setUp(up);
-        SoundManager::instance()->setListener(*listener);
-    }
-    */
     if (id == "posChanged") {
-        position = myTransform->getGlobalPosition();
-        SoundManager::instance()->setListener(*listener);
+        if (transform != nullptr) position = transform->getGlobalPosition();
+        if (soundManager != nullptr) soundManager->setListener(*listener);
     }
     else if (id == "rotChanged") {
-        look = myTransform->forward();
-        listener->setDirection(look);
-        up = myTransform->up();
-        listener->setUp(up);
-        SoundManager::instance()->setListener(*listener);
+        if (transform != nullptr) {
+            look = transform->forward();
+            listener->setDirection(look);
+            up = transform->up();
+            listener->setUp(up);
+        }
+        if (soundManager != nullptr) soundManager->setListener(*listener);
     }
 }
 
 void AudioListenerComponent::setVelocity(Vector3 v) {
-
     velocity = v;
-    listener->setVelocity(velocity);
-    SoundManager::instance()->setListener(*listener);
+    if (listener != nullptr) {
+        listener->setVelocity(velocity);
+        if (soundManager != nullptr) soundManager->setListener(*listener);
+    }
 }
-
 }

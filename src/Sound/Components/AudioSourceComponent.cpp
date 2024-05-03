@@ -7,35 +7,33 @@
 
 namespace Tapioca {
 AudioSourceComponent::AudioSourceComponent()
-    : is3D(false), islooping(false), ispaused(true), mySound(nullptr), mySource(nullptr), myTransform(nullptr),
-      volumen(0.0f), playSpeed(0.0f) { }
+    : source(nullptr), sound(nullptr), transform(nullptr), sourcePath(""), is3D(false), isLooping(false),
+      isPaused(true), volumen(0.0f), playSpeed(0.0f) { }
 
 AudioSourceComponent::~AudioSourceComponent() {
-    if (mySource != nullptr) {
-        mySource->setPaused(true);
-        delete mySource;
-        mySource = nullptr;
+    if (source != nullptr) {
+        source->setPaused(true);
+        delete source;
+        source = nullptr;
     }
-    if (mySound != nullptr) {
-        delete mySound;
-        mySound = nullptr;
+    if (sound != nullptr) {
+        delete sound;
+        sound = nullptr;
     }
-    myTransform = nullptr;
+    transform = nullptr;
 }
 
 bool AudioSourceComponent::initComponent(const CompMap& variables) {
-
-    //para que se pueda acceder a ellos todos los sonidos se crearan pausados
     if (!setValueFromMap(is3D, "is3D", variables)) {
         logInfo("AudioSourceComponent: No se encontro el valor de is3D. Se inicializo a false.");
     }
-    if (!setValueFromMap(islooping, "islooping", variables)) {
+    if (!setValueFromMap(isLooping, "islooping", variables)) {
         logInfo("AudioSourceComponent: No se encontro el valor de islooping. Se inicializo a false.");
     }
-    if (!setValueFromMap(ispaused, "ispaused", variables)) {
+    if (!setValueFromMap(isPaused, "ispaused", variables)) {
         logInfo("AudioSourceComponent: No se encontro el valor de ispaused. Se inicializo a true.");
     }
-    if (!setValueFromMap(sourcepath, "sourcepath", variables)) {
+    if (!setValueFromMap(sourcePath, "sourcepath", variables)) {
         logError("AudioSourceComponent: No se pudo inicializar el sourcepath del sonido.");
         return false;
     }
@@ -43,57 +41,44 @@ bool AudioSourceComponent::initComponent(const CompMap& variables) {
 }
 
 void AudioSourceComponent::awake() {
-    myTransform = getObject()->getComponent<Transform>();
-    position = myTransform->getGlobalPosition();
-    mySound = new Sound(sourcepath);
-    if (is3D) {
-        mySource = new AudioSource(*mySound, position, ispaused, islooping);
+    transform = getObject()->getComponent<Transform>();
+    if (transform != nullptr) {
+        position = transform->getGlobalPosition();
+        sound = new Sound(sourcePath);
+        if (sound != nullptr) {
+            if (is3D) source = new AudioSource(*sound, position, isPaused, isLooping);
+            else
+                source = new AudioSource(*sound, isPaused, isLooping);
+        }
     }
-    else {
-        mySource = new AudioSource(*mySound, ispaused, islooping);
-    }
-}
-
-void AudioSourceComponent::start() { 
-   
 }
 
 void AudioSourceComponent::handleEvent(std::string const& id, void* info) {
-    /*
-    if (id == "transformchanged") {
-        position = myTransform->getGlobalPosition();
-        mySource->setPosition(position);
-    }
-    */
     if (id == "posChanged") {
-        position = myTransform->getGlobalPosition();
-        mySource->setPosition(position);
+        position = transform->getGlobalPosition();
+        source->setPosition(position);
     }
 }
 
-void AudioSourceComponent::playOnce() { mySource->playOnce(is3D); }
+void AudioSourceComponent::playOnce() { source->playOnce(is3D); }
 
-void AudioSourceComponent::playLooped() { mySource->playLooped(is3D); }
+void AudioSourceComponent::playLooped() { source->playLooped(is3D); }
 
-void AudioSourceComponent::Stop() { mySource->stop(); }
+void AudioSourceComponent::stop() { source->stop(); }
 
-//void AudioSourceComponent::playSound() { } en verdad con un set pause false ya suena
 void AudioSourceComponent::pause(bool p) {
-    ispaused = p;
-    mySource->setPaused(p);
+    isPaused = p;
+    source->setPaused(p);
 }
 void AudioSourceComponent::loop(bool l) {
-    islooping = l;
-    mySource->setLooped(l);
+    isLooping = l;
+    source->setLooped(l);
 }
 void AudioSourceComponent::setVolume(float v) {
-    if (v > 1.0f) {
-        v = 1.0f;
-    }
-    else if (v < 0.0f) {
+    if (v > 1.0f) v = 1.0f;
+    else if (v < 0.0f)
         v = 0.0f;
-    }
     volumen = v;
-    mySource->setVolume(v);
+    source->setVolume(v);
 }
 }

@@ -6,7 +6,7 @@ class Skybox;
 class RenderNode;
 class Transform;
 
-/*
+/**
 * @brief Componente que se encarga de renderizar un skybox
 */
 class TAPIOCA_API SkyboxComponent : public Component {
@@ -35,24 +35,24 @@ private:
 
 public:
     COMPONENT_ID("SkyboxComponent");
-    /*
+    /**
     * @brief Constructor por defecto
     */
     SkyboxComponent();
 
-    /*
+    /**
     * @brief Destructor por defecto
     */
     ~SkyboxComponent();
 
-    /*
+    /**
     * @brief Metodo que se usa para recibir los parametros iniciales y guardarlos.
     * No garantiza que todos los componentes iniciales esten creados
     * @param variables unordered_map con los parametros iniciales
     * @return Devuelve true si se ha inicializado correctamente, false en caso contrario
     */
     bool initComponent(const CompMap& variables) override;
-    /*
+    /**
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */

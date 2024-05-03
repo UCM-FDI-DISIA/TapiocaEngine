@@ -1,0 +1,33 @@
+\doxysection{SGTechnique\+Resolver\+Listener.\+h}
+\hypertarget{_s_g_technique_resolver_listener_8h_source}{}\label{_s_g_technique_resolver_listener_8h_source}\index{src/Graphics/SGTechniqueResolverListener.h@{src/Graphics/SGTechniqueResolverListener.h}}
+\mbox{\hyperlink{_s_g_technique_resolver_listener_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ warnings\ de\ ogre}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <OgreRTShaderSystem.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <OgreMaterialManager.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_g_technique_resolver_listener}{SGTechniqueResolverListener}}\ :\ \textcolor{keyword}{public}\ Ogre::MaterialManager::Listener\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ Ogre::RTShader::ShaderGenerator*\ \mbox{\hyperlink{class_s_g_technique_resolver_listener_aa344394a8e3a4411dfb91f25bc363d5f}{mShaderGenerator}};\ \ \ \textcolor{comment}{//\ Instancia\ del\ generador\ de\ shaders}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_s_g_technique_resolver_listener_a55546f036ec6df9a42ab31488a09c751}{SGTechniqueResolverListener}}(Ogre::RTShader::ShaderGenerator*\ \textcolor{keyword}{const}\ pShaderGenerator);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \ \ \ \ Ogre::Technique*\ \mbox{\hyperlink{class_s_g_technique_resolver_listener_a7bd996b4e064bafd6f192df16bcfa013}{handleSchemeNotFound}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ schemeIndex,\ Ogre::String\ \textcolor{keyword}{const}\&\ schemeName,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::Material*\ \textcolor{keyword}{const}\ originalMaterial,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ lodIndex,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Renderable*\ \textcolor{keyword}{const}\ rend);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_g_technique_resolver_listener_a998d6d233563edb6e415ef30c18b2776}{afterIlluminationPassesCreated}}(Ogre::Technique*\ \textcolor{keyword}{const}\ tech);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_g_technique_resolver_listener_adc934347b494b572580e729f98837883}{beforeIlluminationPassesCleared}}(Ogre::Technique*\ \textcolor{keyword}{const}\ tech);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \};}
+
+\end{DoxyCode}
