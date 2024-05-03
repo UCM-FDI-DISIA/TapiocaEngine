@@ -17,6 +17,7 @@ class RenderWindow;
 namespace Tapioca {
 class MainLoop;
 class WindowManager;
+class GraphicsManager;
 class RenderListener;
 
 /* 
@@ -39,12 +40,13 @@ class TAPIOCA_API UIManager : public Singleton<UIManager>, public WindowModule {
 private:
     friend Singleton<UIManager>;
 
-    MainLoop* mainLoop;               // Referencia al MainLoop
-    WindowManager* windowManager;     // Referencia al WindowManager
-    SDL_Window* sdlWindow;            // Referencia a la ventana de SDL
-    void* glContext;                  // Referencia al contexto de OpenGL
-    Ogre::RenderWindow* ogreWindow;   // Referencia a la superficie de renderizado de Ogre
-    RenderListener* renderListener;   // Listener de renderizado de Ogre
+    MainLoop* mainLoop;                 // Referencia al MainLoop
+    WindowManager* windowManager;       // Referencia al WindowManager
+    GraphicsManager* graphicsManager;   // Referencia al GraphicsManager
+    SDL_Window* sdlWindow;              // Referencia a la ventana de SDL
+    void* glContext;                    // Referencia al contexto de OpenGL
+    Ogre::RenderWindow* ogreWindow;     // Referencia a la superficie de renderizado de Ogre
+    RenderListener* renderListener;     // Listener de renderizado de Ogre
 
     // 'Tapioca::UIManager::fontsPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -100,10 +102,14 @@ public:
     ~UIManager();
 
     /*
+    * @brief Inicializa el puntero al MainLoop
+    */
+    bool init() override;
+    /*
     * @brief Inicializa ImGui con SDL y OpenGL, y anade el UIManager como listener de la ventana de Ogre
     * @return true si se ha inicializado correctamente, false si no
     */
-    bool init() override;
+    bool initConfig() override;
     /*
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL

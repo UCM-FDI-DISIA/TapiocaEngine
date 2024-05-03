@@ -61,8 +61,9 @@ void runEngine() {
     if (mainLoop->init()) {
         createEngineBuilders();
         registerLuaFunctions();
-        DynamicLibraryLoader::initGame();
-        mainLoop->run();
+        if (DynamicLibraryLoader::initGame()) mainLoop->run();
+		else
+			logError("RunEngine: Error al inicializar el juego.");
     }
     else
         logError("RunEngine: Error al inicializar un modulo.");

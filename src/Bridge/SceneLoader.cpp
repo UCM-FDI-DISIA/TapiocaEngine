@@ -214,7 +214,7 @@ bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameO
     while (lua_next(luaState, -2) != 0 && load) {
         if (lua_istable(luaState, -1)) {
             hasTable = true;
-            load= loadComponent(name, gameObject);
+            load = loadComponent(name, gameObject);
             lua_pop(luaState, 1);
         }
         else {

@@ -34,21 +34,7 @@ WindowManager::~WindowManager() {
 
 bool WindowManager::init() {
     // Iniciar SDL
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) return false;
-
-    // Crear ventana
-    Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
-    sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
-                                 windowHeight, flags);
-    if (sdlWindow == nullptr) {
-        logError(("WindowManager: Error al crear la ventana de SDL: " + std::string(SDL_GetError()) + '.').c_str());
-        return false;
-    }
-    logInfo("WindowManager: Cargada la ventana de SDL.");
-
-    mainLoop = MainLoop::instance();
-
-    return true;
+    return SDL_Init(SDL_INIT_EVERYTHING) == 0;
 }
 
 bool WindowManager::initConfig() {
@@ -61,8 +47,60 @@ bool WindowManager::initConfig() {
     }
     setWindowName(wn());
     logInfo(("WindowManager: Nombre de la ventana configurado a \"" + windowName + "\".").c_str());
+
+    EntryPointGetFullScreen fs = (EntryPointGetFullScreen)GetProcAddress(DynamicLibraryLoader::module, "getFullScreen");
+    if (fs == nullptr) {
+        logError("WindowManager: La DLL del juego no tiene la funcion \"getFullScreen\".");
+        return false;
+    }
+
+    if (fs()) {
+        logInfo("WindowManager: Configurando la ventana a pantalla completa...");
+        SDL_DisplayMode displayMode;
+        if (SDL_GetCurrentDisplayMode(0, &displayMode) != 0) {
+            logError(("WindowManager Error al conseguir los valores de pantalla completa: " +
+                      std::string(SDL_GetError()) + '.')
+                         .c_str());
+            return false;
+        }
+        windowWidth = displayMode.w;
+        windowHeight = displayMode.h;
+        logInfo("WindowManager: Ventana configurada a pantalla completa.");
+    }
+    else {
+        logInfo("WindowManager: Configurando la ventana a modo ventana...");
+        EntryPointGetWindowSize ws =
+            (EntryPointGetWindowSize)GetProcAddress(DynamicLibraryLoader::module, "getWindowSize");
+        if (ws == nullptr) {
+            logError(("WindowManager: La DLL del juego no tiene la funcion \"getWindowSize\". Se usara el tamano "
+                      "predefinido: " +
+                      std::to_string(windowWidth) + "x" + std::to_string(windowHeight) + '.')
+                         .c_str());
+        }
+        else {
+            ws(windowWidth, windowHeight);
+            firstWindowWidth = windowWidth;
+            firstWindowHeight = windowHeight;
+        }
+        logInfo(
+            ("WindowManager: Ventana configurada a " + std::to_string(windowWidth) + "x" + std::to_string(windowHeight))
+                .c_str());
+    }
+
+    // Crear ventana
+    Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
+    sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth,
+                                 windowHeight, flags);
+    if (sdlWindow == nullptr) {
+        logError(("WindowManager: Error al crear la ventana de SDL: " + std::string(SDL_GetError()) + '.').c_str());
+        return false;
+    }
+    logInfo("WindowManager: Cargada la ventana de SDL.");
+
     return true;
 }
+
+void WindowManager::start() { mainLoop = MainLoop::instance(); }
 
 void WindowManager::update(const uint64_t deltaTime) {
     SDL_Event event;

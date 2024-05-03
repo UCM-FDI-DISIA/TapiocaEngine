@@ -77,7 +77,7 @@ PhysicsManager::PhysicsManager(bool debug)
 
 PhysicsManager::~PhysicsManager() { destroy(); }
 
-bool PhysicsManager::init() {
+void PhysicsManager::start() {
     logInfo("PhysicsManager: Object:");
 
     colConfig = new btDefaultCollisionConfiguration();
@@ -96,8 +96,6 @@ bool PhysicsManager::init() {
     pdd = new PhysicsDebugDrawer();
     dynamicsWorld->setDebugDrawer(pdd);
 #endif
-
-    return true;
 }
 
 void PhysicsManager::update(const uint64_t deltaTime) {
@@ -107,6 +105,7 @@ void PhysicsManager::update(const uint64_t deltaTime) {
 }
 
 void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(MainLoop::FIXED_DELTA_TIME, 1); }
+
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quaternion rotation,
                                              const Vector3 shapeScale, const ColliderShape colliderShape,
                                              const MovementType type, float mass, const float friction,

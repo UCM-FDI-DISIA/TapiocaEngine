@@ -52,6 +52,8 @@ bool MainLoop::initConfig() {
 }
 
 void MainLoop::run() {
+    start();
+
     if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
         logWarn("MainLoop: No hay escena de inicio del motor. Se va a cerrar la aplicacion.");
         return;
@@ -100,8 +102,7 @@ void MainLoop::start() {
 }
 
 void MainLoop::update() {
- 
-   
+
 
     for (auto mod : modules)
         mod->update(deltaTime);
@@ -133,7 +134,7 @@ void MainLoop::refresh() {
     }
     toDelete.clear();
 
-     if (!sceneBuffer.empty()) {
+    if (!sceneBuffer.empty()) {
         auto auxBuffer = sceneBuffer;
         sceneBuffer.clear();
 

@@ -26,12 +26,14 @@ template<>
 UIManager* Singleton<UIManager>::instance_ = nullptr;
 
 UIManager::UIManager()
-    : mainLoop(nullptr), windowManager(nullptr), sdlWindow(nullptr), glContext(nullptr), ogreWindow(nullptr),
-      renderListener(nullptr), fontsPath("assets/fonts/"), texturesPath("assets/textures/"), widgetCounter(0) { }
+    : mainLoop(nullptr), windowManager(nullptr), graphicsManager(nullptr), sdlWindow(nullptr), glContext(nullptr),
+      ogreWindow(nullptr), renderListener(nullptr), fontsPath("assets/fonts/"), texturesPath("assets/textures/"),
+      widgetCounter(0) { }
 
 UIManager::~UIManager() {
     mainLoop = nullptr;
     windowManager = nullptr;
+    graphicsManager = nullptr;
     sdlWindow = nullptr;
     glContext = nullptr;
     ogreWindow = nullptr;
@@ -47,7 +49,12 @@ UIManager::~UIManager() {
 
 bool UIManager::init() {
     mainLoop = MainLoop::instance();
+    windowManager = WindowManager::instance();
+    graphicsManager = GraphicsManager::instance();
+    return mainLoop != nullptr && windowManager != nullptr && graphicsManager != nullptr;
+}
 
+bool UIManager::initConfig() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
@@ -55,16 +62,14 @@ bool UIManager::init() {
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableGamepad;
     io.WantCaptureKeyboard = true;
     io.WantCaptureMouse = true;
-    windowManager = WindowManager::instance();
     sdlWindow = windowManager->getWindow();
     glContext = windowManager->getGLContext();
-    ogreWindow = GraphicsManager::instance()->getOgreRenderTarget();
+    ogreWindow = graphicsManager->getOgreRenderTarget();
     renderListener = new RenderListener(mainLoop);
     ogreWindow->addListener(renderListener);
     ImGui_ImplSDL2_InitForOpenGL(sdlWindow, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
     check();
-
     return true;
 }
 

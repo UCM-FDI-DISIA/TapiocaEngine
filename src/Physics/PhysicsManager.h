@@ -61,7 +61,7 @@ private:
     /*
     * @brief Inicializa el manager
     */
-    bool init() override;
+    void start() override;
 
 public:
     /*

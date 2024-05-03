@@ -63,6 +63,10 @@ GraphicsManager::~GraphicsManager() {
 
 bool GraphicsManager::init() {
     windowManager = WindowManager::instance();
+    return windowManager != nullptr;
+}
+
+bool GraphicsManager::initConfig() {
     sdlWindow = windowManager->getWindow();
     uint32_t windowWidth = windowManager->getWindowW();
     uint32_t windowHeight = windowManager->getWindowH();
@@ -197,7 +201,6 @@ bool GraphicsManager::init() {
     SDL_GL_SetSwapInterval(1);
 
     logInfo("GraphicsManager: Inicializado");
-
     return true;
 }
 
@@ -406,8 +409,10 @@ void GraphicsManager::shutDown() {
     if (mRoot == nullptr) return;
 
     // ELIMINAR EL SCENE MANAGER
-    mShaderGenerator->removeSceneManager(scnMgr);
-    mRoot->destroySceneManager(scnMgr);
+    if (scnMgr != nullptr) {
+        mShaderGenerator->removeSceneManager(scnMgr);
+        mRoot->destroySceneManager(scnMgr);
+    }
 
     // ELIMINAR EL SISTEMA DE SHADERS
 

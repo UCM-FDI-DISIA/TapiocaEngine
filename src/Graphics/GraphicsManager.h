@@ -143,15 +143,17 @@ public:
     virtual ~GraphicsManager();
 
     /*
-    * @brief Crea el root de Ogre y prepara los recursos para empezar a renderizar
+    * @brief Inicializa el puntero al WindowManager
     */
     bool init() override;
-
+    /*
+    * @brief Crea el root de Ogre y prepara los recursos para empezar a renderizar
+    */
+    bool initConfig() override;
     /*
     * @brief Renderiza 1 frame
     */
     void render() override;
-
     /*
     * @brief Maneja los eventos de SDL
     * @param event Evento de SDL
