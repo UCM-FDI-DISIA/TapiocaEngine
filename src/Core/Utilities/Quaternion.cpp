@@ -35,9 +35,9 @@ Quaternion::Quaternion(const Vector3& euler) {
     float cospitch = cosf(pitch / 2.f);
     float sinpitch = sinf(pitch / 2.f);
 
-    scalar = cosroll * cosyaw * cospitch + sinroll * sinyaw * sinpitch;
+    scalar = cosroll * cosyaw * cospitch - sinroll * sinyaw * sinpitch;
 
-    vector.x = sinroll * cosyaw * cospitch - cosroll * sinyaw * sinpitch;
+    vector.x = sinroll * cosyaw * cospitch + cosroll * sinyaw * sinpitch;
     vector.y = cosroll * sinyaw * cospitch + sinroll * cosyaw * sinpitch;
     vector.z = cosroll * cosyaw * sinpitch - sinroll * sinyaw * cospitch;
 
@@ -55,26 +55,41 @@ float Quaternion::magnitude() {
 Vector3 Quaternion::toEuler() {
     normalize();
 
-    float x = atan2f(2.0f * (scalar * vector.x + vector.y * vector.z),
-                     (scalar * scalar) - (vector.x * vector.x) - (vector.y * vector.y) + (vector.z * vector.z));
-    float siny = 2.0f * (scalar * vector.y - vector.x * vector.z);
-    // Identidad pitagorica
-    float cosy = (scalar * scalar) - (vector.x * vector.x) + (vector.y * vector.y) - (vector.z * vector.z);
-    float cosy2 = 2.0f * (scalar * vector.y - vector.x * vector.z);
-    // En el eje Y para angulos del segundo y tercer cuadrante (coseno negativo) la formula nos dara los angulos suplementarios
-    float y = asinf(siny);
-    y = fmod(y, 2 * PI);
-    if (y < 0) y += 2 * PI;
+    //float x = atan2f(2.0f * (scalar * vector.x + vector.y * vector.z),
+    //                 (scalar * scalar) - (vector.x * vector.x) - (vector.y * vector.y) + (vector.z * vector.z));
+    //float siny = 2.0f * (scalar * vector.y - vector.x * vector.z);
+    //// Identidad pitagorica
+    //float cosy = (scalar * scalar) - (vector.x * vector.x) + (vector.y * vector.y) - (vector.z * vector.z);
+    //float cosy2 = 2.0f * (scalar * vector.y - vector.x * vector.z);
+    //// En el eje Y para angulos del segundo y tercer cuadrante (coseno negativo) la formula nos dara los angulos suplementarios
+    //float y = asinf(siny);
+    //y = fmod(y, 2 * PI);
+    //if (y < 0) y += 2 * PI;
 
-    // Caso especial tercer cuadrante
-    if (y > PI && y < (3 * PI) / 2) {
-        cosy = cosf(y);
-        cosy = -cosy;
-        y = atan2f(siny, cosy);
-    }
+    //// Caso especial tercer cuadrante
+    //if (y > PI && y < (3 * PI) / 2) {
+    //    cosy = cosf(y);
+    //    cosy = -cosy;
+    //    y = atan2f(siny, cosy);
+    //}
 
-    float z = atan2f(2.0f * (scalar * vector.z + vector.x * vector.y),
-                     (scalar * scalar) + (vector.x * vector.x) - (vector.y * vector.y) - (vector.z * vector.z));
+    //float z = atan2f(2.0f * (scalar * vector.z + vector.x * vector.y),
+    //                 (scalar * scalar) + (vector.x * vector.x) - (vector.y * vector.y) - (vector.z * vector.z));
+
+    float x, y, z;
+
+    float sinr_cosp = 2 * (scalar * vector.x+ vector.y * scalar);
+    float cosr_cosp = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
+    x = std::atan2(sinr_cosp, cosr_cosp);
+
+    float sinp = 2 * (scalar * vector.y - vector.z * vector.x);
+    if (std::abs(sinp) >= 1) y= std::copysign(PI / 2, sinp);   // use 90 degrees if out of range
+    else
+        y = std::asin(sinp);
+
+    double siny_cosp = 2 * (scalar * vector.z + vector.x * vector.y);
+    double cosy_cosp = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
+    z = std::atan2(siny_cosp, cosy_cosp);
 
     return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
 }
