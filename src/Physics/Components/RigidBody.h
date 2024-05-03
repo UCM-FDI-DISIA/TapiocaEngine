@@ -8,39 +8,39 @@ class btRigidBody;
 namespace Tapioca {
 class Vector3;
 class Transform;
-//class Collider;
 
+/*
+* @brief Clase que representa un rigidbody de bullet
+*/
 class TAPIOCA_API RigidBody : public Component {
 private:
-    btRigidBody* rigidBody;
-    Transform* transform;
-    // Collider* collider;
-    ColliderShape colShape;
-    Vector3 colliderInitialScale;
-    MovementType movementType;
-    bool isTrigger;
-    //indica con que grupo se puede colisionar (en binario)
-    int mask;
-    //mi grupo/filtro de colision
-    int group;
+    btRigidBody* rigidBody;         // RigidBody de bullet
+    Transform* transform;           // Transform del objeto
+    ColliderShape colShape;         // Forma del collider
+    Vector3 colliderInitialScale;   // Escala inicial del collider
+    MovementType movementType;      // Tipo de movimiento
+    bool isTrigger;                 // Si es un trigger o no
 
-    float mass;
-    float friction;
-    float damping;
-    float bounciness;
+    int mask;    // Indica con que grupo se puede colisionar (en binario)
+    int group;   // Filtro de colision
 
-    bool activeRigidBody;
-    bool trackScale;
-    //Vector3 trScaleOffset;
+    float mass;         // Masa
+    float friction;     // Friccion
+    float damping;      // Damping
+    float bounciness;   // Bote
+
+    bool activeRigidBody;   // Indica si el rigidbody esta activo o no
+    bool trackScale;        // Indica si el rigidbody escala con el transform
 
 public:
     COMPONENT_ID("RigidBody");
+
     /*
-    * @brief Constructor de la clase RigidBody.
+    * @brief Constructor por defecto
     */
     RigidBody();
     /*
-    * @brief Destructor de la clase RigidBody.
+    * @brief Destructor por defecto
     */
     ~RigidBody();
 
@@ -83,7 +83,10 @@ public:
     * @param other El objeto con el que se esta colisionando
     */
     void onCollisionStay(GameObject* const other);
-
+    /*
+    * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
+    * Garantiza que todos los componentes iniciales esten creados
+    */
     void awake() override;
     /*
     * @brief Activa o desactiva el componente (si es 'false' no se llama a ningun metodo excepto 'receiveEvent')
@@ -101,22 +104,17 @@ public:
     * @param t True si se quiere hacer un trigger, false en caso contrario
     */
     void setTrigger(const bool t);
-    /*
-    * @brief Cambia la escala del collider relativo
-    * @param s Escala que se quiere dar al collider
-    */
-    //void scaleCollider(const Vector3 s);
 
     /*
     * @brief Cambia la forma del collider 
     * @param s Forma que se quiere dar al collider
     */
-    void setColliderShape(const ColliderShape s);
+    inline void setColliderShape(const ColliderShape s) { colShape = s; }
     /*
     * @brief Cambia la mascara 
     * @param m Mascara a la que se quiere cambiar
     */
-    void setMask(const int m);
+    inline void setMask(const int m);
     /*
     * @brief Cambia el grupo
     * @param g Grupo al que se quiere cambiar
@@ -127,17 +125,12 @@ public:
     * @brief Cambia la masa 
     * @param m Valor que se le quiere dar a la masa
     */
-    void setMass(const float m);
+    inline void setMass(const float m) { mass = m; }
     /*
     * @brief Cambia el tensor
     * @param t Valor del tensor
     */
     void setTensor(const Vector3 t);
-    /*
-    * @brief Añade un constraint/unión alrededor de un eje
-    * @parama a eje sobre la que se quiere fijar la rotar
-    */
-    void addHingeConstraint(const Vector3 a);
 
     /*
     * @brief Cambia la friccion
@@ -185,19 +178,19 @@ public:
     * @brief Devuelve si el rb es un trigger o no
     * @return True si es un trigger, false en caso contrario
     */
-    bool getTrigger() const;
+    inline bool getTrigger() const { return isTrigger; }
     /*
     * @brief Devuelve la forma del collider 
     * @return Forma del collider perteneciente a este rigidbody
     */
-    int getColliderShape() const;
+    inline int getColliderShape() const { return colShape; }
     /*
     * @brief Devuelve la escala inicial del collider 
     * @return Escala del collider perteneciente a este rigidbody
     */
-    Vector3 getColliderScale() const;
+    inline Vector3 getColliderScale() const { return colliderInitialScale; }
 
-     /*
+    /*
     * @brief Devuelve la escala verdadera del collider en bullet
     * @return Escala del collider perteneciente a este rigidbody
     */
@@ -207,23 +200,23 @@ public:
     * @brief Devuelve el tipo de movimiento (dinamica, estatico o cinematico)
     * @return Tipo de movimiento
     */
-    int getMovementType() const;
+    inline int getMovementType() const { return movementType; }
     /*
     * @brief Devuelve la mascara 
     * @return Mascara de este rigidbody
     */
-    int getMask() const;
+    inline int getMask() const { return mask; }
     /*
     * @brief Devuelve el grupo 
     * @return Grupo de este rigidbody
     */
-    int getGroup() const;
+    inline int getGroup() const { return group; }
 
     /*
     * @brief Devuelve la masa 
     * @return Masa del rigidbody
     */
-    float getMass() const;
+    inline float getMass() const { return mass; }
     /*
     * @brief Devuelve el tensor de inercia 
     * @return tensor de inercia 
@@ -233,17 +226,17 @@ public:
     * @brief Devuelve la friccion
     * @return Friccion del rigidbody
     */
-    float getFriction() const;
+    inline float getFriction() const { return friction; }
     /*
     * @brief Devuelve el damping
     * @return Damping del rigidbody
     */
-    float getDamping() const;
+    inline float getDamping() const { return damping; }
     /*
     * @brief Devuelve el bote
     * @return Bote del rigidbody
     */
-    float getBounciness() const;
+    inline float getBounciness() const { return bounciness; }
     /*
     * @brief Devuelve la velocidad linear
     * @return Velocidad del rigidbody
@@ -252,7 +245,7 @@ public:
 
     /*
     * @brief Devuelve la velocidad angular
-    * @return Velocidad del rigidbody
+    * @return Velocidad angular del rigidbody
     */
     Vector3 getAngularVelocity() const;
 
@@ -263,17 +256,18 @@ public:
     Vector3 getGravity() const;
     /*
     * @brief Devuelve la fuerza que se aplica a este objeto
-    * 
+    * @return Fuerza que se aplica al rigidbody
     */
     Vector3 getTotalForce() const;
     /*
-    * @brief Devuelve la velocidad 
-    * 
+    * @brief Devuelve la velocidad de empuje
+    * @return Velocidad de empuje
     */
     Vector3 getPushVelocity() const;
     /*
-    * @brief
+    * @brief Devuelve si el rigidbody esta activo
+    * @return true si esta activo, false en caso contrario
     */
-    bool getActiveRB() const;
+    inline bool getActiveRB() const { return activeRigidBody; }
 };
 }

@@ -8,6 +8,7 @@ class ManualObject;
 }
 
 namespace Tapioca {
+class GraphicsManager;
 class RenderNode;
 
 // warning C4275 se ha utilizado una interfaz no de DLL class 'btIDebugDraw'
@@ -15,30 +16,36 @@ class RenderNode;
 #ifdef _MSC_VER
 #pragma warning(disable : 4275)
 #endif
+/*
+* @brief Clase que se encarga de dibujar las lineas de debug de Bullet
+*/
 class TAPIOCA_API PhysicsDebugDrawer : public btIDebugDraw {
 #ifdef _MSC_VER
 #pragma warning(default : 4275)
 #endif
-    int mode;
+private: 
+    int mode;   // Modo de debug
+    GraphicsManager* graphicsManager;   // Puntero al GraphicsManager
+    RenderNode* node;                   // Nodo de renderizado
+
     // warning C4251 'Tapioca::PhysicsDebugDrawer::lines' :
     // class 'std::list<Ogre::ManualObject *,std::allocator<Ogre::ManualObject *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::PhysicsDebugDrawer'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::list<Ogre::ManualObject*> lines;
+    std::list<Ogre::ManualObject*> lines;   // Lista de lineas
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    RenderNode* node;
 
 public:
     /*
-    * @brief Constructor de la clase PhysicsDebugDrawer.
+    * @brief Constructor por defecto
     */
     PhysicsDebugDrawer();
     /*
-    * @brief Destructor de la clase PhysicsDebugDrawer.
+    * @brief Destructor por defecto
     */
     ~PhysicsDebugDrawer();
 
@@ -57,15 +64,21 @@ public:
     * @param lifetime Tiempo que se va a dibujar la linea (No se usa)
     * @param color Color de la linea
     */
-    void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color) override;
+    void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime,
+                          const btVector3& color) override;
     /*
     * @brief Avisa de un error por consola
     * @param warningString Error que se va a avisar
     */
     void reportErrorWarning(const char* warningString) override;
-    void draw3dText(const btVector3& location, const char* textString) override {};
-    //void drawTransform(const btTransform& transform, btScalar orthoLen) override;
     /*
+    * @brief Dibuja un texto en 3D
+    * @param location Posicion donde se va a dibujar el texto
+    * @param textString Texto que se va a dibujar
+    */
+    void draw3dText(const btVector3& location, const char* textString) override {};
+
+    /* 
     * @brief Elimina las lines dibujadas
     */
     void clearLines() override;
@@ -80,5 +93,4 @@ public:
     */
     inline int getDebugMode() const override { return mode; }
 };
-
 }

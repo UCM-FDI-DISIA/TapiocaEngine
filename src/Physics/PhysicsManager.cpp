@@ -188,8 +188,6 @@ void PhysicsManager::destroy() {
 #endif
 }
 
-btDiscreteDynamicsWorld* PhysicsManager::getWorld() { return dynamicsWorld; }
-
 void PhysicsManager::activateDebug(bool d) {
 #ifdef _DEBUG
     debug = d;

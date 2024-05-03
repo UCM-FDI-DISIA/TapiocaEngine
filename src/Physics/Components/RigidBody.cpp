@@ -14,6 +14,7 @@ RigidBody::RigidBody()
       activeRigidBody(true), trackScale(true) { }
 
 RigidBody::~RigidBody() {
+    transform = nullptr;
     if (rigidBody != nullptr) {
         activeRigidBody = false;
         PhysicsManager::instance()->destroyRigidBody(rigidBody);
@@ -22,7 +23,6 @@ RigidBody::~RigidBody() {
 }
 
 bool RigidBody::initComponent(const CompMap& variables) {
-
     int colShapeAux;
     if (!setValueFromMap(colShapeAux, "colShape", variables)) {
         logError("RigidBody: No se pudo inicializar colShape.");
@@ -132,9 +132,6 @@ void RigidBody::handleEvent(std::string const& id, void* info) {
     }
     else if (id == "scaleChanged" && trackScale && rigidBody != nullptr) {
         Vector3 globalScale = transform->getGlobalScale();
-        /*btVector3 s = rigidBody->getCollisionShape()->getLocalScaling();
-        Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x / s.x(), colliderInitialScale.y * globalScale.y /s.y(),
-                                colliderInitialScale.z * globalScale.z / s.z());*/
         rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(globalScale));
     }
 }
@@ -145,16 +142,8 @@ void RigidBody::onCollisionExit(GameObject* const other) { pushEvent("onCollisio
 void RigidBody::onCollisionStay(GameObject* const other) { pushEvent("onCollisionStay", other, false); }
 
 void RigidBody::awake() {
-
     transform = object->getComponent<Transform>();
 
-    /*
-    Vector3 globalScale = transform->getGlobalScale();
-    Vector3 scale = Vector3(colliderInitialScale.x * globalScale.x, colliderInitialScale.y * globalScale.y,
-                            colliderInitialScale.z * globalScale.z);
-                            */
-
-    // el objeto se escala a partir del tam. inicial indicado
     rigidBody = PhysicsManager::instance()->createRigidBody(
         transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, colShape, movementType,
         mass, friction, damping, bounciness, isTrigger, group, mask);
@@ -184,22 +173,6 @@ void RigidBody::setTrigger(const bool t) {
         rigidBody->setCollisionFlags(rigidBody->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 
-void RigidBody::setColliderShape(const ColliderShape s) { colShape = s; }
-
-/*
-void RigidBody::scaleCollider(const Vector3 s) {
-    TODO: se tendria que hacer que se volviera a crear la figura con el nuevo tam. inicial
-    colliderInitialScale = s;
-    if (rigidBody == nullptr) return;
-    rigidBody->getCollisionShape()->setLocalScaling(toBtVector3(Vector3(
-        colliderInitialScale.x * transform->getGlobalScale().x, colliderInitialScale.y * transform->getGlobalScale().y,
-        colliderInitialScale.z * transform->getGlobalScale().z)));
-}
-*/
-
-
-void RigidBody::setMass(const float m) { mass = m; }
-
 void RigidBody::setTensor(const Vector3 t) {
 
     PhysicsManager::instance()->removeRigidBody(rigidBody);
@@ -210,17 +183,6 @@ void RigidBody::setTensor(const Vector3 t) {
     rigidBody->setMassProps(mass, inertia * tensor);
     PhysicsManager::instance()->addRigidBody(rigidBody);
 };
-
-
-void RigidBody::addHingeConstraint(const Vector3 a) {
-
-    /* btTransform frameInA(btQuaternion::getIdentity(), btVector3(0, 0, 0));   
-    btTransform frameInB( btQuaternion::getIdentity(),btVector3(0, 0, 0));  
-    btHingeConstraint* hingeConstraint = new btHingeConstraint(*rigidBody, frameInA,toBtVector3(a));
-    hingeConstraint->setFrames(frameInA, frameInB);     
-    PhysicsManager::instance()->getWorld()->addConstraint(hingeConstraint, true);  */
-};
-
 
 void RigidBody::setFriction(const float f) {
     friction = f;
@@ -241,7 +203,6 @@ void RigidBody::setBounciness(const float b) {
 }
 
 void RigidBody::setVelocity(const Vector3 v) {
-    //rigidBody->activate(true);
     if (rigidBody == nullptr) return;
     rigidBody->setLinearVelocity(toBtVector3(v));
 }
@@ -278,28 +239,9 @@ void RigidBody::setGroup(const int g) {
     bdProxy->m_collisionFilterGroup = g;
 }
 
-int RigidBody::getMovementType() const { return movementType; }
-
-bool RigidBody::getTrigger() const { return isTrigger; }
-
-int RigidBody::getColliderShape() const { return colShape; }
-
-Vector3 RigidBody::getColliderScale() const { return colliderInitialScale; }
-
 Vector3 RigidBody::getColliderTrueScale() const { return toVector3(rigidBody->getCollisionShape()->getLocalScaling()); }
 
-
-float RigidBody::getMass() const { return mass; }
-
-bool RigidBody::getActiveRB() const { return activeRigidBody; }
-
 Vector3 RigidBody::getTensor() const { return toVector3(rigidBody->getLocalInertia()); }
-
-float RigidBody::getFriction() const { return friction; }
-
-float RigidBody::getDamping() const { return damping; }
-
-float RigidBody::getBounciness() const { return bounciness; }
 
 Vector3 RigidBody::getVelocity() const { return toVector3(rigidBody->getLinearVelocity()); }
 
@@ -308,12 +250,6 @@ Vector3 RigidBody::getAngularVelocity() const { return toVector3(rigidBody->getA
 Vector3 RigidBody::getGravity() const { return toVector3(rigidBody->getGravity()); }
 
 Vector3 RigidBody::getTotalForce() const { return toVector3(rigidBody->getTotalForce()); }
+
 Vector3 RigidBody::getPushVelocity() const { return toVector3(rigidBody->getPushVelocity()); }
-
-
-int RigidBody::getMask() const { return mask; }
-
-int RigidBody::getGroup() const { return group; }
-
-
 }

@@ -20,14 +20,12 @@ InputManager::~InputManager() {
     controllers.clear();
 }
 
-
 void InputManager::mapInput(std::string const& evt, std::string const& src, int const& ctrl) {
     int control = ctrl;
     if (src == "ie_mouseMoving") control = MOUSE_MOTION_VALUE;
     else if (src == "ie_mouseWheel") control = MOUSE_WHEEL_VALUE;
     inputMap[src][control].push_back(evt);
 }
-
 
 void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);

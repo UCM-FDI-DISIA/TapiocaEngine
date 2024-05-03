@@ -9,26 +9,22 @@ union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
 
+/*
+* @brief Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios
+
+*/
 namespace Tapioca {
 class TAPIOCA_API InputManager : public Singleton<InputManager>, public WindowModule {
 private:
     friend Singleton<InputManager>;
 
-    // Posicion del raton
-    // TODO: Cambiar para que no sea std::pair (para quitar la warning)
+    const int DEFAULT_DEADZONE = 1000;
+    const int MOUSE_MOTION_VALUE = -2;
+    const int MOUSE_WHEEL_VALUE = -3;
+
     // warning C4251 'Tapioca::InputManager::mousePos' :
     // struct 'std::pair<int32_t,int32_t>' necesita tener una interfaz DLL para que la utilicen
     // los clientes de class 'Tapioca::InputManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::pair<int32_t, int32_t> mousePos;
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-
-    // Mandos
-    const int DEFAULT_DEADZONE = 1000;
     // warning C4251 'Tapioca::InputManager::deadZones' :
     // class 'std::unordered_map<int,int,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,int>>>'
     // necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::InputManager'
@@ -36,19 +32,6 @@ private:
     // class 'std::unordered_map<int,SDL_GameController *,std::hash<int>,std::equal_to<int>,
     // std::allocator<std::pair<const int,SDL_GameController *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::InputManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::unordered_map<int, int> deadZones;
-    std::unordered_map<int, SDL_GameController*> controllers;
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-
-    // Mapeo de los controles
-    // (se agrupan por tipo de evento de SDL que los produce. Luego, segun el evento, se agrupan
-    // por valor de la tecla/boton/etc., y ya cada uno guarda un vector con todos los eventos que envia)
-
     // warning C4251 'Tapioca::InputManager::inputMap' :
     // class 'std::unordered_map<std::string,std::unordered_map<int,std::vector<std::string,
     // std::allocator<std::string>>,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,
@@ -60,18 +43,24 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
+    std::pair<int32_t, int32_t> mousePos;   // Posicion del raton
+
+    std::unordered_map<int, int> deadZones;                     // Deadzones de los mandos
+    std::unordered_map<int, SDL_GameController*> controllers;   // Mandos
+
+    // Mapeo de los controles
+    // (se agrupan por tipo de evento de SDL que los produce. Luego, segun el evento, se agrupan
+    // por valor de la tecla/boton/etc., y ya cada uno guarda un vector con todos los eventos que envia)
     std::unordered_map<std::string, std::unordered_map<int, std::vector<std::string>>> inputMap;
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    const int MOUSE_MOTION_VALUE = -2;
-    const int MOUSE_WHEEL_VALUE = -3;
 
     /*
-    * @brief Constructor de la clase InputManager.
+    * @brief Constructor por defecto
     */
     InputManager();
-    
+
     /*
     * @brief Comprueba si hay algun joystick conectado y si hay al menos uno, empieza a escuchar eventos de joystick
     */
@@ -88,7 +77,7 @@ private:
     * @param i Indice del controller
     */
     void removeController(const int i);
-  
+
     /*
     * @brief Envia el evento propio si alguno de los eventos mapeados coincide con el producido
     * @param eventName El nombre del evento de input
@@ -103,7 +92,7 @@ public:
     */
     bool init() override;
     /*
-    * @brief Destructor de la clase InputManager
+    * @brief Destructor por defecto
     */
     virtual ~InputManager();
 
@@ -131,11 +120,9 @@ public:
     * @brief Devuelve true si hay al menos 1 mando conectado
     */
     inline bool isControllerConnected() { return !controllers.empty(); }
-
 };
-
 /*
 * @brief Para acortar el metodo InputManager::instance()->method() a inputManager().method()
-*/ 
+*/
 inline InputManager& inputManager() { return *InputManager::instance(); }
 }
