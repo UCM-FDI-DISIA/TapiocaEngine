@@ -22,7 +22,6 @@ private:
 
     Ogre::Entity* mesh;   // Mesh de Ogre
 
-protected:
     /*
     * @brief Devuelve el mesh de Ogre
     * @return Puntero al mesh de Ogre

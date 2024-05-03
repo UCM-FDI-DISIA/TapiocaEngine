@@ -41,7 +41,6 @@ private:
     Vector3 initialRotation;   // Rotacion inicial
     bool castShadows;          // Indica si el objeto emite sombras
 
-protected:
     /*
     * @brief Devuelve la mesh
     * @return Puntero a la mesh
