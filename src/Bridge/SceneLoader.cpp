@@ -19,31 +19,33 @@ template class TAPIOCA_API Singleton<SceneLoader>;
 template<>
 SceneLoader* Singleton<SceneLoader>::instance_ = nullptr;
 
-SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factMngr(nullptr), windowMngr(nullptr), scenesPath("assets\\scenes\\") { }
+SceneLoader::SceneLoader()
+    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
+      scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
     luaState = nullptr;
     mainLoop = nullptr;
-    factMngr = nullptr;
-    windowMngr = nullptr;
+    factManager = nullptr;
+    windowManager = nullptr;
 }
 
 bool SceneLoader::init() {
     mainLoop = MainLoop::instance();
-    factMngr = FactoryManager::instance();
-    windowMngr = WindowManager::instance();
+    factManager = FactoryManager::instance();
+    windowManager = WindowManager::instance();
     if (mainLoop == nullptr) {
         logError("SceneLoader: Instancia de MainLoop invalida.");
         return false;
     }
-    if (factMngr == nullptr) {
+    if (factManager == nullptr) {
         logError("SceneLoader: Instancia de FactoryManager invalida.");
         return false;
     }
-    if (windowMngr == nullptr) {
-		logError("SceneLoader: Instancia de WindowManager invalida.");
-		return false;
-	}
+    if (windowManager == nullptr) {
+        logError("SceneLoader: Instancia de WindowManager invalida.");
+        return false;
+    }
     return true;
 }
 
@@ -91,8 +93,8 @@ Scene* SceneLoader::loadScene(std::string const& sceneName, const bool active) {
         return nullptr;
     }
     scene->setActive(active);
-    scene->setFirstWindowSize(windowMngr->getWindowW(), windowMngr->getWindowH());
-    scene->setWindowSize(windowMngr->getWindowW(), windowMngr->getWindowH());
+    scene->setFirstWindowSize(windowManager->getWindowW(), windowManager->getWindowH());
+    scene->setWindowSize(windowManager->getWindowW(), windowManager->getWindowH());
 
     mainLoop->loadScene(scene);
     lua_close(luaState);
@@ -244,7 +246,7 @@ bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameO
 
     Component* comp = nullptr;
     if (load) {
-        comp = factMngr->createComponent(name);
+        comp = factManager->createComponent(name);
     }
     if (comp == nullptr) {
         logError(("SceneLoader: No existe el componente \"" + name + "\".").c_str());

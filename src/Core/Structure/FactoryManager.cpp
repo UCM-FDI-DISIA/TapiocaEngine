@@ -1,5 +1,4 @@
 #include "FactoryManager.h"
-
 #include "Component.h"
 #include "ComponentBuilder.h"
 
@@ -7,8 +6,6 @@ namespace Tapioca {
 template class TAPIOCA_API Singleton<FactoryManager>;
 template<>
 FactoryManager* Singleton<FactoryManager>::instance_ = nullptr;
-
-FactoryManager::FactoryManager() { }
 
 FactoryManager::~FactoryManager() {
     for (auto& f : builders)

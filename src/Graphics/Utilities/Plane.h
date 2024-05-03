@@ -40,7 +40,7 @@ private:
     //      int xSegments, int ySegments, float x, float y, float z, std::string material);
 
     /*
-    * @brief Constructora de la clase Plane.
+    * @brief Constructor de la clase Plane.
     * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
@@ -60,7 +60,7 @@ private:
           const float width,
           const float height, const int xSegments, const int ySegments);
     /*
-    * @brief Constructora de la clase Plane.
+    * @brief Constructor de la clase Plane.
     * Construye un plano usando 4 constantes
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
@@ -85,7 +85,7 @@ private:
 
 public:
     /*
-    * @brief Destructora de la clase Plane.
+    * @brief Destructor de la clase Plane.
     */
     virtual ~Plane() {};
     /*

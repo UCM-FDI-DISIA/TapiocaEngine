@@ -36,11 +36,11 @@ private:
 public:
     COMPONENT_ID("RigidBody");
     /*
-    * @brief Constructora de la clase RigidBody.
+    * @brief Constructor de la clase RigidBody.
     */
     RigidBody();
     /*
-    * @brief Destructora de la clase RigidBody.
+    * @brief Destructor de la clase RigidBody.
     */
     ~RigidBody();
 

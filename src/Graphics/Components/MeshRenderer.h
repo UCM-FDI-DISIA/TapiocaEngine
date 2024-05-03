@@ -41,11 +41,11 @@ private:
 public:
     COMPONENT_ID("MeshRenderer")
     /*
-    * @brief Constructora de la clase MeshRenderer
+    * @brief Constructor de la clase MeshRenderer
     */
     MeshRenderer();
     /*
-    * @brief Destructora de la clase MeshRenderer
+    * @brief Destructor de la clase MeshRenderer
     */
     ~MeshRenderer();
 

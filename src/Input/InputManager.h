@@ -68,7 +68,7 @@ private:
     const int MOUSE_WHEEL_VALUE = -3;
 
     /*
-    * @brief Constructora de la clase InputManager.
+    * @brief Constructor de la clase InputManager.
     */
     InputManager();
     
@@ -103,7 +103,7 @@ public:
     */
     bool init() override;
     /*
-    * @brief Destructora de la clase InputManager
+    * @brief Destructor de la clase InputManager
     */
     virtual ~InputManager();
 

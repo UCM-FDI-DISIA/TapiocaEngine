@@ -17,11 +17,11 @@ private:
 public:
     COMPONENT_ID("Animator")
     /*
-    * @brief Constructora de la clase Animator
+    * @brief Constructor de la clase Animator
     */
     Animator();
     /*
-    * @brief Destructora de la clase Animator
+    * @brief Destructor de la clase Animator
     */
     ~Animator();
 

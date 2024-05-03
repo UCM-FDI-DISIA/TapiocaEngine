@@ -56,12 +56,12 @@ public:
    // AudioSource(Sound sound, bool ispaused = true, bool islooped = false, bool load3D = false);
 
     /*
-    * @brief  Constructora para una fuente de sonido espacializada en 3 dimensiones
+    * @brief  Constructor para una fuente de sonido espacializada en 3 dimensiones
     */
     AudioSource(Sound sound,  Vector3 pos, bool ispaused = true, bool islooped = false);   //construye una fuente 3D
 
     /*
-    * @brief Constructora para una fuente de audio 2D 
+    * @brief Constructor para una fuente de audio 2D 
     */
     AudioSource(Sound sound, bool ispaused = true, bool islooped = false);//Construye una fuente 2D
     ~AudioSource() {};

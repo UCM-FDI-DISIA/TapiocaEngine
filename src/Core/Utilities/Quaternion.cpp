@@ -1,10 +1,8 @@
 #include "Quaternion.h"
-
 #include <cmath>
 #define PI 3.14159265358979323846f
 
 namespace Tapioca {
-
 Quaternion::Quaternion(const float q0, const float q1, const float q2, const float q3) {
     scalar = q0;
     vector = Vector3(q1, q2, q3);
@@ -13,19 +11,18 @@ Quaternion::Quaternion(const float q0, const float q1, const float q2, const flo
     angle = 2.0f * acosf(auxq0);
 }
 
-Quaternion::Quaternion(const float alfa, const Vector3 &vec) {
-    //primero hay que convertir vec en un vector unitario
+Quaternion::Quaternion(const float alfa, const Vector3& vec) {
+    // Convierte vec en un vector unitario
     Vector3 uvec = vec / vec.magnitude();
-    float alfarad =
-        alfa * (PI / 180.f);   //las funciones de la libreria math cos y sin proporcionan resultados en radianes
+    float alfarad = alfa * (PI / 180.f);
     angle = alfarad;
     scalar = cosf(alfarad / 2.f);
     float alfasin = sinf(alfarad / 2.f);
     vector = Vector3(alfasin * uvec.x, alfasin * uvec.y, alfasin * uvec.z);
 }
 
-Quaternion::Quaternion(const Vector3 &euler) {
-    //la libreria math opera en radianes
+Quaternion::Quaternion(const Vector3& euler) {
+    // Biblioteca "math" opera en radianes
     float roll = euler.x * (PI / 180.f);
     float cosroll = cosf(roll / 2.f);
     float sinroll = sinf(roll / 2.f);
@@ -41,9 +38,7 @@ Quaternion::Quaternion(const Vector3 &euler) {
     scalar = cosroll * cosyaw * cospitch + sinroll * sinyaw * sinpitch;
 
     vector.x = sinroll * cosyaw * cospitch - cosroll * sinyaw * sinpitch;
-
     vector.y = cosroll * sinyaw * cospitch + sinroll * cosyaw * sinpitch;
-
     vector.z = cosroll * cosyaw * sinpitch - sinroll * sinyaw * cospitch;
 
     angle = 2.f * acosf(scalar);
@@ -58,155 +53,35 @@ float Quaternion::magnitude() {
 }
 
 Vector3 Quaternion::toEuler() {
-    
     normalize();
 
+    float x = atan2f(2.0f * (scalar * vector.x + vector.y * vector.z),
+                     (scalar * scalar) - (vector.x * vector.x) - (vector.y * vector.y) + (vector.z * vector.z));
+    float siny = 2.0f * (scalar * vector.y - vector.x * vector.z);
+    // Identidad pitagorica
+    float cosy = (scalar * scalar) - (vector.x * vector.x) + (vector.y * vector.y) - (vector.z * vector.z);
+    float cosy2 = 2.0f * (scalar * vector.y - vector.x * vector.z);
+    // En el eje Y para angulos del segundo y tercer cuadrante (coseno negativo) la formula nos dara los angulos suplementarios
+    float y = asinf(siny);
+    y = fmod(y, 2 * PI);
+    if (y < 0) y += 2 * PI;
 
-    //hay 2 excepciones causadas por el gimbal lock cuando la rotacion se aproxima al polo nrote o al sur 
-    // y = +-90 , establecemos nuestro limite en 0.4999 radianes que correcponde a un valor de corte de aproximadamente 87 grados 
-    // explicacion detallada: https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToEuler/
-
-   /* float glimlockTestValue = 0.51;
-    if (glimlockTestValue >= 0.499) {   // excepcion  en el polo norte
-        float x = 2 * atan2(vector.x, scalar);
-        float y  = PI / 2;
-       float z = 0;
-        return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
-    }
-    if (glimlockTestValue <= -0.499) {   // excepcion en el polo sur
-        float x = -2 * atan2(vector.x, scalar);
-       float y  = -PI / 2;
-       float z= 0;
-       return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
-    }*/
-    // usamos los angulos de los ejes con el vector del cuaternion
-    // asume un cuaternion normalizado
-    //float roty = asinf(2.0 * vector.x * vector.y + 2 * vector.z * scalar)*(180.0f/PI);
-
-    //solo funciona parar rotacion en ejes distintas  a 90 y que tienen coseno positivo 
-    //los ifs que hay debajo son para gestionar estas excepciones matematicas
-    /* float sinx = 2.0f * (scalar * vector.x + vector.y * vector.z);
-    float cosx = 1.0f - 2.0f * (vector.x * vector.x + vector.y * vector.y);
-    
-     float x = atan2f(sinx, cosx);
-    //si cambio el signo al coseno me dara el angulo suplementario
-    if (cosx < 0) {
-         cosx = -cosx;
-        x = atan2f(sinx, cosx);
-         x = abs(x - PI);
+    // Caso especial tercer cuadrante
+    if (y > PI && y < (3 * PI) / 2) {
+        cosy = cosf(y);
+        cosy = -cosy;
+        y = atan2f(siny, cosy);
     }
 
-   
-   // x = round(x);
-   // std::cout << x;
-    //Tapioca::Vector3 ejeX = Tapioca::Vector3(1, 0, 0);
-    //float x = sinf(angle / 2) * cos(ejeX.dot(vector));
-
-    float siny = sqrtf(1.0f + 2.0f * (scalar * vector.y - vector.x * vector.z));
-    float cosy = sqrtf(1.0f - 2.0f * (scalar * vector.y - vector.x * vector.z));
-
-    float y = 2.0f * atan2f(siny, cosy) - PI / 2.0f;
-    //si cambio el signo al coseno me dara el angulo suplementario
-
-    if (cosy < 0) {
-         cosy = -cosy;
-         y = atan2f(siny, cosy);
-         y = abs(y - PI);
-    }
-
-    float sinz = 2.0f * (scalar * vector.z + vector.x * vector.y);
-    float cosz = 1.0f - 2.0f * (vector.y * vector.y + vector.z * vector.z);
-    float z = atan2f(sinz, cosz);
-    // x =0;
-    //y = 1.6;
-    //z = 1.6;
-    // creo que esta bien para un sistema diestro como todo lo demas ,
-    // si no puede que haya que devolver -z
-
-
-    //alternativa como lo hacen en ogre quaternion 
-    float fTx = 2.0f * vector.x;
-    float fTy = 2.0f * vector.y;
-    float fTz = 2.0f * vector.z;
-   float fTwy = fTy * scalar;
-    float fTxx = fTx * vector.x;
-   float fTxz = fTz * vector.x;
-    float fTyy = fTy * vector.y;
-    y = atan2f(fTxz+fTwy, 1.0f-(fTxx+fTyy));
-    return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));*/
-    //Otra forma parecida pero no es igual 
-https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html
-    
-    normalize();
-    /* if (scalar < 0) {
-     //   scalar = -scalar;
-        vector.x = -vector.x;
-        vector.y = -vector.y;
-        vector.z = -vector.z;
-    }*/
-
-
-   float x = atan2f(2.0f * (scalar * vector.x + vector.y * vector.z),
-                     (scalar * scalar) - (vector.x * vector.x) - (vector.y * vector.y) + (vector.z*vector.z));
-   float siny = 2.0f * (scalar * vector.y - vector.x * vector.z);
-   //identidad pitagorica 
-   float cosy = (scalar * scalar) - (vector.x * vector.x) + (vector.y * vector.y) - (vector.z * vector.z);
-   float cosy2 = 2.0f * (scalar * vector.y - vector.x * vector.z);
-   //en el eje Y para angulos del segundo y tercer cuadrante (coseno negativo) la formula nos dara los angulos supementarios
-   float y = asinf(siny);
-   y = fmod(y, 2 * PI);
-   if (y < 0) {
-       y += 2 * PI;
-   }
-   //caso especial tercer cuadrante 
-   if (y > PI && y < (3*PI)/2) {
-       cosy = cosf(y);
-       cosy = -cosy;
-       y = atan2f(siny, cosy);
-   }
-   /* if (y < 0) {
-       y = abs(PI - y);
-   }*/
- 
-   float z = atan2f(2.0f * (scalar * vector.z + vector.x * vector.y),
-                    (scalar * scalar) + (vector.x * vector.x) - (vector.y * vector.y) - (vector.z * vector.z));
-
-   //what  if codigo fuente de MATLAB
-    /* Quaternion q = normalized();
-    if (q.scalar < 0) {
-        q=q.inverse();
-    }
-    float x = atan2f(2*(q.vector.x*q.vector.y + q.scalar*q.vector.z),
-        (q.scalar*q.));
-    float y;
-    float z;
-   */
-
-    /* float theta = 2.0f * acosf(scalar); 
-    float x = vector.x / sinf(theta / 2);
-    float y = vector.y / sinf(theta / 2);
-    float z = vector.z / sinf(theta / 2);
-
-    x *= theta;
-    y *= theta;
-    z *= theta;*/
+    float z = atan2f(2.0f * (scalar * vector.z + vector.x * vector.y),
+                     (scalar * scalar) + (vector.x * vector.x) - (vector.y * vector.y) - (vector.z * vector.z));
 
     return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));
-    
 }
 
-
-
-Quaternion Quaternion::operator*(const Quaternion &rhs) {
-    float newScalar;
-    Vector3 newVector;
-    // Vector3 c = vector.cross(rhs.vector);
-    // float d = vector.dot(rhs.vector);
-    // newVector = vector.cross(rhs.vector) +  rhs.vector*scalar + vector*rhs.scalar;
-    // newScalar = scalar * rhs.scalar - vector.dot(rhs.vector);
-    // producto de hamilton (un man irlandes >:t)
-    newScalar = scalar * rhs.scalar - vector.x * rhs.vector.x - vector.y * rhs.vector.y - vector.z * rhs.vector.z;
-    newVector =
+Quaternion Quaternion::operator*(const Quaternion& rhs) {
+    float newScalar = scalar * rhs.scalar - vector.x * rhs.vector.x - vector.y * rhs.vector.y - vector.z * rhs.vector.z;
+    Vector3 newVector =
         Vector3((scalar * rhs.vector.x + vector.x * rhs.scalar + vector.y * rhs.vector.z - vector.z * rhs.vector.y),
                 (scalar * rhs.vector.y - vector.x * rhs.vector.z + vector.y * rhs.scalar + vector.z * rhs.vector.x),
                 (scalar * rhs.vector.z + vector.x * rhs.vector.y - vector.y * rhs.vector.x + vector.z * rhs.scalar));
@@ -221,39 +96,15 @@ Quaternion Quaternion::operator/(const float s) {
     return Quaternion(scalar / s, vector.x / s, vector.y / s, vector.z / s);
 }
 
-Vector3 Quaternion::rotatePoint(const Vector3 &point) {
+Vector3 Quaternion::rotatePoint(const Vector3& point) {
+    // En este caso el punto no rota
+    if (!(vector.x || vector.y || vector.z) || !angle) return point;
 
-    //Vector3 v2 = vector * 2.0;
-    //Vector3 vs = vector * scalar;
-    //Vector3 v3 = v+ v2.cross(vs + vector.cross(v) )/norm();
-    // return v + (vector.cross(v))*2 * scalar +  vector.cross(vector.cross(v))*2;
-
-    //el vector debe ser unitario
-    // axis = axis/axis.magnitude();
-    //math usa radianes
-    //degrees = degrees * (PI / 180);
-    // return( point * cos(degrees)) + (axis.cross(point)) * sin(degrees) + axis * ((axis.dot(point)*(1-cos(degrees))));
-    //return point + axis.cross(axis.cross(point)) * (1 - cos(degrees)) + axis.cross(point) * sin(degrees);
-
-    //El elemento neutro  es 1 0i 0k 0j
-    //En este caso el punto no rota
-    if (!(vector.x || vector.y || vector.z) || !angle) {
-        return point;
-    }
-
-    /* angle = 1;
-     float s = sinf(angle / 2); 
-   double x = vector.x / sinf(angle / 2);
-    double y = vector.y / sinf(angle / 2);
-   double z = vector.z/ sinf(angle / 2);
-   */
     Vector3 axis = vector / sinf(angle / 2);
-
     return point + axis.cross(axis.cross(point) * (1.f - cosf(angle))) + axis.cross(point) * sinf(angle);
 }
 
 Quaternion Quaternion::normalized() { return *this / magnitude(); }
 
 void Quaternion::normalize() { (*this) = *this / magnitude(); }
-
 }

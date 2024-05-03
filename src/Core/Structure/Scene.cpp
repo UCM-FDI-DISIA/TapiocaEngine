@@ -115,7 +115,7 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
             }
         }
     }
-    // Lo aniade a la nueva capa
+    // Lo anade a la nueva capa
     layers[zIndex].push_back(obj);
 }
 }

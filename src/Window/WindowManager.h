@@ -49,13 +49,13 @@ private:
     void tryGetWindowSize();
 
     /*
-    * @brief Constructora de la clase WindowManager.
+    * @brief Constructor de la clase WindowManager
     */
     WindowManager(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
 
 public:
     /*
-    * @brief Destructora de la clase WindowManager
+    * @brief Destructor de la clase WindowManager
     */
     virtual ~WindowManager();
 

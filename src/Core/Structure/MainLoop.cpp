@@ -51,6 +51,11 @@ bool MainLoop::initConfig() {
     return initialized;
 }
 
+void MainLoop::start() {
+    for (auto mod : modules)
+        mod->start();
+}
+
 void MainLoop::run() {
     start();
 
@@ -62,7 +67,6 @@ void MainLoop::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
-    //gameInitialized = false;
     auto currentTime = std::chrono::high_resolution_clock::now();
     uint64_t lag = 0;
     uint64_t timeSinceStart = 0;
@@ -96,14 +100,7 @@ void MainLoop::run() {
     }
 }
 
-void MainLoop::start() {
-    for (auto mod : modules)
-        mod->start();
-}
-
 void MainLoop::update() {
-
-
     for (auto mod : modules)
         mod->update(deltaTime);
 

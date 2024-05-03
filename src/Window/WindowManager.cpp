@@ -65,8 +65,8 @@ bool WindowManager::initConfig() {
                          .c_str());
             return false;
         }
-        windowWidth = displayMode.w;
-        windowHeight = displayMode.h;
+        windowWidth = firstWindowWidth = displayMode.w;
+        windowHeight = firstWindowHeight = displayMode.h;
         logInfo("WindowManager: Ventana configurada a pantalla completa.");
     }
     // Si no se quiere pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos

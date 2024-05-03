@@ -9,9 +9,7 @@
 namespace Tapioca {
 /*
 * @brief Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo.
-* Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto.
-* @param scene Escena a la que se le van a cargar los gameobjects
-* @return true si se ha cargado correctamente, false si no
+* Este componente esta en todos los objetos, y si se intenta borrar, se borrara todo el objeto
 */
 class TAPIOCA_API Transform : public Component {
 private:
@@ -32,13 +30,16 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+
     /*
     * @brief Genera el evento "posChanged"
+    * @param rb Indica si es movido por fisicas
     */
     void posChanged(bool rb = false);
 
     /*
     * @brief Genera el evento "rotChanged"
+    * @param rb Indica si es movido por fisicas
     */
     void rotChanged(bool rb = false);
 
@@ -48,7 +49,7 @@ private:
     void scaleChanged();
 
     /*
-    * @brief Devuelve en el vector que se pasa como parametro, los hijos de este transfom
+    * @brief Devuelve en el vector que se pasa como parametro, los hijos de este transform
     * @param allChildren Vector en el que se devuelven todos los hijos
     */
     void getAllChildrenAux(std::vector<Transform*>& allChildren) const;
@@ -72,41 +73,41 @@ private:
     void removeParent();
 
     /*
-    * @brief 
-    * @return
+    * @brief Devuelve la direccion derecha relativa a la orientacion actual del objeto, considerando su rotacion (Eje X)
+    * @return Direccion derecha relativa a la orientacion actual del objeto
     */
     Vector3 localRight();
 
     /*
-    * @brief 
-    * @return
+    * @brief Devuelve la direccion arriba relativa a la orientacion actual del objeto, considerando su rotacion (Eje Y)
+    * @return Direccion arriba relativa a la orientacion actual del objeto
     */
     Vector3 localUp();
 
     /*
-    * @brief 
-    * @return
+    * @brief Devuelve la direccion delante relativa a la orientacion actual del objeto, considerando su rotacion (Eje Z)
+    * @return Direccion delante relativa a la orientacion actual del objeto
     */
     Vector3 localForward();
 
     /*
     * @brief Devuelve la posicion global del transform sin tener en cuenta la rotacion
     * @param point Punto al que se le quiere calcular la posicion global
-    * @return La posicion global del transform sin tener en cuenta la rotacion
+    * @return Posicion global del transform sin tener en cuenta la rotacion
     */
     Vector3 getGlobalPositionWithoutRotationAux(Vector3 point) const;
 
     /*
     * @brief Devuelve la posicion global del transform
     * @param aux Vector auxiliar
-    * @return La posicion global del transform
+    * @return Posicion global del transform
     */
     Vector3 getGlobalPositionAux(Vector3 aux) const;
 
     /*
     * @brief Devuelve la posicion local del transform
     * @param point Vector en coordenadas global
-    * @return La coordenadas local respecto del transform
+    * @return Coordenadas locales respecto del transform
     */
     Vector3 getLocalFromGlobalPos(Vector3 point) const;
 
@@ -114,11 +115,11 @@ public:
     COMPONENT_ID("Transform")
 
     /*
-    * @brief Constructor de la clase Transform. Se inicializa con posicion y rotacion 0 y escala 1
+    * @brief Inicializa con posicion 0, rotacion 0 y escala 1
     */
     Transform();
     /*
-    * @brief Destructor de transform. Se elimina la relacion de parentesco y se eliminan los hijos
+    * @brief Elimina la relacion de parentesco y se eliminan los hijos
     */
     ~Transform();
 
@@ -129,7 +130,6 @@ public:
     * @return true si se ha inicializado correctamente, false si no
     */
     bool initComponent(const CompMap& variables) override;
-
     /*
     * @brief Manda eventos de cambio de transform
     */
@@ -137,98 +137,101 @@ public:
 
     /*
     * @brief Procesa un evento recibido
-    * @param id String que indica el tipo de evento
+    * @param id Indica el tipo de evento
     * @param info Parametros del mensaje, cada evento gestiona sus propios parametros
     */
     void handleEvent(std::string const& id, void* info) override;
 
     /*
     * @brief Devuelve la posicion local del transform
-    * @return La posicion local del transform
+    * @return Posicion local del transform
     */
     inline Vector3 getPosition() const { return position; }
 
     /*
     * @brief Devuelve la posicion XY local del transform
-    * @return La posicion XY local del transform
+    * @return Posicion XY local del transform
     */
     inline Vector2 getPositionXY() const { return Vector2(position.x, position.y); }
 
     /*
     * @brief Devuelve la posicion global del transform
-    * @return La posicion global del transform
+    * @return Posicion global del transform
     */
     Vector3 getGlobalPositionWithoutRotation() const;
 
     /*
     * @brief Devuelve la posicion global del transform
-    * @return La posicion global del transform
+    * @return Posicion global del transform
     */
     Vector3 getGlobalPosition() const;
 
     /*
     * @brief Devuelve la rotacion local del transform
-    * @return La posicion local del transform
+    * @return Posicion local del transform
     */
     inline Quaternion getRotation() const { return rotation; }
     /*
     * @brief Devuelve la rotacion global del transform
-    * @return La rotacion global del transform
+    * @return Rotacion global del transform
     */
     Quaternion getGlobalRotation() const;
     /*
     * @brief Devuelve la escala local del transform
-    * @return La escala local del transform
+    * @return Escala local del transform
     */
     inline Vector3 getScale() const { return scale; }
     /*
     * @brief Devuelve la escala XY local del transform
-    * @return La escala XY local del transform
+    * @return Escala XY local del transform
     */
     inline Vector2 getScaleXY() const { return Vector2(scale.x, scale.y); }
     /*
     * @brief Devuelve la escala global del transform
-    * @return La escala global del transform
+    * @return Escala global del transform
     */
     Vector3 getGlobalScale() const;
 
-    // Todos estos metodos generan el evento "transformChanged"
     /*
-    * @brief Cambia la posicion del transform
+    * @brief Cambia la posicion del transform. Genera el evento "posChanged"
     * @param p Posicion a la que se quiere mover el transform
     * @param rb Indica si es movido por f�sicas
     */
     void setPosition(const Vector3& p, bool rb = false);
 
-     /*
-    * @brief Cambia la posicion del transform
+    /*
+    * @brief Cambia la posicion del transform. Genera el evento "posChanged"
     * @param p Posicion en coordenadas global a la que se quiere mover el transform
-    * @param rb Indica si es movido por f�sicas
+    * @param rb Indica si es movido por fisicas
     */
     void setGlobalPosition(const Vector3& p, bool rb = false);
 
     /*
-    * @brief Cambia la posicion XY del transform
+    * @brief Cambia la posicion XY del transform. Genera el evento "posChanged"
     * @param pXY Posicion XY a la que se quiere mover el transform
-    * @param rb Indica si es movido por f�sicas
+    * @param rb Indica si es movido por fisicas
     */
     void setPositionXY(const Vector2& pXY, bool rb = false);
     /*
-    * @brief Cambia la rotacion del transform
+    * @brief Cambia la rotacion del transform. Genera el evento "posChanged" y "rotChanged"
     * @param r Rotacion a la que se quiere rotar el transform
-    * @param rb Indica si es movido por f�sicas
+    * @param rb Indica si es movido por fisicas
     */
     void setRotation(const Vector3& r, bool rb = false);
-
+    /*
+    * @brief Cambia la rotacion del transform. Genera el evento "posChanged" y "rotChanged"
+    * @param q Rotacion en Quaterniones a la que se quiere rotar el transform
+    * @param rb Indica si es movido por fisicas
+    */
     void setRotation(const Quaternion& q, bool rb = false);
     /*
-    * @brief Cambia la escala del transform
-    * @param s Tamanio al que se quiere escalar el transform
+    * @brief Cambia la escala del transform. Genera el evento "posChanged" y "scaleChanged"
+    * @param s Tamano al que se quiere escalar el transform
     */
     void setScale(const Vector3& s);
     /*
-    * @brief Cambia la escala XY del transform
-    * @param s Tamanio XY al que se quiere escalar el transform
+    * @brief Cambia la escala XY del transform. Genera el evento "posChanged" y "scaleChanged"
+    * @param s Tamano XY al que se quiere escalar el transform
     */
     void setScaleXY(const Vector2& s);
 
@@ -247,17 +250,17 @@ public:
     * @brief Devuelve el eje X de coordenadas locales en coordenadas globales, inicialmente su eje X es 1,0,0
     * @return Eje X de coordenadas locales en coordenadas globales
     */
-    Vector3 right();
+    Vector3 right() const;
     /*
     * @brief Devuelve el eje Y de coordenadas locales en coordenadas globales, inicialmente su eje Y es 0,1,0
     * @return Eje Y de coordenadas locales en coordenadas globales
     */
-    Vector3 up();
+    Vector3 up() const;
     /*
     * @brief Devuelve el eje Z de coordenadas locales en coordenadas globales, inicialmente su eje Z es 0,0,1
     * @return Eje Z de coordenadas locales en coordenadas globales
     */
-    Vector3 forward();
+    Vector3 forward() const;
 
     /*
     * @brief Establece el transform dado como el padre de este

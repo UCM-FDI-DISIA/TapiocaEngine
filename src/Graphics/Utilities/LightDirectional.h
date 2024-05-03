@@ -23,7 +23,7 @@ private:
     // TIENE UN RANGO INFINITO Y UNA INTENSIDAD CONSTANTE
 
     /*
-    * @brief Constructora de la clase LightDirectional.
+    * @brief Constructor de la clase LightDirectional.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param colour Color de la luz

@@ -22,7 +22,7 @@ protected:
     Ogre::Billboard* mBillboard;
 
     /*
-    * @brief Constructora de la clase Billboard.
+    * @brief Constructor de la clase Billboard.
     * Crea un unico Billboard si se le proporciona un puntero a Ogre::Billboard (a partir de un BillboardSet)
     * @param oBillboard puntero a un billboard de ogre
     */

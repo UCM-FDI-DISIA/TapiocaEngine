@@ -32,11 +32,11 @@ private:
 public:
     COMPONENT_ID("PlaneComponent")
     /*
-    * @brief Constructora de la clase PlaneComponent
+    * @brief Constructor de la clase PlaneComponent
     */
     PlaneComponent();
     /*
-    * @brief Destructora de la clase PlaneComponent
+    * @brief Destructor de la clase PlaneComponent
     */
     ~PlaneComponent();
 

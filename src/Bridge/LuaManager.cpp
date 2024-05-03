@@ -18,7 +18,6 @@
 #include "Utilities/Quaternion.h"
 
 namespace Tapioca {
-
 LuaManager* LuaManager::instance_ = nullptr;
 
 LuaManager::LuaManager() : L(nullptr), initialized(true) {
@@ -30,9 +29,12 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         initialized = false;
     }
 
-    luabridge::getGlobalNamespace(L).beginNamespace("_internal").beginNamespace("showGlobal")
+    luabridge::getGlobalNamespace(L)
+        .beginNamespace("_internal")
+        .beginNamespace("showGlobal")
         .addFunction("print", &print)
-        .endNamespace().endNamespace();
+        .endNamespace()
+        .endNamespace();
 
     luabridge::getGlobalNamespace(L)
         .beginNamespace("Tapioca")
@@ -47,26 +49,27 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addProperty("alive", &GameObject::isAlive)
         .addFunction("die", &GameObject::die)
         .addProperty("scene", &GameObject::getScene)
-        .addFunction("addComponent",
+        .addFunction(
+            "addComponent",
             +[](GameObject* obj, const std::string& id, const CompMap& variables = {}) -> Component* {
                 return obj->addComponent(id, variables);
             })
         .addFunction("addComponents", &GameObject::addComponents)
-        .addFunction("getComponent",
-            +[](GameObject* obj, const std::string& id) -> Component* {
-                return obj->getComponent(id);
-            })
+        .addFunction(
+            "getComponent", +[](GameObject* obj, const std::string& id) -> Component* { return obj->getComponent(id); })
         .addFunction("getAllComponents", &GameObject::getAllComponents)
-        .addFunction("getComponents",
-            +[](GameObject* obj, const std::string& id) -> std::vector<Component*> {
-                return obj->getComponents(id);
-            })
+        .addFunction(
+            "getComponents",
+            +[](GameObject* obj, const std::string& id) -> std::vector<Component*> { return obj->getComponents(id); })
         // Funciones anadidas para ayudar con scripting de Lua
-        .addFunction("addLuaComponent",
+        .addFunction(
+            "addLuaComponent",
             +[](GameObject* obj, const std::string& id, const CompMap& variables = {}) -> LuaComponent* {
                 return static_cast<LuaComponent*>(obj->addComponent(id, variables));
             })
-        .addFunction("addLuaComponents", +[](GameObject* obj,
+        .addFunction(
+            "addLuaComponents",
+            +[](GameObject* obj,
                 const std::vector<std::pair<std::string, CompMap>>& idsAndVariables) -> std::vector<LuaComponent*> {
                 std::vector<LuaComponent*> out;
                 std::vector<Component*> aux = obj->addComponents(idsAndVariables);
@@ -75,11 +78,13 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
                 }
                 return out;
             })
-        .addFunction("getLuaComponent",
+        .addFunction(
+            "getLuaComponent",
             +[](GameObject* obj, const std::string& id) -> LuaComponent* {
                 return static_cast<LuaComponent*>(obj->getComponent(id));
             })
-        .addFunction("getLuaComponents",
+        .addFunction(
+            "getLuaComponents",
             +[](GameObject* obj, const std::string& id) -> std::vector<LuaComponent*> {
                 std::vector<LuaComponent*> out;
                 std::vector<Component*> aux = obj->getComponents(id);
@@ -90,7 +95,8 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
             })
         .endClass()
         .beginClass<Component>("Component")
-        .addFunction("pushEvent",
+        .addFunction(
+            "pushEvent",
             +[](Component* comp, const std::string& id, bool global = true, bool delay = false) {
                 comp->pushEvent(id, nullptr, global, delay);
             })
@@ -102,10 +108,9 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .deriveClass<LuaComponent, Component>("LuaComponent")
         .addProperty("table", [](LuaComponent* comp) -> luabridge::LuaRef* { return comp->getTable(); })
         // Funcion anadida para ayudar con scripting de Lua
-        .addFunction("toLuaComponent",
-            +[](LuaComponent* self, Component* comp) -> LuaComponent* {
-                return static_cast<LuaComponent*>(comp);
-            })
+        .addFunction(
+            "toLuaComponent",
+            +[](LuaComponent* self, Component* comp) -> LuaComponent* { return static_cast<LuaComponent*>(comp); })
         .endClass()
         .beginClass<Vector2>("Vector2")
         .addConstructor<void (*)(const float)>()
@@ -150,22 +155,22 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("__unm", luabridge::overload<>(&Vector3::operator-))
         .addFunction("__sub", luabridge::overload<const Vector3&>(&Vector3::operator-))
         .addFunction("__mul", luabridge::overload<const float&>(&Vector3::operator*),
-            luabridge::overload<const Vector3&>(&Vector3::operator*))
+                     luabridge::overload<const Vector3&>(&Vector3::operator*))
         .addFunction("__div", &Vector3::operator/)
         .addFunction("__eq", &Vector3::operator==)
         .addFunction("lerp", &Vector3::lerp)
         .addFunction("distance", &Vector3::distance)
         .endClass()
         .beginClass<Vector4>("Vector4")
-        .addConstructor<void(*) (const float)>()
-        .addConstructor<void(*) (const float, const float)>()
-        .addConstructor<void(*) (const float, const float, const float)>()
-        .addConstructor<void(*) (const float, const float, const float, const float)>()
-        .addConstructor<void(*) (const Vector4&)>()
-        .addConstructor<void(*) (const Vector3&)>()
-        .addConstructor<void(*) (const Vector3&, const float)>()
-        .addConstructor<void(*) (const Vector2&)>()
-        .addConstructor<void(*) (const Vector2&, const float)>()
+        .addConstructor<void (*)(const float)>()
+        .addConstructor<void (*)(const float, const float)>()
+        .addConstructor<void (*)(const float, const float, const float)>()
+        .addConstructor<void (*)(const float, const float, const float, const float)>()
+        .addConstructor<void (*)(const Vector4&)>()
+        .addConstructor<void (*)(const Vector3&)>()
+        .addConstructor<void (*)(const Vector3&, const float)>()
+        .addConstructor<void (*)(const Vector2&)>()
+        .addConstructor<void (*)(const Vector2&, const float)>()
         .addConstructor<void (*)(const Vector2&, const float, const float)>()
         .addProperty("x", &Vector4::x)
         .addProperty("y", &Vector4::y)
@@ -197,7 +202,7 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("toEuler", &Quaternion::toEuler)
         //.addFunction("eulerAxis", &Quaternion::eulerAxis)
         .addFunction("__mul", luabridge::overload<const Quaternion&>(&Quaternion::operator*),
-            luabridge::overload<const float>(&Quaternion::operator*))
+                     luabridge::overload<const float>(&Quaternion::operator*))
         .addFunction("__div", &Quaternion::operator/)
         .addFunction("rotatePoint", &Quaternion::rotatePoint)
         .addFunction("normalized", &Quaternion::normalized)
@@ -213,15 +218,14 @@ LuaManager::~LuaManager() {
     lua_close(L);
 }
 
-bool LuaManager::init() {
-    return initialized && loadBase() && loadScripts();
-}
+bool LuaManager::init() { return initialized && loadBase() && loadScripts(); }
 
-std::vector<CompValue> LuaManager::callLuaFunction(const std::string& name, const std::vector<CompValue>& parameters, bool* success) {
+std::vector<CompValue> LuaManager::callLuaFunction(const std::string& name, const std::vector<CompValue>& parameters,
+                                                   bool* success) {
     std::vector<CompValue> out;
     luabridge::LuaRef function = luabridge::getGlobal(L, "_internal")["callGlobal"];
     if (!function.isCallable()) {
-        if(success != nullptr) *success = false;
+        if (success != nullptr) *success = false;
         return out;
     }
     luabridge::LuaResult result = function(name, parameters);
@@ -263,9 +267,7 @@ CompValue LuaManager::getValueFromLua(const std::string& name) {
 
 bool LuaManager::setValueOnLua(const std::string& name, CompValue value) {
     bool done = luabridge::setGlobal(L, value, name.c_str());
-    if (!done) {
-        logError("LuaManager: Se ha intentado poner un nombre invalido.");
-    }
+    if (!done) logError("LuaManager: Se ha intentado poner un nombre invalido.");
     return done;
 }
 
@@ -288,8 +290,7 @@ bool LuaManager::loadScript(const std::filesystem::path& path) {
     std::string name = path.filename().string();
     // Se le quita la extension (.lua)
     name = name.substr(0, name.length() - 4);
-    FactoryManager::instance()->addBuilder(
-        new LuaComponentBuilder(name, table));
+    FactoryManager::instance()->addBuilder(new LuaComponentBuilder(name, table));
     return true;
 }
 
@@ -313,43 +314,30 @@ int LuaManager::print(lua_State* L) {
     std::stringstream aux;
     int i = 1;
     while (lua_gettop(L) >= i) {
-        if (lua_isboolean(L, i)) {
-            aux << (lua_toboolean(L, i) ? "true " : "false ");
-        }
-        else if (lua_iscfunction(L, i)) {
+        if (lua_isboolean(L, i)) aux << (lua_toboolean(L, i) ? "true " : "false ");
+        else if (lua_iscfunction(L, i))
             aux << "C function ";
-        }
-        else if (lua_isfunction(L, i)) {
+        else if (lua_isfunction(L, i))
             aux << "Lua function ";
-        }
-        else if (lua_isnil(L, i)) {
+        else if (lua_isnil(L, i))
             aux << "nil ";
-        }
-        else if (lua_isinteger(L, i)) {
+        else if (lua_isinteger(L, i))
             aux << lua_tointeger(L, i) << ' ';
-        }
-        else if (lua_isnumber(L, i)) {
+        else if (lua_isnumber(L, i))
             aux << lua_tonumber(L, i) << ' ';
-        }
-        else if (lua_isstring(L, i)) {
+        else if (lua_isstring(L, i))
             aux << lua_tostring(L, i) << ' ';
-        }
-        else if (lua_istable(L, i)) {
+        else if (lua_istable(L, i))
             aux << "table ";
-        }
-        else if (lua_isthread(L, i)) {
+        else if (lua_isthread(L, i))
             aux << "thread ";
-        }
-        else if (lua_isuserdata(L, i)) {
+        else if (lua_isuserdata(L, i))
             aux << "userdata ";
-        }
-        else {
+        else
             aux << "something ";
-        }
         i++;
     }
     std::cout << "[INFO|JUEGO] " << aux.str() << '\n';
     return 0;
 }
-
 }

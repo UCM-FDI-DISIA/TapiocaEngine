@@ -29,13 +29,13 @@ private:
     AudioSource* au;
 
     /*
-    * @brief Constructora de la clase SoundManager
+    * @brief Constructor de la clase SoundManager
     */
     SoundManager();
 
 public:
     /*
-    * @brief Destructora de la clase SoundManager
+    * @brief Destructor de la clase SoundManager
     */
     ~SoundManager();
 

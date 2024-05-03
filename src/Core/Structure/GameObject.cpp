@@ -84,8 +84,6 @@ void GameObject::deleteCompVector(Component* const comp) {
     cmpOrder.erase(std::remove(cmpOrder.begin(), cmpOrder.end(), comp), cmpOrder.end());
 }
 
-void GameObject::setScene(Scene* const sc) { scene = sc; }
-
 void GameObject::refresh() {
     auto it = components.begin();
     while (it != components.end()) {

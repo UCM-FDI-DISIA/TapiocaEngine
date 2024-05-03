@@ -33,11 +33,11 @@ private:
 public:
     COMPONENT_ID("SkyboxComponent");
     /*
-    * @brief Constructora de la clase SkyboxComponent
+    * @brief Constructor de la clase SkyboxComponent
     */
     SkyboxComponent();
     /*
-    * @brief Destructora de la clase SkyboxComponent
+    * @brief Destructor de la clase SkyboxComponent
     */
     ~SkyboxComponent();
 

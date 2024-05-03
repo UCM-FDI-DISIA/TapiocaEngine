@@ -26,11 +26,11 @@ private:
 public:
     // Este componente no usa la macro COMPONENT_ID para que no sea capaz de meterse en las templates de addComponent y getComponent.
     /*
-    * @brief Constructora del componente. Para crear un componente, usar addComponent en los GameObject con la id.
+    * @brief Constructor del componente. Para crear un componente, usar addComponent en los GameObject con la id.
     */
     LuaComponent(luabridge::LuaRef* objectTable, const std::string& name);
     /*
-    * @brief Destructora del componente. Para borrar un componente, usar Component::die().
+    * @brief Destructor del componente. Para borrar un componente, usar Component::die().
     */
     ~LuaComponent();
     /*

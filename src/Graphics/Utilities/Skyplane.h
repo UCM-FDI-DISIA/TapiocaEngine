@@ -42,7 +42,7 @@ private:
 
 public:
     /*
-    * @brief Constructora de la clase Skyplane.
+    * @brief Constructor de la clase Skyplane.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param materialName Nombre del material
     * @param enable True si esta activo, false en caso contrario

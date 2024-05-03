@@ -38,11 +38,11 @@ private:
 
 public:
     /*
-    * @brief Constructora de la clase Scene
+    * @brief Constructor de la clase Scene
     */
     Scene(std::string const& name);
     /*
-    * @brief Destructora de la clase Scene
+    * @brief Destructor de la clase Scene
     */
     ~Scene();
     /*
@@ -58,10 +58,10 @@ public:
     GameObject* getHandler(std::string const& handler) const;
 
     /*
-    * @brief Aniade un objeto a la escena
-    * @param object Objeto que se quiere aniadir a la escena
-    * @param handler Handler que se quiere asociar al objeto que se quiere aniadir. Los handlers deben ser unicos
-    * @return True se se ha aniadido correctamente a la escena, false en caso contrario
+    * @brief Anade un objeto a la escena
+    * @param object Objeto que se quiere anadir a la escena
+    * @param handler Handler que se quiere asociar al objeto que se quiere anadir. Los handlers deben ser unicos
+    * @return True se se ha anadido correctamente a la escena, false en caso contrario
     */
     bool addObject(GameObject* const object, std::string const& handler = "", int zIndex = 0);
     /*

@@ -26,11 +26,11 @@ private:
 public:
     COMPONENT_ID("SkyplaneComponent");
     /*
-    * @brief Constructora de la clase SkyplaneComponent
+    * @brief Constructor de la clase SkyplaneComponent
     */
     SkyplaneComponent();
     /*
-    * @brief Destructora de la clase SkyplaneComponent
+    * @brief Destructor de la clase SkyplaneComponent
     */
     ~SkyplaneComponent();
 

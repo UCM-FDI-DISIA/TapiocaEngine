@@ -26,7 +26,7 @@ private:
     bool autoAspectRatio;
 
     /*
-    * @brief Constructora de la clase BillboardSet.
+    * @brief Constructor de la clase BillboardSet.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre de la camara

@@ -26,7 +26,7 @@ private:
 
 public:
     /*
-    * @brief Constructora de la clase Mesh.
+    * @brief Constructor de la clase Mesh.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre del mesh

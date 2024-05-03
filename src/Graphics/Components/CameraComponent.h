@@ -34,11 +34,11 @@ private:
 public:
     COMPONENT_ID("CameraComponent")
     /*
-    * @brief Constructora de la clase CameraComponent
+    * @brief Constructor de la clase CameraComponent
     */
     CameraComponent();
     /*
-    * @brief Destructora de la clase CameraComponent
+    * @brief Destructor de la clase CameraComponent
     */
     ~CameraComponent();
 

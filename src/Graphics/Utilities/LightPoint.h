@@ -21,7 +21,7 @@ private:
     // PUNTO DE LUZ QUE EMITE LA MISMA CANTIDAD DE LUZ EN TODAS LAS DIRECCIONES
 
     /*
-    * @brief Constructora de la clase LightPoint.
+    * @brief Constructor de la clase LightPoint.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param colour Color de la luz

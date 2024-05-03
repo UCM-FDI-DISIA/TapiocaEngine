@@ -18,7 +18,7 @@ protected:
     Vector4 mColor;        // Color de la luz
 
     /*
-    * @brief Constructora de la clase Light.
+    * @brief Constructor de la clase Light.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param colour Color de la luz
@@ -27,7 +27,7 @@ protected:
 
 public:
     /*
-    * @brief Destructora de la clase Light.
+    * @brief Destructor de la clase Light.
     */
     virtual ~Light() { }
 

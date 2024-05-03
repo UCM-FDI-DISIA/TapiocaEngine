@@ -26,7 +26,7 @@ protected:
     RenderNode* node;                       // Nodo para renderizado
 
     /*
-    * @brief Constructora de la clase RenderObject.
+    * @brief Constructor de la clase RenderObject.
     * @param node Nodo para renderizado
     * @param scnMgr Puntero al manager de escenas de ogre
     */
@@ -45,7 +45,7 @@ protected:
 
 public:
     /*
-    * @brief Destructora de la clase RenderObject.
+    * @brief Destructor de la clase RenderObject.
     */
     virtual ~RenderObject();
 

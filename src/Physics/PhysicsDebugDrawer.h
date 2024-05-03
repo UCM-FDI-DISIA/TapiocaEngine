@@ -34,11 +34,11 @@ class TAPIOCA_API PhysicsDebugDrawer : public btIDebugDraw {
 
 public:
     /*
-    * @brief Constructora de la clase PhysicsDebugDrawer.
+    * @brief Constructor de la clase PhysicsDebugDrawer.
     */
     PhysicsDebugDrawer();
     /*
-    * @brief Destructora de la clase PhysicsDebugDrawer.
+    * @brief Destructor de la clase PhysicsDebugDrawer.
     */
     ~PhysicsDebugDrawer();
 

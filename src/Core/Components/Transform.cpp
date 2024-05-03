@@ -173,9 +173,6 @@ Vector3 Transform::getGlobalPositionAux(Vector3 point) const {
     point = Vector3(point.x * parentScale.x, point.y * parentScale.y, point.z * parentScale.z);
 
     Vector3 pos = xAxis * point.x + yAxis * point.y + zAxis * point.z;
-    /* pos.x = point.x * xAxis.x + point.y * yAxis.x + point.z * zAxis.x;
-    pos.y = point.x * xAxis.y + point.y * yAxis.y + point.z * zAxis.y;
-    pos.z = point.x * xAxis.z + point.y * yAxis.z + point.z * zAxis.z;*/
 
     // Se convierte al sistema de coordenadas del padre
     pos = pos + parent->position;
@@ -197,36 +194,15 @@ Vector3 Transform::getLocalFromGlobalPos(Vector3 point) const {
     localPos.z = point.dot(zAxis);
 
     Vector3 parentScale = parent->getScale();
-    //localPos = localPos/parentScale;
     localPos = Vector3(localPos.x / parentScale.x, localPos.y / parentScale.y, localPos.z / parentScale.z);
     return localPos;
 }
 
-Vector3 Transform::getGlobalPositionWithoutRotation() const {
-    return getGlobalPositionWithoutRotationAux(position);
-
-    /*
-    Vector3 aux = position;
-    if (parent != nullptr) {
-        Vector3 parentScale = parent->getScale();
-        aux = Vector3(aux.x * parentScale.x, aux.y * parentScale.y, aux.z * parentScale.z);
-        aux = aux + parent->getGlobalPositionWithoutRotation();
-    }
-    return aux;
-    */
-}
+Vector3 Transform::getGlobalPositionWithoutRotation() const { return getGlobalPositionWithoutRotationAux(position); }
 
 Vector3 Transform::getGlobalPosition() const { return getGlobalPositionAux(position); }
 
 Quaternion Transform::getGlobalRotation() const {
-    /*
-    Vector3 aux = rotation;
-    if (parent != nullptr) {
-        aux = parent->getGlobalRotation() + aux;
-    }
-    return aux;
-    */
-
     Quaternion aux = rotation;
     if (parent != nullptr) aux = Quaternion(parent->getGlobalRotation()) * aux;
     return aux;
@@ -291,87 +267,30 @@ void Transform::rotate(const Vector3& r) {
     rotChanged();
 }
 
-Vector3 Transform::right() {
-
+Vector3 Transform::right() const {
     Vector3 r(-1, 0, 0);   // X
-
-    // Crear cuaterniones para las rotaciones en cada eje
-    //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
-    //Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
-    //Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
-
-    //// Multiplicar los cuaterniones en orden (Z * Y * X)
-    //Quaternion combinedRotation = q_z * q_y * q_x;
-
     // Rotar el vector forward utilizando el cuaternion combinado
     Vector3 v = getGlobalRotation().rotatePoint(r);
-
     v.normalize();
 
     return v;
 }
 
-Vector3 Transform::up() {
-
+Vector3 Transform::up() const {
     Vector3 u(0, 1, 0);   // Y
-
-    // Crear cuaterniones para las rotaciones en cada eje
-    //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
-    //Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
-    //Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
-
-    //// Multiplicar los cuaterniones en orden (Z * Y * X)
-    //Quaternion combinedRotation = q_z * q_y * q_x;
-
-
     // Rotar el vector forward utilizando el cuaternion combinado
     Vector3 v = getGlobalRotation().rotatePoint(u);
 
     v.normalize();
-
     return v;
 }
 
-Vector3 Transform::forward() {
-    //Vector3 f(0, 0, 1);   // Z
-
-    ///*  f.x = cosf(rotation.x) * sin(rotation.y);
-    //f.y = -sinf(rotation.x);
-    //f.z = cosf(rotation.x) * cos(rotation.y);*/
-
-    //// v.normalize();
-
-    //f.rotateX(rotation.x);
-    //f.rotateY(rotation.y);
-    //f.rotateZ(rotation.z);
-
-    //return f;
-    ///* return v;*/
-
-    //Vector3 u(0, 0, 1);   //Z
-
-    //// Crear cuaterniones para las rotaciones en cada eje
-    //Quaternion q_x(rotation.x, Vector3(1, 0, 0));   // Rotación en el eje X
-    //Quaternion q_y(rotation.y, Vector3(0, 1, 0));   // Rotación en el eje Y
-    //Quaternion q_z(rotation.z, Vector3(0, 0, 1));   // Rotación en el eje Z
-
-    //// Multiplicar los cuaterniones en orden (Z * Y * X)
-    //Quaternion combinedRotation = q_z * q_y * q_x;
-
-
-    //// Rotar el vector forward utilizando el cuaternion combinado
-    //Vector3 v = combinedRotation.rotatePoint(u);
-
-    //v.normalize();
-
-    //return v;
-
+Vector3 Transform::forward() const {
     Vector3 r = right();
     Vector3 u = up();
     Vector3 v = u.cross(r);
 
     v.normalize();
-
     return v;
 }
 

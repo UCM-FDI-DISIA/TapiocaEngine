@@ -10,36 +10,36 @@ namespace Tapioca {
 class Scene;
 class MainLoop;
 class FactoryManager;
+class WindowManager;
 class GameObject;
 class Component;
-class WindowManager;
 
 /*
-* @brief Clase Singleton y Modulo que se encarga de cargar las escenas del juego incluyendo los gameobjects y sus componentes
+* @brief Carga las escenas del juego incluyendo los gameobjects y sus componentes
 */
 class TAPIOCA_API SceneLoader : public Singleton<SceneLoader>, public Module {
 private:
     friend Singleton<SceneLoader>;
     friend class Scene;
 
-    lua_State* luaState;         // Estado de lua
-    MainLoop* mainLoop;          // Puntero a MainLoop
-    FactoryManager* factMngr;    // Puntero a FactoryManager
-    WindowManager* windowMngr;   // Puntero a WindowManager
-    std::string scenesPath;      // Ruta de las escenas
+    lua_State* luaState;            // Estado de lua
+    MainLoop* mainLoop;             // Puntero a MainLoop
+    FactoryManager* factManager;    // Puntero a FactoryManager
+    WindowManager* windowManager;   // Puntero a WindowManager
+    std::string scenesPath;         // Ruta de las escenas
 
     /*
-    * @brief Constructor por defecto
+    * @brief Inicializa la ruta de las escenas
     */
     SceneLoader();
 
     /*
-    * @brief Inicializa los punteros a MainLoop y FactoryManager
+    * @brief Inicializa los punteros a MainLoop, FactoryManager y WindowManager
     * @return true si se ha inicializado correctamente, false si no
     */
     bool init() override;
     /*
-    * @brief Inicializa la configuracion del juego
+    * @brief Consigue el nombre de la escena inicial a cargar y la carga
     * @return true si se ha inicializado correctamente, false si no
     */
     bool initConfig() override;
@@ -81,7 +81,8 @@ private:
     /*
     * @brief Carga un componente
     * @param name Nombre del componente
-    * @return Puntero al componente cargado
+    * @param gameObject Gameobject al que se le va a cargar el componente
+    * @return true si se ha cargado correctamente, false si no
 	*/
     bool loadComponent(std::string const& name, GameObject* const gameObject);
 
@@ -104,6 +105,7 @@ public:
     /*
     * @brief Carga la escena solicitada
     * @param sceneName Nombre de escena
+    * @param active Si la escena se va a actualizar o no. Por defecto es true
     * @return Puntero a la escena cargada
 	*/
     Scene* loadScene(std::string const& sceneName, const bool active = true);

@@ -54,7 +54,7 @@ private:
 #endif
 
     /*
-    * @brief Constructora de la clase PhysicsManager.
+    * @brief Constructor de la clase PhysicsManager.
     */
     PhysicsManager(bool debug = false);
 
@@ -65,7 +65,7 @@ private:
 
 public:
     /*
-    * @brief Destructora de la clase InputManager.
+    * @brief Destructor de la clase InputManager.
     */
     ~PhysicsManager();
 

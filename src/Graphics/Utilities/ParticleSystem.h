@@ -21,7 +21,7 @@ private:
 public:
 
     /*
-    * @brief Constructora de la clase ParticleSystem.
+    * @brief Constructor de la clase ParticleSystem.
     * Se crea a partir de un sistema ya creado en un .particle
     * @param scnMgr SceneManager de ogre
     * @param node Nodo para renderizado
@@ -33,7 +33,7 @@ public:
                    std::string const& templateName, const bool emitting = false);
 
     /*
-    * @brief Destructora de la clase ParticleSystem
+    * @brief Destructor de la clase ParticleSystem
     */
     virtual ~ParticleSystem() { }
 

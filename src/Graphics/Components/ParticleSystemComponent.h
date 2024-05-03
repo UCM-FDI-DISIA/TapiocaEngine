@@ -32,11 +32,11 @@ public:
     COMPONENT_ID("ParticleSystemComponent")
 
     /*
-    * @brief Constructora de la clase ParticleSystemComponent
+    * @brief Constructor de la clase ParticleSystemComponent
     */
     ParticleSystemComponent();
     /*
-    * @brief Destructora de la clase ParticleSystemComponent
+    * @brief Destructor de la clase ParticleSystemComponent
     */
     ~ParticleSystemComponent();
 

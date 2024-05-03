@@ -25,7 +25,7 @@ private:
 
 public:
     /*
-    * @brief Constructora de la clase Viewport.
+    * @brief Constructor de la clase Viewport.
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre del mesh

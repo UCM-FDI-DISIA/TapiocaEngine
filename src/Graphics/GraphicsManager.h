@@ -118,13 +118,13 @@ private:
     void loadResources();
 
     /*
-    * @brief crea el constructor de shaders y aniade el listerner al gestor de materiales para que a aquellos assets que vengan sin shaders 
+    * @brief crea el constructor de shaders y anade el listener al gestor de materiales para que a aquellos assets que vengan sin shaders 
     * se les asignen shaders pass through generados automaticamente. Debe invocarse tras crear el RenderSys
     */
     void loadShaders();
 
     /*
-    * @brief Constructora de la clase GraphicsManager.
+    * @brief Constructor de la clase GraphicsManager
     * @param windowName Nombre de la ventana
     * @param w Anchura de la ventana
     * @param h Altura de la ventana
@@ -138,7 +138,7 @@ public:
     GraphicsManager& operator=(GraphicsManager&&) = delete;
 
     /*
-    * @brief Destructora de la clase GraphicsManager.
+    * @brief Destructor de la clase GraphicsManager.
     */
     virtual ~GraphicsManager();
 

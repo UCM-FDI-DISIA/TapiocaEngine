@@ -4,22 +4,26 @@
 
 namespace Tapioca {
 /*
-* @brief Clase singleton para hacer que las clases hijas sean singleton
+* @brief Patron de diseno Singleton para crear una unica instancia de una clase
 */
 template<typename T>
 class Singleton {
 private:
-    // Instancia unica
-    static T* instance_;
+    static T* instance_; // Instancia unica
 
 protected:
+    /*
+    * @brief Constructor vacio
+    */
     Singleton() {};
 
 public:
-    // Evita hacer copias de un singleton
     Singleton<T>& operator=(const Singleton<T>& s) = delete;
     Singleton(const Singleton<T>& s) = delete;
 
+    /*
+    * @brief Destructor vacio
+    */
     virtual ~Singleton() {};
 
     // Inicializa la instancia con los parametros deseados (... args)

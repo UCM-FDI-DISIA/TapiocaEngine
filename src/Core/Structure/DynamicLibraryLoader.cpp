@@ -34,6 +34,7 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
             return false;
         }
         eP();
+        // Inicializa la configuracion del juego
         return MainLoop::instance()->initConfig();
     }
     else {

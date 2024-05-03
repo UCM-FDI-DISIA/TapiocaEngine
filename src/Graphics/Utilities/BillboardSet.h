@@ -48,7 +48,7 @@ protected:
 #endif
 
     /*
-    * @brief Constructora de la clase BillboardSet.
+    * @brief Constructor de la clase BillboardSet
     * @param scnMgr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre del billboardSet
@@ -102,7 +102,7 @@ public:
     */
     void removeBillboard(Billboard* const bb);
     /*
-    * @brief Aniade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
+    * @brief Anade un Billboard al BillboardSet con la posici�n y color proporcionados (blanco por defecto)
     * @param position Posicion del billboard
     * @param colour Color del billboard
     */

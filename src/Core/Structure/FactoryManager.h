@@ -30,7 +30,7 @@ private:
     /*
     * @brief Inicializa el modulo
     */
-    FactoryManager();
+    FactoryManager() { }
 
 public:
     FactoryManager(FactoryManager&) = delete;
@@ -43,13 +43,15 @@ public:
     */
     ~FactoryManager();
 
-    /**
+    /*
     * @brief Crea un componente a partir de su nombre
+    * @param name Nombre del componente
     */
     Component* createComponent(std::string const& name);
 
     /*
-    * @brief Añade una factoria al mapa de factorias
+    * @brief Anade una factoria al mapa de factorias
+    * @param builder Factoria a anadir
     */
     void addBuilder(ComponentBuilder* const builder);
 };

@@ -3,9 +3,19 @@
 #include "defs.h"
 
 namespace Tapioca {
+/*
+* Clase base para los modulos del motor
+
+*/
 class TAPIOCA_API Module {
 public:
+    /*
+    * Constructor vacia
+    */
     Module() { }
+    /*
+    * Destructor vacio
+    */
     virtual ~Module() { }
 
     virtual bool init() { return true; }
