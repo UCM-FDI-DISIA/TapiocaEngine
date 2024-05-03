@@ -49,12 +49,14 @@ bool WindowManager::initConfig() {
     logInfo(("WindowManager: Nombre de la ventana configurado a \"" + windowName + "\".").c_str());
 
     EntryPointGetFullScreen fs = (EntryPointGetFullScreen)GetProcAddress(DynamicLibraryLoader::module, "getFullScreen");
+    // Si no se ha encontrado la funcion de pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
     if (fs == nullptr) {
-        logError("WindowManager: La DLL del juego no tiene la funcion \"getFullScreen\".");
-        return false;
+        logWarn("WindowManager: La DLL del juego no tiene la funcion \"getFullScreen\". Se preguntara por el tamano de "
+                "la ventana.");
+        tryGetWindowSize();
     }
-
-    if (fs()) {
+    // Si existe la funcion de pantalla completa, se comprueba si se quiere pantalla completa o no
+    else if (fs()) {
         logInfo("WindowManager: Configurando la ventana a pantalla completa...");
         SDL_DisplayMode displayMode;
         if (SDL_GetCurrentDisplayMode(0, &displayMode) != 0) {
@@ -67,25 +69,9 @@ bool WindowManager::initConfig() {
         windowHeight = displayMode.h;
         logInfo("WindowManager: Ventana configurada a pantalla completa.");
     }
-    else {
-        logInfo("WindowManager: Configurando la ventana a modo ventana...");
-        EntryPointGetWindowSize ws =
-            (EntryPointGetWindowSize)GetProcAddress(DynamicLibraryLoader::module, "getWindowSize");
-        if (ws == nullptr) {
-            logError(("WindowManager: La DLL del juego no tiene la funcion \"getWindowSize\". Se usara el tamano "
-                      "predefinido: " +
-                      std::to_string(windowWidth) + "x" + std::to_string(windowHeight) + '.')
-                         .c_str());
-        }
-        else {
-            ws(windowWidth, windowHeight);
-            firstWindowWidth = windowWidth;
-            firstWindowHeight = windowHeight;
-        }
-        logInfo(
-            ("WindowManager: Ventana configurada a " + std::to_string(windowWidth) + "x" + std::to_string(windowHeight))
-                .c_str());
-    }
+    // Si no se quiere pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
+	else
+		tryGetWindowSize();
 
     // Crear ventana
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -131,6 +117,24 @@ void WindowManager::sendEvent(std::string const& id, void* info) {
     if (id == "ev_CLOSE") mainLoop->exit();
     else
         mainLoop->pushEvent({nullptr, id, info, true});
+}
+
+void WindowManager::tryGetWindowSize() {
+    logInfo("WindowManager: Configurando la ventana a modo ventana...");
+    EntryPointGetWindowSize ws = (EntryPointGetWindowSize)GetProcAddress(DynamicLibraryLoader::module, "getWindowSize");
+    if (ws == nullptr) {
+        logError(("WindowManager: La DLL del juego no tiene la funcion \"getWindowSize\". Se usara el tamano "
+                  "predefinido: " +
+                  std::to_string(windowWidth) + "x" + std::to_string(windowHeight) + '.')
+                     .c_str());
+    }
+    else {
+        ws(windowWidth, windowHeight);
+        firstWindowWidth = windowWidth;
+        firstWindowHeight = windowHeight;
+    }
+    logInfo(("WindowManager: Ventana configurada a " + std::to_string(windowWidth) + "x" + std::to_string(windowHeight))
+                .c_str());
 }
 
 void WindowManager::setWindowName(std::string const& name) {

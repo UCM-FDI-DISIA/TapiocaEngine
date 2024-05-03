@@ -44,6 +44,11 @@ private:
     MainLoop* mainLoop;   // Puntero a MainLoop
 
     /*
+    * @brief Intenta obtener el tamano de la ventana de SDL
+    */
+    void tryGetWindowSize();
+
+    /*
     * @brief Constructora de la clase WindowManager.
     */
     WindowManager(std::string const& windowName = "TapiocaEngine", const uint32_t w = 680, const uint32_t h = 480);
