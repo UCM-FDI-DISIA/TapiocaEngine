@@ -11,11 +11,9 @@
 #include "RenderNode.h"
 
 namespace Tapioca {
-LightSpotlight::LightSpotlight(Ogre::SceneManager* sceneManager, RenderNode* node, Vector4 color, Vector3 direction)
-    : Light(sceneManager, node, color) {
-
+LightSpotlight::LightSpotlight(Ogre::SceneManager* const scnMngr, RenderNode* node, Vector4 color, Vector3 direction)
+    : Light(scnMngr, node, color) {
     mLight->setType(Ogre::Light::LT_SPOTLIGHT);
-
     node->setDirection(direction);
 }
 

@@ -72,7 +72,7 @@ private:
     * @param L Estado de Lua
     * @return 0
     */
-    static int print(lua_State* L);
+    static void print(lua_State* L);
 
 public:
     LuaManager(LuaManager&) = delete;

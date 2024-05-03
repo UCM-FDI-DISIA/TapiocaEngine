@@ -18,12 +18,15 @@ class TAPIOCA_API AnimationHelper {
 private:
     Ogre::AnimationState* animState;         // Animacion actual
     Ogre::AnimationStateSet* animStateSet;   // Conjunto de animaciones
-    bool playing;                            // Flag que indica si la animacion esta en reproduccion
-    bool looping;                            // Flag que indica si la animacion esta en bucle
+    bool playing;                            // Indica si la animacion esta en reproduccion
+    bool looping;                            // Indica si la animacion esta en bucle
 
 public:
     /*
-    * @brief Constructor: inicializa los valores de la animacion
+    * @brief Inicializa los valores de la animacion
+    * @param object Objeto al que se le aplicara la animacion
+    * @param autoPlay Indica si la animacion se reproduce automaticamente
+    * @param loop Indica si la animacion esta en bucle
     */
     AnimationHelper(Mesh* const object, const bool autoPlay, const bool loop);
 

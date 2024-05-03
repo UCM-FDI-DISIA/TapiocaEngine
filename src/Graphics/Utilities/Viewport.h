@@ -12,31 +12,34 @@ class Vector4;
 class Vector3;
 
 /*
-* @brief Wrapper de la clase Mesh de Ogre.
+* @brief Wrapper de la clase Mesh de Ogre
 * Se utiliza para indicar al render target (la ventana de Ogre), que trozo de la ventana
 * usar para renderizar lo que muestra la camara
 */
 class TAPIOCA_API Viewport {
 private:
-    Ogre::Viewport* viewport;   // Viewport de Ogre
-    Ogre::RenderWindow* renderWindow;
-    int zOrder;
-    Camera* camera;
+    Ogre::Viewport* viewport;           // Viewport de Ogre
+    Ogre::RenderWindow* renderWindow;   // RenderWindow de Ogre
+    int zOrder;                         // Orden de renderizado
+    Camera* camera;                     // Camara a la que esta asociado el viewport
 
 public:
     /*
-    * @brief Constructor de la clase Viewport.
-    * @param scnMgr Puntero al manager de escenas de ogre
-    * @param node Nodo para renderizado
-    * @param name Nombre del mesh
+    * @brief Constructor de la clase Viewport
+    * @param renderWindow Ventana de Ogre
+    * @param camera Camara a la que esta asociado el viewport
+    * @param zOrder Orden de renderizado
     */
     Viewport(Ogre::RenderWindow* const renderWindow, Camera* const camera, const int zOrder);
 
+    /*
+    * @brief Elimina el viewport del render window
+    */
     virtual ~Viewport();
 
     /*
     * @brief Cambia las dimensiones del viewport
-    * @param dimensions Las dimensiones que se quieren asignar al plano
+    * @param dimensions Dimensiones que se quieren asignar al plano
     */
     void setDimensions(const Vector4 dimensions);
 
@@ -82,6 +85,10 @@ public:
     */
     void setBackground(const Vector4 color);
 
+    /*
+    * @brief Establece el orden de renderizado
+    * @param zOrder Orden de renderizado
+    */
     void setZOrder(const int zOrder);
 };
 }

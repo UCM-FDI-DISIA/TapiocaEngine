@@ -24,14 +24,15 @@ enum BillboardType {
 };
 
 /*
-* @brief Wrapper de la clase BillboardSet de Ogre.
+* @brief Wrapper de la clase BillboardSet de Ogre
 */
 class TAPIOCA_API BillboardSet : public RenderObject {
 private:
     friend GraphicsManager;
 
 protected:
-    Ogre::BillboardSet* mBillboardSet;                  // BillboardSet de Ogre
+    Ogre::BillboardSet* mBillboardSet;   // BillboardSet de Ogre
+
     // warning C4251 'Tapioca::BillboardSet::billboards' :
     // class 'std::vector<Tapioca::Billboard *,std::allocator<Tapioca::Billboard *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::BillboardSet'
@@ -41,25 +42,25 @@ protected:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::vector<Tapioca::Billboard*> billboards;        // UnorderedSet de Billboards de Tapioca
-    std::string mName;                                  // Nombre identificador
+    std::vector<Tapioca::Billboard*> billboards;   // UnorderedSet de Billboards de Tapioca
+    std::string mName;                             // Nombre identificador
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
 
     /*
     * @brief Constructor de la clase BillboardSet
-    * @param scnMgr Puntero al manager de escenas de ogre
+    * @param scnMngr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre del billboardSet
     * @param poolSize Numero maximo de billboards que puede tener
     */
-    BillboardSet(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
+    BillboardSet(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& name,
                  const unsigned int poolSize);
 
 public:
     /*
-    * @brief Desstructora de la clase BillboardSet.
+    * @brief Elimina los billboards
     */
     virtual ~BillboardSet();
 
@@ -69,13 +70,13 @@ public:
     */
     const std::string getName() const;
     /*
-    * @brief Ajusta el tamanio del BillboardSet al indicado
-    * @param size Tamanio al que se quiere cambiar
+    * @brief Ajusta el tamano del BillboardSet al indicado
+    * @param size Tamano al que se quiere cambiar
     */
     void setPoolSize(const size_t size);
     /*
-    * @brief Devuelve el tamanio del BillboardSet
-    * @return Tamanio del BillboardSet
+    * @brief Devuelve el tamano del BillboardSet
+    * @return Tamano del BillboardSet
     */
     int getPoolSize() const;
     /*
@@ -83,10 +84,7 @@ public:
     * @return Numero de billboards en el BillboardSet
     */
     int getNumBillboards() const;
-    //Cambia la visibilidad del BillboardSet
-    //void setVisible(bool v);
-    ////Comprueba si el Billboard es visible o no
-    //bool getVisible() const;
+
     /*
     * @brief Vacia el BillboardSet
     */
@@ -106,21 +104,32 @@ public:
     * @param position Posicion del billboard
     * @param colour Color del billboard
     */
-    Tapioca::Billboard* addBillboard(const Vector3& position,
-                                        const Vector4& colour = Vector4(255.0f, 255.0f, 255.0f, 255.0f));
+    Billboard* addBillboard(const Vector3& position, const Vector4& colour = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
     /*
     * @brief Devuelve el billboard con el indice proporcionado
     * @param index Indice del billboard que se quiere devover
     * @return Puntero al billboard con indice index
     */
-    Tapioca::Billboard* getBillboard(const int index) const;
-    //Cambia el tipo de Billboard
+    Billboard* getBillboard(const int index) const;
+    /*
+    * @brief Establece el tipo de Billboard
+    * @param billboardType Tipo de Billboard
+    */
     void setBillboardType(BillboardType billboardType);
-    //Devuelve el tipo de Billboard
-    BillboardType getBillboardType();
-    //Establece el nombre del material del BillboardSet
+    /*
+    * @brief Devuelve el tipo de Billboard
+    * @return Tipo de Billboard
+    */
+    BillboardType getBillboardType() const;
+    /*
+    * @brief Establece el nombre del material del BillboardSet
+    * @param name Nombre del material
+    */
     void setMaterialName(const std::string& name);
-    //Devuelve el nombre del material del BillboardSet
+    /*
+    * @brief Devuelve el nombre del material del BillboardSet
+    * @return Nombre del material
+    */
     const std::string& getMaterialName(void) const;
 };
 }

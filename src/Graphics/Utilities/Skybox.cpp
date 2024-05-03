@@ -12,18 +12,14 @@
 
 namespace Tapioca {
 
-Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& material,
+Skybox::Skybox(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& material,
                std::string const& skyboxName, const float distC, const bool orderC)
-    : RenderObject(node, scnMgr), material(material), distC(distC), orderC(orderC) {
-    scnM = scnMgr;
-
+    : RenderObject(node, scnMngr), sceneManager(scnMngr), material(material), distC(distC), orderC(orderC) {
     Ogre::MaterialPtr m = Ogre::MaterialManager::getSingleton().getByName(
         material, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-    if (!m) {
+    if (!m)
         OGRE_EXCEPT(Ogre::Exception::ERR_INVALIDPARAMS, "Sky box material '" + material + "' not found.",
                     "SceneManager::setSkyBox");
-    }
-    // Ensure loaded
     m->load();
 
     bool valid = m->getBestTechnique() && m->getBestTechnique()->getNumPasses();
@@ -38,7 +34,6 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
         m = Ogre::MaterialManager::getSingleton().getDefaultSettings();
     }
 
-    // Create object
     if (!mSkyBoxObj) {
         mSkyBoxObj = std::make_unique<Ogre::ManualObject>(skyboxName);
         mSkyBoxObj->setCastShadows(false);
@@ -53,7 +48,6 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
     mSkyBoxObj->begin(material, Ogre::RenderOperation::OT_TRIANGLE_STRIP,
                       Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    // rendering cube, only using 14 vertices
     const Ogre::Vector3 cube_strip[14] = {
         {-1.f, 1.f, 1.f},     // Front-top-left
         {1.f, 1.f, 1.f},      // Front-top-right
@@ -73,7 +67,6 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
 
     for (const auto& vtx : cube_strip) {
         mSkyBoxObj->position(Ogre::Vector3(0, 0, 1) * (vtx * distC));
-        // Note UVs mirrored front/back
         mSkyBoxObj->textureCoord(vtx.normalisedCopy() * Ogre::Vector3(1, 1, -1));
     }
 
@@ -82,7 +75,7 @@ Skybox::Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::st
     mSkyBoxObj->end();
 }
 
-void Skybox::setEnable(const bool enable) { scnM->setSkyBoxEnabled(false); }
+void Skybox::setEnable(const bool enable) { sceneManager->setSkyBoxEnabled(false); }
 
-bool Skybox::isEnabled() { return scnM->isSkyBoxEnabled(); }
+bool Skybox::isEnabled() { return sceneManager->isSkyBoxEnabled(); }
 }

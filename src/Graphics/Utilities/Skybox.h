@@ -9,37 +9,38 @@ class ManualObject;
 }
 
 namespace Tapioca {
-
 /*
-* @brief Wrapper de la clase Skybox de Ogre.
+* @brief Wrapper de la clase Skybox de Ogre
 */
 class TAPIOCA_API Skybox : public RenderObject {
 private:
     std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;
-    Ogre::SceneManager* scnM;
+    Ogre::SceneManager* sceneManager;
+
     // warning C4251 'Tapioca::Skybox::texture' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string material;      // Nombre del material
+    std::string material;     // Nombre del material
     std::string skyboxName;   // Nombre skybox
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
     float distC;   // Distancia entre la cámara y el skybox
-    bool orderC;   // True se pinta el plano antes que la escena False después
+    bool orderC;   // True se pinta el plano antes que la escena False despues
+
 public:
     /*
-    * @brief Construye un skybox con la textura texture a una distancia distC de la cámara
+    * @brief Construye un skybox con la textura texture a una distancia distC de la camara
     * e indicando si se pinta antes o después del resto de elementos en función de orderC
-    * @param scnMgr Puntero al manager de escenas de ogre
+    * @param scnMngr Puntero al manager de escenas de ogre
     * @param texture Nombre de la textura
     * @param distC Distancia del plano a la camara
     * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
     */
-    Skybox(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& material,
+    Skybox(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& material,
            std::string const& skyboxName, const float distC = 5000, const bool orderC = true);
 
     /*

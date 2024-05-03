@@ -12,33 +12,32 @@ namespace Tapioca {
 class RenderNode;
 
 /*
-* @brief Wrapper de la clase ParticleSystem de Ogre.
+* @brief Wrapper de la clase ParticleSystem de Ogre
 */
 class TAPIOCA_API ParticleSystem : public RenderObject {
 private:
     Ogre::ParticleSystem* mParticleSystem;      // ParticleSystem de Ogre
 
 public:
-
     /*
     * @brief Constructor de la clase ParticleSystem.
     * Se crea a partir de un sistema ya creado en un .particle
-    * @param scnMgr SceneManager de ogre
+    * @param scnMngr SceneManager de ogre
     * @param node Nodo para renderizado
     * @param name Nombre del ParticleSystem
     * @param templateName Nombre del sistema de particulas definido en el .particle 
     * @param emitting True si el sistema comienza emitiendo por defecto, false en caso contrario
     */
-    ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
+    ParticleSystem(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& name,
                    std::string const& templateName, const bool emitting = false);
 
     /*
-    * @brief Destructor de la clase ParticleSystem
+    * @brief Destructor vacio
     */
     virtual ~ParticleSystem() { }
 
     /*
-    * @brief Comienza o para el sistema de particulas
+    * @brief Establece si se emiten particulas o no
     * @param emitting True para que emita particulas, false para que no emita
     */
     void setEmitting(const bool emitting);
@@ -49,7 +48,7 @@ public:
     bool isEmitting();
 
     /*
-    * @brief Cambia el numero maximo de particulas que puede haber en el sistema
+    * @brief Establece el numero maximo de particulas que puede haber en el sistema
     * @param q Quota nueva del sistem a de particulas
     */
     void setQuota(const int q);
@@ -61,11 +60,10 @@ public:
 
     /* 
     * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas
-    * que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento.
+    * que tarda cierto tiempo en comenzar a funcionar completamente lo haga al momento
     * @param time Tiempo en segundos que se adelantan
     * @param interval Muestreo para generar las particulas (cuanto menor sea, mas realista, pero tambien mas costoso)
     */
     void fastForward(const float time, const float interval);
-
 };
 }

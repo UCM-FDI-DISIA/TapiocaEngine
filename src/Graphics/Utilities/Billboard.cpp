@@ -11,10 +11,7 @@
 #include "Utilities/Vector4.h"
 
 namespace Tapioca {
-
 Billboard::Billboard(Ogre::Billboard* const oBillboard) : mBillboard(oBillboard) { }
-
-Ogre::Billboard* Tapioca::Billboard::getBillboard() { return mBillboard; }
 
 Tapioca::Vector3 Tapioca::Billboard::getPosition() const {
     return Tapioca::Vector3(mBillboard->getPosition().x, mBillboard->getPosition().y, mBillboard->getPosition().z);

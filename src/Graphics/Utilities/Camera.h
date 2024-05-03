@@ -15,19 +15,23 @@ class GraphicsManager;
 class Viewport;
 
 /*
-* @brief Wrapper de la clase Camera de Ogre.
+* @brief Wrapper de la clase Camera de Ogre
+* @brief El frustum representa el espacio en el mundo al alcance de nuestra vision
+* Se trata de una piramide truncada definida por un plano mas cercano (nearPlano, que corresponde
+* con la ventana grafica y su tam no cambia) y el plano mas lejano (farPlane)
+* Se puede renderizar todo y mostrar solo lo que esta en esta piramida o solo renderizar lo que hay dentro (frustum culling)
 */
 class TAPIOCA_API Camera : public RenderObject {
 private:
     friend GraphicsManager;
     friend Viewport;
 
-    Ogre::Camera* mCam;         // Camara de Ogre
-    bool autoAspectRatio;
+    Ogre::Camera* mCam;     // Camara de Ogre
+    bool autoAspectRatio;   // Indica si se quiere establecer el aspectRatio de forma automatica
 
     /*
-    * @brief Constructor de la clase BillboardSet.
-    * @param scnMgr Puntero al manager de escenas de ogre
+    * @brief Constructor de la clase BillboardSet
+    * @param scnMngr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
     * @param name Nombre de la camara
     * @param targetToLook Direccion a la que apunta 
@@ -36,10 +40,11 @@ private:
     * @param autoAspectRatio True si se quiere establecer el aspectRatio de forma automatica, false en caso contrario
     * @param aspectRatio Relacion de aspecto que se quiere que tenga la camara (aspectRatio = width/height, 1.3 es el por defecto de Ogre)
     */
-    Camera(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
+    Camera(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& name,
            const Vector3 targetToLook = Vector3(0, 0, 0), const float nearDist = 1, const float farDist = 1000,
            const bool autoAspectRatio = true, const float aspectRatio = 1.33333333333333f);
 
+protected:
     /*
     * @brief Devuelve un puntero a la camara de Ogre
     * @return Puntero a la camara de Ogre
@@ -55,30 +60,23 @@ public:
     */
     void lookAt(const Vector3 targetToLook);
     /*
-    * @brief Cambia la direccion de la camara.
+    * @brief Cambia la direccion de la camara
     * @param targetToLook Direccion a la que se quiere que poner la camara
     */
     void setDirection(const Vector3 dir);
 
     /*
-    el frustum representa el espacio en el mundo al alcance de nuestra vision
-    Se trata de una piramide truncada definida por un plano mas cercano (nearPlano, que corresponde
-    con la ventana grafica y su tam no cambia) y el plano mas lejano (farPlane)
-    Se puede renderizar todo y mostrar solo lo que esta en esta piramida o solo renderizar lo que hay dentro (frustum culling)
-    */
-
-    /*
     * @brief Cambia el valor del rectangulo cercano que define el frustum. 
     * Se indica la distancia. Cuanto mas lejos este el near plane y mayor sea la distancia entre el near plane y el far plane,
     * menos preciso sera el buffer Z de profundidad
-    * @param dist Distancia a la que se quiere poner de la camara el regtangulo
+    * @param dist Distancia a la que se quiere poner de la camara el rectangulo
     */
     void setNearClipDistance(const float dist);
     /*
     * @brief Cambia el valor del rectangulo lejano que define el frustum. 
     * Si es muy grande la distancia, puede haber problemas de tartamudeo (por precision), 
     * por ejemplo con las luces o sombras si se encuentran muy lejos
-    * @param dist Distancia a la que se quiere poner de la camara el regtangulo. Si es 0 es infinita.
+    * @param dist Distancia a la que se quiere poner de la camara el rectangulo. Si es 0 es infinita
     */
     void setFarClipDistance(const float dist);
     /*
@@ -106,9 +104,15 @@ public:
     * @param aspectRatio Relacion de aspecto a la que se quiere poner de la camara
     */
     void setAspectRatio(const float aspectRatio);
-
+    /*
+    * @brief Devuelve el valor del rectangulo cercano que define el frustum
+    * @return Distancia a la que se encuentra el primer rectangulo que define el frustum
+    */
     float getNearClipDistance() const;
-
+    /*
+    * @brief Devuelve el valor del rectangulo lejano que define el frustum
+    * @return Distancia a la que se encuentra el segundo rectangulo que define el frustum
+    */
     float getFarClipDistance() const;
 };
 }

@@ -10,8 +10,8 @@
 #endif
 
 namespace Tapioca {
-NodeAnimator::NodeAnimator(Ogre::SceneManager* scnMgr, RenderNode* node, float duration, std::string name)
-    : animationState(nullptr), sceneManager(scnMgr), node(node), duration(duration), enabled(false), loop(false),
+NodeAnimator::NodeAnimator(Ogre::SceneManager* scnMngr, RenderNode* node, float duration, std::string name)
+    : animationState(nullptr), sceneManager(scnMngr), node(node), duration(duration), enabled(false), loop(false),
       name(name), keyFrames() { }
 
 void NodeAnimator::init() {
@@ -30,10 +30,10 @@ void NodeAnimator::init() {
             Ogre::Quaternion(keyFrame.rot.scalar, keyFrame.rot.vector.x, keyFrame.rot.vector.y, keyFrame.rot.vector.z));
     }
 
-    // aunque son menos precisos y se basan en lineas rectos, se usan los modos de interpolacion
+    // Aunque son menos precisos y se basan en lineas rectos, se usan los modos de interpolacion
     // por defecto porque los otros dos causaban problemas
     animation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
-    // para rotaciones
+    // Para rotaciones
     animation->setRotationInterpolationMode(Ogre::Animation::RIM_LINEAR);
 
     animationState = sceneManager->createAnimationState(name);
@@ -43,9 +43,7 @@ void NodeAnimator::init() {
 }
 
 void NodeAnimator::updateAnim(const uint64_t delt, const float speed) {
-    if (animationState != nullptr) {
-        animationState->addTime(delt * 0.001f * speed);
-    }
+    if (animationState != nullptr) animationState->addTime(delt * 0.001f * speed);
 }
 
 void NodeAnimator::play(const bool loop) {
@@ -70,23 +68,18 @@ void NodeAnimator::setLoop(const bool loop) {
     }
 }
 
-bool NodeAnimator::isLooping() const { return loop; }
-
-bool NodeAnimator::isEnabled() const { return enabled; }
-
 bool NodeAnimator::hasEnded() const {
-    // devuelve true si la animacion ha terminado y no esta loopeando
+    // Devuelve true si la animacion ha terminado y no esta loopeando
     return animationState->hasEnded();
 }
 
 KeyFrame* NodeAnimator::addKeyFrame() {
     KeyFrame keyFrame;
-    if (keyFrames.size() > 0) {
-        keyFrame = keyFrames[keyFrames.size() - 1];
-    }
+    if (keyFrames.size() > 0) keyFrame = keyFrames[keyFrames.size() - 1];
     keyFrames.push_back(keyFrame);
     return &keyFrames[keyFrames.size() - 1];
 }
+
 void NodeAnimator::addKeyFramePosScaleRot(Vector3 pos, Vector3 scale, Vector3 rot) {
     KeyFrame keyFrame;
     keyFrame.pos = pos;
@@ -94,6 +87,7 @@ void NodeAnimator::addKeyFramePosScaleRot(Vector3 pos, Vector3 scale, Vector3 ro
     keyFrame.rot = Quaternion(rot);
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFramePosScaleRot(Vector3 pos, Vector3 scale, Quaternion rot) {
     KeyFrame keyFrame;
     keyFrame.pos = pos;
@@ -101,6 +95,7 @@ void NodeAnimator::addKeyFramePosScaleRot(Vector3 pos, Vector3 scale, Quaternion
     keyFrame.rot = rot;
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFramePosScale(Vector3 pos, Vector3 scale) {
     KeyFrame keyFrame;
     keyFrame.pos = pos;
@@ -111,6 +106,7 @@ void NodeAnimator::addKeyFramePosScale(Vector3 pos, Vector3 scale) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFramePosRot(Vector3 pos, Vector3 rot) {
     KeyFrame keyFrame;
     keyFrame.pos = pos;
@@ -121,6 +117,7 @@ void NodeAnimator::addKeyFramePosRot(Vector3 pos, Vector3 rot) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFramePosRot(Vector3 pos, Quaternion rot) {
     KeyFrame keyFrame;
     keyFrame.pos = pos;
@@ -131,6 +128,7 @@ void NodeAnimator::addKeyFramePosRot(Vector3 pos, Quaternion rot) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFrameScaleRot(Vector3 scale, Vector3 rot) {
     KeyFrame keyFrame;
     keyFrame.scale = scale;
@@ -141,6 +139,7 @@ void NodeAnimator::addKeyFrameScaleRot(Vector3 scale, Vector3 rot) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFrameScaleRot(Vector3 scale, Quaternion rot) {
     KeyFrame keyFrame;
     keyFrame.scale = scale;
@@ -151,6 +150,7 @@ void NodeAnimator::addKeyFrameScaleRot(Vector3 scale, Quaternion rot) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFramePos(Vector3 pos) {
     KeyFrame keyFrame;
     keyFrame.pos = pos;
@@ -161,6 +161,7 @@ void NodeAnimator::addKeyFramePos(Vector3 pos) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFrameScale(Vector3 scale) {
     KeyFrame keyFrame;
     keyFrame.scale = scale;
@@ -171,6 +172,7 @@ void NodeAnimator::addKeyFrameScale(Vector3 scale) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFrameRot(Vector3 rot) {
     KeyFrame keyFrame;
     keyFrame.rot = Quaternion(rot);
@@ -181,6 +183,7 @@ void NodeAnimator::addKeyFrameRot(Vector3 rot) {
     }
     keyFrames.push_back(keyFrame);
 }
+
 void NodeAnimator::addKeyFrameRot(Quaternion rot) {
     KeyFrame keyFrame;
     keyFrame.rot = rot;

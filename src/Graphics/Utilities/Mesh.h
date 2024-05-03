@@ -13,7 +13,7 @@ class GraphicsManager;
 class AnimationHelper;
 
 /*
-* @brief Wrapper de la clase Mesh de Ogre.
+* @brief Wrapper de la clase Mesh de Ogre
 */
 class TAPIOCA_API Mesh : public RenderObject {
 private:
@@ -22,16 +22,21 @@ private:
 
     Ogre::Entity* mesh;   // Mesh de Ogre
 
-    Ogre::Entity* const getMesh() const;
+protected:
+    /*
+    * @brief Devuelve el mesh de Ogre
+    * @return Puntero al mesh de Ogre
+    */
+    inline Ogre::Entity* getMesh() const { return mesh; }
 
 public:
     /*
-    * @brief Constructor de la clase Mesh.
-    * @param scnMgr Puntero al manager de escenas de ogre
+    * @brief Constructor de la clase Mesh
+    * @param scnMngr Puntero al manager de escenas de ogre
     * @param node Nodo para renderizado
-    * @param name Nombre del mesh
+    * @param meshName Nombre del mesh
     */
-    Mesh(Ogre::SceneManager* const sceneManager, RenderNode* const node, std::string const& meshName);
+    Mesh(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& meshName);
 
     /*
     * @brief Cambia el material de la malla
@@ -39,6 +44,9 @@ public:
     */
     void setMaterial(std::string const& materialName);
 
+    /*
+    * @brief Activa o desactiva las sombras de la malla
+    */
     void castShadows(const bool enable);
 };
 }

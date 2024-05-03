@@ -11,31 +11,38 @@ class Vector4;
 class Vector3;
 class GraphicsManager;
 
+/*
+* @brief Wrapper de la clase LightSpotlight de Ogre
+* @brief Simula un cono de luz desde una posicion que apunta en una direccion
+* @brief (por lo tanto, requiere de una posicion y una direccion)
+* @brief Un cono de luz esta definido por dos angulos:
+* @brief       - Inner angle: la intensidad es mayor
+* @brief       - Outer angler: la intensidad es menor. Abarca el angulo interior y define la zona que se ilumina
+* @brief   Existe el parametro falloff, que indica la caida de la intensidad desde la zona interior hasta la exterior
+* @brief   Por ejemplo, un valor de 1.0f corresponde con que esta caida es lineal
+*/
 class TAPIOCA_API LightSpotlight : public Light {
 private:
     friend GraphicsManager;
 
-    // SIMULA UN CONO DE LUZ DESDE UNA POSICION QUE APUNTA EN UNA DIRECCION
-    // (POR LO TANTO, REQUIERE DE UNA POSICION Y UNA DIRECCION)
-    LightSpotlight(Ogre::SceneManager* sceneManager, RenderNode* node, Vector4 color, Vector3 direction);
+    /*
+    * @brief Constructor de la clase LightSpotlight
+    * @param scnMngr Puntero al manager de escenas de ogre
+    * @param node Nodo para renderizado
+    * @param color Color de la luz
+    * @param direction Direccion de la luz
+    */
+    LightSpotlight(Ogre::SceneManager* const scnMngr, RenderNode* node, Vector4 color, Vector3 direction);
 
 public:
     /*
-    Un cono de luz esta definido por dos angulos:
-        - Inner angle: la intensidad es mayor
-        - Outer angler: la intensidad es menor. Abarca el angulo interior y define la zona que se ilumina
-    Existe el parametro falloff, que indica la caida de la intensidad desde la zona interior hasta la exterior
-    Por ejemplo, un valor de 1.0f corresponde con que esta caida es lineal
-    */
-
-    /*
-    * @brief Cambia el tam de la zona interior de la luz a partir de su angulo
+    * @brief Cambia el tamano de la zona interior de la luz a partir de su angulo
     * @param degrees Grados del angulo
     */
     void setInnerAngle(float degrees);
 
     /*
-    * @brief Cambia el tam de la zona exterior de la luz a partir de su angulo
+    * @brief Cambia el tamano de la zona exterior de la luz a partir de su angulo
     * @param degrees Grados del angulo
     */
     void setOuterAngle(float degrees);
@@ -53,10 +60,10 @@ public:
     */
     void setNearClipDistance(float distance);
 
-    // Attenuation = Constant + Linear * Distance + Quadratic * Distance^2
-    // Por ejemplo, si constant es 0,5 quiere decir que es la mitad de brillante en todas las distancias
     /*
     * @brief Cambia la atenuacion de la luz, es decir, como disminuye con la distancia
+    * @brief Attenuation = Constant + Linear * Distance + Quadratic * Distance^2
+    * @brief Por ejemplo, si constant es 0,5 quiere decir que es la mitad de brillante en todas las distancias
     * @param maximumRange Distancia maxima a la que luz tiene efecto (en unidades de mundo)
     * @param constant Nivel base de la atenuacion de la luz (no varia con la distancia) (0-1)
     * @param linear Factor lineal en la atenuacion (0-1)
@@ -64,6 +71,10 @@ public:
     */
     void setAttenuation(float maximumRange, float constant, float linear, float quadratic);
 
+    /*
+    * @brief Cambia la direccion de la luz
+    * @param direction Nueva direccion de la luz
+    */
     void setDirection(Vector3 direction);
 };
 }
