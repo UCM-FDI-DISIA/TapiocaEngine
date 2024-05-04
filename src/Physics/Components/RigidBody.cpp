@@ -11,7 +11,7 @@ namespace Tapioca {
 RigidBody::RigidBody()
     : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
       colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), colliderInitialScale(Vector3(1)),
-      activeRigidBody(true), trackScale(true) { }
+      activeRigidBody(true), trackScale(true), file("") { }
 
 RigidBody::~RigidBody() {
     transform = nullptr;
@@ -85,6 +85,11 @@ bool RigidBody::initComponent(const CompMap& variables) {
         logInfo("Rigidbody: Group por defecto.");
     }
 
+    if (!setValueFromMap(file, "file", variables) && colShape == MESH_SHAPE) {
+        logError("RigidBody: No se pudo inicializar sin ruta de .obj.");
+        return false;
+    }
+
 
     return true;
 }
@@ -146,7 +151,7 @@ void RigidBody::awake() {
 
     rigidBody = PhysicsManager::instance()->createRigidBody(
         transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, colShape, movementType,
-        mass, friction, damping, bounciness, isTrigger, group, mask);
+        mass, friction, damping, bounciness, isTrigger, group, mask,file);
 
     rigidBody->setUserPointer(this);
 }

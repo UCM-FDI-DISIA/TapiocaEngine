@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_set>
+#include <unordered_map>
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 #include "physicsDefs.h"
@@ -17,6 +18,8 @@ class btCollisionShape;
 class btDiscreteDynamicsWorld;
 class btRigidBody;
 class Collider;
+class btBvhTriangleMeshShape;
+class btTriangleMesh;
 
 namespace Tapioca {
 class Vector3;
@@ -37,6 +40,9 @@ private:
     // Resuelve la interaccion de colisiones y calculos de fuerzas resultantes
     btSequentialImpulseConstraintSolver* constraintSolver;
     btDiscreteDynamicsWorld* dynamicsWorld;   // Mundo de fisicas
+
+    std::unordered_map<std::string, btTriangleMesh*> meshInterfaces;   // dados para mesh collider
+    
 
 // warning C4251: 'Tapioca::PhysicsManager::rigidBodies':
 // class ' std::unordered_set<btRigidBody*, std::hash<btRigidBody*>, std::equal_to<btRigidBody*>,
@@ -65,6 +71,10 @@ private:
     * @brief Inicializa el manager
     */
     void start() override;
+
+    btBvhTriangleMeshShape* createMeshCollision(const std::string& name);
+
+    bool loadObj(const std::string& filename, btTriangleMesh* shape);
 
 public:
     /**
@@ -100,7 +110,7 @@ public:
                                  const ColliderShape colliderShape = BOX_SHAPE, const MovementType type = STATIC_OBJECT,
                                  float mass = 0, const float friction = 0, const float damping = 0,
                                  const float bounciness = 0, const bool isTrigger = false, const int group = 1,
-                                 const int mask = -1);
+                                 const int mask = -1, const std::string file = "");
 
     /**
     * @brief Destruye un rigidBody

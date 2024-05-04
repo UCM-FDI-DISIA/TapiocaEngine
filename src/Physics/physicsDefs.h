@@ -7,7 +7,7 @@ class btQuaternion;
 namespace Tapioca {
 class Vector3;
 
-enum ColliderShape { BOX_SHAPE, SPHERE_SHAPE, PLANE_SHAPE, CAPSULE_SHAPE };
+enum ColliderShape { BOX_SHAPE, SPHERE_SHAPE, PLANE_SHAPE, CAPSULE_SHAPE,MESH_SHAPE };
 enum MovementType { DYNAMIC_OBJECT, STATIC_OBJECT, KINEMATIC_OBJECT };
 
 // Conversiones de vectores

@@ -32,6 +32,8 @@ private:
     bool activeRigidBody;   // Indica si el rigidbody esta activo o no
     bool trackScale;        // Indica si el rigidbody escala con el transform
 
+    std::string file;   //ruta del archivo obj 
+
 public:
     COMPONENT_ID("RigidBody");
 

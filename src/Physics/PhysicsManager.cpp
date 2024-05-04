@@ -1,5 +1,7 @@
 #include "PhysicsManager.h"
-
+#include <fstream>
+#include <sstream>
+#include <vector>
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 #include "Utilities/Vector3.h"
@@ -98,6 +100,60 @@ void PhysicsManager::start() {
 #endif
 }
 
+bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triangleMesh) { 
+       std::ifstream file;
+    file.open(filename);
+    if (!file.is_open()) {
+        logError("[Motor]: Error al abrir el archivo.obj ");
+        return false;
+    }
+
+    std::vector<btVector3> vertices;
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string prefix;
+        iss >> prefix;
+
+        if (prefix == "v") {
+            btScalar x, y, z;
+            iss >> x >> y >> z;
+            vertices.push_back(btVector3(x, y, z));
+        }
+        else if (prefix == "f") {
+            std::string v1, v2, v3;
+            iss >> v1 >> v2 >> v3;
+            int vi1, vi2, vi3;   // Índices de los vértices
+            sscanf(v1.c_str(), "%d", &vi1);
+            sscanf(v2.c_str(), "%d", &vi2);
+            sscanf(v3.c_str(), "%d", &vi3);
+            triangleMesh->addTriangle(vertices[vi1 - 1], vertices[vi2 - 1], vertices[vi3 - 1]);
+        }
+    }
+    return true; 
+}
+
+btBvhTriangleMeshShape* PhysicsManager::createMeshCollision(const std::string& name) { 
+
+    btTriangleMesh* objTriangleMesh;
+    if (meshInterfaces.count(name)) {
+        objTriangleMesh = meshInterfaces.at(name);
+    }
+    else {
+        objTriangleMesh = new btTriangleMesh();
+        if (!loadObj(name, objTriangleMesh)) {
+            delete objTriangleMesh;
+            return nullptr;
+        }
+        else {
+            meshInterfaces[name] = objTriangleMesh;
+        }
+    }
+    // Crea la forma de colisión basada en malla
+    btBvhTriangleMeshShape* groundShape = new btBvhTriangleMeshShape(objTriangleMesh, true);
+    return groundShape;
+}
+
 void PhysicsManager::update(const uint64_t deltaTime) {
 #ifdef _DEBUG
     if (debug) dynamicsWorld->debugDrawWorld();
@@ -110,7 +166,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
                                              const Vector3 shapeScale, const ColliderShape colliderShape,
                                              const MovementType type, float mass, const float friction,
                                              const float damping, const float bounciness, const bool isTrigger,
-                                             const int group, const int mask) {
+                                             const int group, const int mask, const std::string file) {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
@@ -121,6 +177,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     case SPHERE_SHAPE: shape = new btSphereShape(scale.getX()); break;
     case PLANE_SHAPE: shape = new btStaticPlaneShape(scale, 0); break;
     case CAPSULE_SHAPE: shape = new btCapsuleShape(scale.getX(), scale.getY()); break;
+    case MESH_SHAPE: shape = createMeshCollision(file); break;
     default: shape = new btBoxShape(scale); break;
     }
 
@@ -166,6 +223,11 @@ void PhysicsManager::destroy() {
         ++it;
         destroyRigidBody(*itAux);
     }
+
+    for (auto m : meshInterfaces) {
+        delete m.second;
+    }
+    meshInterfaces.clear();
 
     delete colConfig;
     colConfig = nullptr;
