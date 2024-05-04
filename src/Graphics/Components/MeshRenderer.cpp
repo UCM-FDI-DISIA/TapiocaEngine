@@ -24,6 +24,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
         return false;
     }
     if (!GraphicsManager::instance()->checkResourceExists(meshName)) {
+        logError("MeshRenderer: No existe una mesh con ese nombre.");
         return false;
     }
 
@@ -48,13 +49,12 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 
 void MeshRenderer::awake() {
     graphicsManager = GraphicsManager::instance();
+    GameObject* gameobject = getObject();
+    transform = gameobject->getComponent<Transform>();
+    node = graphicsManager->createNode();
 
     if (meshName != "") {
-        GameObject* gameobject = getObject();
-        transform = gameobject->getComponent<Transform>();
-        GraphicsManager* g = GraphicsManager::instance();
-        node = g->createNode();
-        mesh = g->createMesh(node, meshName);
+        mesh = graphicsManager->createMesh(node, meshName);
         if (mesh != nullptr) {
             if (materialName != "") mesh->setMaterial(materialName);
             if (!castShadows) mesh->castShadows(false);
@@ -72,8 +72,24 @@ void MeshRenderer::handleEvent(std::string const& id, void* info) {
         node->setScale(transform->getGlobalScale());
 }
 
-void MeshRenderer::setMeshName(const std::string& name) {
-    if (graphicsManager != nullptr && graphicsManager->checkResourceExists(name)) meshName = name;
+void MeshRenderer::setMaterial(const std::string& name) {
+    if (mesh != nullptr) {
+        materialName = name;
+        mesh->setMaterial(name);
+    }
+}
+
+void MeshRenderer::setMesh(const std::string& name) {
+    if (mesh != nullptr) {
+        delete mesh;
+        mesh = nullptr;
+    }
+    if (graphicsManager != nullptr) {
+        if (graphicsManager->checkResourceExists(name)) {
+            meshName = name;
+            mesh = graphicsManager->createMesh(node, name);
+        }
+    }
 }
 
 void MeshRenderer::setVisible(const bool enable) {

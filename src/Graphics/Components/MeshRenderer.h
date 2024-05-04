@@ -88,16 +88,16 @@ public:
     void handleEvent(std::string const& id, void* info) override;
 
     /**
-    * @brief Establece el nombre del material
+    * @brief Cambia el material
     * @param name Nombre del material
     */
-    void setMaterialName(const std::string& name) { materialName = name; }
+    void setMaterial(const std::string& name);
 
     /**
-    * @brief Establece el nombre de la mesh
+    * @brief Cambia el mesh
     * @param name Nombre de la mesh
     */
-    void setMeshName(const std::string& name);
+    void setMesh(const std::string& name);
 
     /**
     * @brief Establece si la luz es visible o no

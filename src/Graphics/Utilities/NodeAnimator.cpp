@@ -14,6 +14,8 @@ NodeAnimator::NodeAnimator(Ogre::SceneManager* scnMngr, RenderNode* node, float 
     : animationState(nullptr), sceneManager(scnMngr), node(node), duration(duration), enabled(false), loop(false),
       name(name), keyFrames() { }
 
+NodeAnimator::~NodeAnimator() { enable(false); }
+
 void NodeAnimator::init() {
     Ogre::Animation* animation = sceneManager->createAnimation(name, duration);
     Ogre::NodeAnimationTrack* track = animation->createNodeTrack(0);
