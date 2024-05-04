@@ -83,5 +83,15 @@ public:
     * @return true si la animacion se esta reproduciendo, false en caso contrario
     */
     bool getPlaying() const;
+    /**
+    * @brief Devuelve si la animacion ha terminado
+    * @return true si la animacion ha terminado, false en caso contrario
+    */
+    bool hasEnded() const;
+    /**
+    * @brief Devuelve el nombre de la animacion actual
+    * @return Nombre de la animacion acutal como string
+    */
+    std::string getAnimName() const;
 };
 }

@@ -21,8 +21,7 @@ Animator::~Animator() {
 bool Animator::initComponent(const CompMap& variables) {
     if (!setValueFromMap(speed, "playbackSpeed", variables)) {
         logInfo(("Animator: No se encontro el valor de playbackSpeed. Se inicializo al valor predefinido: \"" +
-                 std::to_string(speed) + "\".")
-                    .c_str());
+                 std::to_string(speed) + "\".").c_str());
     }
     if (!setValueFromMap(initAnim, "initAnim", variables)) {
         logInfo("Animator: No se encontro el valor de initAnim. Se inicializa sin animacion inicial. \"");
@@ -44,6 +43,10 @@ void Animator::playAnim(std::string const& animName) { anim->playAnim(animName);
 bool Animator::getLoop() const { return anim->getLoop(); }
 
 bool Animator::getPlaying() const { return anim->getPlaying(); }
+
+bool Animator::hasEnded() const { return anim->hasEnded(); }
+
+std::string Animator::getAnimName() const { return anim->getAnimName(); }
 
 void Animator::setLoop(const bool l) { anim->setLoop(l); }
 

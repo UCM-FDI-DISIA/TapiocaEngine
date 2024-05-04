@@ -38,6 +38,7 @@ void AnimationHelper::playAnim(std::string const& anim) {
         return;
     }
 
+    if (animState != nullptr) animState->setEnabled(false);
     animState = animStateSet->getAnimationState(anim);
     animState->setEnabled(playing);
     animState->setLoop(looping);
@@ -53,4 +54,5 @@ void AnimationHelper::setPlaying(const bool p) {
     playing = p;
     if (animState != nullptr) animState->setEnabled(playing);
 }
+std::string AnimationHelper::getAnimName() const { return animState->getAnimationName(); }
 }
