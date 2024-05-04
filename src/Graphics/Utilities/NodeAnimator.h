@@ -47,6 +47,11 @@ private:
 
 public:
     /**
+    * @brief Para la animacion
+    */
+    ~NodeAnimator();
+
+    /**
     * @brief Inicializa la animacion. Crea los keyframes y la animacion en ogre. 
     * Establece si esta activado y si se quiere repetir la animacion
     */

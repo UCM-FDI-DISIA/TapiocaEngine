@@ -21,7 +21,7 @@ private:
     KeyFramesInfo info;           // Informacion de los keyframes
     NodeAnimator* nodeAnimator;   // Nodo animador
     float speed;                  // Velocidad de la animacion
-    float duration;               // Duracion de la animacion
+    float duration;               // Duracion de la animacion en segundos
     bool playByDefault;           // Indica si la animacion se reproduce por defecto
     bool loop;                    // Indica si la animacion se reproduce en bucle
 
