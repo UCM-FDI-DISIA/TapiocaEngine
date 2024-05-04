@@ -15,7 +15,7 @@ class TAPIOCA_API WindowManager : public Singleton<WindowManager>, public Module
 private:
     friend Singleton<WindowManager>;
 
-    // C4251 'Tapioca::WindowManager::windowName'
+    // warning C4251 'Tapioca::WindowManager::windowName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
     // para que la utilicen los clientes de class 'Tapioca::WindowManager'
 #ifdef _MSC_VER

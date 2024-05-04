@@ -52,7 +52,7 @@ bool InputText::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(placeHolderText, "placeHolderText", variables)) {
         logInfo(("InputText: No se encontro el valor de placeHolderText. Se inicializo al valor predefinido: \"" +
-                 placeHolderText + "\.")
+                 placeHolderText + "\".")
                     .c_str());
     }
 

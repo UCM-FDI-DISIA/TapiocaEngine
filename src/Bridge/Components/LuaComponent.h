@@ -18,7 +18,18 @@ namespace Tapioca {
 class TAPIOCA_API LuaComponent : public Component { 
 private:
     luabridge::LuaRef* objectTable;
+
+    // warning C4251 'Tapioca::LuaComponent::name' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::LuaComponent'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string name;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
 
     void callSimpleFunction(const std::string& name);
     void registerFunctions();

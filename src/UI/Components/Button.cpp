@@ -9,7 +9,7 @@
 
 namespace Tapioca {
 Button::Button()
-    : BaseWidget(), Component(), onClickId(""), text("Button"), textFont(nullptr), textFontName(""), textSize(16.0f) {
+    : BaseWidget(), Component(), onClickId(""), text("Button"), textFont(nullptr), textFontName(""), textSize(16.0f), initialTextSize(16.0f) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColorNormal = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     textColorHover = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);

@@ -62,7 +62,7 @@ void DropBox::render() const {
 
     ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
-    int s = items.size();
+    int s = (int)items.size();
     int current = currentItem;
     if (s > 0) {
         if (ImGui::BeginCombo("##", items[current].c_str())) {

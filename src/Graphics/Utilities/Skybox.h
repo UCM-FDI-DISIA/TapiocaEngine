@@ -14,7 +14,16 @@ namespace Tapioca {
 */
 class TAPIOCA_API Skybox : public RenderObject {
 private:
+    // warning C4251 'Tapioca::Skybox::mSkyBoxObj' :
+    // class 'std::unique_ptr<Ogre::ManualObject,std::default_delete<Ogre::ManualObject>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
     Ogre::SceneManager* sceneManager;
 
     // warning C4251 'Tapioca::Skybox::texture' :

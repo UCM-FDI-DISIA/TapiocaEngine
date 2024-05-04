@@ -33,8 +33,8 @@ Vector2 Vector2::lerp(Vector2 const& end, float t) const {
     return Vector2(lx, ly);
 }
 float Vector2::distance(Vector2 const& other) const { 
-    double dx = other.x - x;
-    double dy = other.y - y;
+    float dx = other.x - x;
+    float dy = other.y - y;
     return std::sqrt(dx * dx + dy * dy);
 }
 

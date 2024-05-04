@@ -28,7 +28,7 @@ AnimationHelper::~AnimationHelper() {
 void AnimationHelper::updateAnim(const uint64_t delt, const float speed) {
     if (animState != nullptr) {
         // Actualiza la animacion
-        animState->addTime(delt * 0.001 * speed);
+        animState->addTime((float)(delt * 0.001 * speed));
     }
 }
 
@@ -49,6 +49,8 @@ void AnimationHelper::setLoop(const bool l) {
     looping = l;
     if (animState != nullptr) animState->setLoop(looping);
 }
+
+inline bool AnimationHelper::hasEnded() const { return animState->hasEnded(); }
 
 void AnimationHelper::setPlaying(const bool p) {
     playing = p;

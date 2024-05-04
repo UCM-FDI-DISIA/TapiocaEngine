@@ -146,7 +146,7 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
             if (!loadGameObjects(gameObject->getScene(), children)) return false;
         }
         else if (name == "zIndex") {
-            zIndex = lua_tointeger(luaState, -1);
+            zIndex = (int)lua_tointeger(luaState, -1);
         }
         lua_pop(luaState, 1);
     }
@@ -172,7 +172,7 @@ bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& 
 
         if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
         if (name == "zIndex") {
-            zIndex = lua_tointeger(luaState, -1);
+            zIndex = (int)lua_tointeger(luaState, -1);
         }
         else {
             gameObjects.push_back(gameObject);

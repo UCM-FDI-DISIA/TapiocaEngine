@@ -14,7 +14,17 @@ private:
     MeshRenderer* meshRenderer;   // Componente MeshRenderer del objeto
     AnimationHelper* anim;        // Componente AnimationHelper del objeto
     float speed;                  // Velocidad a la que se actualiza la animacion
+    
+    // warning C4251 'Tapioca::Animator::initAnim' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Animator'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string initAnim;
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
 public:
     COMPONENT_ID("Animator")

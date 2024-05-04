@@ -12,7 +12,17 @@ namespace Tapioca {
 class TAPIOCA_API LuaRegistry {
 private:
     lua_State* L;            // Estado do Lua
+
+    // warning C4251 'Tapioca::LuaRegistry::map' :
+    // class 'luabridge::LuaRef' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::LuaRegistry'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     luabridge::LuaRef map;   // Mapa de valores
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
 public:
     /**

@@ -44,10 +44,10 @@ Vector4 Vector4::lerp(Vector4 const& end, float t) const {
     return Vector4(lx, ly, lz, lw);
 }
 float Vector4::distance(Vector4 const& other) const {
-    double dx = other.x - x;
-    double dy = other.y - y;
-    double dz = other.z - z;
-    double dw = other.w - w;
+    float dx = other.x - x;
+    float dy = other.y - y;
+    float dz = other.z - z;
+    float dw = other.w - w;
     return std::sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
 }
 }

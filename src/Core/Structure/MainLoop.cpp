@@ -19,7 +19,7 @@ MainLoop::~MainLoop() {
 
     sceneBuffer.clear();
 
-    for (auto s : loadedScenes)
+    for (auto& s : loadedScenes)
         delete s.second;
 
     loadedScenes.clear();
@@ -104,7 +104,7 @@ void MainLoop::update() {
     for (auto mod : modules)
         mod->update(deltaTime);
 
-    for (auto s : loadedScenes)
+    for (auto& s : loadedScenes)
         if (s.second->isActive()) s.second->update(deltaTime);
 }
 
@@ -112,7 +112,7 @@ void MainLoop::fixedUpdate() {
     for (auto mod : modules)
         mod->fixedUpdate();
 
-    for (auto s : loadedScenes)
+    for (auto& s : loadedScenes)
         if (s.second->isActive()) s.second->fixedUpdate();
 }
 
@@ -150,7 +150,7 @@ void MainLoop::refresh() {
         logWarn("MainLoop: No hay escenas en el juego. Se va a cerrar la aplicacion.");
     }
 
-    for (auto s : loadedScenes)
+    for (auto& s : loadedScenes)
         if (s.second->isActive()) s.second->refresh();
 }
 
@@ -162,7 +162,7 @@ void MainLoop::handleDelayedEvents() {
             e.emisor->handleEvent(e.id, e.info);
         }
         else {
-            for (auto s : loadedScenes) {
+            for (auto& s : loadedScenes) {
                 if (s.second->isActive()) s.second->handleEvent(e.id, e.info);
             }
         }
@@ -175,7 +175,7 @@ void MainLoop::addModule(Module* const m) { modules.push_back(m); }
 void MainLoop::pushEvent(Event const& e, bool const delay) {
     if (delay) delayedEvents.emplace_back(e);
     else
-        for (auto s : loadedScenes)
+        for (auto& s : loadedScenes)
             if (s.second->isActive()) s.second->handleEvent(e.id, e.info);
 }
 

@@ -54,10 +54,8 @@ protected:
 
     Registrar(const Registrar& rhs) = delete;
 
-    Registrar(Registrar&& rhs)
-        : L(rhs.L)
-        , m_stackSize(std::exchange(rhs.m_stackSize, 0))
-        , m_skipStackPops(std::exchange(rhs.m_skipStackPops, 0))
+    Registrar(Registrar&& rhs) : L(rhs.L) , m_stackSize(std::exchange(rhs.m_stackSize, 0)), 
+        m_skipStackPops(std::exchange(rhs.m_skipStackPops, 0))
     {
     }
 

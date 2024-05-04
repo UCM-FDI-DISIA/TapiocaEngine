@@ -20,7 +20,18 @@ protected:
     LuaManager* luaManager;         // Puntero al LuaManager
     WindowManager* windowManager;   // Puntero al WindowManager
 
+    // warning C4251 'Tapioca::BaseWidget::name' : 
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::BaseWidget'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string name;               // Nombre del widget
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+
+
     Transform* transform;           // Puntero al transform del widget
     ImGuiWindowFlags windowFlags;   // Flags de la ventana
 

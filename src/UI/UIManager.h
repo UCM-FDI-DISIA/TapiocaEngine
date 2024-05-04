@@ -48,29 +48,31 @@ private:
     Ogre::RenderWindow* ogreWindow;     // Referencia a la superficie de renderizado de Ogre
     RenderListener* renderListener;     // Listener de renderizado de Ogre
 
-    // 'Tapioca::UIManager::fontsPath' :
+    // warning C4251 'Tapioca::UIManager::fontsPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
-    // 'Tapioca::UIManager::texturesPath' :
+    // warning C4251 'Tapioca::UIManager::texturesPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
-    // 'Tapioca::UIManager::fonts' :
+    // warning C4251 'Tapioca::UIManager::fonts' :
     // class 'std::unordered_map<std::pair<std::string,float>,ImFont *,Tapioca::pair_hash,std::equal_to<std::pair<std::string,float>>,std::allocator<std::pair<const std::pair<std::string,float>,ImFont *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
+    // warning C4251 'Tapioca::UIManager::widgetNames' : 
+    // class 'std::set<std::string,std::less<std::string>,std::allocator<std::string>>' 
+    // necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
     std::string fontsPath;                                                         // Ruta de la carpeta de fuentes
     std::string texturesPath;                                                      // Ruta de la carpeta de imagenes
     std::unordered_map<std::pair<std::string, float>, ImFont*, pair_hash> fonts;   // Fuentes de la interfaz de usuario
+    std::set<std::string> widgetNames;                                             // Nombres de los widgets
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
 
     static constexpr float fontDefaultSize = 16.0f;   // Tamano por defecto de las fuentes
-
-    std::set<std::string> widgetNames;   // Nombres de los widgets
-    long long int widgetCounter;         // Contador de widgets
+    long long int widgetCounter;                      // Contador de widgets
 
     /**
     * @brief Genera un nombre para un widget
@@ -83,7 +85,7 @@ private:
     * @brief Comprueba si existe la carpeta de fuentes y la carpeta de imagenes.
     * Si no existen, las crea
     */
-    void check();
+    void check() const;
 
     /**
     * @brief Inicializa a nulo los punteros
@@ -121,19 +123,19 @@ public:
     * @brief Devuelve si existe o no la carpeta de fuentes
     * @return true si existe, false si no
     */
-    bool fontsFolderExists();
+    bool fontsFolderExists() const;
 
     /**
     * @brief Devuelve si existe o no la carpeta de imagenes
     * @return true si existe, false si no
     */
-    bool texturesFolderExists();
+    bool texturesFolderExists() const;
 
     /**
     * @brief Devuelve si esta vacia o no la carpeta de fuentes
     * @return true si esta vacia, false si no
     */
-    bool fontsFolderEmpty();
+    bool fontsFolderEmpty() const;
 
     /**
     * @brief Carga una fuente de la carpeta de fuentes

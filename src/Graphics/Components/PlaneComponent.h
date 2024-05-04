@@ -21,8 +21,22 @@ private:
     float height;               // Alto del plano
     int xSegments;              // Numero de segmentos en x
     int ySegments;              // Numero de segmentos en y
+
+    // warning C4251 'Tapioca::PlaneComponent::planeName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::PlaneComponent'
+    // warning C4251 'Tapioca::PlaneComponent::materialName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::PlaneComponent'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string planeName;      // Nombre del plano
     std::string materialName;   // Nombre del material
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+    
 
 public:
     COMPONENT_ID("PlaneComponent")

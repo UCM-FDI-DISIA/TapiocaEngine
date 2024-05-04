@@ -76,7 +76,7 @@ public:
     * @brief Devuelve si la animacion ha terminado
     * @return True si la animacion ha terminado, false en caso contrario
     */
-    inline bool hasEnded() const { return animState->hasEnded(); }
+    inline bool hasEnded() const;
 
     /**
     * @brief Devuelve el nombre de la animacion actual

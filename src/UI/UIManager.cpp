@@ -79,7 +79,7 @@ bool UIManager::handleEvents(const SDL_Event& event) {
             float newWidth = (float)windowManager->getWindowW();
             float newHeight = (float)windowManager->getWindowH();
             for (std::pair<std::string, Scene*> s : mainLoop->getLoadedScenes())
-                if (!windowManager->getResized()) s.second->setWindowSize(newWidth, newHeight);
+                if (!windowManager->getResized()) s.second->setWindowSize((uint32_t)newWidth, (uint32_t)newHeight);
             ImGuiIO& io = ImGui::GetIO();
             io.DisplaySize = ImVec2(newWidth, newHeight);
             return true;
@@ -89,7 +89,7 @@ bool UIManager::handleEvents(const SDL_Event& event) {
     return false;
 }
 
-void UIManager::check() {
+void UIManager::check() const {
     if (!fontsFolderExists()) {
         try {
             if (std::filesystem::create_directory(fontsPath))
@@ -108,7 +108,7 @@ void UIManager::check() {
     }
 }
 
-bool UIManager::fontsFolderExists() {
+bool UIManager::fontsFolderExists() const {
     if (!std::filesystem::exists(fontsPath)) {
         logWarn(("UIManager: La carpeta \"" + fontsPath + " no existe.").c_str());
         return false;
@@ -116,7 +116,7 @@ bool UIManager::fontsFolderExists() {
     return true;
 }
 
-bool UIManager::texturesFolderExists() {
+bool UIManager::texturesFolderExists() const {
     if (!std::filesystem::exists(texturesPath)) {
         logWarn(("UIManager: La carpeta \"" + texturesPath + "\" no existe.").c_str());
         return false;
@@ -124,7 +124,7 @@ bool UIManager::texturesFolderExists() {
     return true;
 }
 
-bool UIManager::fontsFolderEmpty() {
+bool UIManager::fontsFolderEmpty() const {
     if (std::filesystem::directory_iterator(fontsPath) == std::filesystem::directory_iterator {}) {
         logWarn(("UIManager: La carpeta \"" + fontsPath + "\" esta vacia.").c_str());
         return true;

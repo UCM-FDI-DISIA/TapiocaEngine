@@ -120,8 +120,8 @@ void Line::render() const {
 
     ImVec2 lineStartPos(startPosition.x * scaleFactorX, startPosition.y * scaleFactorY);
     ImVec2 lineEndPos(endPosition.x * scaleFactorX, endPosition.y * scaleFactorY);
-    float lineThicknessScaled = lineThickness * (scaleFactorX + scaleFactorY) / 2.0;
-    float borderThicknessScaled = borderThickness * (scaleFactorX + scaleFactorY) / 2.0;
+    float lineThicknessScaled = lineThickness * (scaleFactorX + scaleFactorY) / 2.0f;
+    float borderThicknessScaled = borderThickness * (scaleFactorX + scaleFactorY) / 2.0f;
 
     ImDrawList* drawList = ImGui::GetForegroundDrawList();
     ImU32 line = IM_COL32(lineColor.x * 255, lineColor.y * 255, lineColor.z * 255, lineColor.w * 255);

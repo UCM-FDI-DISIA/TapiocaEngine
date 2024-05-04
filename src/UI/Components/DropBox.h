@@ -10,7 +10,17 @@ namespace Tapioca {
 */
 class TAPIOCA_API DropBox : public BaseWidget, public Component {
 private:
+
+    // warning C4251 'Tapioca::DropBox::items' : 
+    // class 'std::vector<std::string,std::allocator<std::string>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::DropBox'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::vector<std::string> items;   // Vector con las distintas opciones
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     int currentItem;                  // Indice del elemento seleccionado
 
 public:

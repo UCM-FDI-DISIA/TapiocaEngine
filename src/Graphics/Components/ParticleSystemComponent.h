@@ -14,8 +14,23 @@ private:
     RenderNode* node;           // Nodo de renderizado
     Transform* transform;       // Transform del nodo
     ParticleSystem* pSys;       // Sistema de particulas
+
+    // warning C4251 'Tapioca::ParticleSystemComponent::pSysName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent'
+    // warning C4251 'Tapioca::ParticleSystemComponent::templateName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::ParticleSystemComponent'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string pSysName;       // Nombre del sistema de particulas
     std::string templateName;   // Nombre del template del sistema de particulas
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+    
+    
     bool emitting;              // Indica si el sistema de particulas esta emitiendo
 
 public:

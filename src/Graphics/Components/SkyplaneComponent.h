@@ -15,8 +15,22 @@ private:
     RenderNode* node;           // Nodo de renderizado
     Transform* transform;       // Transform del nodo
     Skyplane* skyplane;         // Plano en el cielo
+
+    // warning C4251 'Tapioca::SkyplaneComponent::materialName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::SkyplaneComponent'
+    // warning C4251 'Tapioca::SkyplaneComponent::skyplaneName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::SkyplaneComponent'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string materialName;   // Nombre del material
     std::string skyplaneName;   // Nombre del skyplane
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+    
     Vector3 rkNormal;           // Vector normal del plano
     float fConstant;            // Distancia que se desplaza el plano en la direccion de la normal
     float scale;                // Escala del plano

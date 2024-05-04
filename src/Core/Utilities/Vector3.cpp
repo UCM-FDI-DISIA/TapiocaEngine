@@ -63,9 +63,9 @@ Vector3 Vector3::lerp(Vector3 const& end, float t) const {
 }
 
 float Vector3::distance(Vector3 const& other) const {
-    double dx = other.x - x;
-    double dy = other.y - y;
-    double dz = other.z - z;
+    float dx = other.x - x;
+    float dy = other.y - y;
+    float dz = other.z - z;
     return std::sqrt(dx * dx + dy * dy + dz * dz);
 }
 }

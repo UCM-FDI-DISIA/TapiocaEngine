@@ -304,7 +304,7 @@ bool LuaManager::loadScripts() {
                 if (!loadScript(entry.path().string())) return false;
             }
         }
-    } catch (std::filesystem::filesystem_error& aaa) {
+    } catch (std::filesystem::filesystem_error&) {
         logWarn("LuaManager: No existe ruta scripts.");
     }
     return true;

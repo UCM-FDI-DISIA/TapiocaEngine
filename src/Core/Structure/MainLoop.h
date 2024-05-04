@@ -18,8 +18,9 @@ class TAPIOCA_API MainLoop : public Singleton<MainLoop> {
 private:
     friend Singleton<MainLoop>;
 
-    std::vector<Event> delayedEvents;
-
+    // warning C4251 'Tapioca::MainLoop::delayedEvents' :
+    // class 'std::vector<Tapioca::Event,std::allocator<Tapioca::Event>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
     // warning C4251 'Tapioca::MainLoop::modules' :
     // class 'std::vector<Tapioca::Module *,std::allocator<Tapioca::Module *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
@@ -35,6 +36,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
+    std::vector<Event> delayedEvents;
     std::vector<Module*> modules;                           // Modulos del motor
     std::unordered_map<std::string, Scene*> loadedScenes;   // Escenas cargadas
     std::unordered_set<Scene*> sceneBuffer;                 // Escenas que se van a cargar la siguiente iteracion

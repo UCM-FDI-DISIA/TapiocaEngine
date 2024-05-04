@@ -87,7 +87,7 @@ public:
     */
     inline void setBufferSize(size_t bufferSize) {
         if (bufferSize != this->bufferSize) {
-            this->bufferSize = bufferSize;
+            this->bufferSize = (int)bufferSize;
             startBuffer();
         }
     }

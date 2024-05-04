@@ -26,7 +26,18 @@ private:
     MainLoop* mainLoop;             // Puntero a MainLoop
     FactoryManager* factManager;    // Puntero a FactoryManager
     WindowManager* windowManager;   // Puntero a WindowManager
-    std::string scenesPath;         // Ruta de las escenas
+
+    // warning C4251 'Tapioca::SceneLoader::scenesPath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::SceneLoader'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string scenesPath;   // Ruta de las escenas
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
 
     /**
     * @brief Inicializa la ruta de las escenas

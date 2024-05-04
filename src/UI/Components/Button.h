@@ -12,18 +12,34 @@ namespace Tapioca {
 */
 class TAPIOCA_API Button : public BaseWidget, public Component {
 protected:
+    // warning C4251 'Tapioca::Button::onClickId' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::Button'
+    // warning C4251 'Tapioca::Button::text' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::Button'
+    // warning C4251 'Tapioca::Button::textFontName' : 
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::Button'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string onClickId;      // Id de la funcion que se ejecuta cuando se hace click en el boton
     std::string text;           // Texto que se muestra en el boton
     std::string textFontName;   // Nombre de la fuente del texto del boton
-    float textSize;             // Tamano de la fuente del texto del boton
-    float initialTextSize;      // Tamano inicial de la fuente del texto del boton
-    ImFont* textFont;           // Fuente del texto del boton incluyendo tamano
-    Vector4 textColorNormal;    // Color del texto del boton en estado "normal"
-    Vector4 textColorHover;     // Color del texto del boton en estado "hover"
-    Vector4 textColorActive;    // Color del texto del boton en estado "active"
-    Vector4 normalColor;        // Color del boton para el estado "normal"
-    Vector4 hoverColor;         // Color del boton para el estado "hover"
-    Vector4 activeColor;        // Color del boton para el estado "active"
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    
+    float textSize;            // Tamano de la fuente del texto del boton
+    float initialTextSize;     // Tamano inicial de la fuente del texto del boton
+    ImFont* textFont;          // Fuente del texto del boton incluyendo tamano
+    Vector4 textColorNormal;   // Color del texto del boton en estado "normal"
+    Vector4 textColorHover;    // Color del texto del boton en estado "hover"
+    Vector4 textColorActive;   // Color del texto del boton en estado "active"
+    Vector4 normalColor;       // Color del boton para el estado "normal"
+    Vector4 hoverColor;        // Color del boton para el estado "hover"
+    Vector4 activeColor;       // Color del boton para el estado "active"
 
 public:
     COMPONENT_ID("Button")

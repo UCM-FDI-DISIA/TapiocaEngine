@@ -12,11 +12,21 @@ class Transform;
 */
 class TAPIOCA_API AudioSourceComponent: public Component {
 private:
-    AudioSource* source; // Fuente de audio
-    Sound* sound; // Sonido a reproducir
-    Transform* transform; // Transform del objeto
-    Vector3 position; // Posicion de la fuente de audio
-    std::string sourcePath; // Ruta del archivo de audio
+    AudioSource* source;      // Fuente de audio
+    Sound* sound;             // Sonido a reproducir
+    Transform* transform;     // Transform del objeto
+    Vector3 position;         // Posicion de la fuente de audio
+    
+    // warning C4251 'Tapioca::AudioSourceComponent::sourcepath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::AudioSourceComponent'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string sourcePath;         //ruta archivo de sonido
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 
     bool is3D; // Indica si queremos una fuente de sonido espacializada o no
     bool isLooping;

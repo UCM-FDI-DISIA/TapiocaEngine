@@ -18,23 +18,29 @@ private:
     // class 'std::unordered_map<std::string,Tapioca::GameObject *,std::hash<std::string>,std::equal_to<std::string>,
     // std::allocator<std::pair<const std::string,Tapioca::GameObject *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Scene'
+    // warning C4251 'Tapioca::Scene::name' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Scene'
+    // warning C4251 'Tapioca::Scene::layers' :
+    // class 'std::map<int,std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>,std::less<int>,
+    // std::allocator<std::pair<const int,std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>>>>'
+    // necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Scene'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
     std::vector<GameObject*> objects;                        // Objetos que tiene la escena
     std::unordered_map<std::string, GameObject*> handlers;   // Relaciones entre handlers y objetos
+    std::string name;
+    std::map<int, std::vector<GameObject*>> layers;   // Objetos que tiene la escena por orden de capa
+
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    // FALTA WARNING C4251 PARA name
-    std::string name;
-    // FALTA WARNING C4251 PARA layers
-    std::map<int, std::vector<GameObject*>> layers;   // Objetos que tiene la escena por orden de capa
 
     bool active;                          // Indica si la escena esta activa
     uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
     uint32_t firstWindowWidth,
-        firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
+             firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
 
 public:
     /**

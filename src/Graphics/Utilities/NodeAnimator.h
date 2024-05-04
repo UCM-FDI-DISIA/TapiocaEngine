@@ -31,10 +31,25 @@ private:
     Ogre::AnimationState* animationState;   // Referencia al estado de la animacion
 
     float duration;                    // Duracion de la animacion en segundos
-    std::vector<KeyFrame> keyFrames;   // Lista de keyframes
+
     bool enabled;                      // Indica si la animacion esta activa
     bool loop;                         // Indica si la animacion se repite
-    std::string name;                  // Nombre de la animacion
+
+    // warning C4251 'Tapioca::NodeAnimator::keyFrames' :
+    // class 'std::vector<Tapioca::KeyFrame,std::allocator<Tapioca::KeyFrame>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::NodeAnimator'
+    // warning C4251 'Tapioca::NodeAnimator::name' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::NodeAnimator'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::vector<KeyFrame> keyFrames;    // Lista de keyframes
+    std::string name;                   // Nombre de la animacion
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+    
 
     /**
     * @brief Constructor de la clase NodeAnimator
