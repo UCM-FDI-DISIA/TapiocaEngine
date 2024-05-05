@@ -101,16 +101,18 @@ void PhysicsManager::start() {
 }
 
 bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triangleMesh) { 
-       std::ifstream file;
-    file.open(filename);
+    std::string filePath = "./assets/" + filename;
+    std::ifstream file;
+    file.open(filePath);
     if (!file.is_open()) {
-        logError("[Motor]: Error al abrir el archivo.obj ");
+        logError(("[Motor]: Error al abrir el archivo" + filename).c_str());
         return false;
     }
 
     std::vector<btVector3> vertices;
     std::string line;
-    while (std::getline(file, line)) {
+    bool correct = true;
+    while (std::getline(file, line) && correct) {
         std::istringstream iss(line);
         std::string prefix;
         iss >> prefix;
@@ -124,13 +126,17 @@ bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triang
             std::string v1, v2, v3;
             iss >> v1 >> v2 >> v3;
             int vi1, vi2, vi3;   // Índices de los vértices
-            sscanf(v1.c_str(), "%d", &vi1);
-            sscanf(v2.c_str(), "%d", &vi2);
-            sscanf(v3.c_str(), "%d", &vi3);
-            triangleMesh->addTriangle(vertices[vi1 - 1], vertices[vi2 - 1], vertices[vi3 - 1]);
+            if (sscanf(v1.c_str(), "%d", &vi1) != 1) correct = false;
+            if (sscanf(v2.c_str(), "%d", &vi2) != 1) correct = false;
+            if (sscanf(v3.c_str(), "%d", &vi3) != 1) correct = false;
+            if (!correct || vi1 > vertices.size() || vi1 < 1 || vi2 > vertices.size() || vi2 < 1 ||
+                vi3 > vertices.size() ||vi3<1) correct = false;
+            if (correct)triangleMesh->addTriangle(vertices[vi1 - 1], vertices[vi2 - 1], vertices[vi3 - 1]);
         }
     }
-    return true; 
+    if (!correct) logError("[Motor]: Error en el archivo.obj. ");
+    file.close();
+    return correct;
 }
 
 btBvhTriangleMeshShape* PhysicsManager::createMeshCollision(const std::string& name) { 
@@ -170,7 +176,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
-    btCollisionShape* shape;
+    btCollisionShape* shape=nullptr;
 
     switch (colliderShape) {
     case BOX_SHAPE: shape = new btBoxShape(scale); break;
@@ -178,8 +184,8 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     case PLANE_SHAPE: shape = new btStaticPlaneShape(scale, 0); break;
     case CAPSULE_SHAPE: shape = new btCapsuleShape(scale.getX(), scale.getY()); break;
     case MESH_SHAPE: shape = createMeshCollision(file); break;
-    default: shape = new btBoxShape(scale); break;
     }
+    if (shape == nullptr) shape = new btBoxShape(scale);
 
     btVector3 inertia;
     inertia.setZero();
