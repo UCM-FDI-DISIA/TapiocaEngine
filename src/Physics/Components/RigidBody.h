@@ -177,6 +177,11 @@ public:
     void addImpulse(const Vector3 f);
 
     /**
+    * @brief Elimina las fuerzas actuando sobre el rb
+    */
+    void clearForces();
+
+    /**
     * @brief Devuelve si el rb es un trigger o no
     * @return True si es un trigger, false en caso contrario
     */

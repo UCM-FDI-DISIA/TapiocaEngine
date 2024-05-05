@@ -230,6 +230,8 @@ void RigidBody::addImpulse(const Vector3 f) {
     rigidBody->applyCentralImpulse(toBtVector3(f));
 }
 
+void RigidBody::clearForces() { rigidBody->clearForces(); }
+
 void RigidBody::setMask(const int m) {
     mask = m;
     if (rigidBody == nullptr) return;
