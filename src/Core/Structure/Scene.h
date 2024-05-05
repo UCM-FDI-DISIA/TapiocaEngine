@@ -30,8 +30,8 @@ private:
 #endif
     std::vector<GameObject*> objects;                        // Objetos que tiene la escena
     std::unordered_map<std::string, GameObject*> handlers;   // Relaciones entre handlers y objetos
-    std::string name;
-    std::map<int, std::vector<GameObject*>> layers;   // Objetos que tiene la escena por orden de capa
+    std::string name;                                        // Nombre de la escena
+    std::map<int, std::vector<GameObject*>> layers;          // Objetos que tiene la escena por orden de capa
 
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -40,7 +40,7 @@ private:
     bool active;                          // Indica si la escena esta activa
     uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
     uint32_t firstWindowWidth,
-             firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
+        firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
 
 public:
     /**
@@ -94,7 +94,7 @@ public:
     void render() const;
     /**
     * @brief Elimina los objetos muertos de la escena ademas de todas sus componentes
-=   */
+    */
     void refresh();
     /**
     * @brief Procesa un evento recibido
@@ -114,18 +114,18 @@ public:
     * @brief Devuelve el nombre de la escena
     * @return Nombre de la escena
     */
-    std::string const& getName() const;
+    inline std::string const& getName() const { return name; }
 
     /**
     * @brief Establece si la escena esta activa
     * @param a True si se quiere activar la escena, false en caso contrario
     */
-    void setActive(const bool a);
+    inline void setActive(const bool a) { active = a; }
     /**
     * @brief Devuelve si la escena esta activa
     * @return True si la escena esta activa, false en caso contrario
     */
-    bool isActive() const;
+    inline bool isActive() const { return active; }
 
     /**
     * @brief Actualiza el zIndex de un objeto

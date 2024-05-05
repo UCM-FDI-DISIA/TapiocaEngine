@@ -4,8 +4,8 @@
 
 namespace Tapioca {
 Scene::Scene(std::string const& name)
-    : name(name), active(true), firstWindowWidth(680), firstWindowHeight(480), windowWidth(firstWindowWidth),
-      windowHeight(firstWindowHeight) { }
+    : name(name), active(true), windowWidth(680), windowHeight(480), firstWindowWidth(windowWidth),
+      firstWindowHeight(windowHeight) { }
 
 Scene::~Scene() {
     for (auto obj : objects)
@@ -91,12 +91,6 @@ void Scene::start() {
     for (auto obj : objects)
         obj->start();
 }
-
-std::string const& Scene::getName() const { return name; }
-
-void Scene::setActive(const bool a) { active = a; }
-
-bool Scene::isActive() const { return active; }
 
 void Scene::updateZIndex(GameObject* obj, int zIndex) {
     if (zIndex < 0) {

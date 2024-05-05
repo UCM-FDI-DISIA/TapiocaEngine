@@ -10,7 +10,7 @@ Sound::Sound(std::string sourceFile) : source(nullptr), sourceFile(sourceFile), 
 
         // Si el sonido ya se ha cargado
         if (source == nullptr)
-            source = Tapioca::SoundManager::instance()->soundEngine->getSoundSource(sourceFile.c_str());
+            source = soundManager->soundEngine->getSoundSource(sourceFile.c_str());
         length = source->getPlayLength();
     }
 }

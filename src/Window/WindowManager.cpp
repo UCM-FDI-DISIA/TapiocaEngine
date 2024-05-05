@@ -7,9 +7,6 @@
 #include <SDL_syswm.h>
 #undef main
 
-#ifdef _DEBUG
-#include <iostream>
-#endif
 #include "checkML.h"
 
 namespace Tapioca {
@@ -18,8 +15,8 @@ template<>
 WindowManager* Singleton<WindowManager>::instance_ = nullptr;
 
 WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
-    : sdlWindow(nullptr), glContext(nullptr), windowName(windowName), windowWidth(w), windowHeight(h),
-      firstWindowWidth(w), firstWindowHeight(h), resized(true), modules(), mainLoop(nullptr) { }
+    : windowName(windowName), windowWidth(w), windowHeight(h), firstWindowWidth(windowWidth),
+      firstWindowHeight(windowHeight), sdlWindow(nullptr), glContext(nullptr), resized(false), mainLoop(nullptr) { }
 
 WindowManager::~WindowManager() {
     if (sdlWindow != nullptr) {
@@ -32,10 +29,7 @@ WindowManager::~WindowManager() {
     mainLoop = nullptr;
 }
 
-bool WindowManager::init() {
-    // Iniciar SDL
-    return SDL_Init(SDL_INIT_EVERYTHING) == 0;
-}
+bool WindowManager::init() { return SDL_Init(SDL_INIT_EVERYTHING) == 0; }
 
 bool WindowManager::initConfig() {
     logInfo("WindowManager: Configurando el nombre de la ventana...");
@@ -70,8 +64,8 @@ bool WindowManager::initConfig() {
         logInfo("WindowManager: Ventana configurada a pantalla completa.");
     }
     // Si no se quiere pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
-	else
-		tryGetWindowSize();
+    else
+        tryGetWindowSize();
 
     // Crear ventana
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;

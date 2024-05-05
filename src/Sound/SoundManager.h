@@ -21,12 +21,8 @@ class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
     friend AudioListener;
 
 private:
-    AudioListener* al;
-    irrklang::ISoundEngine* soundEngine; // Puntero al ISoundEngine de irrKlang
-
-    // TEMPORAL
-    Sound* snd;
-    AudioSource* au;
+    AudioListener* al;                     // Puntero al AudioListener
+    irrklang::ISoundEngine* soundEngine;   // Puntero al ISoundEngine de irrKlang
 
     /**
     * @brief Constructor por defecto
@@ -49,8 +45,5 @@ public:
     * @params al AudioListener al que se quiere actualizar
     */
     void setListener(AudioListener al);
-
-    // TEMPORAL
-    void testsample();
 };
 }

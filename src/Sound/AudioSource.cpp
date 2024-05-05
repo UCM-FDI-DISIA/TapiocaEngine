@@ -9,9 +9,8 @@ Tapioca::AudioSource::AudioSource(Sound sound, Vector3 pos, bool isPaused, bool 
       isLooped(isLooped), volume(0), position(pos) {
     irrklang::vec3df p(pos.x, pos.y, pos.z);
     iSound = Tapioca::SoundManager::instance()->soundEngine->play3D(sound.source, p, isLooped, true);
-    if (iSound == nullptr) {
+    if (iSound == nullptr)
         Tapioca::logError(("No se pudo cargar el sonido , no se encuentra el archivo " + sound.sourceFile).c_str());
-    }
     else
         setPaused(isPaused);
 }

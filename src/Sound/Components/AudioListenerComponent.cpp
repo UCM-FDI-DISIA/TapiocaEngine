@@ -36,6 +36,7 @@ bool AudioListenerComponent::initComponent(const CompMap& variables) {
     }
     return true;
 }
+
 void AudioListenerComponent::awake() {
     transform = getObject()->getComponent<Transform>();
     if (transform != nullptr) {
@@ -47,6 +48,7 @@ void AudioListenerComponent::awake() {
     soundManager = SoundManager::instance();
     if (soundManager != nullptr) soundManager->setListener(*listener);
 }
+
 void AudioListenerComponent::handleEvent(std::string const& id, void* info) {
     if (id == "posChanged") {
         if (transform != nullptr) position = transform->getGlobalPosition();

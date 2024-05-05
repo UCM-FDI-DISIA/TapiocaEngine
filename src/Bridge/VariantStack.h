@@ -18,7 +18,6 @@ struct Stack<CompValue> {
         case 5: return Stack<std ::nullptr_t>::push(L, std::get<std::nullptr_t>(value));
         default: break;
         }
-        // TODO Mirar si hay otro codigo de error mejor
         return makeErrorCode(ErrorCode::InvalidTypeCast);
     }
 
@@ -38,7 +37,6 @@ struct Stack<CompValue> {
         else if (lua_isnil(L, index)) {
             return nullptr;
         }
-        // TODO Mirar si hay otro codigo de error mejor
         return makeErrorCode(ErrorCode::InvalidTypeCast);
     }
 

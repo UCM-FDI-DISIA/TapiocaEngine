@@ -11,7 +11,8 @@ LuaComponent::LuaComponent(luabridge::LuaRef* objTable, const std::string& name)
 }
 
 LuaComponent::~LuaComponent() {
-	delete objectTable;
+    if (objectTable != nullptr) delete objectTable;
+    objectTable = nullptr;
 }
 
 void LuaComponent::callSimpleFunction(const std::string& functionName) {
@@ -59,9 +60,7 @@ void LuaComponent::awake() {
     callSimpleFunction("awake");
 }
 
-void LuaComponent::start() {
-    callSimpleFunction("start");
-}
+void LuaComponent::start() { callSimpleFunction("start"); }
 
 void LuaComponent::update(const uint64_t deltaTime) {
     luabridge::LuaResult result = (*objectTable)["update"]((*objectTable), deltaTime);
@@ -72,9 +71,7 @@ void LuaComponent::update(const uint64_t deltaTime) {
     }
 }
 
-void LuaComponent::fixedUpdate() {
-    callSimpleFunction("fixedUpdate");
-}
+void LuaComponent::fixedUpdate() { callSimpleFunction("fixedUpdate"); }
 
 void LuaComponent::handleEvent(std::string const& id, void* info) {
     luabridge::LuaResult result = (*objectTable)["handleEvent"]((*objectTable), id);
@@ -85,7 +82,8 @@ void LuaComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-std::vector<CompValue> LuaComponent::callFunction(const std::string& name, const std::vector<CompValue>& parameters, bool* success) {
+std::vector<CompValue> LuaComponent::callFunction(const std::string& name, const std::vector<CompValue>& parameters,
+                                                  bool* success) const {
     std::vector<CompValue> out;
     luabridge::LuaRef function = luabridge::getGlobal(LuaManager::instance()->getLuaState(), "_internal")["call"];
     if (!function.isCallable()) {
@@ -115,12 +113,11 @@ std::vector<CompValue> LuaComponent::callFunction(const std::string& name, const
 }
 
 LuaComponentBuilder::LuaComponentBuilder(const std::string& name, luabridge::LuaRef* table)
-    : ComponentBuilder(name), classTable(table) {
-	
-}
+    : ComponentBuilder(name), classTable(table) { }
 
 LuaComponentBuilder::~LuaComponentBuilder() {
-    delete classTable;
+    if (classTable != nullptr) delete classTable;
+    classTable = nullptr;
 }
 
 Component* LuaComponentBuilder::createComponent() {
@@ -129,11 +126,11 @@ Component* LuaComponentBuilder::createComponent() {
     luabridge::LuaResult result = (*classTable)["new"]((*classTable));
     if (result.hasFailed() || result.size() == 0) {
         logError(("LuaComponent " + id + ": Ha ocurrido un error durante createComponent [" +
-            std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
-            .c_str());
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())
+                     .c_str());
         return nullptr;
     }
     *aux = result[0];
-	return new LuaComponent(aux, id);
+    return new LuaComponent(aux, id);
 }
 }
