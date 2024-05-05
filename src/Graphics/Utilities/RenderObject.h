@@ -11,7 +11,6 @@ class RenderNode;
 
 /**
 * @brief Clase base para los objetos que se renderizan en la escena
-
 */
 class TAPIOCA_API RenderObject {
 private:

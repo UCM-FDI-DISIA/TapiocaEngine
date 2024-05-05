@@ -10,17 +10,36 @@ namespace Tapioca {
 */
 class TAPIOCA_API ImageTextButton : public Button {
 private:
-    bool wantText;			          // Indica si se quiere mostrar el texto en el boton
-    std::string imagePathNormal;      // Ruta de la imagen que se muestra en el boton en estado normal
-    std::string imagePathHover;       // Ruta de la imagen que se muestra en el boton en estado hover
-    std::string imagePathActive;      // Ruta de la imagen que se muestra en el boton en estado active
-    ImTextureID textureIdNormal;      // Identificador de la textura de la imagen que se muestra en el boton en estado normal
-    ImTextureID textureIdHover;       // Identificador de la textura de la imagen que se muestra en el boton en estado hover
-    ImTextureID textureIdActive;      // Identificador de la textura de la imagen que se muestra en el boton en estado active
-    Vector2 uv0;                // Coordenadas de la esquina superior izquierda de la imagen
-    Vector2 uv1;                // Coordenadas de la esquina inferior derecha de la imagen
-    Vector4 imageBgColor;       // Color de fondo de la imagen
-    Vector4 imageTint;          // Tinte de la imagen
+    bool wantText;   // Indica si se quiere mostrar el texto en el boton
+
+    // warning C4251 'Tapioca::ImageTextButton::imagePathNormal' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::ImageTextButton'
+    // warning C4251 'Tapioca::ImageTextButton::imagePathHover' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::ImageTextButton'
+    // warning C4251 'Tapioca::ImageTextButton::imagePathHover' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::imagePathActive'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string imagePathNormal;   // Ruta de la imagen que se muestra en el boton en estado normal
+    std::string imagePathHover;    // Ruta de la imagen que se muestra en el boton en estado hover
+    std::string imagePathActive;   // Ruta de la imagen que se muestra en el boton en estado active
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+
+    ImTextureID
+        textureIdNormal;   // Identificador de la textura de la imagen que se muestra en el boton en estado normal
+    ImTextureID textureIdHover;   // Identificador de la textura de la imagen que se muestra en el boton en estado hover
+    ImTextureID
+        textureIdActive;    // Identificador de la textura de la imagen que se muestra en el boton en estado active
+    Vector2 uv0;            // Coordenadas de la esquina superior izquierda de la imagen
+    Vector2 uv1;            // Coordenadas de la esquina inferior derecha de la imagen
+    Vector4 imageBgColor;   // Color de fondo de la imagen
+    Vector4 imageTint;      // Tinte de la imagen
 
 public:
     COMPONENT_ID("ImageTextButton")

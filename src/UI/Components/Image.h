@@ -11,7 +11,17 @@ namespace Tapioca {
 */
 class TAPIOCA_API Image : public BaseWidget, public Component {
 private:
+    // warning C4251 'Tapioca::Image::imagePath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::Image'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string imagePath;   // Ruta de la imagen
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+
     ImTextureID textureId;   // Identificador de la textura de la imagen
 
 public:

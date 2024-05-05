@@ -11,7 +11,9 @@ class Vector3;
 */
 class TAPIOCA_API KeyFrameAnimator : public Component {
 private:
-    // Estructura con la informacion de los keyframes
+    /**
+    * @brief Estructura que guarda la informacion de los keyframes
+    */
     struct KeyFramesInfo {
         int size = 0;
         std::unordered_map<int, Vector3> pos;

@@ -17,26 +17,24 @@ private:
     // warning C4251 'Tapioca::Skybox::mSkyBoxObj' :
     // class 'std::unique_ptr<Ogre::ManualObject,std::default_delete<Ogre::ManualObject>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;
-#ifdef _MSC_VER
-#pragma warning(default : 4251)
-#endif
-    Ogre::SceneManager* sceneManager;
-
-    // warning C4251 'Tapioca::Skybox::texture' :
+    // warning C4251 'Tapioca::Skybox::material' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox'
+    // warning C4251 'Tapioca::Skybox::skyboxName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Skybox
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string material;     // Nombre del material
-    std::string skyboxName;   // Nombre skybox
+    std::unique_ptr<Ogre::ManualObject> mSkyBoxObj;   // Puntero al objeto skybox
+    std::string material;                             // Nombre del material
+    std::string skyboxName;                           // Nombre skybox
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+
+    Ogre::SceneManager* sceneManager;   // Puntero al SceneManager de Ogre
+
     float distC;   // Distancia entre la camara y el skybox
     bool orderC;   // True se pinta el plano antes que la escena False despues
 

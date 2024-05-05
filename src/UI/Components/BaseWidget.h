@@ -31,7 +31,6 @@ protected:
 #pragma warning(disable : 4251)
 #endif
 
-
     Transform* transform;           // Puntero al transform del widget
     ImGuiWindowFlags windowFlags;   // Flags de la ventana
 

@@ -37,7 +37,6 @@ private:
 #pragma warning(default : 4251)
 #endif
     
-
 public:
     COMPONENT_ID("PlaneComponent")
 

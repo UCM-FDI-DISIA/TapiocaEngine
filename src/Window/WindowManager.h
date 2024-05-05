@@ -18,13 +18,18 @@ private:
     // warning C4251 'Tapioca::WindowManager::windowName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
     // para que la utilicen los clientes de class 'Tapioca::WindowManager'
+    // warning C4251 'Tapioca::WindowManager::modules' :
+    // class 'std::vector<Tapioca::WindowModule *,std::allocator<Tapioca::WindowModule *>>' necesita tener una
+    // interfaz DLL para que la utilicen los clientes de class 'Tapioca::WindowManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
     std::string windowName;   // Nombre de la ventana
+    std::vector<WindowModule*> modules;   // Modulos suscritos a los eventos de ventana
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
+
     uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
     uint32_t firstWindowWidth,
         firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
@@ -32,17 +37,6 @@ private:
     void* glContext;         // Contexto de OpenGL
 
     bool resized;   // Si se ha redimensionado
-
-    // warning C4251 'Tapioca::WindowManager::modules' :
-    // class 'std::vector<Tapioca::WindowModule *,std::allocator<Tapioca::WindowModule *>>' necesita tener una
-    // interfaz DLL para que la utilicen los clientes de class 'Tapioca::WindowManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::vector<WindowModule*> modules;   // Modulos suscritos a los eventos de ventana
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
 
     MainLoop* mainLoop;   // Puntero a MainLoop
 

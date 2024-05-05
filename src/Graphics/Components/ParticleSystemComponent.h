@@ -30,7 +30,6 @@ private:
 #pragma warning(default : 4251)
 #endif
     
-    
     bool emitting;              // Indica si el sistema de particulas esta emitiendo
 
 public:

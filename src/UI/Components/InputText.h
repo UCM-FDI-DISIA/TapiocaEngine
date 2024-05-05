@@ -13,17 +13,33 @@ namespace Tapioca {
 */
 class TAPIOCA_API InputText : public BaseWidget, public Component {
 private:
+    // warning C4251 'Tapioca::InputText::placeHolderText' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::InputText'
+    // warning C4251 'Tapioca::InputText::onTextEnteredId' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::InputText'
+    // warning C4251 'Tapioca::InputText::textFontName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::InputText'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string placeHolderText;   // Texto que se muestra en la caja de texto
-    char* buffer;                  // Buffer de la caja de texto
-    int bufferSize;                // Tamano del buffer de la caja de texto
     std::string onTextEnteredId;   // Id de la funcion que se ejecuta cuando se hace ENTER en la caja de texto
-    float textSize;                // Tamano de la fuente del texto de la caja de texto
-    float initialTextSize;         // Tamano inicial de la fuente del texto de la caja de texto
     std::string textFontName;      // Nombre de la fuente del texto de la caja de texto
-    ImFont* textFont;              // Fuente del texto de la caja de texto incluyendo tamano
-    Vector4 textColor;             // Color del texto de la caja de texto
-    Vector4 bgColor;               // Color de fondo de la caja de texto
-    ImGuiInputTextFlags flags;     // Flags de la caja de texto
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+
+    char* buffer;                // Buffer de la caja de texto
+    int bufferSize;              // Tamano del buffer de la caja de texto
+    float textSize;              // Tamano de la fuente del texto de la caja de texto
+    float initialTextSize;       // Tamano inicial de la fuente del texto de la caja de texto
+    ImFont* textFont;            // Fuente del texto de la caja de texto incluyendo tamano
+    Vector4 textColor;           // Color del texto de la caja de texto
+    Vector4 bgColor;             // Color de fondo de la caja de texto
+    ImGuiInputTextFlags flags;   // Flags de la caja de texto
 
 public:
     COMPONENT_ID("InputText")

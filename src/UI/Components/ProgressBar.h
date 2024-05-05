@@ -10,9 +10,19 @@ namespace Tapioca {
 */
 class TAPIOCA_API ProgressBar : public BaseWidget, public Component {
 private:
-    float progress;               // Progreso actual
-    Vector4 barColor;             // Color de la barra de progreso
+    float progress;     // Progreso actual
+    Vector4 barColor;   // Color de la barra de progreso
+
+    // warning C4251 'Tapioca::ProgressBar::backgroundText' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::ProgressBar'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string backgroundText;   // Texto de fondo
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
 
 public:
     COMPONENT_ID("ProgressBar")

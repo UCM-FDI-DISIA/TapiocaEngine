@@ -29,7 +29,7 @@ protected:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string sourceFile;
+    std::string sourceFile;   // Ruta del archivo de sonido
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

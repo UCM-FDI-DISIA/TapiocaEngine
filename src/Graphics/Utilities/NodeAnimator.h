@@ -52,7 +52,6 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    
 
     /**
     * @brief Constructor de la clase NodeAnimator

@@ -12,10 +12,23 @@ namespace Tapioca {
 */
 class TAPIOCA_API Text : public BaseWidget, public Component {
 private:
+    // warning C4251 'Tapioca::Text::text' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::Text'
+    // warning C4251 'Tapioca::Text::textFontName' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::Text'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
     std::string text;           // Texto
+    std::string textFontName;   // Nombre de la fuente del texto
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+
     float textSize;             // Tamano del texto
     float initialTextSize;      // Tamano inicial del texto
-    std::string textFontName;   // Nombre de la fuente del texto
     ImFont* textFont;           // Fuente del texto
     Vector4 textColor;          // Color del texto
 

@@ -69,13 +69,19 @@ private:
     // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
-    // warning C4251 'Tapioca::GraphicsManager::mwindowName' :
+    // warning C4251 'Tapioca::GraphicsManager::windowName' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
     // warning C4251 'Tapioca::GraphicsManager::selfManagedNodes' :
     // class 'std::unordered_set<Tapioca::RenderNode *,std::hash<Tapioca::RenderNode *>,
     // std::equal_to<Tapioca::RenderNode *>,std::allocator<Tapioca::RenderNode *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
+    // warning C4251 'Tapioca::GraphicsManager::zOrders' :
+    // class 'std::vector<std::string,std::allocator<std::string>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
+    // warning C4251 'Tapioca::GraphicsManager::cameraComps' :
+    // class 'std::unordered_map<int,Tapioca::CameraComponent *,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,Tapioca::CameraComponent *>>>'
+    //  necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -83,46 +89,26 @@ private:
     std::string windowName;   // Nombre de la ventana
 
     std::unordered_set<RenderNode*> selfManagedNodes;   // Nodos gestionados por GraphicsManager
+
+    std::unordered_set<int> zOrders;   // ZOrders de las camaras
+
+    std::unordered_map<int, CameraComponent*> cameraComps;   // Componentes de camara
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
 
+    int nodeAnimatorNumber;   // Numero de animadores de nodos
+    int planeNumber;          // Numero de planos
+    int billboardNumber;      // Numero de billboards
 
-    int nodeAnimatorNumber;
-    int planeNumber;
-    int billboardNumber;
-
-    // warning C4251 'Tapioca::GraphicsManager::zOrders' :
-    // class 'std::vector<std::string,std::allocator<std::string>>' necesita tener una interfaz DLL
-    // para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::unordered_set<int> zOrders;
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    
-    // la luz principal es aquella luz direccional que produce sombras
-    LightDirectional* mainLight;
-
-    // warning C4251 'Tapioca::GraphicsManager::cameraComps' :
-    // class 'std::unordered_map<int,Tapioca::CameraComponent *,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,Tapioca::CameraComponent *>>>'
-    //  necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
-    std::unordered_map<int, CameraComponent*> cameraComps;
-#ifdef _MSC_VER
-#pragma warning(disable : 4251)
-#endif
+    LightDirectional* mainLight;   // Luz principal que produce sombras
 
     Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
-    WindowManager* windowManager;   // Puntero al WindowManager
-    SDL_Window* sdlWindow;          // Ventana de SDL
-    void* glContext;                // Contexto de OpenGL
+    WindowManager* windowManager;     // Puntero al WindowManager
+    SDL_Window* sdlWindow;            // Ventana de SDL
+    void* glContext;                  // Contexto de OpenGL
 
-    
+
     /**
     * @brief Carga plugIns especificados desde codigo
     */
@@ -386,9 +372,9 @@ public:
     * @param ySegments Numero de segmentos del plano en la direccion y
     * @param material Nombre del material
     */
-    Plane* createPlaneWithName(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
-                               const Vector3& up, const float width, const float height, const int xSegments,
-                               const int ySegments, std::string const& material = "");
+    Plane* createPlaneWithName(RenderNode* const node, const Vector3 rkNormal, const float fConstant, const Vector3& up,
+                               const float width, const float height, const int xSegments, const int ySegments,
+                               std::string const& material = "");
 
     /**
     * @brief Crea un plane

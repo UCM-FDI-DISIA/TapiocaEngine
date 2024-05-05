@@ -32,7 +32,16 @@ private:
     bool activeRigidBody;   // Indica si el rigidbody esta activo o no
     bool trackScale;        // Indica si el rigidbody escala con el transform
 
-    std::string file;   //ruta del archivo obj 
+    // warning C4251 'Tapioca::RigidBody::file' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita 
+    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::RigidBody'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string file;   // Ruta del archivo del objeto
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
 
 public:
     COMPONENT_ID("RigidBody");
