@@ -13,37 +13,47 @@
 \DoxyCodeLine{00009\ }
 \DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_audio_source_component}{AudioSourceComponent}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
 \DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source}{AudioSource}}*\ source;\ \textcolor{comment}{//\ Fuente\ de\ audio}}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}}*\ \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}};\ \textcolor{comment}{//\ Sonido\ a\ reproducir}}
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform;\ \textcolor{comment}{//\ Transform\ del\ objeto}}
-\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ position;\ \textcolor{comment}{//\ Posicion\ de\ la\ fuente\ de\ audio}}
-\DoxyCodeLine{00019\ \ \ \ \ std::string\ sourcePath;\ \textcolor{comment}{//\ Ruta\ del\ archivo\ de\ audio}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ is3D;\ \textcolor{comment}{//\ Indica\ si\ queremos\ una\ fuente\ de\ sonido\ espacializada\ o\ no}}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLooping;}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPaused;}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ volumen;}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ playSpeed;}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}AudioSourceComponent"{}})}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ }
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source_component}{AudioSourceComponent}}();}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source_component}{\string~AudioSourceComponent}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source}{AudioSource}}*\ source;\ \ \ \ \ \ \textcolor{comment}{//\ Fuente\ de\ audio}}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}}*\ \mbox{\hyperlink{namespace_tapioca_a50f116bb01f41d112f7af00c4f87884e}{sound}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sonido\ a\ reproducir}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform;\ \ \ \ \ \textcolor{comment}{//\ Transform\ del\ objeto}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ position;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Posicion\ de\ la\ fuente\ de\ audio}}
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::AudioSourceComponent::sourcepath'\ :}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::AudioSourceComponent'}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ sourcePath;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ruta\ archivo\ de\ sonido}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ is3D;\ \textcolor{comment}{//\ Indica\ si\ queremos\ una\ fuente\ de\ sonido\ espacializada\ o\ no}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLooping;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPaused;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ volumen;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ playSpeed;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}AudioSourceComponent"{}})}
 \DoxyCodeLine{00039\ }
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ playOnce();}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ playLooped();}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ pause(\textcolor{keywordtype}{bool}\ p);}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ loop(\textcolor{keywordtype}{bool}\ l);}
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ setVolume(\textcolor{keywordtype}{float}\ v);}
-\DoxyCodeLine{00086\ \};}
-\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source_component}{AudioSourceComponent}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_source_component}{\string~AudioSourceComponent}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ playOnce();}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ playLooped();}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ pause(\textcolor{keywordtype}{bool}\ p);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ loop(\textcolor{keywordtype}{bool}\ l);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ setVolume(\textcolor{keywordtype}{float}\ v);}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ \}}
 
 \end{DoxyCode}

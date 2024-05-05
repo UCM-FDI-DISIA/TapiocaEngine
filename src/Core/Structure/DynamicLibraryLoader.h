@@ -16,7 +16,10 @@ private:
     static bool load(std::string const& gameName);
 
 public:
-    static HMODULE module;   // Modulo cargado en la memoria del proceso
+    /**
+    * @brief Modulo cargado en la memoria del proceso
+    */
+    static HMODULE module;
     
     DynamicLibraryLoader() = delete;
     ~DynamicLibraryLoader() = delete;

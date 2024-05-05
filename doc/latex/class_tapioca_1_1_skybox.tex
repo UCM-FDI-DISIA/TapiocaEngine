@@ -19,7 +19,7 @@ Diagrama de herencia de Tapioca\+::Skybox\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_tapioca_1_1_skybox_a29c97ffbcdce8d86afa875b69443592c}{Skybox}} (Ogre\+::\+Scene\+Manager \texorpdfstring{$\ast$}{*}const scn\+Mngr, \mbox{\hyperlink{class_tapioca_1_1_render_node}{Render\+Node}} \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{class_tapioca_1_1_render_object_a8cf448c5813cea6ea4a130c754fbe1e8}{node}}, std\+::string const \&material, std\+::string const \&skybox\+Name, const float distC=5000, const bool orderC=true)
-\begin{DoxyCompactList}\small\item\em Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o después del resto de elementos en función de orderC. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o despues del resto de elementos en funcion de orderC. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_skybox_a566be1e0b55bd95a869b27efb26f5a59}{set\+Enable}} (const bool enable)
 \begin{DoxyCompactList}\small\item\em Activa o desactiva el \doxylink{class_tapioca_1_1_skybox}{Skybox}. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_skybox_a6692ee59473b3d30f60e9f15dd14238c}{is\+Enabled}} ()
@@ -66,13 +66,17 @@ Wrapper de la clase \doxylink{class_tapioca_1_1_skybox}{Skybox} de \doxylink{nam
 
 
 
-Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o después del resto de elementos en función de orderC. 
+Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o despues del resto de elementos en funcion de orderC. 
 
 
 \begin{DoxyParams}{ParÃ¡metros}
 {\em scn\+Mngr} & Puntero al manager de escenas de ogre \\
 \hline
-{\em texture} & Nombre de la textura \\
+{\em node} & Puntero al nodo de renderizado \\
+\hline
+{\em material} & Nombre del material \\
+\hline
+{\em skybox\+Name} & Nombre del skybox \\
 \hline
 {\em distC} & Distancia del plano a la camara \\
 \hline

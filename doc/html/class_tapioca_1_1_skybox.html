@@ -100,7 +100,7 @@ Diagrama de herencia de Tapioca::Skybox</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 MÃ©todos pÃºblicos</h2></td></tr>
 <tr class="memitem:a29c97ffbcdce8d86afa875b69443592c" id="r_a29c97ffbcdce8d86afa875b69443592c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29c97ffbcdce8d86afa875b69443592c">Skybox</a> (Ogre::SceneManager *const scnMngr, <a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const <a class="el" href="class_tapioca_1_1_render_object.html#a8cf448c5813cea6ea4a130c754fbe1e8">node</a>, std::string const &amp;material, std::string const &amp;skyboxName, const float distC=5000, const bool orderC=true)</td></tr>
-<tr class="memdesc:a29c97ffbcdce8d86afa875b69443592c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o después del resto de elementos en función de orderC.  <br /></td></tr>
+<tr class="memdesc:a29c97ffbcdce8d86afa875b69443592c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o despues del resto de elementos en funcion de orderC.  <br /></td></tr>
 <tr class="separator:a29c97ffbcdce8d86afa875b69443592c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a566be1e0b55bd95a869b27efb26f5a59" id="r_a566be1e0b55bd95a869b27efb26f5a59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a566be1e0b55bd95a869b27efb26f5a59">setEnable</a> (const bool enable)</td></tr>
 <tr class="memdesc:a566be1e0b55bd95a869b27efb26f5a59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activa o desactiva el <a class="el" href="class_tapioca_1_1_skybox.html" title="Wrapper de la clase Skybox de Ogre.">Skybox</a>.  <br /></td></tr>
@@ -182,11 +182,13 @@ Otros miembros heredados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o después del resto de elementos en función de orderC. </p>
+<p>Construye un skybox con la textura texture a una distancia distC de la camara e indicando si se pinta antes o despues del resto de elementos en funcion de orderC. </p>
 <dl class="params"><dt>ParÃ¡metros</dt><dd>
   <table class="params">
     <tr><td class="paramname">scnMngr</td><td>Puntero al manager de escenas de ogre </td></tr>
-    <tr><td class="paramname">texture</td><td>Nombre de la textura </td></tr>
+    <tr><td class="paramname">node</td><td>Puntero al nodo de renderizado </td></tr>
+    <tr><td class="paramname">material</td><td>Nombre del material </td></tr>
+    <tr><td class="paramname">skyboxName</td><td>Nombre del skybox </td></tr>
     <tr><td class="paramname">distC</td><td>Distancia del plano a la camara </td></tr>
     <tr><td class="paramname">orderC</td><td>True si se quiere que se dibuje antes que todas las geometrias de la escena </td></tr>
   </table>

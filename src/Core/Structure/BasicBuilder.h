@@ -11,7 +11,6 @@ class BasicBuilder : public ComponentBuilder {
 public:
     /**
     * @brief Constructor de la clase
-    * @param id Identificador del componente
     */
     BasicBuilder() : ComponentBuilder(TComp::id) { }
 

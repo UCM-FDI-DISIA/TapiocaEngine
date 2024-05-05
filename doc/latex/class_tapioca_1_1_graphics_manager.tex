@@ -117,13 +117,13 @@ virtual \mbox{\hyperlink{class_tapioca_1_1_singleton_aaafd5502089cff986b8fba7ed5
 virtual \mbox{\hyperlink{class_tapioca_1_1_module_a912a483f4aa2594e65d1246ba414d204}{\texorpdfstring{$\sim$}{\string~}\+Module}} ()
 \item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ae1edaa21164d47af387283262bb0935e}{start}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa las variables. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ac8caa585a847a5b30d535acf6da3e5af}{update}} (const uint64\+\_\+t delta\+Time)
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a956767f43bc1f4f534c5945c5afea4da}{fixed\+Update}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo a una velocidad fija. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a542fddd47dd266b6ad34cf4191d21bcb}{refresh}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Refresca el modulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Otros miembros heredados}
 \doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Graphics\+Manager $>$}}}
 \begin{DoxyCompactItemize}
@@ -525,8 +525,6 @@ Crea un plane Construye un plano usando 4 constantes.
 \begin{DoxyParams}{Parámetros}
 {\em node} & Nodo para renderizado \\
 \hline
-{\em msh\+Mgr} & Puntero al manager de mallas de ogre \\
-\hline
 {\em a} & Componente x del vector normal \\
 \hline
 {\em b} & Componente y del vector normal \\
@@ -535,7 +533,7 @@ Crea un plane Construye un plano usando 4 constantes.
 \hline
 {\em d} & Distancia del plano al origen en la direccion de la normal \\
 \hline
-{\em f\+Constant} & Distancia que se mueve el plano a traves de la normal \\
+{\em up} & Vector que indica la direccion de arriba \\
 \hline
 {\em name} & Nombre del plano \\
 \hline
@@ -563,8 +561,6 @@ Crea un plane Construye el plano a partir de la normal rk\+Normal y la mueve una
 
 \begin{DoxyParams}{Parámetros}
 {\em node} & Nodo para renderizado \\
-\hline
-{\em msh\+Mgr} & Puntero al manager de mallas de ogre \\
 \hline
 {\em rk\+Normal} & Normal del plano \\
 \hline
@@ -598,8 +594,6 @@ Crea un plane sin nombre especificado Construye el plano a partir de la normal r
 
 \begin{DoxyParams}{Parámetros}
 {\em node} & Nodo para renderizado \\
-\hline
-{\em msh\+Mgr} & Puntero al manager de mallas de ogre \\
 \hline
 {\em rk\+Normal} & Normal del plano \\
 \hline
@@ -837,7 +831,7 @@ Se elimina la luz principal.
 
 
 \begin{DoxyParams}{Parámetros}
-{\em Luz} & principal a eliminar \\
+{\em light\+Dir} & Luz principal a eliminar \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_tapioca_1_1_graphics_manager_a3b3dd0e6e7d66d1602b5e7f4f3015774}\label{class_tapioca_1_1_graphics_manager_a3b3dd0e6e7d66d1602b5e7f4f3015774} 
@@ -896,7 +890,7 @@ Se establece la luz principal, es decir, la luz direccional que produce sombras.
 
 
 \begin{DoxyParams}{Parámetros}
-{\em Nueva} & luz principal \\
+{\em light\+Dir} & Nueva luz principal \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_tapioca_1_1_graphics_manager_a223c0a51ec0181273b80e896586eec54}\label{class_tapioca_1_1_graphics_manager_a223c0a51ec0181273b80e896586eec54} 

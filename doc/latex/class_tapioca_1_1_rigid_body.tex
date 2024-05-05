@@ -70,6 +70,8 @@ void \mbox{\hyperlink{class_tapioca_1_1_rigid_body_ad4a3ea96b1799df766e306b3f37a
 \begin{DoxyCompactList}\small\item\em Aplica fuerza de forma gradual. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_rigid_body_ae7deb3ee4f320384e156127c5a31b35a}{add\+Impulse}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} f)
 \begin{DoxyCompactList}\small\item\em Aplica solo una fuerza instantanea (golpes, explosiones...) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_rigid_body_af2b19af5bd601531527dfcec3d2e8a9d}{clear\+Forces}} ()
+\begin{DoxyCompactList}\small\item\em Elimina las fuerzas actuando sobre el rb. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a3cca9e36a871ba44d6cf455ad4fe36a6}{get\+Trigger}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve si el rb es un trigger o no. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_tapioca_1_1_rigid_body_a84f79c2d19e976e7a6335c6e7b40f1ae}{get\+Collider\+Shape}} () const
@@ -215,6 +217,16 @@ Metodo que se usa para inicializar el componente. Se ejecuta antes que el start 
 
 
 Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{Tapioca\+::\+Component}}.
+
+\Hypertarget{class_tapioca_1_1_rigid_body_af2b19af5bd601531527dfcec3d2e8a9d}\label{class_tapioca_1_1_rigid_body_af2b19af5bd601531527dfcec3d2e8a9d} 
+\index{Tapioca::RigidBody@{Tapioca::RigidBody}!clearForces@{clearForces}}
+\index{clearForces@{clearForces}!Tapioca::RigidBody@{Tapioca::RigidBody}}
+\doxysubsubsection{\texorpdfstring{clearForces()}{clearForces()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Rigid\+Body\+::clear\+Forces (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Elimina las fuerzas actuando sobre el rb. 
 
 \Hypertarget{class_tapioca_1_1_rigid_body_a0673c48bdbb3c259a0a180737bc57400}\label{class_tapioca_1_1_rigid_body_a0673c48bdbb3c259a0a180737bc57400} 
 \index{Tapioca::RigidBody@{Tapioca::RigidBody}!COMPONENT\_ID@{COMPONENT\_ID}}
@@ -482,9 +494,9 @@ Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, s
 
 
 \begin{DoxyParams}{Parámetros}
-{\em Id} & indica el tipo de mensaje \\
+{\em id} & Indica el tipo de mensaje \\
 \hline
-{\em info} & puntero a void para pasar parametros \\
+{\em info} & Puntero a void para pasar parametros \\
 \hline
 \end{DoxyParams}
 

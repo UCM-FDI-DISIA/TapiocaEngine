@@ -132,68 +132,70 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    Ogre::RenderWindow* ogreWindow;     <span class="comment">// Referencia a la superficie de renderizado de Ogre</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_tapioca_1_1_render_listener.html">RenderListener</a>* renderListener;     <span class="comment">// Listener de renderizado de Ogre</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// &#39;Tapioca::UIManager::fontsPath&#39; :</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// warning C4251 &#39;Tapioca::UIManager::fontsPath&#39; :</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::UIManager&#39;</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// &#39;Tapioca::UIManager::texturesPath&#39; :</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// warning C4251 &#39;Tapioca::UIManager::texturesPath&#39; :</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::UIManager&#39;</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// &#39;Tapioca::UIManager::fonts&#39; :</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// warning C4251 &#39;Tapioca::UIManager::fonts&#39; :</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// class &#39;std::unordered_map&lt;std::pair&lt;std::string,float&gt;,ImFont *,Tapioca::pair_hash,std::equal_to&lt;std::pair&lt;std::string,float&gt;&gt;,std::allocator&lt;std::pair&lt;const std::pair&lt;std::string,float&gt;,ImFont *&gt;&gt;&gt;&#39; necesita</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::UIManager&#39;</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::string fontsPath;                                                         <span class="comment">// Ruta de la carpeta de fuentes</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    std::string texturesPath;                                                      <span class="comment">// Ruta de la carpeta de imagenes</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    std::unordered_map&lt;std::pair&lt;std::string, float&gt;, ImFont*, <a class="code hl_struct" href="struct_tapioca_1_1pair__hash.html">pair_hash</a>&gt; fonts;   <span class="comment">// Fuentes de la interfaz de usuario</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#pragma warning(default : 4251)</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">float</span> fontDefaultSize = 16.0f;   <span class="comment">// Tamano por defecto de las fuentes</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::set&lt;std::string&gt; widgetNames;   <span class="comment">// Nombres de los widgets</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> widgetCounter;         <span class="comment">// Contador de widgets</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::string generateName(<span class="keyword">const</span> std::string&amp; widget);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> check();</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>();</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#a55c27aeb497131330a3a185a5984f065">   94</a></span>    <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#a55c27aeb497131330a3a185a5984f065">UIManager</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#aaad3099899da4bdcec46de8b0170c0cd">   95</a></span>    <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#aaad3099899da4bdcec46de8b0170c0cd">UIManager</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#a2a30856b474e5956f379a80711ddbbf9">   96</a></span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#a2a30856b474e5956f379a80711ddbbf9">operator=</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#a9a068fec5bf2c03f3955148dc9c1fd1f">   97</a></span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#a9a068fec5bf2c03f3955148dc9c1fd1f">operator=</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">~UIManager</a>();</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">bool</span> init() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">bool</span> initConfig() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">bool</span> handleEvents(<span class="keyword">const</span> SDL_Event&amp; event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">bool</span> fontsFolderExists();</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">bool</span> texturesFolderExists();</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">bool</span> fontsFolderEmpty();</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    ImFont* loadFont(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> pixelSize = fontDefaultSize);</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    ImFont* getFont(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> pixelSize = fontDefaultSize);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_typedef" href="_image_8h.html#a364f4447ecbc4ca176145ccff9db6286">ImTextureID</a> getTextureId(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordtype">void</span> addWidgetName(std::string&amp; name);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordtype">void</span> removeWidgetName(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordtype">bool</span> widgetNameExists(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// warning C4251 &#39;Tapioca::UIManager::widgetNames&#39; : </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// class &#39;std::set&lt;std::string,std::less&lt;std::string&gt;,std::allocator&lt;std::string&gt;&gt;&#39; </span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// necesita tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::UIManager&#39;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    std::string fontsPath;                                                         <span class="comment">// Ruta de la carpeta de fuentes</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    std::string texturesPath;                                                      <span class="comment">// Ruta de la carpeta de imagenes</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    std::unordered_map&lt;std::pair&lt;std::string, float&gt;, ImFont*, <a class="code hl_struct" href="struct_tapioca_1_1pair__hash.html">pair_hash</a>&gt; fonts;   <span class="comment">// Fuentes de la interfaz de usuario</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::set&lt;std::string&gt; widgetNames;                                             <span class="comment">// Nombres de los widgets</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#pragma warning(default : 4251)</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">float</span> fontDefaultSize = 16.0f;   <span class="comment">// Tamano por defecto de las fuentes</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> widgetCounter;                      <span class="comment">// Contador de widgets</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    std::string generateName(<span class="keyword">const</span> std::string&amp; widget);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> check() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#a55c27aeb497131330a3a185a5984f065">   96</a></span>    <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#a55c27aeb497131330a3a185a5984f065">UIManager</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#aaad3099899da4bdcec46de8b0170c0cd">   97</a></span>    <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#aaad3099899da4bdcec46de8b0170c0cd">UIManager</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#a2a30856b474e5956f379a80711ddbbf9">   98</a></span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#a2a30856b474e5956f379a80711ddbbf9">operator=</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_u_i_manager.html#a9a068fec5bf2c03f3955148dc9c1fd1f">   99</a></span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp; <a class="code hl_function" href="class_tapioca_1_1_u_i_manager.html#a9a068fec5bf2c03f3955148dc9c1fd1f">operator=</a>(<a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">~UIManager</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">bool</span> init() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">bool</span> initConfig() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">bool</span> handleEvents(<span class="keyword">const</span> SDL_Event&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">bool</span> fontsFolderExists() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">bool</span> texturesFolderExists() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">bool</span> fontsFolderEmpty() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    ImFont* loadFont(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> pixelSize = fontDefaultSize);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    ImFont* getFont(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> pixelSize = fontDefaultSize);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <a class="code hl_typedef" href="_image_8h.html#a364f4447ecbc4ca176145ccff9db6286">ImTextureID</a> getTextureId(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">void</span> addWidgetName(std::string&amp; name);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">void</span> removeWidgetName(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">bool</span> widgetNameExists(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
 </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>}</div>
 <div class="ttc" id="a_image_8h_html_a364f4447ecbc4ca176145ccff9db6286"><div class="ttname"><a href="_image_8h.html#a364f4447ecbc4ca176145ccff9db6286">ImTextureID</a></div><div class="ttdeci">void * ImTextureID</div><div class="ttdef"><b>Definition</b> Image.h:6</div></div>
 <div class="ttc" id="a_singleton_8h_html"><div class="ttname"><a href="_singleton_8h.html">Singleton.h</a></div></div>
 <div class="ttc" id="a_u_i_manager_8h_html_a364f4447ecbc4ca176145ccff9db6286"><div class="ttname"><a href="_u_i_manager_8h.html#a364f4447ecbc4ca176145ccff9db6286">ImTextureID</a></div><div class="ttdeci">void * ImTextureID</div><div class="ttdef"><b>Definition</b> UIManager.h:11</div></div>
@@ -211,7 +213,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclass_tapioca_1_1_window_module_html"><div class="ttname"><a href="class_tapioca_1_1_window_module.html">Tapioca::WindowModule</a></div><div class="ttdoc">Maneja los eventos de la ventana. Todo aquello que herede de esta clase podra manejar eventos de la v...</div><div class="ttdef"><b>Definition</b> WindowModule.h:9</div></div>
 <div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
 <div class="ttc" id="anamespace_ogre_html"><div class="ttname"><a href="namespace_ogre.html">Ogre</a></div><div class="ttdef"><b>Definition</b> GraphicsManager.h:13</div></div>
-<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
 <div class="ttc" id="anamespace_tapioca_html_aee221b2de416281b1f7bda9823acd63b"><div class="ttname"><a href="namespace_tapioca.html#aee221b2de416281b1f7bda9823acd63b">Tapioca::mainLoop</a></div><div class="ttdeci">MainLoop * mainLoop</div><div class="ttdef"><b>Definition</b> Exports.h:16</div></div>
 <div class="ttc" id="anamespace_tapioca_html_afb4ee25f71d312e899486f225ce94aff"><div class="ttname"><a href="namespace_tapioca.html#afb4ee25f71d312e899486f225ce94aff">Tapioca::windowManager</a></div><div class="ttdeci">WindowManager &amp; windowManager()</div><div class="ttdoc">Para acortar el metodo WindowManager::instance()-&gt;method() a windowManager().method()</div><div class="ttdef"><b>Definition</b> WindowManager.h:171</div></div>
 <div class="ttc" id="astruct_tapioca_1_1pair__hash_html"><div class="ttname"><a href="struct_tapioca_1_1pair__hash.html">Tapioca::pair_hash</a></div><div class="ttdoc">Funcion hash para pares para poder usarlos como clave en unordered_map (https://stackoverflow....</div><div class="ttdef"><b>Definition</b> UIManager.h:27</div></div>

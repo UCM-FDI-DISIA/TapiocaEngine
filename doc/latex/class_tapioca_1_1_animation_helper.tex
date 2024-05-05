@@ -27,7 +27,11 @@ void \mbox{\hyperlink{class_tapioca_1_1_animation_helper_af5cb880b39ba524e67d00c
 bool \mbox{\hyperlink{class_tapioca_1_1_animation_helper_ae849967da06ff966e97bd363f3e5b810}{get\+Loop}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta en bucle. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_animation_helper_a7cd6652dd5ac9ce34cf769bffb3354e6}{get\+Playing}} () const
-\begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta en reproduccion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta en reproduccion. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_animation_helper_aa4f22aad6ef7dba4c9e34596fd95c2a4}{has\+Ended}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion ha terminado. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_animation_helper_a92bfabdab3b25ed60f6b14f53e9f910c}{get\+Anim\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre de la animacion actual. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
@@ -66,6 +70,19 @@ Destructor por defecto.
 
 
 \doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_animation_helper_a92bfabdab3b25ed60f6b14f53e9f910c}\label{class_tapioca_1_1_animation_helper_a92bfabdab3b25ed60f6b14f53e9f910c} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!getAnimName@{getAnimName}}
+\index{getAnimName@{getAnimName}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{getAnimName()}{getAnimName()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Animation\+Helper\+::get\+Anim\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el nombre de la animacion actual. 
+
+\begin{DoxyReturn}{Devuelve}
+Nombre de la animacion acutal como string 
+\end{DoxyReturn}
 \Hypertarget{class_tapioca_1_1_animation_helper_ae849967da06ff966e97bd363f3e5b810}\label{class_tapioca_1_1_animation_helper_ae849967da06ff966e97bd363f3e5b810} 
 \index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!getLoop@{getLoop}}
 \index{getLoop@{getLoop}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
@@ -91,6 +108,19 @@ Devuelve si la animacion esta en reproduccion.
 
 \begin{DoxyReturn}{Devuelve}
 True si la animacion esta en reproduccion, false en caso contrario 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_animation_helper_aa4f22aad6ef7dba4c9e34596fd95c2a4}\label{class_tapioca_1_1_animation_helper_aa4f22aad6ef7dba4c9e34596fd95c2a4} 
+\index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!hasEnded@{hasEnded}}
+\index{hasEnded@{hasEnded}!Tapioca::AnimationHelper@{Tapioca::AnimationHelper}}
+\doxysubsubsection{\texorpdfstring{hasEnded()}{hasEnded()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Animation\+Helper\+::has\+Ended (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve si la animacion ha terminado. 
+
+\begin{DoxyReturn}{Devuelve}
+True si la animacion ha terminado, false en caso contrario 
 \end{DoxyReturn}
 \Hypertarget{class_tapioca_1_1_animation_helper_ab3bb29eb107d6238b41abb40f8d46841}\label{class_tapioca_1_1_animation_helper_ab3bb29eb107d6238b41abb40f8d46841} 
 \index{Tapioca::AnimationHelper@{Tapioca::AnimationHelper}!playAnim@{playAnim}}

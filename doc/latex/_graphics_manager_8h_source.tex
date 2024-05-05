@@ -88,118 +88,141 @@
 \DoxyCodeLine{00087\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
 \DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ Ogre::RenderWindow*\ ogreWindow;\ \ \ \textcolor{comment}{//\ Ventana\ de\ ogre\ (solo\ para\ render)}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_window_manager}{WindowManager}}*\ \mbox{\hyperlink{namespace_tapioca_afb4ee25f71d312e899486f225ce94aff}{windowManager}};\ \ \ \textcolor{comment}{//\ Puntero\ al\ WindowManager}}
-\DoxyCodeLine{00093\ \ \ \ \ SDL\_Window*\ sdlWindow;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ventana\ de\ SDL}}
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}*\ glContext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Contexto\ de\ OpenGL}}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ nodeAnimatorNumber;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ animadores\ de\ nodos}}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ planeNumber;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ planos}}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ billboardNumber;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ billboards}}
-\DoxyCodeLine{00099\ \ \ \ \ std::unordered\_set<int>\ zOrders;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ZOrders\ usados}}
-\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ mainLight;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Luz\ principal}}
-\DoxyCodeLine{00101\ \ \ \ \ std::unordered\_map<int,\ CameraComponent*>\ cameraComps;\ \ \ \textcolor{comment}{//\ Camaras}}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ loadPlugIns();}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ setUpShadows();}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ loadResources();}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ loadShaders();}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}(std::string\ \textcolor{keyword}{const}\&\ windowName\ =\ \textcolor{stringliteral}{"{}TapiocaEngine"{}},\ \textcolor{keyword}{const}\ uint32\_t\ w\ =\ 680,\ \textcolor{keyword}{const}\ uint32\_t\ h\ =\ 480);}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_a9058ee980ee53588633dfe2935bdeb1f}{GraphicsManager}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_aadd1cc9579d23542870e7990708afd84}{GraphicsManager}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_a776965ade760010bd88ef5b2d8ea3c23}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_ab578fac95cb407a1f4e74796c51ca266}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{\string~GraphicsManager}}();}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{bool}\ init()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{bool}\ initConfig()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{bool}\ handleEvents(\textcolor{keyword}{const}\ SDL\_Event\&\ event)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ shutDown();}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{inline}\ Ogre::RenderWindow*\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_ab63a9fd0830291aa83dd1f8d9a5abe13}{getOgreRenderTarget}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ ogreWindow;\ \}}
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkResourceExists(std::string\ name);}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{void}\ removeCameraCompByZOrder(\textcolor{keywordtype}{int}\ zOrder,\ \textcolor{keywordtype}{bool}\ deleteCamera);}
-\DoxyCodeLine{00186\ }
-\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{void}\ saveCameraComp(\mbox{\hyperlink{class_tapioca_1_1_camera_component}{CameraComponent}}*\ cameraComp);}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{int}\ askForZOrder(\textcolor{keywordtype}{int}\ requiredZOrder);}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ removeZOrder(\textcolor{keywordtype}{int}\ zOrder);}
-\DoxyCodeLine{00203\ }
-\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ createNode(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ 0.0f),}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.0f,\ 1.0f,\ 1.0f));}
-\DoxyCodeLine{00212\ }
-\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ createSelfManagedNode(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ 0.0f),}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.0f,\ 1.0f,\ 1.0f));}
-\DoxyCodeLine{00221\ }
-\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}}*\ createCamera(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name);}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_viewport}{Viewport}}*\ createViewport(\mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}}*\ \textcolor{keyword}{const}\ camera,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ zOrder);}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ createLightDirectional(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction,}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_point}{LightPoint}}*\ createLightPoint(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
-\DoxyCodeLine{00255\ }
-\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_rectlight}{LightRectlight}}*\ createLightRectlight(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
-\DoxyCodeLine{00267\ }
-\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_spotlight}{LightSpotlight}}*\ createLightSpotlight(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction,}
-\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
-\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordtype}{void}\ setMainLight(\mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ lightDir);}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{void}\ removeMainLight(\mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ lightDir);}
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}}*\ createMesh(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ meshName);}
-\DoxyCodeLine{00296\ }
-\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard}{Billboard}}*\ createBillboard(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ position,}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ colour);}
-\DoxyCodeLine{00307\ }
-\DoxyCodeLine{00315\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{BillboardSet}}*\ createBillboardSet(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ poolSize);}
-\DoxyCodeLine{00316\ }
-\DoxyCodeLine{00323\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{BillboardSet}}*\ createBillboardSetWithName(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ poolSize);}
-\DoxyCodeLine{00324\ }
-\DoxyCodeLine{00333\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_particle_system}{ParticleSystem}}*\ createParticleSystem(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,}
-\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ templateName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ emitting);}
-\DoxyCodeLine{00335\ }
-\DoxyCodeLine{00351\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}}*\ createPlane(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ fConstant,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ up,}
-\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xSegments,}
-\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ySegments,\ std::string\ \textcolor{keyword}{const}\&\ material\ =\ \textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00368\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}}*\ createPlaneWithName(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ fConstant,}
-\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ up,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xSegments,}
-\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ySegments,\ std::string\ \textcolor{keyword}{const}\&\ material\ =\ \textcolor{stringliteral}{"{}"{}});}
-\DoxyCodeLine{00371\ }
-\DoxyCodeLine{00389\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}}*\ createPlane(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ c,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ d,}
-\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ up,\ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,}
-\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xSegments,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ySegments,\ std::string\ \textcolor{keyword}{const}\&\ material\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ nodeAnimatorNumber;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{int}\ planeNumber;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ billboardNumber;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::GraphicsManager::zOrders'\ :}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<std::string,std::allocator<std::string>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::GraphicsManager'}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ \ \ \ \ std::unordered\_set<int>\ zOrders;}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ la\ luz\ principal\ es\ aquella\ luz\ direccional\ que\ produce\ sombras}}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ mainLight;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::GraphicsManager::cameraComps'\ :}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unordered\_map<int,Tapioca::CameraComponent\ *,std::hash<int>,std::equal\_to<int>,std::allocator<std::pair<const\ int,Tapioca::CameraComponent\ *>>>'}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ \ necesita\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::GraphicsManager'}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00115\ \ \ \ \ std::unordered\_map<int,\ CameraComponent*>\ cameraComps;}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ Ogre::RenderWindow*\ ogreWindow;\ \ \ \textcolor{comment}{//\ Ventana\ de\ ogre\ (solo\ para\ render)}}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_window_manager}{WindowManager}}*\ \mbox{\hyperlink{namespace_tapioca_afb4ee25f71d312e899486f225ce94aff}{windowManager}};\ \ \ \textcolor{comment}{//\ Puntero\ al\ WindowManager}}
+\DoxyCodeLine{00122\ \ \ \ \ SDL\_Window*\ sdlWindow;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ventana\ de\ SDL}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}*\ glContext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Contexto\ de\ OpenGL}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ loadPlugIns();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ setUpShadows();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ loadResources()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ loadShaders();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}(std::string\ \textcolor{keyword}{const}\&\ windowName\ =\ \textcolor{stringliteral}{"{}TapiocaEngine"{}},\ \textcolor{keyword}{const}\ uint32\_t\ w\ =\ 680,\ \textcolor{keyword}{const}\ uint32\_t\ h\ =\ 480);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_a9058ee980ee53588633dfe2935bdeb1f}{GraphicsManager}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_aadd1cc9579d23542870e7990708afd84}{GraphicsManager}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_a776965ade760010bd88ef5b2d8ea3c23}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_ab578fac95cb407a1f4e74796c51ca266}{operator=}}(\mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{GraphicsManager}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager}{\string~GraphicsManager}}();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{bool}\ init()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{bool}\ initConfig()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{bool}\ handleEvents(\textcolor{keyword}{const}\ SDL\_Event\&\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{void}\ shutDown();}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{inline}\ Ogre::RenderWindow*\ \mbox{\hyperlink{class_tapioca_1_1_graphics_manager_ab63a9fd0830291aa83dd1f8d9a5abe13}{getOgreRenderTarget}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ ogreWindow;\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkResourceExists(std::string\ name);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ removeCameraCompByZOrder(\textcolor{keywordtype}{int}\ zOrder,\ \textcolor{keywordtype}{bool}\ deleteCamera);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ saveCameraComp(\mbox{\hyperlink{class_tapioca_1_1_camera_component}{CameraComponent}}*\ cameraComp);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{int}\ askForZOrder(\textcolor{keywordtype}{int}\ requiredZOrder);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ removeZOrder(\textcolor{keywordtype}{int}\ zOrder);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ createNode(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ 0.0f),}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ createSelfManagedNode(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ pos\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(0.0f,\ 0.0f,\ 0.0f),}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ scale\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}}*\ createCamera(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_viewport}{Viewport}}*\ createViewport(\mbox{\hyperlink{class_tapioca_1_1_camera}{Camera}}*\ \textcolor{keyword}{const}\ camera,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ zOrder);}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ createLightDirectional(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction,}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_point}{LightPoint}}*\ createLightPoint(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_rectlight}{LightRectlight}}*\ createLightRectlight(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00298\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_light_spotlight}{LightSpotlight}}*\ createLightSpotlight(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ direction,}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ color\ =\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}(1.0f,\ 1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{void}\ setMainLight(\mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ lightDir);}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{void}\ removeMainLight(\mbox{\hyperlink{class_tapioca_1_1_light_directional}{LightDirectional}}*\ lightDir);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00318\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}}*\ createMesh(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ meshName);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00328\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard}{Billboard}}*\ createBillboard(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ position,}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ colour);}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00338\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{BillboardSet}}*\ createBillboardSet(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ poolSize);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00346\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_billboard_set}{BillboardSet}}*\ createBillboardSetWithName(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ poolSize);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_particle_system}{ParticleSystem}}*\ createParticleSystem(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ templateName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ emitting);}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00373\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}}*\ createPlane(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ fConstant,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ up,}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xSegments,}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ySegments,\ std::string\ \textcolor{keyword}{const}\&\ material\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00389\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}}*\ createPlaneWithName(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ fConstant,}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ up,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xSegments,}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ySegments,\ std::string\ \textcolor{keyword}{const}\&\ material\ =\ \textcolor{stringliteral}{"{}"{}});}
 \DoxyCodeLine{00392\ }
-\DoxyCodeLine{00400\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_animation_helper}{AnimationHelper}}*\ createAnimationHelper(\mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}}*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object},\ \textcolor{keywordtype}{bool}\ autoPlay\ =\ \textcolor{keyword}{true},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ loop\ =\ \textcolor{keyword}{true});}
-\DoxyCodeLine{00408\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}*\ createNodeAnimator(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keyword}{const}\ std::string\&\ name);}
-\DoxyCodeLine{00414\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}*\ createNodeAnimatorWithName(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ duration);}
-\DoxyCodeLine{00415\ }
-\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skybox}{Skybox}}*\ createSkybox(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ material,\ std::string\ \textcolor{keyword}{const}\&\ name,}
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ distC\ =\ 5000,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ orderC\ =\ \textcolor{keyword}{true});}
-\DoxyCodeLine{00426\ }
-\DoxyCodeLine{00442\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane}{Skyplane}}*\ createSkyplane(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ materialName,\ std::string\ \textcolor{keyword}{const}\&\ name,}
-\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ fConstant,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ scale,}
-\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ tiling,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ drawFirst,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ bow,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xsegments,}
-\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ysegments);}
+\DoxyCodeLine{00409\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane}{Plane}}*\ createPlane(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ c,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ d,}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\&\ up,\ std::string\ \textcolor{keyword}{const}\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ height,}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xSegments,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ySegments,\ std::string\ \textcolor{keyword}{const}\&\ material\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00420\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_animation_helper}{AnimationHelper}}*\ createAnimationHelper(\mbox{\hyperlink{class_tapioca_1_1_mesh}{Mesh}}*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object},\ \textcolor{keywordtype}{bool}\ autoPlay\ =\ \textcolor{keyword}{true},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ loop\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00428\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}*\ createNodeAnimator(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00434\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}*\ createNodeAnimatorWithName(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ duration);}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00444\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skybox}{Skybox}}*\ createSkybox(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ material,\ std::string\ \textcolor{keyword}{const}\&\ name,}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ distC\ =\ 5000,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ orderC\ =\ \textcolor{keyword}{true});}
 \DoxyCodeLine{00446\ }
-\DoxyCodeLine{00452\ \ \ \ \ Ogre::ManualObject*\ createManualObject(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node);}
-\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyManualObject(Ogre::ManualObject*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object});}
-\DoxyCodeLine{00458\ \};}
-\DoxyCodeLine{00459\ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane}{Skyplane}}*\ createSkyplane(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ materialName,\ std::string\ \textcolor{keyword}{const}\&\ name,}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ fConstant,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ scale,}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ tiling,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ drawFirst,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ bow,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ xsegments,}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ysegments);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00472\ \ \ \ \ Ogre::ManualObject*\ createManualObject(\mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node);}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyManualObject(Ogre::ManualObject*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00478\ \};}
+\DoxyCodeLine{00479\ \}}
 
 \end{DoxyCode}

@@ -1,6 +1,6 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefghiklmnopqrstuvwxyz~",
+  0: "_abcdefghijklmnopqrstuvwxyz~",
   1: "abcdefgiklmnpqrstuvw",
   2: "ilost",
   3: "abcdefgiklmnpqrstuvw",
@@ -8,10 +8,11 @@ var indexSectionsWithContent =
   5: "abefghilmnoprstuvwxyz",
   6: "ceis",
   7: "bcm",
-  8: "bcdkps",
+  8: "bcdkmps",
   9: "gs",
   10: "_cpt",
-  11: "t"
+  11: "et",
+  12: "t"
 };
 
 var indexSectionNames =
@@ -27,7 +28,8 @@ var indexSectionNames =
   8: "enumvalues",
   9: "related",
   10: "defines",
-  11: "concepts"
+  11: "pages",
+  12: "concepts"
 };
 
 var indexSectionLabels =
@@ -43,6 +45,7 @@ var indexSectionLabels =
   8: "Valores de enumeraciones",
   9: "Amigas",
   10: "defines",
-  11: "Conceptos"
+  11: "Páginas",
+  12: "Conceptos"
 };
 

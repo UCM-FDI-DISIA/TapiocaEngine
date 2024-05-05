@@ -33,7 +33,7 @@ public:
 
     /**
     * @brief Establece el color de la luz
-    * @param colour Color de la luz
+    * @param color Color de la luz
     */
     void setColor(const Vector4 color);
 

@@ -54,7 +54,7 @@ public:
     * @brief Metodo que se usa para actualizar el estado de un componente. Se llama todas las veces posibles
     * @param deltaTime Tiempo que ha pasado desde la ultima llamada
     */
-    void update(uint64_t delt) override;
+    void update(uint64_t deltaTime) override;
 
     /**
     * @brief Cambia la animacion actual
@@ -74,7 +74,7 @@ public:
     void setLoop(const bool l);
     /**
     * @brief Cambia si se reproduce la animacion
-    * @param l true si se quiere reproducir, false en caso contrario
+    * @param p true si se quiere reproducir, false en caso contrario
     */
     void setPlaying(const bool p);
 

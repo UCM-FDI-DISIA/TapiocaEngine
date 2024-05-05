@@ -114,6 +114,12 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:a7cd6652dd5ac9ce34cf769bffb3354e6" id="r_a7cd6652dd5ac9ce34cf769bffb3354e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cd6652dd5ac9ce34cf769bffb3354e6">getPlaying</a> () const</td></tr>
 <tr class="memdesc:a7cd6652dd5ac9ce34cf769bffb3354e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si la animacion esta en reproduccion.  <br /></td></tr>
 <tr class="separator:a7cd6652dd5ac9ce34cf769bffb3354e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f22aad6ef7dba4c9e34596fd95c2a4" id="r_aa4f22aad6ef7dba4c9e34596fd95c2a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4f22aad6ef7dba4c9e34596fd95c2a4">hasEnded</a> () const</td></tr>
+<tr class="memdesc:aa4f22aad6ef7dba4c9e34596fd95c2a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si la animacion ha terminado.  <br /></td></tr>
+<tr class="separator:aa4f22aad6ef7dba4c9e34596fd95c2a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92bfabdab3b25ed60f6b14f53e9f910c" id="r_a92bfabdab3b25ed60f6b14f53e9f910c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92bfabdab3b25ed60f6b14f53e9f910c">getAnimName</a> () const</td></tr>
+<tr class="memdesc:a92bfabdab3b25ed60f6b14f53e9f910c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el nombre de la animacion actual.  <br /></td></tr>
+<tr class="separator:a92bfabdab3b25ed60f6b14f53e9f910c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Clase que gestiona las animaciones de un objeto. </p>
@@ -174,6 +180,26 @@ Métodos públicos</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentación de funciones miembro</h2>
+<a id="a92bfabdab3b25ed60f6b14f53e9f910c" name="a92bfabdab3b25ed60f6b14f53e9f910c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92bfabdab3b25ed60f6b14f53e9f910c">&#9670;&#160;</a></span>getAnimName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Tapioca::AnimationHelper::getAnimName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el nombre de la animacion actual. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Nombre de la animacion acutal como string </dd></dl>
+
+</div>
+</div>
 <a id="ae849967da06ff966e97bd363f3e5b810" name="ae849967da06ff966e97bd363f3e5b810"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae849967da06ff966e97bd363f3e5b810">&#9670;&#160;</a></span>getLoop()</h2>
 
@@ -227,6 +253,34 @@ Métodos públicos</h2></td></tr>
 
 <p>Devuelve si la animacion esta en reproduccion. </p>
 <dl class="section return"><dt>Devuelve</dt><dd>True si la animacion esta en reproduccion, false en caso contrario </dd></dl>
+
+</div>
+</div>
+<a id="aa4f22aad6ef7dba4c9e34596fd95c2a4" name="aa4f22aad6ef7dba4c9e34596fd95c2a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4f22aad6ef7dba4c9e34596fd95c2a4">&#9670;&#160;</a></span>hasEnded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::AnimationHelper::hasEnded </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Devuelve si la animacion ha terminado. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>True si la animacion ha terminado, false en caso contrario </dd></dl>
 
 </div>
 </div>

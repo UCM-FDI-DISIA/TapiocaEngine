@@ -9,11 +9,10 @@ union SDL_Event;
 struct _SDL_GameController;
 typedef _SDL_GameController SDL_GameController;
 
+namespace Tapioca {
 /**
 * @brief Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios
-
 */
-namespace Tapioca {
 class TAPIOCA_API InputManager : public Singleton<InputManager>, public WindowModule {
 private:
     friend Singleton<InputManager>;
@@ -67,7 +66,7 @@ private:
     void initControllers();
 
     /**
-    * @brief Añade el mando con su deadzone por defecto al mapa de mandos
+    * @brief Anade el mando con su deadzone por defecto al mapa de mandos
     * @param i Indice del controller
     */
     void addController(const int i);
@@ -107,7 +106,7 @@ public:
     * @brief Asociar eventos propios a eventos de input
     * @param evt El nombre del evento propio
     * @param src El nombre del evento de input
-    * @param ctrl El valor del botón/tecla/etc. en los enums de SDL
+    * @param ctrl El valor del boton/tecla/etc. en los enums de SDL
     */
     void mapInput(std::string const& evt, std::string const& src, int const& ctrl);
 

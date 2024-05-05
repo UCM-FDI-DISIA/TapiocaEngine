@@ -2,7 +2,7 @@
 \hypertarget{class_tapioca_1_1_quaternion}{}\label{class_tapioca_1_1_quaternion}\index{Tapioca::Quaternion@{Tapioca::Quaternion}}
 
 
-Usamos el sistema diestro \href{https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html}{\texttt{ https\+://danceswithcode.\+net/engineeringnotes/quaternions/quaternions.\+html}}. Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector.  
+Usamos el sistema diestro (\href{https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html}{\texttt{ https\+://danceswithcode.\+net/engineeringnotes/quaternions/quaternions.\+html}}). Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector.  
 
 
 
@@ -15,7 +15,7 @@ Usamos el sistema diestro \href{https://danceswithcode.net/engineeringnotes/quat
 \mbox{\hyperlink{class_tapioca_1_1_quaternion_aaf71223f6eca194cf93ab2c4a5521ac4}{Quaternion}} (\mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{float}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{q0}}, \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{float}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{q1}}, \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{float}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{q2}}, \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{float}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{q3}})
 \begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se contruye un a partir de 4 floats que describen el angulo y vector que definen el quaternion. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tapioca_1_1_quaternion_ab38859778b467f67e7edf8a76912159a}{Quaternion}} (\mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{float}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{alfa}}, \mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&\mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{vec}})
-\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec @params alfa Rotacion del vector en grados sexagesimales @params vec Vector que define el giro. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tapioca_1_1_quaternion_ab3a6a69996d9354800c513d0baaea562}{Quaternion}} (\mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{const}} \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} \&\mbox{\hyperlink{class_tapioca_1_1_quaternion_adecdd63921919eea843937c5fc74e2c5}{euler}})
 \begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se construye a partir de rotaciones en los 3 ejes globales (x y z) en grados sexagesimales. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{class_tapioca_1_1_quaternion_af3546178554a66b51f12b8516c21b6cc}{inverse}} ()
@@ -50,7 +50,7 @@ Usamos el sistema diestro \href{https://danceswithcode.net/engineeringnotes/quat
 
 
 \doxysubsection{Descripción detallada}
-Usamos el sistema diestro \href{https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html}{\texttt{ https\+://danceswithcode.\+net/engineeringnotes/quaternions/quaternions.\+html}}. Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector. 
+Usamos el sistema diestro (\href{https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html}{\texttt{ https\+://danceswithcode.\+net/engineeringnotes/quaternions/quaternions.\+html}}). Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector. 
 
 q = x + yi + zj +wk, donde x y z w son numeros reales y ddone i j k son numeros complejos, vectores unitarios ortogonales entre si. i\texorpdfstring{$^\wedge$}{\string^}2 = j\texorpdfstring{$^\wedge$}{\string^}2 = k\texorpdfstring{$^\wedge$}{\string^}2 = -\/1
 
@@ -88,8 +88,15 @@ Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se 
 
 
 
-Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec @params alfa Rotacion del vector en grados sexagesimales @params vec Vector que define el giro. 
+Constructor de la clase \doxylink{class_tapioca_1_1_quaternion}{Quaternion}. Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec. 
 
+
+\begin{DoxyParams}{Parámetros}
+{\em alfa} & Rotacion del vector en grados sexagesimales \\
+\hline
+{\em vec} & Vector que define el giro \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_tapioca_1_1_quaternion_ab3a6a69996d9354800c513d0baaea562}\label{class_tapioca_1_1_quaternion_ab3a6a69996d9354800c513d0baaea562} 
 \index{Tapioca::Quaternion@{Tapioca::Quaternion}!Quaternion@{Quaternion}}
 \index{Quaternion@{Quaternion}!Tapioca::Quaternion@{Tapioca::Quaternion}}

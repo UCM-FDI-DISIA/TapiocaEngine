@@ -161,7 +161,6 @@ public:
     /**
     * @brief Anade un nombre de widget a la lista
     * @param name Nombre del widget
-    * @return Nombre del widget anadido
     */
     void addWidgetName(std::string& name);
 

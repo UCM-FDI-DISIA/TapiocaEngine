@@ -105,7 +105,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    KeyFramesInfo info;           <span class="comment">// Informacion de los keyframes</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_tapioca_1_1_node_animator.html">NodeAnimator</a>* nodeAnimator;   <span class="comment">// Nodo animador</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">float</span> speed;                  <span class="comment">// Velocidad de la animacion</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">float</span> duration;               <span class="comment">// Duracion de la animacion</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">float</span> duration;               <span class="comment">// Duracion de la animacion en segundos</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">bool</span> playByDefault;           <span class="comment">// Indica si la animacion se reproduce por defecto</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">bool</span> loop;                    <span class="comment">// Indica si la animacion se reproduce en bucle</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
@@ -119,7 +119,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">bool</span> initComponent(<span class="keyword">const</span> <a class="code hl_typedef" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> start() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> update(uint64_t delt) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> update(uint64_t deltaTime) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> play(<span class="keyword">const</span> <span class="keywordtype">bool</span> loop);</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
@@ -137,10 +137,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="a_component_8h_html_a6ece19712d479203bbc26db8935a896b"><div class="ttname"><a href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a></div><div class="ttdeci">#define COMPONENT_ID(_id)</div><div class="ttdoc">Id del componente Se necesita especificar para usar BasicBuilder y para poder ser llamado desde los m...</div><div class="ttdef"><b>Definition</b> Component.h:136</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_component_html"><div class="ttname"><a href="class_tapioca_1_1_component.html">Tapioca::Component</a></div><div class="ttdoc">Clase base de todos los componentes.</div><div class="ttdef"><b>Definition</b> Component.h:12</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_key_frame_animator_html"><div class="ttname"><a href="class_tapioca_1_1_key_frame_animator.html">Tapioca::KeyFrameAnimator</a></div><div class="ttdoc">Clase que se encarga de animar un objeto a traves de keyframes.</div><div class="ttdef"><b>Definition</b> KeyFrameAnimator.h:12</div></div>
-<div class="ttc" id="aclass_tapioca_1_1_node_animator_html"><div class="ttname"><a href="class_tapioca_1_1_node_animator.html">Tapioca::NodeAnimator</a></div><div class="ttdef"><b>Definition</b> NodeAnimator.h:25</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_node_animator_html"><div class="ttname"><a href="class_tapioca_1_1_node_animator.html">Tapioca::NodeAnimator</a></div><div class="ttdoc">Clase que se encarga de animar un nodo de la escena.</div><div class="ttdef"><b>Definition</b> NodeAnimator.h:28</div></div>
 <div class="ttc" id="acomponent_defs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
 <div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
-<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

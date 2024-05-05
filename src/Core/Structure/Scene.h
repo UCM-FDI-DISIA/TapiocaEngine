@@ -8,6 +8,9 @@
 namespace Tapioca {
 class GameObject;
 
+/**
+* @brief Clase que representa una escena del juego
+*/
 class TAPIOCA_API Scene {
 private:
     friend class GameObject;
@@ -67,6 +70,7 @@ public:
     * @brief Anade un objeto a la escena
     * @param object Objeto que se quiere anadir a la escena
     * @param handler Handler que se quiere asociar al objeto que se quiere anadir. Los handlers deben ser unicos
+    * @param zIndex Capa en la que se quiere anadir el objeto
     * @return True se se ha anadido correctamente a la escena, false en caso contrario
     */
     bool addObject(GameObject* const object, std::string const& handler = "", int zIndex = 0);
@@ -104,9 +108,8 @@ public:
     void handleEvent(std::string const& id, void* info);
     /**
     * @brief Metodo que se usa para enviar un evento
-    * @param id Indica el tipo de mensaje
-    * @param info Puntero a void para pasar parametros
-    * @param global Indica si el evento debe ser enviado glabalmente
+    * @param e Evento que se quiere enviar
+    * @param delay Indica si se quiere enviar el evento en el siguiente frame
     */
     void pushEvent(Event const& e, bool const delay);
 

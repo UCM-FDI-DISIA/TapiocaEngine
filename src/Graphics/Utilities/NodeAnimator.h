@@ -13,6 +13,9 @@ namespace Tapioca {
 class GraphicsManager;
 class RenderNode;
 
+/**
+* @brief Estructura que representa un keyframe de la animacion
+*/
 struct KeyFrame {
     Vector3 pos = Vector3(0.0f, 0.0f, 0.0f);
     Vector3 scale = Vector3(1.0f, 1.0f, 1.0f);
@@ -20,7 +23,7 @@ struct KeyFrame {
 };
 
 /**
-* Clase que se encarga de animar un nodo de la escena
+* @brief Clase que se encarga de animar un nodo de la escena
 */
 class TAPIOCA_API NodeAnimator {
 private:

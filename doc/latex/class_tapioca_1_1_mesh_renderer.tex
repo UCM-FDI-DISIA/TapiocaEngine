@@ -28,10 +28,10 @@ void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a46e5cc4470a140a65c86e4302
 \begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Se ejecuta antes que el start Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_ad59f91625a5332d2bfafa4efd929aaa1}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info) override
 \begin{DoxyCompactList}\small\item\em Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el push\+Event. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a050cea0b3d14691c36330654a54ca90d}{set\+Material\+Name}} (const std\+::string \&name)
-\begin{DoxyCompactList}\small\item\em Establece el nombre del material. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a9941d642632770586a91afc827593258}{set\+Mesh\+Name}} (const std\+::string \&name)
-\begin{DoxyCompactList}\small\item\em Establece el nombre de la mesh. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_ab2b1dff55698270f1d4f45eae21a53b5}{set\+Material}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Cambia el material. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_af0799ed9faa17e81025986a8041e09b7}{set\+Mesh}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Cambia el mesh. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_acf4be2cc6c8ff09c6dd0a27439719e9b}{set\+Visible}} (const bool enable)
 \begin{DoxyCompactList}\small\item\em Establece si la luz es visible o no. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_mesh_renderer_a4a570c2f2b6496f7373547a80bd74813}{is\+Visible}} () const
@@ -165,9 +165,9 @@ Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, s
 
 
 \begin{DoxyParams}{Parámetros}
-{\em Id} & indica el tipo de mensaje \\
+{\em id} & Indica el tipo de mensaje \\
 \hline
-{\em info} & puntero a void para pasar parametros \\
+{\em info} & Puntero a void para pasar parametros \\
 \hline
 \end{DoxyParams}
 
@@ -209,30 +209,30 @@ Devuelve si la luz es visible o no.
 \begin{DoxyReturn}{Devuelve}
 true si la luz es visible, false en caso contrario 
 \end{DoxyReturn}
-\Hypertarget{class_tapioca_1_1_mesh_renderer_a050cea0b3d14691c36330654a54ca90d}\label{class_tapioca_1_1_mesh_renderer_a050cea0b3d14691c36330654a54ca90d} 
-\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setMaterialName@{setMaterialName}}
-\index{setMaterialName@{setMaterialName}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
-\doxysubsubsection{\texorpdfstring{setMaterialName()}{setMaterialName()}}
-{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Material\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_ab2b1dff55698270f1d4f45eae21a53b5}\label{class_tapioca_1_1_mesh_renderer_ab2b1dff55698270f1d4f45eae21a53b5} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setMaterial@{setMaterial}}
+\index{setMaterial@{setMaterial}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{setMaterial()}{setMaterial()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Material (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
 
 
 
-Establece el nombre del material. 
+Cambia el material. 
 
 
 \begin{DoxyParams}{Parámetros}
 {\em name} & Nombre del material \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_tapioca_1_1_mesh_renderer_a9941d642632770586a91afc827593258}\label{class_tapioca_1_1_mesh_renderer_a9941d642632770586a91afc827593258} 
-\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setMeshName@{setMeshName}}
-\index{setMeshName@{setMeshName}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
-\doxysubsubsection{\texorpdfstring{setMeshName()}{setMeshName()}}
-{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Mesh\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+\Hypertarget{class_tapioca_1_1_mesh_renderer_af0799ed9faa17e81025986a8041e09b7}\label{class_tapioca_1_1_mesh_renderer_af0799ed9faa17e81025986a8041e09b7} 
+\index{Tapioca::MeshRenderer@{Tapioca::MeshRenderer}!setMesh@{setMesh}}
+\index{setMesh@{setMesh}!Tapioca::MeshRenderer@{Tapioca::MeshRenderer}}
+\doxysubsubsection{\texorpdfstring{setMesh()}{setMesh()}}
+{\footnotesize\ttfamily void Tapioca\+::\+Mesh\+Renderer\+::set\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
 
 
 
-Establece el nombre de la mesh. 
+Cambia el mesh. 
 
 
 \begin{DoxyParams}{Parámetros}

@@ -6,7 +6,7 @@ typedef void* ImTextureID;
 
 namespace Tapioca {
 /**
-* @brief Clase que representa un botón con imagen en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
+* @brief Clase que representa un boton con imagen en la interfaz grafica con la que el usuario puede interactuar para realizar cierta accion
 */
 class TAPIOCA_API ImageTextButton : public Button {
 private:

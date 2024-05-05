@@ -142,12 +142,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> awake() override;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> handleEvent(<a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span> const&amp; <span class="keywordtype">id</span>, <span class="keywordtype">void</span>* info) override;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_mesh_renderer.html#a050cea0b3d14691c36330654a54ca90d">   94</a></span>    <span class="keywordtype">void</span> setMaterialName(const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; name) { materialName = name; }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> setMaterial(const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; name);</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> setMeshName(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> setMesh(const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; name);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> setVisible(<span class="keyword">const</span> <span class="keywordtype">bool</span> enable);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">bool</span> isVisible() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> setVisible(const <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">bool</span> isVisible() const;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
 </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
@@ -164,10 +164,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclass_tapioca_1_1_mesh_renderer_html_aaf1251409c05793cb72cecc05600787f"><div class="ttname"><a href="class_tapioca_1_1_mesh_renderer.html#aaf1251409c05793cb72cecc05600787f">Tapioca::MeshRenderer::getNode</a></div><div class="ttdeci">RenderNode * getNode() const</div><div class="ttdoc">Devuelve el nodo de renderizado.</div><div class="ttdef"><b>Definition</b> MeshRenderer.h:55</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_render_node_html"><div class="ttname"><a href="class_tapioca_1_1_render_node.html">Tapioca::RenderNode</a></div><div class="ttdoc">Clase que representa un nodo de renderizado en la escena.</div><div class="ttdef"><b>Definition</b> RenderNode.h:26</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_transform_html"><div class="ttname"><a href="class_tapioca_1_1_transform.html">Tapioca::Transform</a></div><div class="ttdoc">Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo. Este componente est...</div><div class="ttdef"><b>Definition</b> Transform.h:14</div></div>
-<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdoc">Clase que implementa un vector geometrico de tres dimensiones.</div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
 <div class="ttc" id="acomponent_defs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
 <div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
-<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
 <div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> LuaManager.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

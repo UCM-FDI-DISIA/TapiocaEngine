@@ -84,15 +84,18 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Clase que representa una escena del juego.  
+ <a href="#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_scene_8h_source.html">Scene.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
 <tr class="memitem:abbe76fdba12c32b334ecf2d7de40e070" id="r_abbe76fdba12c32b334ecf2d7de40e070"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbe76fdba12c32b334ecf2d7de40e070">Scene</a> (std::string const &amp;name)</td></tr>
-<tr class="memdesc:abbe76fdba12c32b334ecf2d7de40e070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_scene.html">Scene</a>.  <br /></td></tr>
+<tr class="memdesc:abbe76fdba12c32b334ecf2d7de40e070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_scene.html" title="Clase que representa una escena del juego.">Scene</a>.  <br /></td></tr>
 <tr class="separator:abbe76fdba12c32b334ecf2d7de40e070"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6ee227f63a703bf88f5e267a13d57a0" id="r_ab6ee227f63a703bf88f5e267a13d57a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6ee227f63a703bf88f5e267a13d57a0">~Scene</a> ()</td></tr>
-<tr class="memdesc:ab6ee227f63a703bf88f5e267a13d57a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor de la clase <a class="el" href="class_tapioca_1_1_scene.html">Scene</a>.  <br /></td></tr>
+<tr class="memdesc:ab6ee227f63a703bf88f5e267a13d57a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor de la clase <a class="el" href="class_tapioca_1_1_scene.html" title="Clase que representa una escena del juego.">Scene</a>.  <br /></td></tr>
 <tr class="separator:ab6ee227f63a703bf88f5e267a13d57a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b0611d1819e94b8ea065d5078289371" id="r_a7b0611d1819e94b8ea065d5078289371"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tapioca_1_1_game_object.html">GameObject</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b0611d1819e94b8ea065d5078289371">getObjects</a> () const</td></tr>
 <tr class="memdesc:a7b0611d1819e94b8ea065d5078289371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve los objetos de esta escena.  <br /></td></tr>
@@ -118,6 +121,7 @@ Métodos públicos</h2></td></tr>
 <tr class="memdesc:ab77c3c4dc37080ca9862cd98d8250dde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderiza los objetos de la escena.  <br /></td></tr>
 <tr class="separator:ab77c3c4dc37080ca9862cd98d8250dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c7124079ec90e7335379a91686bf33e" id="r_a1c7124079ec90e7335379a91686bf33e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c7124079ec90e7335379a91686bf33e">refresh</a> ()</td></tr>
+<tr class="memdesc:a1c7124079ec90e7335379a91686bf33e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina los objetos muertos de la escena ademas de todas sus componentes.  <br /></td></tr>
 <tr class="separator:a1c7124079ec90e7335379a91686bf33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e5bc7a65e21f3c9dcc0119bbbe9ce60" id="r_a6e5bc7a65e21f3c9dcc0119bbbe9ce60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e5bc7a65e21f3c9dcc0119bbbe9ce60">handleEvent</a> (std::string const &amp;id, void *info)</td></tr>
 <tr class="memdesc:a6e5bc7a65e21f3c9dcc0119bbbe9ce60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa un evento recibido.  <br /></td></tr>
@@ -185,7 +189,9 @@ Amigas</h2></td></tr>
 <tr class="memitem:a00df87c957d8f7ee0fc51f07a0542f4a" id="r_a00df87c957d8f7ee0fc51f07a0542f4a"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00df87c957d8f7ee0fc51f07a0542f4a">GameObject</a></td></tr>
 <tr class="separator:a00df87c957d8f7ee0fc51f07a0542f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Clase que representa una escena del juego. </p>
+</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
 <a id="abbe76fdba12c32b334ecf2d7de40e070" name="abbe76fdba12c32b334ecf2d7de40e070"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbe76fdba12c32b334ecf2d7de40e070">&#9670;&#160;</a></span>Scene()</h2>
 
@@ -201,7 +207,7 @@ Amigas</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor de la clase <a class="el" href="class_tapioca_1_1_scene.html">Scene</a>. </p>
+<p>Constructor de la clase <a class="el" href="class_tapioca_1_1_scene.html" title="Clase que representa una escena del juego.">Scene</a>. </p>
 
 </div>
 </div>
@@ -220,7 +226,7 @@ Amigas</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destructor de la clase <a class="el" href="class_tapioca_1_1_scene.html">Scene</a>. </p>
+<p>Destructor de la clase <a class="el" href="class_tapioca_1_1_scene.html" title="Clase que representa una escena del juego.">Scene</a>. </p>
 
 </div>
 </div>
@@ -254,6 +260,7 @@ Amigas</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">object</td><td>Objeto que se quiere anadir a la escena </td></tr>
     <tr><td class="paramname">handler</td><td>Handler que se quiere asociar al objeto que se quiere anadir. Los handlers deben ser unicos </td></tr>
+    <tr><td class="paramname">zIndex</td><td>Capa en la que se quiere anadir el objeto </td></tr>
   </table>
   </dd>
 </dl>
@@ -386,6 +393,9 @@ Amigas</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::string const  &amp; Tapioca::Scene::getName </td>
@@ -394,6 +404,11 @@ Amigas</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Devuelve el nombre de la escena. </p>
@@ -568,6 +583,9 @@ Amigas</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Tapioca::Scene::isActive </td>
@@ -576,6 +594,11 @@ Amigas</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Devuelve si la escena esta activa. </p>
@@ -605,9 +628,8 @@ Amigas</h2></td></tr>
 <p>Metodo que se usa para enviar un evento. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>Indica el tipo de mensaje </td></tr>
-    <tr><td class="paramname">info</td><td>Puntero a void para pasar parametros </td></tr>
-    <tr><td class="paramname">global</td><td>Indica si el evento debe ser enviado glabalmente </td></tr>
+    <tr><td class="paramname">e</td><td>Evento que se quiere enviar </td></tr>
+    <tr><td class="paramname">delay</td><td>Indica si se quiere enviar el evento en el siguiente frame </td></tr>
   </table>
   </dd>
 </dl>
@@ -628,9 +650,8 @@ Amigas</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">  @brief Elimina los objetos muertos de la escena ademas de todas sus componentes
-</pre><p> = <br  />
- </p>
+
+<p>Elimina los objetos muertos de la escena ademas de todas sus componentes. </p>
 
 </div>
 </div>
@@ -658,6 +679,9 @@ Amigas</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Tapioca::Scene::setActive </td>
@@ -666,6 +690,11 @@ Amigas</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Establece si la escena esta activa. </p>

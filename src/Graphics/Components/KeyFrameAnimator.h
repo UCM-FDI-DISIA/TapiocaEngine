@@ -54,7 +54,7 @@ public:
     * @brief Actualiza la animacion
     * @param deltaTime Tiempo que ha pasado desde la ultima llamada
     */
-    void update(uint64_t delt) override;
+    void update(uint64_t deltaTime) override;
 
     /**
     * @brief Reproduce la animacion y se le indica si se reproduce en bucle

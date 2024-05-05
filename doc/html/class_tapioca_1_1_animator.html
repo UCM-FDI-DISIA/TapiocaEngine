@@ -111,9 +111,9 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:aab604d2f0b0424e814dd85990cb89e44" id="r_aab604d2f0b0424e814dd85990cb89e44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab604d2f0b0424e814dd85990cb89e44">start</a> () override</td></tr>
 <tr class="memdesc:aab604d2f0b0424e814dd85990cb89e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que se usa para inicializar el componente. Garantiza que todos los componentes iniciales esten creados.  <br /></td></tr>
 <tr class="separator:aab604d2f0b0424e814dd85990cb89e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94419a3c5a22468f64bbdfc2bfa67b12" id="r_a94419a3c5a22468f64bbdfc2bfa67b12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94419a3c5a22468f64bbdfc2bfa67b12">update</a> (uint64_t delt) override</td></tr>
-<tr class="memdesc:a94419a3c5a22468f64bbdfc2bfa67b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que se usa para actualizar el estado de un componente. Se llama todas las veces posibles.  <br /></td></tr>
-<tr class="separator:a94419a3c5a22468f64bbdfc2bfa67b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf7f8fe790d53c3b9a6d375c2ab1c6f" id="r_a4bf7f8fe790d53c3b9a6d375c2ab1c6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bf7f8fe790d53c3b9a6d375c2ab1c6f">update</a> (uint64_t deltaTime) override</td></tr>
+<tr class="memdesc:a4bf7f8fe790d53c3b9a6d375c2ab1c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que se usa para actualizar el estado de un componente. Se llama todas las veces posibles.  <br /></td></tr>
+<tr class="separator:a4bf7f8fe790d53c3b9a6d375c2ab1c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff6a5a8d18186c733ac1178b016e4ffb" id="r_aff6a5a8d18186c733ac1178b016e4ffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff6a5a8d18186c733ac1178b016e4ffb">playAnim</a> (std::string const &amp;animName)</td></tr>
 <tr class="memdesc:aff6a5a8d18186c733ac1178b016e4ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia la animacion actual.  <br /></td></tr>
 <tr class="separator:aff6a5a8d18186c733ac1178b016e4ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,6 +135,12 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:aac89b46d0a7c71f41523bd4b2f4371ec" id="r_aac89b46d0a7c71f41523bd4b2f4371ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac89b46d0a7c71f41523bd4b2f4371ec">getPlaying</a> () const</td></tr>
 <tr class="memdesc:aac89b46d0a7c71f41523bd4b2f4371ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si la animacion se esta reproduciendo.  <br /></td></tr>
 <tr class="separator:aac89b46d0a7c71f41523bd4b2f4371ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16375da8edbf894118dd0a05277abe49" id="r_a16375da8edbf894118dd0a05277abe49"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16375da8edbf894118dd0a05277abe49">hasEnded</a> () const</td></tr>
+<tr class="memdesc:a16375da8edbf894118dd0a05277abe49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si la animacion ha terminado.  <br /></td></tr>
+<tr class="separator:a16375da8edbf894118dd0a05277abe49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93a00986acdb28b393f4122bd8cc72af" id="r_a93a00986acdb28b393f4122bd8cc72af"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93a00986acdb28b393f4122bd8cc72af">getAnimName</a> () const</td></tr>
+<tr class="memdesc:a93a00986acdb28b393f4122bd8cc72af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el nombre de la animacion actual.  <br /></td></tr>
+<tr class="separator:a93a00986acdb28b393f4122bd8cc72af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_tapioca_1_1_component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_tapioca_1_1_component')"><img src="closed.png" alt="-"/>&#160;Métodos públicos heredados de <a class="el" href="class_tapioca_1_1_component.html">Tapioca::Component</a></td></tr>
 <tr class="memitem:a54e3ac405643adf97dab7c13f200411a inherit pub_methods_class_tapioca_1_1_component" id="r_a54e3ac405643adf97dab7c13f200411a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_component.html#a54e3ac405643adf97dab7c13f200411a">Component</a> ()</td></tr>
 <tr class="memdesc:a54e3ac405643adf97dab7c13f200411a inherit pub_methods_class_tapioca_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_component.html" title="Clase base de todos los componentes.">Component</a>.  <br /></td></tr>
@@ -232,6 +238,26 @@ Otros miembros heredados</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentación de funciones miembro</h2>
+<a id="a93a00986acdb28b393f4122bd8cc72af" name="a93a00986acdb28b393f4122bd8cc72af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93a00986acdb28b393f4122bd8cc72af">&#9670;&#160;</a></span>getAnimName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Tapioca::Animator::getAnimName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el nombre de la animacion actual. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Nombre de la animacion acutal como string </dd></dl>
+
+</div>
+</div>
 <a id="ac177de8f334a43fdb075186831f73279" name="ac177de8f334a43fdb075186831f73279"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac177de8f334a43fdb075186831f73279">&#9670;&#160;</a></span>getLoop()</h2>
 
@@ -297,6 +323,26 @@ Otros miembros heredados</h2></td></tr>
 
 <p>Devuelve la velocidad a la que se reproduce la animacion. </p>
 <dl class="section return"><dt>Devuelve</dt><dd>Velocidad a la que se reproduce la animacion </dd></dl>
+
+</div>
+</div>
+<a id="a16375da8edbf894118dd0a05277abe49" name="a16375da8edbf894118dd0a05277abe49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16375da8edbf894118dd0a05277abe49">&#9670;&#160;</a></span>hasEnded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::Animator::hasEnded </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve si la animacion ha terminado. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la animacion ha terminado, false en caso contrario </dd></dl>
 
 </div>
 </div>
@@ -404,7 +450,7 @@ Otros miembros heredados</h2></td></tr>
 <p>Cambia si se reproduce la animacion. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">l</td><td>true si se quiere reproducir, false en caso contrario </td></tr>
+    <tr><td class="paramname">p</td><td>true si se quiere reproducir, false en caso contrario </td></tr>
   </table>
   </dd>
 </dl>
@@ -473,8 +519,8 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="a94419a3c5a22468f64bbdfc2bfa67b12" name="a94419a3c5a22468f64bbdfc2bfa67b12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94419a3c5a22468f64bbdfc2bfa67b12">&#9670;&#160;</a></span>update()</h2>
+<a id="a4bf7f8fe790d53c3b9a6d375c2ab1c6f" name="a4bf7f8fe790d53c3b9a6d375c2ab1c6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf7f8fe790d53c3b9a6d375c2ab1c6f">&#9670;&#160;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -485,7 +531,7 @@ Otros miembros heredados</h2></td></tr>
         <tr>
           <td class="memname">void Tapioca::Animator::update </td>
           <td>(</td>
-          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>delt</em></span></td><td>)</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

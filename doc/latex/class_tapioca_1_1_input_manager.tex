@@ -2,6 +2,11 @@
 \hypertarget{class_tapioca_1_1_input_manager}{}\label{class_tapioca_1_1_input_manager}\index{Tapioca::InputManager@{Tapioca::InputManager}}
 
 
+Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.  
+
+
+
+
 {\ttfamily \#include $<$Input\+Manager.\+h$>$}
 
 Diagrama de herencia de Tapioca\+::Input\+Manager\begin{figure}[H]
@@ -42,17 +47,17 @@ virtual \mbox{\hyperlink{class_tapioca_1_1_singleton_aaafd5502089cff986b8fba7ed5
 virtual \mbox{\hyperlink{class_tapioca_1_1_module_a912a483f4aa2594e65d1246ba414d204}{\texorpdfstring{$\sim$}{\string~}\+Module}} ()
 \item 
 virtual bool \mbox{\hyperlink{class_tapioca_1_1_module_a885f390a478f3fb012925c171507f3a6}{init\+Config}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa la configuracion especificada por el juego. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ae1edaa21164d47af387283262bb0935e}{start}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa las variables. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ac8caa585a847a5b30d535acf6da3e5af}{update}} (const uint64\+\_\+t delta\+Time)
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a956767f43bc1f4f534c5945c5afea4da}{fixed\+Update}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo a una velocidad fija. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a6249622666df090c8a12c11a8efddb4d}{render}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Renderiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a542fddd47dd266b6ad34cf4191d21bcb}{refresh}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Refresca el modulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Otros miembros heredados}
 \doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Input\+Manager $>$}}}
 \begin{DoxyCompactItemize}
@@ -67,6 +72,9 @@ static \mbox{\hyperlink{class_tapioca_1_1_input_manager}{Input\+Manager}} \texor
 \mbox{\hyperlink{class_tapioca_1_1_singleton_a5d0ccbc86446ed937dfafd0219f77b16}{Singleton}} ()
 \begin{DoxyCompactList}\small\item\em Constructor vacio. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Descripción detallada}
+Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios. 
 
 \doxysubsection{Documentación de constructores y destructores}
 \Hypertarget{class_tapioca_1_1_input_manager_a31b34e1e42577934f9ab37f7faa230ca}\label{class_tapioca_1_1_input_manager_a31b34e1e42577934f9ab37f7faa230ca} 
@@ -154,7 +162,7 @@ Asociar eventos propios a eventos de input.
 \hline
 {\em src} & El nombre del evento de input \\
 \hline
-{\em ctrl} & El valor del botón/tecla/etc. en los enums de SDL \\
+{\em ctrl} & El valor del boton/tecla/etc. en los enums de SDL \\
 \hline
 \end{DoxyParams}
 

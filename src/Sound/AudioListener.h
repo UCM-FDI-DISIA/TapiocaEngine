@@ -6,7 +6,7 @@ namespace Tapioca {
 class SoundManager;
 
 /**
-* @brief 
+* @brief Clase que representa un objeto que escucha sonidos
 */
 class TAPIOCA_API AudioListener {
 private:

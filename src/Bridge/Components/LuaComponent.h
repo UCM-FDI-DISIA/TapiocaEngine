@@ -17,6 +17,9 @@ class LuaRef;
 }
 
 namespace Tapioca {
+/**
+* @brief Componente de Lua. Permite ejecutar codigo de Lua
+*/
 class TAPIOCA_API LuaComponent : public Component {
 private:
     luabridge::LuaRef* objectTable;   // Tabla del objeto de Lua

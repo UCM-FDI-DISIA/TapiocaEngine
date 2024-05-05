@@ -5,7 +5,7 @@ namespace Tapioca {
 class Vector2;
 
 /**
-* Clase que implementa un vector geometrico de tres dimensiones
+* @brief Clase que implementa un vector geometrico de tres dimensiones
 */
 class TAPIOCA_API Vector3 {
 public:

@@ -125,7 +125,7 @@ bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triang
         else if (prefix == "f") {
             std::string v1, v2, v3;
             iss >> v1 >> v2 >> v3;
-            int vi1, vi2, vi3;   // Índices de los vértices
+            int vi1, vi2, vi3;   // indices de los vertices
             if (sscanf(v1.c_str(), "%d", &vi1) != 1) correct = false;
             if (sscanf(v2.c_str(), "%d", &vi2) != 1) correct = false;
             if (sscanf(v3.c_str(), "%d", &vi3) != 1) correct = false;
@@ -155,7 +155,7 @@ btBvhTriangleMeshShape* PhysicsManager::createMeshCollision(const std::string& n
             meshInterfaces[name] = objTriangleMesh;
         }
     }
-    // Crea la forma de colisión basada en malla
+    // Crea la forma de colision basada en malla
     btBvhTriangleMeshShape* groundShape = new btBvhTriangleMeshShape(objTriangleMesh, true);
     return groundShape;
 }

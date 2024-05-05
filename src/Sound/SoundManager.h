@@ -42,7 +42,7 @@ public:
 
     /**
     * @brief Actualiza el audioListener
-    * @params al AudioListener al que se quiere actualizar
+    * @param al AudioListener al que se quiere actualizar
     */
     void setListener(AudioListener al);
 };

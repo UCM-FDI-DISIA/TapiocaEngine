@@ -1,21 +1,17 @@
 # Tapioca Engine
 
-<div align="center">
-    <img src="https://img.shields.io/badge/status-building...-red" alt="YouTube Badge"/>
-</div>
-
 ## Autores
 
-- Matt Castellanos Silva [GitHub](https://github.com/MattCastUCM)
-- Pedro León Miranda [GitHub](https://github.com/P4179)
-- Francisco Mollá Astrar [GitHub](https://github.com/frmolla)
-- Nanxi Qin [GitHub](https://github.com/NanxiQin)
-- María Sachez Carrasco [GitHub](https://github.com/marsache)
-- Rocío Sánchez Horcajuelo López [GitHub](https://github.com/Bimbloc)
-- Santiago Tienda Perus [GitHub](https://github.com/Santienper)
-- Laura Wang Qiu [GitHub](https://github.com/LauraWangQiu)
-- Jianuo Wen [GitHub](https://github.com/Jjianuo)
-- Likang Wu [GitHub](https://github.com/likangwu03)
+- [Matt Castellanos Silva](https://github.com/MattCastUCM)
+- [Pedro León Miranda](https://github.com/P4179)
+- [Francisco Mollá Astrar](https://github.com/frmolla)
+- [Nanxi Qin](https://github.com/NanxiQin)
+- [María Sachez Carrasco](https://github.com/marsache)
+- [Rocío Sánchez Horcajuelo López](https://github.com/Bimbloc)
+- [Santiago Tienda Perus](https://github.com/Santienper)
+- [Laura Wang Qiu](https://github.com/LauraWangQiu)
+- [Jianuo Wen](https://github.com/Jjianuo)
+- [Likang Wu](https://github.com/likangwu03)
 
 ## Descripción
 

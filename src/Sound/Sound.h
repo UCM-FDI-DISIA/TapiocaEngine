@@ -12,7 +12,7 @@ class AudioSource;
 class SoundManager;
 
 /**
-* Clase que representa un recurso de sonido
+* @brief Clase que representa un recurso de sonido
 */
 class TAPIOCA_API Sound {
 private:

@@ -56,7 +56,7 @@ public:
 
     /**
     * @brief Metodo que se usa para inicializar el componente. Se ejecuta antes que el start
-    * @param Variables unordered_map con los parametros iniciales
+    * @param variables unordered_map con los parametros iniciales
     */
     virtual bool initComponent(const CompMap& variables) override;
 

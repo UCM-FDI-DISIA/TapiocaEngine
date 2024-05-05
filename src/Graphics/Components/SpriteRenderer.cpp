@@ -22,7 +22,7 @@ bool SpriteRenderer::initComponent(const CompMap& variables) {
     bool colorSet = setValueFromMap(color.x, "colorX", variables) && setValueFromMap(color.y, "colorY", variables) &&
         setValueFromMap(color.z, "colorZ", variables) && setValueFromMap(color.w, "colorW", variables);
     if (!colorSet) {
-        logInfo("SpriteRenderer: No se ha definido un color para el billboard. Se usará un color por defecto.");
+        logInfo("SpriteRenderer: No se ha definido un color para el billboard. Se usara un color por defecto.");
     }
 
     return true;

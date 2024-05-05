@@ -1,0 +1,102 @@
+\chapter{Tapioca Engine}
+\hypertarget{index}{}\label{index}\index{Tapioca Engine@{Tapioca Engine}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+ \hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Autores}{Autores}}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/MattCastUCM}{\texttt{ Matt Castellanos Silva}}
+\item \href{https://github.com/P4179}{\texttt{ Pedro León Miranda}}
+\item \href{https://github.com/frmolla}{\texttt{ Francisco Mollá Astrar}}
+\item \href{https://github.com/NanxiQin}{\texttt{ Nanxi Qin}}
+\item \href{https://github.com/marsache}{\texttt{ María Sachez Carrasco}}
+\item \href{https://github.com/Bimbloc}{\texttt{ Rocío Sánchez Horcajuelo López}}
+\item \href{https://github.com/Santienper}{\texttt{ Santiago Tienda Perus}}
+\item \href{https://github.com/LauraWangQiu}{\texttt{ Laura Wang Qiu}}
+\item \href{https://github.com/Jjianuo}{\texttt{ Jianuo Wen}}
+\item \href{https://github.com/likangwu03}{\texttt{ Likang Wu}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Descripción}{Descripción}}\label{index_autotoc_md2}
+El motor de videojuegos {\bfseries{\doxylink{namespace_tapioca}{Tapioca} Engine}} es un proyecto de software libre desarrollado por estudiantes de la Universidad Complutense de Madrid. El motor está siendo desarrollado en el marco de la asignatura de {\bfseries{Proyectos 3}} del Grado en Desarrollo de Videojuegos. \hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Arquitectura y proceso de desarrollo}{Arquitectura y proceso de desarrollo}}\label{index_autotoc_md3}
+{\bfseries{\doxylink{namespace_tapioca}{Tapioca} Engine}} está desarrollado en {\bfseries{C++}} con {\bfseries{Visual Studio}}.
+
+El motor se divide en varios módulos que se encargan de diferentes aspectos del desarrollo de videojuegos. Estos módulos son\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Bridge}}\+: Módulo encargado de la creación de escenas, entidades y componentes cargados desde archivos .lua
+\item {\bfseries{Core}}\+: Módulo encargado de la creación de las factorías, la gestión de eventos y bucle principal
+\item {\bfseries{Graphics}}\+: Módulo encargado del renderizado de los gráficos
+\item {\bfseries{Input}}\+: Módulo encargado de la gestión de la entrada
+\item {\bfseries{Physics}}\+: Módulo encargado de la simulación física
+\item {\bfseries{Audio}}\+: Módulo encargado de la gestión del audio (sin implementar aún)
+\item {\bfseries{UI}}\+: Módulo encargado de la gestión de la interfaz gráfica
+\item {\bfseries{Exports}}\+: Módulo encargado de crear una librería dinámica que incluye los módulos anteriores
+\item {\bfseries{Main}}\+: Módulo encargado de ejecutar el motor
+\end{DoxyItemize}
+
+Los motores de tecnología hacen uso de diferentes bibliotecas para su funcionamiento. {\bfseries{\doxylink{namespace_tapioca}{Tapioca} Engine}} se hace uso de las siguientes\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://www.ogre3d.org/}{\texttt{ OGRE}}\+: renderizado de los gráficos
+\item \href{https://www.libsdl.org/}{\texttt{ SDL}}\+: gestión de la entrada
+\item \href{https://github.com/ocornut/imgui}{\texttt{ Dear Im\+Gui}}\+: interfaz gráfica
+\item \href{https://github.com/bulletphysics/bullet3}{\texttt{ Bullet}}\+: simulación física
+\item \href{https://www.ambiera.com/irrklang/}{\texttt{ Irr\+Klang}}\+: gestión del audio
+\item \href{https://www.lua.org/}{\texttt{ LUA}}\+: scripting
+\item \href{https://github.com/vinniefalco/LuaBridge}{\texttt{ LUABridge}}\+: integración de LUA en C++
+\end{DoxyItemize}
+
+Se sigue una arquitectura basada en entidades y componentes (EC), y se hace uso de patrones de diseño, especialmente el patrón de factoría o {\bfseries{Factory Method}}.
+
+El proceso de desarrollo del motor sigue una metodología ágil, concretamente {\bfseries{Scrum}}. Para ver el tablero de tareas, haz click \href{https://github.com/orgs/UCM-FDI-DISIA/projects/38/views/1}{\texttt{ aquí}} \hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Pipeline de generación de contenido}{Pipeline de generación de contenido}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{Motor}{Motor}}\label{index_autotoc_md5}
+Los distintos módulos que componen el motor se desarrollarán en la rama main y se crearán ramas separadas únicamente para la implementación que en el momento no se pueda compilar. \hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Juegos}{Juegos}}\label{index_autotoc_md6}
+La funcionalidad del juego vendrá dada por los componentes que conforman sus entidades. Siempre habrá una versión estable del motor que se podrá utilizar para probar el correcto funcionamiento de los componentes de juego que se vayan desarrollando. El proyecto contará con 2 juegos (ambos se desarrollarán en paralelo) y a medida que se amplíen las funcionalidades de motor se podrán incorporar nuevos elementos al juego. 
+
+Los links a los repositorios de los juegos son los siguientes\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/UCM-FDI-DISIA/BilliardsAdrift}{\texttt{ Billiards adrift}}
+\item \href{https://github.com/UCM-FDI-DISIA/Mar.io}{\texttt{ Mar.\+io}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Assets}{Assets}}\label{index_autotoc_md7}
+
+\begin{DoxyItemize}
+\item 
+
+{\bfseries{Assets visuales 2D}}\+: se utilizarán imágenes en formato {\bfseries{.png}} para que se respeten las transparencias correctamente con 72 dpi que es la resolución óptima para pantallas. 
+
+
+\item 
+
+{\bfseries{Assets visuales 3D}}\+: OGRE no permite trabajar directamente con .fbx o .glb como otros motores, si no que trabaja con sus propios formatos usando .mesh para mallas , .material para materiales y .skeleton para los rigs.
+
+Estos formatos {\bfseries{no}} son los más utilizados y la mayoría de assets que se pueden encontrar online (sean gratis o de pago) suelen estar en formatos como .fbx. Para obtener contenido utilizable para nuestro motor de render usaremos \href{https://www.blender.org/}{\texttt{ Blender}} y el plugin gratuito \href{https://github.com/OGRECave/blender2ogre}{\texttt{ blender2\+Ogre}}.
+
+Con {\bfseries{blender2\+Ogre}} podremos importar assets de terceros o crear las nuestras propias con Blender y exportar las mallas en .mesh y además se exporta un .mesh.\+xml más legible para leer donde se especifican los vértices de la malla y el esqueleto que tiene asociado.
+
+Los materiales en .material de acuerdo con los estándares .gl\+TF (gl\+TF 2.\+0 — Blender Manual) implica que no todo lo que podemos hacer en Blender con materiales se exportará correctamente, pero sí los atributos básicos como el color y las componentes metálica y difusa. 
+
+
+\item 
+
+{\bfseries{Assets sonoros}}\+: existe multitud de formatos de audio y uno de los más usados sin pérdida de calidad es el .wav que además es un formato que se usa de forma muy extendida.
+
+En el caso de encontrar assets en otros formatos como mp3 será sencillo usar programas como \href{https://www.audacityteam.org/}{\texttt{ Audacity}} o \href{https://www.videolan.org/vlc/download-windows.html}{\texttt{ VLC Media}} para convertirlos a .wav. 
+
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ \doxysubsubsection*{¡\+Síguenos en nuestras redes sociales!}
+
+
+
+\href{https://www.youtube.com/channel/UCsvZMJ8wfEXIIFbLuvrqQ-g}{\texttt{ }}\href{https://twitter.com/BubbleStudios24}{\texttt{ }}
+
+\doxysubsubsection*{¡\+Contáctanos por correo!}
+
+ \href{mailto:contactbubblestudios@gmail.com}{\texttt{  }}  

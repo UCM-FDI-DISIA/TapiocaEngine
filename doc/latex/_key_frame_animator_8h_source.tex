@@ -22,7 +22,7 @@
 \DoxyCodeLine{00021\ \ \ \ \ KeyFramesInfo\ info;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Informacion\ de\ los\ keyframes}}
 \DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_node_animator}{NodeAnimator}}*\ nodeAnimator;\ \ \ \textcolor{comment}{//\ Nodo\ animador}}
 \DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ speed;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Velocidad\ de\ la\ animacion}}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ duration;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Duracion\ de\ la\ animacion}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ duration;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Duracion\ de\ la\ animacion\ en\ segundos}}
 \DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ playByDefault;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ la\ animacion\ se\ reproduce\ por\ defecto}}
 \DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ loop;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ la\ animacion\ se\ reproduce\ en\ bucle}}
 \DoxyCodeLine{00027\ }
@@ -36,7 +36,7 @@
 \DoxyCodeLine{00040\ }
 \DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
 \DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ update(uint64\_t\ delt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ update(uint64\_t\ deltaTime)\ \textcolor{keyword}{override};}
 \DoxyCodeLine{00058\ }
 \DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ play(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ loop);}
 \DoxyCodeLine{00064\ }

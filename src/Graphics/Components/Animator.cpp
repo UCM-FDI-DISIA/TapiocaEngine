@@ -36,7 +36,7 @@ void Animator::start() {
     if (initAnim != "") playAnim(initAnim);
 }
 
-void Animator::update(uint64_t delt) { anim->updateAnim(delt, speed); }
+void Animator::update(uint64_t deltaTime) { anim->updateAnim(deltaTime, speed); }
 
 void Animator::playAnim(std::string const& animName) { anim->playAnim(animName); }
 

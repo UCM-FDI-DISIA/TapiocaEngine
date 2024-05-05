@@ -61,7 +61,7 @@ public:
     * @param PointOnB Punto donde ha contactado
     * @param normalOnB Normal que con direccion formada por el punto de contacto y el objeto contactado
     * @param distance Distancia entre el punto de contacto y el objeto contactado
-    * @param lifetime Tiempo que se va a dibujar la linea (No se usa)
+    * @param lifeTime Tiempo que se va a dibujar la linea (No se usa)
     * @param color Color de la linea
     */
     void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime,

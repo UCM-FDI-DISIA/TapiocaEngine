@@ -10,8 +10,8 @@
 #endif
 
 /**
-* @brief Clase encargada de generar Shaders para los materiales que no tengan
-* https://ogrecave.github.io/ogre/api/latest/class_ogre_bites_1_1_s_g_technique_resolver_listener.html
+* @brief Clase encargada de generar Shaders para los materiales que no tengan 
+* (https://ogrecave.github.io/ogre/api/latest/class_ogre_bites_1_1_s_g_technique_resolver_listener.html)
 */
 class SGTechniqueResolverListener : public Ogre::MaterialManager::Listener {
 protected:

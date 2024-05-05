@@ -3,6 +3,9 @@
 #include "componentDefs.h"
 
 namespace luabridge {
+/**
+* @brief Especializacion de la clase Stack para el tipo CompValue
+*/
 template<>
 struct Stack<CompValue> {
     [[nodiscard]] static Result push(lua_State* L, CompValue value) {

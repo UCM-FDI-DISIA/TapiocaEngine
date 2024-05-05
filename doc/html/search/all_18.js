@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../class_tapioca_1_1_vector2.html#a208b43492707e5c950003d131b8c9efb',1,'Tapioca::Vector2::y'],['../class_tapioca_1_1_vector3.html#a3a0ed50feaa2b5dea59a071b15f2f7f1',1,'Tapioca::Vector3::y'],['../class_tapioca_1_1_vector4.html#a92586225e87dd86316f7eb70408c0a11',1,'Tapioca::Vector4::y']]],
-  ['yaw_1',['yaw',['../class_tapioca_1_1_render_node.html#a1ed8bc71cd80fcf4340f93ff1b55ed1f',1,'Tapioca::RenderNode']]]
+  ['x_0',['x',['../class_tapioca_1_1_vector2.html#acdad3f716aafb05a26213e158a6bd2f8',1,'Tapioca::Vector2::x'],['../class_tapioca_1_1_vector3.html#ac181bc4b44c3d637de7c88a834c183cd',1,'Tapioca::Vector3::x'],['../class_tapioca_1_1_vector4.html#ae3eda24fbefdacf1317f036b0e02b8c4',1,'Tapioca::Vector4::x']]]
 ];

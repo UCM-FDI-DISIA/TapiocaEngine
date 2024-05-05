@@ -22,24 +22,38 @@
 \DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ height;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alto\ del\ plano}}
 \DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ xSegments;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ segmentos\ en\ x}}
 \DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ ySegments;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ segmentos\ en\ y}}
-\DoxyCodeLine{00024\ \ \ \ \ std::string\ planeName;\ \ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ plano}}
-\DoxyCodeLine{00025\ \ \ \ \ std::string\ materialName;\ \ \ \textcolor{comment}{//\ Nombre\ del\ material}}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}PlaneComponent"{}})}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ }
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane_component}{PlaneComponent}}();}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane_component}{\string~PlaneComponent}}();}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ setVisible(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ v);}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ isVisible()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00070\ \};}
-\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::PlaneComponent::planeName'\ :}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::PlaneComponent'}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::PlaneComponent::materialName'\ :}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::PlaneComponent'}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ \ \ \ \ std::string\ planeName;\ \ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ plano}}
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ materialName;\ \ \ \textcolor{comment}{//\ Nombre\ del\ material}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}PlaneComponent"{}})}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane_component}{PlaneComponent}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_plane_component}{\string~PlaneComponent}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ setVisible(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ v);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ isVisible()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ \}}
 
 \end{DoxyCode}

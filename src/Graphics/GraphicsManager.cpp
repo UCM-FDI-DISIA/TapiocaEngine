@@ -1,6 +1,5 @@
 #include "GraphicsManager.h"
 
-// PROPIOS
 #include "Utilities/LightPoint.h"
 #include "Utilities/LightDirectional.h"
 #include "Utilities/LightRectlight.h"
@@ -149,7 +148,7 @@ bool GraphicsManager::initConfig() {
 
     // crear ventana de Ogre (solo para render)
     // ya antes se le ha indicado en los parametros que existe la ventana de SDL
-    SDL_SysWMinfo wmInfo;
+    SDL_SysWMinfo wmInfo = {0};
     SDL_VERSION(&wmInfo.version);
     if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
         logError(("GraphicsManager: Error al obtener informacion de la ventana de SDL: " + std::string(SDL_GetError()))
@@ -272,7 +271,7 @@ void GraphicsManager::setUpShadows() {
     }
 }
 
-void GraphicsManager::loadResources() {
+void GraphicsManager::loadResources() const {
 #ifdef _CREATE_EXE
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         cfgPath + "./Ogre/Main", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);

@@ -90,7 +90,7 @@ void KeyFrameAnimator::start() {
     if (playByDefault) play(loop);
 }
 
-void KeyFrameAnimator::update(uint64_t delt) { nodeAnimator->updateAnim(delt, speed); }
+void KeyFrameAnimator::update(uint64_t deltaTime) { nodeAnimator->updateAnim(deltaTime, speed); }
 
 void KeyFrameAnimator::play(const bool loop) { nodeAnimator->play(loop); }
 

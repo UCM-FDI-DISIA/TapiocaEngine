@@ -160,7 +160,7 @@ public:
     inline bool getResized() const { return resized; }
     /**
     * @brief Establece si se ha redimensionado
-    * @param resizedY true si se ha redimensionado, false si no
+    * @param resized True si se ha redimensionado, false si no
     */
     inline void setResized(bool resized) { this->resized = resized; }
 };

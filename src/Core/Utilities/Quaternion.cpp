@@ -87,8 +87,8 @@ Vector3 Quaternion::toEuler() {
     else
         y = std::asin(sinp);
 
-    double siny_cosp = 2 * (scalar * vector.z + vector.x * vector.y);
-    double cosy_cosp = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
+    float siny_cosp = 2 * (scalar * vector.z + vector.x * vector.y);
+    float cosy_cosp = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
     z = std::atan2(siny_cosp, cosy_cosp);
 
     return Vector3(x * (180.0f / PI), y * (180.0f / PI), z * (180.0f / PI));

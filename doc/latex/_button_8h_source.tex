@@ -13,90 +13,106 @@
 \DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
 \DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_button}{Button}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{BaseWidget}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
 \DoxyCodeLine{00014\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00015\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a7d403fc5b7464f758c29459d3786df9f}{onClickId}};\ \ \ \ \ \ \textcolor{comment}{//\ Id\ de\ la\ funcion\ que\ se\ ejecuta\ cuando\ se\ hace\ click\ en\ el\ boton}}
-\DoxyCodeLine{00016\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a02ed95586bfb32eb2bdea65aaecbe302}{text}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Texto\ que\ se\ muestra\ en\ el\ boton}}
-\DoxyCodeLine{00017\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_aa47dcd06ea48be11dbb219085dabc6eb}{textFontName}};\ \ \ \textcolor{comment}{//\ Nombre\ de\ la\ fuente\ del\ texto\ del\ boton}}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_button_a32b4f1a5beb882b13521fbb27a80d3fa}{textSize}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tamano\ de\ la\ fuente\ del\ texto\ del\ boton}}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_button_a36a774545f4bf8f31fb0e62b2c6ec0d6}{initialTextSize}};\ \ \ \ \ \ \textcolor{comment}{//\ Tamano\ inicial\ de\ la\ fuente\ del\ texto\ del\ boton}}
-\DoxyCodeLine{00020\ \ \ \ \ ImFont*\ \mbox{\hyperlink{class_tapioca_1_1_button_a118f3f9d2496e7d5a311cb978c7298a1}{textFont}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fuente\ del\ texto\ del\ boton\ incluyendo\ tamano}}
-\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a4b5c8ed16fcc45679dbfc8af1ac0ae59}{textColorNormal}};\ \ \ \ \textcolor{comment}{//\ Color\ del\ texto\ del\ boton\ en\ estado\ "{}normal"{}}}
-\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a0b975bcb1f8b32d584716f126d88c681}{textColorHover}};\ \ \ \ \ \textcolor{comment}{//\ Color\ del\ texto\ del\ boton\ en\ estado\ "{}hover"{}}}
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a1fb25649e08e058971baebd216a549c6}{textColorActive}};\ \ \ \ \textcolor{comment}{//\ Color\ del\ texto\ del\ boton\ en\ estado\ "{}active"{}}}
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a07c73a3b01e22fea229176903817ae5c}{normalColor}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ boton\ para\ el\ estado\ "{}normal"{}}}
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a241c130288eb07cf4fde733463b74b27}{hoverColor}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ boton\ para\ el\ estado\ "{}hover"{}}}
-\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a24c7dc123614bd1c2856d7afbf0b8318}{activeColor}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ boton\ para\ el\ estado\ "{}active"{}}}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}Button"{}})}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ }
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_button}{Button}}();}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00039\ \ \ \ \ \string~\mbox{\hyperlink{class_tapioca_1_1_button}{Button}}();}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00045\ \ \ \ \ virtual\ \textcolor{keywordtype}{bool}\ initComponent(const\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ override;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Button::onClickId'\ :}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Button'}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Button::text'\ :}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Button'}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Button::textFontName'\ :\ }}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Button'}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a7d403fc5b7464f758c29459d3786df9f}{onClickId}};\ \ \ \ \ \ \textcolor{comment}{//\ Id\ de\ la\ funcion\ que\ se\ ejecuta\ cuando\ se\ hace\ click\ en\ el\ boton}}
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a02ed95586bfb32eb2bdea65aaecbe302}{text}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Texto\ que\ se\ muestra\ en\ el\ boton}}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_aa47dcd06ea48be11dbb219085dabc6eb}{textFontName}};\ \ \ \textcolor{comment}{//\ Nombre\ de\ la\ fuente\ del\ texto\ del\ boton}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_button_a32b4f1a5beb882b13521fbb27a80d3fa}{textSize}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tamano\ de\ la\ fuente\ del\ texto\ del\ boton}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_button_a36a774545f4bf8f31fb0e62b2c6ec0d6}{initialTextSize}};\ \ \ \ \ \textcolor{comment}{//\ Tamano\ inicial\ de\ la\ fuente\ del\ texto\ del\ boton}}
+\DoxyCodeLine{00036\ \ \ \ \ ImFont*\ \mbox{\hyperlink{class_tapioca_1_1_button_a118f3f9d2496e7d5a311cb978c7298a1}{textFont}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fuente\ del\ texto\ del\ boton\ incluyendo\ tamano}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a4b5c8ed16fcc45679dbfc8af1ac0ae59}{textColorNormal}};\ \ \ \textcolor{comment}{//\ Color\ del\ texto\ del\ boton\ en\ estado\ "{}normal"{}}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a0b975bcb1f8b32d584716f126d88c681}{textColorHover}};\ \ \ \ \textcolor{comment}{//\ Color\ del\ texto\ del\ boton\ en\ estado\ "{}hover"{}}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a1fb25649e08e058971baebd216a549c6}{textColorActive}};\ \ \ \textcolor{comment}{//\ Color\ del\ texto\ del\ boton\ en\ estado\ "{}active"{}}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a07c73a3b01e22fea229176903817ae5c}{normalColor}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ boton\ para\ el\ estado\ "{}normal"{}}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a241c130288eb07cf4fde733463b74b27}{hoverColor}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ boton\ para\ el\ estado\ "{}hover"{}}}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a24c7dc123614bd1c2856d7afbf0b8318}{activeColor}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ boton\ para\ el\ estado\ "{}active"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}Button"{}})}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00050\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ start()\ override;}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_button}{Button}}();}
 \DoxyCodeLine{00051\ }
-\DoxyCodeLine{00055\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ updateUI()\ override;}
+\DoxyCodeLine{00055\ \ \ \ \ \string~\mbox{\hyperlink{class_tapioca_1_1_button}{Button}}();}
 \DoxyCodeLine{00056\ }
-\DoxyCodeLine{00060\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ render()\ const\ override;}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00066\ \ \ \ \ inline\ \textcolor{keywordtype}{void}\ setOnClickId(const\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{string}\&\ onClickId)\ \{\ this-\/>onClickId\ =\ onClickId;\ \}}
+\DoxyCodeLine{00061\ \ \ \ \ virtual\ \textcolor{keywordtype}{bool}\ initComponent(const\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ override;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ start()\ override;}
 \DoxyCodeLine{00067\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a372725fbc6d8aa21281fd6104fb8b2bc}{setText}}(\textcolor{keyword}{const}\ std::string\&\ text)\ \{\ this-\/>text\ =\ text;\ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a45343ae1ade209852f718cf710c3208d}{setTextSize}}(\textcolor{keywordtype}{float}\ textSize)\ \{}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textSize\ !=\ this-\/>textSize)\ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>textSize\ =\ textSize;}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextFont();}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ updateUI()\ override;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ render()\ const\ override;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ inline\ \textcolor{keywordtype}{void}\ setOnClickId(const\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{string}\&\ onClickId)\ \{\ this-\/>onClickId\ =\ onClickId;\ \}}
 \DoxyCodeLine{00083\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_ad1e45e7bb5a6b19712950381ed8ac177}{setTextFontName}}(std::string\ textFontName)\ \{}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textFontName\ !=\ this-\/>textFontName)\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>textFontName\ =\ textFontName;}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextFont();}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00092\ \ \ \ \ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_aedd8b414567e0ce98320e669ce7b43e6}{setTextFont}}(ImFont*\ textFont)\ \{\ this-\/>textFont\ =\ textFont;\ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a372725fbc6d8aa21281fd6104fb8b2bc}{setText}}(\textcolor{keyword}{const}\ std::string\&\ text)\ \{\ this-\/>text\ =\ text;\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a45343ae1ade209852f718cf710c3208d}{setTextSize}}(\textcolor{keywordtype}{float}\ textSize)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textSize\ !=\ this-\/>textSize)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>textSize\ =\ textSize;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextFont();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
 \DoxyCodeLine{00099\ }
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextFont();}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_aafbe7aa289692a7dca08db39ce8fa277}{setTextColorNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColorNormal\ =\ textColor;\ \}}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a9ca60dfd06286f8fb81b4612f9bb8539}{setTextColorHover}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColorHover\ =\ textColor;\ \}}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_aad4a740833f3e3da8d10c92c4349d563}{setTextColorActive}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColorActive\ =\ textColor;\ \}}
-\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_ad5166810dc46073446c6beff08003be7}{setNormalColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ normalColor)\ \{\ this-\/>normalColor\ =\ normalColor;\ \}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a0c259def33d222d9e2dd4d472205fbe2}{setHoverColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ hoverColor)\ \{\ this-\/>hoverColor\ =\ hoverColor;\ \}}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a609e7ac061689a1011a0e5f4fa770a37}{setActiveColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ activeColor)\ \{\ this-\/>activeColor\ =\ activeColor;\ \}}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_ae61fb236ef30ddc115c34b3d8de4ef5a}{getOnClickId}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ onClickId;\ \}}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a17fe6e65c782bbea59e391108f260933}{getText}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ text;\ \}}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_button_a8395835fad3e2e0e55e1abf5fc1129e5}{getTextSize}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textSize;\ \}}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a2697ed31ffefe4914f135711cc6f2508}{getTextFontName}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textFontName;\ \}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{inline}\ ImFont*\ \mbox{\hyperlink{class_tapioca_1_1_button_ac4158e25484eb0e3097c1149c10d8650}{getTextFont}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textFont;\ \}}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a81e33747a68af348880947f6e00f9b9c}{getTextColorNormal}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColorNormal;\ \}}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a297a6afebc08ec95e673492ea1e52774}{getTextColorHover}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColorHover;\ \}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a9d6c114ea9f1c7b96f4363c01191e3f2}{getTextColorActive}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColorActive;\ \}}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a35b63faffd09669d4afa8f89c1d59d5e}{getNormalColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ normalColor;\ \}}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_ab682de1fb25698773692b99856a5d7f6}{getHoverColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ hoverColor;\ \}}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a32df7dffffa82389f8185d35324363aa}{getActiveColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ activeColor;\ \}}
-\DoxyCodeLine{00206\ \};}
-\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_ad1e45e7bb5a6b19712950381ed8ac177}{setTextFontName}}(std::string\ textFontName)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textFontName\ !=\ this-\/>textFontName)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>textFontName\ =\ textFontName;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextFont();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_aedd8b414567e0ce98320e669ce7b43e6}{setTextFont}}(ImFont*\ textFont)\ \{\ this-\/>textFont\ =\ textFont;\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextFont();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_aafbe7aa289692a7dca08db39ce8fa277}{setTextColorNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColorNormal\ =\ textColor;\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a9ca60dfd06286f8fb81b4612f9bb8539}{setTextColorHover}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColorHover\ =\ textColor;\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_aad4a740833f3e3da8d10c92c4349d563}{setTextColorActive}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColorActive\ =\ textColor;\ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_ad5166810dc46073446c6beff08003be7}{setNormalColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ normalColor)\ \{\ this-\/>normalColor\ =\ normalColor;\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a0c259def33d222d9e2dd4d472205fbe2}{setHoverColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ hoverColor)\ \{\ this-\/>hoverColor\ =\ hoverColor;\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_button_a609e7ac061689a1011a0e5f4fa770a37}{setActiveColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ activeColor)\ \{\ this-\/>activeColor\ =\ activeColor;\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_ae61fb236ef30ddc115c34b3d8de4ef5a}{getOnClickId}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ onClickId;\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a17fe6e65c782bbea59e391108f260933}{getText}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ text;\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_button_a8395835fad3e2e0e55e1abf5fc1129e5}{getTextSize}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textSize;\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_button_a2697ed31ffefe4914f135711cc6f2508}{getTextFontName}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textFontName;\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{inline}\ ImFont*\ \mbox{\hyperlink{class_tapioca_1_1_button_ac4158e25484eb0e3097c1149c10d8650}{getTextFont}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textFont;\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a81e33747a68af348880947f6e00f9b9c}{getTextColorNormal}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColorNormal;\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a297a6afebc08ec95e673492ea1e52774}{getTextColorHover}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColorHover;\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a9d6c114ea9f1c7b96f4363c01191e3f2}{getTextColorActive}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColorActive;\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a35b63faffd09669d4afa8f89c1d59d5e}{getNormalColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ normalColor;\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_ab682de1fb25698773692b99856a5d7f6}{getHoverColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ hoverColor;\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_button_a32df7dffffa82389f8185d35324363aa}{getActiveColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ activeColor;\ \}}
+\DoxyCodeLine{00222\ \};}
+\DoxyCodeLine{00223\ \}}
 
 \end{DoxyCode}

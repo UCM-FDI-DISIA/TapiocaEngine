@@ -16,27 +16,41 @@
 \DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ node;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nodo\ de\ renderizado}}
 \DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform;\ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ del\ nodo}}
 \DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane}{Skyplane}}*\ skyplane;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Plano\ en\ el\ cielo}}
-\DoxyCodeLine{00018\ \ \ \ \ std::string\ materialName;\ \ \ \textcolor{comment}{//\ Nombre\ del\ material}}
-\DoxyCodeLine{00019\ \ \ \ \ std::string\ skyplaneName;\ \ \ \textcolor{comment}{//\ Nombre\ del\ skyplane}}
-\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vector\ normal\ del\ plano}}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ fConstant;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distancia\ que\ se\ desplaza\ el\ plano\ en\ la\ direccion\ de\ la\ normal}}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ scale;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escala\ del\ plano}}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ tiling;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tiling\ del\ plano}}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ drawFirst;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ se\ dibuja\ primero}}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ bow;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Curvatura\ del\ plano}}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ xSegments;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ segmentos\ en\ x}}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ ySegments;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ segmentos\ en\ y}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane_component_af1ce051a0cab51e321c3dbccde0d3836}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}SkyplaneComponent"{}});}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane_component}{SkyplaneComponent}}();}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane_component}{\string~SkyplaneComponent}}();}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00054\ \};}
-\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::SkyplaneComponent::materialName'\ :}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::SkyplaneComponent'}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::SkyplaneComponent::skyplaneName'\ :}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::SkyplaneComponent'}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ materialName;\ \ \ \textcolor{comment}{//\ Nombre\ del\ material}}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ skyplaneName;\ \ \ \textcolor{comment}{//\ Nombre\ del\ skyplane}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}\ rkNormal;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vector\ normal\ del\ plano}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ fConstant;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distancia\ que\ se\ desplaza\ el\ plano\ en\ la\ direccion\ de\ la\ normal}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ scale;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escala\ del\ plano}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{float}\ tiling;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tiling\ del\ plano}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ drawFirst;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ se\ dibuja\ primero}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ bow;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Curvatura\ del\ plano}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ xSegments;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ segmentos\ en\ x}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ ySegments;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Numero\ de\ segmentos\ en\ y}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane_component_af1ce051a0cab51e321c3dbccde0d3836}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}SkyplaneComponent"{}});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane_component}{SkyplaneComponent}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skyplane_component}{\string~SkyplaneComponent}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ awake()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ \}}
 
 \end{DoxyCode}

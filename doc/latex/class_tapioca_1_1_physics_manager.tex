@@ -29,10 +29,10 @@ Diagrama de herencia de Tapioca\+::Physics\+Manager\begin{figure}[H]
 \mbox{\hyperlink{class_tapioca_1_1_physics_manager}{Physics\+Manager}} \& \mbox{\hyperlink{class_tapioca_1_1_physics_manager_ab5f50c2ecbdbaddd1228638625663905}{operator=}} (\mbox{\hyperlink{class_tapioca_1_1_physics_manager}{Physics\+Manager}} \&\&)=delete
 \item 
 void \mbox{\hyperlink{class_tapioca_1_1_physics_manager_a5fe43bf0b24298fda605809ea151f572}{fixed\+Update}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo a una velocidad fija. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_physics_manager_af19ec4ffcc46ca69d8f446fa521212ed}{update}} (const uint64\+\_\+t delta\+Time)
-\item 
-bt\+Rigid\+Body \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_physics_manager_a3319546d1fd9570a0c72d2557922842a}{create\+Rigid\+Body}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} position, const \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} rotation, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} shape\+Scale, const \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{Collider\+Shape}} collider\+Shape=\mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dcaa3f0c4baef62bf347cd4912806f266dd}{BOX\+\_\+\+SHAPE}}, const \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{Movement\+Type}} type=\mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296ae0c740c703c28cfd81233fd95c4e73e2}{STATIC\+\_\+\+OBJECT}}, float mass=0, const float friction=0, const float damping=0, const float bounciness=0, const bool is\+Trigger=false, const int group=1, const int mask=-\/1)
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo. \end{DoxyCompactList}\item 
+bt\+Rigid\+Body \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_physics_manager_a930c9c1f8a88036b106fe014568c392b}{create\+Rigid\+Body}} (const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} position, const \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}} rotation, const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}} shape\+Scale, const \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{Collider\+Shape}} collider\+Shape=\mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dcaa3f0c4baef62bf347cd4912806f266dd}{BOX\+\_\+\+SHAPE}}, const \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{Movement\+Type}} type=\mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296ae0c740c703c28cfd81233fd95c4e73e2}{STATIC\+\_\+\+OBJECT}}, float mass=0, const float friction=0, const float damping=0, const float bounciness=0, const bool is\+Trigger=false, const int group=1, const int mask=-\/1, const std\+::string file="{}"{})
 \begin{DoxyCompactList}\small\item\em Crea un rigidbody. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_physics_manager_a992ce01df4a02379026dd428beceb3b9}{destroy\+Rigid\+Body}} (bt\+Rigid\+Body \texorpdfstring{$\ast$}{*}const rb)
 \begin{DoxyCompactList}\small\item\em Destruye un rigid\+Body. \end{DoxyCompactList}\item 
@@ -63,13 +63,13 @@ virtual \mbox{\hyperlink{class_tapioca_1_1_singleton_aaafd5502089cff986b8fba7ed5
 virtual \mbox{\hyperlink{class_tapioca_1_1_module_a912a483f4aa2594e65d1246ba414d204}{\texorpdfstring{$\sim$}{\string~}\+Module}} ()
 \item 
 virtual bool \mbox{\hyperlink{class_tapioca_1_1_module_a53b2f080895522844072fe279e75bef4}{init}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa el modulo. \end{DoxyCompactList}\item 
 virtual bool \mbox{\hyperlink{class_tapioca_1_1_module_a885f390a478f3fb012925c171507f3a6}{init\+Config}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa la configuracion especificada por el juego. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a6249622666df090c8a12c11a8efddb4d}{render}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Renderiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a542fddd47dd266b6ad34cf4191d21bcb}{refresh}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Refresca el modulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Otros miembros heredados}
 \doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Physics\+Manager $>$}}}
 \begin{DoxyCompactItemize}
@@ -144,11 +144,11 @@ Anade un rigibody al mundo.
 {\em rb} & puntero al rb que se quiere anadir \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_tapioca_1_1_physics_manager_a3319546d1fd9570a0c72d2557922842a}\label{class_tapioca_1_1_physics_manager_a3319546d1fd9570a0c72d2557922842a} 
+\Hypertarget{class_tapioca_1_1_physics_manager_a930c9c1f8a88036b106fe014568c392b}\label{class_tapioca_1_1_physics_manager_a930c9c1f8a88036b106fe014568c392b} 
 \index{Tapioca::PhysicsManager@{Tapioca::PhysicsManager}!createRigidBody@{createRigidBody}}
 \index{createRigidBody@{createRigidBody}!Tapioca::PhysicsManager@{Tapioca::PhysicsManager}}
 \doxysubsubsection{\texorpdfstring{createRigidBody()}{createRigidBody()}}
-{\footnotesize\ttfamily bt\+Rigid\+Body \texorpdfstring{$\ast$}{*} Tapioca\+::\+Physics\+Manager\+::create\+Rigid\+Body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{position,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}}]{rotation,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{shape\+Scale,  }\item[{const \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{Collider\+Shape}}}]{collider\+Shape = {\ttfamily \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dcaa3f0c4baef62bf347cd4912806f266dd}{BOX\+\_\+\+SHAPE}}},  }\item[{const \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{Movement\+Type}}}]{type = {\ttfamily \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296ae0c740c703c28cfd81233fd95c4e73e2}{STATIC\+\_\+\+OBJECT}}},  }\item[{float}]{mass = {\ttfamily 0},  }\item[{const float}]{friction = {\ttfamily 0},  }\item[{const float}]{damping = {\ttfamily 0},  }\item[{const float}]{bounciness = {\ttfamily 0},  }\item[{const bool}]{is\+Trigger = {\ttfamily false},  }\item[{const int}]{group = {\ttfamily 1},  }\item[{const int}]{mask = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bt\+Rigid\+Body \texorpdfstring{$\ast$}{*} Tapioca\+::\+Physics\+Manager\+::create\+Rigid\+Body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{position,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_quaternion}{Quaternion}}}]{rotation,  }\item[{const \mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}}]{shape\+Scale,  }\item[{const \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dc}{Collider\+Shape}}}]{collider\+Shape = {\ttfamily \mbox{\hyperlink{namespace_tapioca_af64ded096e6ae404f3d4b143fefa89dcaa3f0c4baef62bf347cd4912806f266dd}{BOX\+\_\+\+SHAPE}}},  }\item[{const \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296}{Movement\+Type}}}]{type = {\ttfamily \mbox{\hyperlink{namespace_tapioca_ae673996084ac99d5e8609f23862f5296ae0c740c703c28cfd81233fd95c4e73e2}{STATIC\+\_\+\+OBJECT}}},  }\item[{float}]{mass = {\ttfamily 0},  }\item[{const float}]{friction = {\ttfamily 0},  }\item[{const float}]{damping = {\ttfamily 0},  }\item[{const float}]{bounciness = {\ttfamily 0},  }\item[{const bool}]{is\+Trigger = {\ttfamily false},  }\item[{const int}]{group = {\ttfamily 1},  }\item[{const int}]{mask = {\ttfamily -\/1},  }\item[{const std\+::string}]{file = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
 
 
 
@@ -179,6 +179,8 @@ Crea un rigidbody.
 {\em group} & Grupo al que pertenece el rb \\
 \hline
 {\em mask} & Mascara de colisiones del rb \\
+\hline
+{\em file} & Nombre del archivo que contiene el mesh \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
@@ -214,6 +216,10 @@ Destruye un rigid\+Body.
 \index{fixedUpdate@{fixedUpdate}!Tapioca::PhysicsManager@{Tapioca::PhysicsManager}}
 \doxysubsubsection{\texorpdfstring{fixedUpdate()}{fixedUpdate()}}
 {\footnotesize\ttfamily void Tapioca\+::\+Physics\+Manager\+::fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Actualiza el modulo a una velocidad fija. 
 
 
 
@@ -265,6 +271,15 @@ Elimina un rigid\+Body del mundo.
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
 {\footnotesize\ttfamily void Tapioca\+::\+Physics\+Manager\+::update (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
+
+
+Actualiza el modulo. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em delta\+Time} & Tiempo transcurrido desde la ultima actualizacion \\
+\hline
+\end{DoxyParams}
 
 
 Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_module_ac8caa585a847a5b30d535acf6da3e5af}{Tapioca\+::\+Module}}.

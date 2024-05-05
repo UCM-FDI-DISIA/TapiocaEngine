@@ -6,7 +6,7 @@ class Vector2;
 class Vector3;
 
 /**
-* Clase que implementa un vector geometrico de cuatro dimensiones
+* @brief Clase que implementa un vector geometrico de cuatro dimensiones
 */
 class TAPIOCA_API Vector4 {
 public:
@@ -19,7 +19,7 @@ public:
     * @brief Constructor de la clase Vector4.
     * Genera un vector que inicializa "x", "y", "z" y "w" al numero dado.
     * Si no se da un numero, este se considera cero
-    * @param xyz Valor al que se inicializan "x", "y", "z" y "w"
+    * @param xyzw Valor al que se inicializan "x", "y", "z" y "w"
     */
     Vector4(const float xyzw = 0);
     /**
@@ -42,6 +42,7 @@ public:
     * @brief Genera un vector con "x", "y" y "z" tal como estan en el vector dado.
     * "w" se inicializa segun el numero dado. Si no se da un numero, este se considera cero
     * @param other Vector3 del que se quiere copiar "x", "y" y "z"
+    * @param w Valor al que se inicializa "w"
     */
     Vector4(const Vector3& other, const float w = 0);
     /**

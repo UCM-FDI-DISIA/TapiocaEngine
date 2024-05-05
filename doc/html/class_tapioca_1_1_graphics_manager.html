@@ -95,7 +95,7 @@ Diagrama de herencia de Tapioca::GraphicsManager</div>
   <map id="Tapioca::GraphicsManager_map" name="Tapioca::GraphicsManager_map">
 <area href="class_tapioca_1_1_singleton.html" alt="Tapioca::Singleton&lt; GraphicsManager &gt;" shape="rect" coords="0,56,241,80"/>
 <area href="class_tapioca_1_1_window_module.html" title="Maneja los eventos de la ventana. Todo aquello que herede de esta clase podra manejar eventos de la v..." alt="Tapioca::WindowModule" shape="rect" coords="251,56,492,80"/>
-<area href="class_tapioca_1_1_module.html" alt="Tapioca::Module" shape="rect" coords="251,0,492,24"/>
+<area href="class_tapioca_1_1_module.html" title="Clase base para los modulos del motor." alt="Tapioca::Module" shape="rect" coords="251,0,492,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -233,12 +233,16 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:a912a483f4aa2594e65d1246ba414d204 inherit pub_methods_class_tapioca_1_1_module" id="r_a912a483f4aa2594e65d1246ba414d204"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#a912a483f4aa2594e65d1246ba414d204">~Module</a> ()</td></tr>
 <tr class="separator:a912a483f4aa2594e65d1246ba414d204 inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1edaa21164d47af387283262bb0935e inherit pub_methods_class_tapioca_1_1_module" id="r_ae1edaa21164d47af387283262bb0935e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#ae1edaa21164d47af387283262bb0935e">start</a> ()</td></tr>
+<tr class="memdesc:ae1edaa21164d47af387283262bb0935e inherit pub_methods_class_tapioca_1_1_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa las variables.  <br /></td></tr>
 <tr class="separator:ae1edaa21164d47af387283262bb0935e inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8caa585a847a5b30d535acf6da3e5af inherit pub_methods_class_tapioca_1_1_module" id="r_ac8caa585a847a5b30d535acf6da3e5af"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#ac8caa585a847a5b30d535acf6da3e5af">update</a> (const uint64_t deltaTime)</td></tr>
+<tr class="memdesc:ac8caa585a847a5b30d535acf6da3e5af inherit pub_methods_class_tapioca_1_1_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo.  <br /></td></tr>
 <tr class="separator:ac8caa585a847a5b30d535acf6da3e5af inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a956767f43bc1f4f534c5945c5afea4da inherit pub_methods_class_tapioca_1_1_module" id="r_a956767f43bc1f4f534c5945c5afea4da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#a956767f43bc1f4f534c5945c5afea4da">fixedUpdate</a> ()</td></tr>
+<tr class="memdesc:a956767f43bc1f4f534c5945c5afea4da inherit pub_methods_class_tapioca_1_1_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo a una velocidad fija.  <br /></td></tr>
 <tr class="separator:a956767f43bc1f4f534c5945c5afea4da inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a542fddd47dd266b6ad34cf4191d21bcb inherit pub_methods_class_tapioca_1_1_module" id="r_a542fddd47dd266b6ad34cf4191d21bcb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#a542fddd47dd266b6ad34cf4191d21bcb">refresh</a> ()</td></tr>
+<tr class="memdesc:a542fddd47dd266b6ad34cf4191d21bcb inherit pub_methods_class_tapioca_1_1_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refresca el modulo.  <br /></td></tr>
 <tr class="separator:a542fddd47dd266b6ad34cf4191d21bcb inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -981,12 +985,11 @@ Otros miembros heredados</h2></td></tr>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
-    <tr><td class="paramname">mshMgr</td><td>Puntero al manager de mallas de ogre </td></tr>
     <tr><td class="paramname">a</td><td>Componente x del vector normal </td></tr>
     <tr><td class="paramname">b</td><td>Componente y del vector normal </td></tr>
     <tr><td class="paramname">c</td><td>Componente z del vector normal </td></tr>
     <tr><td class="paramname">d</td><td>Distancia del plano al origen en la direccion de la normal </td></tr>
-    <tr><td class="paramname">fConstant</td><td>Distancia que se mueve el plano a traves de la normal </td></tr>
+    <tr><td class="paramname">up</td><td>Vector que indica la direccion de arriba </td></tr>
     <tr><td class="paramname">name</td><td>Nombre del plano </td></tr>
     <tr><td class="paramname">width</td><td>Anchura del plano </td></tr>
     <tr><td class="paramname">height</td><td>Altura del plano </td></tr>
@@ -1062,7 +1065,6 @@ Otros miembros heredados</h2></td></tr>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
-    <tr><td class="paramname">mshMgr</td><td>Puntero al manager de mallas de ogre </td></tr>
     <tr><td class="paramname">rkNormal</td><td>Normal del plano </td></tr>
     <tr><td class="paramname">fConstant</td><td>Distancia que se mueve el plano a traves de la normal </td></tr>
     <tr><td class="paramname">up</td><td>Vector que indica la direccion de arriba </td></tr>
@@ -1136,7 +1138,6 @@ Otros miembros heredados</h2></td></tr>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
-    <tr><td class="paramname">mshMgr</td><td>Puntero al manager de mallas de ogre </td></tr>
     <tr><td class="paramname">rkNormal</td><td>Normal del plano </td></tr>
     <tr><td class="paramname">fConstant</td><td>Distancia que se mueve el plano a traves de la normal </td></tr>
     <tr><td class="paramname">up</td><td>Vector que indica la direccion de arriba </td></tr>
@@ -1596,7 +1597,7 @@ Otros miembros heredados</h2></td></tr>
 <p>Se elimina la luz principal. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Luz</td><td>principal a eliminar </td></tr>
+    <tr><td class="paramname">lightDir</td><td>Luz principal a eliminar </td></tr>
   </table>
   </dd>
 </dl>
@@ -1700,7 +1701,7 @@ Otros miembros heredados</h2></td></tr>
 <p>Se establece la luz principal, es decir, la luz direccional que produce sombras. Solo puede haber una. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Nueva</td><td>luz principal </td></tr>
+    <tr><td class="paramname">lightDir</td><td>Nueva luz principal </td></tr>
   </table>
   </dd>
 </dl>

@@ -83,6 +83,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Factoria para crear componentes de Lua.  
+ <a href="#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_lua_component_8h_source.html">LuaComponent.h</a>&gt;</code></p>
 <div class="dynheader">
 Diagrama de herencia de Tapioca::LuaComponentBuilder</div>
@@ -97,11 +100,13 @@ Diagrama de herencia de Tapioca::LuaComponentBuilder</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
 <tr class="memitem:a96811176abc900a2c9cebf186cdbccbf" id="r_a96811176abc900a2c9cebf186cdbccbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96811176abc900a2c9cebf186cdbccbf">LuaComponentBuilder</a> (const std::string &amp;name, luabridge::LuaRef *table)</td></tr>
+<tr class="memdesc:a96811176abc900a2c9cebf186cdbccbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la factoria de componentes de Lua.  <br /></td></tr>
 <tr class="separator:a96811176abc900a2c9cebf186cdbccbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4e82bfb6ab2ade74dd301bb0873edf2" id="r_ae4e82bfb6ab2ade74dd301bb0873edf2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4e82bfb6ab2ade74dd301bb0873edf2">~LuaComponentBuilder</a> ()</td></tr>
+<tr class="memdesc:ae4e82bfb6ab2ade74dd301bb0873edf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor de la factoria de componentes de Lua.  <br /></td></tr>
 <tr class="separator:ae4e82bfb6ab2ade74dd301bb0873edf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa75f2839926173eb7f8d6791e694bc7a" id="r_aa75f2839926173eb7f8d6791e694bc7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_component.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa75f2839926173eb7f8d6791e694bc7a">createComponent</a> () override</td></tr>
-<tr class="memdesc:aa75f2839926173eb7f8d6791e694bc7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un componente.  <br /></td></tr>
+<tr class="memdesc:aa75f2839926173eb7f8d6791e694bc7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un componente de Lua.  <br /></td></tr>
 <tr class="separator:aa75f2839926173eb7f8d6791e694bc7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_tapioca_1_1_component_builder"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_tapioca_1_1_component_builder')"><img src="closed.png" alt="-"/>&#160;Métodos públicos heredados de <a class="el" href="class_tapioca_1_1_component_builder.html">Tapioca::ComponentBuilder</a></td></tr>
 <tr class="memitem:ab17d4506b9b1907f2a2344e53b4cd762 inherit pub_methods_class_tapioca_1_1_component_builder" id="r_ab17d4506b9b1907f2a2344e53b4cd762"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_component_builder.html#ab17d4506b9b1907f2a2344e53b4cd762">ComponentBuilder</a> (const std::string &amp;<a class="el" href="class_tapioca_1_1_component_builder.html#a8eaf20288833f951df8a3bc57ed74b03">id</a>)</td></tr>
@@ -116,7 +121,9 @@ Otros miembros heredados</h2></td></tr>
 <tr class="memdesc:a8eaf20288833f951df8a3bc57ed74b03 inherit pub_attribs_class_tapioca_1_1_component_builder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del componente que crea.  <br /></td></tr>
 <tr class="separator:a8eaf20288833f951df8a3bc57ed74b03 inherit pub_attribs_class_tapioca_1_1_component_builder"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Factoria para crear componentes de Lua. </p>
+</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
 <a id="a96811176abc900a2c9cebf186cdbccbf" name="a96811176abc900a2c9cebf186cdbccbf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96811176abc900a2c9cebf186cdbccbf">&#9670;&#160;</a></span>LuaComponentBuilder()</h2>
 
@@ -136,6 +143,15 @@ Otros miembros heredados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor de la factoria de componentes de Lua. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nombre del componente </td></tr>
+    <tr><td class="paramname">table</td><td>Tabla de Lua que contiene la clase del componente </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ae4e82bfb6ab2ade74dd301bb0873edf2" name="ae4e82bfb6ab2ade74dd301bb0873edf2"></a>
@@ -152,6 +168,8 @@ Otros miembros heredados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destructor de la factoria de componentes de Lua. </p>
 
 </div>
 </div>
@@ -179,7 +197,7 @@ Otros miembros heredados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea un componente. </p>
+<p>Crea un componente de Lua. </p>
 
 <p>Implementa <a class="el" href="class_tapioca_1_1_component_builder.html#ae3ee4fc7a949a41b4a8ad07bc3e9832d">Tapioca::ComponentBuilder</a>.</p>
 

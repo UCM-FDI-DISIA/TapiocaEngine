@@ -15,30 +15,39 @@
 \DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
 \DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_skybox}{Skybox}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_render_object}{RenderObject}}\ \{}
 \DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00017\ \ \ \ \ std::unique\_ptr<Ogre::ManualObject>\ mSkyBoxObj;}
-\DoxyCodeLine{00018\ \ \ \ \ Ogre::SceneManager*\ sceneManager;}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Skybox::texture'\ :}}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Skybox'}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00026\ \ \ \ \ std::string\ material;\ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ material}}
-\DoxyCodeLine{00027\ \ \ \ \ std::string\ skyboxName;\ \ \ \textcolor{comment}{//\ Nombre\ skybox}}
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ distC;\ \ \ \textcolor{comment}{//\ Distancia\ entre\ la\ cámara\ y\ el\ skybox}}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ orderC;\ \ \ \textcolor{comment}{//\ True\ se\ pinta\ el\ plano\ antes\ que\ la\ escena\ False\ despues}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skybox}{Skybox}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ material,}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ skyboxName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ distC\ =\ 5000,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ orderC\ =\ \textcolor{keyword}{true});}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setEnable(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable);}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnabled();}
-\DoxyCodeLine{00056\ \};}
-\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Skybox::mSkyBoxObj'\ :}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unique\_ptr<Ogre::ManualObject,std::default\_delete<Ogre::ManualObject>>'\ necesita}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Skybox'}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ \ \ \ \ std::unique\_ptr<Ogre::ManualObject>\ mSkyBoxObj;}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ \ \ \ \ Ogre::SceneManager*\ sceneManager;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Skybox::texture'\ :}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Skybox'}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ material;\ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ material}}
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ skyboxName;\ \ \ \textcolor{comment}{//\ Nombre\ skybox}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{float}\ distC;\ \ \ \textcolor{comment}{//\ Distancia\ entre\ la\ camara\ y\ el\ skybox}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ orderC;\ \ \ \textcolor{comment}{//\ True\ se\ pinta\ el\ plano\ antes\ que\ la\ escena\ False\ despues}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_skybox}{Skybox}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ material,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ skyboxName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ distC\ =\ 5000,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ orderC\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ setEnable(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnabled();}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ \}}
 
 \end{DoxyCode}

@@ -115,12 +115,12 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:ad59f91625a5332d2bfafa4efd929aaa1" id="r_ad59f91625a5332d2bfafa4efd929aaa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad59f91625a5332d2bfafa4efd929aaa1">handleEvent</a> (std::string const &amp;id, void *info) override</td></tr>
 <tr class="memdesc:ad59f91625a5332d2bfafa4efd929aaa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.  <br /></td></tr>
 <tr class="separator:ad59f91625a5332d2bfafa4efd929aaa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a050cea0b3d14691c36330654a54ca90d" id="r_a050cea0b3d14691c36330654a54ca90d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a050cea0b3d14691c36330654a54ca90d">setMaterialName</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a050cea0b3d14691c36330654a54ca90d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el nombre del material.  <br /></td></tr>
-<tr class="separator:a050cea0b3d14691c36330654a54ca90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9941d642632770586a91afc827593258" id="r_a9941d642632770586a91afc827593258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9941d642632770586a91afc827593258">setMeshName</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a9941d642632770586a91afc827593258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el nombre de la mesh.  <br /></td></tr>
-<tr class="separator:a9941d642632770586a91afc827593258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b1dff55698270f1d4f45eae21a53b5" id="r_ab2b1dff55698270f1d4f45eae21a53b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2b1dff55698270f1d4f45eae21a53b5">setMaterial</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:ab2b1dff55698270f1d4f45eae21a53b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el material.  <br /></td></tr>
+<tr class="separator:ab2b1dff55698270f1d4f45eae21a53b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0799ed9faa17e81025986a8041e09b7" id="r_af0799ed9faa17e81025986a8041e09b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0799ed9faa17e81025986a8041e09b7">setMesh</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:af0799ed9faa17e81025986a8041e09b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el mesh.  <br /></td></tr>
+<tr class="separator:af0799ed9faa17e81025986a8041e09b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf4be2cc6c8ff09c6dd0a27439719e9b" id="r_acf4be2cc6c8ff09c6dd0a27439719e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf4be2cc6c8ff09c6dd0a27439719e9b">setVisible</a> (const bool enable)</td></tr>
 <tr class="memdesc:acf4be2cc6c8ff09c6dd0a27439719e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece si la luz es visible o no.  <br /></td></tr>
 <tr class="separator:acf4be2cc6c8ff09c6dd0a27439719e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -348,8 +348,8 @@ Otros miembros heredados</h2></td></tr>
 <p>Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Id</td><td>indica el tipo de mensaje </td></tr>
-    <tr><td class="paramname">info</td><td>puntero a void para pasar parametros </td></tr>
+    <tr><td class="paramname">id</td><td>Indica el tipo de mensaje </td></tr>
+    <tr><td class="paramname">info</td><td>Puntero a void para pasar parametros </td></tr>
   </table>
   </dd>
 </dl>
@@ -414,30 +414,22 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="a050cea0b3d14691c36330654a54ca90d" name="a050cea0b3d14691c36330654a54ca90d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a050cea0b3d14691c36330654a54ca90d">&#9670;&#160;</a></span>setMaterialName()</h2>
+<a id="ab2b1dff55698270f1d4f45eae21a53b5" name="ab2b1dff55698270f1d4f45eae21a53b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b1dff55698270f1d4f45eae21a53b5">&#9670;&#160;</a></span>setMaterial()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Tapioca::MeshRenderer::setMaterialName </td>
+          <td class="memname">void Tapioca::MeshRenderer::setMaterial </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Establece el nombre del material. </p>
+<p>Cambia el material. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Nombre del material </td></tr>
@@ -447,14 +439,14 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="a9941d642632770586a91afc827593258" name="a9941d642632770586a91afc827593258"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9941d642632770586a91afc827593258">&#9670;&#160;</a></span>setMeshName()</h2>
+<a id="af0799ed9faa17e81025986a8041e09b7" name="af0799ed9faa17e81025986a8041e09b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0799ed9faa17e81025986a8041e09b7">&#9670;&#160;</a></span>setMesh()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Tapioca::MeshRenderer::setMeshName </td>
+          <td class="memname">void Tapioca::MeshRenderer::setMesh </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
           <td></td>
@@ -462,7 +454,7 @@ Otros miembros heredados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Establece el nombre de la mesh. </p>
+<p>Cambia el mesh. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Nombre de la mesh </td></tr>

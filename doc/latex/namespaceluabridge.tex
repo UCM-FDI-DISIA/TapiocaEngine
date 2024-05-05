@@ -4,4 +4,8 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structluabridge_1_1_stack_3_01_comp_value_01_4}{Stack$<$ Comp\+Value $>$}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Especializacion de la clase Stack para el tipo Comp\+Value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+-\/-\/-\/-\/-\/-\/-\/-\/--- VALORES VALIDOS -\/-\/-\/-\/-\/-\/-\/-\/--- Se usa Comp\+Value para representar variables sacadas de Lua o usadas en Lua. Los tipos validos son char, int, float, bool, string y nullptr/nil. Realmente Comp\+Value es un std\+::variant, asi que para coger un valor hay que usar los metodos de la biblioteca "{}std"{}\+: std\+::get para coger un valor, std\+::holds\+\_\+alternative para saber si el valor es capaz de convertirse a ese tipo. (Tambien se puede usar la funcion std\+::variant\+::index() para saber el tipo que tiene segun el indice. Los indices siguen el orden especificado arriba.) 

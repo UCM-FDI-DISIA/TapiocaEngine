@@ -122,7 +122,7 @@ public:
 
     /**
     * @brief Cambia el material del plano
-    * @params material Nombre del material al que se quiere cambiar
+    * @param material Nombre del material al que se quiere cambiar
     */
     void setMaterial(std::string const& material);
 

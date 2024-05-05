@@ -396,8 +396,8 @@ Otros miembros heredados</h2></td></tr>
 <p>Metodo que se usa para recibir eventos. Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent. </p>
 <dl class="params"><dt>Par√°metros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Id</td><td>indica el tipo de mensaje </td></tr>
-    <tr><td class="paramname">info</td><td>puntero a void para pasar parametros </td></tr>
+    <tr><td class="paramname">id</td><td>Indica el tipo de mensaje </td></tr>
+    <tr><td class="paramname">info</td><td>Puntero a void para pasar parametros </td></tr>
   </table>
   </dd>
 </dl>
@@ -529,7 +529,7 @@ Otros miembros heredados</h2></td></tr>
 <p>Cambia la direccion de la camara. </p>
 <dl class="params"><dt>Par√°metros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">targetToLook</td><td>Direccion a la que se quiere que poner la camara </td></tr>
+    <tr><td class="paramname">dir</td><td>Direccion a la que se quiere que poner la camara </td></tr>
   </table>
   </dd>
 </dl>
@@ -579,7 +579,7 @@ Otros miembros heredados</h2></td></tr>
 <p>Cambia el valor del rectangulo cercano que define el frustum. Como el tam del near distance es constante, dependiendo de cuanto lo acerquemos o lo alejemos, el angulo que forma con la posicion de la camara es mayor o menor, respectivamente Se puede indicar este angulo para ajustar la distancia del near plane X ej, un angulo de 90∫ corresponde con que tenemos una vision de 90∫ en el eje vertical (el horizontal se calcula solo, a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane) </p>
 <dl class="params"><dt>Par√°metros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">radians</td><td>Angulo en grados al que se cambia el trangulo que forma la camara con el rectangulo </td></tr>
+    <tr><td class="paramname">degrees</td><td>Angulo en grados al que se cambia el trangulo que forma la camara con el rectangulo </td></tr>
   </table>
   </dd>
 </dl>

@@ -56,8 +56,8 @@ public:
     float getWidth() const;
     /**
     * @brief Establece las dimensiones del billboard
-    * @param Anchura del billboard
-    * @param Altura del billboard
+    * @param width Anchura del billboard
+    * @param height Altura del billboard
     */
     void setDimensions(float width, float height);
     /**
@@ -67,7 +67,6 @@ public:
     void setRotation(const float rotation);
     /**
     * @brief Devuelve la rotacion del billboard en radianes
-    * @param Rotacion del billboard en radianes
     */
     float getRotation() const;
 };

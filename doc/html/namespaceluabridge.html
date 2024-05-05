@@ -81,9 +81,12 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Clases</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structluabridge_1_1_stack_3_01_comp_value_01_4.html">Stack&lt; CompValue &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Especializacion de la clase Stack para el tipo CompValue.  <a href="structluabridge_1_1_stack_3_01_comp_value_01_4.html#details">Más...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>--------&mdash; VALORES VALIDOS --------&mdash; Se usa CompValue para representar variables sacadas de Lua o usadas en Lua. Los tipos validos son char, int, float, bool, string y nullptr/nil. Realmente CompValue es un std::variant, asi que para coger un valor hay que usar los metodos de la biblioteca "std": std::get para coger un valor, std::holds_alternative para saber si el valor es capaz de convertirse a ese tipo. (Tambien se puede usar la funcion std::variant::index() para saber el tipo que tiene segun el indice. Los indices siguen el orden especificado arriba.) </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0

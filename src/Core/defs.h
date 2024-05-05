@@ -12,11 +12,14 @@
 #include <string>
 namespace Tapioca {
 class GameObject;
+/**
+* @brief Estructura de un evento
+*/
 struct Event {
-    GameObject* emisor;
-    std::string const id;
-    void* info;
-    bool global;
+    GameObject* emisor;     // Emisor del evento
+    std::string const id;   // Identificador del evento
+    void* info;             // Informacion adicional
+    bool global;            // Si se propaga a todos los objetos
 };
 inline void logInfo(const char* message) {
 #ifdef _DEBUG

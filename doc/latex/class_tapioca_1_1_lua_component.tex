@@ -2,6 +2,11 @@
 \hypertarget{class_tapioca_1_1_lua_component}{}\label{class_tapioca_1_1_lua_component}\index{Tapioca::LuaComponent@{Tapioca::LuaComponent}}
 
 
+Componente de Lua. Permite ejecutar codigo de Lua.  
+
+
+
+
 {\ttfamily \#include $<$Lua\+Component.\+h$>$}
 
 Diagrama de herencia de Tapioca\+::Lua\+Component\begin{figure}[H]
@@ -16,7 +21,7 @@ Diagrama de herencia de Tapioca\+::Lua\+Component\begin{figure}[H]
 \mbox{\hyperlink{class_tapioca_1_1_lua_component_ae67b67d0d57040c0008878960b330669}{Lua\+Component}} (luabridge\+::\+Lua\+Ref \texorpdfstring{$\ast$}{*}object\+Table, const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Constructor del componente. Para crear un componente, usar add\+Component en los \doxylink{class_tapioca_1_1_game_object}{Game\+Object} con la id. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tapioca_1_1_lua_component_abec067323620fc82f0625b0cf8311318}{\texorpdfstring{$\sim$}{\string~}\+Lua\+Component}} ()
-\begin{DoxyCompactList}\small\item\em Destructor del componente. Para borrar un componente, usar \doxylink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{Component\+::die()}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Destructor del componente. Para borrar un componente, usar \doxylink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{Component\+::die()} \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_lua_component_ad918235a9fb925dc5998d014f2bc4592}{init\+Component}} (const \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} \&variables) override
 \begin{DoxyCompactList}\small\item\em Funcion para inicializar un componente. Se llama solo, no llamar manualmente. Para saber como se implementa, revisar la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_lua_component_a119a2bfa75caca6881388ccc94704dfb}{awake}} () override
@@ -31,7 +36,7 @@ void \mbox{\hyperlink{class_tapioca_1_1_lua_component_a6ab91b2acb12774807caf2df7
 \begin{DoxyCompactList}\small\item\em Funcion para recibir eventos. Se llama solo, no llamar manualmente. Para saber como se implementa, revisar la clase \doxylink{class_tapioca_1_1_component}{Component}. \end{DoxyCompactList}\item 
 luabridge\+::\+Lua\+Ref \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_lua_component_acce771b9e1504d5f7192e6eea770d6b0}{get\+Table}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve la tabla del objeto de Lua. Para usarla hay que incluir lua.\+hpp y Lua\+Bridge.\+h. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ \mbox{\hyperlink{class_tapioca_1_1_lua_component_a4fcc5682b63d927e81ca837a03b96b81}{call\+Function}} (const std\+::string \&name, const std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ \&parameters=\{\}, bool \texorpdfstring{$\ast$}{*}success=nullptr)
+std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ \mbox{\hyperlink{class_tapioca_1_1_lua_component_aab033ea85c73e8e5a3b167cc545a2c21}{call\+Function}} (const std\+::string \&name, const std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ \&parameters=\{\}, bool \texorpdfstring{$\ast$}{*}success=nullptr) const
 \begin{DoxyCompactList}\small\item\em Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error usar el parametro success. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
 \begin{DoxyCompactItemize}
@@ -70,6 +75,9 @@ bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3e
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Descripción detallada}
+Componente de Lua. Permite ejecutar codigo de Lua. 
+
 \doxysubsection{Documentación de constructores y destructores}
 \Hypertarget{class_tapioca_1_1_lua_component_ae67b67d0d57040c0008878960b330669}\label{class_tapioca_1_1_lua_component_ae67b67d0d57040c0008878960b330669} 
 \index{Tapioca::LuaComponent@{Tapioca::LuaComponent}!LuaComponent@{LuaComponent}}
@@ -81,6 +89,13 @@ bool \mbox{\hyperlink{class_tapioca_1_1_component_a808615bdf378ef83a078b4da30a3e
 
 Constructor del componente. Para crear un componente, usar add\+Component en los \doxylink{class_tapioca_1_1_game_object}{Game\+Object} con la id. 
 
+Este componente no usa la macro COMPONENT\+\_\+\+ID para que no sea capaz de meterse en las templates de add\+Component y get\+Component 
+\begin{DoxyParams}{Parámetros}
+{\em object\+Table} & Tabla del objeto de Lua \\
+\hline
+{\em name} & Nombre del componente \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_tapioca_1_1_lua_component_abec067323620fc82f0625b0cf8311318}\label{class_tapioca_1_1_lua_component_abec067323620fc82f0625b0cf8311318} 
 \index{Tapioca::LuaComponent@{Tapioca::LuaComponent}!````~LuaComponent@{\texorpdfstring{$\sim$}{\string~}LuaComponent}}
 \index{````~LuaComponent@{\texorpdfstring{$\sim$}{\string~}LuaComponent}!Tapioca::LuaComponent@{Tapioca::LuaComponent}}
@@ -89,7 +104,7 @@ Constructor del componente. Para crear un componente, usar add\+Component en los
 
 
 
-Destructor del componente. Para borrar un componente, usar \doxylink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{Component\+::die()}. 
+Destructor del componente. Para borrar un componente, usar \doxylink{class_tapioca_1_1_component_aebfec029b95bb0187967f8e86206e5ad}{Component\+::die()} 
 
 
 
@@ -108,11 +123,11 @@ Funcion para inicializar un componente. Se llama solo, no llamar manualmente. Pa
 
 Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_a41fc79cc2154ddc4c06f707c1c74d2ed}{Tapioca\+::\+Component}}.
 
-\Hypertarget{class_tapioca_1_1_lua_component_a4fcc5682b63d927e81ca837a03b96b81}\label{class_tapioca_1_1_lua_component_a4fcc5682b63d927e81ca837a03b96b81} 
+\Hypertarget{class_tapioca_1_1_lua_component_aab033ea85c73e8e5a3b167cc545a2c21}\label{class_tapioca_1_1_lua_component_aab033ea85c73e8e5a3b167cc545a2c21} 
 \index{Tapioca::LuaComponent@{Tapioca::LuaComponent}!callFunction@{callFunction}}
 \index{callFunction@{callFunction}!Tapioca::LuaComponent@{Tapioca::LuaComponent}}
 \doxysubsubsection{\texorpdfstring{callFunction()}{callFunction()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ Tapioca\+::\+Lua\+Component\+::call\+Function (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ \&}]{parameters = {\ttfamily \{\}},  }\item[{bool \texorpdfstring{$\ast$}{*}}]{success = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ Tapioca\+::\+Lua\+Component\+::call\+Function (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} $>$ \&}]{parameters = {\ttfamily \{\}},  }\item[{bool \texorpdfstring{$\ast$}{*}}]{success = {\ttfamily nullptr} }\end{DoxyParamCaption}) const}
 
 
 
@@ -120,15 +135,15 @@ Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error u
 
 
 \begin{DoxyParams}{Parámetros}
-{\em name} & Nombre de la funcion a llamar. \\
+{\em name} & Nombre de la funcion a llamar \\
 \hline
-{\em parameters} & Parametros validos (mirar al principio del archivo) a pasar en la funcion. \\
+{\em parameters} & Parametros validos (mirar al principio del archivo) a pasar en la funcion \\
 \hline
-{\em success} & Puntero a booleano (ya debe haberse reservado espacio) que escribe en el si todo ha ido bien. Si se pasa nullptr, no ocurre nada. \\
+{\em success} & Puntero a booleano (ya debe haberse reservado espacio) que escribe en el si todo ha ido bien Si se pasa nullptr, no ocurre nada \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-Parametros devueltos por la funcion. Si un parametro no se puede recoger con Comp\+Value, se convertira en nullptr. Si la funcion produce un error, devuelve un vector vacio. 
+Parametros devueltos por la funcion. Si un parametro no se puede recoger con Comp\+Value, se convertira en nullptr. Si la funcion produce un error, devuelve un vector vacio 
 \end{DoxyReturn}
 \Hypertarget{class_tapioca_1_1_lua_component_a0d1b2b070c5b597df0159c7c059e3c41}\label{class_tapioca_1_1_lua_component_a0d1b2b070c5b597df0159c7c059e3c41} 
 \index{Tapioca::LuaComponent@{Tapioca::LuaComponent}!fixedUpdate@{fixedUpdate}}
@@ -155,7 +170,7 @@ Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_a2156ae36e3faf359
 Devuelve la tabla del objeto de Lua. Para usarla hay que incluir lua.\+hpp y Lua\+Bridge.\+h. 
 
 \begin{DoxyReturn}{Devuelve}
-Tabla del objeto de Lua. 
+Tabla del objeto de Lua 
 \end{DoxyReturn}
 \Hypertarget{class_tapioca_1_1_lua_component_a6ab91b2acb12774807caf2df799d5b0d}\label{class_tapioca_1_1_lua_component_a6ab91b2acb12774807caf2df799d5b0d} 
 \index{Tapioca::LuaComponent@{Tapioca::LuaComponent}!handleEvent@{handleEvent}}

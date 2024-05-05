@@ -34,11 +34,11 @@ bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_aa91d7d32c5afa914e6b2df92976
 \begin{DoxyCompactList}\small\item\em Inicializa Im\+Gui con SDL y Open\+GL, y anade el \doxylink{class_tapioca_1_1_u_i_manager}{UIManager} como listener de la ventana de \doxylink{namespace_ogre}{Ogre}. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_adb61e920284f29015ffb05f12ef61c14}{handle\+Events}} (const SDL\+\_\+\+Event \&event) override
 \begin{DoxyCompactList}\small\item\em Maneja los eventos de SDL. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a422763d3f07f8f362fb779723825a02d}{fonts\+Folder\+Exists}} ()
+bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_ac2b5407a7e93bc255b08278c9397df04}{fonts\+Folder\+Exists}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve si existe o no la carpeta de fuentes. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_ac99d85d49d28e4174c84bfc4a0715a35}{textures\+Folder\+Exists}} ()
+bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a8fe32381e002f03976e8ff14628c9daf}{textures\+Folder\+Exists}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve si existe o no la carpeta de imagenes. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a51a0650f9ce622a8df6831df0a63cc67}{fonts\+Folder\+Empty}} ()
+bool \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a2222c3953f96e0d4b56a9e079c468cb7}{fonts\+Folder\+Empty}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve si esta vacia o no la carpeta de fuentes. \end{DoxyCompactList}\item 
 Im\+Font \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tapioca_1_1_u_i_manager_a9ea3c31bafce9356a700d9f792653929}{load\+Font}} (const std\+::string \&name, float pixel\+Size=font\+Default\+Size)
 \begin{DoxyCompactList}\small\item\em Carga una fuente de la carpeta de fuentes. \end{DoxyCompactList}\item 
@@ -69,15 +69,15 @@ virtual \mbox{\hyperlink{class_tapioca_1_1_singleton_aaafd5502089cff986b8fba7ed5
 virtual \mbox{\hyperlink{class_tapioca_1_1_module_a912a483f4aa2594e65d1246ba414d204}{\texorpdfstring{$\sim$}{\string~}\+Module}} ()
 \item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ae1edaa21164d47af387283262bb0935e}{start}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa las variables. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ac8caa585a847a5b30d535acf6da3e5af}{update}} (const uint64\+\_\+t delta\+Time)
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a956767f43bc1f4f534c5945c5afea4da}{fixed\+Update}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo a una velocidad fija. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a6249622666df090c8a12c11a8efddb4d}{render}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Renderiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a542fddd47dd266b6ad34cf4191d21bcb}{refresh}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Refresca el modulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Otros miembros heredados}
 \doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ UIManager $>$}}}
 \begin{DoxyCompactItemize}
@@ -137,14 +137,11 @@ Anade un nombre de widget a la lista.
 {\em name} & Nombre del widget \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-Nombre del widget anadido 
-\end{DoxyReturn}
-\Hypertarget{class_tapioca_1_1_u_i_manager_a51a0650f9ce622a8df6831df0a63cc67}\label{class_tapioca_1_1_u_i_manager_a51a0650f9ce622a8df6831df0a63cc67} 
+\Hypertarget{class_tapioca_1_1_u_i_manager_a2222c3953f96e0d4b56a9e079c468cb7}\label{class_tapioca_1_1_u_i_manager_a2222c3953f96e0d4b56a9e079c468cb7} 
 \index{Tapioca::UIManager@{Tapioca::UIManager}!fontsFolderEmpty@{fontsFolderEmpty}}
 \index{fontsFolderEmpty@{fontsFolderEmpty}!Tapioca::UIManager@{Tapioca::UIManager}}
 \doxysubsubsection{\texorpdfstring{fontsFolderEmpty()}{fontsFolderEmpty()}}
-{\footnotesize\ttfamily bool Tapioca\+::\+UIManager\+::fonts\+Folder\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Tapioca\+::\+UIManager\+::fonts\+Folder\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -153,11 +150,11 @@ Devuelve si esta vacia o no la carpeta de fuentes.
 \begin{DoxyReturn}{Devuelve}
 true si esta vacia, false si no 
 \end{DoxyReturn}
-\Hypertarget{class_tapioca_1_1_u_i_manager_a422763d3f07f8f362fb779723825a02d}\label{class_tapioca_1_1_u_i_manager_a422763d3f07f8f362fb779723825a02d} 
+\Hypertarget{class_tapioca_1_1_u_i_manager_ac2b5407a7e93bc255b08278c9397df04}\label{class_tapioca_1_1_u_i_manager_ac2b5407a7e93bc255b08278c9397df04} 
 \index{Tapioca::UIManager@{Tapioca::UIManager}!fontsFolderExists@{fontsFolderExists}}
 \index{fontsFolderExists@{fontsFolderExists}!Tapioca::UIManager@{Tapioca::UIManager}}
 \doxysubsubsection{\texorpdfstring{fontsFolderExists()}{fontsFolderExists()}}
-{\footnotesize\ttfamily bool Tapioca\+::\+UIManager\+::fonts\+Folder\+Exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Tapioca\+::\+UIManager\+::fonts\+Folder\+Exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -296,11 +293,11 @@ Elimina un nombre de widget de la lista.
 {\em name} & Nombre del widget \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_tapioca_1_1_u_i_manager_ac99d85d49d28e4174c84bfc4a0715a35}\label{class_tapioca_1_1_u_i_manager_ac99d85d49d28e4174c84bfc4a0715a35} 
+\Hypertarget{class_tapioca_1_1_u_i_manager_a8fe32381e002f03976e8ff14628c9daf}\label{class_tapioca_1_1_u_i_manager_a8fe32381e002f03976e8ff14628c9daf} 
 \index{Tapioca::UIManager@{Tapioca::UIManager}!texturesFolderExists@{texturesFolderExists}}
 \index{texturesFolderExists@{texturesFolderExists}!Tapioca::UIManager@{Tapioca::UIManager}}
 \doxysubsubsection{\texorpdfstring{texturesFolderExists()}{texturesFolderExists()}}
-{\footnotesize\ttfamily bool Tapioca\+::\+UIManager\+::textures\+Folder\+Exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Tapioca\+::\+UIManager\+::textures\+Folder\+Exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 

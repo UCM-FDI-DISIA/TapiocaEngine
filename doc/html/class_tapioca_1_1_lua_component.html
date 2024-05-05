@@ -83,6 +83,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Componente de Lua. Permite ejecutar codigo de Lua.  
+ <a href="#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_lua_component_8h_source.html">LuaComponent.h</a>&gt;</code></p>
 <div class="dynheader">
 Diagrama de herencia de Tapioca::LuaComponent</div>
@@ -100,7 +103,7 @@ Métodos públicos</h2></td></tr>
 <tr class="memdesc:ae67b67d0d57040c0008878960b330669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor del componente. Para crear un componente, usar addComponent en los <a class="el" href="class_tapioca_1_1_game_object.html" title="Clase que representa un objeto en el juego.">GameObject</a> con la id.  <br /></td></tr>
 <tr class="separator:ae67b67d0d57040c0008878960b330669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abec067323620fc82f0625b0cf8311318" id="r_abec067323620fc82f0625b0cf8311318"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abec067323620fc82f0625b0cf8311318">~LuaComponent</a> ()</td></tr>
-<tr class="memdesc:abec067323620fc82f0625b0cf8311318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor del componente. Para borrar un componente, usar <a class="el" href="class_tapioca_1_1_component.html#aebfec029b95bb0187967f8e86206e5ad" title="Borra el componente.">Component::die()</a>.  <br /></td></tr>
+<tr class="memdesc:abec067323620fc82f0625b0cf8311318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor del componente. Para borrar un componente, usar <a class="el" href="class_tapioca_1_1_component.html#aebfec029b95bb0187967f8e86206e5ad" title="Borra el componente.">Component::die()</a>  <br /></td></tr>
 <tr class="separator:abec067323620fc82f0625b0cf8311318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad918235a9fb925dc5998d014f2bc4592" id="r_ad918235a9fb925dc5998d014f2bc4592"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad918235a9fb925dc5998d014f2bc4592">initComponent</a> (const <a class="el" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a> &amp;variables) override</td></tr>
 <tr class="memdesc:ad918235a9fb925dc5998d014f2bc4592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcion para inicializar un componente. Se llama solo, no llamar manualmente. Para saber como se implementa, revisar la clase <a class="el" href="class_tapioca_1_1_component.html" title="Clase base de todos los componentes.">Component</a>.  <br /></td></tr>
@@ -123,9 +126,9 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:acce771b9e1504d5f7192e6eea770d6b0" id="r_acce771b9e1504d5f7192e6eea770d6b0"><td class="memItemLeft" align="right" valign="top">luabridge::LuaRef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acce771b9e1504d5f7192e6eea770d6b0">getTable</a> () const</td></tr>
 <tr class="memdesc:acce771b9e1504d5f7192e6eea770d6b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la tabla del objeto de Lua. Para usarla hay que incluir lua.hpp y LuaBridge.h.  <br /></td></tr>
 <tr class="separator:acce771b9e1504d5f7192e6eea770d6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcc5682b63d927e81ca837a03b96b81" id="r_a4fcc5682b63d927e81ca837a03b96b81"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="component_defs_8h.html#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fcc5682b63d927e81ca837a03b96b81">callFunction</a> (const std::string &amp;name, const std::vector&lt; <a class="el" href="component_defs_8h.html#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a> &gt; &amp;parameters={}, bool *success=nullptr)</td></tr>
-<tr class="memdesc:a4fcc5682b63d927e81ca837a03b96b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error usar el parametro success.  <br /></td></tr>
-<tr class="separator:a4fcc5682b63d927e81ca837a03b96b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab033ea85c73e8e5a3b167cc545a2c21" id="r_aab033ea85c73e8e5a3b167cc545a2c21"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="component_defs_8h.html#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab033ea85c73e8e5a3b167cc545a2c21">callFunction</a> (const std::string &amp;name, const std::vector&lt; <a class="el" href="component_defs_8h.html#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a> &gt; &amp;parameters={}, bool *success=nullptr) const</td></tr>
+<tr class="memdesc:aab033ea85c73e8e5a3b167cc545a2c21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error usar el parametro success.  <br /></td></tr>
+<tr class="separator:aab033ea85c73e8e5a3b167cc545a2c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_tapioca_1_1_component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_tapioca_1_1_component')"><img src="closed.png" alt="-"/>&#160;Métodos públicos heredados de <a class="el" href="class_tapioca_1_1_component.html">Tapioca::Component</a></td></tr>
 <tr class="memitem:a54e3ac405643adf97dab7c13f200411a inherit pub_methods_class_tapioca_1_1_component" id="r_a54e3ac405643adf97dab7c13f200411a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_component.html#a54e3ac405643adf97dab7c13f200411a">Component</a> ()</td></tr>
 <tr class="memdesc:a54e3ac405643adf97dab7c13f200411a inherit pub_methods_class_tapioca_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_tapioca_1_1_component.html" title="Clase base de todos los componentes.">Component</a>.  <br /></td></tr>
@@ -172,7 +175,9 @@ Otros miembros heredados</h2></td></tr>
 <tr class="memitem:a808615bdf378ef83a078b4da30a3ead7 inherit pro_attribs_class_tapioca_1_1_component" id="r_a808615bdf378ef83a078b4da30a3ead7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_component.html#a808615bdf378ef83a078b4da30a3ead7">active</a></td></tr>
 <tr class="separator:a808615bdf378ef83a078b4da30a3ead7 inherit pro_attribs_class_tapioca_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Componente de Lua. Permite ejecutar codigo de Lua. </p>
+</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
 <a id="ae67b67d0d57040c0008878960b330669" name="ae67b67d0d57040c0008878960b330669"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae67b67d0d57040c0008878960b330669">&#9670;&#160;</a></span>LuaComponent()</h2>
 
@@ -193,6 +198,13 @@ Otros miembros heredados</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor del componente. Para crear un componente, usar addComponent en los <a class="el" href="class_tapioca_1_1_game_object.html" title="Clase que representa un objeto en el juego.">GameObject</a> con la id. </p>
+<p>Este componente no usa la macro COMPONENT_ID para que no sea capaz de meterse en las templates de addComponent y getComponent </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">objectTable</td><td>Tabla del objeto de Lua </td></tr>
+    <tr><td class="paramname">name</td><td>Nombre del componente </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -211,7 +223,7 @@ Otros miembros heredados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destructor del componente. Para borrar un componente, usar <a class="el" href="class_tapioca_1_1_component.html#aebfec029b95bb0187967f8e86206e5ad" title="Borra el componente.">Component::die()</a>. </p>
+<p>Destructor del componente. Para borrar un componente, usar <a class="el" href="class_tapioca_1_1_component.html#aebfec029b95bb0187967f8e86206e5ad" title="Borra el componente.">Component::die()</a> </p>
 
 </div>
 </div>
@@ -245,8 +257,8 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="a4fcc5682b63d927e81ca837a03b96b81" name="a4fcc5682b63d927e81ca837a03b96b81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fcc5682b63d927e81ca837a03b96b81">&#9670;&#160;</a></span>callFunction()</h2>
+<a id="aab033ea85c73e8e5a3b167cc545a2c21" name="aab033ea85c73e8e5a3b167cc545a2c21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab033ea85c73e8e5a3b167cc545a2c21">&#9670;&#160;</a></span>callFunction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +276,7 @@ Otros miembros heredados</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool *</td>          <td class="paramname"><span class="paramname"><em>success</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
+          <td class="paramtype">bool *</td>          <td class="paramname"><span class="paramname"><em>success</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -272,13 +284,13 @@ Otros miembros heredados</h2></td></tr>
 <p>Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error usar el parametro success. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Nombre de la funcion a llamar. </td></tr>
-    <tr><td class="paramname">parameters</td><td>Parametros validos (mirar al principio del archivo) a pasar en la funcion. </td></tr>
-    <tr><td class="paramname">success</td><td>Puntero a booleano (ya debe haberse reservado espacio) que escribe en el si todo ha ido bien. Si se pasa nullptr, no ocurre nada. </td></tr>
+    <tr><td class="paramname">name</td><td>Nombre de la funcion a llamar </td></tr>
+    <tr><td class="paramname">parameters</td><td>Parametros validos (mirar al principio del archivo) a pasar en la funcion </td></tr>
+    <tr><td class="paramname">success</td><td>Puntero a booleano (ya debe haberse reservado espacio) que escribe en el si todo ha ido bien Si se pasa nullptr, no ocurre nada </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>Parametros devueltos por la funcion. Si un parametro no se puede recoger con CompValue, se convertira en nullptr. Si la funcion produce un error, devuelve un vector vacio. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Parametros devueltos por la funcion. Si un parametro no se puede recoger con CompValue, se convertira en nullptr. Si la funcion produce un error, devuelve un vector vacio </dd></dl>
 
 </div>
 </div>
@@ -335,7 +347,7 @@ Otros miembros heredados</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve la tabla del objeto de Lua. Para usarla hay que incluir lua.hpp y LuaBridge.h. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>Tabla del objeto de Lua. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Tabla del objeto de Lua </dd></dl>
 
 </div>
 </div>

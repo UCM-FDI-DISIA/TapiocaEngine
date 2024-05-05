@@ -59,8 +59,8 @@ public:
     /**
     * @brief Metodo que se usa para recibir eventos.
     * Se llama nada mas se recibe el evento, si es un evento de ventana se recibe en el pushEvent.
-    * @param Id indica el tipo de mensaje
-    * @param info puntero a void para pasar parametros
+    * @param id Indica el tipo de mensaje
+    * @param info Puntero a void para pasar parametros
     */
     void handleEvent(std::string const& id, void* info) override;
     /**
@@ -78,7 +78,7 @@ public:
     void lookAt(const Vector3 targetToLook);
     /**
     * @brief Cambia la direccion de la camara.
-    * @param targetToLook Direccion a la que se quiere que poner la camara
+    * @param dir Direccion a la que se quiere que poner la camara
     */
     void setDirection(const Vector3 dir);
     /**
@@ -112,7 +112,7 @@ public:
     * Se puede indicar este angulo para ajustar la distancia del near plane
     * X ej, un angulo de 90º corresponde con que tenemos una vision de 90º en el eje vertical (el horizontal se calcula solo,
     * a partir del anguno en el eje vertical y el tam de la ventana grafica/near plane)
-    * @param radians Angulo en grados al que se cambia el trangulo que forma la camara con el rectangulo
+    * @param degrees Angulo en grados al que se cambia el trangulo que forma la camara con el rectangulo
     */
     void setFOVYDegrees(const float degrees);
 

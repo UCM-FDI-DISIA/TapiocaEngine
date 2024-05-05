@@ -80,14 +80,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Concepto que define un componente valido: necesita heredar de Component y tener una id valida.  
+<a href="#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_concepts_8h_source.html">Concepts.h</a>&gt;</code></p>
 <h2 class="groupheader">Definición de concepto</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TComp&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_tapioca_1_1_is_component.html">Tapioca::IsComponent</a> =  std::is_base_of&lt;Component, TComp&gt;::value</div>
 <div class="line">    &amp;&amp; <span class="keyword">requires</span> { { TComp::id }-&gt;std::convertible_to&lt;std::string&gt;; }</div>
-<div class="ttc" id="aconcept_tapioca_1_1_is_component_html"><div class="ttname"><a href="concept_tapioca_1_1_is_component.html">Tapioca::IsComponent</a></div><div class="ttdef"><b>Definition</b> Concepts.h:11</div></div>
+<div class="ttc" id="aconcept_tapioca_1_1_is_component_html"><div class="ttname"><a href="concept_tapioca_1_1_is_component.html">Tapioca::IsComponent</a></div><div class="ttdoc">Concepto que define un componente valido: necesita heredar de Component y tener una id valida.</div><div class="ttdef"><b>Definition</b> Concepts.h:11</div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>Concepto que define un componente valido: necesita heredar de Component y tener una id valida </p>
+<div class="textblock"><p>Concepto que define un componente valido: necesita heredar de Component y tener una id valida. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -26,7 +26,7 @@ bool \mbox{\hyperlink{class_tapioca_1_1_animator_a6328cc8f7881835b3b04879f432508
 \begin{DoxyCompactList}\small\item\em Metodo que se usa para recibir los parametros iniciales y guardarlos. No garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_animator_aab604d2f0b0424e814dd85990cb89e44}{start}} () override
 \begin{DoxyCompactList}\small\item\em Metodo que se usa para inicializar el componente. Garantiza que todos los componentes iniciales esten creados. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_tapioca_1_1_animator_a94419a3c5a22468f64bbdfc2bfa67b12}{update}} (uint64\+\_\+t delt) override
+void \mbox{\hyperlink{class_tapioca_1_1_animator_a4bf7f8fe790d53c3b9a6d375c2ab1c6f}{update}} (uint64\+\_\+t delta\+Time) override
 \begin{DoxyCompactList}\small\item\em Metodo que se usa para actualizar el estado de un componente. Se llama todas las veces posibles. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_animator_aff6a5a8d18186c733ac1178b016e4ffb}{play\+Anim}} (std\+::string const \&anim\+Name)
 \begin{DoxyCompactList}\small\item\em Cambia la animacion actual. \end{DoxyCompactList}\item 
@@ -41,7 +41,11 @@ float \mbox{\hyperlink{class_tapioca_1_1_animator_ada69f0e5a9b7444b59598793f1ec6
 bool \mbox{\hyperlink{class_tapioca_1_1_animator_ac177de8f334a43fdb075186831f73279}{get\+Loop}} () const
 \begin{DoxyCompactList}\small\item\em Devuelve si la animacion esta en bucle. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tapioca_1_1_animator_aac89b46d0a7c71f41523bd4b2f4371ec}{get\+Playing}} () const
-\begin{DoxyCompactList}\small\item\em Devuelve si la animacion se esta reproduciendo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion se esta reproduciendo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tapioca_1_1_animator_a16375da8edbf894118dd0a05277abe49}{has\+Ended}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve si la animacion ha terminado. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_tapioca_1_1_animator_a93a00986acdb28b393f4122bd8cc72af}{get\+Anim\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre de la animacion actual. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_component}{Tapioca\+::\+Component}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -112,6 +116,19 @@ Elimina la animacion.
 
 
 \doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_tapioca_1_1_animator_a93a00986acdb28b393f4122bd8cc72af}\label{class_tapioca_1_1_animator_a93a00986acdb28b393f4122bd8cc72af} 
+\index{Tapioca::Animator@{Tapioca::Animator}!getAnimName@{getAnimName}}
+\index{getAnimName@{getAnimName}!Tapioca::Animator@{Tapioca::Animator}}
+\doxysubsubsection{\texorpdfstring{getAnimName()}{getAnimName()}}
+{\footnotesize\ttfamily std\+::string Tapioca\+::\+Animator\+::get\+Anim\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el nombre de la animacion actual. 
+
+\begin{DoxyReturn}{Devuelve}
+Nombre de la animacion acutal como string 
+\end{DoxyReturn}
 \Hypertarget{class_tapioca_1_1_animator_ac177de8f334a43fdb075186831f73279}\label{class_tapioca_1_1_animator_ac177de8f334a43fdb075186831f73279} 
 \index{Tapioca::Animator@{Tapioca::Animator}!getLoop@{getLoop}}
 \index{getLoop@{getLoop}!Tapioca::Animator@{Tapioca::Animator}}
@@ -150,6 +167,19 @@ Devuelve la velocidad a la que se reproduce la animacion.
 
 \begin{DoxyReturn}{Devuelve}
 Velocidad a la que se reproduce la animacion 
+\end{DoxyReturn}
+\Hypertarget{class_tapioca_1_1_animator_a16375da8edbf894118dd0a05277abe49}\label{class_tapioca_1_1_animator_a16375da8edbf894118dd0a05277abe49} 
+\index{Tapioca::Animator@{Tapioca::Animator}!hasEnded@{hasEnded}}
+\index{hasEnded@{hasEnded}!Tapioca::Animator@{Tapioca::Animator}}
+\doxysubsubsection{\texorpdfstring{hasEnded()}{hasEnded()}}
+{\footnotesize\ttfamily bool Tapioca\+::\+Animator\+::has\+Ended (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve si la animacion ha terminado. 
+
+\begin{DoxyReturn}{Devuelve}
+true si la animacion ha terminado, false en caso contrario 
 \end{DoxyReturn}
 \Hypertarget{class_tapioca_1_1_animator_a6328cc8f7881835b3b04879f432508ae}\label{class_tapioca_1_1_animator_a6328cc8f7881835b3b04879f432508ae} 
 \index{Tapioca::Animator@{Tapioca::Animator}!initComponent@{initComponent}}
@@ -215,7 +245,7 @@ Cambia si se reproduce la animacion.
 
 
 \begin{DoxyParams}{Parámetros}
-{\em l} & true si se quiere reproducir, false en caso contrario \\
+{\em p} & true si se quiere reproducir, false en caso contrario \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_tapioca_1_1_animator_adc5f7c490857d17e8877e86e49414252}\label{class_tapioca_1_1_animator_adc5f7c490857d17e8877e86e49414252} 
@@ -247,11 +277,11 @@ Metodo que se usa para inicializar el componente. Garantiza que todos los compon
 
 Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_component_aac3a9c2eed1b91ac013cf8926ae66e50}{Tapioca\+::\+Component}}.
 
-\Hypertarget{class_tapioca_1_1_animator_a94419a3c5a22468f64bbdfc2bfa67b12}\label{class_tapioca_1_1_animator_a94419a3c5a22468f64bbdfc2bfa67b12} 
+\Hypertarget{class_tapioca_1_1_animator_a4bf7f8fe790d53c3b9a6d375c2ab1c6f}\label{class_tapioca_1_1_animator_a4bf7f8fe790d53c3b9a6d375c2ab1c6f} 
 \index{Tapioca::Animator@{Tapioca::Animator}!update@{update}}
 \index{update@{update}!Tapioca::Animator@{Tapioca::Animator}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void Tapioca\+::\+Animator\+::update (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{delt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Tapioca\+::\+Animator\+::update (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 

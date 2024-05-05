@@ -143,7 +143,7 @@ void MainLoop::refresh() {
     toDelete.clear();
 
     if (!sceneBuffer.empty()) {
-        auto auxBuffer = sceneBuffer;
+        std::unordered_set<Scene*> auxBuffer = sceneBuffer;
         sceneBuffer.clear();
 
         for (auto sc : auxBuffer) {

@@ -99,29 +99,43 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="class_tapioca_1_1_render_node.html">RenderNode</a>* node;           <span class="comment">// Nodo de renderizado</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_tapioca_1_1_transform.html">Transform</a>* transform;       <span class="comment">// Transform del nodo</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="class_tapioca_1_1_skyplane.html">Skyplane</a>* skyplane;         <span class="comment">// Plano en el cielo</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    std::string materialName;   <span class="comment">// Nombre del material</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::string skyplaneName;   <span class="comment">// Nombre del skyplane</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="class_tapioca_1_1_vector3.html">Vector3</a> rkNormal;           <span class="comment">// Vector normal del plano</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">float</span> fConstant;            <span class="comment">// Distancia que se desplaza el plano en la direccion de la normal</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">float</span> scale;                <span class="comment">// Escala del plano</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">float</span> tiling;               <span class="comment">// Tiling del plano</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">bool</span> drawFirst;             <span class="comment">// Si se dibuja primero</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">float</span> bow;                  <span class="comment">// Curvatura del plano</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">int</span> xSegments;              <span class="comment">// Numero de segmentos en x</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">int</span> ySegments;              <span class="comment">// Numero de segmentos en y</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_skyplane_component.html#af1ce051a0cab51e321c3dbccde0d3836">   30</a></span>    <a class="code hl_function" href="class_tapioca_1_1_skyplane_component.html#af1ce051a0cab51e321c3dbccde0d3836">COMPONENT_ID</a>(<span class="stringliteral">&quot;SkyplaneComponent&quot;</span>);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="class_tapioca_1_1_skyplane_component.html">SkyplaneComponent</a>();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_class" href="class_tapioca_1_1_skyplane_component.html">~SkyplaneComponent</a>();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">bool</span> initComponent(<span class="keyword">const</span> <a class="code hl_typedef" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> awake() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// warning C4251 &#39;Tapioca::SkyplaneComponent::materialName&#39; :</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::SkyplaneComponent&#39;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// warning C4251 &#39;Tapioca::SkyplaneComponent::skyplaneName&#39; :</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::SkyplaneComponent&#39;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::string materialName;   <span class="comment">// Nombre del material</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::string skyplaneName;   <span class="comment">// Nombre del skyplane</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#pragma warning(default : 4251)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_class" href="class_tapioca_1_1_vector3.html">Vector3</a> rkNormal;           <span class="comment">// Vector normal del plano</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">float</span> fConstant;            <span class="comment">// Distancia que se desplaza el plano en la direccion de la normal</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">float</span> scale;                <span class="comment">// Escala del plano</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">float</span> tiling;               <span class="comment">// Tiling del plano</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">bool</span> drawFirst;             <span class="comment">// Si se dibuja primero</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">float</span> bow;                  <span class="comment">// Curvatura del plano</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> xSegments;              <span class="comment">// Numero de segmentos en x</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">int</span> ySegments;              <span class="comment">// Numero de segmentos en y</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_skyplane_component.html#af1ce051a0cab51e321c3dbccde0d3836">   44</a></span>    <a class="code hl_function" href="class_tapioca_1_1_skyplane_component.html#af1ce051a0cab51e321c3dbccde0d3836">COMPONENT_ID</a>(<span class="stringliteral">&quot;SkyplaneComponent&quot;</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_tapioca_1_1_skyplane_component.html">SkyplaneComponent</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="class_tapioca_1_1_skyplane_component.html">~SkyplaneComponent</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">bool</span> initComponent(<span class="keyword">const</span> <a class="code hl_typedef" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> awake() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
 <div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
 <div class="ttc" id="a_vector3_8h_html"><div class="ttname"><a href="_vector3_8h.html">Vector3.h</a></div></div>
 <div class="ttc" id="aclass_tapioca_1_1_component_html"><div class="ttname"><a href="class_tapioca_1_1_component.html">Tapioca::Component</a></div><div class="ttdoc">Clase base de todos los componentes.</div><div class="ttdef"><b>Definition</b> Component.h:12</div></div>
@@ -130,10 +144,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclass_tapioca_1_1_skyplane_component_html_af1ce051a0cab51e321c3dbccde0d3836"><div class="ttname"><a href="class_tapioca_1_1_skyplane_component.html#af1ce051a0cab51e321c3dbccde0d3836">Tapioca::SkyplaneComponent::COMPONENT_ID</a></div><div class="ttdeci">COMPONENT_ID(&quot;SkyplaneComponent&quot;)</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_skyplane_html"><div class="ttname"><a href="class_tapioca_1_1_skyplane.html">Tapioca::Skyplane</a></div><div class="ttdoc">Wrapper de la clase Skyplane de Ogre.</div><div class="ttdef"><b>Definition</b> Skyplane.h:17</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_transform_html"><div class="ttname"><a href="class_tapioca_1_1_transform.html">Tapioca::Transform</a></div><div class="ttdoc">Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo. Este componente est...</div><div class="ttdef"><b>Definition</b> Transform.h:14</div></div>
-<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdoc">Clase que implementa un vector geometrico de tres dimensiones.</div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
 <div class="ttc" id="acomponent_defs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
 <div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
-<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

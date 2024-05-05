@@ -104,6 +104,7 @@ public:
     * @param  isTrigger True para declararlo como trigger, false en caso contrario
     * @param  group Grupo al que pertenece el rb
     * @param  mask Mascara de colisiones del rb
+    * @param  file Nombre del archivo que contiene el mesh
     * @return Puntero al rb creado
     */
     btRigidBody* createRigidBody(const Vector3 position, const Quaternion rotation, const Vector3 shapeScale,

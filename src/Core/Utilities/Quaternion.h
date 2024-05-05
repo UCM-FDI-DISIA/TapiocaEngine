@@ -3,7 +3,7 @@
 
 namespace Tapioca {
 /**
-* @brief Usamos el sistema diestro https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html.
+* @brief Usamos el sistema diestro (https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html).
 * Cualquier rotacion en un espacio tridimensional se puede definir con un vector unitario y una cantidad de giro sobre ese vector.
 */
 /**
@@ -37,8 +37,8 @@ public:
     /**
     * @brief Constructor de la clase Quaternion.
     * Se construye a partir de la descripcion la rotacion de alfa grados en el eje vec
-    * @params alfa Rotacion del vector en grados sexagesimales
-    * @params vec Vector que define el giro
+    * @param alfa Rotacion del vector en grados sexagesimales
+    * @param vec Vector que define el giro
     */
     Quaternion(const float alfa, const Vector3& vec);
     /**

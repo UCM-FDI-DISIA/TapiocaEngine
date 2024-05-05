@@ -23,9 +23,7 @@ Diagrama de herencia de Tapioca\+::Sound\+Manager\begin{figure}[H]
 bool \mbox{\hyperlink{class_tapioca_1_1_sound_manager_aee4edff187c7e13bd4a2afa7e8a016c4}{init}} () override
 \begin{DoxyCompactList}\small\item\em Crea un irr\+Klang device para gestionarlo todo. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_sound_manager_a6b44653e3fa3ce85cb8aa539e3473aa5}{set\+Listener}} (\mbox{\hyperlink{class_tapioca_1_1_audio_listener}{Audio\+Listener}} al)
-\begin{DoxyCompactList}\small\item\em Actualiza el audio\+Listener @params al \doxylink{class_tapioca_1_1_audio_listener}{Audio\+Listener} al que se quiere actualizar. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_tapioca_1_1_sound_manager_a6690565c7b01d327e5c8556bd86cc157}{testsample}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Actualiza el audio\+Listener. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Métodos públicos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Sound\+Manager $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,17 +41,17 @@ virtual \mbox{\hyperlink{class_tapioca_1_1_singleton_aaafd5502089cff986b8fba7ed5
 virtual \mbox{\hyperlink{class_tapioca_1_1_module_a912a483f4aa2594e65d1246ba414d204}{\texorpdfstring{$\sim$}{\string~}\+Module}} ()
 \item 
 virtual bool \mbox{\hyperlink{class_tapioca_1_1_module_a885f390a478f3fb012925c171507f3a6}{init\+Config}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa la configuracion especificada por el juego. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ae1edaa21164d47af387283262bb0935e}{start}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa las variables. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_ac8caa585a847a5b30d535acf6da3e5af}{update}} (const uint64\+\_\+t delta\+Time)
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a956767f43bc1f4f534c5945c5afea4da}{fixed\+Update}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Actualiza el modulo a una velocidad fija. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a6249622666df090c8a12c11a8efddb4d}{render}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Renderiza el modulo. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_tapioca_1_1_module_a542fddd47dd266b6ad34cf4191d21bcb}{refresh}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Refresca el modulo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Otros miembros heredados}
 \doxysubsection*{Métodos públicos estáticos heredados de \mbox{\hyperlink{class_tapioca_1_1_singleton}{Tapioca\+::\+Singleton$<$ Sound\+Manager $>$}}}
 \begin{DoxyCompactItemize}
@@ -108,17 +106,14 @@ Reimplementado de \mbox{\hyperlink{class_tapioca_1_1_module_a53b2f08089552284407
 
 
 
-Actualiza el audio\+Listener @params al \doxylink{class_tapioca_1_1_audio_listener}{Audio\+Listener} al que se quiere actualizar. 
+Actualiza el audio\+Listener. 
 
-\Hypertarget{class_tapioca_1_1_sound_manager_a6690565c7b01d327e5c8556bd86cc157}\label{class_tapioca_1_1_sound_manager_a6690565c7b01d327e5c8556bd86cc157} 
-\index{Tapioca::SoundManager@{Tapioca::SoundManager}!testsample@{testsample}}
-\index{testsample@{testsample}!Tapioca::SoundManager@{Tapioca::SoundManager}}
-\doxysubsubsection{\texorpdfstring{testsample()}{testsample()}}
-{\footnotesize\ttfamily void Tapioca\+::\+Sound\+Manager\+::testsample (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-int i = 0;
+\begin{DoxyParams}{Parámetros}
+{\em al} & \doxylink{class_tapioca_1_1_audio_listener}{Audio\+Listener} al que se quiere actualizar \\
+\hline
+\end{DoxyParams}
 
-while (i\texorpdfstring{$<$}{<}100023203) \{ i++; \} Sound\+Manager-\/\texorpdfstring{$>$}{>}play2D(snd-\/\texorpdfstring{$>$}{>}mysource);
 
 La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
 \item 

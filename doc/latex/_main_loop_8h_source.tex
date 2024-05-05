@@ -19,64 +19,70 @@
 \DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton<MainLoop>}};}
 \DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ std::vector<Event>\ delayedEvents;}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::modules'\ :}}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Module\ *,std::allocator<Tapioca::Module\ *>>'\ necesita}}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::loadedScenes'\ :}}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::stack<Tapioca::Scene\ *,std::deque<Tapioca::Scene\ *,std::allocator<Tapioca::Scene\ *>>>'\ necesita}}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::sceneBuffer'\ :}}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::stack<Tapioca::Scene\ *,std::deque<Tapioca::Scene\ *,std::allocator<Tapioca::Scene\ *>>>'\ necesita}}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::toDelete'\ :}}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Scene\ *,std::allocator<Tapioca::Scene\ *>>'\ necesita}}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00038\ \ \ \ \ std::vector<Module*>\ modules;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Modulos\ del\ motor}}
-\DoxyCodeLine{00039\ \ \ \ \ std::unordered\_map<std::string,\ Scene*>\ loadedScenes;\ \ \ \textcolor{comment}{//\ Escenas\ cargadas}}
-\DoxyCodeLine{00040\ \ \ \ \ std::unordered\_set<Scene*>\ sceneBuffer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escenas\ que\ se\ van\ a\ cargar\ la\ siguiente\ iteracion}}
-\DoxyCodeLine{00041\ \ \ \ \ std::unordered\_set<Scene*>\ toDelete;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escenas\ que\ se\ van\ a\ eliminar}}
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
-\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
-\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ uint64\_t\ deltaTime;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tiempo\ transcurrido\ desde\ el\ ultimo\ tick}}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint64\_t\ MAX\_NUM\_FIXED\_UDPATES\ =\ 150;\ \ \ \textcolor{comment}{//\ Numero\ maximo\ de\ fixedUpdates}}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ finish;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ True\ si\ va\ a\ terminar\ la\ ejecucion,\ false\ en\ caso\ contrario}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ start();}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ fixedUpdate();}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ refresh();}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ handleDelayedEvents();}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{MainLoop}}();}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{\string~MainLoop}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::assetsPath'\ :}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ }}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::delayedEvents'\ :}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Event,std::allocator<Tapioca::Event>>'\ necesita}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::modules'\ :}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Module\ *,std::allocator<Tapioca::Module\ *>>'\ necesita}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::loadedScenes'\ :}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::stack<Tapioca::Scene\ *,std::deque<Tapioca::Scene\ *,std::allocator<Tapioca::Scene\ *>>>'\ necesita}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::sceneBuffer'\ :}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::stack<Tapioca::Scene\ *,std::deque<Tapioca::Scene\ *,std::allocator<Tapioca::Scene\ *>>>'\ necesita}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::MainLoop::toDelete'\ :}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Scene\ *,std::allocator<Tapioca::Scene\ *>>'\ necesita}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::MainLoop'}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ \ \ \ \ std::string\ assetsPath;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ruta\ de\ los\ assets}}
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<Event>\ delayedEvents;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lista\ de\ eventos\ retrasados}}
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<Module*>\ modules;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Modulos\ del\ motor}}
+\DoxyCodeLine{00045\ \ \ \ \ std::unordered\_map<std::string,\ Scene*>\ loadedScenes;\ \ \ \textcolor{comment}{//\ Escenas\ cargadas}}
+\DoxyCodeLine{00046\ \ \ \ \ std::unordered\_set<Scene*>\ sceneBuffer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escenas\ que\ se\ van\ a\ cargar\ la\ siguiente\ iteracion}}
+\DoxyCodeLine{00047\ \ \ \ \ std::unordered\_set<Scene*>\ toDelete;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escenas\ que\ se\ van\ a\ eliminar}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ uint64\_t\ deltaTime;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tiempo\ transcurrido\ desde\ el\ ultimo\ tick}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint64\_t\ MAX\_NUM\_FIXED\_UDPATES\ =\ 150;\ \ \ \textcolor{comment}{//\ Numero\ maximo\ de\ fixedUpdates}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ finish;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ True\ si\ va\ a\ terminar\ la\ ejecucion,\ false\ en\ caso\ contrario}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ start();}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ fixedUpdate();}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ refresh();}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ handleDelayedEvents();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{MainLoop}}();}
 \DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint64\_t\ FIXED\_DELTA\_TIME\ =\ 1000\ /\ 60;\ \ \ \textcolor{comment}{//\ mas\ de\ 60\ fps\ (62.5)}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_main_loop_a3dfd40f125b55c530350d4fbefefcfbe}{exit}}()\ \{\ finish\ =\ \textcolor{keyword}{true};\ \}}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ init();}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ initConfig();}
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ run();}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ loadScene(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ sc);}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteScene(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ sc);}
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteScene(std::string\ \textcolor{keyword}{const}\&\ sc);}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00128\ \ \ \ \ std::unordered\_map<std::string,\ Scene*>\ getLoadedScenes()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ getScene(std::string\ sc);}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ addModule(\mbox{\hyperlink{class_tapioca_1_1_module}{Module}}*\ \textcolor{keyword}{const}\ m);}
-\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ pushEvent(\mbox{\hyperlink{struct_tapioca_1_1_event}{Event}}\ \textcolor{keyword}{const}\&\ e,\ \textcolor{keywordtype}{bool}\ \textcolor{keyword}{const}\ delay\ =\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00147\ \};}
-\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_main_loop}{\string~MainLoop}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint64\_t\ FIXED\_DELTA\_TIME\ =\ 1000\ /\ 60;\ \ \ \textcolor{comment}{//\ mas\ de\ 60\ fps\ (62.5)}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_main_loop_a3dfd40f125b55c530350d4fbefefcfbe}{exit}}()\ \{\ finish\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ init();}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ initConfig();}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ run();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ loadScene(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ sc);}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteScene(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ sc);}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteScene(std::string\ \textcolor{keyword}{const}\&\ sc);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00134\ \ \ \ \ std::unordered\_map<std::string,\ Scene*>\ getLoadedScenes()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ getScene(std::string\ sc);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ addModule(\mbox{\hyperlink{class_tapioca_1_1_module}{Module}}*\ \textcolor{keyword}{const}\ m);}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{void}\ pushEvent(\mbox{\hyperlink{struct_tapioca_1_1_event}{Event}}\ \textcolor{keyword}{const}\&\ e,\ \textcolor{keywordtype}{bool}\ \textcolor{keyword}{const}\ delay\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00153\ \};}
+\DoxyCodeLine{00154\ \}}
 
 \end{DoxyCode}

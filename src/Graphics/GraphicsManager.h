@@ -136,7 +136,7 @@ private:
     /**
     * @brief cargar las rutas donde se ubican los assets para que ogre pueda encontrarlos y usarlos
     */
-    void loadResources();
+    void loadResources() const;
 
     /**
     * @brief crea el constructor de shaders y anade el listener al gestor de materiales para que a aquellos assets que vengan sin shaders 
@@ -299,13 +299,13 @@ public:
                                          const Vector4 color = Vector4(1.0f, 1.0f, 1.0f, 1.0f));
     /**
     * @brief Se establece la luz principal, es decir, la luz direccional que produce sombras. Solo puede haber una
-    * @param Nueva luz principal
+    * @param lightDir Nueva luz principal
     */
     void setMainLight(LightDirectional* lightDir);
 
     /**
     * @brief Se elimina la luz principal
-    * @param Luz principal a eliminar
+    * @param lightDir Luz principal a eliminar
     */
     void removeMainLight(LightDirectional* lightDir);
 
@@ -360,7 +360,6 @@ public:
     * @brief Crea un plane
     * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
     * @param node Nodo para renderizado
-    * @param mshMgr Puntero al manager de mallas de ogre
     * @param rkNormal Normal del plano
     * @param fConstant Distancia que se mueve el plano a traves de la normal
     * @param up Vector que indica la direccion de arriba
@@ -378,7 +377,6 @@ public:
     * @brief Crea un plane sin nombre especificado
     * Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal
     * @param node Nodo para renderizado
-    * @param mshMgr Puntero al manager de mallas de ogre
     * @param rkNormal Normal del plano
     * @param fConstant Distancia que se mueve el plano a traves de la normal
     * @param up Vector que indica la direccion de arriba
@@ -396,12 +394,11 @@ public:
     * @brief Crea un plane
     * Construye un plano usando 4 constantes
     * @param node Nodo para renderizado
-    * @param mshMgr Puntero al manager de mallas de ogre
     * @param a Componente x del vector normal
     * @param b Componente y del vector normal
     * @param c Componente z del vector normal
     * @param d Distancia del plano al origen en la direccion de la normal
-    * @param fConstant Distancia que se mueve el plano a traves de la normal
+    * @param up Vector que indica la direccion de arriba
     * @param name Nombre del plano
     * @param width Anchura del plano
     * @param height Altura del plano

@@ -37,15 +37,17 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    float distC;   // Distancia entre la cámara y el skybox
+    float distC;   // Distancia entre la camara y el skybox
     bool orderC;   // True se pinta el plano antes que la escena False despues
 
 public:
     /**
     * @brief Construye un skybox con la textura texture a una distancia distC de la camara
-    * e indicando si se pinta antes o después del resto de elementos en función de orderC
+    * e indicando si se pinta antes o despues del resto de elementos en funcion de orderC
     * @param scnMngr Puntero al manager de escenas de ogre
-    * @param texture Nombre de la textura
+    * @param node Puntero al nodo de renderizado
+    * @param material Nombre del material
+    * @param skyboxName Nombre del skybox
     * @param distC Distancia del plano a la camara
     * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
     */

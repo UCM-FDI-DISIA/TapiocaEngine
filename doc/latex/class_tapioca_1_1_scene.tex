@@ -2,6 +2,11 @@
 \hypertarget{class_tapioca_1_1_scene}{}\label{class_tapioca_1_1_scene}\index{Tapioca::Scene@{Tapioca::Scene}}
 
 
+Clase que representa una escena del juego.  
+
+
+
+
 {\ttfamily \#include $<$Scene.\+h$>$}
 
 \doxysubsubsection*{Métodos públicos}
@@ -28,7 +33,7 @@ void \mbox{\hyperlink{class_tapioca_1_1_scene_a75ab8b89854408ce80e7a693371778f9}
 void \mbox{\hyperlink{class_tapioca_1_1_scene_ab77c3c4dc37080ca9862cd98d8250dde}{render}} () const
 \begin{DoxyCompactList}\small\item\em Renderiza los objetos de la escena. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_scene_a1c7124079ec90e7335379a91686bf33e}{refresh}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Elimina los objetos muertos de la escena ademas de todas sus componentes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_scene_a6e5bc7a65e21f3c9dcc0119bbbe9ce60}{handle\+Event}} (std\+::string const \&id, void \texorpdfstring{$\ast$}{*}info)
 \begin{DoxyCompactList}\small\item\em Procesa un evento recibido. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tapioca_1_1_scene_a0b4e97c4769ef48f0da348bcbfdb8b09}{push\+Event}} (\mbox{\hyperlink{struct_tapioca_1_1_event}{Event}} const \&e, bool const delay)
@@ -76,6 +81,9 @@ class \mbox{\hyperlink{class_tapioca_1_1_scene_a00df87c957d8f7ee0fc51f07a0542f4a
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Descripción detallada}
+Clase que representa una escena del juego. 
+
 \doxysubsection{Documentación de constructores y destructores}
 \Hypertarget{class_tapioca_1_1_scene_abbe76fdba12c32b334ecf2d7de40e070}\label{class_tapioca_1_1_scene_abbe76fdba12c32b334ecf2d7de40e070} 
 \index{Tapioca::Scene@{Tapioca::Scene}!Scene@{Scene}}
@@ -115,6 +123,8 @@ Anade un objeto a la escena.
 {\em object} & Objeto que se quiere anadir a la escena \\
 \hline
 {\em handler} & Handler que se quiere asociar al objeto que se quiere anadir. Los handlers deben ser unicos \\
+\hline
+{\em z\+Index} & Capa en la que se quiere anadir el objeto \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
@@ -188,7 +198,7 @@ Objeto asociado al handler o nullptr
 \index{Tapioca::Scene@{Tapioca::Scene}!getName@{getName}}
 \index{getName@{getName}!Tapioca::Scene@{Tapioca::Scene}}
 \doxysubsubsection{\texorpdfstring{getName()}{getName()}}
-{\footnotesize\ttfamily std\+::string const  \& Tapioca\+::\+Scene\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::string const  \& Tapioca\+::\+Scene\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -283,7 +293,7 @@ Procesa un evento recibido.
 \index{Tapioca::Scene@{Tapioca::Scene}!isActive@{isActive}}
 \index{isActive@{isActive}!Tapioca::Scene@{Tapioca::Scene}}
 \doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
-{\footnotesize\ttfamily bool Tapioca\+::\+Scene\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool Tapioca\+::\+Scene\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -304,11 +314,9 @@ Metodo que se usa para enviar un evento.
 
 
 \begin{DoxyParams}{Parámetros}
-{\em id} & Indica el tipo de mensaje \\
+{\em e} & Evento que se quiere enviar \\
 \hline
-{\em info} & Puntero a void para pasar parametros \\
-\hline
-{\em global} & Indica si el evento debe ser enviado glabalmente \\
+{\em delay} & Indica si se quiere enviar el evento en el siguiente frame \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_tapioca_1_1_scene_a1c7124079ec90e7335379a91686bf33e}\label{class_tapioca_1_1_scene_a1c7124079ec90e7335379a91686bf33e} 
@@ -317,10 +325,11 @@ Metodo que se usa para enviar un evento.
 \doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
 {\footnotesize\ttfamily void Tapioca\+::\+Scene\+::refresh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}  @brief Elimina los objetos muertos de la escena ademas de todas sus componentes
-\end{DoxyVerb}
- = ~\newline
- \Hypertarget{class_tapioca_1_1_scene_ab77c3c4dc37080ca9862cd98d8250dde}\label{class_tapioca_1_1_scene_ab77c3c4dc37080ca9862cd98d8250dde} 
+
+
+Elimina los objetos muertos de la escena ademas de todas sus componentes. 
+
+\Hypertarget{class_tapioca_1_1_scene_ab77c3c4dc37080ca9862cd98d8250dde}\label{class_tapioca_1_1_scene_ab77c3c4dc37080ca9862cd98d8250dde} 
 \index{Tapioca::Scene@{Tapioca::Scene}!render@{render}}
 \index{render@{render}!Tapioca::Scene@{Tapioca::Scene}}
 \doxysubsubsection{\texorpdfstring{render()}{render()}}
@@ -334,7 +343,7 @@ Renderiza los objetos de la escena.
 \index{Tapioca::Scene@{Tapioca::Scene}!setActive@{setActive}}
 \index{setActive@{setActive}!Tapioca::Scene@{Tapioca::Scene}}
 \doxysubsubsection{\texorpdfstring{setActive()}{setActive()}}
-{\footnotesize\ttfamily void Tapioca\+::\+Scene\+::set\+Active (\begin{DoxyParamCaption}\item[{const bool}]{a }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Tapioca\+::\+Scene\+::set\+Active (\begin{DoxyParamCaption}\item[{const bool}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

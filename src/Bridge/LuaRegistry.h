@@ -7,7 +7,7 @@ struct lua_State;
 
 namespace Tapioca {
 /**
-* Registra clases, funciones y valores en Lua y permite acceder a los valores registrados
+* @brief Registra clases, funciones y valores en Lua y permite acceder a los valores registrados
 */
 class TAPIOCA_API LuaRegistry {
 private:

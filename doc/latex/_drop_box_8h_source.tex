@@ -11,29 +11,39 @@
 \DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
 \DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_drop_box}{DropBox}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{BaseWidget}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
 \DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00013\ \ \ \ \ std::vector<std::string>\ items;\ \ \ \textcolor{comment}{//\ Vector\ con\ las\ distintas\ opciones}}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ currentItem;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indice\ del\ elemento\ seleccionado}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}DropBox"{}})}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ }
-\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_drop_box}{DropBox}}();}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::DropBox::items'\ :\ }}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<std::string,std::allocator<std::string>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::DropBox'}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020\ \ \ \ \ std::vector<std::string>\ items;\ \ \ \textcolor{comment}{//\ Vector\ con\ las\ distintas\ opciones}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ currentItem;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Indice\ del\ elemento\ seleccionado}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}DropBox"{}})}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_drop_box}{DropBox}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
 \DoxyCodeLine{00039\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a468b0e69f0122ceb5d96e04cf7e3fe6b}{setItems}}(\textcolor{keyword}{const}\ std::vector<std::string>\&\ items)\ \{\ this-\/>items\ =\ items;\ \}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a0d1e4ebc03a83cbb9227905acdb74dd2}{setCurrentItem}}(\textcolor{keywordtype}{int}\ currentItem)\ \{\ this-\/>currentItem\ =\ currentItem;\ \}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<std::string>\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a53158a062b6657cb2bba21815c934d5d}{getItems}}()\ \{\ \textcolor{keywordflow}{return}\ items;\ \}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a2281cbc0d776db0baa3cdacffeeac701}{getCurrentItem}}()\ \{\ \textcolor{keywordflow}{return}\ \&currentItem;\ \}}
-\DoxyCodeLine{00063\ \};}
-\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a468b0e69f0122ceb5d96e04cf7e3fe6b}{setItems}}(\textcolor{keyword}{const}\ std::vector<std::string>\&\ items)\ \{\ this-\/>items\ =\ items;\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a0d1e4ebc03a83cbb9227905acdb74dd2}{setCurrentItem}}(\textcolor{keywordtype}{int}\ currentItem)\ \{\ this-\/>currentItem\ =\ currentItem;\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<std::string>\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a53158a062b6657cb2bba21815c934d5d}{getItems}}()\ \{\ \textcolor{keywordflow}{return}\ items;\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_tapioca_1_1_drop_box_a2281cbc0d776db0baa3cdacffeeac701}{getCurrentItem}}()\ \{\ \textcolor{keywordflow}{return}\ \&currentItem;\ \}}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ \}}
 
 \end{DoxyCode}

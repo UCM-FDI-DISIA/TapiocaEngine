@@ -8,7 +8,7 @@ class Sound;
 class Transform;
 
 /**
-* Componente que se encarga de reproducir sonidos en el juego
+* @brief Componente que se encarga de reproducir sonidos en el juego
 */
 class TAPIOCA_API AudioSourceComponent: public Component {
 private:

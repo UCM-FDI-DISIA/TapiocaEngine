@@ -26,7 +26,7 @@ bool LightRectComp::initComponent(const CompMap& variables) {
 
     bool sizeSet = setValueFromMap(width, "width", variables) && setValueFromMap(height, "height", variables);
     if (!sizeSet) {
-        logError("LightRectComp: Es necesario indicar un tamaño para definir el rectangulo.");
+        logError("LightRectComp: Es necesario indicar un tamano para definir el rectangulo.");
         return false;
     }
 

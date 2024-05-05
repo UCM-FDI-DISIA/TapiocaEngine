@@ -21,35 +21,46 @@
 \DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_lua_manager}{LuaManager}}*\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9f18710d9e1070b446131167ecc7a293}{luaManager}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Puntero\ al\ LuaManager}}
 \DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_window_manager}{WindowManager}}*\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac36c8dfd58acf245ac61eb49402b73a3}{windowManager}};\ \ \ \textcolor{comment}{//\ Puntero\ al\ WindowManager}}
 \DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ widget}}
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Puntero\ al\ transform\ del\ widget}}
-\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{ImGuiWindowFlags}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{windowFlags}};\ \ \ \textcolor{comment}{//\ Flags\ de\ la\ ventana}}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{BaseWidget}}();}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{\string~BaseWidget}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::BaseWidget::name'\ :\ }}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::BaseWidget'}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a23ffdc07cacc6019119b260f690d06ec}{name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nombre\ del\ widget}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a50876211068ae0d8958beb226cf8e1f6}{transform}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Puntero\ al\ transform\ del\ widget}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{ImGuiWindowFlags}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_adacbcc749a81bf54a2c75f6050ceb72c}{windowFlags}};\ \ \ \textcolor{comment}{//\ Flags\ de\ la\ ventana}}
 \DoxyCodeLine{00037\ }
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a67ab31882485f7de34efc37d81f6282a}{setName}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \{\ this-\/>name\ =\ name;\ \}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{BaseWidget}}();}
 \DoxyCodeLine{00043\ }
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_aa353df99344dc677da2b3a8ac1b8dbc5}{setTransform}}(\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform)\ \{\ this-\/>transform\ =\ transform;\ \}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_aedb9535d57ce06003545e3bc9c38929c}{setPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ position)\ \{\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_aa7e96ef2753965651ef674ac3f78ef68}{setPosition}}(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(position.\mbox{\hyperlink{class_tapioca_1_1_vector2_acdad3f716aafb05a26213e158a6bd2f8}{x}},\ position.\mbox{\hyperlink{class_tapioca_1_1_vector2_a208b43492707e5c950003d131b8c9efb}{y}},\ 0));\ \}}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9de26411857691c5948c2131b6b93007}{setSize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ size)\ \{\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_a4c08ec3f8a0ab50ac9b4c815a7cf1532}{setScaleXY}}(size);\ \}}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a402adb7468a7885ac03e09ef23e792de}{setWindowFlags}}(\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{ImGuiWindowFlags}}\ windowFlags)\ \{\ this-\/>windowFlags\ =\ windowFlags;\ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a586427cda4bf91ecc335b88aec71568c}{getName}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ name;\ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad33e50b346466c8e1a7bf16891fe489b}{getTransform}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ transform;\ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac1f93543afdbd37af0d494cd87184e38}{getPosition}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_a2222d87133e71752c587daeeb556d0d8}{getPositionXY}}();\ \}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9dc0acf2ec9a1eb7a792b95e7161dd9b}{getSize}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_a05edd7d72a558ae068d52c8282aa092e}{getScaleXY}}();\ \}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{ImGuiWindowFlags}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a27810f9e8702e2b997dd4f921c800249}{getWindowFlags}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ windowFlags;\ \}}
-\DoxyCodeLine{00097\ \};}
-\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{\string~BaseWidget}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a67ab31882485f7de34efc37d81f6282a}{setName}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \{\ this-\/>name\ =\ name;\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_aa353df99344dc677da2b3a8ac1b8dbc5}{setTransform}}(\mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ transform)\ \{\ this-\/>transform\ =\ transform;\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_aedb9535d57ce06003545e3bc9c38929c}{setPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ position)\ \{\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_aa7e96ef2753965651ef674ac3f78ef68}{setPosition}}(\mbox{\hyperlink{class_tapioca_1_1_vector3}{Vector3}}(position.\mbox{\hyperlink{class_tapioca_1_1_vector2_acdad3f716aafb05a26213e158a6bd2f8}{x}},\ position.\mbox{\hyperlink{class_tapioca_1_1_vector2_a208b43492707e5c950003d131b8c9efb}{y}},\ 0));\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9de26411857691c5948c2131b6b93007}{setSize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ size)\ \{\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_a4c08ec3f8a0ab50ac9b4c815a7cf1532}{setScaleXY}}(size);\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a402adb7468a7885ac03e09ef23e792de}{setWindowFlags}}(\mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{ImGuiWindowFlags}}\ windowFlags)\ \{\ this-\/>windowFlags\ =\ windowFlags;\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a586427cda4bf91ecc335b88aec71568c}{getName}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ name;\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_transform}{Transform}}*\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_ad33e50b346466c8e1a7bf16891fe489b}{getTransform}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ transform;\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_ac1f93543afdbd37af0d494cd87184e38}{getPosition}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_a2222d87133e71752c587daeeb556d0d8}{getPositionXY}}();\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a9dc0acf2ec9a1eb7a792b95e7161dd9b}{getSize}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ transform-\/>\mbox{\hyperlink{class_tapioca_1_1_transform_a05edd7d72a558ae068d52c8282aa092e}{getScaleXY}}();\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{_base_widget_8h_a0b8e067ab4f7a818828c8d89e531addc}{ImGuiWindowFlags}}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget_a27810f9e8702e2b997dd4f921c800249}{getWindowFlags}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ windowFlags;\ \}}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ \}}
 
 \end{DoxyCode}

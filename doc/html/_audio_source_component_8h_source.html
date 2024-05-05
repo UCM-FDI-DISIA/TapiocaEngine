@@ -96,51 +96,61 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_audio_source_component.html">   13</a></span><span class="keyword">class </span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <a class="code hl_class" href="class_tapioca_1_1_audio_source_component.html">AudioSourceComponent</a>: <span class="keyword">public</span> <a class="code hl_class" href="class_tapioca_1_1_component.html">Component</a> {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_source.html">AudioSource</a>* source; <span class="comment">// Fuente de audio</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_tapioca_1_1_sound.html">Sound</a>* <a class="code hl_variable" href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">sound</a>; <span class="comment">// Sonido a reproducir</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="class_tapioca_1_1_transform.html">Transform</a>* transform; <span class="comment">// Transform del objeto</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="class_tapioca_1_1_vector3.html">Vector3</a> position; <span class="comment">// Posicion de la fuente de audio</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::string sourcePath; <span class="comment">// Ruta del archivo de audio</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">bool</span> is3D; <span class="comment">// Indica si queremos una fuente de sonido espacializada o no</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">bool</span> isLooping;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">bool</span> isPaused;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">float</span> volumen;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">float</span> playSpeed;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_define" href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a>(<span class="stringliteral">&quot;AudioSourceComponent&quot;</span>)</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_source_component.html">AudioSourceComponent</a>();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_source_component.html">~AudioSourceComponent</a>();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_source.html">AudioSource</a>* source;      <span class="comment">// Fuente de audio</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_tapioca_1_1_sound.html">Sound</a>* <a class="code hl_variable" href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">sound</a>;             <span class="comment">// Sonido a reproducir</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="class_tapioca_1_1_transform.html">Transform</a>* transform;     <span class="comment">// Transform del objeto</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="class_tapioca_1_1_vector3.html">Vector3</a> position;         <span class="comment">// Posicion de la fuente de audio</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// warning C4251 &#39;Tapioca::AudioSourceComponent::sourcepath&#39; :</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita tener una interfaz DLL</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// para que la utilicen los clientes de class &#39;Tapioca::AudioSourceComponent&#39;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::string sourcePath;         <span class="comment">//ruta archivo de sonido</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span> is3D; <span class="comment">// Indica si queremos una fuente de sonido espacializada o no</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">bool</span> isLooping;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> isPaused;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">float</span> volumen;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">float</span> playSpeed;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_define" href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a>(<span class="stringliteral">&quot;AudioSourceComponent&quot;</span>)</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">bool</span> initComponent(<span class="keyword">const</span> <a class="code hl_typedef" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> awake() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> handleEvent(std::string <span class="keyword">const</span>&amp; <span class="keywordtype">id</span>, <span class="keywordtype">void</span>* info) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> playOnce();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> playLooped();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> stop();</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> pause(<span class="keywordtype">bool</span> p);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> loop(<span class="keywordtype">bool</span> l);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> setVolume(<span class="keywordtype">float</span> v);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_source_component.html">AudioSourceComponent</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_source_component.html">~AudioSourceComponent</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">bool</span> initComponent(<span class="keyword">const</span> <a class="code hl_typedef" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> awake() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> handleEvent(std::string <span class="keyword">const</span>&amp; <span class="keywordtype">id</span>, <span class="keywordtype">void</span>* info) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> playOnce();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> playLooped();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> stop();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> pause(<span class="keywordtype">bool</span> p);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span> loop(<span class="keywordtype">bool</span> l);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> setVolume(<span class="keywordtype">float</span> v);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
 </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
 <div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
 <div class="ttc" id="a_component_8h_html_a6ece19712d479203bbc26db8935a896b"><div class="ttname"><a href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a></div><div class="ttdeci">#define COMPONENT_ID(_id)</div><div class="ttdoc">Id del componente Se necesita especificar para usar BasicBuilder y para poder ser llamado desde los m...</div><div class="ttdef"><b>Definition</b> Component.h:136</div></div>
 <div class="ttc" id="a_vector3_8h_html"><div class="ttname"><a href="_vector3_8h.html">Vector3.h</a></div></div>
-<div class="ttc" id="aclass_tapioca_1_1_audio_source_component_html"><div class="ttname"><a href="class_tapioca_1_1_audio_source_component.html">Tapioca::AudioSourceComponent</a></div><div class="ttdef"><b>Definition</b> AudioSourceComponent.h:13</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_audio_source_component_html"><div class="ttname"><a href="class_tapioca_1_1_audio_source_component.html">Tapioca::AudioSourceComponent</a></div><div class="ttdoc">Componente que se encarga de reproducir sonidos en el juego.</div><div class="ttdef"><b>Definition</b> AudioSourceComponent.h:13</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_audio_source_html"><div class="ttname"><a href="class_tapioca_1_1_audio_source.html">Tapioca::AudioSource</a></div><div class="ttdoc">Clase que representa una fuente de audio, ya sea 2D o 3D.</div><div class="ttdef"><b>Definition</b> AudioSource.h:15</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_component_html"><div class="ttname"><a href="class_tapioca_1_1_component.html">Tapioca::Component</a></div><div class="ttdoc">Clase base de todos los componentes.</div><div class="ttdef"><b>Definition</b> Component.h:12</div></div>
-<div class="ttc" id="aclass_tapioca_1_1_sound_html"><div class="ttname"><a href="class_tapioca_1_1_sound.html">Tapioca::Sound</a></div><div class="ttdef"><b>Definition</b> Sound.h:17</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_sound_html"><div class="ttname"><a href="class_tapioca_1_1_sound.html">Tapioca::Sound</a></div><div class="ttdoc">Clase que representa un recurso de sonido.</div><div class="ttdef"><b>Definition</b> Sound.h:17</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_transform_html"><div class="ttname"><a href="class_tapioca_1_1_transform.html">Tapioca::Transform</a></div><div class="ttdoc">Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo. Este componente est...</div><div class="ttdef"><b>Definition</b> Transform.h:14</div></div>
-<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdoc">Clase que implementa un vector geometrico de tres dimensiones.</div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
 <div class="ttc" id="acomponent_defs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
 <div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
-<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:8</div></div>
 <div class="ttc" id="anamespace_tapioca_html_a50f116bb01f41d112f7af00c4f87884e"><div class="ttname"><a href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">Tapioca::sound</a></div><div class="ttdeci">SoundManager * sound</div><div class="ttdef"><b>Definition</b> Exports.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

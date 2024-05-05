@@ -18,7 +18,9 @@
 #include "Utilities/Quaternion.h"
 
 namespace Tapioca {
-LuaManager* LuaManager::instance_ = nullptr;
+template class TAPIOCA_API Singleton<LuaManager>;
+template<>
+LuaManager* Singleton<LuaManager>::instance_ = nullptr;
 
 LuaManager::LuaManager() : L(nullptr), initialized(true) {
     L = luaL_newstate();

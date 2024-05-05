@@ -30,12 +30,12 @@ bool SkyboxComponent::initComponent(const CompMap& variables) {
 
     bool bDistC = setValueFromMap(distC, "distC", variables);
     if (!bDistC) {
-        logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y la cámara, se usara el valor por "
+        logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y la camara, se usara el valor por "
                 "defecto 5000s.");
     }
 
     if (!setValueFromMap(orderC, "orderC", variables)) {
-        logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes o después de la escena, se usara el "
+        logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes o despues de la escena, se usara el "
                 "valor por defecto true.");
     }
 

@@ -35,7 +35,7 @@ std::vector<Component*> GameObject::addComponents(const std::vector<std::pair<st
         Component* comp = FactoryManager::instance()->createComponent(id);
         vec.push_back(comp);
         if (!comp->initComponent(params)) {
-            // Si un componente no se puede inicializar, se cancela la operación completa.
+            // Si un componente no se puede inicializar, se cancela la operacion completa.
             for (Component* c : vec)
                 delete c;
             return vec;
