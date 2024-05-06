@@ -56,4 +56,5 @@ void SoundManager::createAudioFolder() {
     }
 
 }
+std::string SoundManager::getAudioPath() { return audioFolderPath; }
 }
