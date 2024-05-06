@@ -29,6 +29,16 @@ bool Scene::addObject(GameObject* const object, std::string const& handler, int 
 }
 
 void Scene::refresh() {
+    for (auto& ly : layers) {
+        ly.second.erase(std::remove_if(ly.second.begin(), ly.second.end(),
+                                       [this](GameObject* obj) {
+                                           if (obj->isAlive()) return false;
+                                           else
+                                               return true;
+                                       }),
+                        ly.second.end());
+    }
+
     objects.erase(std::remove_if(objects.begin(), objects.end(),
                                  [this](GameObject* obj) {
                                      if (obj->isAlive()) return false;
@@ -43,6 +53,8 @@ void Scene::refresh() {
                                      }
                                  }),
                   objects.end());
+
+
 
     for (auto& obj : objects)
         obj->refresh();
@@ -79,7 +91,7 @@ void Scene::render() const {
     // Mayor zIndex implica que se dibuje antes para que quede por debajo
     for (auto it = layers.rbegin(); it != layers.rend(); ++it)
         for (auto obj : it->second)
-            obj->render();
+            if (obj->isAlive()) obj->render();
 }
 
 void Scene::awake() {
