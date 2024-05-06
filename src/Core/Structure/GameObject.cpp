@@ -4,7 +4,7 @@
 #include "FactoryManager.h"
 
 namespace Tapioca {
-GameObject::GameObject() : scene(nullptr), alive(true), handler("") { }
+GameObject::GameObject() : scene(nullptr), alive(true), handler(""), zOrder(0) { }
 
 GameObject::~GameObject() {
     for (auto& i : components)

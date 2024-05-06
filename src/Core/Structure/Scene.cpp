@@ -22,13 +22,17 @@ bool Scene::addObject(GameObject* const object, std::string const& handler, int 
         handlers[handler] = object;
     }
 
-    objects.push_back(object);
-    layers[zIndex].push_back(object);
+    objects.insert(object);
+    //objects.push_back(object);
+    layers[zIndex].insert(object);
+    //layers[zIndex].push_back(object);
     object->setScene(this);
+    object->setZOrder(zIndex);
     return true;
 }
 
 void Scene::refresh() {
+    /*
     for (auto& ly : layers) {
         ly.second.erase(std::remove_if(ly.second.begin(), ly.second.end(),
                                        [this](GameObject* obj) {
@@ -38,7 +42,29 @@ void Scene::refresh() {
                                        }),
                         ly.second.end());
     }
+    */
 
+    std::unordered_set<GameObject*> objectsAux;
+    for (GameObject* object : objects) {
+        if (!object->isAlive()) {
+            objectsAux.insert(object);
+        }
+    }
+    for (GameObject* objectAux : objectsAux) {
+        objects.erase(objectAux);
+        if (handlers.find(objectAux->handler) != handlers.end()) {
+            handlers.erase(objectAux->handler);
+        }
+        auto itLayer = layers.find(objectAux->getZOrder());
+        if (itLayer != layers.end()) {
+            if (itLayer->second.contains(objectAux)) {
+                itLayer->second.erase(objectAux);
+            }
+        }
+        delete objectAux;
+        objectAux = nullptr;
+    }
+    /*
     objects.erase(std::remove_if(objects.begin(), objects.end(),
                                  [this](GameObject* obj) {
                                      if (obj->isAlive()) return false;
@@ -53,7 +79,7 @@ void Scene::refresh() {
                                      }
                                  }),
                   objects.end());
-
+    */
 
 
     for (auto& obj : objects)
@@ -67,7 +93,7 @@ void Scene::handleEvent(std::string const& id, void* info) {
 
 void Scene::pushEvent(Event const& e, bool const delay) { MainLoop::instance()->pushEvent(e, delay); }
 
-std::vector<GameObject*> Scene::getObjects() const { return objects; }
+std::unordered_set<GameObject*> Scene::getObjects() const { return objects; }
 
 GameObject* Scene::getHandler(std::string const& handler) const {
     auto it = handlers.find(handler);
@@ -113,6 +139,13 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
         return;
 
     // Elimina el objeto de la capa actual
+    auto itLayer = layers.find(obj->getZOrder());
+    if (itLayer != layers.end()) {
+        if (itLayer->second.contains(obj)) {
+            itLayer->second.erase(obj);
+        }
+    }
+    /*
     for (auto it = layers.begin(); it != layers.end(); ++it) {
         for (GameObject* o : it->second) {
             if (o == obj) {
@@ -121,7 +154,10 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
             }
         }
     }
+    */
+
     // Lo anade a la nueva capa
-    layers[zIndex].push_back(obj);
+    layers[zIndex].insert(obj);
+    //layers[zIndex].push_back(obj);
 }
 }

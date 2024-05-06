@@ -15,6 +15,7 @@ class TAPIOCA_API GameObject {
 private:
     friend class Scene;
 
+    int zOrder;     // Profundidad a la que se renderiza el objeto
     Scene* scene;   // Escena a la que pertenece el objeto
     bool alive;     // Indica si se deberia borrar el objeto
                     // warning C4251 'Tapioca::GameObject::handler' :
@@ -114,7 +115,18 @@ public:
     * @brief Devuelve puntero de la escena a la que pertenece el objeto
     * @return Escena a la que pertenece el objeto
     */
-    inline virtual Scene* getScene() const { return scene; }
+    inline Scene* getScene() const { return scene; }
+
+    /**
+    * @brief Cambia el zOrder a la que pertence el gameObject
+    * @param sc zOrder al que se quiere mover el objeto
+    */
+    inline void setZOrder(int zOrder) { this->zOrder = zOrder; }
+    /**
+    * @brief Devuelve el zOrder del objeto
+    * @return zOrder del objeto
+    */
+    inline int getZOrder() const { return zOrder; }
 
     /**
     * @brief Anade un componente al objeto, no se deberia de usar en ejecucion

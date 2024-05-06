@@ -1,5 +1,6 @@
 #pragma once
-#include <vector>
+//#include <vector>
+#include <unordered_set>
 #include <string>
 #include <unordered_map>
 #include <map>
@@ -31,10 +32,12 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::vector<GameObject*> objects;                        // Objetos que tiene la escena
+    std::unordered_set<GameObject*> objects;
+    //std::vector<GameObject*> objects;                        // Objetos que tiene la escena
     std::unordered_map<std::string, GameObject*> handlers;   // Relaciones entre handlers y objetos
     std::string name;                                        // Nombre de la escena
-    std::map<int, std::vector<GameObject*>> layers;          // Objetos que tiene la escena por orden de capa
+    std::map<int, std::unordered_set<GameObject*>> layers;
+    //std::map<int, std::vector<GameObject*>> layers;          // Objetos que tiene la escena por orden de capa
 
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -58,7 +61,7 @@ public:
     * @brief Devuelve los objetos de esta escena
     * @return Vector que contiene punteros a los objetos de esta escena
     */
-    std::vector<GameObject*> getObjects() const;
+    std::unordered_set<GameObject*> getObjects() const;
     /**
     * @brief Devuelve el objeto al que esta asociado un handler. Si no encuentra un objeto, devuelve nullptr
     * @param handler Handler del objeto que se quiere obtener
