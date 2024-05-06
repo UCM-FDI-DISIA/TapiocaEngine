@@ -23,7 +23,7 @@ class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
 private:
     AudioListener* al;                     // Puntero al AudioListener
     irrklang::ISoundEngine* soundEngine;   // Puntero al ISoundEngine de irrKlang
-
+    std:: string audioFolderPath = "assets/audio/";
     /**
     * @brief Constructor por defecto
     */
@@ -45,5 +45,15 @@ public:
     * @param al AudioListener al que se quiere actualizar
     */
     void setListener(AudioListener al);
+
+    /*
+    * @brief comprueba si existe la carpeta audio dentro d eassets
+    */
+    bool checkAudioFolder();
+
+    /*
+    * @brief crea la carpeta audio dentro de assets
+    */
+    void createAudioFolder();
 };
 }
