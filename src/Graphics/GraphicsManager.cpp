@@ -1,5 +1,4 @@
 #include "GraphicsManager.h"
-
 #include "Utilities/LightPoint.h"
 #include "Utilities/LightDirectional.h"
 #include "Utilities/LightRectlight.h"
@@ -18,9 +17,6 @@
 #include "Utilities/Skyplane.h"
 #include "Components/CameraComponent.h"
 #include "Utilities/NodeAnimator.h"
-#include "..\Core\Structure\MainLoop.h"
-
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -30,13 +26,13 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-
 #include <SDL.h>
 #include <SDL_syswm.h>
 #undef main
-
+#include "Structure/MainLoop.h"
 #include "WindowManager.h"
 #include "GraphicsManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<GraphicsManager>;

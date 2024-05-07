@@ -4,6 +4,7 @@
 #include "MeshRenderer.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
+#include "checkML.h"
 
 namespace Tapioca {
 KeyFrameAnimator::KeyFrameAnimator()

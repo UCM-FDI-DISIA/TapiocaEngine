@@ -1,0 +1,65 @@
+\doxysection{Sound\+Manager.\+h}
+\hypertarget{_sound_manager_8h_source}{}\label{_sound_manager_8h_source}\index{src/Sound/SoundManager.h@{src/Sound/SoundManager.h}}
+\mbox{\hyperlink{_sound_manager_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_singleton_8h}{Utilities/Singleton.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_module_8h}{Structure/Module.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceirrklang}{irrklang}}\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }ISoundEngine;}
+\DoxyCodeLine{00007\ \}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Sound;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }AudioSource;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }AudioListener;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_sound_manager}{SoundManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton}}<SoundManager>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_module}{Module}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_singleton}{Singleton<SoundManager>}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_sound}{Sound}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_audio_source}{AudioSource}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_tapioca_1_1_audio_listener}{AudioListener}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_audio_listener}{AudioListener}}*\ al;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Puntero\ al\ AudioListener}}
+\DoxyCodeLine{00025\ \ \ \ \ irrklang::ISoundEngine*\ soundEngine;\ \ \ \textcolor{comment}{//\ Puntero\ al\ ISoundEngine\ de\ irrKlang}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::SoundManager::audioFolderPath'\ :}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::SoundManager'}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ \ \ \ \ std::string\ audioFolderPath;\ \ \ \textcolor{comment}{//\ Donde\ se\ buscan\ los\ sonidos}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_sound_manager}{SoundManager}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_sound_manager}{\string~SoundManager}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ init()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ setListener(\mbox{\hyperlink{class_tapioca_1_1_audio_listener}{AudioListener}}\ al);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ *\ @brief\ comprueba\ si\ existe\ la\ carpeta\ audio\ dentro\ d\ eassets}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkAudioFolder()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ *\ @brief\ crea\ la\ carpeta\ audio\ dentro\ de\ assets}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ createAudioFolder();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ *\ @brief\ devuelve\ la\ carpeta\ a\ partir\ de\ la\ cual\ se\ buscan\ los\ sonidos}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00073\ \ \ \ \ std::string\ getAudioPath();}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}

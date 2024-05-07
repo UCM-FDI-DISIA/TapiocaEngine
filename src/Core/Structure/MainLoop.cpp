@@ -6,6 +6,7 @@
 #include "DynamicLibraryLoader.h"
 #include "checkML.h"
 #include "GameObject.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<MainLoop>;

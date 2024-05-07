@@ -1,0 +1,106 @@
+\doxysection{Game\+Object.\+h}
+\hypertarget{_game_object_8h_source}{}\label{_game_object_8h_source}\index{src/Core/Structure/GameObject.h@{src/Core/Structure/GameObject.h}}
+\mbox{\hyperlink{_game_object_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_concepts_8h}{Utilities/Concepts.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{component_defs_8h}{componentDefs.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }Component;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }Scene;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ zOrder;\ \ \ \ \ \textcolor{comment}{//\ Profundidad\ a\ la\ que\ se\ renderiza\ el\ objeto}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ scene;\ \ \ \textcolor{comment}{//\ Escena\ a\ la\ que\ pertenece\ el\ objeto}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ alive;\ \ \ \ \ \textcolor{comment}{//\ Indica\ si\ se\ deberia\ borrar\ el\ objeto}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::GameObject::handler'\ :}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::GameObject'}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::GameObject::components'\ :}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::unordered\_multimap<std::string,Tapioca::Component\ *,std::hash<std::string>,}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ std::equal\_to<std::string>,std::allocator<std::pair<const\ std::string,Tapioca::Component\ *>>>'\ necesita}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::GameObject'}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::GameObject::cmpOrder'\ :}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::vector<Tapioca::Component\ *,std::allocator<Tapioca::Component\ *>>'\ necesita}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ tener\ una\ interfaz\ DLL\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::GameObject'}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ \ \ \ \ std::string\ handler;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handler\ del\ objeto}}
+\DoxyCodeLine{00035\ \ \ \ \ std::unordered\_multimap<std::string,\ Component*>\ components;\ \ \ \textcolor{comment}{//\ Componentes\ del\ objeto,\ cada\ uno\ asociado\ a\ una\ id}}
+\DoxyCodeLine{00036\ \ \ \ \ std::vector<Component*>\ cmpOrder;\ \ \ \textcolor{comment}{//\ Vector\ que\ contiene\ los\ componentes\ en\ el\ orden\ en\ el\ que\ se\ han\ anadido}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#pragma\ warning(default\ :\ 4251)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ uint64\_t\ deltaTime);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ fixedUpdate();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ refresh();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteCompVector(\mbox{\hyperlink{class_tapioca_1_1_component}{Component}}*\ \textcolor{keyword}{const}\ comp);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_game_object}{\string~GameObject}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ awake();}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ start();}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ handleEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_game_object_ab5bda5895acb904eb26964612c2f95dd}{getHandler}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ handler;\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a307f63f5e377471f5dffe21a94e8383c}{isAlive}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ alive;\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a48293ce4b67dd099f92fa436ee578a9d}{die}}()\ \{\ alive\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a31562a39283ed05ebedd09b0f457bf2c}{setScene}}(\mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ sc)\ \{\ scene\ =\ sc;\ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_scene}{Scene}}*\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a972d2f03c2a9e9448b31442af32c58b5}{getScene}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ scene;\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a89e8a24295188fcfaf8852a2b088f6b2}{setZOrder}}(\textcolor{keywordtype}{int}\ zOrder)\ \{\ this-\/>zOrder\ =\ zOrder;\ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a92eebd36b7a0402b6445f68477f9e877}{getZOrder}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ zOrder;\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ addComponent(\mbox{\hyperlink{class_tapioca_1_1_component}{Component}}*\ \textcolor{keyword}{const}\ comp,\ std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}*\ addComponent(\textcolor{keyword}{const}\ std::string\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables\ =\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}());}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{template}<IsComponent\ TComp>}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{inline}\ TComp*\ \mbox{\hyperlink{class_tapioca_1_1_game_object_ac79248255dc47dab6aa52be9a20833bb}{addComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables\ =\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}())\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ TComp*\ comp\ =\ \textcolor{keyword}{new}\ TComp();}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!comp-\/>initComponent(variables))\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ comp;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ addComponent(comp,\ TComp::id);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ comp-\/>awake();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ comp-\/>start();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ comp;}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ std::vector<Component*>\ addComponents(\textcolor{keyword}{const}\ std::vector<std::pair<std::string,\ CompMap>>\&\ idsAndVariables);}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}*\ getComponent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{template}<IsComponent\ TComp>}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{inline}\ TComp*\ \mbox{\hyperlink{class_tapioca_1_1_game_object_abb967b6313b8ea59d698e2f7105d1b85}{getComponent}}()\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ components.find(TComp::id);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ components.end())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}TComp*\textcolor{keyword}{>}(it-\/>second);}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ std::vector<Component*>\ getAllComponents();}
+\DoxyCodeLine{00194\ \ \ \ \ std::vector<Component*>\ getComponents(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{template}<IsComponent\ TComp>}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<TComp*>\ \mbox{\hyperlink{class_tapioca_1_1_game_object_a95d39d0b0f2c7651402c1417fc031c53}{getComponents}}()\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ std::vector<TComp*>\ out;}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ comp\ :\ components)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (comp.first\ ==\ TComp::id)\ out.push\_back(\textcolor{keyword}{static\_cast<}TComp*\textcolor{keyword}{>}(comp.second));}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ pushEvent(std::string\ \textcolor{keyword}{const}\&\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{void}*\ info,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ global\ =\ \textcolor{keyword}{true},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ delay\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00217\ \};}
+\DoxyCodeLine{00218\ \}}
+
+\end{DoxyCode}

@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Component.h"
 #include "FactoryManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 GameObject::GameObject() : scene(nullptr), alive(true), handler(""), zOrder(0) { }

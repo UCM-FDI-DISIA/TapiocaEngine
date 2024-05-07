@@ -1,10 +1,8 @@
 #include "SceneLoader.h"
-
 #include <lua.hpp>
 #include <LuaBridge.h>
 #include <fstream>
 #include <imgui.h>
-
 #include "Structure/MainLoop.h"
 #include "Structure/DynamicLibraryLoader.h"
 #include "Structure/FactoryManager.h"

@@ -2,6 +2,7 @@
 #include "componentDefs.h"
 #include "defs.h"
 #include "MainLoop.h"
+#include "checkML.h"
 
 namespace Tapioca {
 HMODULE DynamicLibraryLoader::module = nullptr;

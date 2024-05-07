@@ -1,5 +1,6 @@
 #include "Vector2.h"
 #include <cmath>
+#include "checkML.h"
 
 namespace Tapioca {
 Vector2::Vector2(const float xy) : x(xy), y(xy) { }

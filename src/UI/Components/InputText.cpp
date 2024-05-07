@@ -6,11 +6,12 @@
 #include "UIManager.h"
 #include "LuaManager.h"
 #include "WindowManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 InputText::InputText()
     : BaseWidget(), Component(), placeHolderText("Enter text here"), bufferSize(256), buffer(nullptr),
-      onTextEnteredId(""), textFontName(""), textSize(16.0f), textFont(nullptr),
+      onTextEnteredId(""), textFontName(""), textSize(16.0f), initialTextSize(textSize), textFont(nullptr),
       flags(ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue) {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);

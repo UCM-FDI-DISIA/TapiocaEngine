@@ -1,0 +1,122 @@
+\doxysection{Image\+Text\+Button.\+h}
+\hypertarget{_image_text_button_8h_source}{}\label{_image_text_button_8h_source}\index{src/UI/Components/ImageTextButton.h@{src/UI/Components/ImageTextButton.h}}
+\mbox{\hyperlink{_image_text_button_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_button_8h}{Button.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector2_8h}{Utilities/Vector2.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{_image_text_button_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button}{ImageTextButton}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_button}{Button}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ wantText;\ \ \ \textcolor{comment}{//\ Indica\ si\ se\ quiere\ mostrar\ el\ texto\ en\ el\ boton}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::ImageTextButton::imagePathNormal'\ :}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::ImageTextButton'}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::ImageTextButton::imagePathHover'\ :}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::ImageTextButton'}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::ImageTextButton::imagePathHover'\ :}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::imagePathActive'}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ imagePathNormal;\ \ \ \textcolor{comment}{//\ Ruta\ de\ la\ imagen\ que\ se\ muestra\ en\ el\ boton\ en\ estado\ normal}}
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ imagePathHover;\ \ \ \ \textcolor{comment}{//\ Ruta\ de\ la\ imagen\ que\ se\ muestra\ en\ el\ boton\ en\ estado\ hover}}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ imagePathActive;\ \ \ \textcolor{comment}{//\ Ruta\ de\ la\ imagen\ que\ se\ muestra\ en\ el\ boton\ en\ estado\ active}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ textureIdNormal;\ \ \ \textcolor{comment}{//\ Identificador\ de\ la\ textura\ de\ la\ imagen\ que\ se\ muestra\ en\ el\ boton\ en\ estado\ normal}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ textureIdHover;\ \ \ \textcolor{comment}{//\ Identificador\ de\ la\ textura\ de\ la\ imagen\ que\ se\ muestra\ en\ el\ boton\ en\ estado\ hover}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ textureIdActive;\ \ \ \ \textcolor{comment}{//\ Identificador\ de\ la\ textura\ de\ la\ imagen\ que\ se\ muestra\ en\ el\ boton\ en\ estado\ active}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ uv0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Coordenadas\ de\ la\ esquina\ superior\ izquierda\ de\ la\ imagen}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ uv1;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Coordenadas\ de\ la\ esquina\ inferior\ derecha\ de\ la\ imagen}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ imageBgColor;\ \ \ \textcolor{comment}{//\ Color\ de\ fondo\ de\ la\ imagen}}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ imageTint;\ \ \ \ \ \ \textcolor{comment}{//\ Tinte\ de\ la\ imagen}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}ImageTextButton"{}})}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_image_text_button}{ImageTextButton}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextures();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextureNormal();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextureHover();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextureActive();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_af0b6db2c33d502c508e6b24979acfa34}{setImagePathNormal}}(\textcolor{keyword}{const}\ std::string\&\ imagePath)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (imagePath\ !=\ this-\/>imagePathNormal)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>imagePathNormal\ =\ imagePath;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextureNormal();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a6b811bb950f3b385c1e91263fafcf0b6}{setImagePathHover}}(\textcolor{keyword}{const}\ std::string\&\ imagePath)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (imagePath\ !=\ this-\/>imagePathHover)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>imagePathHover\ =\ imagePath;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextureHover();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a066273740c229bd6262c3165421c91b6}{setImagePathActive}}(\textcolor{keyword}{const}\ std::string\&\ imagePath)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (imagePath\ !=\ this-\/>imagePathNormal)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>imagePathActive\ =\ imagePath;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextureActive();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a91d6b8f8837c5e4045bb5bd6c90fe3cc}{setTextureIdNormal}}(\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ textureIdNormal)\ \{\ this-\/>textureIdNormal\ =\ textureIdNormal;\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ac630bafcb82e33a17f93baace0a702fd}{setTextureIdHover}}(\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ textureIdHover)\ \{\ this-\/>textureIdHover\ =\ textureIdHover;\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a34296f6df225799996b9a0df72ec13a5}{setTextureIdActive}}(\mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ textureIdActive)\ \{\ this-\/>textureIdActive\ =\ textureIdActive;\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a742b615f53ce2ebd0adcc3f736945881}{setUV0}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ uv0)\ \{\ this-\/>uv0\ =\ uv0;\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a72963502b18195fa6a283a513e41cff4}{setUV1}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\&\ uv1)\ \{\ this-\/>uv1\ =\ uv1;\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_addc43a2786a3771ea77d30353b39e0ee}{setImageBgColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ imageBgColor)\ \{\ this-\/>imageBgColor\ =\ imageBgColor;\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a82b54e826478586d83c637e06b9173c4}{setImageTint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ imageTint)\ \{\ this-\/>imageTint\ =\ imageTint;\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ab5684eeaa6873ba55b9cf296e9a1a952}{getImagePathNormal}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ imagePathNormal;\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a7e32058552447f6a3584421c45d40ea3}{getImagePathHover}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ imagePathHover;\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a4e3bba9fefec2d0444d0d8c86ce2191c}{getImagePathActive}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ imagePathActive;\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a711f3f109500186f5cd01fd65f4c5e7f}{getTextureIdNormal}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textureIdNormal;\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a895e0bd04499b702d77cc183f5966d99}{getTextureIdHover}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textureIdHover;\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{_image_8h_a364f4447ecbc4ca176145ccff9db6286}{ImTextureID}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a1e915bf1949631de6f7be7917b70464f}{getTextureIdActive}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textureIdActive;\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ad118422826f1d28253d1495788a33cfc}{getUV0}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ uv0;\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_a44522a47dd460d45291c3bfb1b7ea214}{getUV1}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ uv1;\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_afd7242b629fb3030325face797491c92}{getImageBgColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ imageBgColor;\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_image_text_button_ac9816bf80c2a3e39631d7c14ac39497d}{getImageTint}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ imageTint;\ \}}
+\DoxyCodeLine{00222\ \};}
+\DoxyCodeLine{00223\ \}}
+
+\end{DoxyCode}

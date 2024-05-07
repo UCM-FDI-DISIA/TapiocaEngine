@@ -1,9 +1,10 @@
 #include "LuaComponent.h"
-#include "../LuaManager.h"
 #include <lua.hpp>
 #include <LuaBridge.h>
 #include <UnorderedMap.h>
-#include "../VariantStack.h"
+#include "LuaManager.h"
+#include "VariantStack.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LuaComponent::LuaComponent(luabridge::LuaRef* objTable, const std::string& name) : objectTable(objTable), name(name) {

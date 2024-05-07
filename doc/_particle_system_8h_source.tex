@@ -1,0 +1,38 @@
+\doxysection{Particle\+System.\+h}
+\hypertarget{_particle_system_8h_source}{}\label{_particle_system_8h_source}\index{src/Graphics/Utilities/ParticleSystem.h@{src/Graphics/Utilities/ParticleSystem.h}}
+\mbox{\hyperlink{_particle_system_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_render_object_8h}{RenderObject.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ogre}{Ogre}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }SceneManager;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }ParticleSystem;}
+\DoxyCodeLine{00009\ \}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }RenderNode;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_particle_system}{ParticleSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_render_object}{RenderObject}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ Ogre::ParticleSystem*\ mParticleSystem;\ \ \ \ \ \ \textcolor{comment}{//\ ParticleSystem\ de\ Ogre}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_particle_system}{ParticleSystem}}(Ogre::SceneManager*\ \textcolor{keyword}{const}\ scnMngr,\ \mbox{\hyperlink{class_tapioca_1_1_render_node}{RenderNode}}*\ \textcolor{keyword}{const}\ node,\ std::string\ \textcolor{keyword}{const}\&\ name,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \textcolor{keyword}{const}\&\ templateName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ emitting\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_tapioca_1_1_particle_system_a516f5c742ce5a864f2a12b1e1cc4b277}{\string~ParticleSystem}}()\ \{\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ setEmitting(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ emitting);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEmitting();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ setQuota(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ q);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getQuota();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ fastForward(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ time,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ interval);}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ \}}
+
+\end{DoxyCode}
