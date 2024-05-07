@@ -4,6 +4,7 @@
 #include "GraphicsManager.h"
 #include "Utilities/LightRectlight.h"
 #include "Structure/GameObject.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LightRectComp::LightRectComp()

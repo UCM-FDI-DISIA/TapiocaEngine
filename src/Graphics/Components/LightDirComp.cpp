@@ -2,6 +2,7 @@
 #include "GraphicsManager.h"
 #include "Utilities/RenderNode.h"
 #include "Utilities/LightDirectional.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LightDirComp::LightDirComp()

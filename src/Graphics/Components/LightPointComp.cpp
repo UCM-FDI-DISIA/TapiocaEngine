@@ -4,6 +4,7 @@
 #include "GraphicsManager.h"
 #include "Utilities/LightPoint.h"
 #include "Structure/GameObject.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LightPointComp::LightPointComp()

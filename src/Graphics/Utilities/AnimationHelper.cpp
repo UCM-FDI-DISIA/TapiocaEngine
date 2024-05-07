@@ -1,7 +1,6 @@
 #include "AnimationHelper.h"
 #include "GraphicsManager.h"
 #include "Mesh.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -9,6 +8,7 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+#include "checkML.h"
 
 namespace Tapioca {
 AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true, const bool loop = true)

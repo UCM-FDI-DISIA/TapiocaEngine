@@ -8,6 +8,7 @@
 #include "Utilities/RenderNode.h"
 #include "Utilities/Mesh.h"
 #include "Utilities/AnimationHelper.h"
+#include "checkML.h"
 
 namespace Tapioca {
 Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f), initAnim("") { }

@@ -5,6 +5,7 @@
 #include "Structure/Scene.h"
 #include "UIManager.h"
 #include "WindowManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 Slider::Slider() : isVertical(false), currentValue(0), maxLimit(100), minLimit(0) { }

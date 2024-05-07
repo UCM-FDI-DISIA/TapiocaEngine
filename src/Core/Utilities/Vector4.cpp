@@ -2,6 +2,7 @@
 #include "Vector3.h"
 #include "Vector2.h"
 #include <cmath>
+#include "checkML.h"
 
 namespace Tapioca {
 Vector4::Vector4(const float xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) { }

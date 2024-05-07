@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "MainLoop.h"
+#include "checkML.h"
 
 namespace Tapioca {
 Scene::Scene(std::string const& name)

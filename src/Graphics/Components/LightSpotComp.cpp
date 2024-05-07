@@ -4,6 +4,7 @@
 #include "GraphicsManager.h"
 #include "Utilities/LightSpotlight.h"
 #include "Structure/GameObject.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LightSpotComp::LightSpotComp()

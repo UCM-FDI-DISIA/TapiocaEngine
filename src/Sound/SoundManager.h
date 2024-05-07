@@ -23,7 +23,18 @@ class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
 private:
     AudioListener* al;                     // Puntero al AudioListener
     irrklang::ISoundEngine* soundEngine;   // Puntero al ISoundEngine de irrKlang
-    std:: string audioFolderPath = "assets/audio/"; // Carpeta donde voy a buscar los sonidos
+
+    // warning C4251 'Tapioca::SoundManager::audioFolderPath' :
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita tener una interfaz DLL
+    // para que la utilicen los clientes de class 'Tapioca::SoundManager'
+#ifdef _MSC_VER
+#pragma warning(disable : 4251)
+#endif
+    std::string audioFolderPath;   // Donde se buscan los sonidos
+#ifdef _MSC_VER
+#pragma warning(default : 4251)
+#endif
+
     /**
     * @brief Constructor por defecto
     */
@@ -49,7 +60,7 @@ public:
     /*
     * @brief comprueba si existe la carpeta audio dentro d eassets
     */
-    bool checkAudioFolder();
+    bool checkAudioFolder() const;
 
     /*
     * @brief crea la carpeta audio dentro de assets
@@ -59,6 +70,6 @@ public:
     /*
     * @brief devuelve la carpeta a partir de la cual se buscan los sonidos
     */
-    std::string getAudioPath() ;
+    std::string getAudioPath();
 };
 }

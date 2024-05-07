@@ -1,0 +1,67 @@
+\doxysection{Referencia del archivo src/\+Core/component\+Defs.h}
+\hypertarget{component_defs_8h}{}\label{component_defs_8h}\index{src/Core/componentDefs.h@{src/Core/componentDefs.h}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$variant$>$}\newline
+\doxysubsubsection*{typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} = std\+::variant$<$char, int, float, bool, std\+::string, std\+::nullptr\+\_\+t$>$
+\item 
+using \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} = std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}}$>$
+\item 
+typedef void(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{component_defs_8h_a50d1a911738797970be27568e43a3aab}{Entry\+Point\+Init}}) ()
+\item 
+typedef const char \texorpdfstring{$\ast$}{*}(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{component_defs_8h_adec7724ab14f25c39001f33c208556ef}{Entry\+Point\+Get\+Window\+Name}}) ()
+\item 
+typedef const char \texorpdfstring{$\ast$}{*}(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{component_defs_8h_a8f0c66fae09cb5acf4a86cad48c28b0c}{Entry\+Point\+Get\+Init\+Scene}}) ()
+\item 
+typedef bool(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{component_defs_8h_a475275cb8381c60c8af557561f32f7f1}{Entry\+Point\+Get\+Full\+Screen}}) ()
+\item 
+typedef void(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{component_defs_8h_a5423032a088a02510317ffcef456d625}{Entry\+Point\+Get\+Window\+Size}}) (uint32\+\_\+t \&, uint32\+\_\+t \&)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de «typedef»}
+\Hypertarget{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}\label{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec} 
+\index{componentDefs.h@{componentDefs.h}!CompMap@{CompMap}}
+\index{CompMap@{CompMap}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{CompMap}{CompMap}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{Comp\+Map}} = std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}}$>$}
+
+\Hypertarget{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}\label{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7} 
+\index{componentDefs.h@{componentDefs.h}!CompValue@{CompValue}}
+\index{CompValue@{CompValue}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{CompValue}{CompValue}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{component_defs_8h_a0426fa9b017bbddc2bf42316fc590fd7}{Comp\+Value}} = std\+::variant$<$char, int, float, bool, std\+::string, std\+::nullptr\+\_\+t$>$}
+
+\Hypertarget{component_defs_8h_a475275cb8381c60c8af557561f32f7f1}\label{component_defs_8h_a475275cb8381c60c8af557561f32f7f1} 
+\index{componentDefs.h@{componentDefs.h}!EntryPointGetFullScreen@{EntryPointGetFullScreen}}
+\index{EntryPointGetFullScreen@{EntryPointGetFullScreen}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{EntryPointGetFullScreen}{EntryPointGetFullScreen}}
+{\footnotesize\ttfamily typedef bool(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} Entry\+Point\+Get\+Full\+Screen) ()}
+
+\Hypertarget{component_defs_8h_a8f0c66fae09cb5acf4a86cad48c28b0c}\label{component_defs_8h_a8f0c66fae09cb5acf4a86cad48c28b0c} 
+\index{componentDefs.h@{componentDefs.h}!EntryPointGetInitScene@{EntryPointGetInitScene}}
+\index{EntryPointGetInitScene@{EntryPointGetInitScene}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{EntryPointGetInitScene}{EntryPointGetInitScene}}
+{\footnotesize\ttfamily typedef const char \texorpdfstring{$\ast$}{*}(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} Entry\+Point\+Get\+Init\+Scene) ()}
+
+\Hypertarget{component_defs_8h_adec7724ab14f25c39001f33c208556ef}\label{component_defs_8h_adec7724ab14f25c39001f33c208556ef} 
+\index{componentDefs.h@{componentDefs.h}!EntryPointGetWindowName@{EntryPointGetWindowName}}
+\index{EntryPointGetWindowName@{EntryPointGetWindowName}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{EntryPointGetWindowName}{EntryPointGetWindowName}}
+{\footnotesize\ttfamily typedef const char \texorpdfstring{$\ast$}{*}(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} Entry\+Point\+Get\+Window\+Name) ()}
+
+\Hypertarget{component_defs_8h_a5423032a088a02510317ffcef456d625}\label{component_defs_8h_a5423032a088a02510317ffcef456d625} 
+\index{componentDefs.h@{componentDefs.h}!EntryPointGetWindowSize@{EntryPointGetWindowSize}}
+\index{EntryPointGetWindowSize@{EntryPointGetWindowSize}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{EntryPointGetWindowSize}{EntryPointGetWindowSize}}
+{\footnotesize\ttfamily typedef void(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} Entry\+Point\+Get\+Window\+Size) (uint32\+\_\+t \&, uint32\+\_\+t \&)}
+
+\Hypertarget{component_defs_8h_a50d1a911738797970be27568e43a3aab}\label{component_defs_8h_a50d1a911738797970be27568e43a3aab} 
+\index{componentDefs.h@{componentDefs.h}!EntryPointInit@{EntryPointInit}}
+\index{EntryPointInit@{EntryPointInit}!componentDefs.h@{componentDefs.h}}
+\doxysubsubsection{\texorpdfstring{EntryPointInit}{EntryPointInit}}
+{\footnotesize\ttfamily typedef void(\+\_\+\+\_\+cdecl \texorpdfstring{$\ast$}{*} Entry\+Point\+Init) ()}
+

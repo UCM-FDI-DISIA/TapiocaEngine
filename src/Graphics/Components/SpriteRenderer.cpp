@@ -5,6 +5,7 @@
 #include "Utilities/RenderNode.h"
 #include "Utilities/Billboard.h"
 #include "Utilities/BillboardSet.h"
+#include "checkML.h"
 
 namespace Tapioca {
 SpriteRenderer::SpriteRenderer()

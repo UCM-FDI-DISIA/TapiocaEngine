@@ -1,0 +1,86 @@
+\doxysection{Text.\+h}
+\hypertarget{_text_8h_source}{}\label{_text_8h_source}\index{src/UI/Components/Text.h@{src/UI/Components/Text.h}}
+\mbox{\hyperlink{_text_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_widget_8h}{BaseWidget.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_component_8h}{Structure/Component.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector4_8h}{Utilities/Vector4.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }ImFont;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{defs_8h_a5eb78819495b2499b5580153b27b73a8}{TAPIOCA\_API}}\ \mbox{\hyperlink{class_tapioca_1_1_text}{Text}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_base_widget}{BaseWidget}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_tapioca_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Text::text'\ :}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Text'}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ warning\ C4251\ 'Tapioca::Text::textFontName'\ :}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ class\ 'std::basic\_string<char,std::char\_traits<char>,std::allocator<char>>'\ necesita\ tener\ una\ interfaz\ DLL}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ para\ que\ la\ utilicen\ los\ clientes\ de\ class\ 'Tapioca::Text'}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ text;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Texto}}
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ textFontName;\ \ \ \textcolor{comment}{//\ Nombre\ de\ la\ fuente\ del\ texto}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ textSize;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tamano\ del\ texto}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ initialTextSize;\ \ \ \ \ \ \textcolor{comment}{//\ Tamano\ inicial\ del\ texto}}
+\DoxyCodeLine{00032\ \ \ \ \ ImFont*\ textFont;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fuente\ del\ texto}}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ textColor;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color\ del\ texto}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{_component_8h_a6ece19712d479203bbc26db8935a896b}{COMPONENT\_ID}}(\textcolor{stringliteral}{"{}Text"{}})}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_text}{Text}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_text}{\string~Text}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ initComponent(\textcolor{keyword}{const}\ \mbox{\hyperlink{component_defs_8h_a338872d4a137c5ee3a3d1c8c3a6a3fec}{CompMap}}\&\ variables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ start()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ updateUI()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ render()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_text_a2ba4ad3296af12ccd1756f207490e44c}{setText}}(\textcolor{keyword}{const}\ std::string\&\ text)\ \{\ this-\/>text\ =\ text;\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_text_a6b21d9c16b9f681c35338b5a72839ee6}{setTextSize}}(\textcolor{keywordtype}{float}\ textSize)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textSize\ !=\ this-\/>textSize)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>textSize\ =\ textSize;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextFont();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_text_a2d88f34ceac452df29347ff638edbe2b}{setTextFontName}}(std::string\ textFontName)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textFontName\ !=\ this-\/>textFontName)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>textFontName\ =\ textFontName;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ updateTextFont();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_text_af2e5174c20cf33518863f117f7047ea3}{setTextFont}}(ImFont*\ textFont)\ \{\ this-\/>textFont\ =\ textFont;\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTextFont();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tapioca_1_1_text_abfe073a93c61098777c3ca25aad63654}{setTextColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\&\ textColor)\ \{\ this-\/>textColor\ =\ textColor;\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_text_a7de4baf30d9f4ecb698f9a526c606196}{getText}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ text;\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tapioca_1_1_text_ae8b79217987e5fdaea4dd6a6f8dd11c5}{getTextSize}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textSize;\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{class_tapioca_1_1_text_ab4180510f93ef05e04f18bd604b81c1b}{getTextFontName}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textFontName;\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{inline}\ ImFont*\ \mbox{\hyperlink{class_tapioca_1_1_text_a80fcfbc41136e1370ce2c883e1ae09cf}{getTextFont}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textFont;\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_tapioca_1_1_vector4}{Vector4}}\ \mbox{\hyperlink{class_tapioca_1_1_text_a266844207bec74b55343fae1118b63c4}{getTextColor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ textColor;\ \}}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ \}}
+
+\end{DoxyCode}

@@ -1,5 +1,6 @@
 #include "LuaRegistry.h"
 #include "LuaManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LuaRegistry::LuaRegistry(lua_State* L) : L(L), map(L) {

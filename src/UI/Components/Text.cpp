@@ -6,6 +6,7 @@
 #include "Structure/Scene.h"
 #include "UIManager.h"
 #include "WindowManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 Text::Text()

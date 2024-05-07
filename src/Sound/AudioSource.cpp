@@ -1,7 +1,7 @@
 #include "Sound.h"
 #include "SoundManager.h"
 #include "AudioSource.h"
-#include "irrKlang.h"
+#include <irrKlang.h>
 
 namespace Tapioca {
 Tapioca::AudioSource::AudioSource(Sound sound, Vector3 pos, bool isPaused, bool isLooped)

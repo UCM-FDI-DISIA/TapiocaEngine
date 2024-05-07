@@ -1,5 +1,4 @@
 #include "SGTechniqueResolverListener.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -7,6 +6,7 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+#include "checkML.h"
 
 SGTechniqueResolverListener::SGTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* const pShaderGenerator)
     : mShaderGenerator(pShaderGenerator) { }

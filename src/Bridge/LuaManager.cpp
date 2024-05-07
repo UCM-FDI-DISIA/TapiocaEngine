@@ -1,21 +1,21 @@
 #include "LuaManager.h"
 #include <lua.hpp>
-#include "LuaRegistry.h"
 #include <LuaBridge.h>
 #include <Vector.h>
-#include "VariantStack.h"
 #include <filesystem>
+#include <sstream>
+#include <functional>
+#include "LuaRegistry.h"
+#include "VariantStack.h"
 #include "Components/LuaComponent.h"
 #include "Structure/FactoryManager.h"
-#include <sstream>
-#include "checkML.h"
-#include <functional>
 #include "Structure/GameObject.h"
 #include "Structure/Scene.h"
 #include "Utilities/Vector2.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 #include "Utilities/Quaternion.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<LuaManager>;
@@ -202,7 +202,6 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("conjugate", &Quaternion::conjugate)
         .addFunction("magnitude", &Quaternion::magnitude)
         .addFunction("toEuler", &Quaternion::toEuler)
-        //.addFunction("eulerAxis", &Quaternion::eulerAxis)
         .addFunction("__mul", luabridge::overload<const Quaternion&>(&Quaternion::operator*),
                      luabridge::overload<const float>(&Quaternion::operator*))
         .addFunction("__div", &Quaternion::operator/)

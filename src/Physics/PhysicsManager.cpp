@@ -7,12 +7,12 @@
 #include "Utilities/Vector3.h"
 #include "Utilities/Quaternion.h"
 #include "Components/RigidBody.h"
-#include "checkML.h"
 #include "Structure/MainLoop.h"
-#undef new
 #ifdef _DEBUG
 #include "PhysicsDebugDrawer.h"
 #endif
+#include "checkML.h"
+#undef new
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<PhysicsManager>;
@@ -100,7 +100,7 @@ void PhysicsManager::start() {
 #endif
 }
 
-bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triangleMesh) { 
+bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triangleMesh) {
     std::string filePath = "./assets/" + filename;
     std::ifstream file;
     file.open(filePath);
@@ -130,8 +130,9 @@ bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triang
             if (sscanf(v2.c_str(), "%d", &vi2) != 1) correct = false;
             if (sscanf(v3.c_str(), "%d", &vi3) != 1) correct = false;
             if (!correct || vi1 > vertices.size() || vi1 < 1 || vi2 > vertices.size() || vi2 < 1 ||
-                vi3 > vertices.size() ||vi3<1) correct = false;
-            if (correct)triangleMesh->addTriangle(vertices[vi1 - 1], vertices[vi2 - 1], vertices[vi3 - 1]);
+                vi3 > vertices.size() || vi3 < 1)
+                correct = false;
+            if (correct) triangleMesh->addTriangle(vertices[vi1 - 1], vertices[vi2 - 1], vertices[vi3 - 1]);
         }
     }
     if (!correct) logError("[Motor]: Error en el archivo.obj. ");
@@ -139,7 +140,7 @@ bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triang
     return correct;
 }
 
-btBvhTriangleMeshShape* PhysicsManager::createMeshCollision(const std::string& name) { 
+btBvhTriangleMeshShape* PhysicsManager::createMeshCollision(const std::string& name) {
 
     btTriangleMesh* objTriangleMesh;
     if (meshInterfaces.count(name)) {
@@ -176,7 +177,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
-    btCollisionShape* shape=nullptr;
+    btCollisionShape* shape = nullptr;
 
     switch (colliderShape) {
     case BOX_SHAPE: shape = new btBoxShape(scale); break;
@@ -230,9 +231,8 @@ void PhysicsManager::destroy() {
         destroyRigidBody(*itAux);
     }
 
-    for (auto m : meshInterfaces) {
+    for (auto m : meshInterfaces)
         delete m.second;
-    }
     meshInterfaces.clear();
 
     delete colConfig;

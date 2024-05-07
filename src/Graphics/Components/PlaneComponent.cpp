@@ -4,6 +4,7 @@
 #include "Structure/GameObject.h"
 #include "Utilities/RenderNode.h"
 #include "Utilities/Plane.h"
+#include "checkML.h"
 
 namespace Tapioca {
 PlaneComponent::PlaneComponent()

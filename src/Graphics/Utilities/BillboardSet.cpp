@@ -1,5 +1,4 @@
 #include "BillboardSet.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -9,6 +8,7 @@
 #endif
 #include "RenderNode.h"
 #include "Billboard.h"
+#include "checkML.h"
 
 namespace Tapioca {
 BillboardSet::BillboardSet(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& name,

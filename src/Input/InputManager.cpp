@@ -1,14 +1,14 @@
 #include "InputManager.h"
-
 #include <SDL.h>
 #include "WindowManager.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<InputManager>;
 template<>
 InputManager* Singleton<InputManager>::instance_ = nullptr;
 
-InputManager::InputManager() : mousePos({ 0, 0 }) { }
+InputManager::InputManager() : mousePos({0, 0}) { }
 
 bool InputManager::init() {
     initControllers();
@@ -16,20 +16,23 @@ bool InputManager::init() {
 }
 
 InputManager::~InputManager() {
-    for (auto ctrl : controllers) removeController(ctrl.first);
+    for (std::pair<const int, SDL_GameController*> ctrl : controllers)
+        removeController(ctrl.first);
     controllers.clear();
 }
 
 void InputManager::mapInput(std::string const& evt, std::string const& src, int const& ctrl) {
     int control = ctrl;
     if (src == "ie_mouseMoving") control = MOUSE_MOTION_VALUE;
-    else if (src == "ie_mouseWheel") control = MOUSE_WHEEL_VALUE;
+    else if (src == "ie_mouseWheel")
+        control = MOUSE_WHEEL_VALUE;
     inputMap[src][control].push_back(evt);
 }
 
 void InputManager::initControllers() {
     if (SDL_NumJoysticks() > 0) SDL_JoystickEventState(SDL_ENABLE);
-    else logInfo("InputManager: No hay joysticks conectados.");
+    else
+        logInfo("InputManager: No hay joysticks conectados.");
 }
 
 void InputManager::addController(const int i) {
@@ -39,7 +42,8 @@ void InputManager::addController(const int i) {
         deadZones.insert({i, DEFAULT_DEADZONE});
         logInfo(("InputManager: Mando conectado (" + std::string(SDL_GameControllerName(ctrl)) + ").").c_str());
     }
-    else logError(("InputManager: No se pudo abrir mando, " + std::string(SDL_GetError()) + ".").c_str());
+    else
+        logError(("InputManager: No se pudo abrir mando, " + std::string(SDL_GetError()) + ".").c_str());
 }
 
 void InputManager::removeController(const int i) {
@@ -58,10 +62,12 @@ void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event co
     if (inputMap.find(eventName) == inputMap.end()) return;
 
     // Si no, si la tecla/boton/etc no ha sido mapeado, lo ignora
-    else if (inputMap[eventName].find(value) == inputMap[eventName].end()) return;
+    else if (inputMap[eventName].find(value) == inputMap[eventName].end())
+        return;
     // Si no, envia todos los eventos que origine eventName y esten asociados a value
     else {
-        for (auto evt : inputMap[eventName][value]) WindowManager::instance()->sendEvent(evt, { });
+        for (const auto& evt : inputMap[eventName][value])
+            WindowManager::instance()->sendEvent(evt, {});
     }
 }
 
@@ -117,9 +123,7 @@ bool InputManager::handleEvents(const SDL_Event& event) {
     case SDL_JOYDEVICEADDED: addController(event.cdevice.which); break;
     case SDL_JOYDEVICEREMOVED: removeController(event.cdevice.which); break;
 
-    default:
-        happened = false;
-        break;
+    default: happened = false; break;
     }
 
     sendEvent(eventName, event, value);

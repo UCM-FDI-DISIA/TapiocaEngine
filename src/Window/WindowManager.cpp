@@ -2,11 +2,9 @@
 #include "componentDefs.h"
 #include "Structure/DynamicLibraryLoader.h"
 #include "Structure/MainLoop.h"
-
 #include <SDL.h>
 #include <SDL_syswm.h>
 #undef main
-
 #include "checkML.h"
 
 namespace Tapioca {

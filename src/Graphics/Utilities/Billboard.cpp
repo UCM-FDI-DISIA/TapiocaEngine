@@ -1,5 +1,4 @@
 #include "Billboard.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -9,6 +8,7 @@
 #endif
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
+#include "checkML.h"
 
 namespace Tapioca {
 Billboard::Billboard(Ogre::Billboard* const oBillboard) : mBillboard(oBillboard) { }

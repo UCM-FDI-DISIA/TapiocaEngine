@@ -40,7 +40,7 @@ public:
     */
     bool initComponent(const CompMap& variables) override;
     /**
-    * @brief 
+    * @brief Crea un GameObject y crea un billboard para el sprite asociado
     */
     void start() override;
     /**
