@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Referencia del archivo src/Graphics/GraphicsManager.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3419e189e460663ec2c964233bf8dcd6.html">Graphics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Espacios de nombres</a> &#124;
+<a href="#define-members">defines</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo GraphicsManager.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="GraphicsManager_8h_source.html">GraphicsManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="LightPoint_8h_source.html">Utilities/LightPoint.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="LightDirectional_8h_source.html">Utilities/LightDirectional.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="LightRectlight_8h_source.html">Utilities/LightRectlight.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="LightSpotlight_8h_source.html">Utilities/LightSpotlight.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RenderNode_8h_source.html">Utilities/RenderNode.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Camera_8h_source.html">Utilities/Camera.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Mesh_8h_source.html">Utilities/Mesh.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Viewport_8h_source.html">Utilities/Viewport.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="BillboardSet_8h_source.html">Utilities/BillboardSet.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Billboard_8h_source.html">Utilities/Billboard.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ParticleSystem_8h_source.html">Utilities/ParticleSystem.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Plane_8h_source.html">Utilities/Plane.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="AnimationHelper_8h_source.html">Utilities/AnimationHelper.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Skybox_8h_source.html">Utilities/Skybox.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Skyplane_8h_source.html">Utilities/Skyplane.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="CameraComponent_8h_source.html">Components/CameraComponent.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="NodeAnimator_8h_source.html">Utilities/NodeAnimator.h</a>&quot;</code><br />
+<code>#include &lt;Ogre.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="SGTechniqueResolverListener_8h_source.html">SGTechniqueResolverListener.h</a>&quot;</code><br />
+<code>#include &lt;OgreOverlaySystem.h&gt;</code><br />
+<code>#include &lt;SDL.h&gt;</code><br />
+<code>#include &lt;SDL_syswm.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="MainLoop_8h_source.html">Structure/MainLoop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="WindowManager_8h_source.html">WindowManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="checkML_8h_source.html">checkML.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Espacios de nombres</h2></td></tr>
+<tr class="memitem:namespaceTapioca" id="r_namespaceTapioca"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTapioca.html">Tapioca</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a31ab53cf66de186e008884ce2a36852c" id="r_a31ab53cf66de186e008884ce2a36852c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31ab53cf66de186e008884ce2a36852c">_PSSM</a></td></tr>
+<tr class="separator:a31ab53cf66de186e008884ce2a36852c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a55fbbea3f7e615ea5ec7f891baf40517" id="r_a55fbbea3f7e615ea5ec7f891baf40517"><td class="memItemLeft" align="right" valign="top">template class <a class="el" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTapioca.html#a55fbbea3f7e615ea5ec7f891baf40517">Tapioca::Singleton&lt; GraphicsManager &gt;</a></td></tr>
+<tr class="separator:a55fbbea3f7e615ea5ec7f891baf40517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="a31ab53cf66de186e008884ce2a36852c" name="a31ab53cf66de186e008884ce2a36852c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ab53cf66de186e008884ce2a36852c">&#9670;&#160;</a></span>_PSSM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PSSM</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

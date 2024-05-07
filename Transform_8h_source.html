@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Archivo de código fuente src/Core/Components/Transform.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li><li class="navelem"><a class="el" href="dir_b0c5c39bafac57735243a2df46d7e52b.html">Components</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Transform.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="Transform_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Structure/Component.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="Vector2_8h.html">Utilities/Vector2.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="Vector3_8h.html">Utilities/Vector3.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Quaternion_8h.html">Utilities/Quaternion.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="defs_8h.html">defs.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceTapioca.html">Tapioca</a> {</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classTapioca_1_1Transform.html">   14</a></span><span class="keyword">class </span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a> : <span class="keyword">public</span> <a class="code hl_class" href="classTapioca_1_1Component.html">Component</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> position;      <span class="comment">// Posicion del objeto</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classTapioca_1_1Quaternion.html">Quaternion</a> rotation;   <span class="comment">// Rotacion del objeto</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> scale;         <span class="comment">// Escala del objeto</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a>* parent;   <span class="comment">// Padre del objeto</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// warning C4251 &#39;Tapioca::Transform::children&#39; :</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// class &#39;std::unordered_set&lt;Tapioca::Transform *,std::hash&lt;Tapioca::Transform *&gt;,</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// std::equal_to&lt;Tapioca::Transform *&gt;,std::allocator&lt;Tapioca::Transform *&gt;&gt;&#39; necesita</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::Transform&#39;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::unordered_set&lt;Transform*&gt; children;   <span class="comment">// Hijos del objeto</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#pragma warning(default : 4251)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> posChanged(<span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> rotChanged(<span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> scaleChanged();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> getAllChildrenAux(std::vector&lt;Transform*&gt;&amp; allChildren) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> addChild(<a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a>* <span class="keyword">const</span> child);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> removeChild(<a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a>* <span class="keyword">const</span> child);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> removeConnections();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> removeParent();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> localRight();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> localUp();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> localForward();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> getGlobalPositionWithoutRotationAux(<a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> point) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> getGlobalPositionAux(<a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> aux) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> getLocalFromGlobalPos(<a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> point) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_define" href="Component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a>(<span class="stringliteral">&quot;Transform&quot;</span>)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_class" href="classTapioca_1_1Transform.html">~Transform</a>();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">bool</span> initComponent(<span class="keyword">const</span> <a class="code hl_typedef" href="componentDefs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span> start() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">void</span> handleEvent(std::string <span class="keyword">const</span>&amp; <span class="keywordtype">id</span>, <span class="keywordtype">void</span>* info) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classTapioca_1_1Transform.html#ac085eec7efa68fb99da9417d50b93f44">  149</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> <a class="code hl_function" href="classTapioca_1_1Transform.html#ac085eec7efa68fb99da9417d50b93f44">getPosition</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> position; }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classTapioca_1_1Transform.html#a2222d87133e71752c587daeeb556d0d8">  155</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classTapioca_1_1Vector2.html">Vector2</a> <a class="code hl_function" href="classTapioca_1_1Transform.html#a2222d87133e71752c587daeeb556d0d8">getPositionXY</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="classTapioca_1_1Vector2.html">Vector2</a>(position.<a class="code hl_variable" href="classTapioca_1_1Vector3.html#ac181bc4b44c3d637de7c88a834c183cd">x</a>, position.<a class="code hl_variable" href="classTapioca_1_1Vector3.html#a3a0ed50feaa2b5dea59a071b15f2f7f1">y</a>); }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> getGlobalPositionWithoutRotation() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> getGlobalPosition() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classTapioca_1_1Transform.html#a0d638a96f082b98be4b9004f09c8b023">  173</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classTapioca_1_1Quaternion.html">Quaternion</a> <a class="code hl_function" href="classTapioca_1_1Transform.html#a0d638a96f082b98be4b9004f09c8b023">getRotation</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> rotation; }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <a class="code hl_class" href="classTapioca_1_1Quaternion.html">Quaternion</a> getGlobalRotation() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classTapioca_1_1Transform.html#a38974377198c01362753f4a025981c7e">  183</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> <a class="code hl_function" href="classTapioca_1_1Transform.html#a38974377198c01362753f4a025981c7e">getScale</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> scale; }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classTapioca_1_1Transform.html#a05edd7d72a558ae068d52c8282aa092e">  188</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classTapioca_1_1Vector2.html">Vector2</a> <a class="code hl_function" href="classTapioca_1_1Transform.html#a05edd7d72a558ae068d52c8282aa092e">getScaleXY</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="classTapioca_1_1Vector2.html">Vector2</a>(scale.<a class="code hl_variable" href="classTapioca_1_1Vector3.html#ac181bc4b44c3d637de7c88a834c183cd">x</a>, scale.<a class="code hl_variable" href="classTapioca_1_1Vector3.html#a3a0ed50feaa2b5dea59a071b15f2f7f1">y</a>); }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> getGlobalScale() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">void</span> setPosition(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a>&amp; p, <span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span> setGlobalPosition(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a>&amp; p, <span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordtype">void</span> setPositionXY(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector2.html">Vector2</a>&amp; pXY, <span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordtype">void</span> setRotation(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a>&amp; r, <span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordtype">void</span> setRotation(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Quaternion.html">Quaternion</a>&amp; q, <span class="keywordtype">bool</span> rb = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordtype">void</span> setScale(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a>&amp; s);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordtype">void</span> setScaleXY(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector2.html">Vector2</a>&amp; s);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordtype">void</span> translate(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a>&amp; p);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordtype">void</span> rotate(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a>&amp; r);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">void</span> rotate(<span class="keyword">const</span> <a class="code hl_class" href="classTapioca_1_1Quaternion.html">Quaternion</a>&amp; r);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> right() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> up() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <a class="code hl_class" href="classTapioca_1_1Vector3.html">Vector3</a> forward() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordtype">void</span> setParent(<a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a>* <span class="keyword">const</span> transform);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_class" href="classTapioca_1_1Transform.html">Transform</a>* getParent() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    std::vector&lt;Transform*&gt; getChildren() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    std::vector&lt;Transform*&gt; getAllChildren() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>};</div>
+</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
+<div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div></div>
+<div class="ttc" id="aComponent_8h_html_a6ece19712d479203bbc26db8935a896b"><div class="ttname"><a href="Component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a></div><div class="ttdeci">#define COMPONENT_ID(_id)</div><div class="ttdoc">Id del componente Se necesita especificar para usar BasicBuilder y para poder ser llamado desde los m...</div><div class="ttdef"><b>Definition</b> Component.h:136</div></div>
+<div class="ttc" id="aQuaternion_8h_html"><div class="ttname"><a href="Quaternion_8h.html">Quaternion.h</a></div></div>
+<div class="ttc" id="aVector2_8h_html"><div class="ttname"><a href="Vector2_8h.html">Vector2.h</a></div></div>
+<div class="ttc" id="aVector3_8h_html"><div class="ttname"><a href="Vector3_8h.html">Vector3.h</a></div></div>
+<div class="ttc" id="aclassTapioca_1_1Component_html"><div class="ttname"><a href="classTapioca_1_1Component.html">Tapioca::Component</a></div><div class="ttdoc">Clase base de todos los componentes.</div><div class="ttdef"><b>Definition</b> Component.h:12</div></div>
+<div class="ttc" id="aclassTapioca_1_1Quaternion_html"><div class="ttname"><a href="classTapioca_1_1Quaternion.html">Tapioca::Quaternion</a></div><div class="ttdoc">Usamos el sistema diestro (https://danceswithcode.net/engineeringnotes/quaternions/quaternions....</div><div class="ttdef"><b>Definition</b> Quaternion.h:22</div></div>
+<div class="ttc" id="aclassTapioca_1_1Transform_html"><div class="ttname"><a href="classTapioca_1_1Transform.html">Tapioca::Transform</a></div><div class="ttdoc">Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo. Este componente est...</div><div class="ttdef"><b>Definition</b> Transform.h:14</div></div>
+<div class="ttc" id="aclassTapioca_1_1Transform_html_a05edd7d72a558ae068d52c8282aa092e"><div class="ttname"><a href="classTapioca_1_1Transform.html#a05edd7d72a558ae068d52c8282aa092e">Tapioca::Transform::getScaleXY</a></div><div class="ttdeci">Vector2 getScaleXY() const</div><div class="ttdoc">Devuelve la escala XY local del transform.</div><div class="ttdef"><b>Definition</b> Transform.h:188</div></div>
+<div class="ttc" id="aclassTapioca_1_1Transform_html_a0d638a96f082b98be4b9004f09c8b023"><div class="ttname"><a href="classTapioca_1_1Transform.html#a0d638a96f082b98be4b9004f09c8b023">Tapioca::Transform::getRotation</a></div><div class="ttdeci">Quaternion getRotation() const</div><div class="ttdoc">Devuelve la rotacion local del transform.</div><div class="ttdef"><b>Definition</b> Transform.h:173</div></div>
+<div class="ttc" id="aclassTapioca_1_1Transform_html_a2222d87133e71752c587daeeb556d0d8"><div class="ttname"><a href="classTapioca_1_1Transform.html#a2222d87133e71752c587daeeb556d0d8">Tapioca::Transform::getPositionXY</a></div><div class="ttdeci">Vector2 getPositionXY() const</div><div class="ttdoc">Devuelve la posicion XY local del transform.</div><div class="ttdef"><b>Definition</b> Transform.h:155</div></div>
+<div class="ttc" id="aclassTapioca_1_1Transform_html_a38974377198c01362753f4a025981c7e"><div class="ttname"><a href="classTapioca_1_1Transform.html#a38974377198c01362753f4a025981c7e">Tapioca::Transform::getScale</a></div><div class="ttdeci">Vector3 getScale() const</div><div class="ttdoc">Devuelve la escala local del transform.</div><div class="ttdef"><b>Definition</b> Transform.h:183</div></div>
+<div class="ttc" id="aclassTapioca_1_1Transform_html_ac085eec7efa68fb99da9417d50b93f44"><div class="ttname"><a href="classTapioca_1_1Transform.html#ac085eec7efa68fb99da9417d50b93f44">Tapioca::Transform::getPosition</a></div><div class="ttdeci">Vector3 getPosition() const</div><div class="ttdoc">Devuelve la posicion local del transform.</div><div class="ttdef"><b>Definition</b> Transform.h:149</div></div>
+<div class="ttc" id="aclassTapioca_1_1Vector2_html"><div class="ttname"><a href="classTapioca_1_1Vector2.html">Tapioca::Vector2</a></div><div class="ttdoc">Clase que implementa un vector geometrico de dos dimensiones.</div><div class="ttdef"><b>Definition</b> Vector2.h:8</div></div>
+<div class="ttc" id="aclassTapioca_1_1Vector3_html"><div class="ttname"><a href="classTapioca_1_1Vector3.html">Tapioca::Vector3</a></div><div class="ttdoc">Clase que implementa un vector geometrico de tres dimensiones.</div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
+<div class="ttc" id="aclassTapioca_1_1Vector3_html_a3a0ed50feaa2b5dea59a071b15f2f7f1"><div class="ttname"><a href="classTapioca_1_1Vector3.html#a3a0ed50feaa2b5dea59a071b15f2f7f1">Tapioca::Vector3::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition</b> Vector3.h:13</div></div>
+<div class="ttc" id="aclassTapioca_1_1Vector3_html_ac181bc4b44c3d637de7c88a834c183cd"><div class="ttname"><a href="classTapioca_1_1Vector3.html#ac181bc4b44c3d637de7c88a834c183cd">Tapioca::Vector3::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition</b> Vector3.h:12</div></div>
+<div class="ttc" id="acomponentDefs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="componentDefs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
+<div class="ttc" id="anamespaceTapioca_html"><div class="ttname"><a href="namespaceTapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:9</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

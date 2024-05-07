@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Referencia de la clase Tapioca::RenderObject</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceTapioca.html">Tapioca</a></li><li class="navelem"><a class="el" href="classTapioca_1_1RenderObject.html">RenderObject</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pro-methods">Métodos protegidos</a> &#124;
+<a href="#pro-attribs">Atributos protegidos</a> &#124;
+<a href="classTapioca_1_1RenderObject-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle"><div class="title">Referencia de la clase Tapioca::RenderObject</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Clase base para los objetos que se renderizan en la escena.  
+ <a href="#details">Más...</a></p>
+
+<p><code>#include &lt;<a class="el" href="RenderObject_8h_source.html">RenderObject.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de herencia de Tapioca::RenderObject</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classTapioca_1_1RenderObject.png" usemap="#Tapioca::RenderObject_map" alt=""/>
+  <map id="Tapioca::RenderObject_map" name="Tapioca::RenderObject_map">
+<area href="classTapioca_1_1BillboardSet.html" title="Wrapper de la clase BillboardSet de Ogre." alt="Tapioca::BillboardSet" shape="rect" coords="156,56,302,80"/>
+<area href="classTapioca_1_1Camera.html" title="Wrapper de la clase Camera de Ogre." alt="Tapioca::Camera" shape="rect" coords="156,112,302,136"/>
+<area href="classTapioca_1_1Light.html" title="Wrapper de la clase Light de Ogre." alt="Tapioca::Light" shape="rect" coords="156,168,302,192"/>
+<area href="classTapioca_1_1Mesh.html" title="Wrapper de la clase Mesh de Ogre." alt="Tapioca::Mesh" shape="rect" coords="156,224,302,248"/>
+<area href="classTapioca_1_1ParticleSystem.html" title="Wrapper de la clase ParticleSystem de Ogre." alt="Tapioca::ParticleSystem" shape="rect" coords="156,280,302,304"/>
+<area href="classTapioca_1_1Plane.html" title="Wrapper de la clase Plane de Ogre." alt="Tapioca::Plane" shape="rect" coords="156,336,302,360"/>
+<area href="classTapioca_1_1Skybox.html" title="Wrapper de la clase Skybox de Ogre." alt="Tapioca::Skybox" shape="rect" coords="156,392,302,416"/>
+<area href="classTapioca_1_1Skyplane.html" title="Wrapper de la clase Skyplane de Ogre." alt="Tapioca::Skyplane" shape="rect" coords="156,448,302,472"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:ab3ed27893516054e73eb2ae73daeb2fb" id="r_ab3ed27893516054e73eb2ae73daeb2fb"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3ed27893516054e73eb2ae73daeb2fb">~RenderObject</a> ()</td></tr>
+<tr class="memdesc:ab3ed27893516054e73eb2ae73daeb2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Se libera del nodo al que pertenecia y se destruye el objeto.  <br /></td></tr>
+<tr class="separator:ab3ed27893516054e73eb2ae73daeb2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a662aa51e331c05252c29545df14e720a" id="r_a662aa51e331c05252c29545df14e720a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a662aa51e331c05252c29545df14e720a">setVisible</a> (const bool enable)</td></tr>
+<tr class="memdesc:a662aa51e331c05252c29545df14e720a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia la visibilidad del objeto.  <br /></td></tr>
+<tr class="separator:a662aa51e331c05252c29545df14e720a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2f0842c78da56eb1d1cbc8685f3fc5e" id="r_ab2f0842c78da56eb1d1cbc8685f3fc5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2f0842c78da56eb1d1cbc8685f3fc5e">isVisible</a> () const</td></tr>
+<tr class="memdesc:ab2f0842c78da56eb1d1cbc8685f3fc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la visibilidad del objeto.  <br /></td></tr>
+<tr class="separator:ab2f0842c78da56eb1d1cbc8685f3fc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Métodos protegidos</h2></td></tr>
+<tr class="memitem:abfa33a0b4666638a605196b3cc661853" id="r_abfa33a0b4666638a605196b3cc661853"><td class="memItemLeft" align="right" valign="top">Ogre::MovableObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfa33a0b4666638a605196b3cc661853">getMovObject</a> () const</td></tr>
+<tr class="memdesc:abfa33a0b4666638a605196b3cc661853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el movable object.  <br /></td></tr>
+<tr class="separator:abfa33a0b4666638a605196b3cc661853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2d0833a5f9ae58671a95398cd63f171" id="r_ad2d0833a5f9ae58671a95398cd63f171"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2d0833a5f9ae58671a95398cd63f171">RenderObject</a> (<a class="el" href="classTapioca_1_1RenderNode.html">RenderNode</a> *const <a class="el" href="#a8cf448c5813cea6ea4a130c754fbe1e8">node</a>, Ogre::SceneManager *const scnMngr)</td></tr>
+<tr class="memdesc:ad2d0833a5f9ae58671a95398cd63f171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="classTapioca_1_1RenderObject.html" title="Clase base para los objetos que se renderizan en la escena.">RenderObject</a>.  <br /></td></tr>
+<tr class="separator:ad2d0833a5f9ae58671a95398cd63f171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d8060f65c9ec9c550453b594c92a47f" id="r_a6d8060f65c9ec9c550453b594c92a47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d8060f65c9ec9c550453b594c92a47f">init</a> (Ogre::MovableObject *const movObject)</td></tr>
+<tr class="memdesc:a6d8060f65c9ec9c550453b594c92a47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el movableObject.  <br /></td></tr>
+<tr class="separator:a6d8060f65c9ec9c550453b594c92a47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd17592781a4015a2fa92be64e69e722" id="r_afd17592781a4015a2fa92be64e69e722"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd17592781a4015a2fa92be64e69e722">detachFromNode</a> ()</td></tr>
+<tr class="memdesc:afd17592781a4015a2fa92be64e69e722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quita este objeto del nodo.  <br /></td></tr>
+<tr class="separator:afd17592781a4015a2fa92be64e69e722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Atributos protegidos</h2></td></tr>
+<tr class="memitem:aed9edc57ab6cd785e43ff31d8ce3c570" id="r_aed9edc57ab6cd785e43ff31d8ce3c570"><td class="memItemLeft" align="right" valign="top">Ogre::SceneManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed9edc57ab6cd785e43ff31d8ce3c570">sceneManager</a></td></tr>
+<tr class="separator:aed9edc57ab6cd785e43ff31d8ce3c570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf448c5813cea6ea4a130c754fbe1e8" id="r_a8cf448c5813cea6ea4a130c754fbe1e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTapioca_1_1RenderNode.html">RenderNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cf448c5813cea6ea4a130c754fbe1e8">node</a></td></tr>
+<tr class="separator:a8cf448c5813cea6ea4a130c754fbe1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Clase base para los objetos que se renderizan en la escena. </p>
+</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a id="ad2d0833a5f9ae58671a95398cd63f171" name="ad2d0833a5f9ae58671a95398cd63f171"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d0833a5f9ae58671a95398cd63f171">&#9670;&#160;</a></span>RenderObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tapioca::RenderObject::RenderObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTapioca_1_1RenderNode.html">RenderNode</a> *const</td>          <td class="paramname"><span class="paramname"><em>node</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ogre::SceneManager *const</td>          <td class="paramname"><span class="paramname"><em>scnMngr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor de la clase <a class="el" href="classTapioca_1_1RenderObject.html" title="Clase base para los objetos que se renderizan en la escena.">RenderObject</a>. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
+    <tr><td class="paramname">scnMngr</td><td>Puntero al manager de escenas de ogre </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab3ed27893516054e73eb2ae73daeb2fb" name="ab3ed27893516054e73eb2ae73daeb2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3ed27893516054e73eb2ae73daeb2fb">&#9670;&#160;</a></span>~RenderObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tapioca::RenderObject::~RenderObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Se libera del nodo al que pertenecia y se destruye el objeto. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones miembro</h2>
+<a id="afd17592781a4015a2fa92be64e69e722" name="afd17592781a4015a2fa92be64e69e722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd17592781a4015a2fa92be64e69e722">&#9670;&#160;</a></span>detachFromNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tapioca::RenderObject::detachFromNode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Quita este objeto del nodo. </p>
+
+</div>
+</div>
+<a id="abfa33a0b4666638a605196b3cc661853" name="abfa33a0b4666638a605196b3cc661853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa33a0b4666638a605196b3cc661853">&#9670;&#160;</a></span>getMovObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::MovableObject * Tapioca::RenderObject::getMovObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Devuelve el movable object. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Movable object </dd></dl>
+
+</div>
+</div>
+<a id="a6d8060f65c9ec9c550453b594c92a47f" name="a6d8060f65c9ec9c550453b594c92a47f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d8060f65c9ec9c550453b594c92a47f">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tapioca::RenderObject::init </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::MovableObject *const</td>          <td class="paramname"><span class="paramname"><em>movObject</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicializa el movableObject. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">movObject</td><td>MovableObject que se quiere inicializar </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2f0842c78da56eb1d1cbc8685f3fc5e" name="ab2f0842c78da56eb1d1cbc8685f3fc5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2f0842c78da56eb1d1cbc8685f3fc5e">&#9670;&#160;</a></span>isVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::RenderObject::isVisible </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve la visibilidad del objeto. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Visibilidad del objeto </dd></dl>
+
+</div>
+</div>
+<a id="a662aa51e331c05252c29545df14e720a" name="a662aa51e331c05252c29545df14e720a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a662aa51e331c05252c29545df14e720a">&#9670;&#160;</a></span>setVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tapioca::RenderObject::setVisible </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cambia la visibilidad del objeto. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>True si se quiere que se vea el objeto, false en caso contrario </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de datos miembro</h2>
+<a id="a8cf448c5813cea6ea4a130c754fbe1e8" name="a8cf448c5813cea6ea4a130c754fbe1e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cf448c5813cea6ea4a130c754fbe1e8">&#9670;&#160;</a></span>node</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTapioca_1_1RenderNode.html">RenderNode</a>* Tapioca::RenderObject::node</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed9edc57ab6cd785e43ff31d8ce3c570" name="aed9edc57ab6cd785e43ff31d8ce3c570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed9edc57ab6cd785e43ff31d8ce3c570">&#9670;&#160;</a></span>sceneManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::SceneManager* Tapioca::RenderObject::sceneManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>La documentación de esta clase está generada de los siguientes archivos:<ul>
+<li>src/Graphics/Utilities/<a class="el" href="RenderObject_8h_source.html">RenderObject.h</a></li>
+<li>src/Graphics/Utilities/<a class="el" href="RenderObject_8cpp.html">RenderObject.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

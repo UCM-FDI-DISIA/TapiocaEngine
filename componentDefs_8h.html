@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Referencia del archivo src/Core/componentDefs.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">typedefs</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo componentDefs.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;variant&gt;</code><br />
+</div>
+<p><a href="componentDefs_8h_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+typedefs</h2></td></tr>
+<tr class="memitem:a0426fa9b017bbddc2bf42316fc590fd7" id="r_a0426fa9b017bbddc2bf42316fc590fd7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a> = std::variant&lt;char, int, float, bool, std::string, std::nullptr_t&gt;</td></tr>
+<tr class="separator:a0426fa9b017bbddc2bf42316fc590fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338872d4a137c5ee3a3d1c8c3a6a3fec" id="r_a338872d4a137c5ee3a3d1c8c3a6a3fec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a> = std::unordered_map&lt;std::string, <a class="el" href="#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a>&gt;</td></tr>
+<tr class="separator:a338872d4a137c5ee3a3d1c8c3a6a3fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50d1a911738797970be27568e43a3aab" id="r_a50d1a911738797970be27568e43a3aab"><td class="memItemLeft" align="right" valign="top">typedef void(__cdecl *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50d1a911738797970be27568e43a3aab">EntryPointInit</a>) ()</td></tr>
+<tr class="separator:a50d1a911738797970be27568e43a3aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec7724ab14f25c39001f33c208556ef" id="r_adec7724ab14f25c39001f33c208556ef"><td class="memItemLeft" align="right" valign="top">typedef const char *(__cdecl *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adec7724ab14f25c39001f33c208556ef">EntryPointGetWindowName</a>) ()</td></tr>
+<tr class="separator:adec7724ab14f25c39001f33c208556ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0c66fae09cb5acf4a86cad48c28b0c" id="r_a8f0c66fae09cb5acf4a86cad48c28b0c"><td class="memItemLeft" align="right" valign="top">typedef const char *(__cdecl *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f0c66fae09cb5acf4a86cad48c28b0c">EntryPointGetInitScene</a>) ()</td></tr>
+<tr class="separator:a8f0c66fae09cb5acf4a86cad48c28b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475275cb8381c60c8af557561f32f7f1" id="r_a475275cb8381c60c8af557561f32f7f1"><td class="memItemLeft" align="right" valign="top">typedef bool(__cdecl *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a475275cb8381c60c8af557561f32f7f1">EntryPointGetFullScreen</a>) ()</td></tr>
+<tr class="separator:a475275cb8381c60c8af557561f32f7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5423032a088a02510317ffcef456d625" id="r_a5423032a088a02510317ffcef456d625"><td class="memItemLeft" align="right" valign="top">typedef void(__cdecl *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5423032a088a02510317ffcef456d625">EntryPointGetWindowSize</a>) (uint32_t &amp;, uint32_t &amp;)</td></tr>
+<tr class="separator:a5423032a088a02510317ffcef456d625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «typedef»</h2>
+<a id="a338872d4a137c5ee3a3d1c8c3a6a3fec" name="a338872d4a137c5ee3a3d1c8c3a6a3fec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a338872d4a137c5ee3a3d1c8c3a6a3fec">&#9670;&#160;</a></span>CompMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a> = std::unordered_map&lt;std::string, <a class="el" href="#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0426fa9b017bbddc2bf42316fc590fd7" name="a0426fa9b017bbddc2bf42316fc590fd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0426fa9b017bbddc2bf42316fc590fd7">&#9670;&#160;</a></span>CompValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a0426fa9b017bbddc2bf42316fc590fd7">CompValue</a> = std::variant&lt;char, int, float, bool, std::string, std::nullptr_t&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a475275cb8381c60c8af557561f32f7f1" name="a475275cb8381c60c8af557561f32f7f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a475275cb8381c60c8af557561f32f7f1">&#9670;&#160;</a></span>EntryPointGetFullScreen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef bool(__cdecl * EntryPointGetFullScreen) ()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f0c66fae09cb5acf4a86cad48c28b0c" name="a8f0c66fae09cb5acf4a86cad48c28b0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f0c66fae09cb5acf4a86cad48c28b0c">&#9670;&#160;</a></span>EntryPointGetInitScene</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef const char *(__cdecl * EntryPointGetInitScene) ()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adec7724ab14f25c39001f33c208556ef" name="adec7724ab14f25c39001f33c208556ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adec7724ab14f25c39001f33c208556ef">&#9670;&#160;</a></span>EntryPointGetWindowName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef const char *(__cdecl * EntryPointGetWindowName) ()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5423032a088a02510317ffcef456d625" name="a5423032a088a02510317ffcef456d625"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5423032a088a02510317ffcef456d625">&#9670;&#160;</a></span>EntryPointGetWindowSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(__cdecl * EntryPointGetWindowSize) (uint32_t &amp;, uint32_t &amp;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50d1a911738797970be27568e43a3aab" name="a50d1a911738797970be27568e43a3aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50d1a911738797970be27568e43a3aab">&#9670;&#160;</a></span>EntryPointInit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(__cdecl * EntryPointInit) ()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

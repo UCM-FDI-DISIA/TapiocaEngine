@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Referencia de la clase Tapioca::Module</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceTapioca.html">Tapioca</a></li><li class="navelem"><a class="el" href="classTapioca_1_1Module.html">Module</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="classTapioca_1_1Module-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle"><div class="title">Referencia de la clase Tapioca::Module</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Clase base para los modulos del motor.  
+ <a href="#details">Más...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Module_8h_source.html">Module.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de herencia de Tapioca::Module</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classTapioca_1_1Module.png" usemap="#Tapioca::Module_map" alt=""/>
+  <map id="Tapioca::Module_map" name="Tapioca::Module_map">
+<area href="classTapioca_1_1FactoryManager.html" title="Clase Singleton y Modulo que se encarga de gestionar las factorias de componentes." alt="Tapioca::FactoryManager" shape="rect" coords="0,56,165,80"/>
+<area href="classTapioca_1_1LuaManager.html" title="Clase que se encarga de gestionar el scripting en Lua." alt="Tapioca::LuaManager" shape="rect" coords="175,56,340,80"/>
+<area href="classTapioca_1_1PhysicsManager.html" title="Clase que se encarga de gestionar las fisicas del juego." alt="Tapioca::PhysicsManager" shape="rect" coords="350,56,515,80"/>
+<area href="classTapioca_1_1SceneLoader.html" title="Carga las escenas del juego incluyendo los gameobjects y sus componentes." alt="Tapioca::SceneLoader" shape="rect" coords="525,56,690,80"/>
+<area href="classTapioca_1_1SoundManager.html" title="Clase que gestiona el audio del juego." alt="Tapioca::SoundManager" shape="rect" coords="700,56,865,80"/>
+<area href="classTapioca_1_1WindowManager.html" title="Clase que se encarga de la ventana de SDL y de los eventos de ventana." alt="Tapioca::WindowManager" shape="rect" coords="875,56,1040,80"/>
+<area href="classTapioca_1_1WindowModule.html" title="Maneja los eventos de la ventana. Todo aquello que herede de esta clase podra manejar eventos de la v..." alt="Tapioca::WindowModule" shape="rect" coords="1050,56,1215,80"/>
+<area href="classTapioca_1_1GraphicsManager.html" title="Clase que se encarga de la gestion de la grafica del motor." alt="Tapioca::GraphicsManager" shape="rect" coords="875,112,1040,136"/>
+<area href="classTapioca_1_1InputManager.html" title="Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios." alt="Tapioca::InputManager" shape="rect" coords="1050,112,1215,136"/>
+<area href="classTapioca_1_1UIManager.html" title="Clase que se encarga de la interfaz de usuario." alt="Tapioca::UIManager" shape="rect" coords="1225,112,1390,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:a130bb7f670c3246bbfedd7e88c80aa20" id="r_a130bb7f670c3246bbfedd7e88c80aa20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a130bb7f670c3246bbfedd7e88c80aa20">Module</a> ()</td></tr>
+<tr class="separator:a130bb7f670c3246bbfedd7e88c80aa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a912a483f4aa2594e65d1246ba414d204" id="r_a912a483f4aa2594e65d1246ba414d204"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a912a483f4aa2594e65d1246ba414d204">~Module</a> ()</td></tr>
+<tr class="separator:a912a483f4aa2594e65d1246ba414d204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53b2f080895522844072fe279e75bef4" id="r_a53b2f080895522844072fe279e75bef4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53b2f080895522844072fe279e75bef4">init</a> ()</td></tr>
+<tr class="memdesc:a53b2f080895522844072fe279e75bef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el modulo.  <br /></td></tr>
+<tr class="separator:a53b2f080895522844072fe279e75bef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a885f390a478f3fb012925c171507f3a6" id="r_a885f390a478f3fb012925c171507f3a6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a885f390a478f3fb012925c171507f3a6">initConfig</a> ()</td></tr>
+<tr class="memdesc:a885f390a478f3fb012925c171507f3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa la configuracion especificada por el juego.  <br /></td></tr>
+<tr class="separator:a885f390a478f3fb012925c171507f3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1edaa21164d47af387283262bb0935e" id="r_ae1edaa21164d47af387283262bb0935e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1edaa21164d47af387283262bb0935e">start</a> ()</td></tr>
+<tr class="memdesc:ae1edaa21164d47af387283262bb0935e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa las variables.  <br /></td></tr>
+<tr class="separator:ae1edaa21164d47af387283262bb0935e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8caa585a847a5b30d535acf6da3e5af" id="r_ac8caa585a847a5b30d535acf6da3e5af"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8caa585a847a5b30d535acf6da3e5af">update</a> (const uint64_t deltaTime)</td></tr>
+<tr class="memdesc:ac8caa585a847a5b30d535acf6da3e5af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo.  <br /></td></tr>
+<tr class="separator:ac8caa585a847a5b30d535acf6da3e5af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a956767f43bc1f4f534c5945c5afea4da" id="r_a956767f43bc1f4f534c5945c5afea4da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a956767f43bc1f4f534c5945c5afea4da">fixedUpdate</a> ()</td></tr>
+<tr class="memdesc:a956767f43bc1f4f534c5945c5afea4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo a una velocidad fija.  <br /></td></tr>
+<tr class="separator:a956767f43bc1f4f534c5945c5afea4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6249622666df090c8a12c11a8efddb4d" id="r_a6249622666df090c8a12c11a8efddb4d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6249622666df090c8a12c11a8efddb4d">render</a> ()</td></tr>
+<tr class="memdesc:a6249622666df090c8a12c11a8efddb4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderiza el modulo.  <br /></td></tr>
+<tr class="separator:a6249622666df090c8a12c11a8efddb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542fddd47dd266b6ad34cf4191d21bcb" id="r_a542fddd47dd266b6ad34cf4191d21bcb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a542fddd47dd266b6ad34cf4191d21bcb">refresh</a> ()</td></tr>
+<tr class="memdesc:a542fddd47dd266b6ad34cf4191d21bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refresca el modulo.  <br /></td></tr>
+<tr class="separator:a542fddd47dd266b6ad34cf4191d21bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Clase base para los modulos del motor. </p>
+</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a id="a130bb7f670c3246bbfedd7e88c80aa20" name="a130bb7f670c3246bbfedd7e88c80aa20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130bb7f670c3246bbfedd7e88c80aa20">&#9670;&#160;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tapioca::Module::Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructor vacio </p>
+
+</div>
+</div>
+<a id="a912a483f4aa2594e65d1246ba414d204" name="a912a483f4aa2594e65d1246ba414d204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a912a483f4aa2594e65d1246ba414d204">&#9670;&#160;</a></span>~Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Tapioca::Module::~Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Destructor vacio </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones miembro</h2>
+<a id="a956767f43bc1f4f534c5945c5afea4da" name="a956767f43bc1f4f534c5945c5afea4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a956767f43bc1f4f534c5945c5afea4da">&#9670;&#160;</a></span>fixedUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Tapioca::Module::fixedUpdate </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actualiza el modulo a una velocidad fija. </p>
+
+<p>Reimplementado en <a class="el" href="classTapioca_1_1PhysicsManager.html#a5fe43bf0b24298fda605809ea151f572">Tapioca::PhysicsManager</a>.</p>
+
+</div>
+</div>
+<a id="a53b2f080895522844072fe279e75bef4" name="a53b2f080895522844072fe279e75bef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53b2f080895522844072fe279e75bef4">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Tapioca::Module::init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicializa el modulo. </p>
+
+<p>Reimplementado en <a class="el" href="classTapioca_1_1GraphicsManager.html#a621482260d9db29b47ba060cf0e09a48">Tapioca::GraphicsManager</a>, <a class="el" href="classTapioca_1_1InputManager.html#ada3da727a55eb7d10f00a495eba0a036">Tapioca::InputManager</a>, <a class="el" href="classTapioca_1_1SoundManager.html#aee4edff187c7e13bd4a2afa7e8a016c4">Tapioca::SoundManager</a>, <a class="el" href="classTapioca_1_1UIManager.html#a27ef8711b5f547413a831f353af66f47">Tapioca::UIManager</a> y <a class="el" href="classTapioca_1_1WindowManager.html#af7719f3adbce9136e22f1a74187dfb12">Tapioca::WindowManager</a>.</p>
+
+</div>
+</div>
+<a id="a885f390a478f3fb012925c171507f3a6" name="a885f390a478f3fb012925c171507f3a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885f390a478f3fb012925c171507f3a6">&#9670;&#160;</a></span>initConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Tapioca::Module::initConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicializa la configuracion especificada por el juego. </p>
+
+<p>Reimplementado en <a class="el" href="classTapioca_1_1GraphicsManager.html#a0ad0d80dd6b2c7eaabe8feeceba05b3d">Tapioca::GraphicsManager</a>, <a class="el" href="classTapioca_1_1UIManager.html#aa91d7d32c5afa914e6b2df9297618e27">Tapioca::UIManager</a> y <a class="el" href="classTapioca_1_1WindowManager.html#abce0804f22a7f3700422e18d232f7e39">Tapioca::WindowManager</a>.</p>
+
+</div>
+</div>
+<a id="a542fddd47dd266b6ad34cf4191d21bcb" name="a542fddd47dd266b6ad34cf4191d21bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542fddd47dd266b6ad34cf4191d21bcb">&#9670;&#160;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Tapioca::Module::refresh </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Refresca el modulo. </p>
+
+</div>
+</div>
+<a id="a6249622666df090c8a12c11a8efddb4d" name="a6249622666df090c8a12c11a8efddb4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6249622666df090c8a12c11a8efddb4d">&#9670;&#160;</a></span>render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Tapioca::Module::render </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renderiza el modulo. </p>
+
+<p>Reimplementado en <a class="el" href="classTapioca_1_1GraphicsManager.html#a233416b8aee687da5a1e47ace7191be8">Tapioca::GraphicsManager</a>.</p>
+
+</div>
+</div>
+<a id="ae1edaa21164d47af387283262bb0935e" name="ae1edaa21164d47af387283262bb0935e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1edaa21164d47af387283262bb0935e">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Tapioca::Module::start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicializa las variables. </p>
+
+<p>Reimplementado en <a class="el" href="classTapioca_1_1WindowManager.html#aec1aa5ffcdb8ccbe973b4c517636ff62">Tapioca::WindowManager</a>.</p>
+
+</div>
+</div>
+<a id="ac8caa585a847a5b30d535acf6da3e5af" name="ac8caa585a847a5b30d535acf6da3e5af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8caa585a847a5b30d535acf6da3e5af">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Tapioca::Module::update </td>
+          <td>(</td>
+          <td class="paramtype">const uint64_t</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actualiza el modulo. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Tiempo transcurrido desde la ultima actualizacion </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementado en <a class="el" href="classTapioca_1_1PhysicsManager.html#af19ec4ffcc46ca69d8f446fa521212ed">Tapioca::PhysicsManager</a> y <a class="el" href="classTapioca_1_1WindowManager.html#a816fa167c9d3fadc242950b88121cd3f">Tapioca::WindowManager</a>.</p>
+
+</div>
+</div>
+<hr/>La documentación de esta clase está generada del siguiente archivo:<ul>
+<li>src/Core/Structure/<a class="el" href="Module_8h_source.html">Module.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

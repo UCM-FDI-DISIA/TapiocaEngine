@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Archivo de código fuente src/Exports/Exports.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a0e25efff2cfa5820998836c0a2ea455.html">Exports</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Exports.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_exports_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="defs_8h.html">defs.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_tapioca.html">Tapioca</a> {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">class </span>MainLoop;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">class </span>WindowManager;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span>InputManager;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class </span>FactoryManager;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class </span>SceneLoader;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span>GraphicsManager;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span>PhysicsManager;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span>UIManager;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span>SoundManager;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">class </span>LuaManager;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#aee221b2de416281b1f7bda9823acd63b">   16</a></span><a class="code hl_class" href="class_tapioca_1_1_main_loop.html">MainLoop</a>* <a class="code hl_variable" href="namespace_tapioca.html#aee221b2de416281b1f7bda9823acd63b">mainLoop</a>;          <span class="comment">// Referencia a la instancia de MainLoop</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#aeca1d9808d3f5410eaaecdecf591c835">   17</a></span><a class="code hl_class" href="class_tapioca_1_1_window_manager.html">WindowManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#aeca1d9808d3f5410eaaecdecf591c835">window</a>;       <span class="comment">// Referencia a la instancia de WindowManager</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a4ea6e8a78ba288b982640bdc141be80a">   18</a></span><a class="code hl_class" href="class_tapioca_1_1_input_manager.html">InputManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#a4ea6e8a78ba288b982640bdc141be80a">input</a>;         <span class="comment">// Referencia a la instancia de InputManager</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a47f590853fa1ba50e268876737658141">   19</a></span><a class="code hl_class" href="class_tapioca_1_1_factory_manager.html">FactoryManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#a47f590853fa1ba50e268876737658141">factories</a>;   <span class="comment">// Referencia a la instancia de FactoryManager</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a8091c5c547cbdb3cb13ef937770d5c63">   20</a></span><a class="code hl_class" href="class_tapioca_1_1_scene_loader.html">SceneLoader</a>* <a class="code hl_variable" href="namespace_tapioca.html#a8091c5c547cbdb3cb13ef937770d5c63">scenes</a>;         <span class="comment">// Referencia a la instancia de SceneLoader</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a9e4629da607fe1f8ed0634c7b22d82eb">   21</a></span><a class="code hl_class" href="class_tapioca_1_1_graphics_manager.html">GraphicsManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#a9e4629da607fe1f8ed0634c7b22d82eb">graphics</a>;   <span class="comment">// Referencia a la instancia de GraphicsManager</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a750cbed8d63642c8f71e7a92fe11f6bf">   22</a></span><a class="code hl_class" href="class_tapioca_1_1_physics_manager.html">PhysicsManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#a750cbed8d63642c8f71e7a92fe11f6bf">physics</a>;     <span class="comment">// Referencia a la instancia de PhysicsManager</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#ad9dee97e83ed3ad4bfd2164574694692">   23</a></span><a class="code hl_class" href="class_tapioca_1_1_u_i_manager.html">UIManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#ad9dee97e83ed3ad4bfd2164574694692">ui</a>;               <span class="comment">// Referencia a la instancia de UIManager</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">   24</a></span><a class="code hl_class" href="class_tapioca_1_1_sound_manager.html">SoundManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">sound</a>;         <span class="comment">// Referencia a la instancia de SoundManager</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a85ca432515663e64f186e5945d2469f5">   25</a></span><a class="code hl_class" href="class_tapioca_1_1_lua_manager.html">LuaManager</a>* <a class="code hl_variable" href="namespace_tapioca.html#a85ca432515663e64f186e5945d2469f5">lua</a>;             <span class="comment">// Referencia a la instancia de LuaManager</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a91f4dd1a4fcb2d361ff8602c07d81965">initEngine</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#ac96ce5b8b203c55a5ff4902eafb26dd0">deleteEngine</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a6df4de0d4ac41ed120ae9bb5662ae617">runEngine</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">static</span> <span class="keywordtype">void</span> createModules(<a class="code hl_class" href="class_tapioca_1_1_main_loop.html">MainLoop</a>* <a class="code hl_variable" href="namespace_tapioca.html#aee221b2de416281b1f7bda9823acd63b">mainLoop</a>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">static</span> <span class="keywordtype">void</span> createEngineBuilders();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">static</span> <span class="keywordtype">void</span> registerLuaFunctions();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a2d8fe2a1c21488fb443cd4a8b8a528aa">mapInput</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="ttc" id="aclass_tapioca_1_1_factory_manager_html"><div class="ttname"><a href="class_tapioca_1_1_factory_manager.html">Tapioca::FactoryManager</a></div><div class="ttdoc">Clase Singleton y Modulo que se encarga de gestionar las factorias de componentes.</div><div class="ttdef"><b>Definition</b> FactoryManager.h:14</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_graphics_manager_html"><div class="ttname"><a href="class_tapioca_1_1_graphics_manager.html">Tapioca::GraphicsManager</a></div><div class="ttdoc">Clase que se encarga de la gestion de la grafica del motor.</div><div class="ttdef"><b>Definition</b> GraphicsManager.h:53</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_input_manager_html"><div class="ttname"><a href="class_tapioca_1_1_input_manager.html">Tapioca::InputManager</a></div><div class="ttdoc">Clase que se encarga de gestionar los eventos de input de SDL y de mapearlos a eventos propios.</div><div class="ttdef"><b>Definition</b> InputManager.h:16</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_lua_manager_html"><div class="ttname"><a href="class_tapioca_1_1_lua_manager.html">Tapioca::LuaManager</a></div><div class="ttdoc">Clase que se encarga de gestionar el scripting en Lua.</div><div class="ttdef"><b>Definition</b> LuaManager.h:33</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_main_loop_html"><div class="ttname"><a href="class_tapioca_1_1_main_loop.html">Tapioca::MainLoop</a></div><div class="ttdoc">Clase que contiene el bucle principal del motor.</div><div class="ttdef"><b>Definition</b> MainLoop.h:17</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_physics_manager_html"><div class="ttname"><a href="class_tapioca_1_1_physics_manager.html">Tapioca::PhysicsManager</a></div><div class="ttdoc">Clase que se encarga de gestionar las fisicas del juego.</div><div class="ttdef"><b>Definition</b> PhysicsManager.h:32</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_scene_loader_html"><div class="ttname"><a href="class_tapioca_1_1_scene_loader.html">Tapioca::SceneLoader</a></div><div class="ttdoc">Carga las escenas del juego incluyendo los gameobjects y sus componentes.</div><div class="ttdef"><b>Definition</b> SceneLoader.h:20</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_sound_manager_html"><div class="ttname"><a href="class_tapioca_1_1_sound_manager.html">Tapioca::SoundManager</a></div><div class="ttdoc">Clase que gestiona el audio del juego.</div><div class="ttdef"><b>Definition</b> SoundManager.h:17</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_u_i_manager_html"><div class="ttname"><a href="class_tapioca_1_1_u_i_manager.html">Tapioca::UIManager</a></div><div class="ttdoc">Clase que se encarga de la interfaz de usuario.</div><div class="ttdef"><b>Definition</b> UIManager.h:39</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_window_manager_html"><div class="ttname"><a href="class_tapioca_1_1_window_manager.html">Tapioca::WindowManager</a></div><div class="ttdoc">Clase que se encarga de la ventana de SDL y de los eventos de ventana.</div><div class="ttdef"><b>Definition</b> WindowManager.h:14</div></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:9</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a2d8fe2a1c21488fb443cd4a8b8a528aa"><div class="ttname"><a href="namespace_tapioca.html#a2d8fe2a1c21488fb443cd4a8b8a528aa">Tapioca::mapInput</a></div><div class="ttdeci">void mapInput()</div><div class="ttdef"><b>Definition</b> Exports.cpp:193</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a47f590853fa1ba50e268876737658141"><div class="ttname"><a href="namespace_tapioca.html#a47f590853fa1ba50e268876737658141">Tapioca::factories</a></div><div class="ttdeci">FactoryManager * factories</div><div class="ttdef"><b>Definition</b> Exports.h:19</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a4ea6e8a78ba288b982640bdc141be80a"><div class="ttname"><a href="namespace_tapioca.html#a4ea6e8a78ba288b982640bdc141be80a">Tapioca::input</a></div><div class="ttdeci">InputManager * input</div><div class="ttdef"><b>Definition</b> Exports.h:18</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a50f116bb01f41d112f7af00c4f87884e"><div class="ttname"><a href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">Tapioca::sound</a></div><div class="ttdeci">SoundManager * sound</div><div class="ttdef"><b>Definition</b> Exports.h:24</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a6df4de0d4ac41ed120ae9bb5662ae617"><div class="ttname"><a href="namespace_tapioca.html#a6df4de0d4ac41ed120ae9bb5662ae617">Tapioca::runEngine</a></div><div class="ttdeci">void runEngine()</div><div class="ttdef"><b>Definition</b> Exports.cpp:53</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a750cbed8d63642c8f71e7a92fe11f6bf"><div class="ttname"><a href="namespace_tapioca.html#a750cbed8d63642c8f71e7a92fe11f6bf">Tapioca::physics</a></div><div class="ttdeci">PhysicsManager * physics</div><div class="ttdef"><b>Definition</b> Exports.h:22</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a8091c5c547cbdb3cb13ef937770d5c63"><div class="ttname"><a href="namespace_tapioca.html#a8091c5c547cbdb3cb13ef937770d5c63">Tapioca::scenes</a></div><div class="ttdeci">SceneLoader * scenes</div><div class="ttdef"><b>Definition</b> Exports.h:20</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a85ca432515663e64f186e5945d2469f5"><div class="ttname"><a href="namespace_tapioca.html#a85ca432515663e64f186e5945d2469f5">Tapioca::lua</a></div><div class="ttdeci">LuaManager * lua</div><div class="ttdef"><b>Definition</b> Exports.h:25</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a91f4dd1a4fcb2d361ff8602c07d81965"><div class="ttname"><a href="namespace_tapioca.html#a91f4dd1a4fcb2d361ff8602c07d81965">Tapioca::initEngine</a></div><div class="ttdeci">void initEngine()</div><div class="ttdef"><b>Definition</b> Exports.cpp:46</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a9e4629da607fe1f8ed0634c7b22d82eb"><div class="ttname"><a href="namespace_tapioca.html#a9e4629da607fe1f8ed0634c7b22d82eb">Tapioca::graphics</a></div><div class="ttdeci">GraphicsManager * graphics</div><div class="ttdef"><b>Definition</b> Exports.h:21</div></div>
+<div class="ttc" id="anamespace_tapioca_html_ac96ce5b8b203c55a5ff4902eafb26dd0"><div class="ttname"><a href="namespace_tapioca.html#ac96ce5b8b203c55a5ff4902eafb26dd0">Tapioca::deleteEngine</a></div><div class="ttdeci">void deleteEngine()</div><div class="ttdef"><b>Definition</b> Exports.cpp:51</div></div>
+<div class="ttc" id="anamespace_tapioca_html_ad9dee97e83ed3ad4bfd2164574694692"><div class="ttname"><a href="namespace_tapioca.html#ad9dee97e83ed3ad4bfd2164574694692">Tapioca::ui</a></div><div class="ttdeci">UIManager * ui</div><div class="ttdef"><b>Definition</b> Exports.h:23</div></div>
+<div class="ttc" id="anamespace_tapioca_html_aeca1d9808d3f5410eaaecdecf591c835"><div class="ttname"><a href="namespace_tapioca.html#aeca1d9808d3f5410eaaecdecf591c835">Tapioca::window</a></div><div class="ttdeci">WindowManager * window</div><div class="ttdef"><b>Definition</b> Exports.h:17</div></div>
+<div class="ttc" id="anamespace_tapioca_html_aee221b2de416281b1f7bda9823acd63b"><div class="ttname"><a href="namespace_tapioca.html#aee221b2de416281b1f7bda9823acd63b">Tapioca::mainLoop</a></div><div class="ttdeci">MainLoop * mainLoop</div><div class="ttdef"><b>Definition</b> Exports.h:16</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>
