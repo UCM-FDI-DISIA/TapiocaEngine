@@ -46,9 +46,9 @@ void ParticleSystemComponent::setEmitting(const bool emitting) { pSys->setEmitti
 
 bool ParticleSystemComponent::isEmitting() { return pSys->isEmitting(); }
 
-void ParticleSystemComponent::setQuota(const int q) { pSys->setQuota(q); }
+void ParticleSystemComponent::setQuota(const size_t q) { pSys->setQuota(q); }
 
-int ParticleSystemComponent::getQuota() { return pSys->getQuota(); }
+size_t ParticleSystemComponent::getQuota() { return pSys->getQuota(); }
 
 void ParticleSystemComponent::setVisible(const bool v) { pSys->setVisible(v); }
 

@@ -167,7 +167,7 @@ ImTextureID UIManager::getTextureId(const std::string& name) {
         Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().load(path, "General");
         GLuint glID;
         texturePtr->getCustomAttribute("GLID", &glID);
-        return (ImTextureID)glID;
+        return reinterpret_cast<ImTextureID>(static_cast<uintptr_t>(glID));
     } catch (...) {
         logError(("UIManager: No se pudo cargar la textura " + name + '.').c_str());
         return 0;

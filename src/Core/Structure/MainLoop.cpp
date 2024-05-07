@@ -28,12 +28,10 @@ MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
 MainLoop::~MainLoop() {
     for (auto sc : sceneBuffer)
         delete sc;
-
     sceneBuffer.clear();
 
     for (auto& s : loadedScenes)
         delete s.second;
-
     loadedScenes.clear();
 
     for (Module* mod : modules)

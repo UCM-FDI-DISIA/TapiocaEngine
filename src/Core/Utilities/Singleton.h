@@ -7,9 +7,9 @@ namespace Tapioca {
 * @brief Patron de diseno Singleton para crear una unica instancia de una clase
 */
 template<typename T>
-class Singleton {
+class TAPIOCA_API Singleton {
 private:
-    static T* instance_; // Instancia unica
+    static T* instance_;   // Instancia unica
 
 protected:
     /**
@@ -26,7 +26,9 @@ public:
     */
     virtual ~Singleton() {};
 
-    // Inicializa la instancia con los parametros deseados (... args)
+    /**
+    * @brief Inicializa la instancia con los parametros deseados (... args)
+    */
     template<typename... T_args>
     static T* create(T_args&&... args) {
         if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
@@ -35,7 +37,9 @@ public:
         return instance_;
     }
 
-    // Obtener el puntero a la instancia
+    /**
+    * @brief Obtener el puntero a la instancia
+    */
     static T* instance() {
         // Si no existe, se crea
         if (instance_ == nullptr) create();
