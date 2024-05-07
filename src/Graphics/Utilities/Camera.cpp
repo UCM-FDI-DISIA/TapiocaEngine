@@ -1,5 +1,4 @@
 #include "Camera.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -10,6 +9,7 @@
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 #include "RenderNode.h"
+#include "checkML.h"
 
 namespace Tapioca {
 Camera::Camera(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& name,

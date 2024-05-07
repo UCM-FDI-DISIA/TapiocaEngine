@@ -1,9 +1,10 @@
 #include "LuaComponent.h"
-#include "../LuaManager.h"
 #include <lua.hpp>
 #include <LuaBridge.h>
 #include <UnorderedMap.h>
-#include "../VariantStack.h"
+#include "LuaManager.h"
+#include "VariantStack.h"
+#include "checkML.h"
 
 namespace Tapioca {
 LuaComponent::LuaComponent(luabridge::LuaRef* objTable, const std::string& name) : objectTable(objTable), name(name) {
@@ -74,7 +75,7 @@ void LuaComponent::update(const uint64_t deltaTime) {
 void LuaComponent::fixedUpdate() { callSimpleFunction("fixedUpdate"); }
 
 void LuaComponent::handleEvent(std::string const& id, void* info) {
-    luabridge::LuaResult result = (*objectTable)["handleEvent"]((*objectTable), id);
+    luabridge::LuaResult result = (*objectTable)["handleEvent"]((*objectTable), id, info);
     if (result.hasFailed()) {
         logError(("LuaComponent " + name + ": Ha ocurrido un error durante handleEvent [" +
                   std::to_string(result.errorCode().value()) + "]: " + result.errorMessage())

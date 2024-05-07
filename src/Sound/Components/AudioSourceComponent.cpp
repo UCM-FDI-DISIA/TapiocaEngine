@@ -4,6 +4,7 @@
 #include "AudioSource.h"
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
+#include "checkML.h"
 
 namespace Tapioca {
 AudioSourceComponent::AudioSourceComponent()

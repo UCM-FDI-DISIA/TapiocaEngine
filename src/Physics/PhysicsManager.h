@@ -41,9 +41,9 @@ private:
     btSequentialImpulseConstraintSolver* constraintSolver;
     btDiscreteDynamicsWorld* dynamicsWorld;   // Mundo de fisicas
 
-    std::unordered_map<std::string, btTriangleMesh*> meshInterfaces;   // dados para mesh collider
-    
-
+// warning C4251 'Tapioca::PhysicsManager::meshInterfaces' : class
+// 'std::unordered_map<std::string,btTriangleMesh *,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,btTriangleMesh *>>>' necesita
+// tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::PhysicsManager'
 // warning C4251: 'Tapioca::PhysicsManager::rigidBodies':
 // class ' std::unordered_set<btRigidBody*, std::hash<btRigidBody*>, std::equal_to<btRigidBody*>,
 // std::allocator<btRigidBody*>>' necesita tener una interfaz DLL para que la
@@ -51,7 +51,8 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<btRigidBody*> rigidBodies;   // Almacena todos los rigidbodies
+    std::unordered_map<std::string, btTriangleMesh*> meshInterfaces;   // dados para mesh collider
+    std::unordered_set<btRigidBody*> rigidBodies;                      // Almacena todos los rigidbodies
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

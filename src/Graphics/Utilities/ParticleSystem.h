@@ -51,12 +51,12 @@ public:
     * @brief Establece el numero maximo de particulas que puede haber en el sistema
     * @param q Quota nueva del sistem a de particulas
     */
-    void setQuota(const int q);
+    void setQuota(const size_t q);
     /**
     * @brief Devuelve el numero maximo de particulas que puede haber en el sistema
     * @return Quota actual del sistema de particulas
     */
-    int getQuota();
+    size_t getQuota();
 
     /** 
     * @brief Acelera el sistema de particulas. Puede usarse para hacer que un sistema de particulas

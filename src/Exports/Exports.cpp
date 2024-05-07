@@ -13,15 +13,9 @@
 #include "LuaManager.h"
 #include "LuaRegistry.h"
 #include "Structure/DynamicLibraryLoader.h"
-
-// Componentes
 #include "Structure/BasicBuilder.h"
-
-// Core
 #include "Components/Transform.h"
-// Physics
 #include "Components/RigidBody.h"
-// Graphics
 #include "Components/MeshRenderer.h"
 #include "Components/CameraComponent.h"
 #include "Components/Animator.h"
@@ -35,7 +29,6 @@
 #include "Components/SkyplaneComponent.h"
 #include "Components/SkyboxComponent.h"
 #include "Components/KeyFrameAnimator.h"
-// UI
 #include "Components/Button.h"
 #include "Components/DropBox.h"
 #include "Components/Image.h"
@@ -45,9 +38,9 @@
 #include "Components/ProgressBar.h"
 #include "Components/Slider.h"
 #include "Components/Text.h"
-// Sound
 #include "Components/AudioListenerComponent.h"
 #include "Components/AudioSourceComponent.h"
+#include "checkML.h"
 
 namespace Tapioca {
 void initEngine() {

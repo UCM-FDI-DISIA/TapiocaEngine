@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tapioca Engine: Archivo de código fuente src/Graphics/Components/MeshRenderer.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Tapioca Engine<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Motor de videojuegos creado por Bubble Studios</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3419e189e460663ec2c964233bf8dcd6.html">Graphics</a></li><li class="navelem"><a class="el" href="dir_261428acfae9a40c25d63e60754720d9.html">Components</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">MeshRenderer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_mesh_renderer_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="_component_8h.html">Structure/Component.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="_vector3_8h.html">Utilities/Vector3.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_tapioca.html">Tapioca</a> {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">class </span>GraphicsManager;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span>Mesh;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class </span>RenderNode;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class </span>Transform;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span>Animator;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span>KeyFrameAnimator;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_mesh_renderer.html">   16</a></span><span class="keyword">class </span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <a class="code hl_class" href="class_tapioca_1_1_mesh_renderer.html">MeshRenderer</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_tapioca_1_1_component.html">Component</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_animator.html">Animator</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_key_frame_animator.html">KeyFrameAnimator</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="class_tapioca_1_1_graphics_manager.html">GraphicsManager</a>* graphicsManager;   <span class="comment">// Puntero al graphicsManager</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_tapioca_1_1_render_node.html">RenderNode</a>* node;                   <span class="comment">// Nodo de renderizado</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="class_tapioca_1_1_transform.html">Transform</a>* transform;               <span class="comment">// Transform del objeto</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="class_tapioca_1_1_mesh.html">Mesh</a>* mesh;                         <span class="comment">// Mesh a renderizar</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// warning C4251 &#39;Tapioca::MeshRenderer::meshName&#39; :</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::MeshRenderer&#39;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// warning C4251 &#39;Tapioca::MeshRenderer::materialName&#39; :</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// class &#39;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;&#39; necesita</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// tener una interfaz DLL para que la utilicen los clientes de class &#39;Tapioca::MeshRenderer&#39;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#pragma warning(disable : 4251)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::string materialName;   <span class="comment">// Nombre del material</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::string meshName;       <span class="comment">// Nombre de la mesh</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#pragma warning(default : 4251)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="class_tapioca_1_1_vector3.html">Vector3</a> initialRotation;   <span class="comment">// Rotacion inicial</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">bool</span> castShadows;          <span class="comment">// Indica si el objeto emite sombras</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_mesh_renderer.html#a47d86433314569c577ff1df4dc737796">   49</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_mesh.html">Mesh</a>* <a class="code hl_function" href="class_tapioca_1_1_mesh_renderer.html#a47d86433314569c577ff1df4dc737796">getMesh</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> mesh; }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_mesh_renderer.html#aaf1251409c05793cb72cecc05600787f">   55</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_tapioca_1_1_render_node.html">RenderNode</a>* <a class="code hl_function" href="class_tapioca_1_1_mesh_renderer.html#aaf1251409c05793cb72cecc05600787f">getNode</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> node; }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_define" href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a>(<span class="stringliteral">&quot;MeshRenderer&quot;</span>)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_class" href="class_tapioca_1_1_mesh_renderer.html">MeshRenderer</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    ~<a class="code hl_class" href="class_tapioca_1_1_mesh_renderer.html">MeshRenderer</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">bool</span> initComponent(const <a class="code hl_typedef" href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a>&amp; variables) override;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> awake() override;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> handleEvent(<a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span> const&amp; <span class="keywordtype">id</span>, <span class="keywordtype">void</span>* info) override;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> setMaterial(const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; name);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> setMesh(const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; name);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> setVisible(const <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">bool</span> isVisible() const;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+<div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
+<div class="ttc" id="a_component_8h_html_a6ece19712d479203bbc26db8935a896b"><div class="ttname"><a href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a></div><div class="ttdeci">#define COMPONENT_ID(_id)</div><div class="ttdoc">Id del componente Se necesita especificar para usar BasicBuilder y para poder ser llamado desde los m...</div><div class="ttdef"><b>Definition</b> Component.h:136</div></div>
+<div class="ttc" id="a_vector3_8h_html"><div class="ttname"><a href="_vector3_8h.html">Vector3.h</a></div></div>
+<div class="ttc" id="aclass_tapioca_1_1_animator_html"><div class="ttname"><a href="class_tapioca_1_1_animator.html">Tapioca::Animator</a></div><div class="ttdoc">Componente que se encarga de gestionar las animaciones de un objeto.</div><div class="ttdef"><b>Definition</b> Animator.h:12</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_component_html"><div class="ttname"><a href="class_tapioca_1_1_component.html">Tapioca::Component</a></div><div class="ttdoc">Clase base de todos los componentes.</div><div class="ttdef"><b>Definition</b> Component.h:12</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_graphics_manager_html"><div class="ttname"><a href="class_tapioca_1_1_graphics_manager.html">Tapioca::GraphicsManager</a></div><div class="ttdoc">Clase que se encarga de la gestion de la grafica del motor.</div><div class="ttdef"><b>Definition</b> GraphicsManager.h:53</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_key_frame_animator_html"><div class="ttname"><a href="class_tapioca_1_1_key_frame_animator.html">Tapioca::KeyFrameAnimator</a></div><div class="ttdoc">Clase que se encarga de animar un objeto a traves de keyframes.</div><div class="ttdef"><b>Definition</b> KeyFrameAnimator.h:12</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_mesh_html"><div class="ttname"><a href="class_tapioca_1_1_mesh.html">Tapioca::Mesh</a></div><div class="ttdoc">Wrapper de la clase Mesh de Ogre.</div><div class="ttdef"><b>Definition</b> Mesh.h:18</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_mesh_renderer_html"><div class="ttname"><a href="class_tapioca_1_1_mesh_renderer.html">Tapioca::MeshRenderer</a></div><div class="ttdoc">Componente que renderiza un mesh en la escena.</div><div class="ttdef"><b>Definition</b> MeshRenderer.h:16</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_mesh_renderer_html_a47d86433314569c577ff1df4dc737796"><div class="ttname"><a href="class_tapioca_1_1_mesh_renderer.html#a47d86433314569c577ff1df4dc737796">Tapioca::MeshRenderer::getMesh</a></div><div class="ttdeci">Mesh * getMesh() const</div><div class="ttdoc">Devuelve la mesh.</div><div class="ttdef"><b>Definition</b> MeshRenderer.h:49</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_mesh_renderer_html_aaf1251409c05793cb72cecc05600787f"><div class="ttname"><a href="class_tapioca_1_1_mesh_renderer.html#aaf1251409c05793cb72cecc05600787f">Tapioca::MeshRenderer::getNode</a></div><div class="ttdeci">RenderNode * getNode() const</div><div class="ttdoc">Devuelve el nodo de renderizado.</div><div class="ttdef"><b>Definition</b> MeshRenderer.h:55</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_render_node_html"><div class="ttname"><a href="class_tapioca_1_1_render_node.html">Tapioca::RenderNode</a></div><div class="ttdoc">Clase que representa un nodo de renderizado en la escena.</div><div class="ttdef"><b>Definition</b> RenderNode.h:26</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_transform_html"><div class="ttname"><a href="class_tapioca_1_1_transform.html">Tapioca::Transform</a></div><div class="ttdoc">Guarda la posicion, rotacion y escala del objeto, ademas de la interfaz del nodo. Este componente est...</div><div class="ttdef"><b>Definition</b> Transform.h:14</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_vector3_html"><div class="ttname"><a href="class_tapioca_1_1_vector3.html">Tapioca::Vector3</a></div><div class="ttdoc">Clase que implementa un vector geometrico de tres dimensiones.</div><div class="ttdef"><b>Definition</b> Vector3.h:10</div></div>
+<div class="ttc" id="acomponent_defs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
+<div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
+<div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:9</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> LuaManager.h:18</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

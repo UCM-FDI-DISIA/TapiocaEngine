@@ -9,9 +9,13 @@
 #include <iostream>
 #endif
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include <string>
 namespace Tapioca {
 class GameObject;
+
 /**
 * @brief Estructura de un evento
 */

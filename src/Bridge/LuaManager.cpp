@@ -1,21 +1,21 @@
 #include "LuaManager.h"
 #include <lua.hpp>
-#include "LuaRegistry.h"
 #include <LuaBridge.h>
 #include <Vector.h>
-#include "VariantStack.h"
 #include <filesystem>
+#include <sstream>
+#include <functional>
+#include "LuaRegistry.h"
+#include "VariantStack.h"
 #include "Components/LuaComponent.h"
 #include "Structure/FactoryManager.h"
-#include <sstream>
-#include "checkML.h"
-#include <functional>
 #include "Structure/GameObject.h"
 #include "Structure/Scene.h"
 #include "Utilities/Vector2.h"
 #include "Utilities/Vector3.h"
 #include "Utilities/Vector4.h"
 #include "Utilities/Quaternion.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<LuaManager>;
@@ -202,7 +202,6 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("conjugate", &Quaternion::conjugate)
         .addFunction("magnitude", &Quaternion::magnitude)
         .addFunction("toEuler", &Quaternion::toEuler)
-        //.addFunction("eulerAxis", &Quaternion::eulerAxis)
         .addFunction("__mul", luabridge::overload<const Quaternion&>(&Quaternion::operator*),
                      luabridge::overload<const float>(&Quaternion::operator*))
         .addFunction("__div", &Quaternion::operator/)
@@ -210,6 +209,22 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .addFunction("normalized", &Quaternion::normalized)
         .addFunction("normalize", &Quaternion::normalize)
         .endClass()
+        .endNamespace();
+
+    luabridge::getGlobalNamespace(L)
+        .beginNamespace("casts")
+        .addFunction("char", +[](void* variable) -> char* { return static_cast<char*>(variable); })
+        .addFunction("int", +[](void* variable) -> int* { return static_cast<int*>(variable); })
+        .addFunction("float", +[](void* variable) -> float* { return static_cast<float*>(variable); })
+        .addFunction("bool", +[](void* variable) -> bool* { return static_cast<bool*>(variable); })
+        .addFunction("string", +[](void* variable) -> std::string* { return static_cast<std::string*>(variable); })
+        .addFunction("Scene", +[](void* variable) -> Scene* { return static_cast<Scene*>(variable); })
+        .addFunction("GameObject", +[](void* variable) -> GameObject* { return static_cast<GameObject*>(variable); })
+        .addFunction("Component", +[](void* variable) -> Component* { return static_cast<Component*>(variable); })
+        .addFunction("Vector2", +[](void* variable) -> Vector2* { return static_cast<Vector2*>(variable); })
+        .addFunction("Vector3", +[](void* variable) -> Vector3* { return static_cast<Vector3*>(variable); })
+        .addFunction("Vector4", +[](void* variable) -> Vector4* { return static_cast<Vector4*>(variable); })
+        .addFunction("Quaternion", +[](void* variable) -> Quaternion* { return static_cast<Quaternion*>(variable); })
         .endNamespace();
 
     reg = new LuaRegistry(L);

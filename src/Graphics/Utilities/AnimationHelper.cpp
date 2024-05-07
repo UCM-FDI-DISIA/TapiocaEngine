@@ -1,7 +1,6 @@
 #include "AnimationHelper.h"
 #include "GraphicsManager.h"
 #include "Mesh.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -9,6 +8,7 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+#include "checkML.h"
 
 namespace Tapioca {
 AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true, const bool loop = true)
@@ -50,11 +50,15 @@ void AnimationHelper::setLoop(const bool l) {
     if (animState != nullptr) animState->setLoop(looping);
 }
 
-inline bool AnimationHelper::hasEnded() const { return animState->hasEnded(); }
+inline bool AnimationHelper::hasEnded() const { return animState != nullptr && animState->hasEnded(); }
 
 void AnimationHelper::setPlaying(const bool p) {
     playing = p;
     if (animState != nullptr) animState->setEnabled(playing);
 }
-std::string AnimationHelper::getAnimName() const { return animState->getAnimationName(); }
+std::string AnimationHelper::getAnimName() const {
+    if (animState != nullptr) return animState->getAnimationName();
+    else return "";
+
+}
 }

@@ -2,7 +2,7 @@
 #include "Vector2.h"
 #include <cmath>
 #include <math.h>
-#define PI 3.14159265358979323846f
+#include "checkML.h"
 
 namespace Tapioca {
 Vector3::Vector3(const float xyz) : x(xyz), y(xyz), z(xyz) { }
@@ -33,17 +33,17 @@ float Vector3::normalize() {
 }
 
 Vector3 Vector3::rotateX(const float degrees) const {
-    float rad_angle = degrees * PI / 180.0f;   
+    float rad_angle = degrees * (float)M_PI / 180.0f;   
     return Vector3(x, cos(rad_angle) * y - sin(rad_angle) * z, sin(rad_angle) * y + cos(rad_angle) * z);
 }
 
 Vector3 Vector3::rotateY(const float degrees) const {
-    float rad_angle = degrees * PI / 180.0f;  
+    float rad_angle = degrees * (float)M_PI / 180.0f;  
     return Vector3(cos(rad_angle) * x + sin(rad_angle) * z, y, -sin(rad_angle) * x + cos(rad_angle) * z);
 }
 
 Vector3 Vector3::rotateZ(const float degrees) const {
-    float rad_angle = degrees * PI / 180.0f;  
+    float rad_angle = degrees * (float)M_PI / 180.0f;  
     return Vector3(cos(rad_angle) * x - sin(rad_angle) * y, sin(rad_angle) * x + cos(rad_angle) * y, z);
 }
 

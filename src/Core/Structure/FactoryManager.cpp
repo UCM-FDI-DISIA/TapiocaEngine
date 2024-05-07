@@ -1,6 +1,7 @@
 #include "FactoryManager.h"
 #include "Component.h"
 #include "ComponentBuilder.h"
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<FactoryManager>;

@@ -1,0 +1,58 @@
+\doxysection{defs.\+h}
+\hypertarget{defs_8h_source}{}\label{defs_8h_source}\index{src/Core/defs.h@{src/Core/defs.h}}
+\mbox{\hyperlink{defs_8h}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifdef\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ TAPIOCA\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ TAPIOCA\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ \_USE\_MATH\_DEFINES}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_tapioca}{Tapioca}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }GameObject;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_tapioca_1_1_event}{Event}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_tapioca_1_1_game_object}{GameObject}}*\ \mbox{\hyperlink{struct_tapioca_1_1_event_acac19a3301513dc04e7b83229da23634}{emisor}};\ \ \ \ \ \textcolor{comment}{//\ Emisor\ del\ evento}}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_tapioca_1_1_event_ae13d690ce237bb22e29fe0af4000fcf6}{id}};\ \ \ \textcolor{comment}{//\ Identificador\ del\ evento}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{struct_tapioca_1_1_event_ab51c8201ad49ff1aaf0dd001b07d2197}{info}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Informacion\ adicional}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_tapioca_1_1_event_a1d8580c548b30635d5f67aaf80f3dd5b}{global}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ se\ propaga\ a\ todos\ los\ objetos}}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a7ba41db3a266bcf4e44b023fe66949cb}{logInfo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message)\ \{}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00031\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[INFO|MOTOR]\ "{}}\ <<\ message\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00033\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[INFO|JUEGO]\ "{}}\ <<\ message\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ \ \ }\textcolor{comment}{//\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif\ \ \ }\textcolor{comment}{//\ \_DEBUG}}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a37f6f0589afaf7ddf7dea70892b5defb}{logWarn}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message)\ \{}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00040\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[38;2;252;245;35m[WARN|MOTOR]\ "{}}\ <<\ message\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m\(\backslash\)n"{}};}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00042\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[38;2;252;245;35m[WARN|JUEGO]\ "{}}\ <<\ message\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m\(\backslash\)n"{}};}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ \ \ }\textcolor{comment}{//\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ \ \ }\textcolor{comment}{//\ \_DEBUG}}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_tapioca_a30b6348c0242e1d3557d71d5cba74d2b}{logError}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message)\ \{}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00049\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[38;2;252;30;30m[ERROR|MOTOR]\ "{}}\ <<\ message\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m\(\backslash\)n"{}};}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[38;2;252;30;30m[ERROR|JUEGO]\ "{}}\ <<\ message\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m\(\backslash\)n"{}};}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ \ \ }\textcolor{comment}{//\ TAPIOCA\_EXPORTS}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ \ \ }\textcolor{comment}{//\ \_DEBUG}}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ \};}
+
+\end{DoxyCode}

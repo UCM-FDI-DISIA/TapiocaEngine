@@ -1,14 +1,15 @@
 #include "SoundManager.h"
+#include <filesystem>
 #include <irrKlang.h>
 #include "AudioListener.h"
-#include <filesystem>
+#include "checkML.h"
 
 namespace Tapioca {
 template class TAPIOCA_API Singleton<SoundManager>;
 template<>
 SoundManager* Singleton<SoundManager>::instance_ = nullptr;
 
-SoundManager::SoundManager() : al(nullptr), soundEngine(nullptr) { }
+SoundManager::SoundManager() : al(nullptr), soundEngine(nullptr), audioFolderPath("assets/audio/") { }
 
 SoundManager::~SoundManager() {
     if (al != nullptr) delete al;
@@ -33,28 +34,26 @@ void SoundManager::setListener(AudioListener al) {
                                      irrklang::vec3df(al.velocity.x, al.velocity.y, al.velocity.z),
                                      irrklang::vec3df(al.up.x, al.up.y, al.up.z));
 }
-bool SoundManager::checkAudioFolder() {
+bool SoundManager::checkAudioFolder() const {
     if (!std::filesystem::exists(audioFolderPath)) {
         logWarn(("SoundManager: la carpeta " + audioFolderPath + " no existe").c_str());
         return false;
     }
     else
-    return true; 
+        return true;
 }
-void SoundManager::createAudioFolder() { 
+void SoundManager::createAudioFolder() {
     if (!checkAudioFolder()) {
         try {
             if (std::filesystem::create_directory(audioFolderPath)) {
                 logInfo(("SoundManager: Carpeta de audio " + audioFolderPath + " creada correctamente").c_str());
             }
 
-        } catch(const std::filesystem::filesystem_error& e) {
+        } catch (const std::filesystem::filesystem_error& e) {
             logError(("SoundManager: No se pudo crear la carpeta de sonidos" + std::string(e.what())).c_str());
             ;
         }
-
     }
-
 }
 std::string SoundManager::getAudioPath() { return audioFolderPath; }
 }

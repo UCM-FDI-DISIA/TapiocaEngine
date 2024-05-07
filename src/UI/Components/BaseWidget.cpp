@@ -6,6 +6,7 @@
 #include <random>
 #include <string>
 #include <sstream>
+#include "checkML.h"
 
 namespace Tapioca {
 BaseWidget::BaseWidget()
