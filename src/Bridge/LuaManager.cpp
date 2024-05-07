@@ -212,6 +212,22 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
         .endClass()
         .endNamespace();
 
+    luabridge::getGlobalNamespace(L)
+        .beginNamespace("casts")
+        .addFunction("char", +[](void* variable) -> char* { return static_cast<char*>(variable); })
+        .addFunction("int", +[](void* variable) -> int* { return static_cast<int*>(variable); })
+        .addFunction("float", +[](void* variable) -> float* { return static_cast<float*>(variable); })
+        .addFunction("bool", +[](void* variable) -> bool* { return static_cast<bool*>(variable); })
+        .addFunction("string", +[](void* variable) -> std::string* { return static_cast<std::string*>(variable); })
+        .addFunction("Scene", +[](void* variable) -> Scene* { return static_cast<Scene*>(variable); })
+        .addFunction("GameObject", +[](void* variable) -> GameObject* { return static_cast<GameObject*>(variable); })
+        .addFunction("Component", +[](void* variable) -> Component* { return static_cast<Component*>(variable); })
+        .addFunction("Vector2", +[](void* variable) -> Vector2* { return static_cast<Vector2*>(variable); })
+        .addFunction("Vector3", +[](void* variable) -> Vector3* { return static_cast<Vector3*>(variable); })
+        .addFunction("Vector4", +[](void* variable) -> Vector4* { return static_cast<Vector4*>(variable); })
+        .addFunction("Quaternion", +[](void* variable) -> Quaternion* { return static_cast<Quaternion*>(variable); })
+        .endNamespace();
+
     reg = new LuaRegistry(L);
 }
 
