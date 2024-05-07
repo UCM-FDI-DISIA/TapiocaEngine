@@ -23,6 +23,8 @@ private:
 
     // Camera
     bool targetToLookSet;   // Indica si se ha establecido el target al que mira la camara
+    bool applyInitRot;     // Indica si la rotacion inicial de la camara viene descrita
+                            // por la rotacion del transform o su direccion/targetToLook
     Vector3 targetToLook;   // Objetivo al que mira la camara
     Vector3 direction;      // Direccion de la camara
     float nearPlane;        // Distancia del near plane

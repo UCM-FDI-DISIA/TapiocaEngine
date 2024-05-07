@@ -11,7 +11,7 @@ namespace Tapioca {
 CameraComponent::CameraComponent()
     : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
       dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
-      farPlane(-1.0f), targetToLookSet(false) { }
+      farPlane(-1.0f), targetToLookSet(false), applyInitRot(true) { }
 
 CameraComponent::~CameraComponent() {
     GraphicsManager::instance()->removeZOrder(zOrder);
@@ -28,9 +28,6 @@ bool CameraComponent::initComponent(const CompMap& variables) {
         targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
             setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
             setValueFromMap(targetToLook.z, "targetToLookZ", variables);
-        if (!targetToLookSet) {
-            logInfo("CameraComponent: La camara apunta hacia (0,0,-1) global.");
-        }
     }
 
     if (!setValueFromMap(nearPlane, "nearPlane", variables)) {
@@ -81,13 +78,20 @@ void CameraComponent::awake() {
         }
         zOrder = zOrderAux;
 
-        node = graphicsManager->createNode();
+        node = graphicsManager->createNode(transform->getGlobalPositionWithoutRotation());
         camera = graphicsManager->createCamera(node, "Camera " + std::to_string(zOrder));
         viewport = graphicsManager->createViewport(camera, zOrder);
 
-        if (direction != Vector3(0.0f, 0.0f, 0.0f)) camera->setDirection(direction);
-        else if (!targetToLookSet)
-            setDirection(INITIAL_DIR);
+        Tapioca::Quaternion globalRot = transform->getGlobalRotation();
+        if (globalRot.toEuler() == Tapioca::Vector3(0.0f, 0.0f, 0.0f)) {
+            applyInitRot = false;
+            if (direction != Vector3(0.0f, 0.0f, 0.0f)) camera->setDirection(direction);
+            else {
+                if (targetToLookSet) camera->lookAt(targetToLook);
+                else
+                    setDirection(INITIAL_DIR);
+            }
+        }
 
         if (nearPlane != -1.0f) camera->setNearClipDistance(nearPlane);
         if (farPlane != -1.0f) camera->setFarClipDistance(farPlane);
@@ -99,17 +103,21 @@ void CameraComponent::awake() {
         if (dimensions.z != 1.0f) viewport->setWidth(dimensions.z);
         if (dimensions.w != 1.0f) viewport->setHeight(dimensions.z);
     }
-    else
+    else {
         logError("CameraComponent: No queda nigun zOrder disponible");
+        alive = false;
+    }
 }
 
 void CameraComponent::handleEvent(std::string const& id, void* info) {
     if (id == "posChanged") {
         node->setPosition(transform->getGlobalPositionWithoutRotation());
-        if (targetToLookSet) {
-            targetToLookSet = false;
-            lookAt(targetToLook);
+    }
+    else if (id == "rotChanged") {
+        if (applyInitRot) {
+            node->setRotation(transform->getGlobalRotation());
         }
+        applyInitRot = true;
     }
 }
 
