@@ -94,7 +94,7 @@ var searchData=
   ['getpositionxy_91',['getPositionXY',['../class_tapioca_1_1_transform.html#a2222d87133e71752c587daeeb556d0d8',1,'Tapioca::Transform']]],
   ['getprogress_92',['getProgress',['../class_tapioca_1_1_progress_bar.html#afc495a72f9bc7584508f045eb34df14f',1,'Tapioca::ProgressBar']]],
   ['getpushvelocity_93',['getPushVelocity',['../class_tapioca_1_1_rigid_body.html#ab8fe05d3208ff78965d2f3083f88d689',1,'Tapioca::RigidBody']]],
-  ['getquota_94',['getQuota',['../class_tapioca_1_1_particle_system_component.html#a36992a4db0aecf82f2d3bd5751146a07',1,'Tapioca::ParticleSystemComponent::getQuota()'],['../class_tapioca_1_1_particle_system.html#acce651df84451c2cb4c13d40c1bf19e2',1,'Tapioca::ParticleSystem::getQuota()']]],
+  ['getquota_94',['getQuota',['../class_tapioca_1_1_particle_system_component.html#ac355e0d2c74275295615cf77ba806978',1,'Tapioca::ParticleSystemComponent::getQuota()'],['../class_tapioca_1_1_particle_system.html#acce651df84451c2cb4c13d40c1bf19e2',1,'Tapioca::ParticleSystem::getQuota()']]],
   ['getregistry_95',['getRegistry',['../class_tapioca_1_1_lua_manager.html#aa216e9c2501bb1837134dc7222c3e725',1,'Tapioca::LuaManager']]],
   ['getresized_96',['getResized',['../class_tapioca_1_1_window_manager.html#a06d57a2e18ecaf580c8a9819990493c0',1,'Tapioca::WindowManager']]],
   ['getrotation_97',['getRotation',['../class_tapioca_1_1_transform.html#a0d638a96f082b98be4b9004f09c8b023',1,'Tapioca::Transform::getRotation()'],['../class_tapioca_1_1_billboard.html#a3c3612c931c3343446b25897d0163f92',1,'Tapioca::Billboard::getRotation()']]],

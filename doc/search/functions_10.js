@@ -16,7 +16,7 @@ var searchData=
   ['right_13',['right',['../class_tapioca_1_1_transform.html#a5d8a1319a8e896ec25d6496928ea68aa',1,'Tapioca::Transform']]],
   ['rigidbody_14',['RigidBody',['../class_tapioca_1_1_rigid_body.html#acd3b3dbd36ecf3c6a9e2dabd191d7cf1',1,'Tapioca::RigidBody']]],
   ['roll_15',['roll',['../class_tapioca_1_1_render_node.html#a138c7eebab3cf904ac99fac4f5afe60b',1,'Tapioca::RenderNode']]],
-  ['rotate_16',['rotate',['../class_tapioca_1_1_transform.html#ad334941496425e1ca6a4e4f28340ede3',1,'Tapioca::Transform::rotate()'],['../class_tapioca_1_1_render_node.html#ade67ae6a95df835a82bbb92d38f8589e',1,'Tapioca::RenderNode::rotate()']]],
+  ['rotate_16',['rotate',['../class_tapioca_1_1_transform.html#ad334941496425e1ca6a4e4f28340ede3',1,'Tapioca::Transform::rotate(const Vector3 &amp;r)'],['../class_tapioca_1_1_transform.html#a85f9c2cb65f72beddb1c5dc379225a6c',1,'Tapioca::Transform::rotate(const Quaternion &amp;r)'],['../class_tapioca_1_1_render_node.html#ade67ae6a95df835a82bbb92d38f8589e',1,'Tapioca::RenderNode::rotate()']]],
   ['rotatepoint_17',['rotatePoint',['../class_tapioca_1_1_quaternion.html#a1a0ff4fffcfc67d73ba480d5842bf526',1,'Tapioca::Quaternion']]],
   ['rotatex_18',['rotateX',['../class_tapioca_1_1_vector3.html#a86562f8c29d0408f9be6fae963b988aa',1,'Tapioca::Vector3']]],
   ['rotatey_19',['rotateY',['../class_tapioca_1_1_vector3.html#ad246d1de82b3c8052b8a705cbab617ff',1,'Tapioca::Vector3']]],

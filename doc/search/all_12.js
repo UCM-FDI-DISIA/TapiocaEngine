@@ -27,7 +27,7 @@ var searchData=
   ['rigidbody_2eh_24',['RigidBody.h',['../_rigid_body_8h.html',1,'']]],
   ['roll_25',['roll',['../class_tapioca_1_1_render_node.html#a138c7eebab3cf904ac99fac4f5afe60b',1,'Tapioca::RenderNode']]],
   ['rot_26',['rot',['../struct_tapioca_1_1_key_frame.html#afe829dd4bef5bc554247a4a6b6152b0e',1,'Tapioca::KeyFrame']]],
-  ['rotate_27',['rotate',['../class_tapioca_1_1_transform.html#ad334941496425e1ca6a4e4f28340ede3',1,'Tapioca::Transform::rotate()'],['../class_tapioca_1_1_render_node.html#ade67ae6a95df835a82bbb92d38f8589e',1,'Tapioca::RenderNode::rotate()']]],
+  ['rotate_27',['rotate',['../class_tapioca_1_1_transform.html#ad334941496425e1ca6a4e4f28340ede3',1,'Tapioca::Transform::rotate(const Vector3 &amp;r)'],['../class_tapioca_1_1_transform.html#a85f9c2cb65f72beddb1c5dc379225a6c',1,'Tapioca::Transform::rotate(const Quaternion &amp;r)'],['../class_tapioca_1_1_render_node.html#ade67ae6a95df835a82bbb92d38f8589e',1,'Tapioca::RenderNode::rotate()']]],
   ['rotatepoint_28',['rotatePoint',['../class_tapioca_1_1_quaternion.html#a1a0ff4fffcfc67d73ba480d5842bf526',1,'Tapioca::Quaternion']]],
   ['rotatex_29',['rotateX',['../class_tapioca_1_1_vector3.html#a86562f8c29d0408f9be6fae963b988aa',1,'Tapioca::Vector3']]],
   ['rotatey_30',['rotateY',['../class_tapioca_1_1_vector3.html#ad246d1de82b3c8052b8a705cbab617ff',1,'Tapioca::Vector3']]],
