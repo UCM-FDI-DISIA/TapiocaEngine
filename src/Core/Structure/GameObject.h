@@ -119,7 +119,7 @@ public:
 
     /**
     * @brief Cambia el zOrder a la que pertence el gameObject
-    * @param sc zOrder al que se quiere mover el objeto
+    * @param zOrder zOrder al que se quiere mover el objeto
     */
     inline void setZOrder(int zOrder) { this->zOrder = zOrder; }
     /**
