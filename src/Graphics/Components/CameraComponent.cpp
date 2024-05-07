@@ -11,7 +11,7 @@ namespace Tapioca {
 CameraComponent::CameraComponent()
     : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
       dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
-      farPlane(-1.0f), targetToLookSet(false), applyInitRot(true) { }
+      farPlane(-1.0f), targetToLookSet(false), applyInitRot(false) { }
 
 CameraComponent::~CameraComponent() {
     GraphicsManager::instance()->removeZOrder(zOrder);
@@ -82,14 +82,17 @@ void CameraComponent::awake() {
         camera = graphicsManager->createCamera(node, "Camera " + std::to_string(zOrder));
         viewport = graphicsManager->createViewport(camera, zOrder);
 
-        Tapioca::Quaternion globalRot = transform->getGlobalRotation();
-        if (globalRot.toEuler() == Tapioca::Vector3(0.0f, 0.0f, 0.0f)) {
-            applyInitRot = false;
-            if (direction != Vector3(0.0f, 0.0f, 0.0f)) camera->setDirection(direction);
+        if (direction != Vector3(0.0f, 0.0f, 0.0f)) camera->setDirection(direction);
+        else {
+            if (targetToLookSet) camera->lookAt(targetToLook);
             else {
-                if (targetToLookSet) camera->lookAt(targetToLook);
-                else
+                Tapioca::Vector3 globalRot = transform->getGlobalRotation().toEuler();
+                if (globalRot == Tapioca::Vector3(0.0f, 0.0f, 0.0f)) {
                     setDirection(INITIAL_DIR);
+                }
+                else {
+                    applyInitRot = true;
+                }
             }
         }
 

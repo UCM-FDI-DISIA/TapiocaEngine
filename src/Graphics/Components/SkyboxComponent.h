@@ -25,7 +25,6 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::string materialName;   // Nombre del material del skybox
-    std::string skyboxName;     // Nombre del skybox
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

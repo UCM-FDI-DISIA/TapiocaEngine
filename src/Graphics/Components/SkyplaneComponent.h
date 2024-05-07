@@ -26,7 +26,6 @@ private:
 #pragma warning(disable : 4251)
 #endif
     std::string materialName;   // Nombre del material
-    std::string skyplaneName;   // Nombre del skyplane
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif

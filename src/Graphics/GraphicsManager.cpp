@@ -493,6 +493,13 @@ ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, st
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
+ParticleSystem* GraphicsManager ::createParticleSystemWithName(RenderNode* const node, std::string const& templateName,
+                                                       const bool emitting) {
+    std::string name = "ParticleSystem" + std::to_string(particleSystemNumber++);
+    return new ParticleSystem(scnMgr, node, name, templateName, emitting);
+}
+
+
 Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                     const Vector3& up, std::string const& name, const float width, const float height,
                                     const int xSegments, const int ySegments, std::string const& material) {
@@ -531,11 +538,26 @@ Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const&
     return new Skybox(scnMgr, node, material, name, distC, orderC);
 }
 
+Skybox* GraphicsManager::createSkyboxWithName(RenderNode* const node, std::string const& material,
+                                              const float distC, const bool orderC) {
+    std::string name = "Skybox" + std::to_string(skyboxNumber++);
+    return new Skybox(scnMgr, node, material, name, distC, orderC);
+}
+
 Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName,
                                           std::string const& name, const bool enable, const Vector3 rkNormal,
                                           const float fConstant, const float scale, const float tiling,
                                           const bool drawFirst, const float bow, const int xsegments,
                                           const int ysegments) {
+    return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
+                        bow, xsegments, ysegments);
+}
+
+Skyplane* GraphicsManager::createSkyplaneWithName(RenderNode* const node, std::string const& materialName,
+                                                  const bool enable, const Vector3 rkNormal, const float fConstant,
+                                                  const float scale, const float tiling, const bool drawFirst,
+                                                  const float bow, const int xsegments, const int ysegments) {
+    std::string name = "Skyplane" + std::to_string(skyplaneNumber++);
     return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
                         bow, xsegments, ysegments);
 }

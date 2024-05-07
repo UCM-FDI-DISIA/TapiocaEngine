@@ -7,8 +7,7 @@
 
 namespace Tapioca {
 SkyboxComponent::SkyboxComponent()
-    : node(nullptr), transform(nullptr), skybox(nullptr), materialName(""), skyboxName(""), distC(5000.0f),
-      orderC(true) { }
+    : node(nullptr), transform(nullptr), skybox(nullptr), materialName(""), distC(5000.0f), orderC(true) { }
 
 SkyboxComponent::~SkyboxComponent() {
     if (node != nullptr) delete node;
@@ -18,12 +17,6 @@ SkyboxComponent::~SkyboxComponent() {
 }
 
 bool SkyboxComponent::initComponent(const CompMap& variables) {
-    // No se ha podido establecer o No hay nombre de mesh
-    if (!setValueFromMap(skyboxName, "planeName", variables) || skyboxName == "") {
-        logError("SkyboxComponent: No se pudo inicializar el nombre del skybox.");
-        return false;
-    }
-
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
         logInfo("SkyboxComponent: No existe nombre para el material: se coloca el predefinido por la mesh.");
@@ -48,6 +41,6 @@ void SkyboxComponent::awake() {
     transform = gameobject->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
-    skybox = g->createSkybox(node, materialName, skyboxName, distC, orderC);
+    skybox = g->createSkyboxWithName(node, materialName, distC, orderC);
 }
 }

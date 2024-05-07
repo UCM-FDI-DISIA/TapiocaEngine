@@ -97,9 +97,12 @@ private:
 #pragma warning(default : 4251)
 #endif
 
-    int nodeAnimatorNumber;   // Numero de animadores de nodos
-    int planeNumber;          // Numero de planos
-    int billboardNumber;      // Numero de billboards
+    int nodeAnimatorNumber;     // Numero de animadores de nodos
+    int planeNumber;            // Numero de planos
+    int billboardNumber;        // Numero de billboards
+    int particleSystemNumber;   // Numero de sistemas de particulas
+    int skyboxNumber;           // Numero de skyboxes
+    int skyplaneNumber;         // Numero de skyplanes
 
     LightDirectional* mainLight;   // Luz principal que produce sombras
 
@@ -321,7 +324,7 @@ public:
     * @param poolSize Numero maximo de billboards que puede tener
     * @return Puntero al billboard creado
     */
-    BillboardSet* createBillboardSet(RenderNode* const node, std::string const& name, unsigned int poolSize);
+    BillboardSet* createBillboardSet(RenderNode* const node, std::string const& name, const unsigned int poolSize);
 
     /**
     * @brief Crea un billboardSet sin nombre especificado
@@ -341,6 +344,15 @@ public:
     */
     ParticleSystem* createParticleSystem(RenderNode* const node, std::string const& name,
                                          std::string const& templateName, const bool emitting);
+
+    /**
+    * @brief Crea un particleSystem sin nombre especificado
+    * @param node Nodo para renderizado
+    * @param templateName TemplateName del particleSystem
+    * @param emitting Indica si esta emitiendo particulas
+    * @return Puntero al particleSystem creado
+    */
+    ParticleSystem* createParticleSystemWithName(RenderNode* const node, std::string const& templateName, const bool emitting);
 
     /**
     * @brief Crea un plane
@@ -431,6 +443,16 @@ public:
                          const float distC = 5000, const bool orderC = true);
 
     /**
+    * @brief Crea un skybox sin nombre especificado
+    * @param node Nodo para renderizado
+    * @param material Material del skybox
+    * @param distC Distancia del plano a la camara
+    * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
+    */
+    Skybox* createSkyboxWithName(RenderNode* const node, std::string const& material, const float distC = 5000,
+                         const bool orderC = true);
+
+    /**
     * @brief Crea un skyplane
     * @param node Nodo para renderizado
     * @param materialName Nombre del material
@@ -449,6 +471,24 @@ public:
                              const bool enable, const Vector3 rkNormal, const float fConstant, const float scale,
                              const float tiling, const bool drawFirst, const float bow, const int xsegments,
                              const int ysegments);
+
+    /**
+    * @brief Crea un skyplane
+    * @param node Nodo para renderizado
+    * @param materialName Nombre del material
+    * @param enable Indica si se activa el skyplane
+    * @param rkNormal Normal del plano
+    * @param fConstant Distancia que se mueve el plano a traves de la normal
+    * @param scale Escala del skyplane
+    * @param tiling Tiling del skyplane
+    * @param drawFirst Indica si se dibuja primero
+    * @param bow Curvatura del skyplane
+    * @param xsegments Numero de segmentos en x
+    * @param ysegments Numero de segmentos en y
+    */
+    Skyplane* createSkyplaneWithName(RenderNode* const node, std::string const& materialName, const bool enable,
+                             const Vector3 rkNormal, const float fConstant, const float scale, const float tiling,
+                             const bool drawFirst, const float bow, const int xsegments, const int ysegments);
 
     /**
     * @brief Crea un manual object

@@ -9,7 +9,7 @@
 namespace Tapioca {
 
 SkyplaneComponent::SkyplaneComponent()
-    : node(nullptr), transform(nullptr), skyplane(nullptr), materialName(""), skyplaneName(""),
+    : node(nullptr), transform(nullptr), skyplane(nullptr), materialName(""),
       rkNormal(Vector3(0.0f, 0.0f, 1.0f)), fConstant(0.0f),
       scale(1000.0f), tiling(10.0f), drawFirst(true), bow(0.0f), xSegments(1), ySegments(1) { }
 
@@ -21,13 +21,6 @@ SkyplaneComponent::~SkyplaneComponent() {
 }
 
 bool SkyplaneComponent::initComponent(const CompMap& variables) {
-
-    // No se ha podido establecer o No hay nombre de mesh
-    if (!setValueFromMap(skyplaneName, "planeName", variables) || skyplaneName == "") {
-        logError("SkyplaneComponent: No se pudo inicializar el nombre del skyplane.");
-        return false;
-    }
-
     // Da igual si no hay material o si el material tiene un nombre vacio
     if (!setValueFromMap(materialName, "materialName", variables)) {
         logInfo("SkyplaneComponent: No existe nombre para el material: se coloca el predefinido por la mesh.");
