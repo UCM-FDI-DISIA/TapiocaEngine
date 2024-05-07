@@ -15,7 +15,7 @@ jobs:
         id: ghaction
         uses: AgarwalSaurav/ghaction-doxygen-ghpages@release/v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.SECRET }}
           working-directory: .
           doxyfile-path: ./Doxyfile
           html-output-folder: ./docs
