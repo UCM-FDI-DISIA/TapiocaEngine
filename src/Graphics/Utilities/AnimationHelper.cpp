@@ -50,11 +50,15 @@ void AnimationHelper::setLoop(const bool l) {
     if (animState != nullptr) animState->setLoop(looping);
 }
 
-inline bool AnimationHelper::hasEnded() const { return animState->hasEnded(); }
+inline bool AnimationHelper::hasEnded() const { return animState != nullptr && animState->hasEnded(); }
 
 void AnimationHelper::setPlaying(const bool p) {
     playing = p;
     if (animState != nullptr) animState->setEnabled(playing);
 }
-std::string AnimationHelper::getAnimName() const { return animState->getAnimationName(); }
+std::string AnimationHelper::getAnimName() const {
+    if (animState != nullptr) return animState->getAnimationName();
+    else return "";
+
+}
 }

@@ -64,13 +64,13 @@ public:
     * @brief Devuelve si la animacion esta en bucle
     * @return True si la animacion esta en bucle, false en caso contrario
     */
-    inline bool getLoop() const { return looping; }
+    inline bool getLoop() const { return animState != nullptr && looping; }
 
     /**
     * @brief Devuelve si la animacion esta en reproduccion
     * @return True si la animacion esta en reproduccion, false en caso contrario
     */
-    inline bool getPlaying() const { return playing; }
+    inline bool getPlaying() const { return animState != nullptr && playing; }
 
     /**
     * @brief Devuelve si la animacion ha terminado
