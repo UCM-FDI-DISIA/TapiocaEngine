@@ -3,16 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "projects\Main\Main.vcxproj", "{1BCA0A68-D110-4540-A078-65D3FA5D73E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2564EFF6-7CCE-477D-A287-F1B452CD392B} = {2564EFF6-7CCE-477D-A287-F1B452CD392B}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "projects\Core\Core.vcxproj", "{5E0AF72D-8466-4A76-B633-4D6198F021B1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics", "projects\Graphics\Graphics.vcxproj", "{41B70F84-8525-46CB-B0AE-A461780AEC77}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physics", "projects\Physics\Physics.vcxproj", "{4D51AD06-E3F2-480D-92F8-D0A63C2B60E6}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "projects\Main\Main.vcxproj", "{1BCA0A68-D110-4540-A078-65D3FA5D73E3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2564EFF6-7CCE-477D-A287-F1B452CD392B} = {2564EFF6-7CCE-477D-A287-F1B452CD392B}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bridge", "projects\Bridge\Bridge.vcxproj", "{E0ADCFFA-EB53-44DD-B200-55FC3989EF12}"
 EndProject
