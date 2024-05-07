@@ -80,12 +80,12 @@ public:
     * @brief Cambia el numero maximo de particulas que puede haber en el sistema
     * @param q Quota nueva del sistema de particulas
     */
-    void setQuota(const int q);
+    void setQuota(const size_t q);
     /**
     * @brief Devuelve el numero maximo de particulas que puede haber en el sistema
     * @return Quota actual del sistema de particulas
     */
-    int getQuota();
+    size_t getQuota();
 
     /**
     * @brief Hace que el sistema de particulas sea o no visible
