@@ -157,6 +157,36 @@ static void registerLuaFunctions() {
                          mainLoop->deleteScene(name);
                      })
         //.addFunction("", []() -> void {})
+        .deriveClass<Transform, Component>("Transform")
+        .addConstructor<void (*)()>()
+        .addProperty(
+            "position", [](Transform* trans) -> Vector3 { return trans->getPosition(); },
+            [](Transform* trans, const Vector3& position) { trans->setPosition(position); })
+        .addFunction("getGlobalPositionWithoutRotation", &Transform::getGlobalPositionWithoutRotation)
+        .addFunction("getGlobalPosition", &Transform::getGlobalPosition)
+        .addFunction("setGlobalPosition", &Transform::setGlobalPosition)
+        .addProperty(
+            "rotation", [](Transform* trans) -> Quaternion { return trans->getRotation(); },
+            [](Transform* trans, const Quaternion& rotation) { trans->setRotation(rotation); })
+        .addFunction("getGlobalRotation", &Transform::getGlobalRotation)
+        .addProperty(
+            "scale", [](Transform* trans) -> Vector3 { return trans->getScale(); },
+            [](Transform* trans, const Vector3& scale) { trans->setScale(scale); })
+        .addFunction("getGlobalScale", &Transform::getGlobalScale)
+        .addFunction("translate", &Transform::translate)
+        .addFunction("rotate", luabridge::overload<const Quaternion&>(&Transform::rotate))
+        .addFunction("right", &Transform::right)
+        .addFunction("up", &Transform::up)
+        .addFunction("forward", &Transform::forward)
+        .addProperty("parent", &Transform::getParent, &Transform::setParent)
+        .addFunction("getChildren", &Transform::getChildren)
+        .addFunction("getAllChildren", &Transform::getAllChildren)
+        .endClass()
+        .endNamespace()
+        .beginNamespace("casts")
+        .beginNamespace("fromComponent")
+        .addFunction("Transform", +[](Component* variable) -> Transform* { return static_cast<Transform*>(variable); })
+        .endNamespace()
         .endNamespace();
 }
 

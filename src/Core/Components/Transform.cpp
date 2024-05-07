@@ -267,6 +267,11 @@ void Transform::rotate(const Vector3& r) {
     posChanged();
     rotChanged();
 }
+void Transform::rotate(const Quaternion& q) {
+    rotation = rotation * q;
+    posChanged();
+    rotChanged();
+}
 
 Vector3 Transform::right() const {
     Vector3 r(-1, 0, 0);   // X

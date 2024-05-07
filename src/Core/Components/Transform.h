@@ -245,6 +245,11 @@ public:
     * @param r rotacion que se quiere aplicar sobre el transform
     */
     void rotate(const Vector3& r);
+    /**
+    * @brief Rota el objeto sobre los ejes tanto como el vector dado indica
+    * @param r rotacion que se quiere aplicar sobre el transform
+    */
+    void rotate(const Quaternion& r);
 
     /**
     * @brief Devuelve el eje X de coordenadas locales en coordenadas globales, inicialmente su eje X es 1,0,0
