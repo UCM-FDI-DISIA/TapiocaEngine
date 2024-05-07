@@ -7,7 +7,7 @@ namespace Tapioca {
 * @brief Patron de diseno Singleton para crear una unica instancia de una clase
 */
 template<typename T>
-class TAPIOCA_API Singleton {
+class Singleton {
 private:
     static T* instance_;   // Instancia unica
 
