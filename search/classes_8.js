@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['keyframe_0',['KeyFrame',['../structTapioca_1_1KeyFrame.html',1,'Tapioca']]],
-  ['keyframeanimator_1',['KeyFrameAnimator',['../classTapioca_1_1KeyFrameAnimator.html',1,'Tapioca']]]
+  ['keyframe_0',['KeyFrame',['../struct_tapioca_1_1_key_frame.html',1,'Tapioca']]],
+  ['keyframeanimator_1',['KeyFrameAnimator',['../class_tapioca_1_1_key_frame_animator.html',1,'Tapioca']]]
 ];
