@@ -13,9 +13,9 @@
 
 namespace Tapioca {
 Plane::Plane(Ogre::SceneManager* const scnMngr, RenderNode* const node, Ogre::MeshManager* const mshMgr,
-             const Vector3& rkNormal, const float fConstant, const Vector3& up, std::string const& name,
-             const float width, const float height, const int xSegments, const int ySegments)
-    : RenderObject(node, scnMngr) {
+    const Vector3& rkNormal, const float fConstant, const Vector3& up, std::string const& name,
+    const float width, const float height, const int xSegments, const int ySegments) : RenderObject(node, scnMngr) 
+{
     Ogre::Vector3 normal = Ogre::Vector3(rkNormal.x, rkNormal.y, rkNormal.z).normalisedCopy();
     Ogre::Vector3 u = Ogre::Vector3(up.x, up.y, up.z).normalisedCopy();
     mPlaneAux = Ogre::Plane(normal, fConstant);
@@ -28,9 +28,9 @@ Plane::Plane(Ogre::SceneManager* const scnMngr, RenderNode* const node, Ogre::Me
 }
 
 Plane::Plane(Ogre::SceneManager* const scnMngr, RenderNode* const node, Ogre::MeshManager* const mshMgr, const float a,
-             const float b, const float c, const float d, const Vector3& up, std::string const& name, const float width,
-             const float height, const int xSegments, const int ySegments)
-    : RenderObject(node, scnMngr) {
+    const float b, const float c, const float d, const Vector3& up, std::string const& name, const float width,
+    const float height, const int xSegments, const int ySegments) : RenderObject(node, scnMngr) 
+{
     Ogre::Vector3 normal = Ogre::Vector3(a, b, c);
     Ogre::Vector3 u = Ogre::Vector3(up.x, up.y, up.z).normalisedCopy();
     mPlaneAux = Ogre::Plane(normal, d);

@@ -12,8 +12,8 @@
 
 namespace Tapioca {
 LightRectlight::LightRectlight(Ogre::SceneManager* const scnMngr, RenderNode* const node, Vector4 const color,
-                               const float width, const float height, Vector3 direction)
-    : Light(scnMngr, node, color) {
+    const float width, const float height, Vector3 direction) : Light(scnMngr, node, color) 
+{
     mLight->setType(Ogre::Light::LightTypes::LT_RECTLIGHT);
     mLight->setSourceSize(width, height);
     node->setDirection(direction);

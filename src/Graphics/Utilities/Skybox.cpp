@@ -13,20 +13,23 @@
 namespace Tapioca {
 
 Skybox::Skybox(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& material,
-               std::string const& skyboxName, const float distC, const bool orderC)
-    : RenderObject(node, scnMngr), sceneManager(scnMngr), material(material), distC(distC), orderC(orderC) {
-    Ogre::MaterialPtr m = Ogre::MaterialManager::getSingleton().getByName(
-        material, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-    if (!m)
+    std::string const& skyboxName, const float distC, const bool orderC) : RenderObject(node, scnMngr), 
+    sceneManager(scnMngr), material(material), distC(distC), orderC(orderC) 
+{
+    Ogre::MaterialPtr m = Ogre::MaterialManager::getSingleton()
+        .getByName(material, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    
+    if (!m) {
         OGRE_EXCEPT(Ogre::Exception::ERR_INVALIDPARAMS, "Sky box material '" + material + "' not found.",
                     "SceneManager::setSkyBox");
+    }
     m->load();
 
     bool valid = m->getBestTechnique() && m->getBestTechnique()->getNumPasses();
     if (valid) {
         Ogre::Pass* pass = m->getBestTechnique()->getPass(0);
         valid = valid && pass->getNumTextureUnitStates() &&
-            pass->getTextureUnitState(0)->getTextureType() == Ogre::TEX_TYPE_CUBE_MAP;
+                pass->getTextureUnitState(0)->getTextureType() == Ogre::TEX_TYPE_CUBE_MAP;
     }
 
     if (!valid) {
@@ -40,6 +43,7 @@ Skybox::Skybox(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::s
     }
     else {
         if (!mSkyBoxObj->isAttached()) {
+
         }
         mSkyBoxObj->clear();
     }

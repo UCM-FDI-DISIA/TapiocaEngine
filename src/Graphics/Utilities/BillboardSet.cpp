@@ -12,14 +12,14 @@
 
 namespace Tapioca {
 BillboardSet::BillboardSet(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::string const& name,
-                           const unsigned int poolSize)
-    : RenderObject(node, scnMngr), mBillboardSet(scnMngr->createBillboardSet(name, poolSize)), mName(name) {
+    const unsigned int poolSize) : RenderObject(node, scnMngr), mBillboardSet(scnMngr->createBillboardSet(name, poolSize)), 
+    mName(name) 
+{
     init(mBillboardSet);
 }
 
 Tapioca::BillboardSet::~BillboardSet() {
-    for (auto& billboard : billboards)
-        delete billboard;
+    for (auto& billboard : billboards) delete billboard;
     billboards.clear();
 }
 
@@ -51,8 +51,8 @@ void Tapioca::BillboardSet::removeBillboard(Billboard* const bb) {
 
 Tapioca::Billboard* Tapioca::BillboardSet::addBillboard(const Vector3& position, const Vector4& colour) {
     // Crea el Ogre::Billboard
-    Ogre::Billboard* oBillboard = mBillboardSet->createBillboard(
-        Ogre::Vector3(position.x, position.y, position.z), Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
+    Ogre::Billboard* oBillboard = mBillboardSet->createBillboard(Ogre::Vector3(position.x, position.y, position.z), 
+                                                                 Ogre::ColourValue(colour.x, colour.y, colour.z, colour.w));
     // Crea un Tapioca::Billboard a partir del Ogre::Billboard creado previamente
     Billboard* mBillboard = new Tapioca::Billboard(oBillboard);
     // Inserta el Billboard en el UnorderedMap

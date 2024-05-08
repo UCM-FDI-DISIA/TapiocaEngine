@@ -12,7 +12,8 @@
 
 namespace Tapioca {
 Viewport::Viewport(Ogre::RenderWindow* const renderWindow, Camera* const camera, const int zOrder)
-    : renderWindow(renderWindow), zOrder(zOrder), camera(camera) {
+    : renderWindow(renderWindow), zOrder(zOrder), camera(camera) 
+{
     viewport = renderWindow->addViewport(camera->getCamera(), zOrder);
 }
 

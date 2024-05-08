@@ -12,7 +12,8 @@
 
 namespace Tapioca {
 AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true, const bool loop = true)
-    : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()), playing(autoPlay), looping(loop) {
+    : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()), playing(autoPlay), looping(loop) 
+{
     logInfo("AnimationHelper: Animaciones:");
     auto aux = object->getMesh()->getAllAnimationStates();
     for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
@@ -26,10 +27,8 @@ AnimationHelper::~AnimationHelper() {
 }
 
 void AnimationHelper::updateAnim(const uint64_t delt, const float speed) {
-    if (animState != nullptr) {
-        // Actualiza la animacion
-        animState->addTime((float)(delt * 0.001 * speed));
-    }
+    // Actualiza la animacion
+    if (animState != nullptr) animState->addTime((float)(delt * 0.001 * speed));
 }
 
 void AnimationHelper::playAnim(std::string const& anim) {

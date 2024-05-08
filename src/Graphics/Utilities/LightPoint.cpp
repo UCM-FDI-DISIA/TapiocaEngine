@@ -10,7 +10,8 @@
 
 namespace Tapioca {
 LightPoint::LightPoint(Ogre::SceneManager* const scnMngr, RenderNode* const node, const Vector4 color)
-    : Light(scnMngr, node, color) {
+    : Light(scnMngr, node, color) 
+{
     mLight->setType(Ogre::Light::LightTypes::LT_POINT);
 }
 
