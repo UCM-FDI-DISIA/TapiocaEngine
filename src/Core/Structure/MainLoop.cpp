@@ -12,9 +12,11 @@ namespace Tapioca {
 MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
     if (!std::filesystem::exists(assetsPath)) {
         logInfo(("MainLoop: La carpeta \"" + assetsPath + "\" no existe.").c_str());
+
         try {
-            if (std::filesystem::create_directory(assetsPath))
+            if (std::filesystem::create_directory(assetsPath)) {
                 logInfo("MainLoop: Carpeta de assets creada correctamente.");
+            }
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("MainLoop: No se pudo crear la carpeta de assets. " + std::string(e.what())).c_str());
         }
@@ -24,16 +26,13 @@ MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
 }
 
 MainLoop::~MainLoop() {
-    for (auto sc : sceneBuffer)
-        delete sc;
+    for (auto sc : sceneBuffer) delete sc;
     sceneBuffer.clear();
 
-    for (auto& s : loadedScenes)
-        delete s.second;
+    for (auto& s : loadedScenes) delete s.second;
     loadedScenes.clear();
 
-    for (Module* mod : modules)
-        delete mod;
+    for (Module* mod : modules) delete mod;
 
     if (loader != nullptr) delete loader;
     loader = nullptr;
@@ -63,8 +62,7 @@ bool MainLoop::initConfig() {
 bool MainLoop::loadGame(std::string const& gameName) { return loader->initGame(gameName); }
 
 void MainLoop::start() {
-    for (auto mod : modules)
-        mod->start();
+    for (auto mod : modules) mod->start();
 
     if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
         logWarn("MainLoop: No hay escena de inicio del motor. Se va a cerrar la aplicacion.");
@@ -111,29 +109,29 @@ void MainLoop::run() {
 }
 
 void MainLoop::update() {
-    for (auto mod : modules)
-        mod->update(deltaTime);
+    for (auto mod : modules) mod->update(deltaTime);
 
-    for (auto& s : loadedScenes)
+    for (auto& s : loadedScenes) {
         if (s.second->isActive()) s.second->update(deltaTime);
+    }
+        
 }
 
 void MainLoop::fixedUpdate() {
-    for (auto mod : modules)
-        mod->fixedUpdate();
+    for (auto mod : modules) mod->fixedUpdate();
 
-    for (auto& s : loadedScenes)
+    for (auto& s : loadedScenes) {
         if (s.second->isActive()) s.second->fixedUpdate();
+    }
+        
 }
 
 void MainLoop::render() {
-    for (auto mod : modules)
-        mod->render();
+    for (auto mod : modules) mod->render();
 }
 
 void MainLoop::refresh() {
-    for (auto mod : modules)
-        mod->refresh();
+    for (auto mod : modules) mod->refresh();
 
     for (Scene* sc : toDelete) {
         loadedScenes.erase(sc->getName());
@@ -160,8 +158,9 @@ void MainLoop::refresh() {
         logWarn("MainLoop: No hay escenas en el juego. Se va a cerrar la aplicacion.");
     }
 
-    for (auto& s : loadedScenes)
+    for (auto& s : loadedScenes) {
         if (s.second->isActive()) s.second->refresh();
+    }
 }
 
 void MainLoop::handleDelayedEvents() {
@@ -196,8 +195,7 @@ std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { retu
 Scene* MainLoop::getScene(std::string sc) {
     auto aux = loadedScenes.find(sc);
     if (aux != loadedScenes.end()) return aux->second;
-    else
-        return nullptr;
+    else return nullptr;
 }
 
 void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }

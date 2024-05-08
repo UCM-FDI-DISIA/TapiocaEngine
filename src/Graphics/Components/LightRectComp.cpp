@@ -7,9 +7,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-LightRectComp::LightRectComp()
-    : node(nullptr), transform(nullptr), light(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f),
-      attenuationFactor(), attenuationSet(false), width(), height(), direction() { }
+LightRectComp::LightRectComp() : node(nullptr), transform(nullptr), light(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), 
+    powerScale(1.0f), attenuationFactor(), attenuationSet(false), width(), height(), direction() { }
 
 LightRectComp::~LightRectComp() {
     if (node != nullptr) delete node;
@@ -19,13 +18,15 @@ LightRectComp::~LightRectComp() {
 }
 bool LightRectComp::initComponent(const CompMap& variables) {
     bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
-        setValueFromMap(direction.y, "directionY", variables) && setValueFromMap(direction.z, "directionZ", variables);
+                        setValueFromMap(direction.y, "directionY", variables) &&
+                        setValueFromMap(direction.z, "directionZ", variables);
     if (!directionSet) {
         logError("LightRectComp: Es necesario indicar una direccion a la que apunta.");
         return false;
     }
 
-    bool sizeSet = setValueFromMap(width, "width", variables) && setValueFromMap(height, "height", variables);
+    bool sizeSet = setValueFromMap(width, "width", variables) && 
+                   setValueFromMap(height, "height", variables);
     if (!sizeSet) {
         logError("LightRectComp: Es necesario indicar un tamano para definir el rectangulo.");
         return false;
@@ -33,8 +34,9 @@ bool LightRectComp::initComponent(const CompMap& variables) {
 
     Vector4 colorAux;
     bool colorSet = setValueFromMap(colorAux.x, "colorR", variables) &&
-        setValueFromMap(colorAux.y, "colorG", variables) && setValueFromMap(colorAux.z, "colorB", variables) &&
-        setValueFromMap(colorAux.w, "colorA", variables);
+                    setValueFromMap(colorAux.y, "colorG", variables) && 
+                    setValueFromMap(colorAux.z, "colorB", variables) &&
+                    setValueFromMap(colorAux.w, "colorA", variables);
     colorSet = colorSet && colorAux != color;
     if (!colorSet) {
         logInfo("LightRectComp: Luz blanca.");

@@ -6,8 +6,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-SkyboxComponent::SkyboxComponent()
-    : node(nullptr), transform(nullptr), skybox(nullptr), materialName(""), distC(5000.0f), orderC(true) { }
+SkyboxComponent::SkyboxComponent() : node(nullptr), transform(nullptr), skybox(nullptr), 
+    materialName(""), distC(5000.0f), orderC(true) { }
 
 SkyboxComponent::~SkyboxComponent() {
     if (node != nullptr) delete node;
@@ -24,13 +24,13 @@ bool SkyboxComponent::initComponent(const CompMap& variables) {
 
     bool bDistC = setValueFromMap(distC, "distC", variables);
     if (!bDistC) {
-        logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y la camara, se usara el valor por "
-                "defecto 5000s.");
+        logInfo("SkyboxComponent: No se ha definido una distancia entre el skybox y " 
+                "la camara, se usara el valor por defecto 5000s.");
     }
 
     if (!setValueFromMap(orderC, "orderC", variables)) {
-        logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes o despues de la escena, se usara el "
-                "valor por defecto true.");
+        logInfo("SkyboxComponent: No se ha definido si el skybox se pinta antes " 
+                "o despues de la escena, se usara el valor por defecto true.");
     }
 
     return true;

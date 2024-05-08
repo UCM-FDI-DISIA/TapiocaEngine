@@ -64,8 +64,8 @@ private:
     Ogre::SceneManager* scnMgr;                          // Gestor de escenas
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
-    SGTechniqueResolverListener*
-        mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
+    SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders para los 
+                                                         // materiales que vienen sin ellos
 
     // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -80,9 +80,6 @@ private:
     // warning C4251 'Tapioca::GraphicsManager::zOrders' :
     // class 'std::vector<std::string,std::allocator<std::string>>' necesita tener una interfaz DLL
     // para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
-    // warning C4251 'Tapioca::GraphicsManager::cameraComps' :
-    // class 'std::unordered_map<int,Tapioca::CameraComponent *,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,Tapioca::CameraComponent *>>>'
-    //  necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -92,8 +89,6 @@ private:
     std::unordered_set<RenderNode*> selfManagedNodes;   // Nodos gestionados por GraphicsManager
 
     std::unordered_set<int> zOrders;   // ZOrders de las camaras
-
-    std::unordered_map<int, CameraComponent*> cameraComps;   // Componentes de camara
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -192,17 +187,11 @@ public:
     bool checkResourceExists(std::string name);
 
     /**
-    * @brief Elimina una camara en un zOrder especifico
-    * @param zOrder ZOrder de la camara
-    * @param deleteCamera Indica si se debe eliminar la camara
+    * @brief Comprueba si existe un sistema de particulas con el nombre especificado
+    * @param name Nombre del sistema de particulas
+    * @return true si existe, false si no
     */
-    void removeCameraCompByZOrder(int zOrder, bool deleteCamera);
-
-    /**
-    * @brief Guarda el componente de camara
-    * @param cameraComp Componente de camara a guardar
-    */
-    void saveCameraComp(CameraComponent* cameraComp);
+    bool checkParticleSystemExists(std::string name);
 
     /**
     * @brief 

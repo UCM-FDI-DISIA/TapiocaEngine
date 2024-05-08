@@ -4,13 +4,11 @@
 #include "checkML.h"
 
 namespace Tapioca {
-Scene::Scene(std::string const& name)
-    : name(name), active(true), windowWidth(680), windowHeight(480), firstWindowWidth(windowWidth),
-      firstWindowHeight(windowHeight) { }
+Scene::Scene(std::string const& name) : name(name), active(true), windowWidth(680), 
+    windowHeight(480), firstWindowWidth(windowWidth), firstWindowHeight(windowHeight) { }
 
 Scene::~Scene() {
-    for (auto obj : objects)
-        delete obj;
+    for (auto obj : objects) delete obj;
 }
 
 bool Scene::addObject(GameObject* const object, std::string const& handler, int zIndex) {
@@ -24,9 +22,7 @@ bool Scene::addObject(GameObject* const object, std::string const& handler, int 
     }
 
     objects.insert(object);
-    //objects.push_back(object);
     layers[zIndex].insert(object);
-    //layers[zIndex].push_back(object);
     object->setScene(this);
     object->setZOrder(zIndex);
     return true;
@@ -35,49 +31,26 @@ bool Scene::addObject(GameObject* const object, std::string const& handler, int 
 void Scene::refresh() {
     std::unordered_set<GameObject*> objectsAux;
     for (GameObject* object : objects) {
-        if (!object->isAlive()) {
-            objectsAux.insert(object);
-        }
+        if (!object->isAlive()) objectsAux.insert(object);
     }
     for (GameObject* objectAux : objectsAux) {
         objects.erase(objectAux);
-        if (handlers.find(objectAux->handler) != handlers.end()) {
-            handlers.erase(objectAux->handler);
-        }
+        if (handlers.find(objectAux->handler) != handlers.end()) handlers.erase(objectAux->handler);
         auto itLayer = layers.find(objectAux->getZOrder());
         if (itLayer != layers.end()) {
-            if (itLayer->second.contains(objectAux)) {
-                itLayer->second.erase(objectAux);
-            }
+            if (itLayer->second.contains(objectAux)) itLayer->second.erase(objectAux);
         }
         delete objectAux;
         objectAux = nullptr;
     }
-    /*
-    objects.erase(std::remove_if(objects.begin(), objects.end(),
-                                 [this](GameObject* obj) {
-                                     if (obj->isAlive()) return false;
-                                     else {
-                                         // eliminar el objeto del handler
-                                         if (handlers.find(obj->handler) != handlers.end())
-                                             handlers.erase(obj->handler);
 
-                                         delete obj;
-                                         obj = nullptr;
-                                         return true;
-                                     }
-                                 }),
-                  objects.end());
-    */
-
-
-    for (auto& obj : objects)
-        obj->refresh();
+    for (auto& obj : objects) obj->refresh();
 }
 
 void Scene::handleEvent(std::string const& id, void* info) {
-    for (auto obj : objects)
+    for (auto obj : objects) {
         if (obj->isAlive()) obj->handleEvent(id, info);
+    }
 }
 
 void Scene::pushEvent(Event const& e, bool const delay) { MainLoop::instance()->pushEvent(e, delay); }
@@ -91,31 +64,34 @@ GameObject* Scene::getHandler(std::string const& handler) const {
 }
 
 void Scene::update(const uint64_t deltaTime) {
-    for (auto obj : objects)
+    for (auto obj : objects) {
         if (obj->isAlive()) obj->update(deltaTime);
+    }
 }
 
 void Scene::fixedUpdate() {
-    for (auto obj : objects)
+    for (auto obj : objects) {
         if (obj->isAlive()) obj->fixedUpdate();
+    }
+        
 }
 
 void Scene::render() const {
     if (!active) return;
     // Mayor zIndex implica que se dibuje antes para que quede por debajo
-    for (auto it = layers.rbegin(); it != layers.rend(); ++it)
-        for (auto obj : it->second)
+    for (auto it = layers.rbegin(); it != layers.rend(); ++it) {
+        for (auto obj : it->second) {
             if (obj->isAlive()) obj->render();
+        }
+    }
 }
 
 void Scene::awake() {
-    for (auto obj : objects)
-        obj->awake();
+    for (auto obj : objects) obj->awake();
 }
 
 void Scene::start() {
-    for (auto obj : objects)
-        obj->start();
+    for (auto obj : objects) obj->start();
 }
 
 void Scene::updateZIndex(GameObject* obj, int zIndex) {
@@ -123,8 +99,7 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
         logWarn("Scene: No se puede anadir un objeto con zIndex negativo.");
         return;
     }
-    else if (zIndex == 0)
-        return;
+    else if (zIndex == 0) return;
 
     // Elimina el objeto de la capa actual
     auto itLayer = layers.find(obj->getZOrder());
@@ -133,19 +108,8 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
             itLayer->second.erase(obj);
         }
     }
-    /*
-    for (auto it = layers.begin(); it != layers.end(); ++it) {
-        for (GameObject* o : it->second) {
-            if (o == obj) {
-                it->second.erase(std::remove(it->second.begin(), it->second.end(), obj), it->second.end());
-                break;
-            }
-        }
-    }
-    */
 
     // Lo anade a la nueva capa
     layers[zIndex].insert(obj);
-    //layers[zIndex].push_back(obj);
 }
 }

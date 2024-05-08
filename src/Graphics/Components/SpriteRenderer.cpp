@@ -8,9 +8,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-SpriteRenderer::SpriteRenderer()
-    : node(nullptr), transform(nullptr), billboardSet(nullptr), billboard(nullptr),
-      color(Vector4(1.0f, 1.0f, 1.0f, 1.0f)) { }
+SpriteRenderer::SpriteRenderer() : node(nullptr), transform(nullptr), billboardSet(nullptr), 
+    billboard(nullptr), color(Vector4(1.0f, 1.0f, 1.0f, 1.0f)) { }
+
 SpriteRenderer ::~SpriteRenderer() {
     if (node != nullptr) delete node;
     node = nullptr;
@@ -20,12 +20,13 @@ SpriteRenderer ::~SpriteRenderer() {
 }
 
 bool SpriteRenderer::initComponent(const CompMap& variables) {
-    bool colorSet = setValueFromMap(color.x, "colorX", variables) && setValueFromMap(color.y, "colorY", variables) &&
-        setValueFromMap(color.z, "colorZ", variables) && setValueFromMap(color.w, "colorW", variables);
+    bool colorSet = setValueFromMap(color.x, "colorX", variables) && 
+                    setValueFromMap(color.y, "colorY", variables) &&
+                    setValueFromMap(color.z, "colorZ", variables) && 
+                    setValueFromMap(color.w, "colorW", variables);
     if (!colorSet) {
         logInfo("SpriteRenderer: No se ha definido un color para el billboard. Se usara un color por defecto.");
     }
-
     return true;
 }
 

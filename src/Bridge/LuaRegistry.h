@@ -44,7 +44,7 @@ public:
             .beginNamespace(className.c_str())
             .addFunction(functionName, function)
             .endNamespace()
-            .endNamespace();
+        .endNamespace();
     }
 
     /**
@@ -53,8 +53,6 @@ public:
     * @return Valor
     */
     template<typename T>
-    T getValueFromLua(std::string name) {
-        return map[name].cast<T>();
-    }
+    T getValueFromLua(std::string name) { return map[name].cast<T>(); }
 };
 }

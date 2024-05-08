@@ -8,10 +8,9 @@
 
 namespace Tapioca {
 
-SkyplaneComponent::SkyplaneComponent()
-    : node(nullptr), transform(nullptr), skyplane(nullptr), materialName(""),
-      rkNormal(Vector3(0.0f, 0.0f, 1.0f)), fConstant(0.0f),
-      scale(1000.0f), tiling(10.0f), drawFirst(true), bow(0.0f), xSegments(1), ySegments(1) { }
+SkyplaneComponent::SkyplaneComponent() : node(nullptr), transform(nullptr), skyplane(nullptr), 
+    materialName(""), rkNormal(Vector3(0.0f, 0.0f, 1.0f)), fConstant(0.0f), scale(1000.0f), 
+    tiling(10.0f), drawFirst(true), bow(0.0f), xSegments(1), ySegments(1) { }
 
 SkyplaneComponent::~SkyplaneComponent() {
     if (node != nullptr) delete node;
@@ -27,10 +26,10 @@ bool SkyplaneComponent::initComponent(const CompMap& variables) {
     }
 
     bool normalSet = setValueFromMap(rkNormal.x, "rkNormalX", variables) &&
-        setValueFromMap(rkNormal.y, "rkNormalY", variables) && setValueFromMap(rkNormal.z, "rkNormalZ", variables);
+                     setValueFromMap(rkNormal.y, "rkNormalY", variables) && 
+                     setValueFromMap(rkNormal.z, "rkNormalZ", variables);
     if (!normalSet) {
-        logInfo(
-            "SkyplaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
+        logInfo("SkyplaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
     }
 
     if (!setValueFromMap(fConstant, "f", variables)) {

@@ -91,7 +91,7 @@ void GameObject::refresh() {
 
 void GameObject::update(const uint64_t deltaTime) {
     for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->update(deltaTime);
+        if (comp->isActive() && comp->isAlive()) comp->update(deltaTime);
     }
 }
 
@@ -101,13 +101,13 @@ void GameObject::handleEvent(std::string const& id, void* info) {
 
 void GameObject::fixedUpdate() {
     for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->fixedUpdate();
+        if (comp->isActive() && comp->isAlive()) comp->fixedUpdate();
     }
 }
 
 void GameObject::render() const {
     for (auto comp : cmpOrder) {
-        if (comp->isActive()) comp->render();
+        if (comp->isActive() && comp->isAlive()) comp->render();
     }
 }
 

@@ -66,8 +66,7 @@ bool WindowManager::initConfig() {
         logInfo("WindowManager: Ventana configurada a pantalla completa.");
     }
     // Si no se quiere pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
-    else
-        tryGetWindowSize();
+    else tryGetWindowSize();
 
     // Crear ventana
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -109,8 +108,7 @@ void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod);
 
 void WindowManager::sendEvent(std::string const& id, void* info) {
     if (id == "ev_CLOSE") mainLoop->exit();
-    else
-        mainLoop->pushEvent({nullptr, id, info, true});
+    else mainLoop->pushEvent({nullptr, id, info, true});
 }
 
 void WindowManager::tryGetWindowSize() {

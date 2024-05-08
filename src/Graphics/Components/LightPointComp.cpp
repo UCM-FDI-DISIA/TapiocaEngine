@@ -7,9 +7,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-LightPointComp::LightPointComp()
-    : node(nullptr), transform(nullptr), light(nullptr), color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f),
-      attenuationFactor(), attenuationSet(false) { }
+LightPointComp::LightPointComp() : node(nullptr), transform(nullptr), light(nullptr), 
+    color(1.0f, 1.0f, 1.0f, 1.0f), powerScale(1.0f), attenuationFactor(), attenuationSet(false) { }
 
 LightPointComp::~LightPointComp() {
     if (node != nullptr) delete node;

@@ -13,7 +13,8 @@
 
 namespace Tapioca {
 RenderNode::RenderNode(Ogre::SceneManager* const scnMngr, const Vector3 pos, const Vector3 scale)
-    : sceneManager(scnMngr), object(nullptr) {
+    : sceneManager(scnMngr), object(nullptr) 
+{
     node = sceneManager->getRootSceneNode()->createChildSceneNode();
     setPosition(pos);
     setScale(scale);

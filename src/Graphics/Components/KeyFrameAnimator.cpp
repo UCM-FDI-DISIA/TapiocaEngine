@@ -7,8 +7,7 @@
 #include "checkML.h"
 
 namespace Tapioca {
-KeyFrameAnimator::KeyFrameAnimator()
-    : nodeAnimator(nullptr), speed(1.0f), duration(0.0f), info(), playByDefault(true), loop(true) { }
+KeyFrameAnimator::KeyFrameAnimator() : nodeAnimator(nullptr), speed(1.0f), duration(0.0f), info(), playByDefault(true), loop(true) { }
 
 KeyFrameAnimator::~KeyFrameAnimator() {
     if (nodeAnimator != nullptr) delete nodeAnimator;
@@ -41,23 +40,21 @@ bool KeyFrameAnimator::initComponent(const CompMap& variables) {
     while (!end) {
         Vector3 pos;
         bool posSet = setValueFromMap(pos.x, "posKeyX" + std::to_string(info.size + 1), variables) &&
-            setValueFromMap(pos.y, "posKeyY" + std::to_string(info.size + 1), variables) &&
-            setValueFromMap(pos.z, "posKeyZ" + std::to_string(info.size + 1), variables);
+                      setValueFromMap(pos.y, "posKeyY" + std::to_string(info.size + 1), variables) &&
+                      setValueFromMap(pos.z, "posKeyZ" + std::to_string(info.size + 1), variables);
         if (posSet) info.pos[info.size] = pos;
 
         Vector3 scale;
         bool scaleSet = setValueFromMap(scale.x, "scaleKeyX" + std::to_string(info.size + 1), variables) &&
-            setValueFromMap(scale.y, "scaleKeyY" + std::to_string(info.size + 1), variables) &&
-            setValueFromMap(scale.z, "scaleKeyZ" + std::to_string(info.size + 1), variables);
+                        setValueFromMap(scale.y, "scaleKeyY" + std::to_string(info.size + 1), variables) &&
+                        setValueFromMap(scale.z, "scaleKeyZ" + std::to_string(info.size + 1), variables);
         if (scaleSet) info.scale[info.size] = scale;
 
         Vector3 rot;
         bool rotSet = setValueFromMap(rot.x, "rotKeyX" + std::to_string(info.size + 1), variables) &&
-            setValueFromMap(rot.y, "rotKeyY" + std::to_string(info.size + 1), variables) &&
-            setValueFromMap(rot.z, "rotKeyZ" + std::to_string(info.size + 1), variables);
-        if (rotSet) {
-            info.rot[info.size] = rot;
-        }
+                      setValueFromMap(rot.y, "rotKeyY" + std::to_string(info.size + 1), variables) &&
+                      setValueFromMap(rot.z, "rotKeyZ" + std::to_string(info.size + 1), variables);
+        if (rotSet) info.rot[info.size] = rot;
 
         if (!posSet && !scaleSet && !rotSet) end = true;
         else ++info.size;

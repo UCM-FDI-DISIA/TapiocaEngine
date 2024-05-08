@@ -7,10 +7,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-PlaneComponent::PlaneComponent()
-    : node(nullptr), transform(nullptr), plane(nullptr), rkNormal(Vector3(0.0f, 0.0f, 1.0f)),
-      up(Vector3(0.0f, 1.0f, 0.0f)), width(1.0f), height(1.0f), xSegments(1), ySegments(1), planeName(""),
-      materialName("") { }
+PlaneComponent::PlaneComponent() : node(nullptr), transform(nullptr), plane(nullptr), 
+    rkNormal(Vector3(0.0f, 0.0f, 1.0f)), up(Vector3(0.0f, 1.0f, 0.0f)), width(1.0f), 
+    height(1.0f), xSegments(1), ySegments(1), planeName(""), materialName("") { }
 
 PlaneComponent::~PlaneComponent() {
     if (node != nullptr) delete node;
@@ -25,7 +24,8 @@ bool PlaneComponent::initComponent(const CompMap& variables) {
     }
 
     bool normalSet = setValueFromMap(rkNormal.x, "rkNormalX", variables) &&
-        setValueFromMap(rkNormal.y, "rkNormalY", variables) && setValueFromMap(rkNormal.z, "rkNormalZ", variables);
+                     setValueFromMap(rkNormal.y, "rkNormalY", variables) && 
+                     setValueFromMap(rkNormal.z, "rkNormalZ", variables);
     if (!normalSet) {
         logInfo("PlaneComponent: No se ha definido una normal para el plano, se usara el valor por defecto (0, 0, 1).");
     }
@@ -45,13 +45,11 @@ bool PlaneComponent::initComponent(const CompMap& variables) {
     }
 
     if (!setValueFromMap(xSegments, "xSegments", variables)) {
-        logInfo(
-            "PlaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
+        logInfo( "PlaneComponent: No se ha definido el numero de segmentos en el eje x, se usara el valor por defecto 1.");
     }
 
     if (!setValueFromMap(ySegments, "ySegments", variables)) {
-        logInfo(
-            "PlaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
+        logInfo( "PlaneComponent: No se ha definido el numero de segmentos en el eje y, se usara el valor por defecto 1.");
     }
 
     return true;

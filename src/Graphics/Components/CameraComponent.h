@@ -65,10 +65,6 @@ public:
     * @param info Puntero a void para pasar parametros
     */
     void handleEvent(std::string const& id, void* info) override;
-    /**
-    * @brief Elimina el nodo y el viewport
-    */
-    void free();
 
     // Camera
     /**

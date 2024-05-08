@@ -13,9 +13,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-SceneLoader::SceneLoader()
-    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
-      scenesPath("assets\\scenes\\") { }
+SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), 
+    windowManager(nullptr), scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
     luaState = nullptr;
@@ -151,8 +150,7 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
 
     // Relaciona los hijos con el padre
     Transform* tr = gameObject->getComponent<Transform>();
-    for (GameObject* obj : children)
-        obj->getComponent<Transform>()->setParent(tr);
+    for (GameObject* obj : children) obj->getComponent<Transform>()->setParent(tr);
     children.clear();
     return true;
 }

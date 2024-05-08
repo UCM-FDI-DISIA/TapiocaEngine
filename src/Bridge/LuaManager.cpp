@@ -223,9 +223,8 @@ std::vector<CompValue> LuaManager::callLuaFunction(const std::string& name, cons
     }
     luabridge::LuaResult result = function(name, parameters);
     if (result.hasFailed()) {
-        std::string msg = "LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
-                          std::to_string(result.errorCode().value()) + "]: " + result.errorMessage();
-        logError(msg.c_str());
+        logError(("LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage()).c_str());
         if (success != nullptr) *success = false;
         return out;
     }
@@ -298,7 +297,9 @@ bool LuaManager::loadScripts() {
     } catch (std::filesystem::filesystem_error&) {
         logWarn("LuaManager: No existe ruta de scripts.");
         try {
-            if (std::filesystem::create_directory(path)) logInfo("LuaManager: Carpeta de scripts creada correctamente.");
+            if (std::filesystem::create_directory(path)) {
+                logInfo("LuaManager: Carpeta de scripts creada correctamente.");
+            }
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("LuaManager: No se pudo crear la carpeta de scripts. " + std::string(e.what())).c_str());
         }

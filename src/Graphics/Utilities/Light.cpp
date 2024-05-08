@@ -10,7 +10,8 @@
 
 namespace Tapioca {
 Light::Light(Ogre::SceneManager* const scnMngr, RenderNode* const node, const Vector4 color)
-    : RenderObject(node, scnMngr), mLight(scnMngr->createLight()), mColor(color) {
+    : RenderObject(node, scnMngr), mLight(scnMngr->createLight()), mColor(color) 
+{
     init(mLight);
     mLight->setDiffuseColour(Ogre::ColourValue(color.x, color.y, color.z, color.w));
     mLight->setSpecularColour(Ogre::ColourValue(1.0f, 1.0f, 1.0f, 1.0f));

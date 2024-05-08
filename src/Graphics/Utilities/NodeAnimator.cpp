@@ -12,7 +12,7 @@
 namespace Tapioca {
 NodeAnimator::NodeAnimator(Ogre::SceneManager* scnMngr, RenderNode* node, float duration, std::string name)
     : animationState(nullptr), sceneManager(scnMngr), node(node), duration(duration), enabled(false), loop(false),
-      name(name), keyFrames() { }
+    name(name), keyFrames() { }
 
 NodeAnimator::~NodeAnimator() { enable(false); }
 

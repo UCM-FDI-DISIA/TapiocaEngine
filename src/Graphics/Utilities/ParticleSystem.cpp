@@ -14,8 +14,8 @@
 
 namespace Tapioca {
 ParticleSystem::ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* const node, std::string const& name,
-                               std::string const& templateName, const bool emitting)
-    : RenderObject(node, scnMgr) {
+    std::string const& templateName, const bool emitting) : RenderObject(node, scnMgr) 
+{
     if (templateName != "") mParticleSystem = scnMgr->createParticleSystem(name, templateName);
     else mParticleSystem = scnMgr->createParticleSystem(name);
 
