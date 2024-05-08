@@ -73,6 +73,7 @@ void MainLoop::start() {
 }
 
 void MainLoop::run() {
+    start();
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
