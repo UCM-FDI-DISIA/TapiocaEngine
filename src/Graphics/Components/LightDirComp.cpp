@@ -18,8 +18,8 @@ LightDirComp::~LightDirComp() {
 bool LightDirComp::initComponent(const CompMap& variables) {
     Vector3 directionAux;
     bool directionSet = setValueFromMap(directionAux.x, "directionX", variables) &&
-        setValueFromMap(directionAux.y, "directionY", variables) &&
-        setValueFromMap(directionAux.z, "directionZ", variables);
+                        setValueFromMap(directionAux.y, "directionY", variables) &&
+                        setValueFromMap(directionAux.z, "directionZ", variables);
     directionSet = directionSet && directionAux != direction;
     if (!directionSet) {
         logInfo("LightDirComp: Apunta hacia (0,0,-1) global.");
@@ -32,8 +32,9 @@ bool LightDirComp::initComponent(const CompMap& variables) {
 
     Vector4 colorAux;
     bool colorSet = setValueFromMap(colorAux.x, "colorR", variables) &&
-        setValueFromMap(colorAux.y, "colorG", variables) && setValueFromMap(colorAux.z, "colorB", variables) &&
-        setValueFromMap(colorAux.w, "colorA", variables);
+                    setValueFromMap(colorAux.y, "colorG", variables) && 
+                    setValueFromMap(colorAux.z, "colorB", variables) &&
+                    setValueFromMap(colorAux.w, "colorA", variables);
     colorSet = colorSet && colorAux != color;
     if (!colorSet) {
         logInfo("LightDirComp: Luz blanca.");

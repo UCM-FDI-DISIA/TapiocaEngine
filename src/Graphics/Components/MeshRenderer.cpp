@@ -7,9 +7,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-MeshRenderer::MeshRenderer()
-    : graphicsManager(nullptr), node(nullptr), transform(nullptr), mesh(nullptr), initialRotation(Vector3(0.0f)),
-      materialName(""), castShadows(true), meshName("") { }
+MeshRenderer::MeshRenderer() : graphicsManager(nullptr), node(nullptr), transform(nullptr), mesh(nullptr), 
+    initialRotation(Vector3(0.0f)), materialName(""), castShadows(true), meshName("") { }
 
 MeshRenderer::~MeshRenderer() {
     graphicsManager = nullptr;
@@ -35,8 +34,8 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
     }
 
     bool rotationSet = setValueFromMap(initialRotation.x, "initRotationX", variables) &&
-        setValueFromMap(initialRotation.y, "initRotationY", variables) &&
-        setValueFromMap(initialRotation.z, "initRotationZ", variables);
+                       setValueFromMap(initialRotation.y, "initRotationY", variables) &&
+                       setValueFromMap(initialRotation.z, "initRotationZ", variables);
     if (!rotationSet) {
         logInfo("MeshRenderer: La rotacion inicial es Vector3(0,0,0).");
     }
@@ -66,10 +65,8 @@ void MeshRenderer::awake() {
 
 void MeshRenderer::handleEvent(std::string const& id, void* info) {
     if (id == "posChanged") node->setPosition(transform->getGlobalPosition());
-    else if (id == "rotChanged")
-        node->setRotation(transform->getGlobalRotation() * Quaternion(initialRotation));
-    else if (id == "scaleChanged")
-        node->setScale(transform->getGlobalScale());
+    else if (id == "rotChanged") node->setRotation(transform->getGlobalRotation() * Quaternion(initialRotation));
+    else if (id == "scaleChanged") node->setScale(transform->getGlobalScale());
 }
 
 void MeshRenderer::setMaterial(const std::string& name) {

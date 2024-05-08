@@ -21,7 +21,8 @@ LightSpotComp::~LightSpotComp() {
 
 bool LightSpotComp::initComponent(const CompMap& variables) {
     bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
-        setValueFromMap(direction.y, "directionY", variables) && setValueFromMap(direction.z, "directionZ", variables);
+                        setValueFromMap(direction.y, "directionY", variables) && 
+                        setValueFromMap(direction.z, "directionZ", variables);
     if (!directionSet) {
         logError("LightSpotComp: Es necesario indicar una direccion a la que apunta.");
         return false;
@@ -29,8 +30,9 @@ bool LightSpotComp::initComponent(const CompMap& variables) {
 
     Vector4 colorAux;
     bool colorSet = setValueFromMap(colorAux.x, "colorR", variables) &&
-        setValueFromMap(colorAux.y, "colorG", variables) && setValueFromMap(colorAux.z, "colorB", variables) &&
-        setValueFromMap(colorAux.w, "colorA", variables);
+                    setValueFromMap(colorAux.y, "colorG", variables) && 
+                    setValueFromMap(colorAux.z, "colorB", variables) &&
+                    setValueFromMap(colorAux.w, "colorA", variables);
     colorSet = colorSet && colorAux != color;
     if (!colorSet) {
         logInfo("LightSpotComp: Luz blanca.");
@@ -56,8 +58,7 @@ bool LightSpotComp::initComponent(const CompMap& variables) {
 
     float falloffAux;
     if (!setValueFromMap(falloffAux, "falloff", variables) || falloffAux == falloff) {
-        logInfo(
-            "LightSpotComp: La caida de la intensidad de la luz desde la zona interior hasta la exterior es lineal.");
+        logInfo("LightSpotComp: El falloff de la luz desde el interior hasta el exterior es lineal.");
     }
     else falloff = falloffAux;
 

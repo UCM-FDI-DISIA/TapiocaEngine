@@ -12,9 +12,11 @@ namespace Tapioca {
 MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
     if (!std::filesystem::exists(assetsPath)) {
         logInfo(("MainLoop: La carpeta \"" + assetsPath + "\" no existe.").c_str());
+
         try {
-            if (std::filesystem::create_directory(assetsPath))
+            if (std::filesystem::create_directory(assetsPath)) {
                 logInfo("MainLoop: Carpeta de assets creada correctamente.");
+            }
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("MainLoop: No se pudo crear la carpeta de assets. " + std::string(e.what())).c_str());
         }

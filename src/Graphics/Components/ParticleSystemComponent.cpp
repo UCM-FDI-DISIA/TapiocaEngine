@@ -8,8 +8,8 @@
 
 namespace Tapioca {
 
-ParticleSystemComponent::ParticleSystemComponent()
-    : node(nullptr), transform(nullptr), pSys(nullptr), templateName(""), emitting(false) { }
+ParticleSystemComponent::ParticleSystemComponent() : node(nullptr), transform(nullptr), pSys(nullptr),
+    templateName(""), emitting(false) { }
 
 ParticleSystemComponent::~ParticleSystemComponent() {
     if (node != nullptr) delete node;

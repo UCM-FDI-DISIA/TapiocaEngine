@@ -141,20 +141,20 @@ static void registerLuaFunctions() {
     luabridge::getGlobalNamespace(lua->getLuaState())
         .beginNamespace("Tapioca")
         .addFunction("loadScene",
-                     [](std::string name) -> bool {
-                         //logInfo("loadScene llamado desde Lua");
-                         return scenes->loadScene(name) != nullptr;
-                     })
+            [](std::string name) -> bool {
+                //logInfo("loadScene llamado desde Lua");
+                return scenes->loadScene(name) != nullptr;
+            })
         .addFunction("exit",
-                     []() -> void {
-                         //logInfo("exit llamado desde Lua");
-                         mainLoop->exit();
-                     })
+            []() -> void {
+                //logInfo("exit llamado desde Lua");
+                mainLoop->exit();
+            })
         .addFunction("deleteScene",
-                     [](std::string name) -> void {
-                         //logInfo("deleteScene llamado desde Lua");
-                         mainLoop->deleteScene(name);
-                     })
+            [](std::string name) -> void {
+                //logInfo("deleteScene llamado desde Lua");
+                mainLoop->deleteScene(name);
+            })
         //.addFunction("", []() -> void {})
         .deriveClass<Transform, Component>("Transform")
         .addConstructor<void (*)()>()
@@ -181,13 +181,13 @@ static void registerLuaFunctions() {
         .addFunction("getChildren", &Transform::getChildren)
         .addFunction("getAllChildren", &Transform::getAllChildren)
         .endClass()
-        .endNamespace()
-        .beginNamespace("casts")
+    .endNamespace()
+    .beginNamespace("casts")
         .beginNamespace("fromComponent")
         .addFunction(
             "Transform", +[](Component* variable) -> Transform* { return static_cast<Transform*>(variable); })
         .endNamespace()
-        .endNamespace();
+    .endNamespace();
 }
 
 void mapInput() {

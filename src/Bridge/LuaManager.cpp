@@ -304,7 +304,9 @@ bool LuaManager::loadScripts() {
     } catch (std::filesystem::filesystem_error&) {
         logWarn("LuaManager: No existe ruta de scripts.");
         try {
-            if (std::filesystem::create_directory(path)) logInfo("LuaManager: Carpeta de scripts creada correctamente.");
+            if (std::filesystem::create_directory(path)) {
+                logInfo("LuaManager: Carpeta de scripts creada correctamente.");
+            }
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("LuaManager: No se pudo crear la carpeta de scripts. " + std::string(e.what())).c_str());
         }

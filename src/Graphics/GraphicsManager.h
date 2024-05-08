@@ -64,8 +64,8 @@ private:
     Ogre::SceneManager* scnMgr;                          // Gestor de escenas
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
-    SGTechniqueResolverListener*
-        mMaterialMgrListener;   // Listener para crear shaders para los materiales que vienen sin ellos
+    SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders para los 
+                                                         // materiales que vienen sin ellos
 
     // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita

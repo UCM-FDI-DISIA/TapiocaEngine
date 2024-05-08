@@ -32,7 +32,7 @@ public:
     template<typename... T_args>
     static T* create(T_args&&... args) {
         if (instance_ == nullptr) instance_ = new T(std::forward<T_args>(args)...);
-        else logInfo("Singleton: Instance already exists");
+        else logInfo("Singleton: La instancia ya existe");
         return instance_;
     }
 

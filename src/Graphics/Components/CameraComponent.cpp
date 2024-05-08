@@ -8,10 +8,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-CameraComponent::CameraComponent()
-    : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
-      dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
-      farPlane(-1.0f), targetToLookSet(false), applyInitRot(false) { }
+CameraComponent::CameraComponent() : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), 
+    color(-1.0f, -1.0f, -1.0f), zOrder(0), dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), 
+    direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f), farPlane(-1.0f), targetToLookSet(false), applyInitRot(false) { }
 
 CameraComponent::~CameraComponent() {
     GraphicsManager::instance()->removeZOrder(zOrder);
@@ -26,11 +25,12 @@ CameraComponent::~CameraComponent() {
 bool CameraComponent::initComponent(const CompMap& variables) {
     // Camera
     bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
-        setValueFromMap(direction.y, "directionY", variables) && setValueFromMap(direction.z, "directionZ", variables);
+                        setValueFromMap(direction.y, "directionY", variables) && 
+                        setValueFromMap(direction.z, "directionZ", variables);
     if (!directionSet) {
         targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
-            setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
-            setValueFromMap(targetToLook.z, "targetToLookZ", variables);
+                          setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
+                          setValueFromMap(targetToLook.z, "targetToLookZ", variables);
     }
 
     if (!setValueFromMap(nearPlane, "nearPlane", variables)) {
@@ -47,7 +47,8 @@ bool CameraComponent::initComponent(const CompMap& variables) {
     }
 
     bool colorSet = setValueFromMap(color.x, "bgColorR", variables) &&
-        setValueFromMap(color.y, "bgColorG", variables) && setValueFromMap(color.z, "bgColorB", variables);
+                    setValueFromMap(color.y, "bgColorG", variables) &&
+                    setValueFromMap(color.z, "bgColorB", variables);
     if (!colorSet) {
         logInfo("CameraComponent: El color predeterminado del fondo es negro.");
     }
@@ -75,9 +76,8 @@ void CameraComponent::awake() {
     int zOrderAux = graphicsManager->askForZOrder(zOrder);
     if (zOrderAux != -1) {
         if (zOrderAux != zOrder) {
-            std::string message = "CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
-                std::to_string(zOrderAux);
-            logWarn(message.c_str());
+            logWarn(("CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
+                     std::to_string(zOrderAux)).c_str());
         }
         zOrder = zOrderAux;
 
@@ -90,12 +90,8 @@ void CameraComponent::awake() {
             if (targetToLookSet) camera->lookAt(targetToLook);
             else {
                 Tapioca::Vector3 globalRot = transform->getGlobalRotation().toEuler();
-                if (globalRot == Tapioca::Vector3(0.0f, 0.0f, 0.0f)) {
-                    setDirection(INITIAL_DIR);
-                }
-                else {
-                    applyInitRot = true;
-                }
+                if (globalRot == Tapioca::Vector3(0.0f, 0.0f, 0.0f)) setDirection(INITIAL_DIR);
+                else applyInitRot = true;
             }
         }
 
@@ -116,13 +112,9 @@ void CameraComponent::awake() {
 }
 
 void CameraComponent::handleEvent(std::string const& id, void* info) {
-    if (id == "posChanged") {
-        node->setPosition(transform->getGlobalPositionWithoutRotation());
-    }
+    if (id == "posChanged") node->setPosition(transform->getGlobalPositionWithoutRotation());
     else if (id == "rotChanged") {
-        if (applyInitRot) {
-            node->setRotation(transform->getGlobalRotation());
-        }
+        if (applyInitRot) node->setRotation(transform->getGlobalRotation());
         applyInitRot = true;
     }
 }
@@ -177,9 +169,8 @@ void CameraComponent::setZOrder(const int zOrder) {
     this->zOrder = graphicsManager->askForZOrder(zOrder);
     if (this->zOrder != -1) {
         if (zOrder != this->zOrder) {
-            std::string message = "CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
-                std::to_string(this->zOrder);
-            logWarn(message.c_str());
+            logWarn(("CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
+                     std::to_string(this->zOrder)).c_str());
         }
         viewport->setZOrder(this->zOrder);
     }
