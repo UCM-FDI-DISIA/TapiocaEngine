@@ -184,9 +184,12 @@ void MainLoop::addModule(Module* const m) { modules.push_back(m); }
 
 void MainLoop::pushEvent(Event const& e, bool const delay) {
     if (delay) delayedEvents.emplace_back(e);
-    else
-        for (auto& s : loadedScenes)
+    else {
+        for (auto& s : loadedScenes) {
             if (s.second->isActive()) s.second->handleEvent(e.id, e.info);
+        }
+
+    }
 }
 
 std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { return loadedScenes; }
@@ -194,8 +197,7 @@ std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { retu
 Scene* MainLoop::getScene(std::string sc) {
     auto aux = loadedScenes.find(sc);
     if (aux != loadedScenes.end()) return aux->second;
-    else
-        return nullptr;
+    else return nullptr;
 }
 
 void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }

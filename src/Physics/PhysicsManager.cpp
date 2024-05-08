@@ -193,8 +193,7 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
 
     // El rigidbody es dinamico si la masa !=0, de lo contrario es estatico
     if (type == DYNAMIC_OBJECT) shape->calculateLocalInertia(mass, inertia);
-    else
-        mass = 0;
+    else mass = 0;
 
     // Establece el Transform (posicion y rotacion)
     btTransform transform;

@@ -60,8 +60,7 @@ void MeshRenderer::awake() {
             if (materialName != "") mesh->setMaterial(materialName);
             if (!castShadows) mesh->castShadows(false);
         }
-        else
-            alive = false;
+        else alive = false;
     }
 }
 

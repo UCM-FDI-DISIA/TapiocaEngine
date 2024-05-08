@@ -8,8 +8,7 @@ namespace Tapioca {
 GameObject::GameObject() : scene(nullptr), alive(true), handler(""), zOrder(0) { }
 
 GameObject::~GameObject() {
-    for (auto& i : components)
-        delete i.second;
+    for (auto& i : components) delete i.second;
 }
 
 void GameObject::addComponent(Component* const comp, std::string const& id) {
@@ -37,16 +36,13 @@ std::vector<Component*> GameObject::addComponents(const std::vector<std::pair<st
         vec.push_back(comp);
         if (!comp->initComponent(params)) {
             // Si un componente no se puede inicializar, se cancela la operacion completa.
-            for (Component* c : vec)
-                delete c;
+            for (Component* c : vec) delete c;
             return vec;
         }
         addComponent(comp, id);
     }
-    for (auto& comp : vec)
-        comp->awake();
-    for (auto& comp : vec)
-        comp->start();
+    for (auto& comp : vec) comp->awake();
+    for (auto& comp : vec) comp->start();
     return vec;
 }
 
@@ -58,10 +54,7 @@ Component* GameObject::getComponent(std::string const& id) {
 
 std::vector<Component*> GameObject::getAllComponents() {
     std::vector<Component*> out;
-
-    for (auto& comp : components)
-        out.push_back(comp.second);
-
+    for (auto& comp : components) out.push_back(comp.second);
     return out;
 }
 
@@ -77,8 +70,7 @@ std::vector<Component*> GameObject::getComponents(std::string const& id) {
 
 void GameObject::pushEvent(std::string const& id, void* info, const bool global, const bool delay) {
     if (global || delay) scene->pushEvent({this, id, info, global}, delay);
-    else
-        handleEvent(id, info);
+    else handleEvent(id, info);
 }
 
 void GameObject::deleteCompVector(Component* const comp) {
@@ -93,8 +85,7 @@ void GameObject::refresh() {
             delete it->second;
             it = components.erase(it);
         }
-        else
-            ++it;
+        else ++it;
     }
 }
 
@@ -105,8 +96,7 @@ void GameObject::update(const uint64_t deltaTime) {
 }
 
 void GameObject::handleEvent(std::string const& id, void* info) {
-    for (auto comp : cmpOrder)
-        comp->handleEvent(id, info);
+    for (auto comp : cmpOrder) comp->handleEvent(id, info);
 }
 
 void GameObject::fixedUpdate() {
@@ -121,13 +111,7 @@ void GameObject::render() const {
     }
 }
 
-void GameObject::awake() {
-    for (auto comp : cmpOrder)
-        comp->awake();
-}
+void GameObject::awake() { for (auto comp : cmpOrder) comp->awake(); }
 
-void GameObject::start() {
-    for (auto comp : cmpOrder)
-        comp->start();
-}
+void GameObject::start() { for (auto comp : cmpOrder) comp->start(); }
 }

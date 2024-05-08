@@ -9,8 +9,7 @@ template<>
 FactoryManager* Singleton<FactoryManager>::instance_ = nullptr;
 
 FactoryManager::~FactoryManager() {
-    for (auto& f : builders)
-        delete f.second;
+    for (auto& f : builders) delete f.second;
     builders.clear();
 }
 

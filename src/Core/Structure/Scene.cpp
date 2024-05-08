@@ -33,18 +33,6 @@ bool Scene::addObject(GameObject* const object, std::string const& handler, int 
 }
 
 void Scene::refresh() {
-    /*
-    for (auto& ly : layers) {
-        ly.second.erase(std::remove_if(ly.second.begin(), ly.second.end(),
-                                       [this](GameObject* obj) {
-                                           if (obj->isAlive()) return false;
-                                           else
-                                               return true;
-                                       }),
-                        ly.second.end());
-    }
-    */
-
     std::unordered_set<GameObject*> objectsAux;
     for (GameObject* object : objects) {
         if (!object->isAlive()) {
@@ -99,8 +87,7 @@ std::unordered_set<GameObject*> Scene::getObjects() const { return objects; }
 GameObject* Scene::getHandler(std::string const& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;
-    else
-        return nullptr;
+    else return nullptr;
 }
 
 void Scene::update(const uint64_t deltaTime) {

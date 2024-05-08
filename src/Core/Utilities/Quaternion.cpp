@@ -61,8 +61,7 @@ Vector3 Quaternion::toEuler() {
 
     float sinp = 2 * (scalar * vector.y - vector.z * vector.x);
     if (std::abs(sinp) >= 1) y = std::copysign((float)M_PI / 2, sinp);
-    else
-        y = std::asin(sinp);
+    else y = std::asin(sinp);
 
     float siny_cosp = 2 * (scalar * vector.z + vector.x * vector.y);
     float cosy_cosp = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);

@@ -35,15 +35,13 @@ bool LightSpotComp::initComponent(const CompMap& variables) {
     if (!colorSet) {
         logInfo("LightSpotComp: Luz blanca.");
     }
-    else
-        color = colorAux;
+    else color = colorAux;
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
         logInfo("LightSpotComp: La potencia de la luz por defecto es 1.0f.");
     }
-    else
-        powerScale = powerAux;
+    else powerScale = powerAux;
 
     attenuationSet = setValueFromMap(attenuationFactor, "attenuationFactor", variables);
     if (!attenuationSet) {
@@ -54,16 +52,14 @@ bool LightSpotComp::initComponent(const CompMap& variables) {
     if (!setValueFromMap(nearClipDistAux, "nearClipDistance", variables) || nearClipDistAux == nearClipDist) {
         logInfo("LightSpotComp: El punto desde el que se comienza a emitir luz es el origen.");
     }
-    else
-        nearClipDist = nearClipDistAux;
+    else nearClipDist = nearClipDistAux;
 
     float falloffAux;
     if (!setValueFromMap(falloffAux, "falloff", variables) || falloffAux == falloff) {
         logInfo(
             "LightSpotComp: La caida de la intensidad de la luz desde la zona interior hasta la exterior es lineal.");
     }
-    else
-        falloff = falloffAux;
+    else falloff = falloffAux;
 
     innerAngleSet = setValueFromMap(innerAngle, "innerAngle", variables);
     if (!innerAngleSet) {

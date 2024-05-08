@@ -25,21 +25,12 @@ struct Stack<CompValue> {
     }
 
     [[nodiscard]] static TypeResult<CompValue> get(lua_State* L, int index) {
-        if (lua_isboolean(L, index)) {
-            return lua_toboolean(L, index) == 1;
-        }
-        else if (lua_isinteger(L, index)) {
-            return (int)lua_tointeger(L, index);
-        }
-        else if (lua_isnumber(L, index)) {
-            return (float)lua_tonumber(L, index);
-        }
-        else if (lua_isstring(L, index)) {
-            return lua_tostring(L, index);
-        }
-        else if (lua_isnil(L, index)) {
-            return nullptr;
-        }
+        if (lua_isboolean(L, index)) return lua_toboolean(L, index) == 1;
+        else if (lua_isinteger(L, index)) return (int)lua_tointeger(L, index);
+        else if (lua_isnumber(L, index)) return (float)lua_tonumber(L, index);
+        else if (lua_isstring(L, index)) return lua_tostring(L, index);
+        else if (lua_isnil(L, index)) return nullptr;
+
         return makeErrorCode(ErrorCode::InvalidTypeCast);
     }
 

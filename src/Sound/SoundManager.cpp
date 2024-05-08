@@ -39,8 +39,7 @@ bool SoundManager::checkAudioFolder() const {
         logWarn(("SoundManager: la carpeta " + audioFolderPath + " no existe").c_str());
         return false;
     }
-    else
-        return true;
+    else return true;
 }
 void SoundManager::createAudioFolder() {
     if (!checkAudioFolder()) {

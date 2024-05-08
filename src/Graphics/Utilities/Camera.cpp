@@ -22,8 +22,7 @@ Camera::Camera(Ogre::SceneManager* const scnMngr, RenderNode* const node, std::s
     setNearClipDistance(nearDist);
     setFarClipDistance(farDist);
     if (autoAspectRatio) mCam->setAutoAspectRatio(true);
-    else
-        mCam->setAspectRatio(aspectRatio);
+    else mCam->setAspectRatio(aspectRatio);
 }
 
 void Camera::lookAt(const Vector3 targetToLook) { node->lookAt(targetToLook); }

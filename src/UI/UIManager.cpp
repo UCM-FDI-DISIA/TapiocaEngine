@@ -195,8 +195,7 @@ void UIManager::addWidgetName(std::string& name) {
 
 void UIManager::removeWidgetName(const std::string& name) {
     if (!widgetNames.contains(name)) logWarn(("UIManager: El nombre de widget \"" + name + "\" no existe.").c_str());
-    else
-        widgetNames.erase(name);
+    else widgetNames.erase(name);
 }
 
 bool UIManager::widgetNameExists(const std::string& name) { return widgetNames.contains(name); }

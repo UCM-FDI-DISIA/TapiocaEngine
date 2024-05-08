@@ -14,8 +14,7 @@ namespace Tapioca {
 PhysicsDebugDrawer::PhysicsDebugDrawer() : mode(DBG_DrawWireframe) {
     graphicsManager = GraphicsManager::instance();
     if (graphicsManager != nullptr) node = graphicsManager->createSelfManagedNode();
-    else
-        node = nullptr;
+    else node = nullptr;
 }
 
 PhysicsDebugDrawer::~PhysicsDebugDrawer() {

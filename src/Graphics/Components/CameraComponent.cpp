@@ -191,7 +191,6 @@ void CameraComponent::setZOrder(const int zOrder) {
         }
         viewport->setZOrder(this->zOrder);
     }
-    else
-        logError("CameraComponent: No queda nigun zOrder disponible");
+    else logError("CameraComponent: No queda nigun zOrder disponible");
 }
 }

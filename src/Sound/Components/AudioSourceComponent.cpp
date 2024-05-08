@@ -48,8 +48,7 @@ void AudioSourceComponent::awake() {
         sound = new Sound(sourcePath);
         if (sound != nullptr) {
             if (is3D) source = new AudioSource(*sound, position, isPaused, isLooping);
-            else
-                source = new AudioSource(*sound, isPaused, isLooping);
+            else source = new AudioSource(*sound, isPaused, isLooping);
         }
     }
 }

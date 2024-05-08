@@ -24,8 +24,7 @@ bool LightDirComp::initComponent(const CompMap& variables) {
     if (!directionSet) {
         logInfo("LightDirComp: Apunta hacia (0,0,-1) global.");
     }
-    else
-        direction = directionAux;
+    else direction = directionAux;
 
     if (!setValueFromMap(shadows, "mainLight", variables)) {
         logInfo("LightDirComp: No produce sombras.");
@@ -39,15 +38,13 @@ bool LightDirComp::initComponent(const CompMap& variables) {
     if (!colorSet) {
         logInfo("LightDirComp: Luz blanca.");
     }
-    else
-        color = colorAux;
+    else color = colorAux;
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
         logInfo("LightDirComp: La potencia de la luz por defecto es 1.0f.");
     }
-    else
-        powerScale = powerAux;
+    else powerScale = powerAux;
 
     return true;
 }

@@ -400,8 +400,7 @@ int GraphicsManager::askForZOrder(int requiredZOrder) {
         }
         if (!found) zOrder = -1;
     }
-    else
-        zOrders.insert(requiredZOrder);
+    else zOrders.insert(requiredZOrder);
     return zOrder;
 }
 

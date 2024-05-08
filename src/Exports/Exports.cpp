@@ -55,11 +55,9 @@ void runEngine() {
         createEngineBuilders();
         registerLuaFunctions();
         if (DynamicLibraryLoader::initGame()) mainLoop->run();
-		else
-			logError("RunEngine: Error al inicializar el juego.");
+		else logError("RunEngine: Error al inicializar el juego.");
     }
-    else
-        logError("RunEngine: Error al inicializar un modulo.");
+    else logError("RunEngine: Error al inicializar un modulo.");
 }
 
 static void createModules(Tapioca::MainLoop* mainLoop) {

@@ -75,8 +75,7 @@ void Slider::render() const {
         ImGui::VSliderFloat(name.c_str(),
                             ImVec2(getSize().x - (getSize().x - offset.x), getSize().y - (getSize().y - offset.y)),
                             (float*)&currentValue, minLimit, maxLimit);
-    else
-        ImGui::SliderFloat(name.c_str(), (float*)&currentValue, minLimit, maxLimit);
+    else ImGui::SliderFloat(name.c_str(), (float*)&currentValue, minLimit, maxLimit);
 
     ImGui::End();
 }

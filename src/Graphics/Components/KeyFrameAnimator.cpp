@@ -60,8 +60,7 @@ bool KeyFrameAnimator::initComponent(const CompMap& variables) {
         }
 
         if (!posSet && !scaleSet && !rotSet) end = true;
-        else
-            ++info.size;
+        else ++info.size;
     }
     if (info.size <= 0) return false;
     return true;

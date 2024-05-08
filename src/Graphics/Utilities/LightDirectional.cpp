@@ -28,7 +28,6 @@ void LightDirectional::produceShadows(const bool enable) {
         mLight->setCastShadows(true);
         GraphicsManager::instance()->setMainLight(this);
     }
-    else
-        mLight->setCastShadows(false);
+    else mLight->setCastShadows(false);
 }
 }

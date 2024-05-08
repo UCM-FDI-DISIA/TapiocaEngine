@@ -10,6 +10,7 @@ LuaRegistry::LuaRegistry(lua_State* L) : L(L), map(L) {
         .beginNamespace("showGlobal")
         .addVariable("export", map)
         .endNamespace()
-        .endNamespace();
+    .endNamespace();
 }
+
 }

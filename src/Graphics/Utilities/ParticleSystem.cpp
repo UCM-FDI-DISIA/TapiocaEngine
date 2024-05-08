@@ -17,8 +17,7 @@ ParticleSystem::ParticleSystem(Ogre::SceneManager* const scnMgr, RenderNode* con
                                std::string const& templateName, const bool emitting)
     : RenderObject(node, scnMgr) {
     if (templateName != "") mParticleSystem = scnMgr->createParticleSystem(name, templateName);
-    else
-        mParticleSystem = scnMgr->createParticleSystem(name);
+    else mParticleSystem = scnMgr->createParticleSystem(name);
 
     init(mParticleSystem);
     mParticleSystem->setEmitting(emitting);

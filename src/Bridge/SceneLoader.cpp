@@ -17,8 +17,7 @@ template class TAPIOCA_API Singleton<SceneLoader>;
 template<>
 SceneLoader* Singleton<SceneLoader>::instance_ = nullptr;
 
-SceneLoader::SceneLoader()
-    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
+SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
       scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
@@ -151,9 +150,7 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
 
     // Relaciona los hijos con el padre
     Transform* tr = gameObject->getComponent<Transform>();
-    for (GameObject* obj : children) {
-        obj->getComponent<Transform>()->setParent(tr);
-    }
+    for (GameObject* obj : children) obj->getComponent<Transform>()->setParent(tr);
     children.clear();
     return true;
 }
@@ -169,9 +166,7 @@ bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& 
         gameObject->setScene(scene);
 
         if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
-        if (name == "zIndex") {
-            zIndex = (int)lua_tointeger(luaState, -1);
-        }
+        if (name == "zIndex") zIndex = (int)lua_tointeger(luaState, -1);
         else {
             gameObjects.push_back(gameObject);
             gameObjectName = name;
@@ -243,9 +238,7 @@ bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameO
     if (hasTable) return true;
 
     Component* comp = nullptr;
-    if (load) {
-        comp = factManager->createComponent(name);
-    }
+    if (load) comp = factManager->createComponent(name);
     if (comp == nullptr) {
         logError(("SceneLoader: No existe el componente \"" + name + "\".").c_str());
         return false;
@@ -363,4 +356,6 @@ void SceneLoader::exposeUIvalues() {
     lua_pushinteger(luaState, ImGuiInputTextFlags_EscapeClearsAll);
     lua_setglobal(luaState, "ImGuiInputTextFlags_EscapeClearsAll");
 }
+
+
 }

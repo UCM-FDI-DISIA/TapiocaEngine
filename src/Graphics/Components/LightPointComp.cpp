@@ -27,15 +27,13 @@ bool LightPointComp::initComponent(const CompMap& variables) {
     if (!colorSet) {
         logInfo("LightPointComp: Luz blanca.");
     }
-    else
-        color = colorAux;
+    else color = colorAux;
 
     float powerAux;
     if (!setValueFromMap(powerAux, "powerScale", variables) || powerAux == powerScale) {
         logInfo("LightPointComp: La potencia de la luz por defecto es 1.0f.");
     }
-    else
-        powerScale = powerAux;
+    else powerScale = powerAux;
 
     attenuationSet = setValueFromMap(attenuationFactor, "attenuationFactor", variables);
     if (!attenuationSet) {

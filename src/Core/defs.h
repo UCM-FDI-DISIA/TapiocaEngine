@@ -25,6 +25,7 @@ struct Event {
     void* info;             // Informacion adicional
     bool global;            // Si se propaga a todos los objetos
 };
+
 inline void logInfo(const char* message) {
 #ifdef _DEBUG
 #ifdef TAPIOCA_EXPORTS
@@ -34,6 +35,7 @@ inline void logInfo(const char* message) {
 #endif   // TAPIOCA_EXPORTS
 #endif   // _DEBUG
 }
+
 inline void logWarn(const char* message) {
 #ifdef _DEBUG
 #ifdef TAPIOCA_EXPORTS
@@ -43,6 +45,7 @@ inline void logWarn(const char* message) {
 #endif   // TAPIOCA_EXPORTS
 #endif   // _DEBUG
 }
+
 inline void logError(const char* message) {
 #ifdef _DEBUG
 #ifdef TAPIOCA_EXPORTS
@@ -52,4 +55,5 @@ inline void logError(const char* message) {
 #endif   // TAPIOCA_EXPORTS
 #endif   // _DEBUG
 }
+
 };
