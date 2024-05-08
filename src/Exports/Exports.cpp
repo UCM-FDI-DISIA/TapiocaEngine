@@ -57,11 +57,9 @@ void runEngine(std::string const& gameName) {
         createEngineBuilders();
         registerLuaFunctions();
         if (mainLoop->loadGame(gameName)) mainLoop->run();
-        else
-            logError("Exports: runEngine: Error al cargar el juego.");
+        else logError("Exports: runEngine: Error al cargar el juego.");
     }
-    else
-        logError("Exports: runEngine: Error al inicializar un modulo.");
+    else logError("Exports: runEngine: Error al inicializar un modulo.");
 }
 
 static void createModules(Tapioca::MainLoop* mainLoop) {

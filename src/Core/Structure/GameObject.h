@@ -18,7 +18,8 @@ private:
     int zOrder;     // Profundidad a la que se renderiza el objeto
     Scene* scene;   // Escena a la que pertenece el objeto
     bool alive;     // Indica si se deberia borrar el objeto
-                    // warning C4251 'Tapioca::GameObject::handler' :
+
+    // warning C4251 'Tapioca::GameObject::handler' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
     // warning C4251 'Tapioca::GameObject::components' :

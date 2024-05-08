@@ -32,21 +32,19 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<GameObject*> objects;
-    //std::vector<GameObject*> objects;                        // Objetos que tiene la escena
-    std::unordered_map<std::string, GameObject*> handlers;   // Relaciones entre handlers y objetos
-    std::string name;                                        // Nombre de la escena
-    std::map<int, std::unordered_set<GameObject*>> layers;
-    //std::map<int, std::vector<GameObject*>> layers;          // Objetos que tiene la escena por orden de capa
-
+    std::unordered_set<GameObject*> objects;                    // Objetos que tiene la escena
+    std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
+    std::string name;                                           // Nombre de la escena
+    std::map<int, std::unordered_set<GameObject*>> layers;      // Objetos que tiene la escena por orden de capa
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-
-    bool active;                          // Indica si la escena esta activa
-    uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
-    uint32_t firstWindowWidth,
-        firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
+    
+    bool active;                    // Indica si la escena esta activa
+    uint32_t windowWidth;           // Anchura de la ventana
+    uint32_t windowHeight;          // Altura de la ventana
+    uint32_t firstWindowWidth;      // Anchura de la ventana antes de escalarse
+    uint32_t firstWindowHeight;     // Altura de la ventana antes de escalarse
 
 public:
     /**

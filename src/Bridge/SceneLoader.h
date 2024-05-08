@@ -38,7 +38,6 @@ private:
 #pragma warning(default : 4251)
 #endif
 
-
     /**
     * @brief Inicializa la ruta de las escenas
     */

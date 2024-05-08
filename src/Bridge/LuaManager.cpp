@@ -230,9 +230,8 @@ std::vector<CompValue> LuaManager::callLuaFunction(const std::string& name, cons
     }
     luabridge::LuaResult result = function(name, parameters);
     if (result.hasFailed()) {
-        std::string msg = "LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
-                          std::to_string(result.errorCode().value()) + "]: " + result.errorMessage();
-        logError(msg.c_str());
+        logError(("LuaManager: Error al ejecutar la funcion de Lua \"" + name + "\" [" +
+                  std::to_string(result.errorCode().value()) + "]: " + result.errorMessage()).c_str());
         if (success != nullptr) *success = false;
         return out;
     }
