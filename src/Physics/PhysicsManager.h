@@ -33,13 +33,13 @@ class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager>, public Modu
 private:
     friend Singleton<PhysicsManager>;
 
-    btDefaultCollisionConfiguration* colConfig;   // Configuracion predeterminada para la deteccion de colisiones
-    btBroadphaseInterface* broadphase;            // Detecta pares de objetos de la misma region
-    btCollisionDispatcher* colDispatch;   // Confirma la colision, notificar a los objetos que se colisionan y callbacks
+    btDefaultCollisionConfiguration* colConfig;     // Configuracion predeterminada para la deteccion de colisiones
+    btBroadphaseInterface* broadphase;              // Detecta pares de objetos de la misma region
+    btCollisionDispatcher* colDispatch;             // Confirma la colision, notificar a los objetos que se colisionan y callbacks
 
     // Resuelve la interaccion de colisiones y calculos de fuerzas resultantes
     btSequentialImpulseConstraintSolver* constraintSolver;
-    btDiscreteDynamicsWorld* dynamicsWorld;   // Mundo de fisicas
+    btDiscreteDynamicsWorld* dynamicsWorld;         // Mundo de fisicas
 
 // warning C4251 'Tapioca::PhysicsManager::meshInterfaces' : class
 // 'std::unordered_map<std::string,btTriangleMesh *,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,btTriangleMesh *>>>' necesita

@@ -15,17 +15,14 @@
 #undef new
 
 namespace Tapioca {
-PhysicsManager::PhysicsManager(bool debug)
-    : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), constraintSolver(nullptr), dynamicsWorld(nullptr)
+PhysicsManager::PhysicsManager(bool debug) : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), 
+    constraintSolver(nullptr), dynamicsWorld(nullptr)
 #ifdef _DEBUG
-      ,
-      pdd(nullptr), debug(debug)
+    , pdd(nullptr), debug(debug)
 #else
-      ,
-      debug(false)
+    , debug(false)
 #endif
-{
-}
+{ }
 
 PhysicsManager::~PhysicsManager() { destroy(); }
 
@@ -62,7 +59,6 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
     const btCollisionObject* body2 = static_cast<btCollisionObject*>(obj2);
 
     if (body1 != nullptr && body2 != nullptr) {
-
         RigidBody* col1 = static_cast<RigidBody*>(body1->getUserPointer());
         RigidBody* col2 = static_cast<RigidBody*>(body2->getUserPointer());
 
@@ -124,9 +120,8 @@ bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triang
             if (sscanf(v1.c_str(), "%d", &vi1) != 1) correct = false;
             if (sscanf(v2.c_str(), "%d", &vi2) != 1) correct = false;
             if (sscanf(v3.c_str(), "%d", &vi3) != 1) correct = false;
-            if (!correct || vi1 > vertices.size() || vi1 < 1 || vi2 > vertices.size() || vi2 < 1 ||
-                vi3 > vertices.size() || vi3 < 1)
-                correct = false;
+            if (!correct || vi1 > vertices.size() || vi1 < 1 || vi2 > vertices.size() 
+                || vi2 < 1 || vi3 > vertices.size() || vi3 < 1) correct = false;
             if (correct) triangleMesh->addTriangle(vertices[vi1 - 1], vertices[vi2 - 1], vertices[vi3 - 1]);
         }
     }
@@ -138,18 +133,14 @@ bool PhysicsManager::loadObj(const std::string& filename, btTriangleMesh* triang
 btBvhTriangleMeshShape* PhysicsManager::createMeshCollision(const std::string& name) {
 
     btTriangleMesh* objTriangleMesh;
-    if (meshInterfaces.count(name)) {
-        objTriangleMesh = meshInterfaces.at(name);
-    }
+    if (meshInterfaces.count(name)) objTriangleMesh = meshInterfaces.at(name);
     else {
         objTriangleMesh = new btTriangleMesh();
         if (!loadObj(name, objTriangleMesh)) {
             delete objTriangleMesh;
             return nullptr;
         }
-        else {
-            meshInterfaces[name] = objTriangleMesh;
-        }
+        else meshInterfaces[name] = objTriangleMesh;
     }
     // Crea la forma de colision basada en malla
     btBvhTriangleMeshShape* groundShape = new btBvhTriangleMeshShape(objTriangleMesh, true);
@@ -168,7 +159,8 @@ btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quate
                                              const Vector3 shapeScale, const ColliderShape colliderShape,
                                              const MovementType type, float mass, const float friction,
                                              const float damping, const float bounciness, const bool isTrigger,
-                                             const int group, const int mask, const std::string file) {
+                                             const int group, const int mask, const std::string file) 
+{
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
@@ -225,8 +217,7 @@ void PhysicsManager::destroy() {
         destroyRigidBody(*itAux);
     }
 
-    for (auto m : meshInterfaces)
-        delete m.second;
+    for (auto m : meshInterfaces) delete m.second;
     meshInterfaces.clear();
 
     delete colConfig;

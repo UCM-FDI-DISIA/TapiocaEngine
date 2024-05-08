@@ -9,8 +9,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-Button::Button()
-    : BaseWidget(), Component(), onClickId(""), text("Button"), textFont(nullptr), textFontName(""), textSize(16.0f), initialTextSize(16.0f) {
+Button::Button() : BaseWidget(), Component(), onClickId(""), text("Button"), 
+    textFont(nullptr), textFontName(""), textSize(16.0f), initialTextSize(16.0f) 
+{
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColorNormal = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
     textColorHover = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -32,14 +33,11 @@ bool Button::initComponent(const CompMap& variables) {
     uiManager->addWidgetName(name);
 
     if (!setValueFromMap(onClickId, "onClickId", variables)) {
-        logInfo(
-            ("Button: No se encontro el valor de onClick. Se inicializo al valor predefinido: \"" + onClickId + "\".")
-                .c_str());
+        logInfo(("Button: No se encontro el valor de onClick. Se inicializo al valor predefinido: \"" + onClickId + "\".").c_str());
     }
 
     if (!setValueFromMap(text, "text", variables)) {
-        logInfo(
-            ("Button: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + text + "\".").c_str());
+        logInfo(("Button: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + text + "\".").c_str());
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
@@ -48,152 +46,127 @@ bool Button::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
         logInfo(("Button: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textSize) + "\".")
-                    .c_str());
+                 std::to_string(textSize) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorNormal.x, "textColorNormalR", variables)) {
         logInfo(("Button: No se encontro el valor de textColorNormalR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorNormal.x) + "\".")
-                    .c_str());
+                 std::to_string(textColorNormal.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorNormal.y, "textColorNormalG", variables)) {
         logInfo(("Button: No se encontro el valor de textColorNormalG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorNormal.y) + "\".")
-                    .c_str());
+                 std::to_string(textColorNormal.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorNormal.z, "textColorNormalB", variables)) {
         logInfo(("Button: No se encontro el valor de textColorNormalB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorNormal.z) + "\".")
-                    .c_str());
+                 std::to_string(textColorNormal.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorNormal.w, "textColorNormalA", variables)) {
         logInfo(("Button: No se encontro el valor de textColorNormalA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorNormal.w) + "\".")
-                    .c_str());
+                 std::to_string(textColorNormal.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorHover.x, "textColorHoverR", variables)) {
         logInfo(("Button: No se encontro el valor de textColorHoverR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorHover.x) + "\".")
-                    .c_str());
+                 std::to_string(textColorHover.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorHover.y, "textColorHoverG", variables)) {
         logInfo(("Button: No se encontro el valor de textColorHoverG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorHover.y) + "\".")
-                    .c_str());
+                 std::to_string(textColorHover.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorHover.z, "textColorHoverB", variables)) {
         logInfo(("Button: No se encontro el valor de textColorHoverB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorHover.z) + "\".")
-                    .c_str());
+                 std::to_string(textColorHover.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorHover.w, "textColorHoverA", variables)) {
         logInfo(("Button: No se encontro el valor de textColorHoverA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorHover.w) + "\".")
-                    .c_str());
+                 std::to_string(textColorHover.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorActive.x, "textColorActiveR", variables)) {
         logInfo(("Button: No se encontro el valor de textColorActiveR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorActive.x) + "\".")
-                    .c_str());
+                 std::to_string(textColorActive.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorActive.y, "textColorActiveG", variables)) {
         logInfo(("Button: No se encontro el valor de textColorActiveG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorActive.y) + "\".")
-                    .c_str());
+                 std::to_string(textColorActive.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorActive.z, "textColorActiveB", variables)) {
         logInfo(("Button: No se encontro el valor de textColorActiveB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorActive.z) + "\".")
-                    .c_str());
+                 std::to_string(textColorActive.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColorActive.w, "textColorActiveA", variables)) {
         logInfo(("Button: No se encontro el valor de textColorActiveA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColorActive.w) + "\".")
-                    .c_str());
+                 std::to_string(textColorActive.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(normalColor.x, "normalColorR", variables)) {
         logInfo(("Button: No se encontro el valor de normalColorR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(normalColor.x) + "\".")
-                    .c_str());
+                 std::to_string(normalColor.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(normalColor.y, "normalColorG", variables)) {
         logInfo(("Button: No se encontro el valor de normalColorG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(normalColor.y) + "\".")
-                    .c_str());
+                 std::to_string(normalColor.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(normalColor.z, "normalColorB", variables)) {
         logInfo(("Button: No se encontro el valor de normalColorB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(normalColor.z) + "\".")
-                    .c_str());
+                 std::to_string(normalColor.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(normalColor.w, "normalColorA", variables)) {
         logInfo(("Button: No se encontro el valor de normalColorA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(normalColor.w) + "\".")
-                    .c_str());
+                 std::to_string(normalColor.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(hoverColor.x, "hoverColorR", variables)) {
         logInfo(("Button: No se encontro el valor de hoverColorR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(hoverColor.x) + "\".")
-                    .c_str());
+                 std::to_string(hoverColor.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(hoverColor.y, "hoverColorG", variables)) {
         logInfo(("Button: No se encontro el valor de hoverColorG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(hoverColor.y) + "\".")
-                    .c_str());
+                 std::to_string(hoverColor.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(hoverColor.z, "hoverColorB", variables)) {
         logInfo(("Button: No se encontro el valor de hoverColorB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(hoverColor.z) + "\".")
-                    .c_str());
+                 std::to_string(hoverColor.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(hoverColor.w, "hoverColorA", variables)) {
         logInfo(("Button: No se encontro el valor de hoverColorA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(hoverColor.w) + "\".")
-                    .c_str());
+                 std::to_string(hoverColor.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(activeColor.x, "activeColorR", variables)) {
         logInfo(("Button: No se encontro el valor de activeColorR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(activeColor.x) + "\".")
-                    .c_str());
+                 std::to_string(activeColor.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(activeColor.y, "activeColorG", variables)) {
         logInfo(("Button: No se encontro el valor de activeColorG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(activeColor.y) + "\".")
-                    .c_str());
+                 std::to_string(activeColor.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(activeColor.z, "activeColorB", variables)) {
         logInfo(("Button: No se encontro el valor de activeColorB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(activeColor.z) + "\".")
-                    .c_str());
+                 std::to_string(activeColor.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(activeColor.w, "activeColorA", variables)) {
         logInfo(("Button: No se encontro el valor de activeColorA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(activeColor.w) + "\".")
-                    .c_str());
+                 std::to_string(activeColor.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
@@ -268,8 +241,7 @@ void Button::render() const {
 
     // Primero hay que comprobar si el boton esta activo, luego si esta encima (hover) y por ultimo si esta normal
     if (active) textColor = ImVec4(textColorActive.x, textColorActive.y, textColorActive.z, textColorActive.w);
-    else if (hovered)
-        textColor = ImVec4(textColorHover.x, textColorHover.y, textColorHover.z, textColorHover.w);
+    else if (hovered) textColor = ImVec4(textColorHover.x, textColorHover.y, textColorHover.z, textColorHover.w);
 
     // Establece la fuente del texto
     ImGui::PushFont(textFont);

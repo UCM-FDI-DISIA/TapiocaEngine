@@ -20,10 +20,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-UIManager::UIManager()
-    : mainLoop(nullptr), windowManager(nullptr), graphicsManager(nullptr), sdlWindow(nullptr), glContext(nullptr),
-      ogreWindow(nullptr), renderListener(nullptr), fontsPath("assets/fonts/"), texturesPath("assets/textures/"),
-      widgetCounter(0) { }
+UIManager::UIManager() : mainLoop(nullptr), windowManager(nullptr), graphicsManager(nullptr), 
+    sdlWindow(nullptr), glContext(nullptr), ogreWindow(nullptr), renderListener(nullptr), 
+    fontsPath("assets/fonts/"), texturesPath("assets/textures/"), widgetCounter(0) { }
 
 UIManager::~UIManager() {
     mainLoop = nullptr;
@@ -73,8 +72,9 @@ bool UIManager::handleEvents(const SDL_Event& event) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
             float newWidth = (float)windowManager->getWindowW();
             float newHeight = (float)windowManager->getWindowH();
-            for (std::pair<std::string, Scene*> s : mainLoop->getLoadedScenes())
+            for (std::pair<std::string, Scene*> s : mainLoop->getLoadedScenes()) {
                 if (!windowManager->getResized()) s.second->setWindowSize((uint32_t)newWidth, (uint32_t)newHeight);
+            }
             ImGuiIO& io = ImGui::GetIO();
             io.DisplaySize = ImVec2(newWidth, newHeight);
             return true;
@@ -87,16 +87,18 @@ bool UIManager::handleEvents(const SDL_Event& event) {
 void UIManager::check() const {
     if (!fontsFolderExists()) {
         try {
-            if (std::filesystem::create_directory(fontsPath))
+            if (std::filesystem::create_directory(fontsPath)) {
                 logInfo("UIManager: Carpeta de fuentes creada correctamente.");
+            }
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("UIManager: No se pudo crear la carpeta de fuentes. " + std::string(e.what())).c_str());
         }
     }
     if (!texturesFolderExists()) {
         try {
-            if (std::filesystem::create_directory(texturesPath))
+            if (std::filesystem::create_directory(texturesPath)) {
                 logInfo("UIManager: Carpeta de imagenes creada correctamente.");
+            }
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("UIManager: No se pudo crear la carpeta de imagenes. " + std::string(e.what())).c_str());
         }

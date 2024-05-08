@@ -7,9 +7,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-AudioSourceComponent::AudioSourceComponent()
-    : source(nullptr), sound(nullptr), transform(nullptr), sourcePath(""), is3D(false), isLooping(false),
-      isPaused(true), volumen(0.0f), playSpeed(0.0f) { }
+AudioSourceComponent::AudioSourceComponent() : source(nullptr), sound(nullptr), transform(nullptr), 
+    sourcePath(""), is3D(false), isLooping(false), isPaused(true), volumen(0.0f), playSpeed(0.0f) { }
 
 AudioSourceComponent::~AudioSourceComponent() {
     if (source != nullptr) {
@@ -76,8 +75,7 @@ void AudioSourceComponent::loop(bool l) {
 }
 void AudioSourceComponent::setVolume(float v) {
     if (v > 1.0f) v = 1.0f;
-    else if (v < 0.0f)
-        v = 0.0f;
+    else if (v < 0.0f) v = 0.0f;
     volumen = v;
     source->setVolume(v);
 }

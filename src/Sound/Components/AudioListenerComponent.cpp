@@ -6,9 +6,8 @@
 #include "checkML.h"
            
 namespace Tapioca {
-AudioListenerComponent::AudioListenerComponent()
-    : soundManager(nullptr), listener(nullptr), transform(nullptr), position(Vector3()), look(Vector3()),
-      velocity(Vector3()), up(Vector3()) { }
+AudioListenerComponent::AudioListenerComponent() : soundManager(nullptr), listener(nullptr), 
+    transform(nullptr), position(Vector3()), look(Vector3()), velocity(Vector3()), up(Vector3()) { }
 
 AudioListenerComponent::~AudioListenerComponent() {
     if (listener != nullptr) delete listener;
@@ -18,22 +17,16 @@ AudioListenerComponent::~AudioListenerComponent() {
 
 bool AudioListenerComponent::initComponent(const CompMap& variables) {
     if (!setValueFromMap(velocity.x, "velocityX", variables)) {
-        logInfo(
-            ("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
-             std::to_string(velocity.x) + "\".")
-                .c_str());
+        logInfo(("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
+                 std::to_string(velocity.x) + "\".").c_str());
     }
     if (!setValueFromMap(velocity.y, "velocityY", variables)) {
-        logInfo(
-            ("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
-             std::to_string(velocity.y) + "\".")
-                .c_str());
+        logInfo(("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
+                 std::to_string(velocity.y) + "\".").c_str());
     }
     if (!setValueFromMap(velocity.z, "velocityZ", variables)) {
-        logInfo(
-            ("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
-             std::to_string(velocity.z) + "\".")
-                .c_str());
+        logInfo(("AudioListenerComponent: No se encontro el valor de velocityX. Se inicializo al valor predefinido: \"" +
+                 std::to_string(velocity.z) + "\".").c_str());
     }
     return true;
 }

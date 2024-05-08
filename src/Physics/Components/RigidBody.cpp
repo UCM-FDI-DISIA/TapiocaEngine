@@ -8,10 +8,9 @@
 
 
 namespace Tapioca {
-RigidBody::RigidBody()
-    : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), group(1), friction(0),
-      colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), colliderInitialScale(Vector3(1)),
-      activeRigidBody(true), trackScale(true), file("") { }
+RigidBody::RigidBody() : transform(nullptr), rigidBody(nullptr), mass(0), isTrigger(false), mask(-1), 
+    group(1), friction(0), colShape(BOX_SHAPE), movementType(STATIC_OBJECT), damping(0), bounciness(0), 
+    colliderInitialScale(Vector3(1)), activeRigidBody(true), trackScale(true), file("") { }
 
 RigidBody::~RigidBody() {
     transform = nullptr;
@@ -31,8 +30,8 @@ bool RigidBody::initComponent(const CompMap& variables) {
     colShape = (ColliderShape)colShapeAux;
 
     bool colliderScaleSet = setValueFromMap(colliderInitialScale.x, "colliderScaleX", variables) &&
-        setValueFromMap(colliderInitialScale.y, "colliderScaleY", variables) &&
-        setValueFromMap(colliderInitialScale.z, "colliderScaleZ", variables);
+                            setValueFromMap(colliderInitialScale.y, "colliderScaleY", variables) &&
+                            setValueFromMap(colliderInitialScale.z, "colliderScaleZ", variables);
     if (!colliderScaleSet) {
         logError("RigidBody: No se pudo inicializar colliderScale.");
         return false;
@@ -79,7 +78,6 @@ bool RigidBody::initComponent(const CompMap& variables) {
             if (bitmask & (1 << i)) mask += (1 << i);
         }
     }
-
 
     if (!setValueFromMap(group, "group", variables)) {
         logInfo("Rigidbody: Group por defecto.");
@@ -150,8 +148,8 @@ void RigidBody::awake() {
     transform = object->getComponent<Transform>();
 
     rigidBody = PhysicsManager::instance()->createRigidBody(
-        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, colShape, movementType,
-        mass, friction, damping, bounciness, isTrigger, group, mask,file);
+        transform->getGlobalPosition(), transform->getGlobalRotation(), colliderInitialScale, 
+        colShape, movementType, mass, friction, damping, bounciness, isTrigger, group, mask,file);
 
     rigidBody->setUserPointer(this);
 }
@@ -177,7 +175,6 @@ void RigidBody::setTrigger(const bool t) {
 }
 
 void RigidBody::setTensor(const Vector3 t) {
-
     PhysicsManager::instance()->removeRigidBody(rigidBody);
     btVector3 inertia;
     btVector3 tensor = toBtVector3(t);

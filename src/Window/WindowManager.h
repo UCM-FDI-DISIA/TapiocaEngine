@@ -24,21 +24,22 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string windowName;   // Nombre de la ventana
-    std::vector<WindowModule*> modules;   // Modulos suscritos a los eventos de ventana
+    std::string windowName;                 // Nombre de la ventana
+    std::vector<WindowModule*> modules;     // Modulos suscritos a los eventos de ventana
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
 
-    uint32_t windowWidth, windowHeight;   // Anchura y altura de la ventana, respectivamente
-    uint32_t firstWindowWidth,
-        firstWindowHeight;   // Anchura y altura de la ventana antes de escalarse, respectivamente
-    SDL_Window* sdlWindow;   // Ventana de SDL
-    void* glContext;         // Contexto de OpenGL
+    uint32_t windowWidth;           // Anchura de la ventana
+    uint32_t windowHeight;          // Altura de la ventana
+    uint32_t firstWindowWidth;      // Anchura de la ventana antes de escalarse
+    uint32_t firstWindowHeight;     // Altura de la ventana antes de escalarse
+    SDL_Window* sdlWindow;          // Ventana de SDL
+    void* glContext;                // Contexto de OpenGL
 
-    bool resized;   // Si se ha redimensionado
+    bool resized;                   // Si se ha redimensionado
 
-    MainLoop* mainLoop;   // Puntero a MainLoop
+    MainLoop* mainLoop;             // Puntero a MainLoop
 
     /**
     * @brief Intenta obtener el tamano de la ventana de SDL

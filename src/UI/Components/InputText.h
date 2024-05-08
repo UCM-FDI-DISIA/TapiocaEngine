@@ -66,7 +66,8 @@ public:
     bool initComponent(const CompMap& variables) override;
 
     /**
-    * @brief Asigna el transform del objeto a la caja de texto, inicializa la funcion que se ejecuta cuando se hacer ENTER en la caja de texto, el buffer y la fuente del texto
+    * @brief Asigna el transform del objeto a la caja de texto, inicializa la funcion que se 
+    * ejecuta cuando se hace ENTER en la caja de texto, el buffer y la fuente del texto
     */
     void start() override;
 

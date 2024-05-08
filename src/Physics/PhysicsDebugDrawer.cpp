@@ -42,7 +42,8 @@ void PhysicsDebugDrawer::reportErrorWarning(const char* warningString) {
 }
 
 void PhysicsDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance,
-                                          int lifeTime, const btVector3& color) {
+                                          int lifeTime, const btVector3& color) 
+{
     auto g = GraphicsManager::instance();
     Ogre::ManualObject* line = g->createManualObject(node);
     line->begin("whiteDebug", Ogre::RenderOperation::OT_POINT_LIST);

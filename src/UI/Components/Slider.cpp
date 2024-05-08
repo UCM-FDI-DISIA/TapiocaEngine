@@ -18,26 +18,22 @@ bool Slider::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(isVertical, "isVertical", variables)) {
         logInfo(("Slider: No se encontro el valor de isVertical. Se inicializo al valor predefinido: \"" +
-                 std::to_string(isVertical) + "\".")
-                    .c_str());
+                 std::to_string(isVertical) + "\".").c_str());
     }
 
     if (!setValueFromMap(currentValue, "currentValue", variables)) {
         logInfo(("Slider: No se encontro el valor de currentValue. Se inicializo al valor predefinido: \"" +
-                 std::to_string(currentValue) + "\".")
-                    .c_str());
+                 std::to_string(currentValue) + "\".").c_str());
     }
 
     if (!setValueFromMap(maxLimit, "maxLimit", variables)) {
         logInfo(("Slider: No se encontro el valor de maxLimit. Se inicializo al valor predefinido: \"" +
-                 std::to_string(maxLimit) + "\".")
-                    .c_str());
+                 std::to_string(maxLimit) + "\".").c_str());
     }
 
     if (!setValueFromMap(minLimit, "minLimit", variables)) {
         logInfo(("Slider: No se encontro el valor de minLimit. Se inicializo al valor predefinido: \"" +
-                 std::to_string(minLimit) + "\".")
-                    .c_str());
+                 std::to_string(minLimit) + "\".").c_str());
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {
@@ -71,10 +67,10 @@ void Slider::render() const {
     ImGui::Begin(name.c_str(), nullptr, windowFlags);
 
     ImVec2 offset = ImGui::GetContentRegionMax();
-    if (isVertical)
-        ImGui::VSliderFloat(name.c_str(),
-                            ImVec2(getSize().x - (getSize().x - offset.x), getSize().y - (getSize().y - offset.y)),
-                            (float*)&currentValue, minLimit, maxLimit);
+    if (isVertical) {
+        ImGui::VSliderFloat(name.c_str(), ImVec2(getSize().x - (getSize().x - offset.x), 
+                            getSize().y - (getSize().y - offset.y)), (float*)&currentValue, minLimit, maxLimit);
+    }
     else ImGui::SliderFloat(name.c_str(), (float*)&currentValue, minLimit, maxLimit);
 
     ImGui::End();

@@ -7,19 +7,16 @@
 #include "checkML.h"
 
 namespace Tapioca {
-ImageTextButton::ImageTextButton()
-    : Button(), wantText(false), imagePathNormal(""), imagePathHover(""), imagePathActive(""), textureIdNormal(),
-      textureIdHover(), textureIdActive(), uv0(Vector2(0.0f, 0.0f)), uv1(Vector2(1.0f, 1.0f)),
-      imageBgColor(Vector4(0.0f, 0.0f, 0.0f, 0.0f)), imageTint(Vector4(1.0f, 1.0f, 1.0f, 1.0f)) { }
+ImageTextButton::ImageTextButton() : Button(), wantText(false), imagePathNormal(""), imagePathHover(""), 
+    imagePathActive(""), textureIdNormal(), textureIdHover(), textureIdActive(), uv0(Vector2(0.0f, 0.0f)), 
+    uv1(Vector2(1.0f, 1.0f)), imageBgColor(Vector4(0.0f, 0.0f, 0.0f, 0.0f)), imageTint(Vector4(1.0f, 1.0f, 1.0f, 1.0f)) { }
 
 bool ImageTextButton::initComponent(const CompMap& variables) {
-
     if (!Button::initComponent(variables)) return false;
 
     if (!setValueFromMap(wantText, "wantText", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de wantText. Se inicializo al valor predefinido: \"" +
-                 std::to_string(wantText) + "\".")
-                    .c_str());
+                 std::to_string(wantText) + "\".").c_str());
     }
 
     if (!setValueFromMap(imagePathNormal, "imagePathNormal", variables)) {
@@ -39,74 +36,62 @@ bool ImageTextButton::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(uv0.x, "uv0X", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de uv0X. Se inicializo al predefinido: \"" +
-                 std::to_string(uv0.x) + "\".")
-                    .c_str());
+                 std::to_string(uv0.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(uv0.y, "uv0Y", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de uv0Y. Se inicializo al predefinido: \"" +
-                 std::to_string(uv0.y) + "\".")
-                    .c_str());
+                 std::to_string(uv0.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(uv1.x, "uv1X", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de uv1X. Se inicializo al predefinido: \"" +
-                 std::to_string(uv1.x) + "\".")
-                    .c_str());
+                 std::to_string(uv1.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(uv1.y, "uv1Y", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de uv1Y. Se inicializo al predefinido: \"" +
-                 std::to_string(uv1.y) + "\".")
-                    .c_str());
+                 std::to_string(uv1.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageBgColor.x, "imageBgColorR", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageBgColorR. Se inicializo al predefinido: \"" +
-                 std::to_string(imageBgColor.x) + "\".")
-                    .c_str());
+                 std::to_string(imageBgColor.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageBgColor.y, "imageBgColorG", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageBgColorG. Se inicializo al predefinido: \"" +
-                 std::to_string(imageBgColor.y) + "\".")
-                    .c_str());
+                 std::to_string(imageBgColor.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageBgColor.z, "imageBgColorB", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageBgColorB. Se inicializo al predefinido: \"" +
-                 std::to_string(imageBgColor.z) + "\".")
-                    .c_str());
+                 std::to_string(imageBgColor.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageBgColor.w, "imageBgColorA", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageBgColorA. Se inicializo al predefinido: \"" +
-                 std::to_string(imageBgColor.w) + "\".")
-                    .c_str());
+                 std::to_string(imageBgColor.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageTint.x, "imageTintR", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageTintR. Se inicializo al predefinido: \"" +
-                 std::to_string(imageTint.x) + "\".")
-                    .c_str());
+                 std::to_string(imageTint.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageTint.y, "imageTintG", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageTintG. Se inicializo al predefinido: \"" +
-                 std::to_string(imageTint.y) + "\".")
-                    .c_str());
+                 std::to_string(imageTint.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageTint.z, "imageTintB", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageTintB. Se inicializo al predefinido: \"" +
-                 std::to_string(imageTint.z) + "\".")
-                    .c_str());
+                 std::to_string(imageTint.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(imageTint.w, "imageTintA", variables)) {
         logInfo(("ImageTextButton: No se encontro el valor de imageTintA. Se inicializo al predefinido: \"" +
-                 std::to_string(imageTint.w) + "\".")
-                    .c_str());
+                 std::to_string(imageTint.w) + "\".").c_str());
     }
     return true;
 }
@@ -180,8 +165,8 @@ void ImageTextButton::render() const {
         ImVec2 textSize = ImGui::CalcTextSize(text);
         ImGui::PopFont();
 
-        ImVec2 textPos =
-            ImVec2(buttonPos.x + (buttonSize.x - textSize.x) / 2.0f, buttonPos.y + (buttonSize.y - textSize.y) / 2.0f);
+        ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - textSize.x) / 2.0f, 
+                                buttonPos.y + (buttonSize.y - textSize.y) / 2.0f);
 
         ImGui::SetCursorScreenPos(textPos);
 

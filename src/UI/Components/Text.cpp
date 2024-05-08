@@ -9,9 +9,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-Text::Text()
-    : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), initialTextSize(textSize), textFontName(""),
-      textFont(nullptr) {
+Text::Text() : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), 
+    initialTextSize(textSize), textFontName(""), textFont(nullptr) 
+{
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
 }
@@ -25,14 +25,13 @@ bool Text::initComponent(const CompMap& variables) {
     uiManager->addWidgetName(name);
 
     if (!setValueFromMap(text, "text", variables)) {
-        logInfo(
-            ("Text: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + text + "\".").c_str());
+        logInfo(("Text: No se encontro el valor de text. Se inicializo al valor predefinido: \"" + 
+                text + "\".").c_str());
     }
 
     if (!setValueFromMap(textSize, "textSize", variables)) {
-        logInfo(("Text: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textSize) + "\".")
-                    .c_str());
+        logInfo(("Text: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" + 
+                 std::to_string(textSize) + "\".").c_str());
     }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
@@ -41,26 +40,22 @@ bool Text::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(textColor.x, "textColorR", variables)) {
         logInfo(("Text: No se encontro el valor de textColorR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColor.x) + "\".")
-                    .c_str());
+                 std::to_string(textColor.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColor.y, "textColorG", variables)) {
         logInfo(("Text: No se encontro el valor de textColorG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColor.y) + "\".")
-                    .c_str());
+                 std::to_string(textColor.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColor.z, "textColorB", variables)) {
         logInfo(("Text: No se encontro el valor de textColorB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColor.z) + "\".")
-                    .c_str());
+                 std::to_string(textColor.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(textColor.w, "textColorA", variables)) {
         logInfo(("Text: No se encontro el valor de textColorA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(textColor.w) + "\".")
-                    .c_str());
+                 std::to_string(textColor.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(windowFlags, "windowFlags", variables)) {

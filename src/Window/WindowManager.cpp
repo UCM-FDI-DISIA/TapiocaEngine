@@ -8,9 +8,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
-    : windowName(windowName), windowWidth(w), windowHeight(h), firstWindowWidth(windowWidth),
-      firstWindowHeight(windowHeight), sdlWindow(nullptr), glContext(nullptr), resized(false), mainLoop(nullptr) { }
+WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h) : windowName(windowName), 
+    windowWidth(w), windowHeight(h), firstWindowWidth(windowWidth), firstWindowHeight(windowHeight), 
+    sdlWindow(nullptr), glContext(nullptr), resized(false), mainLoop(nullptr) { }
 
 WindowManager::~WindowManager() {
     if (sdlWindow != nullptr) {
@@ -57,8 +57,7 @@ bool WindowManager::initConfig() {
         SDL_DisplayMode displayMode;
         if (SDL_GetCurrentDisplayMode(0, &displayMode) != 0) {
             logError(("WindowManager Error al conseguir los valores de pantalla completa: " +
-                      std::string(SDL_GetError()) + '.')
-                         .c_str());
+                      std::string(SDL_GetError()) + '.').c_str());
             return false;
         }
         windowWidth = firstWindowWidth = displayMode.w;
@@ -99,8 +98,7 @@ void WindowManager::update(const uint64_t deltaTime) {
         // Se asume que la UI va antes que el input y que estos 2 modulos son los ultimos del
         // vector para que el resto de eventos de ventana no se ignoren por los eventos de UI
         bool UIEvent = false;
-        for (int i = 0; i < modules.size() && !UIEvent; i++)
-            UIEvent = modules[i]->handleEvents(event);
+        for (int i = 0; i < modules.size() && !UIEvent; i++) UIEvent = modules[i]->handleEvents(event);
     }
 }
 
@@ -119,17 +117,15 @@ void WindowManager::tryGetWindowSize() {
     EntryPointGetWindowSize ws = (EntryPointGetWindowSize)GetProcAddress(loader->getModule(), "getWindowSize");
     if (ws == nullptr) {
         logError(("WindowManager: La DLL del juego no tiene la funcion \"getWindowSize\". Se usara el tamano "
-                  "predefinido: " +
-                  std::to_string(windowWidth) + "x" + std::to_string(windowHeight) + '.')
-                     .c_str());
+                  "predefinido: " + std::to_string(windowWidth) + "x" + std::to_string(windowHeight) + '.').c_str());
     }
     else {
         ws(windowWidth, windowHeight);
         firstWindowWidth = windowWidth;
         firstWindowHeight = windowHeight;
     }
-    logInfo(("WindowManager: Ventana configurada a " + std::to_string(windowWidth) + "x" + std::to_string(windowHeight))
-                .c_str());
+    logInfo(("WindowManager: Ventana configurada a " + std::to_string(windowWidth) + "x"
+            + std::to_string(windowHeight)).c_str());
 }
 
 void WindowManager::setWindowName(std::string const& name) {

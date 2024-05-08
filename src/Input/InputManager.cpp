@@ -12,16 +12,14 @@ bool InputManager::init() {
 }
 
 InputManager::~InputManager() {
-    for (std::pair<const int, SDL_GameController*> ctrl : controllers)
-        removeController(ctrl.first);
+    for (std::pair<const int, SDL_GameController*> ctrl : controllers) removeController(ctrl.first);
     controllers.clear();
 }
 
 void InputManager::mapInput(std::string const& evt, std::string const& src, int const& ctrl) {
     int control = ctrl;
     if (src == "ie_mouseMoving") control = MOUSE_MOTION_VALUE;
-    else if (src == "ie_mouseWheel")
-        control = MOUSE_WHEEL_VALUE;
+    else if (src == "ie_mouseWheel") control = MOUSE_WHEEL_VALUE;
     inputMap[src][control].push_back(evt);
 }
 
@@ -56,12 +54,10 @@ void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event co
     if (inputMap.find(eventName) == inputMap.end()) return;
 
     // Si no, si la tecla/boton/etc no ha sido mapeado, lo ignora
-    else if (inputMap[eventName].find(value) == inputMap[eventName].end())
-        return;
+    else if (inputMap[eventName].find(value) == inputMap[eventName].end()) return;
     // Si no, envia todos los eventos que origine eventName y esten asociados a value
     else {
-        for (const auto& evt : inputMap[eventName][value])
-            WindowManager::instance()->sendEvent(evt, {});
+        for (const auto& evt : inputMap[eventName][value]) WindowManager::instance()->sendEvent(evt, {});
     }
 }
 

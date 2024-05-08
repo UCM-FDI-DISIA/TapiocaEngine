@@ -46,7 +46,6 @@ void SoundManager::createAudioFolder() {
 
         } catch (const std::filesystem::filesystem_error& e) {
             logError(("SoundManager: No se pudo crear la carpeta de sonidos" + std::string(e.what())).c_str());
-            ;
         }
     }
 }

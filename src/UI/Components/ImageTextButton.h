@@ -31,15 +31,13 @@ private:
 #pragma warning(disable : 4251)
 #endif
 
-    ImTextureID
-        textureIdNormal;   // Identificador de la textura de la imagen que se muestra en el boton en estado normal
-    ImTextureID textureIdHover;   // Identificador de la textura de la imagen que se muestra en el boton en estado hover
-    ImTextureID
-        textureIdActive;    // Identificador de la textura de la imagen que se muestra en el boton en estado active
-    Vector2 uv0;            // Coordenadas de la esquina superior izquierda de la imagen
-    Vector2 uv1;            // Coordenadas de la esquina inferior derecha de la imagen
-    Vector4 imageBgColor;   // Color de fondo de la imagen
-    Vector4 imageTint;      // Tinte de la imagen
+    ImTextureID textureIdNormal;    // Id de la textura de la imagen que se muestra en el boton en estado normal
+    ImTextureID textureIdHover;     // Id de la textura de la imagen que se muestra en el boton en estado hover
+    ImTextureID textureIdActive;    // Id de la textura de la imagen que se muestra en el boton en estado active
+    Vector2 uv0;                    // Coordenadas de la esquina superior izquierda de la imagen
+    Vector2 uv1;                    // Coordenadas de la esquina inferior derecha de la imagen
+    Vector4 imageBgColor;           // Color de fondo de la imagen
+    Vector4 imageTint;              // Tinte de la imagen
 
 public:
     COMPONENT_ID("ImageTextButton")
@@ -119,20 +117,20 @@ public:
     }
 
     /**
-    * @brief Establece el identificador de la textura de la imagen que se muestra en el boton en estado normal
-    * @param textureIdNormal Identificador de la textura de la imagen en estado normal
+    * @brief Establece el Id de la textura de la imagen que se muestra en el boton en estado normal
+    * @param textureIdNormal Id de la textura de la imagen en estado normal
     */
     inline void setTextureIdNormal(ImTextureID textureIdNormal) { this->textureIdNormal = textureIdNormal; }
 
     /**
-    * @brief Establece el identificador de la textura de la imagen que se muestra en el boton en estado hover
-    * @param textureIdHover Identificador de la textura de la imagen en estado hover
+    * @brief Establece el Id de la textura de la imagen que se muestra en el boton en estado hover
+    * @param textureIdHover Id de la textura de la imagen en estado hover
     */
     inline void setTextureIdHover(ImTextureID textureIdHover) { this->textureIdHover = textureIdHover; }
 
     /**
-    * @brief Establece el identificador de la textura de la imagen que se muestra en el boton en estado active
-    * @param textureIdActive Identificador de la textura de la imagen en estado active
+    * @brief Establece el Id de la textura de la imagen que se muestra en el boton en estado active
+    * @param textureIdActive Id de la textura de la imagen en estado active
     */
     inline void setTextureIdActive(ImTextureID textureIdActive) { this->textureIdActive = textureIdActive; }
 
@@ -179,20 +177,20 @@ public:
     inline std::string getImagePathActive() const { return imagePathActive; }
 
     /**
-    * @brief Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado normal
-    * @return Identificador de la textura de la imagen en estado normal
+    * @brief Devuelve el Id de la textura de la imagen que se muestra en el boton en estado normal
+    * @return Id de la textura de la imagen en estado normal
     */
     inline ImTextureID getTextureIdNormal() const { return textureIdNormal; }
 
     /**
-    * @brief Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado hover
-    * @return Identificador de la textura de la imagen en estado hover
+    * @brief Devuelve el Id de la textura de la imagen que se muestra en el boton en estado hover
+    * @return Id de la textura de la imagen en estado hover
     */
     inline ImTextureID getTextureIdHover() const { return textureIdHover; }
 
     /**
-    * @brief Devuelve el identificador de la textura de la imagen que se muestra en el boton en estado active
-    * @return Identificador de la textura de la imagen en estado active
+    * @brief Devuelve el Id de la textura de la imagen que se muestra en el boton en estado active
+    * @return Id de la textura de la imagen en estado active
     */
     inline ImTextureID getTextureIdActive() const { return textureIdActive; }
 

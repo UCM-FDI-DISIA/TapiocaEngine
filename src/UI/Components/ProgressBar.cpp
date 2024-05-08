@@ -20,32 +20,27 @@ bool ProgressBar::initComponent(const CompMap& variables) {
 
     if (!setValueFromMap(progress, "progress", variables)) {
         logInfo(("ProgressBar: No se encontro el valor de progress. Se inicializo al valor predefinido: \"" +
-                 std::to_string(progress) + "\".")
-                    .c_str());
+                 std::to_string(progress) + "\".").c_str());
     }
 
     if (!setValueFromMap(barColor.x, "barColorR", variables)) {
         logInfo(("ProgressBar: No se encontro el valor de barColorR. Se inicializo al valor predefinido: \"" +
-                 std::to_string(barColor.x) + "\".")
-                    .c_str());
+                 std::to_string(barColor.x) + "\".").c_str());
     }
 
     if (!setValueFromMap(barColor.y, "barColorG", variables)) {
         logInfo(("ProgressBar: No se encontro el valor de barColorG. Se inicializo al valor predefinido: \"" +
-                 std::to_string(barColor.y) + "\".")
-                    .c_str());
+                 std::to_string(barColor.y) + "\".").c_str());
     }
 
     if (!setValueFromMap(barColor.z, "barColorB", variables)) {
         logInfo(("ProgressBar: No se encontro el valor de barColorB. Se inicializo al valor predefinido: \"" +
-                 std::to_string(barColor.z) + "\".")
-                    .c_str());
+                 std::to_string(barColor.z) + "\".").c_str());
     }
 
     if (!setValueFromMap(barColor.w, "barColorA", variables)) {
         logInfo(("ProgressBar: No se encontro el valor de barColorA. Se inicializo al valor predefinido: \"" +
-                 std::to_string(barColor.w) + "\".")
-                    .c_str());
+                 std::to_string(barColor.w) + "\".").c_str());
     }
 
     if (!setValueFromMap(backgroundText, "backtext", variables)) {
@@ -86,8 +81,8 @@ void ProgressBar::render() const {
 
     ImVec2 offset = ImGui::GetContentRegionMax();
 
-    ImGui::ProgressBar(progress, ImVec2(getSize().x - (getSize().x - offset.x), getSize().y - (getSize().y - offset.y)),
-                       backgroundText.c_str());
+    ImGui::ProgressBar(progress, ImVec2(getSize().x - (getSize().x - offset.x), 
+                       getSize().y - (getSize().y - offset.y)), backgroundText.c_str());
 
     ImGui::PopStyleColor();
     ImGui::End();
