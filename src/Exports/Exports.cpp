@@ -142,53 +142,175 @@ static void registerLuaFunctions() {
 
     luabridge::getGlobalNamespace(lua->getLuaState())
         .beginNamespace("Tapioca")
-        .addFunction("loadScene",
-                     [](std::string name) -> bool {
-                         //logInfo("loadScene llamado desde Lua");
-                         return scenes->loadScene(name) != nullptr;
-                     })
-        .addFunction("exit",
-                     []() -> void {
-                         //logInfo("exit llamado desde Lua");
-                         mainLoop->exit();
-                     })
-        .addFunction("deleteScene",
-                     [](std::string name) -> void {
-                         //logInfo("deleteScene llamado desde Lua");
-                         mainLoop->deleteScene(name);
-                     })
-        //.addFunction("", []() -> void {})
-        .deriveClass<Transform, Component>("Transform")
-        .addConstructor<void (*)()>()
-        .addProperty(
-            "position", [](Transform* trans) -> Vector3 { return trans->getPosition(); },
-            [](Transform* trans, const Vector3& position) { trans->setPosition(position); })
-        .addFunction("getGlobalPositionWithoutRotation", &Transform::getGlobalPositionWithoutRotation)
-        .addFunction("getGlobalPosition", &Transform::getGlobalPosition)
-        .addFunction("setGlobalPosition", &Transform::setGlobalPosition)
-        .addProperty(
-            "rotation", [](Transform* trans) -> Quaternion { return trans->getRotation(); },
-            [](Transform* trans, const Quaternion& rotation) { trans->setRotation(rotation); })
-        .addFunction("getGlobalRotation", &Transform::getGlobalRotation)
-        .addProperty(
-            "scale", [](Transform* trans) -> Vector3 { return trans->getScale(); },
-            [](Transform* trans, const Vector3& scale) { trans->setScale(scale); })
-        .addFunction("getGlobalScale", &Transform::getGlobalScale)
-        .addFunction("translate", &Transform::translate)
-        .addFunction("rotate", luabridge::overload<const Quaternion&>(&Transform::rotate))
-        .addFunction("right", &Transform::right)
-        .addFunction("up", &Transform::up)
-        .addFunction("forward", &Transform::forward)
-        .addProperty("parent", &Transform::getParent, &Transform::setParent)
-        .addFunction("getChildren", &Transform::getChildren)
-        .addFunction("getAllChildren", &Transform::getAllChildren)
-        .endClass()
+            .addFunction("loadScene",
+                +[](std::string name) -> bool {
+                    return scenes->loadScene(name) != nullptr;
+                })
+            .addFunction("exit",
+                +[]() -> void {
+                    mainLoop->exit();
+                })
+            .addFunction("deleteScene",
+                +[](std::string name) -> void {
+                    mainLoop->deleteScene(name);
+                })
+            //.addFunction("", +[]() -> void {})
+            .deriveClass<Transform, Component>("Transform")
+                .addProperty("position",
+                    [](Transform* trans) -> Vector3 { return trans->getPosition(); },
+                    [](Transform* trans, const Vector3& position) { trans->setPosition(position); })
+                .addFunction("getGlobalPositionWithoutRotation", &Transform::getGlobalPositionWithoutRotation)
+                .addFunction("getGlobalPosition", &Transform::getGlobalPosition)
+                .addFunction("setGlobalPosition", &Transform::setGlobalPosition)
+                .addProperty("rotation",
+                    [](Transform* trans) -> Quaternion { return trans->getRotation(); },
+                    [](Transform* trans, const Quaternion& rotation) { trans->setRotation(rotation); })
+                .addFunction("getGlobalRotation", &Transform::getGlobalRotation)
+                .addProperty("scale",
+                    [](Transform* trans) -> Vector3 { return trans->getScale(); },
+                    [](Transform* trans, const Vector3& scale) { trans->setScale(scale); })
+                .addFunction("getGlobalScale", &Transform::getGlobalScale)
+                .addFunction("translate", &Transform::translate)
+                .addFunction("rotate", luabridge::overload<const Quaternion&>(&Transform::rotate))
+                .addFunction("right", &Transform::right)
+                .addFunction("up", &Transform::up)
+                .addFunction("forward", &Transform::forward)
+                .addProperty("parent", &Transform::getParent, &Transform::setParent)
+                .addFunction("getChildren", &Transform::getChildren)
+                .addFunction("getAllChildren", &Transform::getAllChildren)
+            .endClass()
+            .deriveClass<Animator, Component>("Animator")
+                .addFunction("playAnim", &Animator::playAnim)
+                .addProperty("speed", &Animator::getSpeed, &Animator::setSpeed)
+                .addProperty("looping", &Animator::getLoop, &Animator::setLoop)
+                .addProperty("playing", &Animator::getPlaying, &Animator::setPlaying)
+                .addFunction("hasEnded", &Animator::hasEnded)
+                .addFunction("getAnimName", &Animator::getAnimName)
+            .endClass()
+            .deriveClass<CameraComponent, Component>("CameraComponent")
+                .addFunction("lookAt", &CameraComponent::lookAt)
+                .addFunction("setDirection", &CameraComponent::setDirection)
+                .addFunction("setNearClipDistance", &CameraComponent::setNearClipDistance)
+                .addFunction("setFarClipDistance", &CameraComponent::setFarClipDistance)
+                .addFunction("setFOVYRadians", &CameraComponent::setFOVYRadians)
+                .addFunction("setFOVYDegrees", &CameraComponent::setFOVYDegrees)
+                .addFunction("setDimensions", &CameraComponent::setDimensions)
+                .addFunction("getWidthInPixels", &CameraComponent::getWidthInPixels)
+                .addFunction("getHeightInPixels", &CameraComponent::getHeightInPixels)
+                .addFunction("setBackground", &CameraComponent::setBackground)
+                .addProperty("zOrder", &CameraComponent::getZOrder, &CameraComponent::setZOrder)
+            .endClass()
+            .deriveClass<KeyFrameAnimator, Component>("KeyFrameAnimator")
+                .addFunction("play", &KeyFrameAnimator::play)
+                .addFunction("enabled", &KeyFrameAnimator::isEnabled, &KeyFrameAnimator::enable)
+                .addProperty("looping", &KeyFrameAnimator::isLooping, &KeyFrameAnimator::setLoop)
+                .addProperty("ended", &KeyFrameAnimator::hasEnded)
+            .endClass()
+            .deriveClass<LightDirComp, Component>("LightDirComp")
+                .addFunction("setColor", &LightDirComp::setColor)
+                .addFunction("setPowerScale", &LightDirComp::setPowerScale)
+                .addFunction("setDirection", &LightDirComp::setDirection)
+                .addFunction("produceShadows", &LightDirComp::produceShadows)
+            .endClass()
+            .deriveClass<LightPointComp, Component>("LightPointComp")
+                .addFunction("setColor", &LightPointComp::setColor)
+                .addFunction("setPowerScale", &LightPointComp::setPowerScale)
+                .addFunction("setAttenuation", &LightPointComp::setAttenuation)
+                .addProperty("visible", &LightPointComp::isVisible, &LightPointComp::setVisible)
+            .endClass()
+            .deriveClass<LightRectComp, Component>("LightRectComp")
+                .addFunction("setColor", &LightRectComp::setColor)
+                .addFunction("setPowerScale", &LightRectComp::setPowerScale)
+                .addFunction("setAttenuation", &LightRectComp::setAttenuation)
+                .addFunction("setWidth", &LightRectComp::setWidth)
+                .addFunction("setHeight", &LightRectComp::setHeight)
+                .addFunction("setSize", &LightRectComp::setSize)
+                .addProperty("visible", &LightRectComp::isVisible, &LightRectComp::setVisible)
+            .endClass()
+            .deriveClass<LightSpotComp, Component>("LightSpotComp")
+                .addFunction("setColor", &LightSpotComp::setColor)
+                .addFunction("setPowerScale", &LightSpotComp::setPowerScale)
+                .addFunction("setAttenuation", &LightSpotComp::setAttenuation)
+                .addFunction("setDirection", &LightSpotComp::setDirection)
+                .addFunction("setNearClipDistance", &LightSpotComp::setNearClipDistance)
+                .addFunction("setInnerAngle", &LightSpotComp::setInnerAngle)
+                .addFunction("setOuterAngle", &LightSpotComp::setOuterAngle)
+                .addFunction("setFalloff", &LightSpotComp::setFalloff)
+                .addProperty("visible", &LightSpotComp::isVisible, &LightSpotComp::setVisible)
+            .endClass()
+            .deriveClass<MeshRenderer, Component>("MeshRenderer")
+                .addFunction("setMaterial", &MeshRenderer::setMaterial)
+                .addFunction("setMesh", &MeshRenderer::setMesh)
+                .addProperty("visible", &MeshRenderer::isVisible, &MeshRenderer::setVisible)
+            .endClass()
+            .deriveClass<ParticleSystemComponent, Component>("ParticleSystemComponent")
+                .addProperty("emitting",
+                    [](ParticleSystemComponent* self) -> bool { return self->isEmitting(); },
+                    [](ParticleSystemComponent* self, bool emitting) { self->setEmitting(emitting); })
+                .addProperty("quota",
+                    [](ParticleSystemComponent* self) -> bool { return self->getQuota(); },
+                    [](ParticleSystemComponent* self, size_t quota) { self->setQuota(quota); })
+                .addProperty("visible", &ParticleSystemComponent::isVisible, &ParticleSystemComponent::setVisible)
+                .addFunction("fastForward", &ParticleSystemComponent::fastForward)
+            .endClass()
+            .deriveClass<PlaneComponent, Component>("PlaneComponent")
+                .addProperty("visible", &PlaneComponent::isVisible, &PlaneComponent::setVisible)
+            .endClass()
+            .deriveClass<SpriteRenderer, Component>("SpriteRenderer")
+                .addProperty("visible", &SpriteRenderer::isVisible, &SpriteRenderer::setVisible)
+            .endClass()
+            .deriveClass<RigidBody, Component>("RigidBody")
+                .addProperty("active",
+                    [](RigidBody* self) -> bool { return self->isActive(); },
+                    [](RigidBody* self, bool active) { self->setActive(active); })
+                .addProperty("movementType", &RigidBody::getMovementType, &RigidBody::setMomeventType)
+                .addProperty("trigger", &RigidBody::getTrigger, &RigidBody::setTrigger)
+                .addProperty("colliderShape", &RigidBody::getColliderShape, &RigidBody::setColliderShape)
+                .addProperty("mask", &RigidBody::getMask, &RigidBody::setMask)
+                .addProperty("group", &RigidBody::getGroup, &RigidBody::setGroup)
+                .addProperty("mass", &RigidBody::getMass, &RigidBody::setMass)
+                .addProperty("tensor", &RigidBody::getTensor, &RigidBody::setTensor)
+                .addProperty("friction", &RigidBody::getFriction, &RigidBody::setFriction)
+                .addProperty("damping", &RigidBody::getDamping, &RigidBody::setDamping)
+                .addProperty("bounciness", &RigidBody::getBounciness, &RigidBody::setBounciness)
+                .addProperty("velocity", &RigidBody::getVelocity, &RigidBody::setVelocity)
+                .addProperty("gravity", &RigidBody::getGravity, &RigidBody::setGravity)
+                .addFunction("setTrackScale", &RigidBody::setTrackScale)
+                .addFunction("addForce", &RigidBody::addForce)
+                .addFunction("addImpulse", &RigidBody::addImpulse)
+                .addFunction("clearForces", &RigidBody::clearForces)
+            .endClass()
         .endNamespace()
+        // Esto es importante ya que Lua no lo puede hacer por sí mismo
         .beginNamespace("casts")
-        .beginNamespace("fromComponent")
-        .addFunction(
-            "Transform", +[](Component* variable) -> Transform* { return static_cast<Transform*>(variable); })
-        .endNamespace()
+            .beginNamespace("fromComponent")
+                .addFunction("Transform",
+                    +[](Component* variable) -> Transform* { return static_cast<Transform*>(variable); })
+                .addFunction("Animator",
+                    +[](Component* variable) -> Animator* { return static_cast<Animator*>(variable); })
+                .addFunction("CameraComponent",
+                    +[](Component* variable) -> CameraComponent* { return static_cast<CameraComponent*>(variable); })
+                .addFunction("KeyFrameAnimator",
+                    +[](Component* variable) -> KeyFrameAnimator* { return static_cast<KeyFrameAnimator*>(variable); })
+                .addFunction("LightDirComp",
+                    +[](Component* variable) -> LightDirComp* { return static_cast<LightDirComp*>(variable); })
+                .addFunction("LightPointComp",
+                    +[](Component* variable) -> LightPointComp* { return static_cast<LightPointComp*>(variable); })
+                .addFunction("LightRectComp",
+                    +[](Component* variable) -> LightRectComp* { return static_cast<LightRectComp*>(variable); })
+                .addFunction("LightSpotComp",
+                    +[](Component* variable) -> LightSpotComp* { return static_cast<LightSpotComp*>(variable); })
+                .addFunction("MeshRenderer",
+                    +[](Component* variable) -> MeshRenderer* { return static_cast<MeshRenderer*>(variable); })
+                .addFunction("ParticleSystemComponent",
+                    +[](Component* variable) -> ParticleSystemComponent* { return static_cast<ParticleSystemComponent*>(variable); })
+                .addFunction("PlaneComponent",
+                    +[](Component* variable) -> PlaneComponent* { return static_cast<PlaneComponent*>(variable); })
+                .addFunction("SpriteRenderer",
+                    +[](Component* variable) -> SpriteRenderer* { return static_cast<SpriteRenderer*>(variable); })
+                .addFunction("RigidBody",
+                    +[](Component* variable) -> RigidBody* { return static_cast<RigidBody*>(variable); })
+            .endNamespace()
         .endNamespace();
 }
 
