@@ -80,9 +80,6 @@ private:
     // warning C4251 'Tapioca::GraphicsManager::zOrders' :
     // class 'std::vector<std::string,std::allocator<std::string>>' necesita tener una interfaz DLL
     // para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
-    // warning C4251 'Tapioca::GraphicsManager::cameraComps' :
-    // class 'std::unordered_map<int,Tapioca::CameraComponent *,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,Tapioca::CameraComponent *>>>'
-    //  necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GraphicsManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
@@ -92,8 +89,6 @@ private:
     std::unordered_set<RenderNode*> selfManagedNodes;   // Nodos gestionados por GraphicsManager
 
     std::unordered_set<int> zOrders;   // ZOrders de las camaras
-
-    std::unordered_map<int, CameraComponent*> cameraComps;   // Componentes de camara
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -190,19 +185,6 @@ public:
     * @return true si existe, false si no
     */
     bool checkResourceExists(std::string name);
-
-    /**
-    * @brief Elimina una camara en un zOrder especifico
-    * @param zOrder ZOrder de la camara
-    * @param deleteCamera Indica si se debe eliminar la camara
-    */
-    void removeCameraCompByZOrder(int zOrder, bool deleteCamera);
-
-    /**
-    * @brief Guarda el componente de camara
-    * @param cameraComp Componente de camara a guardar
-    */
-    void saveCameraComp(CameraComponent* cameraComp);
 
     /**
     * @brief 

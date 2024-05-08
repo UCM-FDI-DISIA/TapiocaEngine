@@ -15,9 +15,12 @@ CameraComponent::CameraComponent()
 
 CameraComponent::~CameraComponent() {
     GraphicsManager::instance()->removeZOrder(zOrder);
+    delete node;
+    node = nullptr;
+    delete viewport;
+    viewport = nullptr;
     camera = nullptr;
     transform = nullptr;
-    free();
 }
 
 bool CameraComponent::initComponent(const CompMap& variables) {
@@ -124,17 +127,6 @@ void CameraComponent::handleEvent(std::string const& id, void* info) {
     }
 }
 
-void CameraComponent::free() {
-    if (node != nullptr) {
-        delete node;
-        node = nullptr;
-    }
-    if (viewport != nullptr) {
-        delete viewport;
-        viewport = nullptr;
-    }
-}
-
 void CameraComponent::lookAt(const Vector3 targetToLook) {
     this->targetToLook = targetToLook;
     camera->lookAt(targetToLook);
@@ -191,6 +183,9 @@ void CameraComponent::setZOrder(const int zOrder) {
         }
         viewport->setZOrder(this->zOrder);
     }
-    else logError("CameraComponent: No queda nigun zOrder disponible");
+    else {
+        logError("CameraComponent: No queda nigun zOrder disponible");
+        alive = false;
+    }
 }
 }

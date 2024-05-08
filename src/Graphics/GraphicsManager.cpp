@@ -380,16 +380,6 @@ bool GraphicsManager::checkResourceExists(std::string name) {
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, name);
 }
 
-void GraphicsManager::removeCameraCompByZOrder(int zOrder, bool deleteCamera) {
-    auto it = cameraComps.find(zOrder);
-    if (it != cameraComps.end()) {
-        if (deleteCamera) it->second->free();
-        cameraComps.erase(zOrder);
-    }
-}
-
-void GraphicsManager::saveCameraComp(CameraComponent* cameraComp) { cameraComps[cameraComp->getZOrder()] = cameraComp; }
-
 int GraphicsManager::askForZOrder(int requiredZOrder) {
     int zOrder = requiredZOrder;
     if (zOrders.contains(requiredZOrder)) {
