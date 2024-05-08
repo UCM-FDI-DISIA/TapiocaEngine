@@ -18,10 +18,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<LuaManager>;
-template<>
-LuaManager* Singleton<LuaManager>::instance_ = nullptr;
-
 LuaManager::LuaManager() : L(nullptr), initialized(true) {
     L = luaL_newstate();
     luaL_openlibs(L);

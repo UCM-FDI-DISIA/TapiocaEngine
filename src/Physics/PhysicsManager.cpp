@@ -15,9 +15,19 @@
 #undef new
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<PhysicsManager>;
-template<>
-PhysicsManager* Singleton<PhysicsManager>::instance_ = nullptr;
+PhysicsManager::PhysicsManager(bool debug)
+    : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), constraintSolver(nullptr), dynamicsWorld(nullptr)
+#ifdef _DEBUG
+      ,
+      pdd(nullptr), debug(debug)
+#else
+      ,
+      debug(false)
+#endif
+{
+}
+
+PhysicsManager::~PhysicsManager() { destroy(); }
 
 void onCollisionEnter(btPersistentManifold* const& manifold) {
     const btCollisionObject* obj1 = manifold->getBody0();
@@ -63,21 +73,6 @@ bool onCollisionStay(btManifoldPoint& manifold, void* obj1, void* obj2) {
     }
     return true;
 }
-
-
-PhysicsManager::PhysicsManager(bool debug)
-    : colConfig(nullptr), colDispatch(nullptr), broadphase(nullptr), constraintSolver(nullptr), dynamicsWorld(nullptr)
-#ifdef _DEBUG
-      ,
-      pdd(nullptr), debug(debug)
-#else
-      ,
-      debug(false)
-#endif
-{
-}
-
-PhysicsManager::~PhysicsManager() { destroy(); }
 
 void PhysicsManager::start() {
     logInfo("PhysicsManager: Object:");

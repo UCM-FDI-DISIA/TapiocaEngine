@@ -4,10 +4,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<FactoryManager>;
-template<>
-FactoryManager* Singleton<FactoryManager>::instance_ = nullptr;
-
 FactoryManager::~FactoryManager() {
     for (auto& f : builders) delete f.second;
     builders.clear();

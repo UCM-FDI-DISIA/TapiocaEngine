@@ -5,10 +5,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<SoundManager>;
-template<>
-SoundManager* Singleton<SoundManager>::instance_ = nullptr;
-
 SoundManager::SoundManager() : al(nullptr), soundEngine(nullptr), audioFolderPath("assets/audio/") { }
 
 SoundManager::~SoundManager() {

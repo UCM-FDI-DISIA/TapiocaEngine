@@ -30,7 +30,6 @@
 #include "Components/SkyboxComponent.h"
 #include "Components/KeyFrameAnimator.h"
 #include "Components/Button.h"
-#include "Components/DropBox.h"
 #include "Components/Image.h"
 #include "Components/ImageTextButton.h"
 #include "Components/InputText.h"
@@ -121,7 +120,6 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<SkyboxComponent>());
     // UI
     manager->addBuilder(new BasicBuilder<Button>());
-    manager->addBuilder(new BasicBuilder<DropBox>());
     manager->addBuilder(new BasicBuilder<Image>());
     manager->addBuilder(new BasicBuilder<ImageTextButton>());
     manager->addBuilder(new BasicBuilder<InputText>());

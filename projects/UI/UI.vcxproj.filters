@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\src\UI\Components\Text.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\UI\Components\DropBox.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\UI\Components\Image.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -78,9 +75,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\Components\Text.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\UI\Components\DropBox.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UI\Components\Image.h">

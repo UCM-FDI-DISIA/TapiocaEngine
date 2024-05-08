@@ -4,10 +4,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<InputManager>;
-template<>
-InputManager* Singleton<InputManager>::instance_ = nullptr;
-
 InputManager::InputManager() : mousePos({0, 0}) { }
 
 bool InputManager::init() {

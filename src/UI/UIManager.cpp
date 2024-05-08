@@ -20,10 +20,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<UIManager>;
-template<>
-UIManager* Singleton<UIManager>::instance_ = nullptr;
-
 UIManager::UIManager()
     : mainLoop(nullptr), windowManager(nullptr), graphicsManager(nullptr), sdlWindow(nullptr), glContext(nullptr),
       ogreWindow(nullptr), renderListener(nullptr), fontsPath("assets/fonts/"), texturesPath("assets/textures/"),

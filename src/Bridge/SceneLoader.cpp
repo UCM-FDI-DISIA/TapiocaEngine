@@ -13,10 +13,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<SceneLoader>;
-template<>
-SceneLoader* Singleton<SceneLoader>::instance_ = nullptr;
-
 SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
       scenesPath("assets\\scenes\\") { }
 

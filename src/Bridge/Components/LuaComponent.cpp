@@ -106,7 +106,6 @@ std::vector<CompValue> LuaComponent::callFunction(const std::string& name, const
     return out;
 }
 
-
 LuaComponentBuilder::LuaComponentBuilder(const std::string& name, luabridge::LuaRef* table)
     : ComponentBuilder(name), classTable(table) { }
 
@@ -127,6 +126,4 @@ Component* LuaComponentBuilder::createComponent() {
     *aux = result[0];
     return new LuaComponent(aux, id);
 }
-
-
 }

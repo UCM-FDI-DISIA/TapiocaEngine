@@ -15,7 +15,6 @@
     <ClCompile Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.cpp" />
     <ClCompile Include="..\..\src\UI\Components\BaseWidget.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Button.cpp" />
-    <ClCompile Include="..\..\src\UI\Components\DropBox.cpp" />
     <ClCompile Include="..\..\src\UI\Components\Image.cpp" />
     <ClCompile Include="..\..\src\UI\Components\ImageTextButton.cpp" />
     <ClCompile Include="..\..\src\UI\Components\InputText.cpp" />
@@ -31,7 +30,6 @@
     <ClInclude Include="..\..\Dependencies\Ogre\build\x64\imgui-1.89.8\backends\imgui_impl_sdl2.h" />
     <ClInclude Include="..\..\src\UI\Components\BaseWidget.h" />
     <ClInclude Include="..\..\src\UI\Components\Button.h" />
-    <ClInclude Include="..\..\src\UI\Components\DropBox.h" />
     <ClInclude Include="..\..\src\UI\Components\Image.h" />
     <ClInclude Include="..\..\src\UI\Components\ImageTextButton.h" />
     <ClInclude Include="..\..\src\UI\Components\InputText.h" />

@@ -35,10 +35,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<GraphicsManager>;
-template<>
-GraphicsManager* Singleton<GraphicsManager>::instance_ = nullptr;
-
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),

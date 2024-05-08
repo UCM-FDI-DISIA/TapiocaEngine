@@ -51,7 +51,7 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_map<std::string, btTriangleMesh*> meshInterfaces;   // dados para mesh collider
+    std::unordered_map<std::string, btTriangleMesh*> meshInterfaces;   // Dados para mesh collider
     std::unordered_set<btRigidBody*> rigidBodies;                      // Almacena todos los rigidbodies
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
@@ -73,8 +73,17 @@ private:
     */
     void start() override;
 
+    /**
+    * @brief Crea un mesh de colision
+    * @param name Nombre del mesh
+    */
     btBvhTriangleMeshShape* createMeshCollision(const std::string& name);
 
+    /**
+    * @brief Carga un objeto a partir de un nombre de archivo y la forma de colision
+    * @param filename Nombre del archivo
+    * @param shape Puntero al mesh
+    */
     bool loadObj(const std::string& filename, btTriangleMesh* shape);
 
 public:
@@ -88,8 +97,15 @@ public:
     PhysicsManager& operator=(PhysicsManager&) = delete;
     PhysicsManager& operator=(PhysicsManager&&) = delete;
 
-    void fixedUpdate() override;
+    /**
+    * @brief Dibuja las cajas de colision de los objetos
+    * @param deltaTime Tiempo transcurrido desde el ultimo frame
+    */
     void update(const uint64_t deltaTime);
+    /**
+    * @brief Actualiza el mundo de fisicas
+    */
+    void fixedUpdate() override;
 
     /**
     * @brief  Crea un rigidbody

@@ -9,10 +9,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<MainLoop>;
-template<>
-MainLoop* Singleton<MainLoop>::instance_ = nullptr;
-
 MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
     if (!std::filesystem::exists(assetsPath)) {
         logInfo(("MainLoop: La carpeta \"" + assetsPath + "\" no existe.").c_str());

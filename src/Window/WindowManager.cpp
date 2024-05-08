@@ -8,10 +8,6 @@
 #include "checkML.h"
 
 namespace Tapioca {
-template class TAPIOCA_API Singleton<WindowManager>;
-template<>
-WindowManager* Singleton<WindowManager>::instance_ = nullptr;
-
 WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : windowName(windowName), windowWidth(w), windowHeight(h), firstWindowWidth(windowWidth),
       firstWindowHeight(windowHeight), sdlWindow(nullptr), glContext(nullptr), resized(false), mainLoop(nullptr) { }

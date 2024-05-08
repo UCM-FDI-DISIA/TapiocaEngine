@@ -46,4 +46,7 @@ public:
         return instance_;
     }
 };
+
+template<typename T>
+T* Singleton<T>::instance_ = nullptr;
 }
