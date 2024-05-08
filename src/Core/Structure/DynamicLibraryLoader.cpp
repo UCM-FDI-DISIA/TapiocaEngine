@@ -5,7 +5,11 @@
 #include "checkML.h"
 
 namespace Tapioca {
-HMODULE DynamicLibraryLoader::module = nullptr;
+DynamicLibraryLoader::DynamicLibraryLoader() : module(nullptr) { }
+
+DynamicLibraryLoader::~DynamicLibraryLoader() {
+    if (module != nullptr) FreeLibrary(module);
+}
 
 bool DynamicLibraryLoader::load(std::string const& gameName) {
     std::string gamePath;   // Ruta del juego con formato
@@ -42,9 +46,5 @@ bool DynamicLibraryLoader::initGame(std::string const& gameName) {
         logError("DynamicLibraryLoader: Error al cargar la DLL del juego.");
         return false;
     }
-}
-
-void DynamicLibraryLoader::freeModule() {
-    if (module != nullptr) FreeLibrary(module);
 }
 }

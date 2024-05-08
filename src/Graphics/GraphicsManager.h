@@ -46,6 +46,7 @@ class Skyplane;
 class CameraComponent;
 class NodeAnimator;
 class WindowManager;
+class MainLoop;
 
 /**
 * @brief Clase que se encarga de la gestion de la grafica del motor
@@ -106,6 +107,7 @@ private:
 
     LightDirectional* mainLight;   // Luz principal que produce sombras
 
+    MainLoop* mainLoop;               // Puntero a MainLoop
     Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
     WindowManager* windowManager;     // Puntero al WindowManager
     SDL_Window* sdlWindow;            // Ventana de SDL
@@ -352,7 +354,8 @@ public:
     * @param emitting Indica si esta emitiendo particulas
     * @return Puntero al particleSystem creado
     */
-    ParticleSystem* createParticleSystemWithName(RenderNode* const node, std::string const& templateName, const bool emitting);
+    ParticleSystem* createParticleSystemWithName(RenderNode* const node, std::string const& templateName,
+                                                 const bool emitting);
 
     /**
     * @brief Crea un plane
@@ -450,7 +453,7 @@ public:
     * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
     */
     Skybox* createSkyboxWithName(RenderNode* const node, std::string const& material, const float distC = 5000,
-                         const bool orderC = true);
+                                 const bool orderC = true);
 
     /**
     * @brief Crea un skyplane
@@ -487,8 +490,9 @@ public:
     * @param ysegments Numero de segmentos en y
     */
     Skyplane* createSkyplaneWithName(RenderNode* const node, std::string const& materialName, const bool enable,
-                             const Vector3 rkNormal, const float fConstant, const float scale, const float tiling,
-                             const bool drawFirst, const float bow, const int xsegments, const int ysegments);
+                                     const Vector3 rkNormal, const float fConstant, const float scale,
+                                     const float tiling, const bool drawFirst, const float bow, const int xsegments,
+                                     const int ysegments);
 
     /**
     * @brief Crea un manual object

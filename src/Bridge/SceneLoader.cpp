@@ -13,7 +13,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
+SceneLoader::SceneLoader()
+    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
       scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
@@ -44,9 +45,13 @@ bool SceneLoader::init() {
 
 bool SceneLoader::initConfig() {
     logInfo("SceneLoader: Configurando la escena inicial...");
+    DynamicLibraryLoader* loader = mainLoop->getLoader();
+    if (loader == nullptr) {
+        logError("SceneLoader: Instancia de DynamicLibraryLoader invalida.");
+        return false;
+    }
 
-    EntryPointGetInitScene initScene =
-        (EntryPointGetInitScene)GetProcAddress(DynamicLibraryLoader::module, "getInitScene");
+    EntryPointGetInitScene initScene = (EntryPointGetInitScene)GetProcAddress(loader->getModule(), "getInitScene");
     if (initScene == nullptr) {
         logError("SceneLoader: La DLL del juego no tiene la funcion \"getInitScene\".");
         return false;
@@ -146,7 +151,8 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
 
     // Relaciona los hijos con el padre
     Transform* tr = gameObject->getComponent<Transform>();
-    for (GameObject* obj : children) obj->getComponent<Transform>()->setParent(tr);
+    for (GameObject* obj : children)
+        obj->getComponent<Transform>()->setParent(tr);
     children.clear();
     return true;
 }

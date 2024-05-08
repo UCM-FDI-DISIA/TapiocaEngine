@@ -1,9 +1,9 @@
 #include "MainLoop.h"
 #include <filesystem>
 #include <chrono>
+#include "DynamicLibraryLoader.h"
 #include "Scene.h"
 #include "Module.h"
-#include "DynamicLibraryLoader.h"
 #include "checkML.h"
 #include "GameObject.h"
 #include "checkML.h"
@@ -19,6 +19,8 @@ MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
             logError(("MainLoop: No se pudo crear la carpeta de assets. " + std::string(e.what())).c_str());
         }
     }
+
+    loader = new DynamicLibraryLoader();
 }
 
 MainLoop::~MainLoop() {
@@ -33,7 +35,8 @@ MainLoop::~MainLoop() {
     for (Module* mod : modules)
         delete mod;
 
-    DynamicLibraryLoader::freeModule();
+    if (loader != nullptr) delete loader;
+    loader = nullptr;
 }
 
 bool MainLoop::init() {
@@ -57,19 +60,19 @@ bool MainLoop::initConfig() {
     return initialized;
 }
 
+bool MainLoop::loadGame(std::string const& gameName) { return loader->initGame(gameName); }
+
 void MainLoop::start() {
     for (auto mod : modules)
         mod->start();
-}
-
-void MainLoop::run() {
-    start();
 
     if (loadedScenes.size() == 0 && sceneBuffer.size() == 0) {
         logWarn("MainLoop: No hay escena de inicio del motor. Se va a cerrar la aplicacion.");
         return;
     }
+}
 
+void MainLoop::run() {
     // Se vuelven a inicializar por si acaso
     finish = false;
     deltaTime = 0;
@@ -184,7 +187,6 @@ void MainLoop::pushEvent(Event const& e, bool const delay) {
         for (auto& s : loadedScenes) {
             if (s.second->isActive()) s.second->handleEvent(e.id, e.info);
         }
-
     }
 }
 
@@ -193,7 +195,8 @@ std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { retu
 Scene* MainLoop::getScene(std::string sc) {
     auto aux = loadedScenes.find(sc);
     if (aux != loadedScenes.end()) return aux->second;
-    else return nullptr;
+    else
+        return nullptr;
 }
 
 void MainLoop::deleteScene(Scene* const sc) { deleteScene(sc->getName()); }

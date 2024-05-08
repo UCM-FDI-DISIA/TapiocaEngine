@@ -26,9 +26,17 @@ WindowManager::~WindowManager() {
 bool WindowManager::init() { return SDL_Init(SDL_INIT_EVERYTHING) == 0; }
 
 bool WindowManager::initConfig() {
+    mainLoop = MainLoop::instance();
+    DynamicLibraryLoader* loader = mainLoop->getLoader();
+    if (loader == nullptr) {
+        logError("SceneLoader: Instancia de DynamicLibraryLoader invalida.");
+        return false;
+    }
+    HMODULE module = loader->getModule();
+
     logInfo("WindowManager: Configurando el nombre de la ventana...");
 
-    EntryPointGetWindowName wn = (EntryPointGetWindowName)GetProcAddress(DynamicLibraryLoader::module, "getWindowName");
+    EntryPointGetWindowName wn = (EntryPointGetWindowName)GetProcAddress(module, "getWindowName");
     if (wn == nullptr) {
         logError("WindowManager: La DLL del juego no tiene la funcion \"getWindowName\".");
         return false;
@@ -36,7 +44,7 @@ bool WindowManager::initConfig() {
     setWindowName(wn());
     logInfo(("WindowManager: Nombre de la ventana configurado a \"" + windowName + "\".").c_str());
 
-    EntryPointGetFullScreen fs = (EntryPointGetFullScreen)GetProcAddress(DynamicLibraryLoader::module, "getFullScreen");
+    EntryPointGetFullScreen fs = (EntryPointGetFullScreen)GetProcAddress(module, "getFullScreen");
     // Si no se ha encontrado la funcion de pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
     if (fs == nullptr) {
         logWarn("WindowManager: La DLL del juego no tiene la funcion \"getFullScreen\". Se preguntara por el tamano de "
@@ -58,7 +66,8 @@ bool WindowManager::initConfig() {
         logInfo("WindowManager: Ventana configurada a pantalla completa.");
     }
     // Si no se quiere pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
-    else tryGetWindowSize();
+    else
+        tryGetWindowSize();
 
     // Crear ventana
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -72,8 +81,6 @@ bool WindowManager::initConfig() {
 
     return true;
 }
-
-void WindowManager::start() { mainLoop = MainLoop::instance(); }
 
 void WindowManager::update(const uint64_t deltaTime) {
     SDL_Event event;
@@ -102,12 +109,16 @@ void WindowManager::subscribeModule(WindowModule* mod) { modules.push_back(mod);
 
 void WindowManager::sendEvent(std::string const& id, void* info) {
     if (id == "ev_CLOSE") mainLoop->exit();
-    else mainLoop->pushEvent({nullptr, id, info, true});
+    else
+        mainLoop->pushEvent({nullptr, id, info, true});
 }
 
 void WindowManager::tryGetWindowSize() {
+    DynamicLibraryLoader* loader = mainLoop->getLoader();
+    if (loader == nullptr) return;
+
     logInfo("WindowManager: Configurando la ventana a modo ventana...");
-    EntryPointGetWindowSize ws = (EntryPointGetWindowSize)GetProcAddress(DynamicLibraryLoader::module, "getWindowSize");
+    EntryPointGetWindowSize ws = (EntryPointGetWindowSize)GetProcAddress(loader->getModule(), "getWindowSize");
     if (ws == nullptr) {
         logError(("WindowManager: La DLL del juego no tiene la funcion \"getWindowSize\". Se usara el tamano "
                   "predefinido: " +

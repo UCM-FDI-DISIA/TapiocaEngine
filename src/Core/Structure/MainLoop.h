@@ -8,6 +8,7 @@
 #include "defs.h"
 
 namespace Tapioca {
+class DynamicLibraryLoader;
 class Scene;
 class Module;
 
@@ -18,8 +19,10 @@ class TAPIOCA_API MainLoop : public Singleton<MainLoop> {
 private:
     friend Singleton<MainLoop>;
 
+    DynamicLibraryLoader* loader;   // Cargador de bibliotecas dinamicas
+
     // warning C4251 'Tapioca::MainLoop::assetsPath' :
-    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita 
+    // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::MainLoop'
     // warning C4251 'Tapioca::MainLoop::delayedEvents' :
     // class 'std::vector<Tapioca::Event,std::allocator<Tapioca::Event>>' necesita
@@ -54,7 +57,7 @@ private:
     bool finish;                                         // True si va a terminar la ejecucion, false en caso contrario
 
     /**
-    * @brief Inicializa los modulos
+    * @brief Inicializa los modulos y comprueba si hay escenas cargadas
     */
     void start();
     /**
@@ -101,6 +104,11 @@ public:
     * @return true si se ha inicializado correctamente, false en caso contrario
     */
     bool init();
+    /**
+    * @brief Intenta cargar la biblioteca dinamica del juego
+    * @param gameName Nombre del juego
+    */
+    bool loadGame(std::string const& gameName = "game");
     /**
     * @brief Inicializa la configuracion del juego
     * @return true si se ha inicializado correctamente, false en caso contrario
@@ -150,5 +158,11 @@ public:
     * @param delay True si se quiere enviar el evento en el siguiente tick, false en caso contrario
     */
     void pushEvent(Event const& e, bool const delay = false);
+
+    /**
+    * @brief Devuelve el cargador de bibliotecas dinamicas
+    * @return Puntero al cargador de bibliotecas dinamicas
+    */
+    inline DynamicLibraryLoader* getLoader() const { return loader; }
 };
 }

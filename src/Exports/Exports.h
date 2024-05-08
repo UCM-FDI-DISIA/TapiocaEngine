@@ -3,6 +3,7 @@
 
 namespace Tapioca {
 class MainLoop;
+class DynamicLibraryLoader;
 class WindowManager;
 class InputManager;
 class FactoryManager;
@@ -36,7 +37,7 @@ TAPIOCA_API void deleteEngine();
 * Intenta inicializar los modulos, crea las factorias, registra las funciones de Lua
 * mapea las entradas si existe el archivo de configuracion e inicializa el bucle principal
 */
-TAPIOCA_API void runEngine();
+TAPIOCA_API void runEngine(std::string const& gameName = "game");
 /**
 * Crea los modulos y los registra en el MainLoop
 */

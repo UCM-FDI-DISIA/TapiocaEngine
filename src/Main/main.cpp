@@ -8,7 +8,10 @@ int main(int argc, char** argv) {
 #endif
 
     Tapioca::initEngine();
-    Tapioca::runEngine();
+    // Se puede pasar un argumento para cargar un juego en concreto
+    if (argc > 1) Tapioca::runEngine(argv[1]);
+    // Si no se pasa ningun argumento, se carga el juego "game" por defecto
+    else Tapioca::runEngine();
     Tapioca::deleteEngine();
 
 #ifdef _DEBUG

@@ -67,10 +67,6 @@ public:
     */
     bool initConfig() override;
     /**
-    * @brief Inicializa el puntero al MainLoop
-    */
-    void start() override;
-    /**
     * @brief Maneja los eventos de la ventana
     * @param deltaTime Tiempo transcurrido desde el ultimo frame
     */

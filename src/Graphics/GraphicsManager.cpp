@@ -37,7 +37,7 @@
 namespace Tapioca {
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
-      renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
+      renderSys(nullptr), mMaterialMgrListener(nullptr), mainLoop(nullptr), windowManager(nullptr), ogreWindow(nullptr),
       sdlWindow(nullptr), windowName(windowName), glContext(), planeNumber(0), billboardNumber(0),
       nodeAnimatorNumber(0), particleSystemNumber(0), skyplaneNumber(0), skyboxNumber(0), mainLight(nullptr),
       zOrders() { }
@@ -49,11 +49,16 @@ GraphicsManager::~GraphicsManager() {
     selfManagedNodes.clear();
 
     shutDown();
+
+    mainLoop = nullptr;
+    windowManager = nullptr;
+    mainLight = nullptr;
 }
 
 bool GraphicsManager::init() {
     windowManager = WindowManager::instance();
-    return windowManager != nullptr;
+    mainLoop = MainLoop::instance();
+    return windowManager != nullptr && mainLoop != nullptr;
 }
 
 bool GraphicsManager::initConfig() {
@@ -333,6 +338,7 @@ void GraphicsManager::shutDown() {
         mShaderGenerator->removeSceneManager(scnMgr);
         mRoot->destroySceneManager(scnMgr);
     }
+    scnMgr = nullptr;
 
     // Elimina el sistema de shaders
     Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);

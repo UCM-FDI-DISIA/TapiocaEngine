@@ -1,7 +1,8 @@
-﻿#include <lua.hpp>
+﻿#include "Exports.h"
+#include <lua.hpp>
 #include <sstream>
-#include "Exports.h"
 #include "Structure/MainLoop.h"
+#include "Structure/DynamicLibraryLoader.h"
 #include "WindowManager.h"
 #include "InputManager.h"
 #include "Structure/FactoryManager.h"
@@ -12,7 +13,6 @@
 #include "SoundManager.h"
 #include "LuaManager.h"
 #include "LuaRegistry.h"
-#include "Structure/DynamicLibraryLoader.h"
 #include "Structure/BasicBuilder.h"
 #include "Components/Transform.h"
 #include "Components/RigidBody.h"
@@ -47,16 +47,21 @@ void initEngine() {
     createModules(mainLoop);
 }
 
-void deleteEngine() { delete mainLoop; }
+void deleteEngine() {
+    if (mainLoop != nullptr) delete mainLoop;
+    mainLoop = nullptr;
+}
 
-void runEngine() {
+void runEngine(std::string const& gameName) {
     if (mainLoop->init()) {
         createEngineBuilders();
         registerLuaFunctions();
-        if (DynamicLibraryLoader::initGame()) mainLoop->run();
-		else logError("RunEngine: Error al inicializar el juego.");
+        if (mainLoop->loadGame(gameName)) mainLoop->run();
+        else
+            logError("Exports: runEngine: Error al cargar el juego.");
     }
-    else logError("RunEngine: Error al inicializar un modulo.");
+    else
+        logError("Exports: runEngine: Error al inicializar un modulo.");
 }
 
 static void createModules(Tapioca::MainLoop* mainLoop) {
@@ -181,7 +186,8 @@ static void registerLuaFunctions() {
         .endNamespace()
         .beginNamespace("casts")
         .beginNamespace("fromComponent")
-        .addFunction("Transform", +[](Component* variable) -> Transform* { return static_cast<Transform*>(variable); })
+        .addFunction(
+            "Transform", +[](Component* variable) -> Transform* { return static_cast<Transform*>(variable); })
         .endNamespace()
         .endNamespace();
 }
