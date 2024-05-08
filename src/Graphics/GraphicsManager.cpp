@@ -43,7 +43,8 @@ GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w
     : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
       renderSys(nullptr), mMaterialMgrListener(nullptr), windowManager(nullptr), ogreWindow(nullptr),
       sdlWindow(nullptr), windowName(windowName), glContext(), planeNumber(0), billboardNumber(0),
-      nodeAnimatorNumber(0), mainLight(nullptr), zOrders() { }
+      nodeAnimatorNumber(0), particleSystemNumber(0), skyplaneNumber(0), skyboxNumber(0), mainLight(nullptr),
+      zOrders() { }
 
 
 GraphicsManager::~GraphicsManager() {
@@ -400,7 +401,8 @@ int GraphicsManager::askForZOrder(int requiredZOrder) {
         }
         if (!found) zOrder = -1;
     }
-    else zOrders.insert(requiredZOrder);
+    else
+        zOrders.insert(requiredZOrder);
     return zOrder;
 }
 
@@ -493,7 +495,7 @@ ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, st
 }
 
 ParticleSystem* GraphicsManager ::createParticleSystemWithName(RenderNode* const node, std::string const& templateName,
-                                                       const bool emitting) {
+                                                               const bool emitting) {
     std::string name = "ParticleSystem" + std::to_string(particleSystemNumber++);
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
@@ -537,8 +539,8 @@ Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const&
     return new Skybox(scnMgr, node, material, name, distC, orderC);
 }
 
-Skybox* GraphicsManager::createSkyboxWithName(RenderNode* const node, std::string const& material,
-                                              const float distC, const bool orderC) {
+Skybox* GraphicsManager::createSkyboxWithName(RenderNode* const node, std::string const& material, const float distC,
+                                              const bool orderC) {
     std::string name = "Skybox" + std::to_string(skyboxNumber++);
     return new Skybox(scnMgr, node, material, name, distC, orderC);
 }
