@@ -22,6 +22,11 @@ bool ParticleSystemComponent::initComponent(const CompMap& variables) {
     if (!setValueFromMap(templateName, "templateName", variables)) {
         logInfo("ParticleSystem: No existe nombre para el template: se creara uno por defecto.");
     }
+    else {
+        if (!GraphicsManager::instance()->checkParticleSystemExists(templateName)) {
+            return false;
+        }
+    }
     if (!setValueFromMap(emitting, "emitting", variables)) {
         logInfo("ParticleSystem: \"emitting\" no esta establecido: se pondra a false por defecto.");
     }

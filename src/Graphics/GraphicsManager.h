@@ -187,6 +187,13 @@ public:
     bool checkResourceExists(std::string name);
 
     /**
+    * @brief Comprueba si existe un sistema de particulas con el nombre especificado
+    * @param name Nombre del sistema de particulas
+    * @return true si existe, false si no
+    */
+    bool checkParticleSystemExists(std::string name);
+
+    /**
     * @brief 
     */
     int askForZOrder(int requiredZOrder);
