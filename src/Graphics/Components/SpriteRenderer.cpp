@@ -39,10 +39,6 @@ void SpriteRenderer::start() {
     billboard = billboardSet->addBillboard(Vector3(0.0f, 0.0f, 0.0f), color);
 }
 
-void SpriteRenderer::handleEvent(std::string const& id, void* info) {
-    if (id == "posChanged") node->setPosition(transform->getGlobalPositionWithoutRotation());
-}
-
 void SpriteRenderer::setVisible(const bool enable) { billboardSet->setVisible(enable); }
 
 bool SpriteRenderer::isVisible() const { return billboardSet->isVisible(); }
