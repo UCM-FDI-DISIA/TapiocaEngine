@@ -26,12 +26,6 @@
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Graphics\Components\Animator.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -92,12 +86,6 @@
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderObject.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Utilities\Skybox.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Graphics\Utilities\Skyplane.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Graphics\Utilities\Viewport.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -125,12 +113,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Components\Animator.h">
@@ -192,12 +174,6 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderObject.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Utilities\Skybox.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Graphics\Utilities\Skyplane.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Graphics\Utilities\Viewport.h">

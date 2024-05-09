@@ -21,8 +21,6 @@
     <ClCompile Include="..\..\src\Graphics\Components\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\ParticleSystemComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\PlaneComponent.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Components\SkyboxComponent.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Components\SkyplaneComponent.cpp" />
     <ClCompile Include="..\..\src\Graphics\Components\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\Graphics\GraphicsManager.cpp" />
     <ClCompile Include="..\..\src\Graphics\SGTechniqueResolverListener.cpp" />
@@ -41,8 +39,6 @@
     <ClCompile Include="..\..\src\Graphics\Utilities\Plane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderNode.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\RenderObject.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Utilities\Skybox.cpp" />
-    <ClCompile Include="..\..\src\Graphics\Utilities\Skyplane.cpp" />
     <ClCompile Include="..\..\src\Graphics\Utilities\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -56,8 +52,6 @@
     <ClInclude Include="..\..\src\Graphics\Components\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\Components\ParticleSystemComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Components\PlaneComponent.h" />
-    <ClInclude Include="..\..\src\Graphics\Components\SkyboxComponent.h" />
-    <ClInclude Include="..\..\src\Graphics\Components\SkyplaneComponent.h" />
     <ClInclude Include="..\..\src\Graphics\Graphics.h" />
     <ClInclude Include="..\..\src\Graphics\Components\SpriteRenderer.h" />
     <ClInclude Include="..\..\src\Graphics\GraphicsManager.h" />
@@ -77,8 +71,6 @@
     <ClInclude Include="..\..\src\Graphics\Utilities\Plane.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderNode.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\RenderObject.h" />
-    <ClInclude Include="..\..\src\Graphics\Utilities\Skybox.h" />
-    <ClInclude Include="..\..\src\Graphics\Utilities\Skyplane.h" />
     <ClInclude Include="..\..\src\Graphics\Utilities\Viewport.h" />
   </ItemGroup>
   <ItemGroup>

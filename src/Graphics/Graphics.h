@@ -12,6 +12,4 @@
 #include "Utilities/LightSpotlight.h"
 #include "Utilities/ParticleSystem.h"
 #include "Utilities/Plane.h"
-#include "Utilities/Skybox.h"
-#include "Utilities/Skyplane.h"
 #include "Utilities/Viewport.h"

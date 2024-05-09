@@ -41,8 +41,6 @@ class Billboard;
 class ParticleSystem;
 class Plane;
 class AnimationHelper;
-class Skybox;
-class Skyplane;
 class CameraComponent;
 class NodeAnimator;
 class WindowManager;
@@ -64,14 +62,12 @@ private:
     Ogre::SceneManager* scnMgr;                          // Gestor de escenas
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
-    SGTechniqueResolverListener*mMaterialMgrListener;    // Listener para crear shaders 
-                                                        // para los materiales que vienen sin ellos
-    int nodeAnimatorNumber;     // Numero de animadores de nodos
-    int planeNumber;            // Numero de planos
-    int billboardNumber;        // Numero de billboards
-    int particleSystemNumber;   // Numero de sistemas de particulas
-    int skyboxNumber;           // Numero de skyboxes
-    int skyplaneNumber;         // Numero de skyplanes
+    SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders
+                                                         // para los materiales que vienen sin ellos
+    int nodeAnimatorNumber;                              // Numero de animadores de nodos
+    int planeNumber;                                     // Numero de planos
+    int billboardNumber;                                 // Numero de billboards
+    int particleSystemNumber;                            // Numero de sistemas de particulas
 
     LightDirectional* mainLight;   // Luz principal que produce sombras
 
@@ -419,66 +415,6 @@ public:
     * @param duration Duracion de la animacion
     */
     NodeAnimator* createNodeAnimatorWithName(RenderNode* const node, const float duration);
-
-    /**
-    * @brief Crea un skybox
-    * @param node Nodo para renderizado
-    * @param material Material del skybox
-    * @param name Nombre del skybox
-    * @param distC Distancia del plano a la camara
-    * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
-    */
-    Skybox* createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
-                         const float distC = 5000, const bool orderC = true);
-
-    /**
-    * @brief Crea un skybox sin nombre especificado
-    * @param node Nodo para renderizado
-    * @param material Material del skybox
-    * @param distC Distancia del plano a la camara
-    * @param orderC True si se quiere que se dibuje antes que todas las geometrias de la escena
-    */
-    Skybox* createSkyboxWithName(RenderNode* const node, std::string const& material, const float distC = 5000,
-                                 const bool orderC = true);
-
-    /**
-    * @brief Crea un skyplane
-    * @param node Nodo para renderizado
-    * @param materialName Nombre del material
-    * @param name Nombre del skyplane
-    * @param enable Indica si se activa el skyplane
-    * @param rkNormal Normal del plano
-    * @param fConstant Distancia que se mueve el plano a traves de la normal
-    * @param scale Escala del skyplane
-    * @param tiling Tiling del skyplane
-    * @param drawFirst Indica si se dibuja primero
-    * @param bow Curvatura del skyplane
-    * @param xsegments Numero de segmentos en x
-    * @param ysegments Numero de segmentos en y
-    */
-    Skyplane* createSkyplane(RenderNode* const node, std::string const& materialName, std::string const& name,
-                             const bool enable, const Vector3 rkNormal, const float fConstant, const float scale,
-                             const float tiling, const bool drawFirst, const float bow, const int xsegments,
-                             const int ysegments);
-
-    /**
-    * @brief Crea un skyplane
-    * @param node Nodo para renderizado
-    * @param materialName Nombre del material
-    * @param enable Indica si se activa el skyplane
-    * @param rkNormal Normal del plano
-    * @param fConstant Distancia que se mueve el plano a traves de la normal
-    * @param scale Escala del skyplane
-    * @param tiling Tiling del skyplane
-    * @param drawFirst Indica si se dibuja primero
-    * @param bow Curvatura del skyplane
-    * @param xsegments Numero de segmentos en x
-    * @param ysegments Numero de segmentos en y
-    */
-    Skyplane* createSkyplaneWithName(RenderNode* const node, std::string const& materialName, const bool enable,
-                                     const Vector3 rkNormal, const float fConstant, const float scale,
-                                     const float tiling, const bool drawFirst, const float bow, const int xsegments,
-                                     const int ysegments);
 
     /**
     * @brief Crea un manual object

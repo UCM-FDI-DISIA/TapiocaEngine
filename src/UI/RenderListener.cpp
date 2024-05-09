@@ -22,7 +22,6 @@ void RenderListener::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt) 
         for (GameObject* go : s.second->getObjects()) {
             for (Component* c : go->getAllComponents()) c->updateUI();
         }
-            
     }
     
     ImGui_ImplOpenGL3_NewFrame();

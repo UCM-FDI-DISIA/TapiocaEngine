@@ -26,8 +26,6 @@
 #include "Components/LightPointComp.h"
 #include "Components/LightRectComp.h"
 #include "Components/LightSpotComp.h"
-#include "Components/SkyplaneComponent.h"
-#include "Components/SkyboxComponent.h"
 #include "Components/KeyFrameAnimator.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
@@ -119,8 +117,6 @@ static void createEngineBuilders() {
     manager->addBuilder(new BasicBuilder<LightPointComp>());
     manager->addBuilder(new BasicBuilder<LightRectComp>());
     manager->addBuilder(new BasicBuilder<LightSpotComp>());
-    manager->addBuilder(new BasicBuilder<SkyplaneComponent>());
-    manager->addBuilder(new BasicBuilder<SkyboxComponent>());
     // UI
     manager->addBuilder(new BasicBuilder<Button>());
     manager->addBuilder(new BasicBuilder<Image>());

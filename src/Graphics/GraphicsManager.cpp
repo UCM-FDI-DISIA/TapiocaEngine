@@ -13,8 +13,6 @@
 #include "Utilities/ParticleSystem.h"
 #include "Utilities/Plane.h"
 #include "Utilities/AnimationHelper.h"
-#include "Utilities/Skybox.h"
-#include "Utilities/Skyplane.h"
 #include "Components/CameraComponent.h"
 #include "Utilities/NodeAnimator.h"
 #ifdef _MSC_VER
@@ -38,10 +36,8 @@ namespace Tapioca {
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
     : fsLayer(nullptr), mShaderGenerator(nullptr), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr), renderSys(nullptr),
       mMaterialMgrListener(nullptr), mainLoop(nullptr), windowManager(nullptr), ogreWindow(nullptr), sdlWindow(nullptr),
-      glContext(), planeNumber(0), billboardNumber(0), nodeAnimatorNumber(0), particleSystemNumber(0),
-      skyplaneNumber(0), skyboxNumber(0), mainLight(nullptr), cfgPath(""), windowName(windowName), zOrders(),
-      selfManagedNodes() { }
-
+      glContext(), planeNumber(0), billboardNumber(0), nodeAnimatorNumber(0), particleSystemNumber(0), mainLight(nullptr), 
+      cfgPath(""), windowName(windowName), zOrders(), selfManagedNodes() { }
 
 GraphicsManager::~GraphicsManager() {
     for (auto& node : selfManagedNodes)
@@ -538,39 +534,6 @@ NodeAnimator* GraphicsManager::createNodeAnimator(RenderNode* const node, const 
 NodeAnimator* GraphicsManager::createNodeAnimatorWithName(RenderNode* const node, const float duration) {
     std::string name = "Anim" + std::to_string(nodeAnimatorNumber++);
     return new NodeAnimator(scnMgr, node, duration, name);
-}
-
-Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
-                                      const float distC, const bool orderC) 
-{
-    return new Skybox(scnMgr, node, material, name, distC, orderC);
-}
-
-Skybox* GraphicsManager::createSkyboxWithName(RenderNode* const node, std::string const& material, const float distC,
-                                              const bool orderC) 
-{
-    std::string name = "Skybox" + std::to_string(skyboxNumber++);
-    return new Skybox(scnMgr, node, material, name, distC, orderC);
-}
-
-Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string const& materialName,
-                                          std::string const& name, const bool enable, const Vector3 rkNormal,
-                                          const float fConstant, const float scale, const float tiling,
-                                          const bool drawFirst, const float bow, const int xsegments,
-                                          const int ysegments) 
-{
-    return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
-                        bow, xsegments, ysegments);
-}
-
-Skyplane* GraphicsManager::createSkyplaneWithName(RenderNode* const node, std::string const& materialName,
-                                                  const bool enable, const Vector3 rkNormal, const float fConstant,
-                                                  const float scale, const float tiling, const bool drawFirst,
-                                                  const float bow, const int xsegments, const int ysegments)
-{
-    std::string name = "Skyplane" + std::to_string(skyplaneNumber++);
-    return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
-                        bow, xsegments, ysegments);
 }
 
 Ogre::ManualObject* GraphicsManager::createManualObject(RenderNode* const node) {
