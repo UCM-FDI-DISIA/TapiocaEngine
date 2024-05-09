@@ -15,10 +15,11 @@ AnimationHelper::AnimationHelper(Mesh* const object, const bool autoPlay = true,
     : animState(nullptr), animStateSet(object->getMesh()->getAllAnimationStates()), playing(autoPlay), looping(loop) 
 {
     logInfo("AnimationHelper: Animaciones:");
-    auto aux = object->getMesh()->getAllAnimationStates();
-    for (auto it = aux->getAnimationStateIterator().begin(); it != aux->getAnimationStateIterator().end(); ++it) {
-        logInfo(("AnimationHelper: \t" + it->first).c_str());
-    }
+    if (animStateSet != nullptr)
+        for (auto it = animStateSet->getAnimationStateIterator().begin();
+             it != animStateSet->getAnimationStateIterator().end(); ++it) {
+            logInfo(("AnimationHelper: \t" + it->first).c_str());
+        }
 }
 
 AnimationHelper::~AnimationHelper() {
@@ -27,37 +28,43 @@ AnimationHelper::~AnimationHelper() {
 }
 
 void AnimationHelper::updateAnim(const uint64_t delt, const float speed) {
-    // Actualiza la animacion
-    if (animState != nullptr) animState->addTime((float)(delt * 0.001 * speed));
+    if (animStateSet != nullptr && animState != nullptr) {
+        // Actualiza la animacion
+        animState->addTime((float)(delt * 0.001 * speed));
+    }
 }
 
 void AnimationHelper::playAnim(std::string const& anim) {
-    if (!animStateSet->hasAnimationState(anim)) {
+    if (animStateSet == nullptr || !animStateSet->hasAnimationState(anim)) {
         Tapioca::logError("GraphicsEngine: Error al cargar recursos: No existe la animacion");
         return;
     }
 
-    if (animState != nullptr) animState->setEnabled(false);
-    animState = animStateSet->getAnimationState(anim);
-    animState->setEnabled(playing);
-    animState->setLoop(looping);
-    animState->setTimePosition(0);
+    if (animStateSet != nullptr && animState != nullptr) {
+        animState->setEnabled(false);
+        animState = animStateSet->getAnimationState(anim);
+        animState->setEnabled(playing);
+        animState->setLoop(looping);
+        animState->setTimePosition(0);
+    }
 }
 
 void AnimationHelper::setLoop(const bool l) {
     looping = l;
-    if (animState != nullptr) animState->setLoop(looping);
+    if (animStateSet != nullptr && animState != nullptr) animState->setLoop(looping);
 }
 
-inline bool AnimationHelper::hasEnded() const { return animState != nullptr && animState->hasEnded(); }
+inline bool AnimationHelper::hasEnded() const {
+    return animStateSet != nullptr && animState != nullptr && animState->hasEnded();
+}
 
 void AnimationHelper::setPlaying(const bool p) {
     playing = p;
-    if (animState != nullptr) animState->setEnabled(playing);
+    if (animStateSet != nullptr && animState != nullptr) animState->setEnabled(playing);
 }
 std::string AnimationHelper::getAnimName() const {
-    if (animState != nullptr) return animState->getAnimationName();
-    else return "";
-
+    if (animStateSet != nullptr && animState != nullptr) return animState->getAnimationName();
+    else
+        return "";
 }
 }
