@@ -271,38 +271,45 @@ bool LuaManager::loadBase() {
 bool LuaManager::loadScript(const std::filesystem::path& path) {
     if (!loadBase()) return false;
 
+    std::string name = path.filename().string();
+    // Se le quita la extension (.lua)
+    name = name.substr(0, name.length() - 4);
+
     if (luaL_dofile(L, path.string().c_str()) != 0) {
-        logError(("LuaManager: Error al cargar el archivo Lua: " + std::string(lua_tostring(L, -1))).c_str());
+        logError(("LuaManager: Error al cargar el archivo Lua \"" + name + "\": " + std::string(lua_tostring(L, -1))).c_str());
         return false;
     }
     luabridge::LuaRef* table = new luabridge::LuaRef(luabridge::getGlobal(L, "comp"));
-    std::string name = path.filename().string();
+    if(!table->isTable()) {
+        logError(("LuaManager: Error al cargar el archivo Lua \"" + name + "\": El archivo sobreescribe el objeto clase \"comp\".").c_str());
+        delete table;
+        return false;
+    }
 
-    // Se le quita la extension (.lua)
-    name = name.substr(0, name.length() - 4);
     FactoryManager::instance()->addBuilder(new LuaComponentBuilder(name, table));
     return true;
 }
 
 bool LuaManager::loadScripts() {
     logInfo("LuaManager: Cargando scripts...");
+    if (!loadBase()) return false;
     std::string path = "assets\\scripts\\";
     std::string extension = ".lua";
     try {
         for (const auto& entry : std::filesystem::directory_iterator(path)) {
             if (entry.path().extension().string() == extension) {
-                if (!loadScript(entry.path().string())) return false;
+                loadScript(entry.path().string());
             }
         }
     } catch (std::filesystem::filesystem_error&) {
         logWarn("LuaManager: No existe ruta de scripts.");
-        try {
-            if (std::filesystem::create_directory(path)) {
-                logInfo("LuaManager: Carpeta de scripts creada correctamente.");
-            }
-        } catch (const std::filesystem::filesystem_error& e) {
-            logError(("LuaManager: No se pudo crear la carpeta de scripts. " + std::string(e.what())).c_str());
-        }
+        //try {
+        //    if (std::filesystem::create_directory(path)) {
+        //        logInfo("LuaManager: Carpeta de scripts creada correctamente.");
+        //    }
+        //} catch (const std::filesystem::filesystem_error& e) {
+        //    logError(("LuaManager: No se pudo crear la carpeta de scripts. " + std::string(e.what())).c_str());
+        //}
     }
     return true;
 }
