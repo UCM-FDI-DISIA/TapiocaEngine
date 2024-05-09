@@ -89,8 +89,8 @@ void CameraComponent::awake() {
         else {
             if (targetToLookSet) camera->lookAt(targetToLook);
             else {
-                Tapioca::Vector3 globalRot = transform->getGlobalRotation().toEuler();
-                if (globalRot == Tapioca::Vector3(0.0f, 0.0f, 0.0f)) setDirection(INITIAL_DIR);
+                Vector3 globalRot = transform->getGlobalRotation().toEuler();
+                if (globalRot == Vector3(0.0f, 0.0f, 0.0f)) setDirection(INITIAL_DIR);
                 else applyInitRot = true;
             }
         }

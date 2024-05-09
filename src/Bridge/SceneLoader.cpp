@@ -13,8 +13,9 @@
 #include "checkML.h"
 
 namespace Tapioca {
-SceneLoader::SceneLoader() : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), 
-    windowManager(nullptr), scenesPath("assets\\scenes\\") { }
+SceneLoader::SceneLoader()
+    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
+      scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
     luaState = nullptr;
@@ -240,10 +241,9 @@ bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameO
     Component* comp = nullptr;
     if (load) comp = factManager->createComponent(name);
     if (comp == nullptr) {
-        logError(("SceneLoader: No existe el componente \"" + name + "\".").c_str());
-        return false;
+        logWarn(("SceneLoader: No existe el componente \"" + name + "\".").c_str());
     }
-    if (!comp->initComponent(map)) {
+    else if (!comp->initComponent(map)) {
         logError(("SceneLoader: Error al inicializar el componente \"" + name + "\".").c_str());
         delete comp;
         return false;

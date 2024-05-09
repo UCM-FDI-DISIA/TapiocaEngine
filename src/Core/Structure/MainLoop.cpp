@@ -145,7 +145,7 @@ void MainLoop::refresh() {
             auto loadedSc = loadedScenes.insert({sc->getName(), sc});
             if (!loadedSc.second) {
                 delete sc;
-                Tapioca::logError("[MainLoop]: No se ha cargado la escena porque ya existe");
+                logError("[MainLoop]: No se ha cargado la escena porque ya existe");
             }
             else {
                 sc->awake();
