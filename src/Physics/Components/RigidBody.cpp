@@ -223,6 +223,13 @@ void RigidBody::addImpulse(const Vector3 f) {
     rigidBody->applyCentralImpulse(toBtVector3(f));
 }
 
+void RigidBody::clearAllForcesAndVelocities() { 
+    rigidBody->clearForces();
+    rigidBody->clearGravity();
+    rigidBody->setAngularVelocity(btVector3(0, 0, 0));
+    rigidBody->setLinearVelocity(btVector3(0, 0, 0));
+}
+
 void RigidBody::clearForces() { rigidBody->clearForces(); }
 
 void RigidBody::setMask(const int m) {
