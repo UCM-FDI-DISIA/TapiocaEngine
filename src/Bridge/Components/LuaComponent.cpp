@@ -65,7 +65,7 @@ void LuaComponent::start() { callSimpleFunction("start"); }
 void LuaComponent::update(const uint64_t deltaTime) {
     luabridge::LuaResult result = (*objectTable)["update"]((*objectTable), deltaTime);
     if (result.hasFailed()) {
-        logError(("LuaComponent " + name + ": Ha ocurrido un error durante initComponent [" +
+        logError(("LuaComponent " + name + ": Ha ocurrido un error durante update [" +
                   std::to_string(result.errorCode().value()) + "]: " + result.errorMessage()).c_str());
     }
 }
