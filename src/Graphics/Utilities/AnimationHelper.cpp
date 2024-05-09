@@ -40,8 +40,8 @@ void AnimationHelper::playAnim(std::string const& anim) {
         return;
     }
 
-    if (animStateSet != nullptr && animState != nullptr) {
-        animState->setEnabled(false);
+    if (animStateSet != nullptr) { 
+        if(animState != nullptr) animState->setEnabled(false);
         animState = animStateSet->getAnimationState(anim);
         animState->setEnabled(playing);
         animState->setLoop(looping);
