@@ -129,7 +129,12 @@ void InputText::start() {
             transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
         }
     }
+    bufferSize++;
     initialTextSize = textSize;
+    if (placeHolderText.size() >= bufferSize) {
+        placeHolderText = placeHolderText.substr(0, bufferSize - 1);
+        logWarn("InputText: Se ha sobrepasado el tamano del buffer.");
+    }
     startBuffer();
     updateTextFont();
 }
