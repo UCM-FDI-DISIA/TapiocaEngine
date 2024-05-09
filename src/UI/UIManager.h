@@ -57,8 +57,8 @@ private:
     // warning C4251 'Tapioca::UIManager::fonts' :
     // class 'std::unordered_map<std::pair<std::string,float>,ImFont *,Tapioca::pair_hash,std::equal_to<std::pair<std::string,float>>,std::allocator<std::pair<const std::pair<std::string,float>,ImFont *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
-    // warning C4251 'Tapioca::UIManager::widgetNames' : 
-    // class 'std::set<std::string,std::less<std::string>,std::allocator<std::string>>' 
+    // warning C4251 'Tapioca::UIManager::widgetNames' :
+    // class 'std::set<std::string,std::less<std::string>,std::allocator<std::string>>'
     // necesita tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::UIManager'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
@@ -176,5 +176,11 @@ public:
     * @return true si esta, false si no
     */
     bool widgetNameExists(const std::string& name);
+
+    /**
+    * @brief Devuelve si un archivo existe
+    * @param name Nombre del archivo
+    */
+    bool fileExists(const std::string& name) const;
 };
 }

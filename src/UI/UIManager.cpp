@@ -20,9 +20,10 @@
 #include "checkML.h"
 
 namespace Tapioca {
-UIManager::UIManager() : mainLoop(nullptr), windowManager(nullptr), graphicsManager(nullptr), 
-    sdlWindow(nullptr), glContext(nullptr), ogreWindow(nullptr), renderListener(nullptr), 
-    fontsPath("assets/fonts/"), texturesPath("assets/textures/"), widgetCounter(0) { }
+UIManager::UIManager()
+    : mainLoop(nullptr), windowManager(nullptr), graphicsManager(nullptr), sdlWindow(nullptr), glContext(nullptr),
+      ogreWindow(nullptr), renderListener(nullptr), fontsPath("assets/fonts/"), texturesPath("assets/textures/"),
+      widgetCounter(0) { }
 
 UIManager::~UIManager() {
     mainLoop = nullptr;
@@ -131,6 +132,8 @@ bool UIManager::fontsFolderEmpty() const {
 
 ImFont* UIManager::loadFont(const std::string& name, float pixelSize) {
     std::string path = fontsPath + name;
+    if (!fileExists(path)) return nullptr;
+
     ImGuiIO& io = ImGui::GetIO();
     ImFont* font = io.Fonts->AddFontFromFileTTF(path.c_str(), pixelSize);
     if (font == nullptr) {
@@ -197,4 +200,6 @@ void UIManager::removeWidgetName(const std::string& name) {
 }
 
 bool UIManager::widgetNameExists(const std::string& name) { return widgetNames.contains(name); }
+
+bool UIManager::fileExists(const std::string& name) const { return std::filesystem::exists(name); }
 }
