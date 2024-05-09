@@ -152,6 +152,14 @@ static void registerLuaFunctions() {
                 +[](std::string name) -> void {
                     mainLoop->deleteScene(name);
                 })
+            .addFunction("getScene",
+                +[](std::string name) -> Scene* {
+                    return mainLoop->getScene(name);
+                })
+            .addFunction("getLoadedScenes",
+                +[]() -> std::unordered_map<std::string, Scene*> {
+                    return mainLoop->getLoadedScenes();
+                })
             //.addFunction("", +[]() -> void {})
             .deriveClass<Transform, Component>("Transform")
                 .addProperty("position",
@@ -278,6 +286,20 @@ static void registerLuaFunctions() {
                 .addFunction("addImpulse", &RigidBody::addImpulse)
                 .addFunction("clearForces", &RigidBody::clearForces)
             .endClass()
+            .deriveClass<AudioListenerComponent, Component>("AudioListenerComponent")
+                .addFunction("setVelocity", &AudioListenerComponent::setVelocity)
+            .endClass()
+            .deriveClass<AudioSourceComponent, Component>("AudioSourceComponent")
+                .addFunction("playOnce", &AudioSourceComponent::playOnce)
+                .addFunction("playLooped", &AudioSourceComponent::playLooped)
+                .addFunction("stop", &AudioSourceComponent::stop)
+                .addFunction("isPaused", &AudioSourceComponent::isPaused)
+                .addFunction("hasFinished", &AudioSourceComponent::hasFinished)
+                .addFunction("hasStopped", &AudioSourceComponent::hasStopped)
+                .addFunction("pause", &AudioSourceComponent::pause)
+                .addFunction("loop", &AudioSourceComponent::loop)
+                .addFunction("setVolume", &AudioSourceComponent::setVolume)
+            .endClass()
         .endNamespace()
         // Esto es importante ya que Lua no lo puede hacer por sí mismo
         .beginNamespace("casts")
@@ -308,6 +330,10 @@ static void registerLuaFunctions() {
                     +[](Component* variable) -> SpriteRenderer* { return static_cast<SpriteRenderer*>(variable); })
                 .addFunction("RigidBody",
                     +[](Component* variable) -> RigidBody* { return static_cast<RigidBody*>(variable); })
+                .addFunction("AudioListenerComponent",
+                    +[](Component* variable) -> AudioListenerComponent* { return static_cast<AudioListenerComponent*>(variable); })
+                .addFunction("AudioSourceComponent",
+                    +[](Component* variable) -> AudioSourceComponent* { return static_cast<AudioSourceComponent*>(variable); })
             .endNamespace()
         .endNamespace();
 }

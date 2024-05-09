@@ -5,7 +5,7 @@
 
 namespace Tapioca {
 Tapioca::AudioSource::AudioSource(Sound sound, Vector3 pos, bool isPaused, bool isLooped)
-    : isPaused(isPaused), maxDistance(100000), minDistance(1), pan(0), playbackSpeed(1), 
+    : maxDistance(100000), minDistance(1), pan(0), playbackSpeed(1), 
     currentTimeStamp(0), isLooped(isLooped), volume(0), position(pos) 
 {
     irrklang::vec3df p(pos.x, pos.y, pos.z);
@@ -17,7 +17,7 @@ Tapioca::AudioSource::AudioSource(Sound sound, Vector3 pos, bool isPaused, bool 
 }
 
 Tapioca::AudioSource::AudioSource(Sound sound, bool isPaused, bool isLooped)
-    : isPaused(isPaused), isLooped(isLooped), maxDistance(100000), minDistance(1), pan(0), 
+    : isLooped(isLooped), maxDistance(100000), minDistance(1), pan(0), 
     playbackSpeed(1), currentTimeStamp(0), volume(0), position(Vector3()) 
 {
     iSound = Tapioca::SoundManager::instance()->soundEngine->play2D(sound.source, isLooped, true);
@@ -96,6 +96,12 @@ void Tapioca::AudioSource::playOnce(bool spatialised) {
         setPaused(false);
     }
 }
+
+bool AudioSource::isPaused() { return iSound->getIsPaused(); }
+
+bool AudioSource::hasFinished() { return iSound->isFinished(); }
+
+bool AudioSource::hasStopped() { return iSound->getIsPaused() || iSound->isFinished(); }
 
 void Tapioca::AudioSource::playLooped(bool spatialised) {
     if (iSound != nullptr) {

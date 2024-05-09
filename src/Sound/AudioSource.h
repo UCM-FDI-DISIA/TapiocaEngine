@@ -15,7 +15,7 @@ class Sound;
 class TAPIOCA_API AudioSource {
 private:
     irrklang::ISound* iSound;   // Puntero al sonido que se reproduce
-    bool isPaused;              // Indica si el sonido esta pausado o no
+    //bool isPaused;              // Indica si el sonido esta pausado o no
     float maxDistance;          // Distancia a partir de la cual el sonido ya no se atenua
     float minDistance;          // Distancia a partir de la cual el sonido empieza a atenuarse
     float pan;                  // 0 es el centro , -1 la derecha  y 1 la izquierda , solo aplicable a fuentes 2D
@@ -48,6 +48,9 @@ public:
     */
     ~AudioSource() {};
 
+    bool isPaused();
+    bool hasFinished();
+    bool hasStopped();
     /**
     * @brief Establece si el sonido esta pausado o no
     * @param p Indica si el sonido esta pausado o no

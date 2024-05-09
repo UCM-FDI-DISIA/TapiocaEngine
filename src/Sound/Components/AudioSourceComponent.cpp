@@ -8,7 +8,7 @@
 
 namespace Tapioca {
 AudioSourceComponent::AudioSourceComponent() : source(nullptr), sound(nullptr), transform(nullptr), 
-    sourcePath(""), is3D(false), isLooping(false), isPaused(true), volumen(0.0f), playSpeed(0.0f) { }
+    sourcePath(""), is3D(false), isLooping(false), paused(true), volumen(0.0f), playSpeed(0.0f) { }
 
 AudioSourceComponent::~AudioSourceComponent() {
     if (source != nullptr) {
@@ -30,7 +30,7 @@ bool AudioSourceComponent::initComponent(const CompMap& variables) {
     if (!setValueFromMap(isLooping, "islooping", variables)) {
         logInfo("AudioSourceComponent: No se encontro el valor de islooping. Se inicializo a false.");
     }
-    if (!setValueFromMap(isPaused, "ispaused", variables)) {
+    if (!setValueFromMap(paused, "ispaused", variables)) {
         logInfo("AudioSourceComponent: No se encontro el valor de ispaused. Se inicializo a true.");
     }
     if (!setValueFromMap(sourcePath, "sourcepath", variables)) {
@@ -46,8 +46,8 @@ void AudioSourceComponent::awake() {
         position = transform->getGlobalPosition();
         sound = new Sound(sourcePath);
         if (sound != nullptr) {
-            if (is3D) source = new AudioSource(*sound, position, isPaused, isLooping);
-            else source = new AudioSource(*sound, isPaused, isLooping);
+            if (is3D) source = new AudioSource(*sound, position, paused, isLooping);
+            else source = new AudioSource(*sound, paused, isLooping);
         }
     }
 }
@@ -65,8 +65,14 @@ void AudioSourceComponent::playLooped() { source->playLooped(is3D); }
 
 void AudioSourceComponent::stop() { source->stop(); }
 
+bool AudioSourceComponent::isPaused() { return source->isPaused(); }
+
+bool AudioSourceComponent::hasFinished() { return source->hasFinished(); }
+
+bool AudioSourceComponent::hasStopped() { return source->hasStopped(); }
+
 void AudioSourceComponent::pause(bool p) {
-    isPaused = p;
+    paused = p;
     source->setPaused(p);
 }
 void AudioSourceComponent::loop(bool l) {

@@ -30,7 +30,7 @@ private:
 
     bool is3D; // Indica si queremos una fuente de sonido espacializada o no
     bool isLooping;
-    bool isPaused;
+    bool paused;
     float volumen;
     float playSpeed;
 
@@ -78,6 +78,21 @@ public:
     * @brief Para la reproduccion del sonido
     */
     void stop();
+    /**
+    * @brief Devuelve si el sonido esta pausado
+    * @return Devuelve true si el sonido esta pausado, false para lo contrario.
+    */
+    bool isPaused();
+    /**
+    * @brief Devuelve si ha terminado de reproducirse el sonido
+    * @return Devuelve true si el sonido ha terminado, false para lo contrario.
+    */
+    bool hasFinished();
+    /**
+    * @brief Devuelve si el sonido no esta reproduciendose
+    * @return Devuelve false si el sonido esta reproduciendose, true para lo contrario.
+    */
+    bool hasStopped();
     /**
     * @brief Pausa o reanuda la reproduccion del sonido
     * @param p Indica si se pausa o reanuda la reproduccion
