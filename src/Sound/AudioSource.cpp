@@ -4,25 +4,27 @@
 #include <irrKlang.h>
 
 namespace Tapioca {
-AudioSource::AudioSource(Sound sound, Vector3 pos, bool isPaused, bool isLooped) : maxDistance(100000), minDistance(1), 
-    pan(0), playbackSpeed(1), currentTimeStamp(0), isLooped(isLooped), volume(0), position(pos) 
-{
+AudioSource::AudioSource(Sound sound, Vector3 pos, bool isPaused, bool isLooped)
+    : maxDistance(100000), minDistance(1), pan(0), playbackSpeed(1), currentTimeStamp(0), isLooped(isLooped), volume(0),
+      position(pos) {
     irrklang::vec3df p(pos.x, pos.y, pos.z);
     iSound = SoundManager::instance()->soundEngine->play3D(sound.source, p, isLooped, true);
     if (iSound == nullptr) {
         logError(("No se pudo cargar el sonido , no se encuentra el archivo " + sound.sourceFile).c_str());
     }
-    else setPaused(isPaused);
+    else
+        setPaused(isPaused);
 }
 
-AudioSource::AudioSource(Sound sound, bool isPaused, bool isLooped) : isLooped(isLooped), maxDistance(100000), 
-    minDistance(1), pan(0), playbackSpeed(1), currentTimeStamp(0), volume(0), position(Vector3()) 
-{
+AudioSource::AudioSource(Sound sound, bool isPaused, bool isLooped)
+    : isLooped(isLooped), maxDistance(100000), minDistance(1), pan(0), playbackSpeed(1), currentTimeStamp(0), volume(0),
+      position(Vector3()) {
     iSound = SoundManager::instance()->soundEngine->play2D(sound.source, isLooped, true);
     if (iSound == nullptr) {
         logError(("No se pudo cargar el sonido , no se encuentra el archivo " + sound.sourceFile).c_str());
     }
-    else setPaused(isPaused);
+    else
+        setPaused(isPaused);
 }
 
 void AudioSource::setPaused(bool p) {
@@ -86,17 +88,24 @@ void AudioSource::playOnce(bool spatialised) {
             irrklang::vec3df p(position.x, position.y, position.z);
             iSound = SoundManager::instance()->soundEngine->play3D(iSound->getSoundSource(), p, isLooped, true);
         }
-        else iSound = SoundManager::instance()->soundEngine->play2D(iSound->getSoundSource(), isLooped, true);
+        else
+            iSound = SoundManager::instance()->soundEngine->play2D(iSound->getSoundSource(), isLooped, true);
 
         setPaused(false);
     }
 }
 
-bool AudioSource::isPaused() { return iSound->getIsPaused(); }
+bool AudioSource::isPaused() {
+    if (iSound != nullptr) return iSound->getIsPaused();
+}
 
-bool AudioSource::hasFinished() { return iSound->isFinished(); }
+bool AudioSource::hasFinished() {
+    if (iSound != nullptr) return iSound->isFinished();
+}
 
-bool AudioSource::hasStopped() { return iSound->getIsPaused() || iSound->isFinished(); }
+bool AudioSource::hasStopped() {
+    if (iSound != nullptr) return iSound->getIsPaused() || iSound->isFinished();
+}
 
 void AudioSource::playLooped(bool spatialised) {
     if (iSound != nullptr) {
@@ -108,7 +117,8 @@ void AudioSource::playLooped(bool spatialised) {
             irrklang::vec3df p(position.x, position.y, position.z);
             iSound = SoundManager::instance()->soundEngine->play3D(iSound->getSoundSource(), p, isLooped, true);
         }
-        else iSound = SoundManager::instance()->soundEngine->play2D(iSound->getSoundSource(), isLooped, true);
+        else
+            iSound = SoundManager::instance()->soundEngine->play2D(iSound->getSoundSource(), isLooped, true);
 
         setPaused(false);
     }
