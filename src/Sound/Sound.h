@@ -22,6 +22,7 @@ private:
 protected:
     SoundManager* soundManager;       // Puntero al SoundManager
     irrklang::ISoundSource* source;   // Fuente de sonido
+    unsigned int length;              // Duracion del sonido en milisegundos
 
     // warning C4251 'Tapioca::Sound::sourceFile' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -33,8 +34,6 @@ protected:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-
-    unsigned int length;   // Duracion del sonido en milisegundos
 
 public:
     /**

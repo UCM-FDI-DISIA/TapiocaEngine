@@ -19,7 +19,10 @@ class TAPIOCA_API MainLoop : public Singleton<MainLoop> {
 private:
     friend Singleton<MainLoop>;
 
-    DynamicLibraryLoader* loader;   // Cargador de bibliotecas dinamicas
+    DynamicLibraryLoader* loader;                        // Cargador de bibliotecas dinamicas
+    uint64_t deltaTime;                                  // Tiempo transcurrido desde el ultimo tick
+    static const uint64_t MAX_NUM_FIXED_UDPATES = 150;   // Numero maximo de fixedUpdates
+    bool finish;                                         // True si va a terminar la ejecucion, false en caso contrario
 
     // warning C4251 'Tapioca::MainLoop::assetsPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -52,9 +55,6 @@ private:
 #pragma warning(default : 4251)
 #endif
 
-    uint64_t deltaTime;                                  // Tiempo transcurrido desde el ultimo tick
-    static const uint64_t MAX_NUM_FIXED_UDPATES = 150;   // Numero maximo de fixedUpdates
-    bool finish;                                         // True si va a terminar la ejecucion, false en caso contrario
 
     /**
     * @brief Inicializa los modulos y comprueba si hay escenas cargadas
@@ -139,7 +139,7 @@ public:
     * @brief Devuelve todas las escenas cargadas
     * @return unordered_map con las escenas cargadas
     */
-    std::unordered_map<std::string, Scene*> getLoadedScenes() const;
+    inline std::unordered_map<std::string, Scene*> getLoadedScenes() const { return loadedScenes; }
     /**
     * @brief Devuelve la escena
     * @param sc Nombre de la escena que se quiere obtener

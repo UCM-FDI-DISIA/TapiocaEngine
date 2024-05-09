@@ -60,6 +60,7 @@ public:
     /**
     * @brief Funcion para inicializar un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component.
+    * @param variables unordered_map con los parametros iniciales
     */
     bool initComponent(const CompMap& variables) override;
     /**
@@ -75,6 +76,7 @@ public:
     /**
     * @brief Funcion para actualizar el estado de un componente. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component
+    * @param deltaTime Tiempo transcurrido desde el ultimo frame
     */
     void update(const uint64_t deltaTime) override;
     /**
@@ -85,6 +87,8 @@ public:
     /**
     * @brief Funcion para recibir eventos. Se llama solo, no llamar manualmente.
     * Para saber como se implementa, revisar la clase Component
+    * @param id Identificador del evento
+    * @param info Informacion adicional del evento
     */
     void handleEvent(std::string const& id, void* info) override;
 
@@ -92,7 +96,7 @@ public:
     * @brief Devuelve la tabla del objeto de Lua. Para usarla hay que incluir lua.hpp y LuaBridge.h
     * @return Tabla del objeto de Lua
     */
-    luabridge::LuaRef* getTable() const { return objectTable; }
+    inline luabridge::LuaRef* getTable() const { return objectTable; }
     /**
     * @brief Llama a una funcion del objeto de Lua. Para comprobar si ha producido un error usar el parametro success
     * @param name Nombre de la funcion a llamar

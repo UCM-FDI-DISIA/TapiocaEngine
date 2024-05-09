@@ -356,6 +356,4 @@ void SceneLoader::exposeUIvalues() {
     lua_pushinteger(luaState, ImGuiInputTextFlags_EscapeClearsAll);
     lua_setglobal(luaState, "ImGuiInputTextFlags_EscapeClearsAll");
 }
-
-
 }

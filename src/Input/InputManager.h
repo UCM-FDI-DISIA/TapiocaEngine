@@ -17,9 +17,9 @@ class TAPIOCA_API InputManager : public Singleton<InputManager>, public WindowMo
 private:
     friend Singleton<InputManager>;
 
-    const int DEFAULT_DEADZONE = 1000;
-    const int MOUSE_MOTION_VALUE = -2;
-    const int MOUSE_WHEEL_VALUE = -3;
+    const int DEFAULT_DEADZONE = 1000;   // Deadzone por defecto de los mandos
+    const int MOUSE_MOTION_VALUE = -2;   // Valor de los eventos de movimiento del raton
+    const int MOUSE_WHEEL_VALUE = -3;    // Valor de los eventos de rueda del raton
 
     // warning C4251 'Tapioca::InputManager::mousePos' :
     // struct 'std::pair<int32_t,int32_t>' necesita tener una interfaz DLL para que la utilicen

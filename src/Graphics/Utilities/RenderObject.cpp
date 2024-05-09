@@ -1,7 +1,6 @@
 #include "RenderObject.h"
 #include "OgreMovableObject.h"
 #include "RenderNode.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif

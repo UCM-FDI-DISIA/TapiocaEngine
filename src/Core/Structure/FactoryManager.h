@@ -28,7 +28,7 @@ private:
 #endif
 
     /**
-    * @brief Inicializa el modulo
+    * @brief Constructor por defecto
     */
     FactoryManager() { }
 

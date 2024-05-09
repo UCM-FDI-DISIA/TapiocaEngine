@@ -1,5 +1,4 @@
 #include "Plane.h"
-// warnings de ogre
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif

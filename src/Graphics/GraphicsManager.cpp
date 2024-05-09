@@ -36,15 +36,16 @@
 
 namespace Tapioca {
 GraphicsManager::GraphicsManager(std::string const& windowName, const uint32_t w, const uint32_t h)
-    : fsLayer(nullptr), mShaderGenerator(nullptr), cfgPath(), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr),
-      renderSys(nullptr), mMaterialMgrListener(nullptr), mainLoop(nullptr), windowManager(nullptr), ogreWindow(nullptr),
-      sdlWindow(nullptr), windowName(windowName), glContext(), planeNumber(0), billboardNumber(0),
-      nodeAnimatorNumber(0), particleSystemNumber(0), skyplaneNumber(0), skyboxNumber(0), mainLight(nullptr),
-      zOrders() { }
+    : fsLayer(nullptr), mShaderGenerator(nullptr), mRoot(nullptr), scnMgr(nullptr), mshMgr(nullptr), renderSys(nullptr),
+      mMaterialMgrListener(nullptr), mainLoop(nullptr), windowManager(nullptr), ogreWindow(nullptr), sdlWindow(nullptr),
+      glContext(), planeNumber(0), billboardNumber(0), nodeAnimatorNumber(0), particleSystemNumber(0),
+      skyplaneNumber(0), skyboxNumber(0), mainLight(nullptr), cfgPath(""), windowName(windowName), zOrders(),
+      selfManagedNodes() { }
 
 
 GraphicsManager::~GraphicsManager() {
-    for (auto& node : selfManagedNodes) delete node;
+    for (auto& node : selfManagedNodes)
+        delete node;
     selfManagedNodes.clear();
 
     shutDown();
@@ -123,33 +124,32 @@ bool GraphicsManager::initConfig() {
         return false;
     }
 
-    // informacion de la ventana
+    // Informacion de la ventana
     Ogre::NameValuePairList miscParams;
 
-    // se coge la informacion del sistema de render
+    // Se coge la informacion del sistema de render
     Ogre::ConfigOptionMap ropts = renderSys->getConfigOptions();
     std::istringstream mode(ropts["Video Mode"].currentValue);
     Ogre::String token;
-    mode >> windowWidth;    // width
-    mode >> token;          // 'x' as seperator between width and height
-    mode >> windowHeight;   // height
+    mode >> windowWidth;
+    mode >> token;
+    mode >> windowHeight;
 
-    // se agrega informacion del sistema de render y demas
+    // Se agrega informacion del sistema de render y demas
     miscParams["FSAA"] = ropts["FSAA"].currentValue;
     miscParams["vsync"] = ropts["VSync"].currentValue;
     miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
 
-    // crear ventana de Ogre (solo para render)
-    // ya antes se le ha indicado en los parametros que existe la ventana de SDL
+    // Crear ventana de Ogre (solo para render)
     SDL_SysWMinfo wmInfo = {0};
     SDL_VERSION(&wmInfo.version);
     if (!SDL_GetWindowWMInfo(sdlWindow, &wmInfo)) {
-        logError(("GraphicsManager: Error al obtener informacion de la ventana de SDL: " 
-                  + std::string(SDL_GetError())).c_str());
+        logError(("GraphicsManager: Error al obtener informacion de la ventana de SDL: " + std::string(SDL_GetError()))
+                     .c_str());
         return false;
     }
-    // vincular ventana de SDL con Ogre
+    // Vincular ventana de SDL con Ogre
     miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
     ogreWindow = mRoot->createRenderWindow(windowName, windowWidth, windowHeight, false, &miscParams);
 
@@ -162,10 +162,10 @@ bool GraphicsManager::initConfig() {
         return false;
     }
 
-    // guardarse el mesh manager
+    // Guardarse el mesh manager
     mshMgr = mRoot->getMeshManager();
 
-    // si da problemas usar el renderSys cogerlo directamente desde root
+    // Si da problemas usar el renderSys cogerlo directamente desde root
     renderSys->_initRenderTargets();
 
     try {
@@ -243,7 +243,8 @@ void GraphicsManager::setUpShadows() {
         pssmSetup->calculateSplitPoints(NUM_TEXTURES, 1.0, scnMgr->getShadowFarDistance());
         Ogre::Vector4 splitPoints(0.0);
         Ogre::PSSMShadowCameraSetup::SplitPointList splitPointList = pssmSetup->getSplitPoints();
-        for (int i = 0; i <= NUM_TEXTURES; ++i) splitPoints[i] = splitPointList[i];
+        for (int i = 0; i <= NUM_TEXTURES; ++i)
+            splitPoints[i] = splitPointList[i];
 
         pssmSetup->setOptimalAdjustFactor(0, 2);
         pssmSetup->setOptimalAdjustFactor(1, 1);
@@ -266,11 +267,9 @@ void GraphicsManager::setUpShadows() {
 void GraphicsManager::loadResources() const {
 #ifdef _CREATE_EXE
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./Ogre/Main", "FileSystem", 
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "./Ogre/Main", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        cfgPath + "./Ogre/RTShaderLib", "FileSystem", 
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        cfgPath + "./Ogre/RTShaderLib", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 #else
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         cfgPath + "./TapiocaFiles/Graphics/OgreFiles/Main", "FileSystem",
@@ -282,11 +281,10 @@ void GraphicsManager::loadResources() const {
 
     // Shaders para las sombras y material del physics debug
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        "./TapiocaFiles/Graphics/Shadows", "FileSystem", 
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        "./TapiocaFiles/Graphics/Shadows", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        "./TapiocaFiles/Graphics/ColliderDrawer", "FileSystem", 
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
+        "./TapiocaFiles/Graphics/ColliderDrawer", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+        true);
 
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
@@ -394,7 +392,8 @@ int GraphicsManager::askForZOrder(int requiredZOrder) {
         }
         if (!found) zOrder = -1;
     }
-    else zOrders.insert(requiredZOrder);
+    else
+        zOrders.insert(requiredZOrder);
     return zOrder;
 }
 
@@ -430,14 +429,12 @@ LightPoint* GraphicsManager::createLightPoint(RenderNode* const node, const Vect
 }
 
 LightRectlight* GraphicsManager::createLightRectlight(RenderNode* const node, const Vector3 direction,
-                                                      const float width, const float height, const Vector4 color)
-{
+                                                      const float width, const float height, const Vector4 color) {
     return new LightRectlight(scnMgr, node, color, width, height, direction);
 }
 
 LightSpotlight* GraphicsManager::createLightSpotlight(RenderNode* const node, const Vector3 direction,
-                                                      const Vector4 color) 
-{
+                                                      const Vector4 color) {
     return new LightSpotlight(scnMgr, node, color, direction);
 }
 
@@ -468,15 +465,13 @@ Mesh* GraphicsManager::createMesh(RenderNode* const node, std::string const& mes
 }
 
 Billboard* GraphicsManager::createBillboard(RenderNode* const node, std::string const& name, const Vector3 position,
-                                            const Vector4 colour) 
-{
+                                            const Vector4 colour) {
     Tapioca::BillboardSet* set = new BillboardSet(scnMgr, node, name, 1);
     return set->addBillboard(position, colour);
 }
 
 BillboardSet* GraphicsManager::createBillboardSet(RenderNode* const node, std::string const& name,
-                                                  const unsigned int poolSize) 
-{
+                                                  const unsigned int poolSize) {
     return new BillboardSet(scnMgr, node, name, poolSize);
 }
 
@@ -486,14 +481,12 @@ BillboardSet* GraphicsManager::createBillboardSetWithName(RenderNode* const node
 }
 
 ParticleSystem* GraphicsManager::createParticleSystem(RenderNode* const node, std::string const& name,
-                                                      std::string const& templateName, const bool emitting) 
-{
+                                                      std::string const& templateName, const bool emitting) {
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
 
 ParticleSystem* GraphicsManager ::createParticleSystemWithName(RenderNode* const node, std::string const& templateName,
-                                                               const bool emitting)
-{
+                                                               const bool emitting) {
     std::string name = "ParticleSystem" + std::to_string(particleSystemNumber++);
     return new ParticleSystem(scnMgr, node, name, templateName, emitting);
 }
@@ -501,23 +494,20 @@ ParticleSystem* GraphicsManager ::createParticleSystemWithName(RenderNode* const
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                     const Vector3& up, std::string const& name, const float width, const float height,
-                                    const int xSegments, const int ySegments, std::string const& material)
-{
+                                    const int xSegments, const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up, name, width, height, xSegments, ySegments);
 }
 
 Plane* GraphicsManager::createPlaneWithName(RenderNode* const node, const Vector3 rkNormal, const float fConstant,
                                             const Vector3& up, const float width, const float height,
-                                            const int xSegments, const int ySegments, std::string const& material) 
-{
+                                            const int xSegments, const int ySegments, std::string const& material) {
     std::string name = "Plane" + std::to_string(planeNumber++);
     return new Plane(scnMgr, node, mshMgr, rkNormal, fConstant, up, name, width, height, xSegments, ySegments);
 }
 
 Plane* GraphicsManager::createPlane(RenderNode* const node, const float a, const float b, const float c, const float d,
                                     const Vector3& up, std::string const& name, const float width, const float height,
-                                    const int xSegments, const int ySegments, std::string const& material)
-{
+                                    const int xSegments, const int ySegments, std::string const& material) {
     return new Plane(scnMgr, node, mshMgr, a, b, c, d, up, name, width, height, xSegments, ySegments);
 }
 
@@ -526,8 +516,7 @@ AnimationHelper* GraphicsManager::createAnimationHelper(Mesh* const object, cons
 }
 
 NodeAnimator* GraphicsManager::createNodeAnimator(RenderNode* const node, const float duration,
-                                                  const std::string& name) 
-{
+                                                  const std::string& name) {
     return new NodeAnimator(scnMgr, node, duration, name);
 }
 
@@ -537,14 +526,12 @@ NodeAnimator* GraphicsManager::createNodeAnimatorWithName(RenderNode* const node
 }
 
 Skybox* GraphicsManager::createSkybox(RenderNode* const node, std::string const& material, std::string const& name,
-                                      const float distC, const bool orderC)
-{
+                                      const float distC, const bool orderC) {
     return new Skybox(scnMgr, node, material, name, distC, orderC);
 }
 
 Skybox* GraphicsManager::createSkyboxWithName(RenderNode* const node, std::string const& material, const float distC,
-                                              const bool orderC) 
-{
+                                              const bool orderC) {
     std::string name = "Skybox" + std::to_string(skyboxNumber++);
     return new Skybox(scnMgr, node, material, name, distC, orderC);
 }
@@ -553,8 +540,7 @@ Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string co
                                           std::string const& name, const bool enable, const Vector3 rkNormal,
                                           const float fConstant, const float scale, const float tiling,
                                           const bool drawFirst, const float bow, const int xsegments,
-                                          const int ysegments)
-{
+                                          const int ysegments) {
     return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
                         bow, xsegments, ysegments);
 }
@@ -562,8 +548,7 @@ Skyplane* GraphicsManager::createSkyplane(RenderNode* const node, std::string co
 Skyplane* GraphicsManager::createSkyplaneWithName(RenderNode* const node, std::string const& materialName,
                                                   const bool enable, const Vector3 rkNormal, const float fConstant,
                                                   const float scale, const float tiling, const bool drawFirst,
-                                                  const float bow, const int xsegments, const int ysegments) 
-{
+                                                  const float bow, const int xsegments, const int ysegments) {
     std::string name = "Skyplane" + std::to_string(skyplaneNumber++);
     return new Skyplane(scnMgr, node, mshMgr, materialName, name, enable, rkNormal, fConstant, scale, tiling, drawFirst,
                         bow, xsegments, ysegments);

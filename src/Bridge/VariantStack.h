@@ -5,6 +5,8 @@
 namespace luabridge {
 /**
 * @brief Especializacion de la clase Stack para el tipo CompValue
+* @param L Puntero al estado de lua
+* @param value Valor a meter en la pila
 */
 template<>
 struct Stack<CompValue> {

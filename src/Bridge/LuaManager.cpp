@@ -330,6 +330,4 @@ int LuaManager::print(lua_State* L) {
 #endif
     return 0;
 }
-
-
 }

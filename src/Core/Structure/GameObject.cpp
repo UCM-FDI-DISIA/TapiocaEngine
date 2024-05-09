@@ -7,7 +7,7 @@
 namespace Tapioca {
 GameObject::GameObject() : scene(nullptr), alive(true), handler(""), zOrder(0) { }
 
-GameObject::~GameObject() {
+GameObject::~GameObject() { 
     for (auto& i : components) delete i.second;
 }
 
@@ -111,7 +111,11 @@ void GameObject::render() const {
     }
 }
 
-void GameObject::awake() { for (auto comp : cmpOrder) comp->awake(); }
+void GameObject::awake() {
+    for (auto comp : cmpOrder) comp->awake();
+}
 
-void GameObject::start() { for (auto comp : cmpOrder) comp->start(); }
+void GameObject::start() {
+    for (auto comp : cmpOrder) comp->start();
+}
 }

@@ -9,21 +9,26 @@ class Component;
 */
 class TAPIOCA_API ComponentBuilder {
 public:
+    /**
+    * @brief Constructor por defecto
+    * @param id Id del componente que crea
+    */
     ComponentBuilder(const std::string& id) : id(id) { }
+    /**
+    * @brief Destructor virtual por defecto
+    */
     virtual ~ComponentBuilder() { }
     
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    /**
-    * @brief Id del componente que crea.
-    */
-    std::string id;
+    std::string id; // Id del componente que crea
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
+
     /**
-    * @brief Crea un componente.
+    * @brief Crea un componente
     */
     virtual Component* createComponent() = 0;
 };

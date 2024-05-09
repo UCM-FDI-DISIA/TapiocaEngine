@@ -37,7 +37,7 @@ bool SoundManager::checkAudioFolder() const {
     }
     else return true;
 }
-void SoundManager::createAudioFolder() {
+void SoundManager::createAudioFolder() const {
     if (!checkAudioFolder()) {
         try {
             if (std::filesystem::create_directory(audioFolderPath)) {

@@ -9,7 +9,7 @@
 #include "checkML.h"
 
 namespace Tapioca {
-MainLoop::MainLoop() : finish(false), deltaTime(0), assetsPath("assets") {
+MainLoop::MainLoop() : deltaTime(0), finish(false), assetsPath("assets") {
     if (!std::filesystem::exists(assetsPath)) {
         logInfo(("MainLoop: La carpeta \"" + assetsPath + "\" no existe.").c_str());
 
@@ -72,7 +72,7 @@ void MainLoop::start() {
 
 void MainLoop::run() {
     start();
-    // Se vuelven a inicializar por si acaso
+
     finish = false;
     deltaTime = 0;
     auto currentTime = std::chrono::high_resolution_clock::now();
@@ -114,7 +114,6 @@ void MainLoop::update() {
     for (auto& s : loadedScenes) {
         if (s.second->isActive()) s.second->update(deltaTime);
     }
-        
 }
 
 void MainLoop::fixedUpdate() {
@@ -123,11 +122,10 @@ void MainLoop::fixedUpdate() {
     for (auto& s : loadedScenes) {
         if (s.second->isActive()) s.second->fixedUpdate();
     }
-        
 }
 
-void MainLoop::render() {
-    for (auto mod : modules) mod->render();
+void MainLoop::render() { 
+    for (auto mod : modules) mod->render(); 
 }
 
 void MainLoop::refresh() {
@@ -192,8 +190,6 @@ void MainLoop::pushEvent(Event const& e, bool const delay) {
         }
     }
 }
-
-std::unordered_map<std::string, Scene*> MainLoop::getLoadedScenes() const { return loadedScenes; }
 
 Scene* MainLoop::getScene(std::string sc) {
     auto aux = loadedScenes.find(sc);

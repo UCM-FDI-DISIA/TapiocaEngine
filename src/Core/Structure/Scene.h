@@ -15,6 +15,13 @@ class GameObject;
 class TAPIOCA_API Scene {
 private:
     friend class GameObject;
+
+    bool active;                    // Indica si la escena esta activa
+    uint32_t windowWidth;           // Anchura de la ventana
+    uint32_t windowHeight;          // Altura de la ventana
+    uint32_t firstWindowWidth;      // Anchura de la ventana antes de escalarse
+    uint32_t firstWindowHeight;     // Altura de la ventana antes de escalarse
+
     // warning C4251 'Tapioca::Scene::objects' :
     // class 'std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::Scene'
@@ -39,12 +46,6 @@ private:
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-    
-    bool active;                    // Indica si la escena esta activa
-    uint32_t windowWidth;           // Anchura de la ventana
-    uint32_t windowHeight;          // Altura de la ventana
-    uint32_t firstWindowWidth;      // Anchura de la ventana antes de escalarse
-    uint32_t firstWindowHeight;     // Altura de la ventana antes de escalarse
 
 public:
     /**
@@ -59,7 +60,7 @@ public:
     * @brief Devuelve los objetos de esta escena
     * @return Vector que contiene punteros a los objetos de esta escena
     */
-    std::unordered_set<GameObject*> getObjects() const;
+    inline std::unordered_set<GameObject*> getObjects() const { return objects; }
     /**
     * @brief Devuelve el objeto al que esta asociado un handler. Si no encuentra un objeto, devuelve nullptr
     * @param handler Handler del objeto que se quiere obtener
@@ -72,7 +73,7 @@ public:
     * @param object Objeto que se quiere anadir a la escena
     * @param handler Handler que se quiere asociar al objeto que se quiere anadir. Los handlers deben ser unicos
     * @param zIndex Capa en la que se quiere anadir el objeto
-    * @return True se se ha anadido correctamente a la escena, false en caso contrario
+    * @return true se se ha anadido correctamente a la escena, false en caso contrario
     */
     bool addObject(GameObject* const object, std::string const& handler = "", int zIndex = 0);
     /**

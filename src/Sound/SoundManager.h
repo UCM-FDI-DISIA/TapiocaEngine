@@ -15,12 +15,12 @@ class AudioListener;
 * @brief Clase que gestiona el audio del juego
 */
 class TAPIOCA_API SoundManager : public Singleton<SoundManager>, public Module {
+private:
     friend Singleton<SoundManager>;
     friend Sound;
     friend AudioSource;
     friend AudioListener;
 
-private:
     AudioListener* al;                     // Puntero al AudioListener
     irrklang::ISoundEngine* soundEngine;   // Puntero al ISoundEngine de irrKlang
 
@@ -58,17 +58,17 @@ public:
     void setListener(AudioListener al);
 
     /*
-    * @brief comprueba si existe la carpeta audio dentro d eassets
+    * @brief Comprueba si existe la carpeta audio dentro d eassets
     */
     bool checkAudioFolder() const;
 
     /*
-    * @brief crea la carpeta audio dentro de assets
+    * @brief Crea la carpeta audio dentro de assets
     */
-    void createAudioFolder();
+    void createAudioFolder() const;
 
     /*
-    * @brief devuelve la carpeta a partir de la cual se buscan los sonidos
+    * @brief Devuelve la carpeta a partir de la cual se buscan los sonidos
     */
     std::string getAudioPath();
 };

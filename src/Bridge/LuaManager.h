@@ -89,7 +89,7 @@ public:
     * @brief Devuelve un puntero al estado de Lua usado para scripting
     * @return Puntero al estado de Lua usado para scripting
     */
-    lua_State* getLuaState() const { return L; }
+    inline lua_State* getLuaState() const { return L; }
 
     /**
     * @brief Llama a una funcion de Lua global. Para comprobar si ha producido un error usar el parametro success

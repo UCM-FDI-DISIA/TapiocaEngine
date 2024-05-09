@@ -64,8 +64,22 @@ private:
     Ogre::SceneManager* scnMgr;                          // Gestor de escenas
     Ogre::MeshManager* mshMgr;                           // Gestor de mallas
     Ogre::RenderSystem* renderSys;                       // Sistema de render usado
-    SGTechniqueResolverListener* mMaterialMgrListener;   // Listener para crear shaders para los 
-                                                         // materiales que vienen sin ellos
+    SGTechniqueResolverListener*mMaterialMgrListener;    // Listener para crear shaders 
+                                                        // para los materiales que vienen sin ellos
+    int nodeAnimatorNumber;     // Numero de animadores de nodos
+    int planeNumber;            // Numero de planos
+    int billboardNumber;        // Numero de billboards
+    int particleSystemNumber;   // Numero de sistemas de particulas
+    int skyboxNumber;           // Numero de skyboxes
+    int skyplaneNumber;         // Numero de skyplanes
+
+    LightDirectional* mainLight;   // Luz principal que produce sombras
+
+    MainLoop* mainLoop;               // Puntero a MainLoop
+    Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
+    WindowManager* windowManager;     // Puntero al WindowManager
+    SDL_Window* sdlWindow;            // Ventana de SDL
+    void* glContext;                  // Contexto de OpenGL
 
     // warning C4251 'Tapioca::GraphicsManager::cfgPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -83,31 +97,13 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::string cfgPath;      // Ruta donde se guardar los archivos de config (bin)
-    std::string windowName;   // Nombre de la ventana
-
+    std::string cfgPath;                                // Ruta donde se guardar los archivos de config (bin)
+    std::string windowName;                             // Nombre de la ventana
     std::unordered_set<RenderNode*> selfManagedNodes;   // Nodos gestionados por GraphicsManager
-
-    std::unordered_set<int> zOrders;   // ZOrders de las camaras
+    std::unordered_set<int> zOrders;                    // ZOrders de las camaras
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
-
-    int nodeAnimatorNumber;     // Numero de animadores de nodos
-    int planeNumber;            // Numero de planos
-    int billboardNumber;        // Numero de billboards
-    int particleSystemNumber;   // Numero de sistemas de particulas
-    int skyboxNumber;           // Numero de skyboxes
-    int skyplaneNumber;         // Numero de skyplanes
-
-    LightDirectional* mainLight;   // Luz principal que produce sombras
-
-    MainLoop* mainLoop;               // Puntero a MainLoop
-    Ogre::RenderWindow* ogreWindow;   // Ventana de ogre (solo para render)
-    WindowManager* windowManager;     // Puntero al WindowManager
-    SDL_Window* sdlWindow;            // Ventana de SDL
-    void* glContext;                  // Contexto de OpenGL
-
 
     /**
     * @brief Carga plugIns especificados desde codigo
@@ -194,7 +190,8 @@ public:
     bool checkParticleSystemExists(std::string name);
 
     /**
-    * @brief 
+    * @brief Devuelve el zOrder disponible mas cercano al requerido
+    * @param requiredZOrder zOrder requerido
     */
     int askForZOrder(int requiredZOrder);
 

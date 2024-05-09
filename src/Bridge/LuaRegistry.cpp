@@ -12,5 +12,4 @@ LuaRegistry::LuaRegistry(lua_State* L) : L(L), map(L) {
         .endNamespace()
     .endNamespace();
 }
-
 }

@@ -81,7 +81,6 @@ void Tapioca::AudioSource::setPosition(Vector3 p) {
 void Tapioca::AudioSource::playOnce(bool spatialised) {
     if (iSound != nullptr) {
         iSound->stop();
-        // mysound->drop();
         // Nos aseguramos de que el audio empieza desde el principio
         iSound->setPlayPosition(0);
         setLooped(false);
@@ -101,7 +100,6 @@ void Tapioca::AudioSource::playOnce(bool spatialised) {
 void Tapioca::AudioSource::playLooped(bool spatialised) {
     if (iSound != nullptr) {
         iSound->stop();
-        // mysound->drop();
         // Nos aseguramos de que el audio empieza desde el principio
         iSound->setPlayPosition(0);
         setLooped(true);

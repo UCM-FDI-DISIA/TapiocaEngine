@@ -28,6 +28,7 @@ public:
 
     /**
     * @brief Inicializa la instancia con los parametros deseados (... args)
+    * @param args Parametros para inicializar la instancia
     */
     template<typename... T_args>
     static T* create(T_args&&... args) {
@@ -48,5 +49,5 @@ public:
 };
 
 template<typename T>
-T* Singleton<T>::instance_ = nullptr;
+T* Singleton<T>::instance_ = nullptr; // Inicializacion de la instancia
 }

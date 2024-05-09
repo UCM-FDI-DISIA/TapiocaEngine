@@ -4,6 +4,7 @@
 
 namespace Tapioca {
 class Component;
+
 /**
 * @brief Concepto que define un componente valido: necesita heredar de Component y tener una id valida
 */

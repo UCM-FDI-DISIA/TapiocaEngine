@@ -55,5 +55,4 @@ inline void logError(const char* message) {
 #endif   // TAPIOCA_EXPORTS
 #endif   // _DEBUG
 }
-
 };

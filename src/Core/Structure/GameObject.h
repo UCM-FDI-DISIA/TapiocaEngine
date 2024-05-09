@@ -45,7 +45,7 @@ private:
     */
     void update(const uint64_t deltaTime);
     /**
-    * @brief Actualiza los componentes activos del objeto
+    * @brief Actualiza los componentes activos del objeto.
     * Se llama cada cierto tiempo fijo (Game::FIXED_DELTA_TIME)
     */
     void fixedUpdate();
