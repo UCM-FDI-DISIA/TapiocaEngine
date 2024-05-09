@@ -45,7 +45,10 @@ void AudioListenerComponent::awake() {
 
 void AudioListenerComponent::handleEvent(std::string const& id, void* info) {
     if (id == "posChanged") {
-        if (transform != nullptr) position = transform->getGlobalPosition();
+        if (transform != nullptr) {
+            position = transform->getGlobalPosition();
+            listener->setPosition(position);
+        }
         if (soundManager != nullptr) soundManager->setListener(*listener);
     }
     else if (id == "rotChanged") {
