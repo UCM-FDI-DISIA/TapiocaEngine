@@ -82,10 +82,11 @@ $(function() {
   <div class="headertitle"><div class="title">Referencia del archivo Exports.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;lua.hpp&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_exports_8h_source.html">Exports.h</a>&quot;</code><br />
+<code>#include &lt;lua.hpp&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
-<code>#include &quot;<a class="el" href="_exports_8h_source.html">Exports.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_main_loop_8h_source.html">Structure/MainLoop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_dynamic_library_loader_8h_source.html">Structure/DynamicLibraryLoader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_window_manager_8h_source.html">WindowManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_input_manager_8h_source.html">InputManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_factory_manager_8h_source.html">Structure/FactoryManager.h</a>&quot;</code><br />
@@ -96,7 +97,6 @@ $(function() {
 <code>#include &quot;<a class="el" href="_sound_manager_8h_source.html">SoundManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_lua_manager_8h_source.html">LuaManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_lua_registry_8h_source.html">LuaRegistry.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_dynamic_library_loader_8h_source.html">Structure/DynamicLibraryLoader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_basic_builder_8h_source.html">Structure/BasicBuilder.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_transform_8h_source.html">Components/Transform.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_rigid_body_8h_source.html">Components/RigidBody.h</a>&quot;</code><br />
@@ -110,11 +110,8 @@ $(function() {
 <code>#include &quot;<a class="el" href="_light_point_comp_8h_source.html">Components/LightPointComp.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_light_rect_comp_8h_source.html">Components/LightRectComp.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_light_spot_comp_8h_source.html">Components/LightSpotComp.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_skyplane_component_8h_source.html">Components/SkyplaneComponent.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_skybox_component_8h_source.html">Components/SkyboxComponent.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_key_frame_animator_8h_source.html">Components/KeyFrameAnimator.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_button_8h_source.html">Components/Button.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_drop_box_8h_source.html">Components/DropBox.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_image_8h_source.html">Components/Image.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_image_text_button_8h_source.html">Components/ImageTextButton.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_input_text_8h_source.html">Components/InputText.h</a>&quot;</code><br />
@@ -134,12 +131,16 @@ Espacios de nombres</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:a91f4dd1a4fcb2d361ff8602c07d81965" id="r_a91f4dd1a4fcb2d361ff8602c07d81965"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html#a91f4dd1a4fcb2d361ff8602c07d81965">Tapioca::initEngine</a> ()</td></tr>
+<tr class="memdesc:a91f4dd1a4fcb2d361ff8602c07d81965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa la referencia al <a class="el" href="class_tapioca_1_1_main_loop.html" title="Clase que contiene el bucle principal del motor.">MainLoop</a> y crea los modulos del motor.  <br /></td></tr>
 <tr class="separator:a91f4dd1a4fcb2d361ff8602c07d81965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac96ce5b8b203c55a5ff4902eafb26dd0" id="r_ac96ce5b8b203c55a5ff4902eafb26dd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html#ac96ce5b8b203c55a5ff4902eafb26dd0">Tapioca::deleteEngine</a> ()</td></tr>
+<tr class="memdesc:ac96ce5b8b203c55a5ff4902eafb26dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina la referencia al <a class="el" href="class_tapioca_1_1_main_loop.html" title="Clase que contiene el bucle principal del motor.">MainLoop</a>.  <br /></td></tr>
 <tr class="separator:ac96ce5b8b203c55a5ff4902eafb26dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6df4de0d4ac41ed120ae9bb5662ae617" id="r_a6df4de0d4ac41ed120ae9bb5662ae617"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html#a6df4de0d4ac41ed120ae9bb5662ae617">Tapioca::runEngine</a> ()</td></tr>
-<tr class="separator:a6df4de0d4ac41ed120ae9bb5662ae617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb7f65679d23919685c3991e644a500" id="r_abcb7f65679d23919685c3991e644a500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html#abcb7f65679d23919685c3991e644a500">Tapioca::runEngine</a> (std::string const  &amp;gameName=&quot;game&quot;)</td></tr>
+<tr class="memdesc:abcb7f65679d23919685c3991e644a500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intenta inicializar los modulos, crea las factorias, registra las funciones de Lua, mapea las entradas si existe el archivo de configuracion e inicializa el bucle principal.  <br /></td></tr>
+<tr class="separator:abcb7f65679d23919685c3991e644a500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d8fe2a1c21488fb443cd4a8b8a528aa" id="r_a2d8fe2a1c21488fb443cd4a8b8a528aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_tapioca.html#a2d8fe2a1c21488fb443cd4a8b8a528aa">Tapioca::mapInput</a> ()</td></tr>
+<tr class="memdesc:a2d8fe2a1c21488fb443cd4a8b8a528aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapea las entradas si existe el archivo de configuracion.  <br /></td></tr>
 <tr class="separator:a2d8fe2a1c21488fb443cd4a8b8a528aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

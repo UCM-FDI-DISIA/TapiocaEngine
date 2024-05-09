@@ -75,9 +75,9 @@ $(function() {
   <div class="headertitle"><div class="title"><a class="el" href="namespace_tapioca.html">Tapioca</a> Engine </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> </p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Autores</h1>
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> <img src="TapiocaEngine_logo.png" alt="" class="inline"/></p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Autores</h2>
 <ul>
 <li><a href="https://github.com/MattCastUCM">Matt Castellanos Silva</a></li>
 <li><a href="https://github.com/P4179">Pedro León Miranda</a></li>
@@ -90,11 +90,11 @@ Autores</h1>
 <li><a href="https://github.com/Jjianuo">Jianuo Wen</a></li>
 <li><a href="https://github.com/likangwu03">Likang Wu</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Descripción</h1>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Descripción</h2>
 <p>El motor de videojuegos <b><a class="el" href="namespace_tapioca.html">Tapioca</a> Engine</b> es un proyecto de software libre desarrollado por estudiantes de la Universidad Complutense de Madrid. El motor está siendo desarrollado en el marco de la asignatura de <b>Proyectos 3</b> del Grado en Desarrollo de Videojuegos. </p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Arquitectura y proceso de desarrollo</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Arquitectura y proceso de desarrollo</h2>
 <p><b><a class="el" href="namespace_tapioca.html">Tapioca</a> Engine</b> está desarrollado en <b>C++</b> con <b>Visual Studio</b>.</p>
 <p>El motor se divide en varios módulos que se encargan de diferentes aspectos del desarrollo de videojuegos. Estos módulos son:</p>
 <ul>
@@ -103,7 +103,7 @@ Arquitectura y proceso de desarrollo</h1>
 <li><b>Graphics</b>: Módulo encargado del renderizado de los gráficos</li>
 <li><b>Input</b>: Módulo encargado de la gestión de la entrada</li>
 <li><b>Physics</b>: Módulo encargado de la simulación física</li>
-<li><b>Audio</b>: Módulo encargado de la gestión del audio (sin implementar aún)</li>
+<li><b>Audio</b>: Módulo encargado de la gestión del audio</li>
 <li><b>UI</b>: Módulo encargado de la gestión de la interfaz gráfica</li>
 <li><b>Exports</b>: Módulo encargado de crear una librería dinámica que incluye los módulos anteriores</li>
 <li><b>Main</b>: Módulo encargado de ejecutar el motor</li>
@@ -120,41 +120,366 @@ Arquitectura y proceso de desarrollo</h1>
 </ul>
 <p>Se sigue una arquitectura basada en entidades y componentes (EC), y se hace uso de patrones de diseño, especialmente el patrón de factoría o <b>Factory Method</b>.</p>
 <p>El proceso de desarrollo del motor sigue una metodología ágil, concretamente <b>Scrum</b>. Para ver el tablero de tareas, haz click <a href="https://github.com/orgs/UCM-FDI-DISIA/projects/38/views/1">aquí</a> </p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Pipeline de generación de contenido</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Motor</h2>
-<p>Los distintos módulos que componen el motor se desarrollarán en la rama main y se crearán ramas separadas únicamente para la implementación que en el momento no se pueda compilar. </p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Juegos</h2>
-<p>La funcionalidad del juego vendrá dada por los componentes que conforman sus entidades. Siempre habrá una versión estable del motor que se podrá utilizar para probar el correcto funcionamiento de los componentes de juego que se vayan desarrollando. El proyecto contará con 2 juegos (ambos se desarrollarán en paralelo) y a medida que se amplíen las funcionalidades de motor se podrán incorporar nuevos elementos al juego. </p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Pipeline de generación de contenido</h2>
+<h3><a class="anchor" id="autotoc_md4"></a>
+Motor</h3>
+<p>Los distintos módulos que componen el motor han sido desarrollados en la rama main, utilizando ramas separadas únicamente para subir código que no compilaba en ese momento. </p>
+<h3><a class="anchor" id="autotoc_md5"></a>
+Juegos</h3>
+<p>La funcionalidad de cada juego viene dada por los componentes que conforman sus entidades. El proyecto cuenta con 2 juegos (ambos desarrollados en paralelo), y a medida que se han ido ampliando las funcionalidades de motor se han ido incorporando nuevos elementos al juego. </p>
 <p>Los links a los repositorios de los juegos son los siguientes:</p>
 <ul>
 <li><a href="https://github.com/UCM-FDI-DISIA/BilliardsAdrift">Billiards adrift</a></li>
 <li><a href="https://github.com/UCM-FDI-DISIA/Mar.io">Mar.io</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Assets</h2>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Assets</h3>
 <ul>
 <li>
 <p class="startli" align="justify"></p>
-<p class="interli"><b>Assets visuales 2D</b>: se utilizarán imágenes en formato <b>.png</b> para que se respeten las transparencias correctamente con 72 dpi que es la resolución óptima para pantallas. </p>
+<p class="interli"><b>Assets visuales 2D</b>: se utilizan imágenes en formato <b>.png</b> para que se respeten las transparencias correctamente, con 72 dpi, que es la resolución óptima para pantallas. </p>
 <p class="endli"></p>
 </li>
 <li>
 <p class="startli" align="justify"></p>
-<p class="interli"><b>Assets visuales 3D</b>: OGRE no permite trabajar directamente con .fbx o .glb como otros motores, si no que trabaja con sus propios formatos usando .mesh para mallas , .material para materiales y .skeleton para los rigs.</p>
-<p class="interli">Estos formatos <b>no</b> son los más utilizados y la mayoría de assets que se pueden encontrar online (sean gratis o de pago) suelen estar en formatos como .fbx. Para obtener contenido utilizable para nuestro motor de render usaremos <a href="https://www.blender.org/">Blender</a> y el plugin gratuito <a href="https://github.com/OGRECave/blender2ogre">blender2Ogre</a>.</p>
-<p class="interli">Con <b>blender2Ogre</b> podremos importar assets de terceros o crear las nuestras propias con Blender y exportar las mallas en .mesh y además se exporta un .mesh.xml más legible para leer donde se especifican los vértices de la malla y el esqueleto que tiene asociado.</p>
+<p class="interli"><b>Assets visuales 3D</b>: OGRE no permite trabajar directamente con .fbx o .glb como otros motores, si no que trabaja con sus propios formatos usando .mesh para mallas, .material para materiales y .skeleton para los rigs.</p>
+<p class="interli">Estos formatos <b>no</b> son los más utilizados y la mayoría de assets que se pueden encontrar online (sean gratis o de pago) suelen estar en formatos como .fbx. Para obtener contenido utilizable para nuestro motor de render hemos utilizado <a href="https://www.blender.org/">Blender</a> y el plugin gratuito <a href="https://github.com/OGRECave/blender2ogre">blender2Ogre</a>.</p>
+<p class="interli">Con <b>blender2Ogre</b> hemos importado assets de terceros o creado los nuestros propios con <b>Blender</b>, y hemos exportado las mallas en .mesh. Además, también se exporta un .mesh.xml más legible para leer donde se especifican los vértices de la malla y el esqueleto que tiene asociado.</p>
 <p class="interli">Los materiales en .material de acuerdo con los estándares .glTF (glTF 2.0 — Blender Manual) implica que no todo lo que podemos hacer en Blender con materiales se exportará correctamente, pero sí los atributos básicos como el color y las componentes metálica y difusa. </p>
 <p class="endli"></p>
 </li>
 <li>
 <p class="startli" align="justify"></p>
-<p class="interli"><b>Assets sonoros</b>: existe multitud de formatos de audio y uno de los más usados sin pérdida de calidad es el .wav que además es un formato que se usa de forma muy extendida.</p>
-<p class="interli">En el caso de encontrar assets en otros formatos como mp3 será sencillo usar programas como <a href="https://www.audacityteam.org/">Audacity</a> o <a href="https://www.videolan.org/vlc/download-windows.html">VLC Media</a> para convertirlos a .wav. </p>
+<p class="interli"><b>Assets sonoros</b>: Existe multitud de formatos de audio en nuestro caso hemos utilizado el formato .mp3, ya que <b>IrrKlang</b> soporta dicho formato de manera nativa. </p>
 <p class="endli"></p>
 </li>
+</ul>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Guía de uso del mapeo de teclas</h2>
+<p>Para el mapeo de controles, se usa un archivo llamado <code>controlsMapping.Lua</code> con el siguiente formato: </p><div class="fragment"><div class="line">events = {</div>
+<div class="line">        ev_NOMBRE_EVENTO = {</div>
+<div class="line">            src = origen_del_evento,</div>
+<div class="line">            control = valorDelInput</div>
+<div class="line">        },</div>
+<div class="line">        ...</div>
+<div class="line">}</div>
+</div><!-- fragment --><p> Para mapear el mismo evento a varios controles, hay que añadir al final del nombre del evento un <code>_N</code>, siendo N un número que lo diferencie del resto de eventos con el mismo nombre.</p>
+<p><br  />
+</p>
+<p>Los posibles valores de src son los siguientes: </p><div class="fragment"><div class="line">ie_closeWindow          cerrar vebtaba</div>
+<div class="line"> </div>
+<div class="line">ie_keyUp                pulsar tecla</div>
+<div class="line">ie_keyDown              soltar tecla</div>
+<div class="line"> </div>
+<div class="line">ie_mouseMoving          mover ratón</div>
+<div class="line">ie_mouseButtonUp        soltar botón del ratón</div>
+<div class="line">ie_mouseButtonDown      pulsar botón del ratón</div>
+<div class="line">ie_mouseWheel           girar rueda del ratón</div>
+<div class="line"> </div>
+<div class="line">ie_ctrlAxisMotion       mover eje del mando</div>
+<div class="line">ie_ctrlButtonUp         soltar botón del mando</div>
+<div class="line">ie_ctrlButtonDown       pulsar botón del mando</div>
+</div><!-- fragment --><p>Y los posibles valores de control son los siguientes:</p><ul>
+<li>Teclado: <div class="fragment"><div class="line">UNKNOWN = 0</div>
+<div class="line"> </div>
+<div class="line">RETURN = 13</div>
+<div class="line">ESCAPE = 27</div>
+<div class="line">BACKSPACE = 8</div>
+<div class="line">TAB = 9</div>
+<div class="line">SPACE = 32</div>
+<div class="line">EXCLAIM = 33</div>
+<div class="line">QUOTEDBL = 34</div>
+<div class="line">HASH = 35</div>
+<div class="line">PERCENT = 37</div>
+<div class="line">DOLLAR = 36</div>
+<div class="line">AMPERSAND = 38</div>
+<div class="line">QUOTE = 39</div>
+<div class="line">LEFTPAREN = 40</div>
+<div class="line">RIGHTPAREN = 41</div>
+<div class="line">ASTERISK = 42</div>
+<div class="line">PLUS = 43</div>
+<div class="line">COMMA = 44</div>
+<div class="line">MINUS = 45</div>
+<div class="line">PERIOD = 46</div>
+<div class="line">SLASH = 47</div>
+<div class="line"> </div>
+<div class="line">0 = 48</div>
+<div class="line">1 = 49</div>
+<div class="line">2 = 50</div>
+<div class="line">3 = 51</div>
+<div class="line">4 = 52</div>
+<div class="line">5 = 53</div>
+<div class="line">6 = 54</div>
+<div class="line">7 = 55</div>
+<div class="line">8 = 56</div>
+<div class="line">9 = 57</div>
+<div class="line"> </div>
+<div class="line">COLON = 58</div>
+<div class="line">SEMICOLON = 59</div>
+<div class="line">LESS = 60</div>
+<div class="line">EQUALS = 61</div>
+<div class="line">GREATER = 62</div>
+<div class="line">QUESTION = 63</div>
+<div class="line">AT = 64</div>
+<div class="line">LEFTBRACKET = 91</div>
+<div class="line">BACKSLASH = 92</div>
+<div class="line">RIGHTBRACKET = 93</div>
+<div class="line">CARET = 94</div>
+<div class="line">UNDERSCORE = 95</div>
+<div class="line">BACKQUOTE = 96</div>
+<div class="line"> </div>
+<div class="line">a = 97</div>
+<div class="line">b = 98</div>
+<div class="line">c = 99</div>
+<div class="line">d = 100</div>
+<div class="line">e = 101</div>
+<div class="line">f = 102</div>
+<div class="line">g = 103</div>
+<div class="line">h = 104</div>
+<div class="line">i = 105</div>
+<div class="line">j = 106</div>
+<div class="line">k = 107</div>
+<div class="line">l = 108</div>
+<div class="line">m = 109</div>
+<div class="line">n = 110</div>
+<div class="line">o = 111</div>
+<div class="line">p = 112</div>
+<div class="line">q = 113</div>
+<div class="line">r = 114</div>
+<div class="line">s = 115</div>
+<div class="line">t = 116</div>
+<div class="line">u = 117</div>
+<div class="line">v = 118</div>
+<div class="line">w = 119</div>
+<div class="line">x = 120</div>
+<div class="line">y = 121</div>
+<div class="line">z = 122</div>
+<div class="line"> </div>
+<div class="line">CAPSLOCK = 1073741881</div>
+<div class="line"> </div>
+<div class="line">F1 = 1073741882</div>
+<div class="line">F2 = 1073741883</div>
+<div class="line">F3 = 1073741884</div>
+<div class="line">F4 = 1073741885</div>
+<div class="line">F5 = 1073741886</div>
+<div class="line">F6 = 1073741887</div>
+<div class="line">F7 = 1073741888</div>
+<div class="line">F8 = 1073741889</div>
+<div class="line">F9 = 1073741890</div>
+<div class="line">F10 = 1073741891</div>
+<div class="line">F11 = 1073741892</div>
+<div class="line">F12 = 1073741893</div>
+<div class="line"> </div>
+<div class="line">PRINTSCREEN = 1073741894</div>
+<div class="line">SCROLLLOCK = 1073741895</div>
+<div class="line">PAUSE = 1073741896</div>
+<div class="line">INSERT = 1073741897</div>
+<div class="line">HOME = 1073741898</div>
+<div class="line">PAGEUP = 1073741899</div>
+<div class="line">DELETE = 1073741900</div>
+<div class="line">END = 1073741901</div>
+<div class="line">PAGEDOWN = 1073741902</div>
+<div class="line">RIGHT = 1073741903</div>
+<div class="line">LEFT = 1073741904</div>
+<div class="line">DOWN = 1073741905</div>
+<div class="line">UP = 1073741906</div>
+<div class="line"> </div>
+<div class="line">NUMLOCKCLEAR = 1073741907</div>
+<div class="line">KP_DIVIDE = 1073741908</div>
+<div class="line">KP_MULTIPLY = 1073741909</div>
+<div class="line">KP_MINUS = 1073741910</div>
+<div class="line">KP_PLUS = 1073741911</div>
+<div class="line">KP_ENTER = 1073741912</div>
+<div class="line">KP_1 = 1073741913</div>
+<div class="line">KP_2 = 1073741914</div>
+<div class="line">KP_3 = 1073741915</div>
+<div class="line">KP_4 = 1073741916</div>
+<div class="line">KP_5 = 1073741917</div>
+<div class="line">KP_6 = 1073741918</div>
+<div class="line">KP_7 = 1073741919</div>
+<div class="line">KP_8 = 1073741920</div>
+<div class="line">KP_9 = 1073741921</div>
+<div class="line">KP_0 = 1073741922</div>
+<div class="line">KP_PERIOD = 1073741923</div>
+<div class="line"> </div>
+<div class="line">APPLICATION = 1073741925</div>
+<div class="line">POWER = 1073741926</div>
+<div class="line">KP_EQUALS = 1073741927</div>
+<div class="line">F13 = 1073741928</div>
+<div class="line">F14 = 1073741929</div>
+<div class="line">F15 = 1073741930</div>
+<div class="line">F16 = 1073741931</div>
+<div class="line">F17 = 1073741932</div>
+<div class="line">F18 = 1073741933</div>
+<div class="line">F19 = 1073741934</div>
+<div class="line">F20 = 1073741935</div>
+<div class="line">F21 = 1073741936</div>
+<div class="line">F22 = 1073741937</div>
+<div class="line">F23 = 1073741938</div>
+<div class="line">F24 = 1073741939</div>
+<div class="line">EXECUTE = 1073741940</div>
+<div class="line">HELP = 1073741941</div>
+<div class="line">MENU = 1073741942</div>
+<div class="line">SELECT = 1073741943</div>
+<div class="line">STOP = 1073741944</div>
+<div class="line">AGAIN = 1073741945</div>
+<div class="line">UNDO = 1073741946</div>
+<div class="line">CUT = 1073741947</div>
+<div class="line">COPY = 1073741948</div>
+<div class="line">PASTE = 1073741949</div>
+<div class="line">FIND = 1073741950</div>
+<div class="line">MUTE = 1073741951</div>
+<div class="line">VOLUMEUP = 1073741952</div>
+<div class="line">VOLUMEDOWN = 1073741953</div>
+<div class="line">KP_COMMA = 1073741957</div>
+<div class="line">KP_EQUALSAS400 = 1073741958</div>
+<div class="line"> </div>
+<div class="line">ALTERASE = 1073741977</div>
+<div class="line">SYSREQ = 1073741978</div>
+<div class="line">CANCEL = 1073741979</div>
+<div class="line">CLEAR = 1073741980</div>
+<div class="line">PRIOR = 1073741981</div>
+<div class="line">RETURN2 = 1073741982</div>
+<div class="line">SEPARATOR = 1073741983</div>
+<div class="line">OUT = 1073741984</div>
+<div class="line">OPER = 1073741985</div>
+<div class="line">CLEARAGAIN = 1073741986</div>
+<div class="line">CRSEL = 1073741987</div>
+<div class="line">EXSEL = 1073741988</div>
+<div class="line"> </div>
+<div class="line">KP_00 = 1073741989</div>
+<div class="line">KP_000 = 1073741990</div>
+<div class="line">THOUSANDSSEPARATOR = 1073741991</div>
+<div class="line">DECIMALSEPARATOR = 1073741992</div>
+<div class="line">CURRENCYUNIT = 1073741993</div>
+<div class="line">CURRENCYSUBUNIT = 1073741994</div>
+<div class="line">KP_LEFTPAREN = 1073741995</div>
+<div class="line">KP_RIGHTPAREN = 1073741996</div>
+<div class="line">KP_LEFTBRACE = 1073741997</div>
+<div class="line">KP_RIGHTBRACE = 1073741998</div>
+<div class="line">KP_TAB = 1073741999</div>
+<div class="line">KP_BACKSPACE = 1073742000</div>
+<div class="line">KP_A = 1073742001</div>
+<div class="line">KP_B = 1073742002</div>
+<div class="line">KP_C = 1073742003</div>
+<div class="line">KP_D = 1073742004</div>
+<div class="line">KP_E = 1073742005</div>
+<div class="line">KP_F = 1073742006</div>
+<div class="line">KP_XOR = 1073742007</div>
+<div class="line">KP_POWER = 1073742008</div>
+<div class="line">KP_PERCENT = 1073742009</div>
+<div class="line">KP_LESS = 1073742010</div>
+<div class="line">KP_GREATER = 1073742011</div>
+<div class="line">KP_AMPERSAND = 1073742012</div>
+<div class="line">KP_DBLAMPERSAND = 1073742013</div>
+<div class="line">KP_VERTICALBAR = 1073742014</div>
+<div class="line">KP_DBLVERTICALBAR = 1073742015</div>
+<div class="line">KP_COLON = 1073742016</div>
+<div class="line">KP_HASH = 1073742017</div>
+<div class="line">KP_SPACE = 1073742018</div>
+<div class="line">KP_AT = 1073742019</div>
+<div class="line">KP_EXCLAM = 1073742020</div>
+<div class="line">KP_MEMSTORE = 1073742021</div>
+<div class="line">KP_MEMRECALL = 1073742022</div>
+<div class="line">KP_MEMCLEAR = 1073742023</div>
+<div class="line">KP_MEMADD = 1073742024</div>
+<div class="line">KP_MEMSUBTRACT = 1073742025</div>
+<div class="line">KP_MEMMULTIPLY = 1073742026</div>
+<div class="line">KP_MEMDIVIDE = 1073742027</div>
+<div class="line">KP_PLUSMINUS = 1073742028</div>
+<div class="line">KP_CLEAR = 1073742029</div>
+<div class="line">KP_CLEARENTRY = 1073742030</div>
+<div class="line">KP_BINARY = 1073742031</div>
+<div class="line">KP_OCTAL = 1073742032</div>
+<div class="line">KP_DECIMAL = 1073742033</div>
+<div class="line">KP_HEXADECIMAL = 1073742034</div>
+<div class="line"> </div>
+<div class="line">LCTRL = 1073742035</div>
+<div class="line">LSHIFT = 1073742036</div>
+<div class="line">LALT = 1073742037</div>
+<div class="line">LGUI = 1073742038</div>
+<div class="line">RCTRL = 1073742039</div>
+<div class="line">RSHIFT = 1073742040</div>
+<div class="line">RALT = 1073742041</div>
+<div class="line">RGUI = 1073742042</div>
+<div class="line"> </div>
+<div class="line">MODE = 1073742043</div>
+<div class="line">AUDIONEXT = 1073742044</div>
+<div class="line">AUDIOPREV = 1073742045</div>
+<div class="line">AUDIOSTOP = 1073742046</div>
+<div class="line">AUDIOPLAY = 1073742047</div>
+<div class="line">AUDIOMUTE = 1073742048</div>
+<div class="line">MEDIASELECT = 1073742049</div>
+<div class="line">WWW = 1073742050</div>
+<div class="line">MAIL = 1073742051</div>
+<div class="line">CALCULATOR = 1073742052</div>
+<div class="line">COMPUTER = 1073742053</div>
+<div class="line">AC_SEARCH = 1073742054</div>
+<div class="line">AC_HOME = 1073742055</div>
+<div class="line">AC_BACK = 1073742056</div>
+<div class="line">AC_FORWARD = 1073742057</div>
+<div class="line">AC_STOP = 1073742058</div>
+<div class="line">AC_REFRESH = 1073742059</div>
+<div class="line">AC_BOOKMARKS = 1073742060</div>
+<div class="line">BRIGHTNESSDOWN = 1073742061</div>
+<div class="line">BRIGHTNESSUP = 1073742062</div>
+<div class="line">DISPLAYSWITCH = 1073742063</div>
+<div class="line">KBDILLUMTOGGLE = 1073742064</div>
+<div class="line">KBDILLUMDOWN = 1073742065</div>
+<div class="line">KBDILLUMUP = 1073742066</div>
+<div class="line">EJECT = 1073742067</div>
+<div class="line">SLEEP = 1073742068</div>
+<div class="line">APP1 = 1073742069</div>
+<div class="line">APP2 = 1073742070</div>
+<div class="line"> </div>
+<div class="line">AUDIOREWIND = 1073742071</div>
+<div class="line">AUDIOFASTFORWARD = 1073742072</div>
+<div class="line"> </div>
+<div class="line">SOFTLEFT = 1073742073</div>
+<div class="line">SOFTRIGHT = 1073742074</div>
+<div class="line">CALL = 1073742075</div>
+<div class="line">ENDCALL = 1073742076</div>
+</div><!-- fragment --></li>
+<li>Ratón: <div class="fragment"><div class="line">BUTTON_LEFT = 1</div>
+<div class="line">BUTTON_MIDDLE = 2</div>
+<div class="line">BUTTON_RIGHT = 3</div>
+<div class="line">BUTTON_X1 = 4</div>
+<div class="line">BUTTON_X2 = 5</div>
+</div><!-- fragment --></li>
+<li>Ejes del mando: <div class="fragment"><div class="line">CONTROLLER_BUTTON_INVALID = -1</div>
+<div class="line">CONTROLLER_BUTTON_A = 0</div>
+<div class="line">CONTROLLER_BUTTON_B = 1</div>
+<div class="line">CONTROLLER_BUTTON_X = 2</div>
+<div class="line">CONTROLLER_BUTTON_Y = 3</div>
+<div class="line">CONTROLLER_BUTTON_BACK = 4</div>
+<div class="line">CONTROLLER_BUTTON_GUIDE = 5</div>
+<div class="line">CONTROLLER_BUTTON_START = 6</div>
+<div class="line">CONTROLLER_BUTTON_LEFTSTICK = 7</div>
+<div class="line">CONTROLLER_BUTTON_RIGHTSTICK = 8</div>
+<div class="line">CONTROLLER_BUTTON_LEFTSHOULDER = 9</div>
+<div class="line">CONTROLLER_BUTTON_RIGHTSHOULDER = 10</div>
+<div class="line">CONTROLLER_BUTTON_DPAD_UP = 11</div>
+<div class="line">CONTROLLER_BUTTON_DPAD_DOWN = 12</div>
+<div class="line">CONTROLLER_BUTTON_DPAD_LEFT = 13</div>
+<div class="line">CONTROLLER_BUTTON_DPAD_RIGHT = 14</div>
+<div class="line">CONTROLLER_BUTTON_MISC1 = 15            /* Xbox Series X share button PS5 microphone button Nintendo Switch Pro capture button Amazon Luna microphone button */</div>
+<div class="line">CONTROLLER_BUTTON_PADDLE1 = 16          /* Xbox Elite paddle P1 (upper left facing the back) */</div>
+<div class="line">CONTROLLER_BUTTON_PADDLE2 = 17          /* Xbox Elite paddle P3 (upper right facing the back) */</div>
+<div class="line">CONTROLLER_BUTTON_PADDLE3 = 18          /* Xbox Elite paddle P2 (lower left facing the back) */</div>
+<div class="line">CONTROLLER_BUTTON_PADDLE4 = 19          /* Xbox Elite paddle P4 (lower right facing the back) */</div>
+<div class="line">CONTROLLER_BUTTON_TOUCHPAD = 20         /* PS4/PS5 touchpad button */</div>
+<div class="line">CONTROLLER_BUTTON_MAX = 21</div>
+</div><!-- fragment --></li>
+<li>Botones del mando: <div class="fragment"><div class="line">CONTROLLER_AXIS_INVALID = -1</div>
+<div class="line">CONTROLLER_AXIS_LEFTX = 0</div>
+<div class="line">CONTROLLER_AXIS_LEFTY = 1</div>
+<div class="line">CONTROLLER_AXIS_RIGHTX = 2</div>
+<div class="line">CONTROLLER_AXIS_RIGHTY = 3</div>
+<div class="line">CONTROLLER_AXIS_TRIGGERLEFT = 4</div>
+<div class="line">CONTROLLER_AXIS_TRIGGERRIGHT = 5</div>
+<div class="line">CONTROLLER_AXIS_MAX = 6</div>
+</div><!-- fragment --></li>
 </ul>
 <hr  />
 <div align="center"> <h3>¡Síguenos en nuestras redes sociales!</h3>

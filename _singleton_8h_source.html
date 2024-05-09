@@ -91,7 +91,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_tapioca.html">Tapioca</a> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_singleton.html">   10</a></span><span class="keyword">class </span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <a class="code hl_class" href="class_tapioca_1_1_singleton.html">Singleton</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_singleton.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_tapioca_1_1_singleton.html">Singleton</a> {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">static</span> T* instance_;   <span class="comment">// Instancia unica</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
@@ -104,12 +104,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_singleton.html#aaafd5502089cff986b8fba7ed58764a7">   27</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_tapioca_1_1_singleton.html#aaafd5502089cff986b8fba7ed58764a7">~Singleton</a>() {};</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... T_args&gt;</div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">   33</a></span>    <span class="keyword">static</span> T* <a class="code hl_function" href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">create</a>(T_args&amp;&amp;... args) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> (instance_ == <span class="keyword">nullptr</span>) instance_ = <span class="keyword">new</span> T(std::forward&lt;T_args&gt;(args)...);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <a class="code hl_function" href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">logInfo</a>(<span class="stringliteral">&quot;Singleton: Instance already exists&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... T_args&gt;</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">   34</a></span>    <span class="keyword">static</span> T* <a class="code hl_function" href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">create</a>(T_args&amp;&amp;... args) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">if</span> (instance_ == <span class="keyword">nullptr</span>) instance_ = <span class="keyword">new</span> T(std::forward&lt;T_args&gt;(args)...);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">else</span> <a class="code hl_function" href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">logInfo</a>(<span class="stringliteral">&quot;Singleton: La instancia ya existe&quot;</span>);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> instance_;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 </div>
@@ -117,25 +116,27 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_singleton.html#a5fdf6e2b9dae0a4fe65216cea6310d37">   43</a></span>    <span class="keyword">static</span> T* <a class="code hl_function" href="class_tapioca_1_1_singleton.html#a5fdf6e2b9dae0a4fe65216cea6310d37">instance</a>() {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">// Si no existe, se crea</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">if</span> (instance_ == <span class="keyword">nullptr</span>) create();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">if</span> (instance_ == <span class="keyword">nullptr</span>) <a class="code hl_function" href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">create</a>();</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">// Entonces, devuelve el puntero</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> instance_;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
 </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>T* Singleton&lt;T&gt;::instance_ = <span class="keyword">nullptr</span>; <span class="comment">// Inicializacion de la instancia</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 <div class="ttc" id="aclass_tapioca_1_1_singleton_html"><div class="ttname"><a href="class_tapioca_1_1_singleton.html">Tapioca::Singleton</a></div><div class="ttdoc">Patron de diseno Singleton para crear una unica instancia de una clase.</div><div class="ttdef"><b>Definition</b> Singleton.h:10</div></div>
-<div class="ttc" id="aclass_tapioca_1_1_singleton_html_a4da95f71ad7b208bbf97efdd940c4ea6"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">Tapioca::Singleton::create</a></div><div class="ttdeci">static T * create(T_args &amp;&amp;... args)</div><div class="ttdoc">Inicializa la instancia con los parametros deseados (... args)</div><div class="ttdef"><b>Definition</b> Singleton.h:33</div></div>
+<div class="ttc" id="aclass_tapioca_1_1_singleton_html_a4da95f71ad7b208bbf97efdd940c4ea6"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#a4da95f71ad7b208bbf97efdd940c4ea6">Tapioca::Singleton::create</a></div><div class="ttdeci">static T * create(T_args &amp;&amp;... args)</div><div class="ttdoc">Inicializa la instancia con los parametros deseados (... args)</div><div class="ttdef"><b>Definition</b> Singleton.h:34</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_singleton_html_a5d0ccbc86446ed937dfafd0219f77b16"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#a5d0ccbc86446ed937dfafd0219f77b16">Tapioca::Singleton::Singleton</a></div><div class="ttdeci">Singleton()</div><div class="ttdoc">Constructor vacio.</div><div class="ttdef"><b>Definition</b> Singleton.h:18</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_singleton_html_a5fdf6e2b9dae0a4fe65216cea6310d37"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#a5fdf6e2b9dae0a4fe65216cea6310d37">Tapioca::Singleton::instance</a></div><div class="ttdeci">static T * instance()</div><div class="ttdoc">Obtener el puntero a la instancia.</div><div class="ttdef"><b>Definition</b> Singleton.h:43</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_singleton_html_a685fd488217c86dbf17ed3ae5caeeb5c"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#a685fd488217c86dbf17ed3ae5caeeb5c">Tapioca::Singleton::operator=</a></div><div class="ttdeci">Singleton&lt; T &gt; &amp; operator=(const Singleton&lt; T &gt; &amp;s)=delete</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_singleton_html_aa9f71b77e3c9d61fa3a306b60b48afd8"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#aa9f71b77e3c9d61fa3a306b60b48afd8">Tapioca::Singleton::Singleton</a></div><div class="ttdeci">Singleton(const Singleton&lt; T &gt; &amp;s)=delete</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_singleton_html_aaafd5502089cff986b8fba7ed58764a7"><div class="ttname"><a href="class_tapioca_1_1_singleton.html#aaafd5502089cff986b8fba7ed58764a7">Tapioca::Singleton::~Singleton</a></div><div class="ttdeci">virtual ~Singleton()</div><div class="ttdoc">Destructor vacio.</div><div class="ttdef"><b>Definition</b> Singleton.h:27</div></div>
 <div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
-<div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
 <div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:9</div></div>
-<div class="ttc" id="anamespace_tapioca_html_a7ba41db3a266bcf4e44b023fe66949cb"><div class="ttname"><a href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">Tapioca::logInfo</a></div><div class="ttdeci">void logInfo(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:28</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a7ba41db3a266bcf4e44b023fe66949cb"><div class="ttname"><a href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">Tapioca::logInfo</a></div><div class="ttdeci">void logInfo(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

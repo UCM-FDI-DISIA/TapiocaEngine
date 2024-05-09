@@ -123,6 +123,15 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:a89a0af76a116a6abd3aeb1146ce21247" id="r_a89a0af76a116a6abd3aeb1146ce21247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89a0af76a116a6abd3aeb1146ce21247">stop</a> ()</td></tr>
 <tr class="memdesc:a89a0af76a116a6abd3aeb1146ce21247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Para la reproduccion del sonido.  <br /></td></tr>
 <tr class="separator:a89a0af76a116a6abd3aeb1146ce21247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb7850bcd15c5244f63977c5d3a4b5c" id="r_afdb7850bcd15c5244f63977c5d3a4b5c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdb7850bcd15c5244f63977c5d3a4b5c">isPaused</a> ()</td></tr>
+<tr class="memdesc:afdb7850bcd15c5244f63977c5d3a4b5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si el sonido esta pausado.  <br /></td></tr>
+<tr class="separator:afdb7850bcd15c5244f63977c5d3a4b5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f9243b2759bbbe23e141c48c1abc422" id="r_a9f9243b2759bbbe23e141c48c1abc422"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f9243b2759bbbe23e141c48c1abc422">hasFinished</a> ()</td></tr>
+<tr class="memdesc:a9f9243b2759bbbe23e141c48c1abc422"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si ha terminado de reproducirse el sonido.  <br /></td></tr>
+<tr class="separator:a9f9243b2759bbbe23e141c48c1abc422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e806a4c9e4885d5d286bc6e39c96218" id="r_a0e806a4c9e4885d5d286bc6e39c96218"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e806a4c9e4885d5d286bc6e39c96218">hasStopped</a> ()</td></tr>
+<tr class="memdesc:a0e806a4c9e4885d5d286bc6e39c96218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve si el sonido no esta reproduciendose.  <br /></td></tr>
+<tr class="separator:a0e806a4c9e4885d5d286bc6e39c96218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30da28e80919421236fe2396aff194c2" id="r_a30da28e80919421236fe2396aff194c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30da28e80919421236fe2396aff194c2">pause</a> (bool p)</td></tr>
 <tr class="memdesc:a30da28e80919421236fe2396aff194c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pausa o reanuda la reproduccion del sonido.  <br /></td></tr>
 <tr class="separator:a30da28e80919421236fe2396aff194c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,6 +307,46 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
+<a id="a9f9243b2759bbbe23e141c48c1abc422" name="a9f9243b2759bbbe23e141c48c1abc422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f9243b2759bbbe23e141c48c1abc422">&#9670;&#160;</a></span>hasFinished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::AudioSourceComponent::hasFinished </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve si ha terminado de reproducirse el sonido. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve true si el sonido ha terminado, false para lo contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a0e806a4c9e4885d5d286bc6e39c96218" name="a0e806a4c9e4885d5d286bc6e39c96218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e806a4c9e4885d5d286bc6e39c96218">&#9670;&#160;</a></span>hasStopped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::AudioSourceComponent::hasStopped </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve si el sonido no esta reproduciendose. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve false si el sonido esta reproduciendose, true para lo contrario. </dd></dl>
+
+</div>
+</div>
 <a id="ab76fb8513f7c5e902a0b9f3108894bfc" name="ab76fb8513f7c5e902a0b9f3108894bfc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab76fb8513f7c5e902a0b9f3108894bfc">&#9670;&#160;</a></span>initComponent()</h2>
 
@@ -331,6 +380,26 @@ Otros miembros heredados</h2></td></tr>
 <dl class="section return"><dt>Devuelve</dt><dd>Devuelve true si se ha inicializado correctamente, false en caso contrario </dd></dl>
 
 <p>Reimplementado de <a class="el" href="class_tapioca_1_1_component.html#aa7e9e31ef1222a0881b9b7e7b023eec2">Tapioca::Component</a>.</p>
+
+</div>
+</div>
+<a id="afdb7850bcd15c5244f63977c5d3a4b5c" name="afdb7850bcd15c5244f63977c5d3a4b5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdb7850bcd15c5244f63977c5d3a4b5c">&#9670;&#160;</a></span>isPaused()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::AudioSourceComponent::isPaused </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve si el sonido esta pausado. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve true si el sonido esta pausado, false para lo contrario. </dd></dl>
 
 </div>
 </div>

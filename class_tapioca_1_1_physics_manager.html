@@ -111,12 +111,12 @@ Métodos públicos</h2></td></tr>
 <tr class="separator:ade5a05c546906a15a222448fb778e114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f50c2ecbdbaddd1228638625663905" id="r_ab5f50c2ecbdbaddd1228638625663905"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_physics_manager.html">PhysicsManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5f50c2ecbdbaddd1228638625663905">operator=</a> (<a class="el" href="class_tapioca_1_1_physics_manager.html">PhysicsManager</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:ab5f50c2ecbdbaddd1228638625663905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fe43bf0b24298fda605809ea151f572" id="r_a5fe43bf0b24298fda605809ea151f572"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fe43bf0b24298fda605809ea151f572">fixedUpdate</a> () override</td></tr>
-<tr class="memdesc:a5fe43bf0b24298fda605809ea151f572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo a una velocidad fija.  <br /></td></tr>
-<tr class="separator:a5fe43bf0b24298fda605809ea151f572"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af19ec4ffcc46ca69d8f446fa521212ed" id="r_af19ec4ffcc46ca69d8f446fa521212ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af19ec4ffcc46ca69d8f446fa521212ed">update</a> (const uint64_t deltaTime)</td></tr>
-<tr class="memdesc:af19ec4ffcc46ca69d8f446fa521212ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo.  <br /></td></tr>
+<tr class="memdesc:af19ec4ffcc46ca69d8f446fa521212ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja las cajas de colision de los objetos.  <br /></td></tr>
 <tr class="separator:af19ec4ffcc46ca69d8f446fa521212ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe43bf0b24298fda605809ea151f572" id="r_a5fe43bf0b24298fda605809ea151f572"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fe43bf0b24298fda605809ea151f572">fixedUpdate</a> () override</td></tr>
+<tr class="memdesc:a5fe43bf0b24298fda605809ea151f572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el mundo de fisicas.  <br /></td></tr>
+<tr class="separator:a5fe43bf0b24298fda605809ea151f572"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a930c9c1f8a88036b106fe014568c392b" id="r_a930c9c1f8a88036b106fe014568c392b"><td class="memItemLeft" align="right" valign="top">btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a930c9c1f8a88036b106fe014568c392b">createRigidBody</a> (const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> position, const <a class="el" href="class_tapioca_1_1_quaternion.html">Quaternion</a> rotation, const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> shapeScale, const <a class="el" href="namespace_tapioca.html#af64ded096e6ae404f3d4b143fefa89dc">ColliderShape</a> colliderShape=<a class="el" href="namespace_tapioca.html#af64ded096e6ae404f3d4b143fefa89dcaa3f0c4baef62bf347cd4912806f266dd">BOX_SHAPE</a>, const <a class="el" href="namespace_tapioca.html#ae673996084ac99d5e8609f23862f5296">MovementType</a> type=<a class="el" href="namespace_tapioca.html#ae673996084ac99d5e8609f23862f5296ae0c740c703c28cfd81233fd95c4e73e2">STATIC_OBJECT</a>, float mass=0, const float friction=0, const float damping=0, const float bounciness=0, const bool isTrigger=false, const int group=1, const int mask=-1, const std::string file=&quot;&quot;)</td></tr>
 <tr class="memdesc:a930c9c1f8a88036b106fe014568c392b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un rigidbody.  <br /></td></tr>
 <tr class="separator:a930c9c1f8a88036b106fe014568c392b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -465,7 +465,7 @@ Otros miembros heredados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Actualiza el modulo a una velocidad fija. </p>
+<p>Actualiza el mundo de fisicas. </p>
 
 <p>Reimplementado de <a class="el" href="class_tapioca_1_1_module.html#a956767f43bc1f4f534c5945c5afea4da">Tapioca::Module</a>.</p>
 
@@ -597,10 +597,10 @@ Otros miembros heredados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Actualiza el modulo. </p>
+<p>Dibuja las cajas de colision de los objetos. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deltaTime</td><td>Tiempo transcurrido desde la ultima actualizacion </td></tr>
+    <tr><td class="paramname">deltaTime</td><td>Tiempo transcurrido desde el ultimo frame </td></tr>
   </table>
   </dd>
 </dl>

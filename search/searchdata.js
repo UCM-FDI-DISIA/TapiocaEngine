@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "bcm",
   8: "bcdkmps",
   9: "gs",
-  10: "_cpt",
+  10: "_ct",
   11: "et",
   12: "t"
 };

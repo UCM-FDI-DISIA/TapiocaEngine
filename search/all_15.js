@@ -17,5 +17,6 @@ var searchData=
   ['updatetexturenormal_14',['updateTextureNormal',['../class_tapioca_1_1_image_text_button.html#ad45e58a59b786e28d1e2058e46189127',1,'Tapioca::ImageTextButton']]],
   ['updatetextures_15',['updateTextures',['../class_tapioca_1_1_image_text_button.html#a2dd826777840703b80c2fb2739241a88',1,'Tapioca::ImageTextButton']]],
   ['updateui_16',['updateUI',['../class_tapioca_1_1_component.html#aaf132dc7cb3116e3843c1dc51f43c64f',1,'Tapioca::Component::updateUI()'],['../class_tapioca_1_1_button.html#acb7ce486e66305a70883313d8a6f3d95',1,'Tapioca::Button::updateUI()'],['../class_tapioca_1_1_input_text.html#a3eb3212512ec9a6af11eb3ab431ea10b',1,'Tapioca::InputText::updateUI()'],['../class_tapioca_1_1_text.html#a8921a50d10804e1840f7460e7a586412',1,'Tapioca::Text::updateUI()']]],
-  ['updatezindex_17',['updateZIndex',['../class_tapioca_1_1_scene.html#afecf274e438229416b358d0e9e5c938e',1,'Tapioca::Scene']]]
+  ['updatezindex_17',['updateZIndex',['../class_tapioca_1_1_scene.html#afecf274e438229416b358d0e9e5c938e',1,'Tapioca::Scene']]],
+  ['uso_20del_20mapeo_20de_20teclas_18',['Guía de uso del mapeo de teclas',['../index.html#autotoc_md7',1,'']]]
 ];

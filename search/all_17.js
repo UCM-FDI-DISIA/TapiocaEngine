@@ -9,5 +9,6 @@ var searchData=
   ['windowmanager_2ecpp_6',['WindowManager.cpp',['../_window_manager_8cpp.html',1,'']]],
   ['windowmanager_2eh_7',['WindowManager.h',['../_window_manager_8h.html',1,'']]],
   ['windowmodule_8',['WindowModule',['../class_tapioca_1_1_window_module.html',1,'Tapioca']]],
-  ['windowmodule_2eh_9',['WindowModule.h',['../_window_module_8h.html',1,'']]]
+  ['windowmodule_2eh_9',['WindowModule.h',['../_window_module_8h.html',1,'']]],
+  ['wwinmain_10',['wWinMain',['../main_8cpp.html#ae8c2438b496ad32454f200f3b5b28053',1,'main.cpp']]]
 ];

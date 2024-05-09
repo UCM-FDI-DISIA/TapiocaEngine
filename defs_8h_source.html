@@ -110,45 +110,48 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_tapioca_1_1_event.html#a1d8580c548b30635d5f67aaf80f3dd5b">   26</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_tapioca_1_1_event.html#a1d8580c548b30635d5f67aaf80f3dd5b">global</a>;            <span class="comment">// Si se propaga a todos los objetos</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
 </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">   28</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">logInfo</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifdef TAPIOCA_EXPORTS</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[INFO|MOTOR] &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[INFO|JUEGO] &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif   </span><span class="comment">// TAPIOCA_EXPORTS</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif   </span><span class="comment">// _DEBUG</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">   29</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">logInfo</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#ifdef TAPIOCA_EXPORTS</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[INFO|MOTOR] &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[INFO|JUEGO] &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif   </span><span class="comment">// TAPIOCA_EXPORTS</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif   </span><span class="comment">// _DEBUG</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
-<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a37f6f0589afaf7ddf7dea70892b5defb">   37</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a37f6f0589afaf7ddf7dea70892b5defb">logWarn</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#ifdef TAPIOCA_EXPORTS</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;245;35m[WARN|MOTOR] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;245;35m[WARN|JUEGO] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif   </span><span class="comment">// TAPIOCA_EXPORTS</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif   </span><span class="comment">// _DEBUG</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a37f6f0589afaf7ddf7dea70892b5defb">   39</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a37f6f0589afaf7ddf7dea70892b5defb">logWarn</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#ifdef TAPIOCA_EXPORTS</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;245;35m[WARN|MOTOR] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;245;35m[WARN|JUEGO] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif   </span><span class="comment">// TAPIOCA_EXPORTS</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif   </span><span class="comment">// _DEBUG</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 </div>
-<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a30b6348c0242e1d3557d71d5cba74d2b">   46</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a30b6348c0242e1d3557d71d5cba74d2b">logError</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#ifdef TAPIOCA_EXPORTS</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;30;30m[ERROR|MOTOR] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;30;30m[ERROR|JUEGO] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif   </span><span class="comment">// TAPIOCA_EXPORTS</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif   </span><span class="comment">// _DEBUG</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespace_tapioca.html#a30b6348c0242e1d3557d71d5cba74d2b">   49</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_tapioca.html#a30b6348c0242e1d3557d71d5cba74d2b">logError</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#ifdef TAPIOCA_EXPORTS</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;30;30m[ERROR|MOTOR] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    std::cerr &lt;&lt; <span class="stringliteral">&quot;\033[38;2;252;30;30m[ERROR|JUEGO] &quot;</span> &lt;&lt; message &lt;&lt; <span class="stringliteral">&quot;\033[0m\n&quot;</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif   </span><span class="comment">// TAPIOCA_EXPORTS</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif   </span><span class="comment">// _DEBUG</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
 <div class="ttc" id="aclass_tapioca_1_1_game_object_html"><div class="ttname"><a href="class_tapioca_1_1_game_object.html">Tapioca::GameObject</a></div><div class="ttdoc">Clase que representa un objeto en el juego.</div><div class="ttdef"><b>Definition</b> GameObject.h:14</div></div>
 <div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:9</div></div>
-<div class="ttc" id="anamespace_tapioca_html_a30b6348c0242e1d3557d71d5cba74d2b"><div class="ttname"><a href="namespace_tapioca.html#a30b6348c0242e1d3557d71d5cba74d2b">Tapioca::logError</a></div><div class="ttdeci">void logError(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:46</div></div>
-<div class="ttc" id="anamespace_tapioca_html_a37f6f0589afaf7ddf7dea70892b5defb"><div class="ttname"><a href="namespace_tapioca.html#a37f6f0589afaf7ddf7dea70892b5defb">Tapioca::logWarn</a></div><div class="ttdeci">void logWarn(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:37</div></div>
-<div class="ttc" id="anamespace_tapioca_html_a7ba41db3a266bcf4e44b023fe66949cb"><div class="ttname"><a href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">Tapioca::logInfo</a></div><div class="ttdeci">void logInfo(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:28</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a30b6348c0242e1d3557d71d5cba74d2b"><div class="ttname"><a href="namespace_tapioca.html#a30b6348c0242e1d3557d71d5cba74d2b">Tapioca::logError</a></div><div class="ttdeci">void logError(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:49</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a37f6f0589afaf7ddf7dea70892b5defb"><div class="ttname"><a href="namespace_tapioca.html#a37f6f0589afaf7ddf7dea70892b5defb">Tapioca::logWarn</a></div><div class="ttdeci">void logWarn(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:39</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a7ba41db3a266bcf4e44b023fe66949cb"><div class="ttname"><a href="namespace_tapioca.html#a7ba41db3a266bcf4e44b023fe66949cb">Tapioca::logInfo</a></div><div class="ttdeci">void logInfo(const char *message)</div><div class="ttdef"><b>Definition</b> defs.h:29</div></div>
 <div class="ttc" id="astruct_tapioca_1_1_event_html"><div class="ttname"><a href="struct_tapioca_1_1_event.html">Tapioca::Event</a></div><div class="ttdoc">Estructura de un evento.</div><div class="ttdef"><b>Definition</b> defs.h:22</div></div>
 <div class="ttc" id="astruct_tapioca_1_1_event_html_a1d8580c548b30635d5f67aaf80f3dd5b"><div class="ttname"><a href="struct_tapioca_1_1_event.html#a1d8580c548b30635d5f67aaf80f3dd5b">Tapioca::Event::global</a></div><div class="ttdeci">bool global</div><div class="ttdef"><b>Definition</b> defs.h:26</div></div>
 <div class="ttc" id="astruct_tapioca_1_1_event_html_ab51c8201ad49ff1aaf0dd001b07d2197"><div class="ttname"><a href="struct_tapioca_1_1_event.html#ab51c8201ad49ff1aaf0dd001b07d2197">Tapioca::Event::info</a></div><div class="ttdeci">void * info</div><div class="ttdef"><b>Definition</b> defs.h:25</div></div>

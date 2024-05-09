@@ -78,7 +78,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Métodos públicos</a> &#124;
-<a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
 <a href="class_tapioca_1_1_dynamic_library_loader-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle"><div class="title">Referencia de la clase Tapioca::DynamicLibraryLoader</div></div>
 </div><!--header-->
@@ -91,59 +90,46 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
-<tr class="memitem:aaf6b49f2306704a56ff1f3abcd7d9818" id="r_aaf6b49f2306704a56ff1f3abcd7d9818"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf6b49f2306704a56ff1f3abcd7d9818">~DynamicLibraryLoader</a> ()=delete</td></tr>
-<tr class="separator:aaf6b49f2306704a56ff1f3abcd7d9818"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Métodos públicos estáticos</h2></td></tr>
-<tr class="memitem:a0b271722b591e4d8ce8f5173f7c71df4" id="r_a0b271722b591e4d8ce8f5173f7c71df4"><td class="memItemLeft" align="right" valign="top">static HMODULE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b271722b591e4d8ce8f5173f7c71df4">DynamicLibraryLoader</a> ()=delete</td></tr>
-<tr class="memdesc:a0b271722b591e4d8ce8f5173f7c71df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modulo cargado en la memoria del proceso.  <br /></td></tr>
-<tr class="separator:a0b271722b591e4d8ce8f5173f7c71df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad81fab523c07d38b2701036afc4a9603" id="r_ad81fab523c07d38b2701036afc4a9603"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad81fab523c07d38b2701036afc4a9603">initGame</a> (std::string const &amp;gameName=&quot;game&quot;)</td></tr>
+<tr class="memitem:aef7b4c43e6e72590c5b9f50cca71a436" id="r_aef7b4c43e6e72590c5b9f50cca71a436"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef7b4c43e6e72590c5b9f50cca71a436">DynamicLibraryLoader</a> ()</td></tr>
+<tr class="memdesc:aef7b4c43e6e72590c5b9f50cca71a436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor por defecto.  <br /></td></tr>
+<tr class="separator:aef7b4c43e6e72590c5b9f50cca71a436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a496833e05907929194ac28376e469ae6" id="r_a496833e05907929194ac28376e469ae6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a496833e05907929194ac28376e469ae6">~DynamicLibraryLoader</a> ()</td></tr>
+<tr class="memdesc:a496833e05907929194ac28376e469ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera el modulo cargado.  <br /></td></tr>
+<tr class="separator:a496833e05907929194ac28376e469ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81fab523c07d38b2701036afc4a9603" id="r_ad81fab523c07d38b2701036afc4a9603"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad81fab523c07d38b2701036afc4a9603">initGame</a> (std::string const &amp;gameName=&quot;game&quot;)</td></tr>
 <tr class="memdesc:ad81fab523c07d38b2701036afc4a9603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carga la dll del juego y llama a su funcion de inicializacion.  <br /></td></tr>
 <tr class="separator:ad81fab523c07d38b2701036afc4a9603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41edb3973bb7b1108e725ebe9ec28b11" id="r_a41edb3973bb7b1108e725ebe9ec28b11"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41edb3973bb7b1108e725ebe9ec28b11">freeModule</a> ()</td></tr>
-<tr class="memdesc:a41edb3973bb7b1108e725ebe9ec28b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera el modulo.  <br /></td></tr>
-<tr class="separator:a41edb3973bb7b1108e725ebe9ec28b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e34c8551120a1a0103e7e90a7223f78" id="r_a0e34c8551120a1a0103e7e90a7223f78"><td class="memItemLeft" align="right" valign="top">HMODULE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e34c8551120a1a0103e7e90a7223f78">getModule</a> () const</td></tr>
+<tr class="memdesc:a0e34c8551120a1a0103e7e90a7223f78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el modulo.  <br /></td></tr>
+<tr class="separator:a0e34c8551120a1a0103e7e90a7223f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Carga de bibliotecas dinamicas. </p>
 </div><h2 class="groupheader">Documentación de constructores y destructores</h2>
-<a id="a0b271722b591e4d8ce8f5173f7c71df4" name="a0b271722b591e4d8ce8f5173f7c71df4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b271722b591e4d8ce8f5173f7c71df4">&#9670;&#160;</a></span>DynamicLibraryLoader()</h2>
+<a id="aef7b4c43e6e72590c5b9f50cca71a436" name="aef7b4c43e6e72590c5b9f50cca71a436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef7b4c43e6e72590c5b9f50cca71a436">&#9670;&#160;</a></span>DynamicLibraryLoader()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static HMODULE Tapioca::DynamicLibraryLoader::DynamicLibraryLoader </td>
+          <td class="memname">Tapioca::DynamicLibraryLoader::DynamicLibraryLoader </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Modulo cargado en la memoria del proceso. </p>
+<p>Constructor por defecto. </p>
 
 </div>
 </div>
-<a id="aaf6b49f2306704a56ff1f3abcd7d9818" name="aaf6b49f2306704a56ff1f3abcd7d9818"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf6b49f2306704a56ff1f3abcd7d9818">&#9670;&#160;</a></span>~DynamicLibraryLoader()</h2>
+<a id="a496833e05907929194ac28376e469ae6" name="a496833e05907929194ac28376e469ae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a496833e05907929194ac28376e469ae6">&#9670;&#160;</a></span>~DynamicLibraryLoader()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Tapioca::DynamicLibraryLoader::~DynamicLibraryLoader </td>
@@ -152,18 +138,15 @@ Métodos públicos estáticos</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Libera el modulo cargado. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Documentación de funciones miembro</h2>
-<a id="a41edb3973bb7b1108e725ebe9ec28b11" name="a41edb3973bb7b1108e725ebe9ec28b11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41edb3973bb7b1108e725ebe9ec28b11">&#9670;&#160;</a></span>freeModule()</h2>
+<a id="a0e34c8551120a1a0103e7e90a7223f78" name="a0e34c8551120a1a0103e7e90a7223f78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e34c8551120a1a0103e7e90a7223f78">&#9670;&#160;</a></span>getModule()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,20 +155,20 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Tapioca::DynamicLibraryLoader::freeModule </td>
+          <td class="memname">HMODULE Tapioca::DynamicLibraryLoader::getModule </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Libera el modulo. </p>
+<p>Devuelve el modulo. </p>
 
 </div>
 </div>
@@ -194,9 +177,6 @@ Métodos públicos estáticos</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Tapioca::DynamicLibraryLoader::initGame </td>
@@ -205,11 +185,6 @@ Métodos públicos estáticos</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Carga la dll del juego y llama a su funcion de inicializacion. </p>
@@ -219,7 +194,7 @@ Métodos públicos estáticos</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>Si se ha podido cargar correctamente o no </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si se ha podido cargar correctamente, false si no </dd></dl>
 
 </div>
 </div>

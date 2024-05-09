@@ -99,12 +99,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_sound_manager.html">   17</a></span><span class="keyword">class </span><a class="code hl_define" href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a> <a class="code hl_class" href="class_tapioca_1_1_sound_manager.html">SoundManager</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_tapioca_1_1_singleton.html">Singleton</a>&lt;SoundManager&gt;, <span class="keyword">public</span> <a class="code hl_class" href="class_tapioca_1_1_module.html">Module</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_singleton.html">Singleton&lt;SoundManager&gt;</a>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_sound.html">Sound</a>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_audio_source.html">AudioSource</a>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_audio_listener.html">AudioListener</a>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_singleton.html">Singleton&lt;SoundManager&gt;</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_sound.html">Sound</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_audio_source.html">AudioSource</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_tapioca_1_1_audio_listener.html">AudioListener</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="class_tapioca_1_1_audio_listener.html">AudioListener</a>* al;                     <span class="comment">// Puntero al AudioListener</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    irrklang::ISoundEngine* soundEngine;   <span class="comment">// Puntero al ISoundEngine de irrKlang</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
@@ -129,17 +129,17 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> setListener(<a class="code hl_class" href="class_tapioca_1_1_audio_listener.html">AudioListener</a> al);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    * @brief comprueba si existe la carpeta audio dentro d eassets</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    * @brief Comprueba si existe la carpeta audio dentro d eassets</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    */</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">bool</span> checkAudioFolder() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    * @brief crea la carpeta audio dentro de assets</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    * @brief Crea la carpeta audio dentro de assets</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">    */</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> createAudioFolder();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> createAudioFolder() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">    * @brief devuelve la carpeta a partir de la cual se buscan los sonidos</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">    * @brief Devuelve la carpeta a partir de la cual se buscan los sonidos</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">    */</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    std::string getAudioPath();</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>

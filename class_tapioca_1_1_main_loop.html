@@ -109,6 +109,9 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:ac26e604758f99c050b9bd66d242f5fd8" id="r_ac26e604758f99c050b9bd66d242f5fd8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac26e604758f99c050b9bd66d242f5fd8">init</a> ()</td></tr>
 <tr class="memdesc:ac26e604758f99c050b9bd66d242f5fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa los modulos.  <br /></td></tr>
 <tr class="separator:ac26e604758f99c050b9bd66d242f5fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416f5f956eb288b6966da11f9b7e6ed4" id="r_a416f5f956eb288b6966da11f9b7e6ed4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a416f5f956eb288b6966da11f9b7e6ed4">loadGame</a> (std::string const &amp;gameName=&quot;game&quot;)</td></tr>
+<tr class="memdesc:a416f5f956eb288b6966da11f9b7e6ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intenta cargar la biblioteca dinamica del juego.  <br /></td></tr>
+<tr class="separator:a416f5f956eb288b6966da11f9b7e6ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4029cfeebc041e725328eb02d87352c9" id="r_a4029cfeebc041e725328eb02d87352c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4029cfeebc041e725328eb02d87352c9">initConfig</a> ()</td></tr>
 <tr class="memdesc:a4029cfeebc041e725328eb02d87352c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa la configuracion del juego.  <br /></td></tr>
 <tr class="separator:a4029cfeebc041e725328eb02d87352c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +139,9 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:a10a0187b0cc1d68ff129bbc7cd7bee20" id="r_a10a0187b0cc1d68ff129bbc7cd7bee20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10a0187b0cc1d68ff129bbc7cd7bee20">pushEvent</a> (<a class="el" href="struct_tapioca_1_1_event.html">Event</a> const &amp;e, bool const delay=false)</td></tr>
 <tr class="memdesc:a10a0187b0cc1d68ff129bbc7cd7bee20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envia un evento a las escenas.  <br /></td></tr>
 <tr class="separator:a10a0187b0cc1d68ff129bbc7cd7bee20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d890f2e4f9de159047bef7ec07290ec" id="r_a7d890f2e4f9de159047bef7ec07290ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_dynamic_library_loader.html">DynamicLibraryLoader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d890f2e4f9de159047bef7ec07290ec">getLoader</a> () const</td></tr>
+<tr class="memdesc:a7d890f2e4f9de159047bef7ec07290ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el cargador de bibliotecas dinamicas.  <br /></td></tr>
+<tr class="separator:a7d890f2e4f9de159047bef7ec07290ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_tapioca_1_1_singleton"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_tapioca_1_1_singleton')"><img src="closed.png" alt="-"/>&#160;Métodos públicos heredados de <a class="el" href="class_tapioca_1_1_singleton.html">Tapioca::Singleton&lt; MainLoop &gt;</a></td></tr>
 <tr class="memitem:aa9f71b77e3c9d61fa3a306b60b48afd8 inherit pub_methods_class_tapioca_1_1_singleton" id="r_aa9f71b77e3c9d61fa3a306b60b48afd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_singleton.html#aa9f71b77e3c9d61fa3a306b60b48afd8">Singleton</a> (const <a class="el" href="class_tapioca_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="class_tapioca_1_1_main_loop.html">MainLoop</a> &gt; &amp;s)=delete</td></tr>
 <tr class="separator:aa9f71b77e3c9d61fa3a306b60b48afd8 inherit pub_methods_class_tapioca_1_1_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,6 +300,9 @@ Otros miembros heredados</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::unordered_map&lt; std::string, <a class="el" href="class_tapioca_1_1_scene.html">Scene</a> * &gt; Tapioca::MainLoop::getLoadedScenes </td>
@@ -302,10 +311,43 @@ Otros miembros heredados</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Devuelve todas las escenas cargadas. </p>
 <dl class="section return"><dt>Devuelve</dt><dd>unordered_map con las escenas cargadas </dd></dl>
+
+</div>
+</div>
+<a id="a7d890f2e4f9de159047bef7ec07290ec" name="a7d890f2e4f9de159047bef7ec07290ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d890f2e4f9de159047bef7ec07290ec">&#9670;&#160;</a></span>getLoader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_dynamic_library_loader.html">DynamicLibraryLoader</a> * Tapioca::MainLoop::getLoader </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Devuelve el cargador de bibliotecas dinamicas. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Puntero al cargador de bibliotecas dinamicas </dd></dl>
 
 </div>
 </div>
@@ -372,6 +414,31 @@ Otros miembros heredados</h2></td></tr>
 
 <p>Inicializa la configuracion del juego. </p>
 <dl class="section return"><dt>Devuelve</dt><dd>true si se ha inicializado correctamente, false en caso contrario </dd></dl>
+
+</div>
+</div>
+<a id="a416f5f956eb288b6966da11f9b7e6ed4" name="a416f5f956eb288b6966da11f9b7e6ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a416f5f956eb288b6966da11f9b7e6ed4">&#9670;&#160;</a></span>loadGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::MainLoop::loadGame </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>gameName</em><span class="paramdefsep"> = </span><span class="paramdefval">&quot;game&quot;</span></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Intenta cargar la biblioteca dinamica del juego. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameName</td><td>Nombre del juego </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

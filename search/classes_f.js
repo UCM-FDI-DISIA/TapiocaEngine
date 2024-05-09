@@ -14,13 +14,9 @@ var searchData=
   ['singleton_3c_20soundmanager_20_3e_11',['Singleton&lt; SoundManager &gt;',['../class_tapioca_1_1_singleton.html',1,'Tapioca']]],
   ['singleton_3c_20uimanager_20_3e_12',['Singleton&lt; UIManager &gt;',['../class_tapioca_1_1_singleton.html',1,'Tapioca']]],
   ['singleton_3c_20windowmanager_20_3e_13',['Singleton&lt; WindowManager &gt;',['../class_tapioca_1_1_singleton.html',1,'Tapioca']]],
-  ['skybox_14',['Skybox',['../class_tapioca_1_1_skybox.html',1,'Tapioca']]],
-  ['skyboxcomponent_15',['SkyboxComponent',['../class_tapioca_1_1_skybox_component.html',1,'Tapioca']]],
-  ['skyplane_16',['Skyplane',['../class_tapioca_1_1_skyplane.html',1,'Tapioca']]],
-  ['skyplanecomponent_17',['SkyplaneComponent',['../class_tapioca_1_1_skyplane_component.html',1,'Tapioca']]],
-  ['slider_18',['Slider',['../class_tapioca_1_1_slider.html',1,'Tapioca']]],
-  ['sound_19',['Sound',['../class_tapioca_1_1_sound.html',1,'Tapioca']]],
-  ['soundmanager_20',['SoundManager',['../class_tapioca_1_1_sound_manager.html',1,'Tapioca']]],
-  ['spriterenderer_21',['SpriteRenderer',['../class_tapioca_1_1_sprite_renderer.html',1,'Tapioca']]],
-  ['stack_3c_20compvalue_20_3e_22',['Stack&lt; CompValue &gt;',['../structluabridge_1_1_stack_3_01_comp_value_01_4.html',1,'luabridge']]]
+  ['slider_14',['Slider',['../class_tapioca_1_1_slider.html',1,'Tapioca']]],
+  ['sound_15',['Sound',['../class_tapioca_1_1_sound.html',1,'Tapioca']]],
+  ['soundmanager_16',['SoundManager',['../class_tapioca_1_1_sound_manager.html',1,'Tapioca']]],
+  ['spriterenderer_17',['SpriteRenderer',['../class_tapioca_1_1_sprite_renderer.html',1,'Tapioca']]],
+  ['stack_3c_20compvalue_20_3e_18',['Stack&lt; CompValue &gt;',['../structluabridge_1_1_stack_3_01_comp_value_01_4.html',1,'luabridge']]]
 ];

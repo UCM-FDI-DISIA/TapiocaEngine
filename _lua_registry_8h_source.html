@@ -119,19 +119,15 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            .beginNamespace(className.c_str())</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            .addFunction(functionName, function)</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            .endNamespace()</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            .endNamespace();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        .endNamespace();</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_lua_registry.html#aec692205bfb0ad88371b3da034ce9af5">   56</a></span>    T <a class="code hl_function" href="class_tapioca_1_1_lua_registry.html#aec692205bfb0ad88371b3da034ce9af5">getValueFromLua</a>(std::string name) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> map[name].cast&lt;T&gt;();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_tapioca_1_1_lua_registry.html#aec692205bfb0ad88371b3da034ce9af5">   56</a></span>    T <a class="code hl_function" href="class_tapioca_1_1_lua_registry.html#aec692205bfb0ad88371b3da034ce9af5">getValueFromLua</a>(std::string name) { <span class="keywordflow">return</span> map[name].cast&lt;T&gt;(); }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
-</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
 <div class="ttc" id="aclass_tapioca_1_1_lua_registry_html"><div class="ttname"><a href="class_tapioca_1_1_lua_registry.html">Tapioca::LuaRegistry</a></div><div class="ttdoc">Registra clases, funciones y valores en Lua y permite acceder a los valores registrados.</div><div class="ttdef"><b>Definition</b> LuaRegistry.h:12</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_lua_registry_html_a6a66b41565d93a466c0f6d3332711b55"><div class="ttname"><a href="class_tapioca_1_1_lua_registry.html#a6a66b41565d93a466c0f6d3332711b55">Tapioca::LuaRegistry::registerFunction</a></div><div class="ttdeci">void registerFunction(std::string className, std::string functionName, TFunc function)</div><div class="ttdoc">Registra una funcion en Lua.</div><div class="ttdef"><b>Definition</b> LuaRegistry.h:41</div></div>
 <div class="ttc" id="aclass_tapioca_1_1_lua_registry_html_aec692205bfb0ad88371b3da034ce9af5"><div class="ttname"><a href="class_tapioca_1_1_lua_registry.html#aec692205bfb0ad88371b3da034ce9af5">Tapioca::LuaRegistry::getValueFromLua</a></div><div class="ttdeci">T getValueFromLua(std::string name)</div><div class="ttdoc">Devuelve un valor de Lua.</div><div class="ttdef"><b>Definition</b> LuaRegistry.h:56</div></div>

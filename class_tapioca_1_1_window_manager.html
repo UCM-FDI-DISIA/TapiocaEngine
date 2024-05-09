@@ -109,9 +109,6 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:abce0804f22a7f3700422e18d232f7e39" id="r_abce0804f22a7f3700422e18d232f7e39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abce0804f22a7f3700422e18d232f7e39">initConfig</a> () override</td></tr>
 <tr class="memdesc:abce0804f22a7f3700422e18d232f7e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa la configuracion del juego.  <br /></td></tr>
 <tr class="separator:abce0804f22a7f3700422e18d232f7e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec1aa5ffcdb8ccbe973b4c517636ff62" id="r_aec1aa5ffcdb8ccbe973b4c517636ff62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec1aa5ffcdb8ccbe973b4c517636ff62">start</a> () override</td></tr>
-<tr class="memdesc:aec1aa5ffcdb8ccbe973b4c517636ff62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el puntero al <a class="el" href="class_tapioca_1_1_main_loop.html" title="Clase que contiene el bucle principal del motor.">MainLoop</a>.  <br /></td></tr>
-<tr class="separator:aec1aa5ffcdb8ccbe973b4c517636ff62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a816fa167c9d3fadc242950b88121cd3f" id="r_a816fa167c9d3fadc242950b88121cd3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a816fa167c9d3fadc242950b88121cd3f">update</a> (const uint64_t deltaTime) override</td></tr>
 <tr class="memdesc:a816fa167c9d3fadc242950b88121cd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maneja los eventos de la ventana.  <br /></td></tr>
 <tr class="separator:a816fa167c9d3fadc242950b88121cd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +167,9 @@ Métodos públicos</h2></td></tr>
 <tr class="separator:a130bb7f670c3246bbfedd7e88c80aa20 inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a912a483f4aa2594e65d1246ba414d204 inherit pub_methods_class_tapioca_1_1_module" id="r_a912a483f4aa2594e65d1246ba414d204"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#a912a483f4aa2594e65d1246ba414d204">~Module</a> ()</td></tr>
 <tr class="separator:a912a483f4aa2594e65d1246ba414d204 inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1edaa21164d47af387283262bb0935e inherit pub_methods_class_tapioca_1_1_module" id="r_ae1edaa21164d47af387283262bb0935e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#ae1edaa21164d47af387283262bb0935e">start</a> ()</td></tr>
+<tr class="memdesc:ae1edaa21164d47af387283262bb0935e inherit pub_methods_class_tapioca_1_1_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa las variables.  <br /></td></tr>
+<tr class="separator:ae1edaa21164d47af387283262bb0935e inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a956767f43bc1f4f534c5945c5afea4da inherit pub_methods_class_tapioca_1_1_module" id="r_a956767f43bc1f4f534c5945c5afea4da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tapioca_1_1_module.html#a956767f43bc1f4f534c5945c5afea4da">fixedUpdate</a> ()</td></tr>
 <tr class="memdesc:a956767f43bc1f4f534c5945c5afea4da inherit pub_methods_class_tapioca_1_1_module"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el modulo a una velocidad fija.  <br /></td></tr>
 <tr class="separator:a956767f43bc1f4f534c5945c5afea4da inherit pub_methods_class_tapioca_1_1_module"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -660,35 +660,6 @@ Otros miembros heredados</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="aec1aa5ffcdb8ccbe973b4c517636ff62" name="aec1aa5ffcdb8ccbe973b4c517636ff62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec1aa5ffcdb8ccbe973b4c517636ff62">&#9670;&#160;</a></span>start()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tapioca::WindowManager::start </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Inicializa el puntero al <a class="el" href="class_tapioca_1_1_main_loop.html" title="Clase que contiene el bucle principal del motor.">MainLoop</a>. </p>
-
-<p>Reimplementado de <a class="el" href="class_tapioca_1_1_module.html#ae1edaa21164d47af387283262bb0935e">Tapioca::Module</a>.</p>
 
 </div>
 </div>

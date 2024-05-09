@@ -114,7 +114,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span> is3D; <span class="comment">// Indica si queremos una fuente de sonido espacializada o no</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">bool</span> isLooping;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> isPaused;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> paused;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">float</span> volumen;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">float</span> playSpeed;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
@@ -133,12 +133,15 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> playOnce();</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> playLooped();</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> stop();</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> pause(<span class="keywordtype">bool</span> p);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span> loop(<span class="keywordtype">bool</span> l);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> setVolume(<span class="keywordtype">float</span> v);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">bool</span> isPaused();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">bool</span> hasFinished();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">bool</span> hasStopped();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> pause(<span class="keywordtype">bool</span> p);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">void</span> loop(<span class="keywordtype">bool</span> l);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span> setVolume(<span class="keywordtype">float</span> v);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>};</div>
 </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
 <div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
 <div class="ttc" id="a_component_8h_html_a6ece19712d479203bbc26db8935a896b"><div class="ttname"><a href="_component_8h.html#a6ece19712d479203bbc26db8935a896b">COMPONENT_ID</a></div><div class="ttdeci">#define COMPONENT_ID(_id)</div><div class="ttdoc">Id del componente Se necesita especificar para usar BasicBuilder y para poder ser llamado desde los m...</div><div class="ttdef"><b>Definition</b> Component.h:136</div></div>
 <div class="ttc" id="a_vector3_8h_html"><div class="ttname"><a href="_vector3_8h.html">Vector3.h</a></div></div>
@@ -151,7 +154,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="acomponent_defs_8h_html_a338872d4a137c5ee3a3d1c8c3a6a3fec"><div class="ttname"><a href="component_defs_8h.html#a338872d4a137c5ee3a3d1c8c3a6a3fec">CompMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, CompValue &gt; CompMap</div><div class="ttdef"><b>Definition</b> componentDefs.h:7</div></div>
 <div class="ttc" id="adefs_8h_html_a5eb78819495b2499b5580153b27b73a8"><div class="ttname"><a href="defs_8h.html#a5eb78819495b2499b5580153b27b73a8">TAPIOCA_API</a></div><div class="ttdeci">#define TAPIOCA_API</div><div class="ttdef"><b>Definition</b> defs.h:5</div></div>
 <div class="ttc" id="anamespace_tapioca_html"><div class="ttname"><a href="namespace_tapioca.html">Tapioca</a></div><div class="ttdef"><b>Definition</b> LuaComponent.cpp:9</div></div>
-<div class="ttc" id="anamespace_tapioca_html_a50f116bb01f41d112f7af00c4f87884e"><div class="ttname"><a href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">Tapioca::sound</a></div><div class="ttdeci">SoundManager * sound</div><div class="ttdef"><b>Definition</b> Exports.h:24</div></div>
+<div class="ttc" id="anamespace_tapioca_html_a50f116bb01f41d112f7af00c4f87884e"><div class="ttname"><a href="namespace_tapioca.html#a50f116bb01f41d112f7af00c4f87884e">Tapioca::sound</a></div><div class="ttdeci">SoundManager * sound</div><div class="ttdef"><b>Definition</b> Exports.h:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

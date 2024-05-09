@@ -133,13 +133,11 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:aa4b79bc9f75ad1dba6f26576646aa607" id="r_aa4b79bc9f75ad1dba6f26576646aa607"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4b79bc9f75ad1dba6f26576646aa607">checkResourceExists</a> (std::string name)</td></tr>
 <tr class="memdesc:aa4b79bc9f75ad1dba6f26576646aa607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprueba si existe un recurso con el nombre especificado.  <br /></td></tr>
 <tr class="separator:aa4b79bc9f75ad1dba6f26576646aa607"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7aeb09c75a565daccf7467533f0b1ab4" id="r_a7aeb09c75a565daccf7467533f0b1ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aeb09c75a565daccf7467533f0b1ab4">removeCameraCompByZOrder</a> (int zOrder, bool deleteCamera)</td></tr>
-<tr class="memdesc:a7aeb09c75a565daccf7467533f0b1ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina una camara en un zOrder especifico.  <br /></td></tr>
-<tr class="separator:a7aeb09c75a565daccf7467533f0b1ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad492c801ea4aa804a80a51e493aa3ea8" id="r_ad492c801ea4aa804a80a51e493aa3ea8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad492c801ea4aa804a80a51e493aa3ea8">saveCameraComp</a> (<a class="el" href="class_tapioca_1_1_camera_component.html">CameraComponent</a> *cameraComp)</td></tr>
-<tr class="memdesc:ad492c801ea4aa804a80a51e493aa3ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guarda el componente de camara.  <br /></td></tr>
-<tr class="separator:ad492c801ea4aa804a80a51e493aa3ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb961f2dac06d9dc92ff7a2f0f25ef41" id="r_acb961f2dac06d9dc92ff7a2f0f25ef41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb961f2dac06d9dc92ff7a2f0f25ef41">checkParticleSystemExists</a> (std::string name)</td></tr>
+<tr class="memdesc:acb961f2dac06d9dc92ff7a2f0f25ef41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprueba si existe un sistema de particulas con el nombre especificado.  <br /></td></tr>
+<tr class="separator:acb961f2dac06d9dc92ff7a2f0f25ef41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6ae1d02a1ad46b03f73779cc855a0cc" id="r_ab6ae1d02a1ad46b03f73779cc855a0cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6ae1d02a1ad46b03f73779cc855a0cc">askForZOrder</a> (int requiredZOrder)</td></tr>
+<tr class="memdesc:ab6ae1d02a1ad46b03f73779cc855a0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el zOrder disponible mas cercano al requerido.  <br /></td></tr>
 <tr class="separator:ab6ae1d02a1ad46b03f73779cc855a0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b3dd0e6e7d66d1602b5e7f4f3015774" id="r_a3b3dd0e6e7d66d1602b5e7f4f3015774"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b3dd0e6e7d66d1602b5e7f4f3015774">removeZOrder</a> (int zOrder)</td></tr>
 <tr class="memdesc:a3b3dd0e6e7d66d1602b5e7f4f3015774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un zOrder.  <br /></td></tr>
@@ -180,15 +178,18 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:a45e360bf9cd041120318996310a7272e" id="r_a45e360bf9cd041120318996310a7272e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_billboard.html">Billboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45e360bf9cd041120318996310a7272e">createBillboard</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;name, const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> position, const <a class="el" href="class_tapioca_1_1_vector4.html">Vector4</a> colour)</td></tr>
 <tr class="memdesc:a45e360bf9cd041120318996310a7272e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un billboard.  <br /></td></tr>
 <tr class="separator:a45e360bf9cd041120318996310a7272e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e57a5a7be049f67009d0482aa92f6f0" id="r_a9e57a5a7be049f67009d0482aa92f6f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_billboard_set.html">BillboardSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e57a5a7be049f67009d0482aa92f6f0">createBillboardSet</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;name, unsigned int poolSize)</td></tr>
-<tr class="memdesc:a9e57a5a7be049f67009d0482aa92f6f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un billboardSet.  <br /></td></tr>
-<tr class="separator:a9e57a5a7be049f67009d0482aa92f6f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af46a0da79951f66c1341534313e62842" id="r_af46a0da79951f66c1341534313e62842"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_billboard_set.html">BillboardSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af46a0da79951f66c1341534313e62842">createBillboardSet</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;name, const unsigned int poolSize)</td></tr>
+<tr class="memdesc:af46a0da79951f66c1341534313e62842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un billboardSet.  <br /></td></tr>
+<tr class="separator:af46a0da79951f66c1341534313e62842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7e7dcbfcdf9f470d595d14a49a40907" id="r_ae7e7dcbfcdf9f470d595d14a49a40907"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_billboard_set.html">BillboardSet</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7e7dcbfcdf9f470d595d14a49a40907">createBillboardSetWithName</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, const unsigned int poolSize)</td></tr>
 <tr class="memdesc:ae7e7dcbfcdf9f470d595d14a49a40907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un billboardSet sin nombre especificado.  <br /></td></tr>
 <tr class="separator:ae7e7dcbfcdf9f470d595d14a49a40907"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76d23e5adc5daf9d33dfecefa8ca9d33" id="r_a76d23e5adc5daf9d33dfecefa8ca9d33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_particle_system.html">ParticleSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76d23e5adc5daf9d33dfecefa8ca9d33">createParticleSystem</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;name, std::string const &amp;templateName, const bool emitting)</td></tr>
 <tr class="memdesc:a76d23e5adc5daf9d33dfecefa8ca9d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un particleSystem.  <br /></td></tr>
 <tr class="separator:a76d23e5adc5daf9d33dfecefa8ca9d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae424c6f214e892bec805467e19b6157f" id="r_ae424c6f214e892bec805467e19b6157f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_particle_system.html">ParticleSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae424c6f214e892bec805467e19b6157f">createParticleSystemWithName</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;templateName, const bool emitting)</td></tr>
+<tr class="memdesc:ae424c6f214e892bec805467e19b6157f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un particleSystem sin nombre especificado.  <br /></td></tr>
+<tr class="separator:ae424c6f214e892bec805467e19b6157f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad15a80870b6daf85e47d269e6e6965d2" id="r_ad15a80870b6daf85e47d269e6e6965d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_plane.html">Plane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad15a80870b6daf85e47d269e6e6965d2">createPlane</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> rkNormal, const float fConstant, const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> &amp;up, std::string const &amp;name, const float width, const float height, const int xSegments, const int ySegments, std::string const &amp;material=&quot;&quot;)</td></tr>
 <tr class="memdesc:ad15a80870b6daf85e47d269e6e6965d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un plane Construye el plano a partir de la normal rkNormal y la mueve una distancia fConstant en la normal.  <br /></td></tr>
 <tr class="separator:ad15a80870b6daf85e47d269e6e6965d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,12 +208,6 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:ab84d05a3d9f3308f33984898e9b72d56" id="r_ab84d05a3d9f3308f33984898e9b72d56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_node_animator.html">NodeAnimator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab84d05a3d9f3308f33984898e9b72d56">createNodeAnimatorWithName</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, const float duration)</td></tr>
 <tr class="memdesc:ab84d05a3d9f3308f33984898e9b72d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea una animacion sin nombre especificado.  <br /></td></tr>
 <tr class="separator:ab84d05a3d9f3308f33984898e9b72d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac89f9fad0d56185688c856541073cc22" id="r_ac89f9fad0d56185688c856541073cc22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_skybox.html">Skybox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac89f9fad0d56185688c856541073cc22">createSkybox</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;material, std::string const &amp;name, const float distC=5000, const bool orderC=true)</td></tr>
-<tr class="memdesc:ac89f9fad0d56185688c856541073cc22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un skybox.  <br /></td></tr>
-<tr class="separator:ac89f9fad0d56185688c856541073cc22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cdcd35298c14b2bf36106e2d81dd1ae" id="r_a3cdcd35298c14b2bf36106e2d81dd1ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tapioca_1_1_skyplane.html">Skyplane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cdcd35298c14b2bf36106e2d81dd1ae">createSkyplane</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node, std::string const &amp;materialName, std::string const &amp;name, const bool enable, const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a> rkNormal, const float fConstant, const float scale, const float tiling, const bool drawFirst, const float bow, const int xsegments, const int ysegments)</td></tr>
-<tr class="memdesc:a3cdcd35298c14b2bf36106e2d81dd1ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un skyplane.  <br /></td></tr>
-<tr class="separator:a3cdcd35298c14b2bf36106e2d81dd1ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7064080e98d8ab650a8745356dc4245" id="r_ac7064080e98d8ab650a8745356dc4245"><td class="memItemLeft" align="right" valign="top">Ogre::ManualObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7064080e98d8ab650a8745356dc4245">createManualObject</a> (<a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const node)</td></tr>
 <tr class="memdesc:ac7064080e98d8ab650a8745356dc4245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un manual object.  <br /></td></tr>
 <tr class="separator:ac7064080e98d8ab650a8745356dc4245"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -355,6 +350,40 @@ Otros miembros heredados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Devuelve el zOrder disponible mas cercano al requerido. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requiredZOrder</td><td>zOrder requerido </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acb961f2dac06d9dc92ff7a2f0f25ef41" name="acb961f2dac06d9dc92ff7a2f0f25ef41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb961f2dac06d9dc92ff7a2f0f25ef41">&#9670;&#160;</a></span>checkParticleSystemExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tapioca::GraphicsManager::checkParticleSystemExists </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comprueba si existe un sistema de particulas con el nombre especificado. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nombre del sistema de particulas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si existe, false si no </dd></dl>
+
 </div>
 </div>
 <a id="aa4b79bc9f75ad1dba6f26576646aa607" name="aa4b79bc9f75ad1dba6f26576646aa607"></a>
@@ -463,8 +492,8 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="a9e57a5a7be049f67009d0482aa92f6f0" name="a9e57a5a7be049f67009d0482aa92f6f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e57a5a7be049f67009d0482aa92f6f0">&#9670;&#160;</a></span>createBillboardSet()</h2>
+<a id="af46a0da79951f66c1341534313e62842" name="af46a0da79951f66c1341534313e62842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af46a0da79951f66c1341534313e62842">&#9670;&#160;</a></span>createBillboardSet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,7 +511,7 @@ Otros miembros heredados</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>poolSize</em></span>&#160;)</td>
+          <td class="paramtype">const unsigned int</td>          <td class="paramname"><span class="paramname"><em>poolSize</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -914,6 +943,43 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
+<a id="ae424c6f214e892bec805467e19b6157f" name="ae424c6f214e892bec805467e19b6157f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae424c6f214e892bec805467e19b6157f">&#9670;&#160;</a></span>createParticleSystemWithName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tapioca_1_1_particle_system.html">ParticleSystem</a> * Tapioca::GraphicsManager::createParticleSystemWithName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const</td>          <td class="paramname"><span class="paramname"><em>node</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>templateName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>emitting</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crea un particleSystem sin nombre especificado. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
+    <tr><td class="paramname">templateName</td><td>TemplateName del particleSystem </td></tr>
+    <tr><td class="paramname">emitting</td><td>Indica si esta emitiendo particulas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Puntero al particleSystem creado </dd></dl>
+
+</div>
+</div>
 <a id="a151270b5affc9e846c9cfce36851fef7" name="a151270b5affc9e846c9cfce36851fef7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a151270b5affc9e846c9cfce36851fef7">&#9670;&#160;</a></span>createPlane() <span class="overload">[1/2]</span></h2>
 
@@ -1185,144 +1251,6 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="ac89f9fad0d56185688c856541073cc22" name="ac89f9fad0d56185688c856541073cc22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac89f9fad0d56185688c856541073cc22">&#9670;&#160;</a></span>createSkybox()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_tapioca_1_1_skybox.html">Skybox</a> * Tapioca::GraphicsManager::createSkybox </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const</td>          <td class="paramname"><span class="paramname"><em>node</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>material</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>distC</em><span class="paramdefsep"> = </span><span class="paramdefval">5000</span>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>orderC</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Crea un skybox. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
-    <tr><td class="paramname">material</td><td>Material del skybox </td></tr>
-    <tr><td class="paramname">name</td><td>Nombre del skybox </td></tr>
-    <tr><td class="paramname">distC</td><td>Distancia del plano a la camara </td></tr>
-    <tr><td class="paramname">orderC</td><td>True si se quiere que se dibuje antes que todas las geometrias de la escena </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a3cdcd35298c14b2bf36106e2d81dd1ae" name="a3cdcd35298c14b2bf36106e2d81dd1ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cdcd35298c14b2bf36106e2d81dd1ae">&#9670;&#160;</a></span>createSkyplane()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_tapioca_1_1_skyplane.html">Skyplane</a> * Tapioca::GraphicsManager::createSkyplane </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_tapioca_1_1_render_node.html">RenderNode</a> *const</td>          <td class="paramname"><span class="paramname"><em>node</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>materialName</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>enable</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_tapioca_1_1_vector3.html">Vector3</a></td>          <td class="paramname"><span class="paramname"><em>rkNormal</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>fConstant</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>scale</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>tiling</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>drawFirst</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>bow</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>xsegments</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ysegments</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Crea un skyplane. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>Nodo para renderizado </td></tr>
-    <tr><td class="paramname">materialName</td><td>Nombre del material </td></tr>
-    <tr><td class="paramname">name</td><td>Nombre del skyplane </td></tr>
-    <tr><td class="paramname">enable</td><td>Indica si se activa el skyplane </td></tr>
-    <tr><td class="paramname">rkNormal</td><td>Normal del plano </td></tr>
-    <tr><td class="paramname">fConstant</td><td>Distancia que se mueve el plano a traves de la normal </td></tr>
-    <tr><td class="paramname">scale</td><td>Escala del skyplane </td></tr>
-    <tr><td class="paramname">tiling</td><td>Tiling del skyplane </td></tr>
-    <tr><td class="paramname">drawFirst</td><td>Indica si se dibuja primero </td></tr>
-    <tr><td class="paramname">bow</td><td>Curvatura del skyplane </td></tr>
-    <tr><td class="paramname">xsegments</td><td>Numero de segmentos en x </td></tr>
-    <tr><td class="paramname">ysegments</td><td>Numero de segmentos en y </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a5845fab2d11ae0c67f3613f95a518dbe" name="a5845fab2d11ae0c67f3613f95a518dbe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5845fab2d11ae0c67f3613f95a518dbe">&#9670;&#160;</a></span>createViewport()</h2>
 
@@ -1551,36 +1479,6 @@ Otros miembros heredados</h2></td></tr>
 
 </div>
 </div>
-<a id="a7aeb09c75a565daccf7467533f0b1ab4" name="a7aeb09c75a565daccf7467533f0b1ab4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7aeb09c75a565daccf7467533f0b1ab4">&#9670;&#160;</a></span>removeCameraCompByZOrder()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tapioca::GraphicsManager::removeCameraCompByZOrder </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>zOrder</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>deleteCamera</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Elimina una camara en un zOrder especifico. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">zOrder</td><td>ZOrder de la camara </td></tr>
-    <tr><td class="paramname">deleteCamera</td><td>Indica si se debe eliminar la camara </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ab15eb8c8e7de391ee126438fcd3737a9" name="ab15eb8c8e7de391ee126438fcd3737a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab15eb8c8e7de391ee126438fcd3737a9">&#9670;&#160;</a></span>removeMainLight()</h2>
 
@@ -1657,31 +1555,6 @@ Otros miembros heredados</h2></td></tr>
 <p>Renderiza 1 frame. </p>
 
 <p>Reimplementado de <a class="el" href="class_tapioca_1_1_module.html#a6249622666df090c8a12c11a8efddb4d">Tapioca::Module</a>.</p>
-
-</div>
-</div>
-<a id="ad492c801ea4aa804a80a51e493aa3ea8" name="ad492c801ea4aa804a80a51e493aa3ea8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad492c801ea4aa804a80a51e493aa3ea8">&#9670;&#160;</a></span>saveCameraComp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tapioca::GraphicsManager::saveCameraComp </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_tapioca_1_1_camera_component.html">CameraComponent</a> *</td>          <td class="paramname"><span class="paramname"><em>cameraComp</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Guarda el componente de camara. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cameraComp</td><td>Componente de camara a guardar </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
