@@ -15,7 +15,6 @@ class Sound;
 class TAPIOCA_API AudioSource {
 private:
     irrklang::ISound* iSound;   // Puntero al sonido que se reproduce
-    //bool isPaused;              // Indica si el sonido esta pausado o no
     float maxDistance;          // Distancia a partir de la cual el sonido ya no se atenua
     float minDistance;          // Distancia a partir de la cual el sonido empieza a atenuarse
     float pan;                  // 0 es el centro , -1 la derecha  y 1 la izquierda , solo aplicable a fuentes 2D
@@ -48,8 +47,20 @@ public:
     */
     ~AudioSource() {};
 
+    /**
+    * @brief Devuelve si el sonido esta pausado o no
+    * @return Si el sonido esta pausado o no
+    */
     bool isPaused();
+    /**
+    * @brief Devuelve si el sonido ha terminado de reproducirse
+    * @return Si el sonido ha terminado de reproducirse
+    */
     bool hasFinished();
+    /**
+    * @brief Devuelve si el sonido se ha detenido
+    * @return Si el sonido se ha detenido
+    */
     bool hasStopped();
     /**
     * @brief Establece si el sonido esta pausado o no
@@ -89,12 +100,12 @@ public:
     void setPosition(Vector3 p);
     /**
     * @brief Reproduce el sonido una vez desde el principio
-    * @param spatialised indica si el sonido es 2D o 3D
+    * @param spatialised Indica si el sonido es 2D o 3D
     */
     void playOnce(bool spatialised);
     /**
     * @brief Reproduce el sonido en bucle desde el principio
-    * @param spatialised indica si el sonido es 2D o 3D
+    * @param spatialised Indica si el sonido es 2D o 3D
     */
     void playLooped(bool spatialised);
     /**

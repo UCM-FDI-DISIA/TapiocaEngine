@@ -49,7 +49,7 @@ void InputManager::removeController(const int i) {
     }
 }
 
-void Tapioca::InputManager::sendEvent(std::string const& eventName, SDL_Event const& event, int const& value) {
+void InputManager::sendEvent(std::string const& eventName, SDL_Event const& event, int const& value) {
     // Si el origen del evento no ha sido mapeado, lo ignora
     if (inputMap.find(eventName) == inputMap.end()) return;
 

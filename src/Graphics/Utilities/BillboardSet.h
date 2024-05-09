@@ -42,7 +42,7 @@ protected:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::vector<Tapioca::Billboard*> billboards;   // UnorderedSet de Billboards de Tapioca
+    std::vector<Billboard*> billboards;   // UnorderedSet de Billboards de Tapioca
     std::string mName;                             // Nombre identificador
 #ifdef _MSC_VER
 #pragma warning(default : 4251)

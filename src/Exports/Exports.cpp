@@ -43,7 +43,7 @@
 
 namespace Tapioca {
 void initEngine() {
-    mainLoop = Tapioca::MainLoop::create();
+    mainLoop = MainLoop::create();
     createModules(mainLoop);
 }
 
@@ -62,33 +62,33 @@ void runEngine(std::string const& gameName) {
     else logError("Exports: runEngine: Error al inicializar un modulo.");
 }
 
-static void createModules(Tapioca::MainLoop* mainLoop) {
-    window = Tapioca::WindowManager::create();
+static void createModules(MainLoop* mainLoop) {
+    window = WindowManager::create();
     mainLoop->addModule(window);
 
-    graphics = Tapioca::GraphicsManager::create();
+    graphics = GraphicsManager::create();
     mainLoop->addModule(graphics);
 
-    ui = Tapioca::UIManager::create();
+    ui = UIManager::create();
     mainLoop->addModule(ui);
 
-    input = Tapioca::InputManager::create();
+    input = InputManager::create();
     mainLoop->addModule(input);
     mapInput();
 
-    factories = Tapioca::FactoryManager::create();
+    factories = FactoryManager::create();
     mainLoop->addModule(factories);
 
-    physics = Tapioca::PhysicsManager::create();
+    physics = PhysicsManager::create();
     mainLoop->addModule(physics);
 
-    scenes = Tapioca::SceneLoader::create();
+    scenes = SceneLoader::create();
     mainLoop->addModule(scenes);
 
-    sound = Tapioca::SoundManager::create();
+    sound = SoundManager::create();
     mainLoop->addModule(sound);
 
-    lua = Tapioca::LuaManager::create();
+    lua = LuaManager::create();
     mainLoop->addModule(lua);
 
     // Importante: UI tiene que suscribirse antes que input

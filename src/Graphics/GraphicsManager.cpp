@@ -308,8 +308,8 @@ void GraphicsManager::render() {
     try {
         mRoot->renderOneFrame();
     } catch (Ogre::Exception e) {
-        Tapioca::logError(("GraphicsManager: Error al renderizar frame. Detalles:\n" + e.getDescription()).c_str());
-        Tapioca::MainLoop::instance()->exit();
+        logError(("GraphicsManager: Error al renderizar frame. Detalles:\n" + e.getDescription()).c_str());
+        MainLoop::instance()->exit();
     }
 }
 
