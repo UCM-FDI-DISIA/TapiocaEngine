@@ -185,8 +185,10 @@ public:
     */
     void addImpulse(const Vector3 f);
 
+    /**
+    * @brief Elimina las fuerzas y velocidades del rb
+    */
     void clearAllForcesAndVelocities();
-
     /**
     * @brief Elimina las fuerzas actuando sobre el rb
     */
