@@ -248,7 +248,7 @@ bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameO
         delete comp;
         return false;
     }
-    gameObject->addComponent(comp, name);
+    else gameObject->addComponent(comp, name);
 
     return true;
 }
