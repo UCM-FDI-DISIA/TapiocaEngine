@@ -30,7 +30,8 @@ bool Animator::initComponent(const CompMap& variables) {
     return true;
 }
 
-void Animator::start() {
+void Animator::awake() {
+    if (!object->delay(this, "MeshRenderer")) return;
     meshRenderer = object->getComponent<MeshRenderer>();
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     if (graphicsManager != nullptr) anim = graphicsManager->createAnimationHelper(meshRenderer->getMesh(), true, true);

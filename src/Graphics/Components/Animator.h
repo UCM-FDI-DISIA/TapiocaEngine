@@ -49,7 +49,7 @@ public:
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
     */
-    void start() override;
+    void awake() override;
     /**
     * @brief Metodo que se usa para actualizar el estado de un componente. Se llama todas las veces posibles
     * @param deltaTime Tiempo que ha pasado desde la ultima llamada
