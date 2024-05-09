@@ -14,9 +14,11 @@ namespace Tapioca {
 Animator::Animator() : meshRenderer(nullptr), anim(nullptr), speed(1.f), initAnim("") { }
 
 Animator::~Animator() {
+    if (meshRenderer != nullptr) {
+        if (anim != nullptr) delete anim;
+        anim = nullptr;
+    }
     meshRenderer = nullptr;
-    if (anim != nullptr) delete anim;
-    anim = nullptr;
 }
 
 bool Animator::initComponent(const CompMap& variables) {

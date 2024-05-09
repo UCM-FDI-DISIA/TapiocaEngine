@@ -283,8 +283,7 @@ void GraphicsManager::loadResources() const {
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./TapiocaFiles/Graphics/ColliderDrawer", "FileSystem", 
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-        true);
+        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
 
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
         "./assets", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true);
