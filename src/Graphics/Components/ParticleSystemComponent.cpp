@@ -32,8 +32,7 @@ bool ParticleSystemComponent::initComponent(const CompMap& variables) {
 }
 
 void ParticleSystemComponent::awake() {
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     node = GraphicsManager::instance()->createNode();
     pSys = GraphicsManager::instance()->createParticleSystemWithName(node, templateName, emitting);
 }

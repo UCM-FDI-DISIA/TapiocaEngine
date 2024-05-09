@@ -41,7 +41,7 @@ bool AudioSourceComponent::initComponent(const CompMap& variables) {
 }
 
 void AudioSourceComponent::awake() {
-    transform = getObject()->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     if (transform != nullptr) {
         position = transform->getGlobalPosition();
         sound = new Sound(sourcePath);

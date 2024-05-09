@@ -67,8 +67,7 @@ bool SkyplaneComponent::initComponent(const CompMap& variables) {
 }
 
 void SkyplaneComponent::awake() {
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
 }

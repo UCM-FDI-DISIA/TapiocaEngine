@@ -31,8 +31,7 @@ bool SpriteRenderer::initComponent(const CompMap& variables) {
 }
 
 void SpriteRenderer::start() {
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     billboardSet = g->createBillboardSetWithName(node, 1);

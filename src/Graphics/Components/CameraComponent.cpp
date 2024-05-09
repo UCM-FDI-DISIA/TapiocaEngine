@@ -70,7 +70,7 @@ bool CameraComponent::initComponent(const CompMap& variables) {
 }
 
 void CameraComponent::awake() {
-    transform = getObject()->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
 
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     int zOrderAux = graphicsManager->askForZOrder(zOrder);

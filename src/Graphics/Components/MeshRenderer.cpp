@@ -49,8 +49,7 @@ bool MeshRenderer::initComponent(const CompMap& variables) {
 
 void MeshRenderer::awake() {
     graphicsManager = GraphicsManager::instance();
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     node = graphicsManager->createNode();
 
     if (meshName != "") {

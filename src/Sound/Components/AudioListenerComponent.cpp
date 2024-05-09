@@ -32,7 +32,7 @@ bool AudioListenerComponent::initComponent(const CompMap& variables) {
 }
 
 void AudioListenerComponent::awake() {
-    transform = getObject()->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     if (transform != nullptr) {
         position = transform->getGlobalPosition();
         look = transform->forward();

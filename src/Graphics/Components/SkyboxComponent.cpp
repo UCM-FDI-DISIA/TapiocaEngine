@@ -37,8 +37,7 @@ bool SkyboxComponent::initComponent(const CompMap& variables) {
 }
 
 void SkyboxComponent::awake() {
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     skybox = g->createSkyboxWithName(node, materialName, distC, orderC);

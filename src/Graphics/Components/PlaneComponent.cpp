@@ -56,8 +56,7 @@ bool PlaneComponent::initComponent(const CompMap& variables) {
 }
 
 void PlaneComponent::awake() {
-    GameObject* gameobject = getObject();
-    transform = gameobject->getComponent<Transform>();
+    transform = object->getComponent<Transform>();
     GraphicsManager* g = GraphicsManager::instance();
     node = g->createNode();
     plane = g->createPlaneWithName(node, rkNormal, 0, up, width, height, xSegments, ySegments, materialName);
