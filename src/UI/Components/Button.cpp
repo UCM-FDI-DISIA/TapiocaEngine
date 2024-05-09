@@ -48,6 +48,10 @@ bool Button::initComponent(const CompMap& variables) {
         logInfo(("Button: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" +
                  std::to_string(textSize) + "\".").c_str());
     }
+    if (textSize <= 0.0f) {
+        logError("Button: El valor de textSize no puede ser negativo o cero.");
+        return false;
+    }
 
     if (!setValueFromMap(textColorNormal.x, "textColorNormalR", variables)) {
         logInfo(("Button: No se encontro el valor de textColorNormalR. Se inicializo al valor predefinido: \"" +

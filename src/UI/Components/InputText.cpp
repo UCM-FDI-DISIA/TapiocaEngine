@@ -60,6 +60,10 @@ bool InputText::initComponent(const CompMap& variables) {
         logInfo(("InputText: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" +
                  std::to_string(textSize) + "\".").c_str());
     }
+    if (textSize <= 0.0f) {
+        logError("InputText: El valor de textSize no puede ser negativo o cero.");
+        return false;
+    }
 
     if (!setValueFromMap(textColor.x, "textColorR", variables)) {
         logInfo(("InputText: No se encontro el valor de textColorR. Se inicializo al valor predefinido: \"" +

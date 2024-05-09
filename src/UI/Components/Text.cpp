@@ -33,6 +33,10 @@ bool Text::initComponent(const CompMap& variables) {
         logInfo(("Text: No se encontro el valor de textSize. Se inicializo al valor predefinido: \"" + 
                  std::to_string(textSize) + "\".").c_str());
     }
+    if (textSize <= 0.0f) {
+        logError("Text: El valor de textSize no puede ser negativo o cero.");
+        return false;
+    }
 
     if (!setValueFromMap(textFontName, "textFontName", variables)) {
         logInfo("Text: No se encontro el valor de textFontName. Se inicializara con la fuente por predefinida.");
