@@ -48,6 +48,12 @@ public:
     /**
     * @brief Metodo que se usa para inicializar el componente.
     * Garantiza que todos los componentes iniciales esten creados
+    * Si no existe el MeshRenderer, se pone su alive y su active a
+    * false y envia un evento para avisar que esta muerto para que,
+    * si otro componente necesita el Animator, lo gestione el mismo
+    * (ya que el otro componente solo puede coger el Animator en el
+    * start y como no se asegura el orden de inicializacion de los 
+    * componentes, no puede saber de antemano si esta vivo o no)
     */
     void start() override;
     /**

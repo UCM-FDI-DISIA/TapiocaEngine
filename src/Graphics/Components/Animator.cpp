@@ -32,9 +32,15 @@ bool Animator::initComponent(const CompMap& variables) {
 
 void Animator::start() {
     meshRenderer = object->getComponent<MeshRenderer>();
-    GraphicsManager* graphicsManager = GraphicsManager::instance();
-    if (graphicsManager != nullptr) anim = graphicsManager->createAnimationHelper(meshRenderer->getMesh(), true, true);
-    if (initAnim != "") playAnim(initAnim);
+    if (meshRenderer == nullptr) {
+        alive = active = false;
+        pushEvent("ev_componentDied", this);
+    }
+    else {
+        GraphicsManager* graphicsManager = GraphicsManager::instance();
+        if (graphicsManager != nullptr) anim = graphicsManager->createAnimationHelper(meshRenderer->getMesh(), true, true);
+        if (initAnim != "") playAnim(initAnim);
+    }
 }
 
 void Animator::update(uint64_t deltaTime) { anim->updateAnim(deltaTime, speed); }
