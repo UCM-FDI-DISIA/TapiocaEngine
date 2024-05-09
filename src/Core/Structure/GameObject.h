@@ -26,15 +26,11 @@ private:
     // class 'std::unordered_multimap<std::string,Tapioca::Component *,std::hash<std::string>,
     // std::equal_to<std::string>,std::allocator<std::pair<const std::string,Tapioca::Component *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
-    // warning C4251 'Tapioca::GameObject::cmpOrder' :
-    // class 'std::vector<Tapioca::Component *,std::allocator<Tapioca::Component *>>' necesita
-    // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::GameObject'
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
     std::string handler;                                           // Handler del objeto
     std::unordered_multimap<std::string, Component*> components;   // Componentes del objeto, cada uno asociado a una id
-    std::vector<Component*> cmpOrder;   // Vector que contiene los componentes en el orden en el que se han anadido
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -57,12 +53,6 @@ private:
     * @brief Elimina los componentes muertos del objeto
     */
     void refresh();
-
-    /**
-    * @brief Elimina una componente del objeto
-    * @param comp Componente que se quiere eliminar
-    */
-    void deleteCompVector(Component* const comp);
 
 public:
     /**

@@ -149,12 +149,6 @@ public:
     inline Vector3 getPosition() const { return position; }
 
     /**
-    * @brief Devuelve la posicion XY local del transform
-    * @return Posicion XY local del transform
-    */
-    inline Vector2 getPositionXY() const { return Vector2(position.x, position.y); }
-
-    /**
     * @brief Devuelve la posicion global del transform
     * @return Posicion global del transform
     */
@@ -182,11 +176,6 @@ public:
     */
     inline Vector3 getScale() const { return scale; }
     /**
-    * @brief Devuelve la escala XY local del transform
-    * @return Escala XY local del transform
-    */
-    inline Vector2 getScaleXY() const { return Vector2(scale.x, scale.y); }
-    /**
     * @brief Devuelve la escala global del transform
     * @return Escala global del transform
     */
@@ -205,13 +194,6 @@ public:
     * @param rb Indica si es movido por fisicas
     */
     void setGlobalPosition(const Vector3& p, bool rb = false);
-
-    /**
-    * @brief Cambia la posicion XY del transform. Genera el evento "posChanged"
-    * @param pXY Posicion XY a la que se quiere mover el transform
-    * @param rb Indica si es movido por fisicas
-    */
-    void setPositionXY(const Vector2& pXY, bool rb = false);
     /**
     * @brief Cambia la rotacion del transform. Genera el evento "posChanged" y "rotChanged"
     * @param r Rotacion a la que se quiere rotar el transform
@@ -229,11 +211,6 @@ public:
     * @param s Tamano al que se quiere escalar el transform
     */
     void setScale(const Vector3& s);
-    /**
-    * @brief Cambia la escala XY del transform. Genera el evento "posChanged" y "scaleChanged"
-    * @param s Tamano XY al que se quiere escalar el transform
-    */
-    void setScaleXY(const Vector2& s);
 
     /**
     * @brief Mueve el objeto tanto como el vector dado indica

@@ -296,6 +296,162 @@ static void registerLuaFunctions() {
                 .addFunction("loop", &AudioSourceComponent::loop)
                 .addFunction("setVolume", &AudioSourceComponent::setVolume)
             .endClass()
+            .deriveClass<Button, Component>("Button")
+                .addProperty("name",
+                    [](Button* self) -> std::string { return self->getName(); },
+                    [](Button* self, const std::string& name) { self->setName(name); })
+                .addProperty("transform",
+                    [](Button* self) -> Transform* { return self->getTransform(); })
+                .addProperty("position",
+                    [](Button* self) -> Vector2 { return self->getPosition(); },
+                    [](Button* self, const Vector2& position) { self->setPosition(position); })
+                .addProperty("size",
+                    [](Button* self) -> Vector2 { return self->getSize(); },
+                    [](Button* self, const Vector2& size) { self->setSize(size); })
+                .addProperty("windowFlags",
+                    [](Button* self) -> int { return self->getWindowFlags(); },
+                    [](Button* self, int windowFlags) { self->setWindowFlags(windowFlags); })
+                .addProperty("onClickId", &Button::getOnClickId, &Button::setOnClickId)
+                .addProperty("text", &Button::getText, &Button::setText)
+                .addProperty("textSize", &Button::getTextSize, &Button::setTextSize)
+                .addProperty("textFontName", &Button::getTextFontName, &Button::setTextFontName)
+                .addProperty("textColorNormal", &Button::getTextColorNormal, &Button::setTextColorNormal)
+                .addProperty("textColorHover", &Button::getTextColorHover, &Button::setTextColorHover)
+                .addProperty("textColorActive", &Button::getTextColorActive, &Button::setTextColorActive)
+                .addProperty("normalColor", &Button::getNormalColor, &Button::setNormalColor)
+                .addProperty("hoverColor", &Button::getHoverColor, &Button::setHoverColor)
+                .addProperty("activeColor", &Button::getActiveColor, &Button::setActiveColor)
+            .endClass()
+            .deriveClass<Image, Component>("Image")
+                .addProperty("name",
+                    [](Image* self) -> std::string { return self->getName(); },
+                    [](Image* self, const std::string& name) { self->setName(name); })
+                .addProperty("transform",
+                    [](Image* self) -> Transform* { return self->getTransform(); })
+                .addProperty("position",
+                    [](Image* self) -> Vector2 { return self->getPosition(); },
+                    [](Image* self, const Vector2& position) { self->setPosition(position); })
+                .addProperty("size",
+                    [](Image* self) -> Vector2 { return self->getSize(); },
+                    [](Image* self, const Vector2& size) { self->setSize(size); })
+                .addProperty("windowFlags",
+                    [](Image* self) -> int { return self->getWindowFlags(); },
+                    [](Image* self, int windowFlags) { self->setWindowFlags(windowFlags); })
+                .addProperty("imagePath", &Image::getImagePath, &Image::setImagePath)
+                .addProperty("textureId", &Image::getTextureId, &Image::setTextureId)
+            .endClass()
+            .deriveClass<ImageTextButton, Button>("ImageTextButton")
+                .addProperty("imagePathNormal", &ImageTextButton::getImagePathNormal, &ImageTextButton::setImagePathNormal)
+                .addProperty("imagePathHover", &ImageTextButton::getImagePathHover, &ImageTextButton::setImagePathHover)
+                .addProperty("imagePathActive", &ImageTextButton::getImagePathActive, &ImageTextButton::setImagePathActive)
+                .addProperty("textureIdNormal", &ImageTextButton::getTextureIdNormal, &ImageTextButton::setTextureIdNormal)
+                .addProperty("textureIdHover", &ImageTextButton::getTextureIdHover, &ImageTextButton::setTextureIdHover)
+                .addProperty("textureIdActive", &ImageTextButton::getTextureIdActive, &ImageTextButton::setTextureIdActive)
+                .addProperty("uv0", &ImageTextButton::getUV0, &ImageTextButton::setUV0)
+                .addProperty("uv1", &ImageTextButton::getUV1, &ImageTextButton::setUV1)
+                .addProperty("imageBgColor", &ImageTextButton::getImageBgColor, &ImageTextButton::setImageBgColor)
+                .addProperty("imageTint", &ImageTextButton::getImageTint, &ImageTextButton::setImageTint)
+            .endClass()
+            .deriveClass<InputText, Component>("InputText")
+                .addProperty("name",
+                    [](InputText* self) -> std::string { return self->getName(); },
+                    [](InputText* self, const std::string& name) { self->setName(name); })
+                .addProperty("transform",
+                    [](InputText* self) -> Transform* { return self->getTransform(); })
+                .addProperty("position",
+                    [](InputText* self) -> Vector2 { return self->getPosition(); },
+                    [](InputText* self, const Vector2& position) { self->setPosition(position); })
+                .addProperty("size",
+                    [](InputText* self) -> Vector2 { return self->getSize(); },
+                    [](InputText* self, const Vector2& size) { self->setSize(size); })
+                .addProperty("windowFlags",
+                    [](InputText* self) -> int { return self->getWindowFlags(); },
+                    [](InputText* self, int windowFlags) { self->setWindowFlags(windowFlags); })
+                .addProperty("placeHolderText", &InputText::getPlaceHolderText, &InputText::setPlaceHolderText)
+                //.addFunction("getBuffer", &InputText::getBuffer)
+                //.addFunction("setBuffer", &InputText::setBuffer)
+                //.addProperty("buffer",
+                //    [](InputText* self) -> char* { return self->getBuffer(); },
+                //    [](InputText* self, char* buffer) { self->setBuffer(buffer); })
+                .addProperty("bufferSize", &InputText::getBufferSize, &InputText::setBufferSize)
+                .addProperty("onTextEnterId", &InputText::getOnTextEnteredId, &InputText::setOnTextEnterId)
+                .addProperty("textSize", &InputText::getTextSize, &InputText::setTextSize)
+                .addProperty("textFontName", &InputText::getTextFontName, &InputText::setTextFontName)
+                .addProperty("textColor", &InputText::getTextColor, &InputText::setTextColor)
+                .addProperty("bgColor", &InputText::getBgColor, &InputText::setBgColor)
+                .addProperty("windowFlags",
+                    [](InputText* self) -> int { return self->getFlags(); },
+                    [](InputText* self, int windowFlags) { self->setFlags(windowFlags); })
+            .endClass()
+            .deriveClass<Line, Component>("Line")
+                .addProperty("startPosition", &Line::getStartPosition, &Line::setStartPosition)
+                .addProperty("endPosition", &Line::getEndPosition, &Line::setEndPosition)
+                .addProperty("lineColor", &Line::getLineColor, &Line::setLineColor)
+                .addProperty("lineThickness", &Line::getLineThickness, &Line::setLineThickness)
+                .addProperty("addBorder", &Line::getAddBorder, &Line::setAddBorder)
+                .addProperty("borderColor", &Line::getBorderColor, &Line::setBorderColor)
+                .addProperty("borderThickness", &Line::getBorderThickness, &Line::setBorderThickness)
+            .endClass()
+            .deriveClass<ProgressBar, Component>("ProgressBar")
+                .addProperty("name",
+                    [](ProgressBar* self) -> std::string { return self->getName(); },
+                    [](ProgressBar* self, const std::string& name) { self->setName(name); })
+                .addProperty("transform",
+                    [](ProgressBar* self) -> Transform* { return self->getTransform(); })
+                .addProperty("position",
+                    [](ProgressBar* self) -> Vector2 { return self->getPosition(); },
+                    [](ProgressBar* self, const Vector2& position) { self->setPosition(position); })
+                .addProperty("size",
+                    [](ProgressBar* self) -> Vector2 { return self->getSize(); },
+                    [](ProgressBar* self, const Vector2& size) { self->setSize(size); })
+                .addProperty("windowFlags",
+                    [](ProgressBar* self) -> int { return self->getWindowFlags(); },
+                    [](ProgressBar* self, int windowFlags) { self->setWindowFlags(windowFlags); })
+                .addProperty("progress", &ProgressBar::getProgress, &ProgressBar::setProgress)
+                .addProperty("barColor", &ProgressBar::getBarColor, &ProgressBar::setBarColor)
+                .addProperty("backgroundText", &ProgressBar::getBackgroundText, &ProgressBar::setBackgroundText)
+                .addFunction("addProgress", &ProgressBar::addProgress)
+            .endClass()
+            .deriveClass<Slider, Component>("Slider")
+                .addProperty("name",
+                    [](Slider* self) -> std::string { return self->getName(); },
+                    [](Slider* self, const std::string& name) { self->setName(name); })
+                .addProperty("transform",
+                    [](Slider* self) -> Transform* { return self->getTransform(); })
+                .addProperty("position",
+                    [](Slider* self) -> Vector2 { return self->getPosition(); },
+                    [](Slider* self, const Vector2& position) { self->setPosition(position); })
+                .addProperty("size",
+                    [](Slider* self) -> Vector2 { return self->getSize(); },
+                    [](Slider* self, const Vector2& size) { self->setSize(size); })
+                .addProperty("windowFlags",
+                    [](Slider* self) -> int { return self->getWindowFlags(); },
+                    [](Slider* self, int windowFlags) { self->setWindowFlags(windowFlags); })
+                .addProperty("isVertical", &Slider::getIsVertical, &Slider::setIsVertical)
+                .addProperty("currentValue", &Slider::getCurrentValue, &Slider::setCurrentValue)
+                .addProperty("maxLimit", &Slider::getMaxLimit, &Slider::setMaxLimit)
+                .addProperty("minLimit", &Slider::getMinLimit, &Slider::setMinLimit)
+            .endClass()
+            .deriveClass<Text, Component>("Text")
+                .addProperty("name",
+                    [](Text* self) -> std::string { return self->getName(); },
+                    [](Text* self, const std::string& name) { self->setName(name); })
+                .addProperty("transform",
+                    [](Text* self) -> Transform* { return self->getTransform(); })
+                .addProperty("position",
+                    [](Text* self) -> Vector2 { return self->getPosition(); },
+                    [](Text* self, const Vector2& position) { self->setPosition(position); })
+                .addProperty("size",
+                    [](Text* self) -> Vector2 { return self->getSize(); },
+                    [](Text* self, const Vector2& size) { self->setSize(size); })
+                .addProperty("windowFlags",
+                    [](Text* self) -> int { return self->getWindowFlags(); },
+                    [](Text* self, int windowFlags) { self->setWindowFlags(windowFlags); })
+                .addProperty("text", &Text::getText, &Text::setText)
+                .addProperty("textSize", &Text::getTextSize, &Text::setTextSize)
+                .addProperty("textFontName", &Text::getTextFontName, &Text::setTextFontName)
+                .addProperty("textColor", &Text::getTextColor, &Text::setTextColor)
+            .endClass()
         .endNamespace()
         // Esto es importante ya que Lua no lo puede hacer por sí mismo
         .beginNamespace("casts")
@@ -330,6 +486,22 @@ static void registerLuaFunctions() {
                     +[](Component* variable) -> AudioListenerComponent* { return static_cast<AudioListenerComponent*>(variable); })
                 .addFunction("AudioSourceComponent",
                     +[](Component* variable) -> AudioSourceComponent* { return static_cast<AudioSourceComponent*>(variable); })
+                .addFunction("Button",
+                    +[](Component* variable) -> Button* { return static_cast<Button*>(variable); })
+                .addFunction("Image",
+                    +[](Component* variable) -> Image* { return static_cast<Image*>(variable); })
+                .addFunction("ImageTextButton",
+                    +[](Component* variable) -> ImageTextButton* { return static_cast<ImageTextButton*>(variable); })
+                .addFunction("InputText",
+                    +[](Component* variable) -> InputText* { return static_cast<InputText*>(variable); })
+                .addFunction("Line",
+                    +[](Component* variable) -> Line* { return static_cast<Line*>(variable); })
+                .addFunction("ProgressBar",
+                    +[](Component* variable) -> ProgressBar* { return static_cast<ProgressBar*>(variable); })
+                .addFunction("Slider",
+                    +[](Component* variable) -> Slider* { return static_cast<Slider*>(variable); })
+                .addFunction("Text",
+                    +[](Component* variable) -> Text* { return static_cast<Text*>(variable); })
             .endNamespace()
         .endNamespace();
 }

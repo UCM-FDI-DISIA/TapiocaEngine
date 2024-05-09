@@ -50,7 +50,7 @@ void Slider::start() {
         object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
         float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
                              (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+        if (min > 0.0f) transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
     }
 }
 

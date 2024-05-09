@@ -41,6 +41,11 @@ protected:
     Vector4 hoverColor;        // Color del boton para el estado "hover"
     Vector4 activeColor;       // Color del boton para el estado "active"
 
+    /**
+    * @brief Actualiza la fuente del texto del boton
+    */
+    void updateTextFont();
+
 public:
     COMPONENT_ID("Button")
 
@@ -112,11 +117,6 @@ public:
     * @param textFont Fuente del texto del boton
     */
     inline void setTextFont(ImFont* textFont) { this->textFont = textFont; }
-
-    /**
-    * @brief Actualiza la fuente del texto del boton
-    */
-    void updateTextFont();
 
     /**
     * @brief Establece el color del texto del boton en estado "normal"

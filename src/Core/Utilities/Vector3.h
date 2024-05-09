@@ -192,5 +192,7 @@ public:
     * @return Distancia entre los 2 vectores
     */
     float distance(Vector3 const& other) const;
+
+    operator Vector2() const;
 };
 }

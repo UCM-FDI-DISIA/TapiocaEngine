@@ -73,7 +73,7 @@ public:
     * @brief Establece el grosor de la linea
     * @param lineThickness Grosor de la linea
     */
-    inline void setThickness(float lineThickness) { this->lineThickness = lineThickness; }
+    inline void setLineThickness(float lineThickness) { this->lineThickness = lineThickness; }
 
     /**
     * @brief Establece si se le agrega un borde a la linea

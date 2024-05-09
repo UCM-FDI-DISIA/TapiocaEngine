@@ -216,11 +216,6 @@ void Transform::setGlobalPosition(const Vector3& p, bool rb) {
     posChanged(rb);
 }
 
-void Transform::setPositionXY(const Vector2& p, bool rb) {
-    position = p;
-    posChanged(rb);
-}
-
 void Transform::setRotation(const Vector3& r, bool rb) {
     rotation = Quaternion(r);
     posChanged(rb);
@@ -234,12 +229,6 @@ void Transform::setRotation(const Quaternion& q, bool rb) {
 }
 
 void Transform::setScale(const Vector3& s) {
-    scale = s;
-    posChanged();
-    scaleChanged();
-}
-
-void Transform::setScaleXY(const Vector2& s) {
     scale = s;
     posChanged();
     scaleChanged();

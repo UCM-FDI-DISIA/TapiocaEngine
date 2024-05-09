@@ -13,7 +13,6 @@ GameObject::~GameObject() {
 
 void GameObject::addComponent(Component* const comp, std::string const& id) {
     components.insert(std::pair<std::string, Component*>(id, comp));
-    cmpOrder.push_back(comp);
     comp->object = this;
 }
 
@@ -73,15 +72,10 @@ void GameObject::pushEvent(std::string const& id, void* info, const bool global,
     else handleEvent(id, info);
 }
 
-void GameObject::deleteCompVector(Component* const comp) {
-    cmpOrder.erase(std::remove(cmpOrder.begin(), cmpOrder.end(), comp), cmpOrder.end());
-}
-
 void GameObject::refresh() {
     auto it = components.begin();
     while (it != components.end()) {
         if (!it->second->isAlive()) {
-            deleteCompVector(it->second);
             delete it->second;
             it = components.erase(it);
         }
@@ -90,32 +84,32 @@ void GameObject::refresh() {
 }
 
 void GameObject::update(const uint64_t deltaTime) {
-    for (auto comp : cmpOrder) {
+    for (auto& [name, comp] : components) {
         if (comp->isActive() && comp->isAlive()) comp->update(deltaTime);
     }
 }
 
 void GameObject::handleEvent(std::string const& id, void* info) {
-    for (auto comp : cmpOrder) comp->handleEvent(id, info);
+    for (auto& [name, comp] : components) comp->handleEvent(id, info);
 }
 
 void GameObject::fixedUpdate() {
-    for (auto comp : cmpOrder) {
+    for (auto& [name, comp] : components) {
         if (comp->isActive() && comp->isAlive()) comp->fixedUpdate();
     }
 }
 
 void GameObject::render() const {
-    for (auto comp : cmpOrder) {
+    for (auto& [name, comp] : components) {
         if (comp->isActive() && comp->isAlive()) comp->render();
     }
 }
 
 void GameObject::awake() {
-    for (auto comp : cmpOrder) comp->awake();
+    for (auto& [name, comp] : components) comp->awake();
 }
 
 void GameObject::start() {
-    for (auto comp : cmpOrder) comp->start();
+    for (auto& [name, comp] : components) comp->start();
 }
 }

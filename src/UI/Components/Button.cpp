@@ -189,7 +189,7 @@ void Button::start() {
                              (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
         if (min > 0.0f) {
             textSize *= min;
-            transform->setScaleXY(Vector2(transform->getScale().x * min, transform->getScale().y * min));
+            transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
         }
     }
     initialTextSize = textSize;

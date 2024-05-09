@@ -34,6 +34,12 @@ protected:
     Transform* transform;           // Puntero al transform del widget
     ImGuiWindowFlags windowFlags;   // Flags de la ventana
 
+    /**
+    * @brief Establece el puntero al transform del widget
+    * @param transform Puntero al transform del widget
+    */
+    inline void setTransform(Transform* transform) { this->transform = transform; }
+
 public:
     /**
     * @brief Constructor por defecto
@@ -52,22 +58,16 @@ public:
     inline void setName(const std::string& name) { this->name = name; }
 
     /**
-    * @brief Establece el puntero al transform del widget
-    * @param transform Puntero al transform del widget
-    */
-    inline void setTransform(Transform* transform) { this->transform = transform; }
-
-    /**
     * @brief Establece la posicion del boton
     * @param position Posicion del boton
     */
-    inline void setPosition(const Vector2& position) { transform->setPosition(Vector3(position.x, position.y, 0)); }
+    inline void setPosition(const Vector2& position) { transform->setPosition(position); }
 
     /**
     * @brief Establece el tamano del boton
     * @param size Tamano del boton
     */
-    inline void setSize(const Vector2& size) { transform->setScaleXY(size); }
+    inline void setSize(const Vector2& size) { transform->setScale(size); }
 
     /**
     * @brief Establece los flags de la ventana
@@ -91,13 +91,13 @@ public:
     * @brief Devuelve la posicion del widget
     * @return Posicion del widget
     */
-    inline Vector2 getPosition() const { return transform->getPositionXY(); }
+    inline Vector2 getPosition() const { return transform->getPosition(); }
 
     /**
     * @brief Devuelve el tamano del widget
     * @return Tamano del widget
     */
-    inline Vector2 getSize() const { return transform->getScaleXY(); }
+    inline Vector2 getSize() const { return transform->getScale(); }
 
     /**
     * @brief Devuelve los flags de la ventana

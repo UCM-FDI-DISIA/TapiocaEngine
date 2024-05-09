@@ -68,4 +68,8 @@ float Vector3::distance(Vector3 const& other) const {
     float dz = other.z - z;
     return std::sqrt(dx * dx + dy * dy + dz * dz);
 }
+
+Vector3::operator Vector2() const {
+    return Vector2(x, y);
+}
 }
