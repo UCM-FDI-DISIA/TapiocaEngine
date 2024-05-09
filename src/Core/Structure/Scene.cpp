@@ -4,13 +4,11 @@
 #include "checkML.h"
 
 namespace Tapioca {
-Scene::Scene(std::string const& name)
-    : active(true), windowWidth(680), windowHeight(480), firstWindowWidth(windowWidth), firstWindowHeight(windowHeight),
-      name(name) { }
+Scene::Scene(std::string const& name) : active(true), windowWidth(680), windowHeight(480), 
+    firstWindowWidth(windowWidth), firstWindowHeight(windowHeight), name(name) { }
 
 Scene::~Scene() {
-    for (auto obj : objects)
-        delete obj;
+    for (auto obj : objects) delete obj;
 }
 
 bool Scene::addObject(GameObject* const object, std::string const& handler, int zIndex) {
@@ -46,8 +44,7 @@ void Scene::refresh() {
         objectAux = nullptr;
     }
 
-    for (auto& obj : objects)
-        obj->refresh();
+    for (auto& obj : objects) obj->refresh();
 }
 
 void Scene::handleEvent(std::string const& id, void* info) {
@@ -61,8 +58,7 @@ void Scene::pushEvent(Event const& e, bool const delay) { MainLoop::instance()->
 GameObject* Scene::getHandler(std::string const& handler) const {
     auto it = handlers.find(handler);
     if (it != handlers.end()) return it->second;
-    else
-        return nullptr;
+    else return nullptr;
 }
 
 void Scene::update(const uint64_t deltaTime) {
@@ -100,8 +96,7 @@ void Scene::updateZIndex(GameObject* obj, int zIndex) {
         logWarn("Scene: No se puede anadir un objeto con zIndex negativo.");
         return;
     }
-    else if (zIndex == 0)
-        return;
+    else if (zIndex == 0) return;
 
     // Elimina el objeto de la capa actual
     auto itLayer = layers.find(obj->getZOrder());
