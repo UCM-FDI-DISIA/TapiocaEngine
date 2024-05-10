@@ -8,9 +8,10 @@
 #include "checkML.h"
 
 namespace Tapioca {
-CameraComponent::CameraComponent() : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), 
-    color(-1.0f, -1.0f, -1.0f), zOrder(0), dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), 
-    direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f), farPlane(-1.0f), targetToLookSet(false), applyInitRot(false) { }
+CameraComponent::CameraComponent()
+    : node(nullptr), transform(nullptr), camera(nullptr), viewport(nullptr), color(-1.0f, -1.0f, -1.0f), zOrder(0),
+      dimensions(0.0f, 0.0f, 1.0f, 1.0f), targetToLook(), direction(0.0f, 0.0f, 0.0f), nearPlane(-1.0f),
+      farPlane(-1.0f), targetToLookSet(false), applyInitRot(false) { }
 
 CameraComponent::~CameraComponent() {
     GraphicsManager::instance()->removeZOrder(zOrder);
@@ -25,8 +26,7 @@ CameraComponent::~CameraComponent() {
 bool CameraComponent::initComponent(const CompMap& variables) {
     // Camera
     bool directionSet = setValueFromMap(direction.x, "directionX", variables) &&
-                        setValueFromMap(direction.y, "directionY", variables) && 
-                        setValueFromMap(direction.z, "directionZ", variables);
+                        setValueFromMap(direction.y, "directionY", variables) && setValueFromMap(direction.z, "directionZ", variables);
     if (!directionSet) {
         targetToLookSet = setValueFromMap(targetToLook.x, "targetToLookX", variables) &&
                           setValueFromMap(targetToLook.y, "targetToLookY", variables) &&
@@ -47,8 +47,7 @@ bool CameraComponent::initComponent(const CompMap& variables) {
     }
 
     bool colorSet = setValueFromMap(color.x, "bgColorR", variables) &&
-                    setValueFromMap(color.y, "bgColorG", variables) &&
-                    setValueFromMap(color.z, "bgColorB", variables);
+        setValueFromMap(color.y, "bgColorG", variables) && setValueFromMap(color.z, "bgColorB", variables);
     if (!colorSet) {
         logInfo("CameraComponent: El color predeterminado del fondo es negro.");
     }
@@ -74,10 +73,11 @@ void CameraComponent::awake() {
 
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     int zOrderAux = graphicsManager->askForZOrder(zOrder);
-    if (zOrderAux != -1) {
+    if (zOrderAux > -1) {
         if (zOrderAux != zOrder) {
             logWarn(("CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
-                     std::to_string(zOrderAux)).c_str());
+                     std::to_string(zOrderAux))
+                        .c_str());
         }
         zOrder = zOrderAux;
 
@@ -91,7 +91,8 @@ void CameraComponent::awake() {
             else {
                 Vector3 globalRot = transform->getGlobalRotation().toEuler();
                 if (globalRot == Vector3(0.0f, 0.0f, 0.0f)) setDirection(INITIAL_DIR);
-                else applyInitRot = true;
+                else
+                    applyInitRot = true;
             }
         }
 
@@ -112,71 +113,99 @@ void CameraComponent::awake() {
 }
 
 void CameraComponent::handleEvent(std::string const& id, void* info) {
-    if (id == "posChanged") node->setPosition(transform->getGlobalPositionWithoutRotation());
-    else if (id == "rotChanged") {
-        if (applyInitRot) node->setRotation(transform->getGlobalRotation());
-        applyInitRot = true;
+    if (node != nullptr) {
+        if (id == "posChanged") node->setPosition(transform->getGlobalPositionWithoutRotation());
+        else if (id == "rotChanged") {
+            if (applyInitRot) node->setRotation(transform->getGlobalRotation());
+            applyInitRot = true;
+        }
     }
 }
 
 void CameraComponent::lookAt(const Vector3 targetToLook) {
-    this->targetToLook = targetToLook;
-    camera->lookAt(targetToLook);
+    if (camera != nullptr) {
+        this->targetToLook = targetToLook;
+        camera->lookAt(targetToLook);
+    }
 }
 
 void CameraComponent::setDirection(const Vector3 dir) {
-    direction = dir;
-    camera->setDirection(dir);
+    if (camera != nullptr) {
+        direction = dir;
+        camera->setDirection(dir);
+    }
 }
 
 void CameraComponent::setNearClipDistance(const float dist) {
-    nearPlane = camera->getNearClipDistance();
-    camera->setNearClipDistance(dist);
+    if (camera != nullptr) {
+        nearPlane = camera->getNearClipDistance();
+        camera->setNearClipDistance(dist);
+    }
 }
 
 void CameraComponent::setFarClipDistance(const float dist) {
-    farPlane = camera->getFarClipDistance();
-    camera->setFarClipDistance(dist);
+    if (camera != nullptr) {
+        farPlane = camera->getFarClipDistance();
+        camera->setFarClipDistance(dist);
+    }
 }
 
 void CameraComponent::setFOVYRadians(const float radians) {
-    nearPlane = camera->getNearClipDistance();
-    camera->setFOVYRadians(radians);
+    if (camera != nullptr) {
+        nearPlane = camera->getNearClipDistance();
+        camera->setFOVYRadians(radians);
+    }
 }
 
 void CameraComponent::setFOVYDegrees(const float degrees) {
-    nearPlane = camera->getNearClipDistance();
-    camera->setFOVYDegrees(degrees);
+    if (camera != nullptr) {
+        nearPlane = camera->getNearClipDistance();
+        camera->setFOVYDegrees(degrees);
+    }
 }
 
 void CameraComponent::setDimensions(const Vector4 dimensions) {
-    this->dimensions = dimensions;
-    viewport->setDimensions(dimensions);
+    if (viewport != nullptr) {
+        this->dimensions = dimensions;
+        viewport->setDimensions(dimensions);
+    }
 }
 
-int CameraComponent::getWidthInPixels() const { return viewport->getWidthInPixels(); }
+int CameraComponent::getWidthInPixels() const {
+    if (viewport != nullptr) return viewport->getWidthInPixels();
+    else return 0;
+}
 
-int CameraComponent::getHeightInPixels() const { return viewport->getHeightInPixels(); }
+int CameraComponent::getHeightInPixels() const {
+    if (viewport != nullptr) return viewport->getHeightInPixels();
+    else
+        return 0;
+}
 
 void CameraComponent::setBackground(const Vector3 color) {
-    this->color = color;
-    viewport->setBackground(Vector4(color, 1.0f));
+    if (viewport != nullptr) {
+        this->color = color;
+        viewport->setBackground(Vector4(color, 1.0f));
+    }
 }
 
 void CameraComponent::setZOrder(const int zOrder) {
-    GraphicsManager* graphicsManager = GraphicsManager::instance();
-    graphicsManager->removeZOrder(this->zOrder);
-    this->zOrder = graphicsManager->askForZOrder(zOrder);
-    if (this->zOrder != -1) {
-        if (zOrder != this->zOrder) {
-            logWarn(("CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
-                     std::to_string(this->zOrder)).c_str());
+    if (viewport != nullptr) {
+        GraphicsManager* graphicsManager = GraphicsManager::instance();
+        graphicsManager->removeZOrder(this->zOrder);
+        this->zOrder = graphicsManager->askForZOrder(zOrder);
+        if (this->zOrder != -1) {
+            if (zOrder != this->zOrder) {
+                logWarn(("CameraComponent: El zOrder que se ha pedido no esta disponible. Se usa zOrder " +
+                         std::to_string(this->zOrder))
+                            .c_str());
+            }
+            viewport->setZOrder(this->zOrder);
         }
-        viewport->setZOrder(this->zOrder);
-    }
-    else {
-        logError("CameraComponent: No queda nigun zOrder disponible");
-        alive = false;
+        else {
+            logError("CameraComponent: No queda nigun zOrder disponible");
+            alive = false;
+        }
     }
 }
 }

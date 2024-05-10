@@ -7,7 +7,8 @@
 #include "checkML.h"
 
 namespace Tapioca {
-KeyFrameAnimator::KeyFrameAnimator() : nodeAnimator(nullptr), speed(1.0f), duration(0.0f), info(), playByDefault(true), loop(true) { }
+KeyFrameAnimator::KeyFrameAnimator()
+    : nodeAnimator(nullptr), speed(1.0f), duration(0.0f), info(), playByDefault(true), loop(true) { }
 
 KeyFrameAnimator::~KeyFrameAnimator() {
     if (nodeAnimator != nullptr) delete nodeAnimator;
@@ -57,7 +58,8 @@ bool KeyFrameAnimator::initComponent(const CompMap& variables) {
         if (rotSet) info.rot[info.size] = rot;
 
         if (!posSet && !scaleSet && !rotSet) end = true;
-        else ++info.size;
+        else
+            ++info.size;
     }
     if (info.size <= 0) return false;
     return true;
@@ -66,38 +68,61 @@ bool KeyFrameAnimator::initComponent(const CompMap& variables) {
 void KeyFrameAnimator::start() {
     GraphicsManager* graphicsManager = GraphicsManager::instance();
     MeshRenderer* meshRenderer = object->getComponent<MeshRenderer>();
-    RenderNode* node = meshRenderer->getNode();
-    nodeAnimator = graphicsManager->createNodeAnimatorWithName(node, duration);
+    if (meshRenderer != nullptr) {
+        RenderNode* node = meshRenderer->getNode();
+        if (node != nullptr) {
+            nodeAnimator = graphicsManager->createNodeAnimatorWithName(node, duration);
 
-    Transform* transform = object->getComponent<Transform>();
-    nodeAnimator->addKeyFramePosScaleRot(transform->getGlobalPosition(), transform->getGlobalScale(),
-                                         transform->getGlobalRotation());
+            Transform* transform = object->getComponent<Transform>();
+            nodeAnimator->addKeyFramePosScaleRot(transform->getGlobalPosition(), transform->getGlobalScale(),
+                                                 transform->getGlobalRotation());
 
-    for (int i = 0; i < info.size; ++i) {
-        KeyFrame* keyFrame = nodeAnimator->addKeyFrame();
-        auto itPos = info.pos.find(i);
-        if (itPos != info.pos.end()) keyFrame->pos = itPos->second;
-        auto itScale = info.scale.find(i);
-        if (itScale != info.scale.end()) keyFrame->scale = itScale->second;
-        auto itRot = info.rot.find(i);
-        if (itRot != info.rot.end()) keyFrame->rot = Quaternion(itRot->second);
+            for (int i = 0; i < info.size; ++i) {
+                KeyFrame* keyFrame = nodeAnimator->addKeyFrame();
+                auto itPos = info.pos.find(i);
+                if (itPos != info.pos.end()) keyFrame->pos = itPos->second;
+                auto itScale = info.scale.find(i);
+                if (itScale != info.scale.end()) keyFrame->scale = itScale->second;
+                auto itRot = info.rot.find(i);
+                if (itRot != info.rot.end()) keyFrame->rot = Quaternion(itRot->second);
+            }
+
+            nodeAnimator->init();
+            if (playByDefault) play(loop);
+        }
+        else alive = false;
     }
-
-    nodeAnimator->init();
-    if (playByDefault) play(loop);
+    else alive = false;
 }
 
-void KeyFrameAnimator::update(uint64_t deltaTime) { nodeAnimator->updateAnim(deltaTime, speed); }
+void KeyFrameAnimator::update(uint64_t deltaTime) {
+    if (nodeAnimator != nullptr) nodeAnimator->updateAnim(deltaTime, speed);
+}
 
-void KeyFrameAnimator::play(const bool loop) { nodeAnimator->play(loop); }
+void KeyFrameAnimator::play(const bool loop) {
+    if (nodeAnimator != nullptr) nodeAnimator->play(loop);
+}
 
-void KeyFrameAnimator::enable(const bool enabled) { nodeAnimator->enable(enabled); }
+void KeyFrameAnimator::enable(const bool enabled) {
+    if (nodeAnimator != nullptr) nodeAnimator->enable(enabled);
+}
 
-void KeyFrameAnimator::setLoop(const bool loop) { nodeAnimator->setLoop(loop); }
+void KeyFrameAnimator::setLoop(const bool loop) {
+    if (nodeAnimator != nullptr) nodeAnimator->setLoop(loop);
+}
 
-bool KeyFrameAnimator::isLooping() const { return nodeAnimator->isLooping(); }
+bool KeyFrameAnimator::isLooping() const {
+    if (nodeAnimator != nullptr) return nodeAnimator->isLooping();
+    else return false;
+}
 
-bool KeyFrameAnimator::isEnabled() const { return nodeAnimator->isEnabled(); }
+bool KeyFrameAnimator::isEnabled() const {
+    if (nodeAnimator != nullptr) return nodeAnimator->isEnabled();
+    else return false;
+}
 
-bool KeyFrameAnimator::hasEnded() const { return nodeAnimator->hasEnded(); }
+bool KeyFrameAnimator::hasEnded() const {
+    if (nodeAnimator != nullptr) return nodeAnimator->hasEnded();
+    else return true;
+}
 }
