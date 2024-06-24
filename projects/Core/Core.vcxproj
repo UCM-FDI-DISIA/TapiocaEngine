@@ -91,6 +91,7 @@
     <ClCompile Include="..\..\src\Core\Structure\FactoryManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\MainLoop.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Core\Structure\PrefabManager.cpp" />
     <ClCompile Include="..\..\src\Core\Structure\Scene.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Quaternion.cpp" />
     <ClCompile Include="..\..\src\Core\Utilities\Vector2.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="..\..\src\Core\Structure\MainLoop.h" />
     <ClInclude Include="..\..\src\Core\Structure\GameObject.h" />
     <ClInclude Include="..\..\src\Core\Structure\Module.h" />
+    <ClInclude Include="..\..\src\Core\Structure\PrefabManager.h" />
     <ClInclude Include="..\..\src\Core\Structure\Scene.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Concepts.h" />
     <ClInclude Include="..\..\src\Core\Utilities\Quaternion.h" />

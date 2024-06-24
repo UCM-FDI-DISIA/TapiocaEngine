@@ -7,6 +7,7 @@
 namespace Tapioca {
 class Component;
 class Scene;
+class Transform;
 
 /**
 * @brief Clase que representa un objeto en el juego
@@ -18,6 +19,7 @@ private:
     int zOrder;     // Profundidad a la que se renderiza el objeto
     Scene* scene;   // Escena a la que pertenece el objeto
     bool alive;     // Indica si se deberia borrar el objeto
+    std::vector<std::pair<std::string, CompMap>>& idAndVars;   // Vector con los componentes del GameObject
 
     // warning C4251 'Tapioca::GameObject::handler' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita
@@ -54,11 +56,22 @@ private:
     */
     void refresh();
 
+    /**
+    * @brief Instancia una copia del objeto
+    * @param scene Escena en la que se instancia el objeto
+    * @param parentObject Objeto que es padre del objeto a instanciar
+    */
+    void InstantiateCopy(Scene* scene, GameObject* parentObject);
+
 public:
     /**
     * @brief Inicializa en true el atributo alive
     */
     GameObject();
+    /**
+    * @brief Inicializa en true el atributo alive y asigna el CompMap de sus componentes
+    */
+    GameObject(std::vector<std::pair<std::string, CompMap>>& lComponents);
     /**
     * @brief Elimina los componentes del objeto
     */
@@ -123,8 +136,9 @@ public:
     * @brief Anade un componente al objeto, no se deberia de usar en ejecucion
     * @param comp Componente que se quiere anadir al objeto
     * @param id Id del componente que se quiere anadir
+    * @param map CompMap del componente que se quiere anadir
     */
-    void addComponent(Component* const comp, std::string const& id);
+    void addComponent(Component* const comp, std::string const& id, CompMap map);
     /**
     * @brief Anade un componente al objeto
     * @param id Id del componente que se quiere anadir
@@ -205,5 +219,11 @@ public:
     * @param delay Indica si el evento se recibira un ciclo mas tarde. Si es false, se recibe immediatamente
     */
     void pushEvent(std::string const& id, void* info, const bool global = true, const bool delay = false);
+    /**
+    * @brief Instancia una copia del prefab
+    * @param scene Escena en la que se instancia el objeto
+    * @param transform Transform nuevo para el objeto
+    */
+    GameObject* InstantiatePrefab(Scene* scene, Transform* transform);
 };
 }

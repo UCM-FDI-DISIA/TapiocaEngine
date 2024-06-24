@@ -3,17 +3,25 @@
 #include "Component.h"
 #include "FactoryManager.h"
 #include "checkML.h"
+#include "Components/Transform.h"
 
 namespace Tapioca {
-GameObject::GameObject() : scene(nullptr), alive(true), handler(""), zOrder(0) { }
-
-GameObject::~GameObject() { 
-    for (auto& i : components) delete i.second;
+GameObject::GameObject()
+    : scene(nullptr), alive(true), handler(""), zOrder(0), idAndVars(*(new std::vector<std::pair<std::string, CompMap>>())) {
 }
 
-void GameObject::addComponent(Component* const comp, std::string const& id) {
+GameObject::GameObject(std::vector<std::pair<std::string, CompMap>>& lComponents)
+    : scene(nullptr), alive(true), handler(""), zOrder(0), idAndVars(lComponents) { }
+
+GameObject::~GameObject() {
+    for (auto& i : components)
+        delete i.second;
+}
+
+void GameObject::addComponent(Component* const comp, std::string const& id, CompMap map) {
     components.insert(std::pair<std::string, Component*>(id, comp));
     comp->object = this;
+    idAndVars.push_back({id, map});
 }
 
 Component* GameObject::addComponent(const std::string& id, const CompMap& variables) {
@@ -22,7 +30,7 @@ Component* GameObject::addComponent(const std::string& id, const CompMap& variab
         delete comp;
         return nullptr;
     }
-    addComponent(comp, id);
+    addComponent(comp, id, variables);
     comp->awake();
     comp->start();
     return nullptr;
@@ -35,13 +43,16 @@ std::vector<Component*> GameObject::addComponents(const std::vector<std::pair<st
         vec.push_back(comp);
         if (!comp->initComponent(params)) {
             // Si un componente no se puede inicializar, se cancela la operacion completa.
-            for (Component* c : vec) delete c;
+            for (Component* c : vec)
+                delete c;
             return vec;
         }
-        addComponent(comp, id);
+        addComponent(comp, id, params);
     }
-    for (auto& comp : vec) comp->awake();
-    for (auto& comp : vec) comp->start();
+    for (auto& comp : vec)
+        comp->awake();
+    for (auto& comp : vec)
+        comp->start();
     return vec;
 }
 
@@ -53,7 +64,8 @@ Component* GameObject::getComponent(std::string const& id) {
 
 std::vector<Component*> GameObject::getAllComponents() {
     std::vector<Component*> out;
-    for (auto& comp : components) out.push_back(comp.second);
+    for (auto& comp : components)
+        out.push_back(comp.second);
     return out;
 }
 
@@ -69,7 +81,8 @@ std::vector<Component*> GameObject::getComponents(std::string const& id) {
 
 void GameObject::pushEvent(std::string const& id, void* info, const bool global, const bool delay) {
     if (global || delay) scene->pushEvent({this, id, info, global}, delay);
-    else handleEvent(id, info);
+    else
+        handleEvent(id, info);
 }
 
 void GameObject::refresh() {
@@ -79,7 +92,8 @@ void GameObject::refresh() {
             delete it->second;
             it = components.erase(it);
         }
-        else ++it;
+        else
+            ++it;
     }
 }
 
@@ -90,7 +104,8 @@ void GameObject::update(const uint64_t deltaTime) {
 }
 
 void GameObject::handleEvent(std::string const& id, void* info) {
-    for (auto& [name, comp] : components) comp->handleEvent(id, info);
+    for (auto& [name, comp] : components)
+        comp->handleEvent(id, info);
 }
 
 void GameObject::fixedUpdate() {
@@ -106,10 +121,40 @@ void GameObject::render() const {
 }
 
 void GameObject::awake() {
-    for (auto& [name, comp] : components) comp->awake();
+    for (auto& [name, comp] : components)
+        comp->awake();
 }
 
 void GameObject::start() {
-    for (auto& [name, comp] : components) comp->start();
+    for (auto& [name, comp] : components)
+        comp->start();
+}
+
+GameObject* GameObject::InstantiatePrefab(Scene* scene, Transform* t) {
+    GameObject* gameObject = new GameObject(idAndVars);
+    gameObject->addComponents(idAndVars);
+    for (auto& i : getComponent<Tapioca::Transform>()->getChildren()) {
+        i->getObject()->InstantiateCopy(scene, this);
+    }
+    scene->addObject(gameObject);
+
+    // Aplicar el nuevo transform al objeto (las transformaciones también se aplican a sus hijos)
+    gameObject->getComponent<Transform>()->setGlobalPosition(
+        Tapioca::Vector3(t->getGlobalPosition().x, t->getGlobalPosition().y, t->getGlobalPosition().z));
+    gameObject->getComponent<Transform>()->setScale(
+        Tapioca::Vector3(t->getScale().x, t->getScale().y, t->getScale().z));
+    gameObject->getComponent<Transform>()->setRotation(t->getGlobalRotation());
+
+    return gameObject;
+}
+
+void GameObject::InstantiateCopy(Scene* scene, GameObject* parentObject) {
+    GameObject* gameObject = new GameObject(idAndVars);
+    gameObject->addComponents(idAndVars);
+    for (auto& i : getComponent<Tapioca::Transform>()->getChildren()) {
+        i->getObject()->InstantiateCopy(scene, gameObject);
+    }
+    // Relaciona al hijo con el padre
+    gameObject->getComponent<Transform>()->setParent(parentObject->getComponent<Transform>());
 }
 }

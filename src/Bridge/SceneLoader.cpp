@@ -11,6 +11,7 @@
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
 #include "checkML.h"
+#include "Structure/PrefabManager.h"
 
 namespace Tapioca {
 SceneLoader::SceneLoader()
@@ -112,17 +113,64 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
         GameObject* gameObject = new GameObject();
         gameObject->setScene(scene);
         std::string gameObjectName = "";
+        int zIndex = 0;
 
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
 
-        logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
+        if (gameObjectName == "Prefab") {
+            std::string prefabName = "";
+            if (!lua_isinteger(luaState, -2)) prefabName = lua_tostring(luaState, -2);
+            else {
+                logInfo("SceneLoader: \Prefab: there is a prefab without a name (prefabs always need one)");
+                delete gameObject;
+                return false;
+            }
 
-        int zIndex = 0;
-        if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
-            delete gameObject;
-            return false;
+            logInfo(("SceneLoader: \tPrefab: " + prefabName).c_str());
+
+            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+                delete gameObject;
+                return false;
+            }
+
+            if (!PrefabManager::instance()->addPrefab(gameObjectName, gameObject)) {
+                logInfo(("SceneLoader: \Prefab: " + gameObjectName + " alredy exits").c_str());
+                delete gameObject;
+                return false;
+            }
         }
+        else if (gameObjectName == "Instantiate") {
+            std::string prefabName = "";
+            if (!lua_isinteger(luaState, -2)) prefabName = lua_tostring(luaState, -2);
+            else {
+                logInfo("SceneLoader: \Instantiate: there is a try of instance without a name (instances always need one)");
+                delete gameObject;
+                return false;
+            }
 
+            logInfo(("SceneLoader: \Instantiate: " + prefabName).c_str());
+
+            if (!PrefabManager::instance()->isPrefab(prefabName)) {
+                delete gameObject;
+                return false;
+            }
+
+            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+                delete gameObject;
+                return false;
+            }
+             
+            PrefabManager::instance()->instantiate(prefabName, scene, gameObject->getComponent<Transform>());
+            delete gameObject;
+        }
+        else {
+            logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
+
+            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+                delete gameObject;
+                return false;
+            }
+        }
         lua_pop(luaState, 1);
     }
     return true;
@@ -151,7 +199,8 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
 
     // Relaciona los hijos con el padre
     Transform* tr = gameObject->getComponent<Transform>();
-    for (GameObject* obj : children) obj->getComponent<Transform>()->setParent(tr);
+    for (GameObject* obj : children)
+        obj->getComponent<Transform>()->setParent(tr);
     children.clear();
     return true;
 }
@@ -193,8 +242,10 @@ bool SceneLoader::loadComponents(GameObject* const gameObject) {
         if (!loadComponent(componentName, gameObject)) return false;
         lua_pop(luaState, 1);
     }
+    // Se crea un CompMap porque es necesario para addComponent, cuando se crea el componente se le darán los valores por defecto.
+    CompMap map;
     // Si no tiene transform, le anado uno por defecto
-    if (gameObject->getComponent<Transform>() == nullptr) gameObject->addComponent(new Transform(), Transform::id);
+    if (gameObject->getComponent<Transform>() == nullptr) gameObject->addComponent(new Transform(), Transform::id, map);
     return true;
 }
 
@@ -248,7 +299,8 @@ bool SceneLoader::loadComponent(std::string const& name, GameObject* const gameO
         delete comp;
         return false;
     }
-    else gameObject->addComponent(comp, name);
+    else
+        gameObject->addComponent(comp, name, map);
 
     return true;
 }

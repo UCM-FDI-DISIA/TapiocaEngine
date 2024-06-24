@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\src\Core\Structure\DynamicLibraryLoader.cpp">
       <Filter>Structure</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Structure\PrefabManager.cpp">
+      <Filter>Structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Utilities\Vector2.h">
@@ -99,5 +102,8 @@
     <ClInclude Include="..\..\src\Core\checkML.h" />
     <ClInclude Include="..\..\src\Core\componentDefs.h" />
     <ClInclude Include="..\..\src\Core\defs.h" />
+    <ClInclude Include="..\..\src\Core\Structure\PrefabManager.h">
+      <Filter>Structure</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
