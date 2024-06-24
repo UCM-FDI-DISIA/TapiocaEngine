@@ -36,6 +36,11 @@ public:
     */
     bool isPrefab(std::string name);
     /**
+    * @brief Elimina un prefab
+    * @param name Nombre del prefab (debe ser único)
+    */
+    void erasePrefab(std::string name);
+    /**
     * @brief Indica si existe un prefab con dicho nombre
     * @param name Nombre del prefab (debe ser único)
     * @return true si existe un prefab con dicho nombre y false en caso contrario

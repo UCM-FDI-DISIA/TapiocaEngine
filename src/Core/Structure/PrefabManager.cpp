@@ -17,9 +17,12 @@ bool PrefabManager::addPrefab(std::string name, GameObject* prefab) {
 
 bool PrefabManager::isPrefab(std::string name) { return prefabsL.count(name) == 1; }
 
+void PrefabManager::erasePrefab(std::string name) { prefabsL.erase(name); }
+
 GameObject* PrefabManager::getPrefab(std::string name) { return prefabsL.at(name); }
 
 GameObject* PrefabManager::instantiate(std::string name, Scene* scene, Transform* transform) {
     return prefabsL.at(name)->InstantiatePrefab(scene, transform);
 }
+
 }

@@ -3,6 +3,7 @@
 #include "Structure/Module.h"
 #include <string>
 #include <vector>
+#include "Structure/PrefabManager.h"
 
 struct lua_State;
 
@@ -13,6 +14,7 @@ class FactoryManager;
 class WindowManager;
 class GameObject;
 class Component;
+class PrefabManager;
 
 /**
 * @brief Carga las escenas del juego incluyendo los gameobjects y sus componentes
@@ -26,6 +28,7 @@ private:
     MainLoop* mainLoop;             // Puntero a MainLoop
     FactoryManager* factManager;    // Puntero a FactoryManager
     WindowManager* windowManager;   // Puntero a WindowManager
+    PrefabManager* prefabs;         // Puntero a PrefabManager
 
     // warning C4251 'Tapioca::SceneLoader::scenesPath' :
     // class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' necesita

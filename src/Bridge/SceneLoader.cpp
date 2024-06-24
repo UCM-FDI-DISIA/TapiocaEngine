@@ -118,6 +118,8 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
 
         if (gameObjectName == "Prefab") {
+            lua_pushnil(luaState);
+            lua_next(luaState, -2);
             std::string prefabName = "";
             if (!lua_isinteger(luaState, -2)) prefabName = lua_tostring(luaState, -2);
             else {
@@ -128,22 +130,27 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
 
             logInfo(("SceneLoader: \tPrefab: " + prefabName).c_str());
 
-            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, prefabName, zIndex)) {
                 delete gameObject;
                 return false;
             }
 
-            if (!PrefabManager::instance()->addPrefab(gameObjectName, gameObject)) {
-                logInfo(("SceneLoader: \Prefab: " + gameObjectName + " alredy exits").c_str());
+            if (!PrefabManager::instance()->addPrefab(prefabName, gameObject)) {
+                logInfo(("SceneLoader: \Prefab: " + prefabName + " alredy exits").c_str());
                 delete gameObject;
                 return false;
             }
+            lua_pop(luaState, 1);
+            lua_next(luaState, -2);
         }
         else if (gameObjectName == "Instantiate") {
+            lua_pushnil(luaState);
+            lua_next(luaState, -2);
             std::string prefabName = "";
             if (!lua_isinteger(luaState, -2)) prefabName = lua_tostring(luaState, -2);
             else {
-                logInfo("SceneLoader: \Instantiate: there is a try of instance without a name (instances always need one)");
+                logInfo(
+                    "SceneLoader: \Instantiate: there is a try of instance without a name (instances always need one)");
                 delete gameObject;
                 return false;
             }
@@ -155,13 +162,15 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
                 return false;
             }
 
-            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, prefabName, zIndex)) {
                 delete gameObject;
                 return false;
             }
-             
+
             PrefabManager::instance()->instantiate(prefabName, scene, gameObject->getComponent<Transform>());
             delete gameObject;
+            lua_pop(luaState, 1);
+            lua_next(luaState, -2);
         }
         else {
             logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());

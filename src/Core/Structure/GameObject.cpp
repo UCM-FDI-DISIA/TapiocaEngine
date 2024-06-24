@@ -4,16 +4,20 @@
 #include "FactoryManager.h"
 #include "checkML.h"
 #include "Components/Transform.h"
+#include "PrefabManager.h"
+
 
 namespace Tapioca {
 GameObject::GameObject()
-    : scene(nullptr), alive(true), handler(""), zOrder(0), idAndVars(*(new std::vector<std::pair<std::string, CompMap>>())) {
-}
+    : scene(nullptr), alive(true), handler(""), zOrder(0),
+      idAndVars(*(new std::vector<std::pair<std::string, CompMap>>())) { }
 
 GameObject::GameObject(std::vector<std::pair<std::string, CompMap>>& lComponents)
     : scene(nullptr), alive(true), handler(""), zOrder(0), idAndVars(lComponents) { }
 
 GameObject::~GameObject() {
+    if (PrefabManager::instance()->isPrefab(handler)) PrefabManager::instance()->erasePrefab(handler);
+    delete &idAndVars;
     for (auto& i : components)
         delete i.second;
 }
@@ -131,10 +135,10 @@ void GameObject::start() {
 }
 
 GameObject* GameObject::InstantiatePrefab(Scene* scene, Transform* t) {
-    GameObject* gameObject = new GameObject(idAndVars);
+    GameObject* gameObject = new GameObject();
     gameObject->addComponents(idAndVars);
     for (auto& i : getComponent<Tapioca::Transform>()->getChildren()) {
-        i->getObject()->InstantiateCopy(scene, this);
+        i->getObject()->InstantiateCopy(scene, gameObject);
     }
     scene->addObject(gameObject);
 
@@ -149,7 +153,7 @@ GameObject* GameObject::InstantiatePrefab(Scene* scene, Transform* t) {
 }
 
 void GameObject::InstantiateCopy(Scene* scene, GameObject* parentObject) {
-    GameObject* gameObject = new GameObject(idAndVars);
+    GameObject* gameObject = new GameObject();
     gameObject->addComponents(idAndVars);
     for (auto& i : getComponent<Tapioca::Transform>()->getChildren()) {
         i->getObject()->InstantiateCopy(scene, gameObject);
