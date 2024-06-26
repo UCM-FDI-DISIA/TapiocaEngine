@@ -43,6 +43,7 @@ private:
     std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
     std::string name;                                           // Nombre de la escena
     std::map<int, std::unordered_set<GameObject*>> layers;      // Objetos que tiene la escena por orden de capa
+    std::vector<std::pair<std::string, GameObject*>> lInstantiate;                      // Prefabs a instanciar en la escena
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -229,5 +230,12 @@ public:
     * @param factor Factor de escala en Y
     */
     inline void setScaleFactorY(float factor) { windowHeight = (uint32_t)((float)firstWindowHeight * factor); }
+
+    /**
+    * @brief Anade un objeto para instanciar en el primer frame
+    * @param name Nombre del prefab del que se instanciará el objeto
+    * @param gameObject GameObject en el que se guarda el nuevo transform del prefab
+    */
+    inline void addInstance(std::string name, GameObject* gameObject) { lInstantiate.push_back({name, gameObject}); }
 };
 }

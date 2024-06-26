@@ -16,7 +16,6 @@ GameObject::GameObject(std::vector<std::pair<std::string, CompMap>>& lComponents
     : scene(nullptr), alive(true), handler(""), zOrder(0), idAndVars(lComponents) { }
 
 GameObject::~GameObject() {
-    if (PrefabManager::instance()->isPrefab(handler)) PrefabManager::instance()->erasePrefab(handler);
     delete &idAndVars;
     for (auto& i : components)
         delete i.second;

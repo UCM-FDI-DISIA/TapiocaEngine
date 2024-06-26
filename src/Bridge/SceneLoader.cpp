@@ -15,7 +15,7 @@
 
 namespace Tapioca {
 SceneLoader::SceneLoader()
-    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr),
+    : luaState(nullptr), mainLoop(nullptr), factManager(nullptr), windowManager(nullptr), prefabs(nullptr),
       scenesPath("assets\\scenes\\") { }
 
 SceneLoader::~SceneLoader() {
@@ -23,12 +23,14 @@ SceneLoader::~SceneLoader() {
     mainLoop = nullptr;
     factManager = nullptr;
     windowManager = nullptr;
+    delete prefabs;
 }
 
 bool SceneLoader::init() {
     mainLoop = MainLoop::instance();
     factManager = FactoryManager::instance();
     windowManager = WindowManager::instance();
+    prefabs = PrefabManager::instance();
     if (mainLoop == nullptr) {
         logError("SceneLoader: Instancia de MainLoop invalida.");
         return false;
@@ -57,6 +59,8 @@ bool SceneLoader::initConfig() {
         logError("SceneLoader: La DLL del juego no tiene la funcion \"getInitScene\".");
         return false;
     }
+    // Se inicializa la escena de prefabs en caso de que exista
+    loadScene("Prefabs.lua");
     return loadScene(initScene()) != nullptr;
 }
 
@@ -117,7 +121,30 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
 
         if (!lua_isinteger(luaState, -2)) gameObjectName = lua_tostring(luaState, -2);
 
-        if (gameObjectName == "Prefab") {
+        logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
+
+        if (!loadGameObject(gameObject, zIndex, scene) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
+            delete gameObject;
+            return false;
+        }
+
+        lua_pop(luaState, 1);
+    }
+    return true;
+}
+
+bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex, Scene* const scene) {
+    lua_pushnil(luaState);
+    std::string name = "";
+    std::vector<GameObject*> children;
+
+    while (lua_next(luaState, -2) != 0) {
+        if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
+        if (name == "components") {
+            lua_pushnil(luaState);
+            if (!loadComponents(gameObject)) return false;
+        }
+        else if (name == "Prefab") {
             lua_pushnil(luaState);
             lua_next(luaState, -2);
             std::string prefabName = "";
@@ -130,7 +157,7 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
 
             logInfo(("SceneLoader: \tPrefab: " + prefabName).c_str());
 
-            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, prefabName, zIndex)) {
+            if (!loadGameObject(gameObject, zIndex, scene) || !scene->addObject(gameObject, prefabName, zIndex)) {
                 delete gameObject;
                 return false;
             }
@@ -143,7 +170,7 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
             lua_pop(luaState, 1);
             lua_next(luaState, -2);
         }
-        else if (gameObjectName == "Instantiate") {
+        else if (name == "Instantiate") {
             lua_pushnil(luaState);
             lua_next(luaState, -2);
             std::string prefabName = "";
@@ -162,39 +189,17 @@ bool SceneLoader::loadGameObjects(Scene* const scene) {
                 return false;
             }
 
-            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, prefabName, zIndex)) {
+            if (!loadGameObject(gameObject, zIndex, scene) ||
+                !scene->addObject(gameObject, gameObject->getHandler(), zIndex)) {
+                logInfo(("SceneLoader: \Instantiate: " + prefabName + " failed").c_str());
                 delete gameObject;
                 return false;
             }
 
-            PrefabManager::instance()->instantiate(prefabName, scene, gameObject->getComponent<Transform>());
-            delete gameObject;
+            scene->addInstance(prefabName, gameObject);
+
             lua_pop(luaState, 1);
             lua_next(luaState, -2);
-        }
-        else {
-            logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
-
-            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex)) {
-                delete gameObject;
-                return false;
-            }
-        }
-        lua_pop(luaState, 1);
-    }
-    return true;
-}
-
-bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex) {
-    lua_pushnil(luaState);
-    std::string name = "";
-    std::vector<GameObject*> children;
-
-    while (lua_next(luaState, -2) != 0) {
-        if (!lua_isinteger(luaState, -2)) name = lua_tostring(luaState, -2);
-        if (name == "components") {
-            lua_pushnil(luaState);
-            if (!loadComponents(gameObject)) return false;
         }
         else if (name == "children") {
             lua_pushnil(luaState);
@@ -232,7 +237,7 @@ bool SceneLoader::loadGameObjects(Scene* const scene, std::vector<GameObject*>& 
 
             logInfo(("SceneLoader: \tGameObject: " + gameObjectName).c_str());
 
-            if (!loadGameObject(gameObject, zIndex) || !scene->addObject(gameObject, gameObjectName, zIndex))
+            if (!loadGameObject(gameObject, zIndex, scene) || !scene->addObject(gameObject, gameObjectName, zIndex))
                 return false;
         }
 

@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "MainLoop.h"
 #include "checkML.h"
+#include "Structure/PrefabManager.h"
+#include "Components/Transform.h"
 
 namespace Tapioca {
 Scene::Scene(std::string const& name) : active(true), windowWidth(680), windowHeight(480), 
@@ -89,6 +91,12 @@ void Scene::awake() {
 
 void Scene::start() {
     for (auto obj : objects) obj->start();
+
+    for (auto instance : lInstantiate) {
+        PrefabManager::instance()->instantiate(instance.first, this, instance.second->getComponent<Transform>());
+        instance.second->die();
+    }
+    lInstantiate.clear();
 }
 
 void Scene::updateZIndex(GameObject* obj, int zIndex) {

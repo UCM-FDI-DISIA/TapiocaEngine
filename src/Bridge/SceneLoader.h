@@ -74,9 +74,10 @@ private:
     * @brief Carga un gameobject y sus hijos recursivamente
     * @param gameObject GameObject a cargar, si tiene padre se le asigna
     * @param zIndex Indice de la capa en la que se va a cargar
+    * @param scene Escena a la que se le van a cargar los gameobjects
     * @return true si se ha cargado correctamente, false si no
     */
-    bool loadGameObject(GameObject* const gameObject, int& zIndex);
+    bool loadGameObject(GameObject* const gameObject, int& zIndex, Scene* const scene);
     /**
     * @brief Carga los gameobjects de una escena con un padre
     * @param scene Escena a la que se le van a cargar los gameobjects
