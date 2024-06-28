@@ -162,11 +162,11 @@ void PhysicsManager::update(const uint64_t deltaTime) {
 void PhysicsManager::fixedUpdate() { dynamicsWorld->stepSimulation(MainLoop::FIXED_DELTA_TIME, 1); }
 
 btRigidBody* PhysicsManager::createRigidBody(const Vector3 position, const Quaternion rotation,
-                                             const Vector3 shapeScale, const ColliderShape colliderShape,
-                                             const MovementType type, float mass, const float friction,
-                                             const float damping, const float bounciness, const bool isTrigger,
-                                             const int group, const int mask, const std::string file,
-                                             RigidBody* rigidBody) {
+                                             const Vector3 shapeScale, RigidBody* rigidBody,
+                                             const ColliderShape colliderShape, const MovementType type, float mass,
+                                             const float friction, const float damping, const float bounciness,
+                                             const bool isTrigger, const int group, const int mask,
+                                             const std::string file) {
     btVector3 scale = toBtVector3(shapeScale);
     btVector3 pos = toBtVector3(position);
     btQuaternion rot = btQuaternion(rotation.vector.x, rotation.vector.y, rotation.vector.z, rotation.scalar);
@@ -270,38 +270,45 @@ void PhysicsManager::removeRigidBody(btRigidBody* const rb) { dynamicsWorld->rem
 
 void PhysicsManager::addRigidBody(btRigidBody* const rb) { dynamicsWorld->addRigidBody(rb); }
 
-bool PhysicsManager::Raycast(const btVector3& start, btVector3& end, btVector3& normal, RigidBody*& rigidBody,
-                             const int mask = -1) {
+bool PhysicsManager::Raycast(const Vector3& start, Vector3& end, Vector3& normal, RigidBody*& rigidBody,
+                             const int mask) {
 
-    btDiscreteDynamicsWorld::ClosestRayResultCallback Ray(start, end);
+    btVector3 rStart = toBtVector3(start);
+    btVector3 rEnd = toBtVector3(end);
+    btVector3 rNormal = toBtVector3(normal);
+    btDiscreteDynamicsWorld::ClosestRayResultCallback Ray(rStart, rEnd);
     Ray.m_collisionFilterMask = mask;
 
     // Se pinta el raycast en DEBUG
-    if (debug) dynamicsWorld->getDebugDrawer()->drawLine(start, end, btVector4(0, 0, 0, 1));
+    if (debug) dynamicsWorld->getDebugDrawer()->drawLine(rStart, rEnd, btVector4(0, 0, 0, 1));
 
     // Se evalua el raycast
-    dynamicsWorld->rayTest(start, end, Ray);
+    dynamicsWorld->rayTest(rStart, rEnd, Ray);
     if (Ray.hasHit()) {
         rigidBody = (RigidBody*)Ray.m_collisionObject->getUserPointer();
-        end = Ray.m_hitPointWorld;
-        normal = Ray.m_hitNormalWorld;
+        end = toVector3(Ray.m_hitPointWorld);
+        normal = toVector3(Ray.m_hitNormalWorld);
+
         return true;
     }
 
     return false;
 }
 
-bool PhysicsManager::RaycastAll(const btVector3& start, btVector3& end, btVector3& normal,
-                                std::vector<RigidBody*>& rigidBodies, const int mask = -1) {
+bool PhysicsManager::RaycastAll(const Vector3& start, Vector3& end, Vector3& normal,
+                                std::vector<RigidBody*>& rigidBodies, const int mask) {
 
-    btDiscreteDynamicsWorld::AllHitsRayResultCallback Ray(start, end);
+    btVector3 rStart = toBtVector3(start);
+    btVector3 rEnd = toBtVector3(end);
+    btVector3 rNormal = toBtVector3(normal);
+    btDiscreteDynamicsWorld::AllHitsRayResultCallback Ray(rStart, rEnd);
     Ray.m_collisionFilterMask = mask;
 
     // Se pinta el raycast en DEBUG
-    if (debug) dynamicsWorld->getDebugDrawer()->drawLine(start, end, btVector4(0, 0, 0, 1));
+    if (debug) dynamicsWorld->getDebugDrawer()->drawLine(rStart, rEnd, btVector4(0, 0, 0, 1));
 
     // Se evalua el raycast
-    dynamicsWorld->rayTest(start, end, Ray);
+    dynamicsWorld->rayTest(rStart, rEnd, Ray);
     for (int i = 0; i < Ray.m_collisionObjects.size(); i++) {
         rigidBodies.push_back((RigidBody*)Ray.m_collisionObjects[i]->getUserPointer());
     }

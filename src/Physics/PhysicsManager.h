@@ -127,10 +127,11 @@ public:
     * @return Puntero al rb creado
     */
     btRigidBody* createRigidBody(const Vector3 position, const Quaternion rotation, const Vector3 shapeScale,
+                                 RigidBody* rigidBody,
                                  const ColliderShape colliderShape = BOX_SHAPE, const MovementType type = STATIC_OBJECT,
                                  float mass = 0, const float friction = 0, const float damping = 0,
                                  const float bounciness = 0, const bool isTrigger = false, const int group = 1,
-                                 const int mask = -1, const std::string file = "", RigidBody* rigidBody);
+                                 const int mask = -1, const std::string file = "");
 
     /**
     * @brief Destruye un rigidBody
@@ -174,7 +175,7 @@ public:
     * @param normal dirección del raycast
     * @return true si el raycast detecta algún objeto false si no detecta ninguno
     */
-    bool Raycast(const btVector3& start, btVector3& end, btVector3& normal, RigidBody*& rigidBody, const int mask = -1);
+    bool Raycast(const Vector3& start, Vector3& end, Vector3& normal, RigidBody*& rigidBody, const int mask = -1);
 
     /**
     * @brief Evalua si en el rango del raycast se detecta alguna colisión (tiene en cuenta todas las colisiones entre start y end)
@@ -183,7 +184,7 @@ public:
     * @param normal dirección del raycast
     * @return true si el raycast detecta algún objeto false si no detecta ninguno
     */
-    bool RaycastAll(const btVector3& start, btVector3& end, btVector3& normal, std::vector<RigidBody*>& rigidBodies,
+    bool RaycastAll(const Vector3& start, Vector3& end, Vector3& normal, std::vector<RigidBody*>& rigidBodies,
                     const int mask = -1);
 };
 }
