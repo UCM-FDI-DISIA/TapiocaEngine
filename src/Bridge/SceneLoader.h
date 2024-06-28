@@ -3,7 +3,6 @@
 #include "Structure/Module.h"
 #include <string>
 #include <vector>
-#include "Structure/PrefabManager.h"
 
 struct lua_State;
 

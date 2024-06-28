@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_set>
 #include <unordered_map>
+#include <vector>
 #include "Utilities/Singleton.h"
 #include "Structure/Module.h"
 #include "physicsDefs.h"
@@ -25,6 +26,7 @@ namespace Tapioca {
 class Vector3;
 class Quaternion;
 class PhysicsDebugDrawer;
+class RigidBody;
 
 /**
 * @brief Clase que se encarga de gestionar las fisicas del juego
@@ -33,13 +35,13 @@ class TAPIOCA_API PhysicsManager : public Singleton<PhysicsManager>, public Modu
 private:
     friend Singleton<PhysicsManager>;
 
-    btDefaultCollisionConfiguration* colConfig;     // Configuracion predeterminada para la deteccion de colisiones
-    btBroadphaseInterface* broadphase;              // Detecta pares de objetos de la misma region
-    btCollisionDispatcher* colDispatch;             // Confirma la colision, notificar a los objetos que se colisionan y callbacks
+    btDefaultCollisionConfiguration* colConfig;   // Configuracion predeterminada para la deteccion de colisiones
+    btBroadphaseInterface* broadphase;            // Detecta pares de objetos de la misma region
+    btCollisionDispatcher* colDispatch;   // Confirma la colision, notificar a los objetos que se colisionan y callbacks
 
     // Resuelve la interaccion de colisiones y calculos de fuerzas resultantes
     btSequentialImpulseConstraintSolver* constraintSolver;
-    btDiscreteDynamicsWorld* dynamicsWorld;         // Mundo de fisicas
+    btDiscreteDynamicsWorld* dynamicsWorld;   // Mundo de fisicas
 
 // warning C4251 'Tapioca::PhysicsManager::meshInterfaces' : class
 // 'std::unordered_map<std::string,btTriangleMesh *,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,btTriangleMesh *>>>' necesita
@@ -128,7 +130,7 @@ public:
                                  const ColliderShape colliderShape = BOX_SHAPE, const MovementType type = STATIC_OBJECT,
                                  float mass = 0, const float friction = 0, const float damping = 0,
                                  const float bounciness = 0, const bool isTrigger = false, const int group = 1,
-                                 const int mask = -1, const std::string file = "");
+                                 const int mask = -1, const std::string file = "", RigidBody* rigidBody);
 
     /**
     * @brief Destruye un rigidBody
@@ -164,5 +166,24 @@ public:
     * @param d True para activar el debug, false en caso contrario
     */
     void activateDebug(bool d);
+
+    /**
+    * @brief Evalua si en el rango del raycast se detecta alguna colisión (solo tiene en cuenta la primera)
+    * @param start punto en el que comienza el raycast
+    * @param end punto en el que termina el raycast (devuelve el punto donde colisiona)
+    * @param normal dirección del raycast
+    * @return true si el raycast detecta algún objeto false si no detecta ninguno
+    */
+    bool Raycast(const btVector3& start, btVector3& end, btVector3& normal, RigidBody*& rigidBody, const int mask = -1);
+
+    /**
+    * @brief Evalua si en el rango del raycast se detecta alguna colisión (tiene en cuenta todas las colisiones entre start y end)
+    * @param start punto en el que comienza el raycast
+    * @param end punto en el que termina el raycast
+    * @param normal dirección del raycast
+    * @return true si el raycast detecta algún objeto false si no detecta ninguno
+    */
+    bool RaycastAll(const btVector3& start, btVector3& end, btVector3& normal, std::vector<RigidBody*>& rigidBodies,
+                    const int mask = -1);
 };
 }

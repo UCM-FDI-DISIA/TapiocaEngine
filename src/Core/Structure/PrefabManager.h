@@ -6,6 +6,9 @@ namespace Tapioca {
 class Transform;
 class Scene;
 
+/**
+* @brief Gestor encargado de los prefabs disponibles y crear instancias de los mismos.
+*/
 class TAPIOCA_API PrefabManager : public Singleton<PrefabManager> {
 private:
     // warning C4251 'Tapioca::PrefabManager::prefabsL' :

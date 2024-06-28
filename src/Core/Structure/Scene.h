@@ -39,11 +39,11 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<GameObject*> objects;                    // Objetos que tiene la escena
-    std::unordered_map<std::string, GameObject*> handlers;      // Relaciones entre handlers y objetos
-    std::string name;                                           // Nombre de la escena
-    std::map<int, std::unordered_set<GameObject*>> layers;      // Objetos que tiene la escena por orden de capa
-    std::vector<std::pair<std::string, GameObject*>> lInstantiate;                      // Prefabs a instanciar en la escena
+    std::unordered_set<GameObject*> objects;                        // Objetos que tiene la escena
+    std::unordered_map<std::string, GameObject*> handlers;          // Relaciones entre handlers y objetos
+    std::string name;                                               // Nombre de la escena
+    std::map<int, std::unordered_set<GameObject*>> layers;          // Objetos que tiene la escena por orden de capa
+    std::vector<std::pair<std::string, GameObject*>> lInstantiate;  // Prefabs a instanciar en la escena
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
