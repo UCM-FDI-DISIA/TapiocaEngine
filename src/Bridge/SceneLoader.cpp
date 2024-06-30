@@ -60,7 +60,9 @@ bool SceneLoader::initConfig() {
         return false;
     }
     // Se inicializa la escena de prefabs en caso de que exista
-    loadScene("Prefabs.lua");
+    if (loadScene("Prefabs.lua") == nullptr) {
+        PrefabManager::instance()->setLoad(false);
+    }
     return loadScene(initScene()) != nullptr;
 }
 
@@ -150,21 +152,18 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex, Scen
             std::string prefabName = "";
             if (!lua_isinteger(luaState, -2)) prefabName = lua_tostring(luaState, -2);
             else {
-                logInfo("SceneLoader: \Prefab: there is a prefab without a name (prefabs always need one)");
-                delete gameObject;
+                logError("SceneLoader: \Prefab: there is a prefab without a name (prefabs always need one)");
                 return false;
             }
 
             logInfo(("SceneLoader: \tPrefab: " + prefabName).c_str());
 
             if (!loadGameObject(gameObject, zIndex, scene) || !scene->addObject(gameObject, prefabName, zIndex)) {
-                delete gameObject;
                 return false;
             }
 
             if (!PrefabManager::instance()->addPrefab(prefabName, gameObject)) {
                 logInfo(("SceneLoader: \Prefab: " + prefabName + " alredy exits").c_str());
-                delete gameObject;
                 return false;
             }
             lua_pop(luaState, 1);
@@ -176,23 +175,20 @@ bool SceneLoader::loadGameObject(GameObject* const gameObject, int& zIndex, Scen
             std::string prefabName = "";
             if (!lua_isinteger(luaState, -2)) prefabName = lua_tostring(luaState, -2);
             else {
-                logInfo(
+                logError(
                     "SceneLoader: \Instantiate: there is a try of instance without a name (instances always need one)");
-                delete gameObject;
                 return false;
             }
 
             logInfo(("SceneLoader: \Instantiate: " + prefabName).c_str());
 
             if (!PrefabManager::instance()->isPrefab(prefabName)) {
-                delete gameObject;
-                return false;
+                logInfo(("SceneLoader: \Instantiate: " + prefabName + " is not an existing prefab").c_str());
             }
 
             if (!loadGameObject(gameObject, zIndex, scene) ||
                 !scene->addObject(gameObject, gameObject->getHandler(), zIndex)) {
-                logInfo(("SceneLoader: \Instantiate: " + prefabName + " failed").c_str());
-                delete gameObject;
+                logError(("SceneLoader: \Instantiate: " + prefabName + " failed").c_str());
                 return false;
             }
 

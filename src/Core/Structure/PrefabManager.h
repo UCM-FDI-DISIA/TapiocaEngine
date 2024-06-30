@@ -11,6 +11,8 @@ class Scene;
 */
 class TAPIOCA_API PrefabManager : public Singleton<PrefabManager> {
 private:
+    bool load = true;   // booleano que indica que la escena Prefabs ha cargado correctamente
+
     // warning C4251 'Tapioca::PrefabManager::prefabsL' :
     // class 'std::unordered_map<std::string,Tapioca::GameObject *,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,Tapioca::GameObject *>>>' necesita
     // tener una interfaz DLL para que la utilicen los clientes de class 'Tapioca::PrefabManager'
@@ -56,5 +58,10 @@ public:
     * @return Puntero al GameObject
     */
     GameObject* instantiate(std::string name, Scene* scene, Transform* transform);
+    /**
+    * @brief Indica a PrefabManager si la escena Prefab a cargado correctamente
+    * @param loaded valor que indica el estado de la carga de la escena 
+    */
+    inline void setLoad(bool loaded) { load = loaded; };
 };
 }

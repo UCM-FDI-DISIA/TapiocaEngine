@@ -23,7 +23,7 @@ private:
 
     // Camera
     bool targetToLookSet;   // Indica si se ha establecido el target al que mira la camara
-    bool applyInitRot;     // Indica si la rotacion inicial de la camara viene descrita
+    bool applyInitRot;      // Indica si la rotacion inicial de la camara viene descrita
                             // por la rotacion del transform o su direccion/targetToLook
     Vector3 targetToLook;   // Objetivo al que mira la camara
     Vector3 direction;      // Direccion de la camara
@@ -144,5 +144,15 @@ public:
     * @return Orden de renderizado de la camara
     */
     inline int getZOrder() const { return zOrder; }
+    /**
+    * @brief Devuelve la distancia del near plane
+    * @return distancia del near plane
+    */
+    inline float getNearPlane() const { return nearPlane; }
+    /**
+    * @brief Devuelve la distancia del far plane
+    * @return distancia del far plane
+    */
+    inline float getFarPlane() const { return farPlane; }
 };
 }

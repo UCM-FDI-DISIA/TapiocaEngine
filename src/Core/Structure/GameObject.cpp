@@ -134,11 +134,11 @@ void GameObject::start() {
 
 GameObject* GameObject::InstantiatePrefab(Scene* scene, Transform* t) {
     GameObject* gameObject = new GameObject();
+    scene->addObject(gameObject);
     gameObject->addComponents(idAndVars);
     for (auto& i : getComponent<Tapioca::Transform>()->getChildren()) {
         i->getObject()->InstantiateCopy(scene, gameObject);
     }
-    scene->addObject(gameObject);
 
     // Aplicar el nuevo transform al objeto (las transformaciones también se aplican a sus hijos)
     gameObject->getComponent<Transform>()->setGlobalPosition(
@@ -152,6 +152,7 @@ GameObject* GameObject::InstantiatePrefab(Scene* scene, Transform* t) {
 
 void GameObject::InstantiateCopy(Scene* scene, GameObject* parentObject) {
     GameObject* gameObject = new GameObject();
+    scene->addObject(gameObject);
     gameObject->addComponents(idAndVars);
     for (auto& i : getComponent<Tapioca::Transform>()->getChildren()) {
         i->getObject()->InstantiateCopy(scene, gameObject);

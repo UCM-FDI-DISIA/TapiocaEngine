@@ -16,11 +16,11 @@ class TAPIOCA_API Scene {
 private:
     friend class GameObject;
 
-    bool active;                    // Indica si la escena esta activa
-    uint32_t windowWidth;           // Anchura de la ventana
-    uint32_t windowHeight;          // Altura de la ventana
-    uint32_t firstWindowWidth;      // Anchura de la ventana antes de escalarse
-    uint32_t firstWindowHeight;     // Altura de la ventana antes de escalarse
+    bool active;                  // Indica si la escena esta activa
+    uint32_t windowWidth;         // Anchura de la ventana
+    uint32_t windowHeight;        // Altura de la ventana
+    uint32_t firstWindowWidth;    // Anchura de la ventana antes de escalarse
+    uint32_t firstWindowHeight;   // Altura de la ventana antes de escalarse
 
     // warning C4251 'Tapioca::Scene::objects' :
     // class 'std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>' necesita
@@ -39,11 +39,11 @@ private:
 #ifdef _MSC_VER
 #pragma warning(disable : 4251)
 #endif
-    std::unordered_set<GameObject*> objects;                        // Objetos que tiene la escena
-    std::unordered_map<std::string, GameObject*> handlers;          // Relaciones entre handlers y objetos
-    std::string name;                                               // Nombre de la escena
-    std::map<int, std::unordered_set<GameObject*>> layers;          // Objetos que tiene la escena por orden de capa
-    std::vector<std::pair<std::string, GameObject*>> lInstantiate;  // Prefabs a instanciar en la escena
+    std::unordered_set<GameObject*> objects;                         // Objetos que tiene la escena
+    std::unordered_map<std::string, GameObject*> handlers;           // Relaciones entre handlers y objetos
+    std::string name;                                                // Nombre de la escena
+    std::map<int, std::unordered_set<GameObject*>> layers;           // Objetos que tiene la escena por orden de capa
+    std::vector<std::pair<std::string, GameObject*>> lInstantiate;   // Prefabs a instanciar en la escena
 #ifdef _MSC_VER
 #pragma warning(default : 4251)
 #endif
@@ -236,6 +236,6 @@ public:
     * @param name Nombre del prefab del que se instanciará el objeto
     * @param gameObject GameObject en el que se guarda el nuevo transform del prefab
     */
-    inline void addInstance(std::string name, GameObject* gameObject) { lInstantiate.push_back({name, gameObject}); }
+    void addInstance(std::string name, GameObject* gameObject);
 };
 }
