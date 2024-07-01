@@ -1,6 +1,7 @@
 #pragma once
 #include "Utilities/Singleton.h"
 #include <unordered_map>
+#include "componentDefs.h"
 
 namespace Tapioca {
 class Transform;
@@ -58,6 +59,15 @@ public:
     * @return Puntero al GameObject
     */
     GameObject* instantiate(std::string name, Scene* scene, Transform* transform);
+    /**
+    * @brief Crea una instancia del prefab en una escena
+    * @param name Nombre del prefab (debe ser único)
+    * @param scene Escena en la que se creará la instancia del prefab
+    * @param idAndVars CompMap de nuevos componentes para esta instancia del prefab
+    * @return Puntero al GameObject
+    */
+    GameObject* instantiate(std::string name, Scene* scene, Transform* transform,
+                            std::vector<std::pair<std::string, CompMap>>& idAndVars);
     /**
     * @brief Indica a PrefabManager si la escena Prefab a cargado correctamente
     * @param loaded valor que indica el estado de la carga de la escena 

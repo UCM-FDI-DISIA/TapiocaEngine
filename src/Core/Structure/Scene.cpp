@@ -99,7 +99,10 @@ void Scene::start() {
         obj->start();
 
     for (auto instance : lInstantiate) {
-        PrefabManager::instance()->instantiate(instance.first, this, instance.second->getComponent<Transform>());
+        if (instance.second->getAllComponents().size() > 1)
+            PrefabManager::instance()->instantiate(instance.first, this, instance.second->getComponent<Transform>(), instance.second->idAndVars);
+        else
+            PrefabManager::instance()->instantiate(instance.first, this, instance.second->getComponent<Transform>());
         instance.second->die();
     }
     lInstantiate.clear();

@@ -1,5 +1,6 @@
 #include "PrefabManager.h"
 #include "GameObject.h"
+#include "componentDefs.h"
 
 namespace Tapioca {
 PrefabManager::PrefabManager() { }
@@ -38,6 +39,21 @@ GameObject* PrefabManager::getPrefab(std::string name) {
 GameObject* PrefabManager::instantiate(std::string name, Scene* scene, Transform* transform) {
     if (load) {
         if (isPrefab(name)) return prefabsL.at(name)->InstantiatePrefab(scene, transform);
+        else
+            return nullptr;
+    }
+    else
+        return nullptr;
+}
+
+GameObject* PrefabManager::instantiate(std::string name, Scene* scene, Transform* transform,
+                                       std::vector<std::pair<std::string, CompMap>>& idAndVars) {
+    if (load) {
+        if (isPrefab(name)) {
+            GameObject* gameObject = prefabsL.at(name)->InstantiatePrefab(scene, transform);
+            gameObject->addComponents(idAndVars);
+            return gameObject;
+        }
         else
             return nullptr;
     }
