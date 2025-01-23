@@ -9,7 +9,7 @@
 
 namespace Tapioca {
 WindowManager::WindowManager(std::string const& windowName, const uint32_t w, const uint32_t h) : windowName(windowName), 
-    windowWidth(w), windowHeight(h), firstWindowWidth(windowWidth), firstWindowHeight(windowHeight), 
+    windowWidth(w), windowHeight(h), logicWidth(w), logicHeight(h), 
     sdlWindow(nullptr), glContext(nullptr), resized(false), mainLoop(nullptr) { }
 
 WindowManager::~WindowManager() {
@@ -60,12 +60,14 @@ bool WindowManager::initConfig() {
                       std::string(SDL_GetError()) + '.').c_str());
             return false;
         }
-        windowWidth = firstWindowWidth = displayMode.w;
-        windowHeight = firstWindowHeight = displayMode.h;
+        windowWidth = displayMode.w;
+        windowHeight = displayMode.h;
         logInfo("WindowManager: Ventana configurada a pantalla completa.");
     }
     // Si no se quiere pantalla completa, se intenta obtener el tamano de la ventana y si no, se inicializa a los valores predefinidos
     else tryGetWindowSize();
+
+    tryGetLogicSize();
 
     // Crear ventana
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -121,11 +123,27 @@ void WindowManager::tryGetWindowSize() {
     }
     else {
         ws(windowWidth, windowHeight);
-        firstWindowWidth = windowWidth;
-        firstWindowHeight = windowHeight;
     }
     logInfo(("WindowManager: Ventana configurada a " + std::to_string(windowWidth) + "x"
             + std::to_string(windowHeight)).c_str());
+}
+
+void WindowManager::tryGetLogicSize() { 
+    DynamicLibraryLoader* loader = mainLoop->getLoader();
+    if (loader == nullptr) return;
+
+    logInfo("WindowManager: Configurando el tamano logico...");
+    EntryPointGetWindowSize ls = (EntryPointGetWindowSize)GetProcAddress(loader->getModule(), "getLogicSize");
+    if (ls == nullptr) {
+        logError(("WindowManager: La DLL del juego no tiene la funcion \"getLogicSize\". Se usara el tamano "
+                  "predefinido: " +
+                  std::to_string(logicWidth) + "x" + std::to_string(logicHeight) + '.').c_str());
+    }
+    else {
+        ls(logicWidth, logicHeight);
+    }
+    logInfo(("WindowManager: Logica configurada con escala " 
+        + std::to_string(logicWidth) + "x" + std::to_string(logicHeight)).c_str());
 }
 
 void WindowManager::setWindowName(std::string const& name) {

@@ -3,14 +3,12 @@
 #include <limits>
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
-#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "WindowManager.h"
 #include "checkML.h"
 
 namespace Tapioca {
-Text::Text() : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), 
-    initialTextSize(textSize), textFontName(""), textFont(nullptr) 
+Text::Text() : BaseWidget(), Component(), text("Texto..."), textSize(16.0f), initialTextSize(textSize), textFontName(""), textFont(nullptr) 
 {
     ImVec4 textColorImVec = ImGui::GetStyle().Colors[ImGuiCol_Text];
     textColor = Vector4(textColorImVec.x, textColorImVec.y, textColorImVec.z, textColorImVec.w);
@@ -72,21 +70,15 @@ bool Text::initComponent(const CompMap& variables) {
 
 void Text::start() {
     setTransform(object->getComponent<Transform>());
-    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
-        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
-        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
-                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) textSize *= min;
-    }
+    float min = std::min(windowManager->getsScaleX(), windowManager->getsScaleY());
+    if (min > 0.0f) textSize *= min;
     initialTextSize = textSize;
     updateTextFont();
 }
 
 void Text::updateUI() {
     if (!windowManager->getResized()) {
-        float scaleFactorX = object->getScene()->getScaleFactorX();
-        float scaleFactorY = object->getScene()->getScaleFactorY();
-        float min = std::min(scaleFactorX, scaleFactorY);
+        float min = std::min(windowManager->getsScaleX(), windowManager->getsScaleY());
         if (min > 0.0f) textSize = initialTextSize * min;
         updateTextFont();
     }
@@ -96,14 +88,20 @@ void Text::render() const {
     std::string textStr = text;
     const char* text = textStr.c_str();
 
-    float scaleFactorX = object->getScene()->getScaleFactorX();
-    float scaleFactorY = object->getScene()->getScaleFactorY();
-
     ImGui::PushFont(textFont);
 
     ImVec2 calculatedTextSize = ImGui::CalcTextSize(text);
-    ImVec2 textPos(getPosition().x * scaleFactorX - calculatedTextSize.x / 2.0f,
-                   getPosition().y * scaleFactorY - calculatedTextSize.y / 2.0f);
+
+    float scaleX = windowManager->getsScaleX();
+    float scaleY = windowManager->getsScaleY();
+
+    float scaledW = scaleX * calculatedTextSize.x;
+    float scaledH = scaleY * calculatedTextSize.y;
+
+    float scaledPosX = getPosition().x * scaleX - scaledW / (2.0f * scaleX);
+    float scaledPosY = getPosition().y * scaleY - scaledH / (2.0f * scaleY);
+
+    ImVec2 textPos(scaledPosX, scaledPosY);
 
     ImGui::SetNextWindowPos(textPos);
     ImGui::SetNextWindowSize(calculatedTextSize);

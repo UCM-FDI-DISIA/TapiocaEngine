@@ -7,8 +7,7 @@
 
 namespace Tapioca {
 Scene::Scene(std::string const& name)
-    : active(true), windowWidth(680), windowHeight(480), firstWindowWidth(windowWidth), firstWindowHeight(windowHeight),
-      name(name) { }
+    : active(true), name(name) { }
 
 Scene::~Scene() {
     for (auto obj : objects)

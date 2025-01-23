@@ -32,8 +32,10 @@ private:
 
     uint32_t windowWidth;           // Anchura de la ventana
     uint32_t windowHeight;          // Altura de la ventana
-    uint32_t firstWindowWidth;      // Anchura de la ventana antes de escalarse
-    uint32_t firstWindowHeight;     // Altura de la ventana antes de escalarse
+
+    uint32_t logicWidth;            // Anchura de la logica
+    uint32_t logicHeight;           // Altura de la logica
+    
     SDL_Window* sdlWindow;          // Ventana de SDL
     void* glContext;                // Contexto de OpenGL
 
@@ -45,6 +47,11 @@ private:
     * @brief Intenta obtener el tamano de la ventana de SDL
     */
     void tryGetWindowSize();
+
+    /**
+    * @brief Intenta obtener el tamano de la logica del juego
+    */
+    void tryGetLogicSize();
 
     /**
     * @brief Constructor de la clase WindowManager
@@ -119,7 +126,6 @@ public:
     * @return Ancho de la ventana de SDL
     */
     inline uint32_t getWindowW() const { return windowWidth; }
-
     /**
     * @brief Devuelve el alto de ventana de SDL
     * @return Alto de la ventana de SDL
@@ -127,22 +133,27 @@ public:
     inline uint32_t getWindowH() const { return windowHeight; }
 
     /**
-    * @brief Establece el ancho de ventana antes de escalarse
-    * @param w Ancho de la ventana antes de escalarse
+    * @brief Devuelve el ancho de la logica
+    * @return Ancho de la logica
     */
-    inline void setFirstWindowW(uint32_t w) { firstWindowWidth = w; }
+    inline uint32_t getLogicW() const { return logicWidth; }
+    /**
+    * @brief Devuelve el alto de la logica
+    * @return Alto de la logica
+    */
+    inline uint32_t getLogicH() const { return logicHeight; }
 
     /**
-    * @brief Devuelve el ancho de ventana antes de escalarse
-    * @return Ancho de la ventana antes de escalarse
+    * @brief Devuelve la escala en X
+    * @return Escala en X
     */
-    inline uint32_t getFirstWindowW() const { return firstWindowWidth; }
+    inline float getsScaleX() const { return (float)windowWidth / logicWidth; }
 
     /**
-    * @brief Devuelve el alto de la primera ventana
-    * @return Alto de la primera ventana
+    * @brief Devuelve la escala en Y
+    * @return Escala en Y
     */
-    inline uint32_t getFirstWindowH() const { return firstWindowHeight; }
+    inline float getsScaleY() const { return (float)windowHeight / logicHeight; }
 
     /**
     * @brief Devuelve si se ha redimensionado

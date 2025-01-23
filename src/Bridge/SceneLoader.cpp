@@ -98,8 +98,6 @@ Scene* SceneLoader::loadScene(std::string const& sceneName, const bool active) {
         return nullptr;
     }
     scene->setActive(active);
-    scene->setFirstWindowSize(windowManager->getWindowW(), windowManager->getWindowH());
-    scene->setWindowSize(windowManager->getWindowW(), windowManager->getWindowH());
 
     mainLoop->loadScene(scene);
     lua_close(luaState);
@@ -319,9 +317,9 @@ void SceneLoader::exposeUIvalues() {
 
     luaL_openlibs(luaState);
 
-    lua_pushnumber(luaState, WindowManager::instance()->getWindowW());
+    lua_pushnumber(luaState, WindowManager::instance()->getLogicW());
     lua_setglobal(luaState, "WINDOW_WIDTH");
-    lua_pushnumber(luaState, WindowManager::instance()->getWindowH());
+    lua_pushnumber(luaState, WindowManager::instance()->getLogicH());
     lua_setglobal(luaState, "WINDOW_HEIGHT");
 
     // Window flags

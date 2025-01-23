@@ -10,3 +10,4 @@ typedef const char*(__cdecl* EntryPointGetWindowName)();
 typedef const char*(__cdecl* EntryPointGetInitScene)();
 typedef bool(__cdecl* EntryPointGetFullScreen)();
 typedef void(__cdecl* EntryPointGetWindowSize)(uint32_t&, uint32_t&);
+typedef void(__cdecl* EntryPointGetLogicSize)(uint32_t&, uint32_t&);

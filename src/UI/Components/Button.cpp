@@ -1,7 +1,6 @@
 #include "Button.h"
 #include <imgui.h>
 #include "Structure/GameObject.h"
-#include "Structure/Scene.h"
 #include "Components/Transform.h"
 #include "UIManager.h"
 #include "LuaManager.h"
@@ -183,24 +182,14 @@ bool Button::initComponent(const CompMap& variables) {
 
 void Button::start() {
     setTransform(object->getComponent<Transform>());
-    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
-        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
-        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
-                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) {
-            textSize *= min;
-            transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
-        }
-    }
+    float min = std::min(windowManager->getsScaleX(), windowManager->getsScaleY());
+    if (min > 0.0f) textSize *= min;
     initialTextSize = textSize;
     updateTextFont();
 }
-
 void Button::updateUI() {
     if (!windowManager->getResized()) {
-        float scaleFactorX = object->getScene()->getScaleFactorX();
-        float scaleFactorY = object->getScene()->getScaleFactorY();
-        float min = std::min(scaleFactorX, scaleFactorY);
+        float min = std::min(windowManager->getsScaleX(), windowManager->getsScaleY());
         if (min > 0.0f) textSize = initialTextSize * min;
         updateTextFont();
     }
@@ -210,12 +199,9 @@ void Button::render() const {
     std::string textStr = text;
     const char* text = textStr.c_str();
 
-    float scaleFactorX = object->getScene()->getScaleFactorX();
-    float scaleFactorY = object->getScene()->getScaleFactorY();
-
-    ImVec2 buttonSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
-    ImVec2 buttonPos(getPosition().x * scaleFactorX - buttonSize.x / 2.0f,
-                     getPosition().y * scaleFactorY - buttonSize.y / 2.0f);
+    UIManager::ScaledSize scaledSize = uiManager->getScaledSize(getPosition().x, getPosition().y, getSize().x, getSize().y);
+    ImVec2 buttonSize(scaledSize.w, scaledSize.h);
+    ImVec2 buttonPos(scaledSize.x, scaledSize.y);
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
     ImGui::SetNextWindowPos(buttonPos);

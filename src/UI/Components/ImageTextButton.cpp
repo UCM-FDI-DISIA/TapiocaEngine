@@ -1,7 +1,6 @@
 #include "ImageTextButton.h"
 #include <imgui.h>
 #include "Structure/GameObject.h"
-#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "LuaManager.h"
 #include "checkML.h"
@@ -102,12 +101,9 @@ void ImageTextButton::start() {
 }
 
 void ImageTextButton::render() const {
-    float scaleFactorX = object->getScene()->getScaleFactorX();
-    float scaleFactorY = object->getScene()->getScaleFactorY();
-
-    ImVec2 buttonSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
-    ImVec2 buttonPos(getPosition().x * scaleFactorX - buttonSize.x / 2.0f,
-                     getPosition().y * scaleFactorY - buttonSize.y / 2.0f);
+    UIManager::ScaledSize scaledSize = uiManager->getScaledSize(getPosition().x, getPosition().y, getSize().x, getSize().y);
+    ImVec2 buttonSize(scaledSize.w, scaledSize.h);
+    ImVec2 buttonPos(scaledSize.x, scaledSize.y);
 
     // Establece la posicion y el tamano de la ventana de fondo a la correspondiente del boton
     ImGui::SetNextWindowPos(buttonPos);

@@ -17,10 +17,6 @@ private:
     friend class GameObject;
 
     bool active;                  // Indica si la escena esta activa
-    uint32_t windowWidth;         // Anchura de la ventana
-    uint32_t windowHeight;        // Altura de la ventana
-    uint32_t firstWindowWidth;    // Anchura de la ventana antes de escalarse
-    uint32_t firstWindowHeight;   // Altura de la ventana antes de escalarse
 
     // warning C4251 'Tapioca::Scene::objects' :
     // class 'std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>' necesita
@@ -139,97 +135,6 @@ public:
     * @param zIndex Nuevo zIndex del objeto
     */
     void updateZIndex(GameObject* obj, int zIndex);
-
-    /**
-    * @brief Devuelve el ancho de la ventana
-    * @return Ancho de la ventana
-    */
-    inline uint32_t getWindowW() const { return windowWidth; }
-
-    /**
-    * @brief Devuelve el alto de la ventana
-    * @return Alto de la ventana
-    */
-    inline uint32_t getWindowH() const { return windowHeight; }
-
-    /**
-    * @brief Devuelve el ancho de la primera ventana
-    * @return Ancho de la primera ventana
-    */
-    inline uint32_t getFirstWindowW() const { return firstWindowWidth; }
-
-    /**
-    * @brief Devuelve el alto de la primera ventana
-    * @return Alto de la primera ventana
-    */
-    inline uint32_t getFirstWindowH() const { return firstWindowHeight; }
-
-    /**
-    * @brief Establece el ancho de la ventana
-    * @param width Ancho de la ventana
-    */
-    inline void setWindowW(uint32_t width) { windowWidth = width; }
-
-    /**
-    * @brief Establece el alto de la ventana
-    * @param height Alto de la ventana
-    */
-    inline void setWindowH(uint32_t height) { windowHeight = height; }
-
-    /**
-    * @brief Establece el ancho de la primera ventana
-    * @param width Ancho de la primera ventana
-    */
-    inline void setFirstWindowW(uint32_t width) { firstWindowWidth = width; }
-
-    /**
-    * @brief Establece el alto de la primera ventana
-    * @param height Alto de la primera ventana
-    */
-    inline void setFirstWindowH(uint32_t height) { firstWindowHeight = height; }
-
-    /**
-    * @brief Establece el tamano de la primera ventana
-    * @param width Anchura de la primera ventana
-    * @param height Altura de la primera ventana
-    */
-    inline void setFirstWindowSize(uint32_t width, uint32_t height) {
-        firstWindowWidth = width;
-        firstWindowHeight = height;
-    }
-
-    /**
-    * @brief Establece el tamano de la ventana
-    * @param width Anchura de la ventana
-    * @param height Altura de la ventana
-    */
-    inline void setWindowSize(uint32_t width, uint32_t height) {
-        windowWidth = width;
-        windowHeight = height;
-    }
-
-    /**
-    * @brief Devuelve el factor de escala en X
-    * @return Factor de escala en X
-    */
-    inline float getScaleFactorX() const { return (float)windowWidth / (float)firstWindowWidth; }
-    /**
-    * @brief Devuelve el factor de escala en Y
-    * @return Factor de escala en Y
-    */
-    inline float getScaleFactorY() const { return (float)windowHeight / (float)firstWindowHeight; }
-
-    /**
-    * @brief Establece el factor de escala en X
-    * @param factor Factor de escala en X
-    */
-    inline void setScaleFactorX(float factor) { windowWidth = (uint32_t)((float)firstWindowWidth * factor); }
-
-    /**
-    * @brief Establece el factor de escala en Y
-    * @param factor Factor de escala en Y
-    */
-    inline void setScaleFactorY(float factor) { windowHeight = (uint32_t)((float)firstWindowHeight * factor); }
 
     /**
     * @brief Anade un objeto para instanciar en el primer frame

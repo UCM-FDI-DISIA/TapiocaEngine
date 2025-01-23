@@ -2,7 +2,6 @@
 #include <imgui.h>
 #include <string>
 #include "Structure/GameObject.h"
-#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "WindowManager.h"
 #include "checkML.h"
@@ -46,21 +45,13 @@ bool Slider::initComponent(const CompMap& variables) {
 
 void Slider::start() {
     setTransform(object->getComponent<Transform>());
-    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
-        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
-        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
-                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
-    }
 }
 
 void Slider::render() const {
-    float scaleFactorX = object->getScene()->getScaleFactorX();
-    float scaleFactorY = object->getScene()->getScaleFactorY();
+    UIManager::ScaledSize scaledSize = uiManager->getScaledSize(getPosition().x, getPosition().y, getSize().x, getSize().y);
+    ImVec2 sliderSize(scaledSize.w, scaledSize.h);
+    ImVec2 sliderPos(scaledSize.x, scaledSize.y);
 
-    ImVec2 sliderSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
-    ImVec2 sliderPos(getPosition().x * scaleFactorX - sliderSize.x / 2.0f,
-                     getPosition().y * scaleFactorY - sliderSize.y / 2.0f);
     ImGui::SetNextWindowPos(sliderPos);
     ImGui::SetNextWindowSize(sliderSize);
 

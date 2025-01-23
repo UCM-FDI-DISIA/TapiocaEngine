@@ -1,7 +1,6 @@
 #include "ProgressBar.h"
 #include <imgui.h>
 #include "Structure/GameObject.h"
-#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "WindowManager.h"
 #include "checkML.h"
@@ -57,21 +56,13 @@ bool ProgressBar::initComponent(const CompMap& variables) {
 
 void ProgressBar::start() {
     setTransform(object->getComponent<Transform>());
-    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
-        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
-        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
-                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
-    }
 }
 
 void ProgressBar::render() const {
-    float scaleFactorX = object->getScene()->getScaleFactorX();
-    float scaleFactorY = object->getScene()->getScaleFactorY();
+    UIManager::ScaledSize scaledSize = uiManager->getScaledSize(getPosition().x, getPosition().y, getSize().x, getSize().y);
+    ImVec2 progressBarSize(scaledSize.w, scaledSize.h);
+    ImVec2 progressBarPos(scaledSize.x, scaledSize.y);
 
-    ImVec2 progressBarSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
-    ImVec2 progressBarPos(getPosition().x * scaleFactorX - progressBarSize.x / 2.0f,
-                          getPosition().y * scaleFactorY - progressBarSize.y / 2.0f);
     ImGui::SetNextWindowPos(progressBarPos);
     ImGui::SetNextWindowSize(progressBarSize);
 

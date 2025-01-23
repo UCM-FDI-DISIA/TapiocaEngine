@@ -14,7 +14,6 @@
 #include "OgreTextureManager.h"
 #include "RenderListener.h"
 #include "Structure/MainLoop.h"
-#include "Structure/Scene.h"
 #include "WindowManager.h"
 #include "GraphicsManager.h"
 #include "checkML.h"
@@ -67,17 +66,11 @@ bool UIManager::initConfig() {
     check();
     return true;
 }
-
 bool UIManager::handleEvents(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            float newWidth = (float)windowManager->getWindowW();
-            float newHeight = (float)windowManager->getWindowH();
-            for (std::pair<std::string, Scene*> s : mainLoop->getLoadedScenes()) {
-                if (!windowManager->getResized()) s.second->setWindowSize((uint32_t)newWidth, (uint32_t)newHeight);
-            }
             ImGuiIO& io = ImGui::GetIO();
-            io.DisplaySize = ImVec2(newWidth, newHeight);
+            io.DisplaySize = ImVec2((float)windowManager->getWindowW(), (float)windowManager->getWindowH());
             return true;
         }
     }
@@ -202,4 +195,29 @@ void UIManager::removeWidgetName(const std::string& name) {
 bool UIManager::widgetNameExists(const std::string& name) { return widgetNames.contains(name); }
 
 bool UIManager::fileExists(const std::string& name) const { return std::filesystem::exists(name); }
+
+UIManager::ScaledSize UIManager::getScaledSize(const int& x, const int& y, const int& sizeX, const int& sizeY) const {
+    float scaleX = windowManager->getsScaleX();
+    float scaleY = windowManager->getsScaleY();
+
+    float scaledW = scaleX * sizeX;
+    float scaledH = scaleY * sizeY;
+
+    float scaledPosX = x * scaleX - scaledW / 2.0f;
+    float scaledPosY = y * scaleY - scaledH / 2.0f;
+
+    /*std::cout << scaleX << ' ' << scaleY << '\n';
+    std::cout << x << ' ' << y << ' ' << sizeX << ' ' << sizeY << '\n';
+    std::cout << scaledPosX << ' ' << scaledPosY << ' ' << scaledW << ' ' << scaledH << '\n';*/
+
+    return {scaledPosX, scaledPosY, scaledW, scaledH};
+}
+
+float UIManager::getScaleX() const { 
+    return windowManager->getsScaleX(); 
+}
+float UIManager::getScaleY() const { 
+    return windowManager->getsScaleY(); 
+}
+
 }

@@ -2,7 +2,6 @@
 #include <imgui.h>
 #include "Structure/GameObject.h"
 #include "Components/Transform.h"
-#include "Structure/Scene.h"
 #include "UIManager.h"
 #include "LuaManager.h"
 #include "WindowManager.h"
@@ -120,15 +119,8 @@ bool InputText::initComponent(const CompMap& variables) {
 
 void InputText::start() {
     setTransform(object->getComponent<Transform>());
-    if (object->getScene()->getFirstWindowW() != windowManager->getFirstWindowW() ||
-        object->getScene()->getFirstWindowH() != windowManager->getFirstWindowH()) {
-        float min = std::min((float)object->getScene()->getFirstWindowW() / (float)windowManager->getFirstWindowW(),
-                             (float)object->getScene()->getFirstWindowH() / (float)windowManager->getFirstWindowH());
-        if (min > 0.0f) {
-            textSize *= min;
-            transform->setScale(Vector2(transform->getScale().x * min, transform->getScale().y * min));
-        }
-    }
+    float min = std::min(windowManager->getsScaleX(), windowManager->getsScaleY());
+    if (min > 0.0f) textSize *= min;
     bufferSize++;
     initialTextSize = textSize;
     if (placeHolderText.size() >= bufferSize) {
@@ -141,21 +133,16 @@ void InputText::start() {
 
 void InputText::updateUI() {
     if (!windowManager->getResized()) {
-        float scaleFactorX = object->getScene()->getScaleFactorX();
-        float scaleFactorY = object->getScene()->getScaleFactorY();
-        float min = std::min(scaleFactorX, scaleFactorY);
+        float min = std::min(windowManager->getsScaleX(), windowManager->getsScaleY());
         if (min > 0.0f) textSize = initialTextSize * min;
         updateTextFont();
     }
 }
 
 void InputText::render() const {
-    float scaleFactorX = object->getScene()->getScaleFactorX();
-    float scaleFactorY = object->getScene()->getScaleFactorY();
-
-    ImVec2 inputTextSize(getSize().x * scaleFactorX, getSize().y * scaleFactorY);
-    ImVec2 inputTextPos(getPosition().x * scaleFactorX - inputTextSize.x / 2.0f,
-                        getPosition().y * scaleFactorY - inputTextSize.y / 2.0f);
+    UIManager::ScaledSize scaledSize = uiManager->getScaledSize(getPosition().x, getPosition().y, getSize().x, getSize().y);
+    ImVec2 inputTextSize(scaledSize.w, scaledSize.h);
+    ImVec2 inputTextPos(scaledSize.x, scaledSize.y);
 
     ImGui::SetNextWindowPos(inputTextPos);
     ImGui::SetNextWindowSize(inputTextSize);

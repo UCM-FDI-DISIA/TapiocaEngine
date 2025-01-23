@@ -182,5 +182,30 @@ public:
     * @param name Nombre del archivo
     */
     bool fileExists(const std::string& name) const;
+
+    struct ScaledSize {
+        float x, y, w, h;
+    };
+    
+    /**
+    * @brief Devuelve las dimensiones escaladas
+    * @param x Posicion x
+    * @param y Posicion y
+    * @param sizeX Ancho
+    * @param sizeY Alto
+    * @return x, y, ancho y alto escalados de la logica respecto del tamano de la ventana
+    */
+    ScaledSize getScaledSize(const int& x, const int& y, const int& sizeX, const int& sizeY) const;
+
+    /**
+    * @brief Devuelve la escala X de la logica respecto del tamano de la ventana
+    * @return Escala X de la logica respecto del tamano de la ventana
+    */
+    float getScaleX() const;
+    /**
+    * @brief Devuelve la escala Y de la logica respecto del tamano de la ventana
+    * @return Escala Y de la logica respecto del tamano de la ventana
+    */
+    float getScaleY() const;
 };
 }
