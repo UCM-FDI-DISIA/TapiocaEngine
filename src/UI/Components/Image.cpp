@@ -28,7 +28,6 @@ bool Image::initComponent(const CompMap& variables) {
     return true;
 }
 
-#include <iostream>
 void Image::start() {
     setTransform(object->getComponent<Transform>());
     updateTexture();
