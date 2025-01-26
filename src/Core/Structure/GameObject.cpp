@@ -35,7 +35,7 @@ Component* GameObject::addComponent(const std::string& id, const CompMap& variab
     addComponent(comp, id, variables);
     comp->awake();
     comp->start();
-    return nullptr;
+    return comp;
 }
 
 std::vector<Component*> GameObject::addComponents(const std::vector<std::pair<std::string, CompMap>>& idAndVars) {

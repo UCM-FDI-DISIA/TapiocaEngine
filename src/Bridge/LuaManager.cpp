@@ -6,6 +6,7 @@
 #include <sstream>
 #include <functional>
 #include "LuaRegistry.h"
+#include <UnorderedMap.h>
 #include "VariantStack.h"
 #include "Components/LuaComponent.h"
 #include "Structure/FactoryManager.h"
@@ -21,6 +22,10 @@ namespace Tapioca {
 LuaManager::LuaManager() : L(nullptr), initialized(true) {
     L = luaL_newstate();
     luaL_openlibs(L);
+
+    luabridge::Stack<CompMap> aux;
+
+    luabridge::Stack<std::vector<CompValue>> aux2;
 
     if (luaL_dofile(L, "TapiocaFiles/Lua/internal.lua") != 0) {
         logError(("LuaManager: Error al cargar internal.lua: " + std::string(lua_tostring(L, -1))).c_str());
@@ -41,6 +46,12 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
                 .addFunction("getHandler", &Scene::getHandler)
                 .addProperty("name", &Scene::getName)
                 .addProperty("active", &Scene::isActive, &Scene::setActive)
+            .addFunction("addObject",
+                [](Scene* sc, const std::string& handler = "", int zIndex = 0) -> GameObject* {
+                    GameObject* obj = new GameObject();
+                    if (sc->addObject(obj, handler, zIndex)) return obj;
+                    else return nullptr;
+                })
             .endClass()
             .beginClass<GameObject>("GameObject")
                 .addFunction("getHandler", &GameObject::getHandler)
