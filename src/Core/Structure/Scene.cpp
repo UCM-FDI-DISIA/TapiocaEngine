@@ -6,8 +6,7 @@
 #include "Components/Transform.h"
 
 namespace Tapioca {
-Scene::Scene(std::string const& name)
-    : active(true), name(name) { }
+Scene::Scene(std::string const& name) : active(true), visible(true), name(name) { }
 
 Scene::~Scene() {
     for (auto obj : objects)
@@ -79,7 +78,7 @@ void Scene::fixedUpdate() {
 }
 
 void Scene::render() const {
-    if (!active) return;
+    if (!active || !visible) return;
     // Mayor zIndex implica que se dibuje antes para que quede por debajo
     for (auto it = layers.rbegin(); it != layers.rend(); ++it) {
         for (auto obj : it->second) {

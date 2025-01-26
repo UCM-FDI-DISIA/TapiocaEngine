@@ -46,6 +46,7 @@ LuaManager::LuaManager() : L(nullptr), initialized(true) {
                 .addFunction("getHandler", &Scene::getHandler)
                 .addProperty("name", &Scene::getName)
                 .addProperty("active", &Scene::isActive, &Scene::setActive)
+                .addProperty("visible", &Scene::isVisible, &Scene::setVisible)
             .addFunction("addObject",
                 [](Scene* sc, const std::string& handler = "", int zIndex = 0) -> GameObject* {
                     GameObject* obj = new GameObject();

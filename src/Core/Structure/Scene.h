@@ -17,6 +17,7 @@ private:
     friend class GameObject;
 
     bool active;                  // Indica si la escena esta activa
+    bool visible;
 
     // warning C4251 'Tapioca::Scene::objects' :
     // class 'std::vector<Tapioca::GameObject *,std::allocator<Tapioca::GameObject *>>' necesita
@@ -128,6 +129,11 @@ public:
     * @return True si la escena esta activa, false en caso contrario
     */
     inline bool isActive() const { return active; }
+
+
+    inline void setVisible(const bool a) { visible = a; }
+    
+    inline bool isVisible() const { return visible; }
 
     /**
     * @brief Actualiza el zIndex de un objeto
